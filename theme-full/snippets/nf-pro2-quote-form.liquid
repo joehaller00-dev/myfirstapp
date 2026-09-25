@@ -12,9 +12,9 @@
 {%- endcomment -%}
 {%- liquid
   assign q_id = form_id | default: 'nf-quote-form'
-  assign q_service = service | default: 'Custom request'
+  assign q_service = service | default: 'Project request'
   assign q_label = form_label | default: q_service
-  assign q_btn = button_label | default: 'Get My Free Custom Quote'
+  assign q_btn = button_label | default: 'Get My Free Project Quote'
   assign q_qty = qty_label | default: 'Quantity needed'
   assign q_adjust = adjust | newline_to_br | split: '<br />'
   assign q_refs = refs | newline_to_br | split: '<br />'

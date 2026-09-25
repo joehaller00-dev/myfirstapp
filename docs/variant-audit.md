@@ -1,51 +1,51 @@
 # Product option audit (2026-09-25)
 
-This covers 1,596 active products, of which 1,293 have more than one option.
+This covers 1,596 active products, of which 1,293 have more than one option. Each line links to the product on the store and to its edit page in Shopify admin.
 
-## Options named only by a letter (clicking them changes nothing a shopper can see)
+Fixed already: Sculpted Panel Outdoor Wall Light (option B now shows the oval photo, and A shows the main photo).
 
-These need real names, such as the shape or finish, and a photo linked to each option in Shopify admin (Product → Variants → the image icon).
+## Options named only by a letter
 
-- `sleek-night-wall-light-cement-up-lighting-minimalist-cement-body-lamp`: A, B, C, D, E, F, G
-- `hanging-led-luminous-ghost`: A, B, C, D
-- `pumpkin-and-maple-leaf-garland`: A, B, C
-- `modern-up-down-outdoor-wall-lights-black-geometric-lamp`: A, B
-- `up-down-outdoor-wall-light-geometric-minimalist-lamp`: A, B
-- `outside-up-down-wall-lights-led-outdoor-waterproof-lamp`: A, B
+Clicking them changes nothing a shopper can see. Each needs a real name (the shape or finish) and a photo linked to each option in admin: Variants, then the image icon.
+
+- [Cement Body Wall Sconce, Minimalist Concrete Uplight](https://norafurnish.com/products/sleek-night-wall-light-cement-up-lighting-minimalist-cement-body-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/8945088659508): A, B, C, D, E, F, G
+- [Hanging LED Luminous Ghost](https://norafurnish.com/products/hanging-led-luminous-ghost) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10310533677108): A, B, C, D
+- [Pumpkin and Maple Leaf Garland](https://norafurnish.com/products/pumpkin-and-maple-leaf-garland) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10310534332468): A, B, C
+- [Oval Shell Outdoor Wall Light, Black Aluminum Doorway Lamp](https://norafurnish.com/products/modern-up-down-outdoor-wall-lights-black-geometric-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315346346036): A, B
+- [Faceted Geometric Outdoor Wall Light, Black Patio Sconce](https://norafurnish.com/products/up-down-outdoor-wall-light-geometric-minimalist-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315346378804): A, B
 
 ## No option has its own photo
 
 Each has several options, but none is linked to a picture, so picking one never changes the photo.
 
-- `nordic-minimalist-stepless-dimming-background-corner-atmosphere-wall-lamp`
-- `gold-outdoor-wall-lights-luxury-waterproof-led-art-light`
-- `minimalist-long-wave-aluminum-black-decorative-led-wall-lamp`
-- `antique-gold-rotatable-led-bathroom-vanity-light`
-- `vintage-outdoor-wall-light-european-coffee-gold-lantern`
-- `nordic-copper-finish-wall-lights-with-suspending-cord-stairway-wall-mounted-sconce`
-- `annular-ring-led-bathroom-vanity-light`
-- `2-pcs-metal-outdoor-wall-sconces-european-vintage-aluminum-light`
-- `2-pcs-bronze-outdoor-sconce-vintage-glass-wall-lantern`
-- `modern-origami-crane-bird-wall-light-creative-gold-accent-origami-wall-sconce`
-- `glass-pebbles-led-wall-sconces-ha095600`
-- `31-180-adjustable-stainless-steel-bathroom-vanity-light-with-led-strip`
-- `modern-iron-led-linear-lights-horizontal-vertical-wall-mounted-light`
-- `antique-angel-european-style-wall-lamp-ha092196`
-- `up-and-down-exterior-wall-lights-modern-led-garden-light`
-- `vintage-wall-sconce-lighting-european-outdoor-glass-lamp`
-- `black-gold-linear-led-bathroom-vanity-light-bar`
-- `nordic-minimalist-art-geometric-design-stepless-dimming-led-wall-lamp-for-living-room`
-- `round-moon-3d-sandstone-painting-usb-voice-control-decorative-painting`
-- `unique-outdoor-wall-lighting-led-up-down-illuminating-decor-lamp`
-- `up-and-down-outdoor-wall-lights-led-waterproof-minimalist-lamp`
-- `outdoor-up-down-wall-lights-square-minimalist-waterproof-lamp`
-- `black-outdoor-up-and-down-wall-lights-nordic-style-led-light`
-- `modern-art-decorative-resin-feather-dimmable-white-wall-sconces-with-led-strip`
-- `outdoor-lights-for-wall-european-waterproof-garden-light`
-- `modern-up-down-outdoor-wall-lights-black-geometric-lamp`
-- `up-down-outdoor-wall-light-geometric-minimalist-lamp`
-- `outside-up-down-wall-lights-led-outdoor-waterproof-lamp`
+- [Ultra Slim Linear Wall Sconce, Black Aluminum Bar Light](https://norafurnish.com/products/nordic-minimalist-stepless-dimming-background-corner-atmosphere-wall-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315340709940): 24" / Neutral White, 24" / 3 Step Dimming, 24" / Dimmable, 39" / Neutral White, 39" / 3 Step Dimming, 39" / Dimmable…
+- [Gilded Facet Outdoor Sconce, Gold Steel Wall Lantern](https://norafurnish.com/products/gold-outdoor-wall-lights-luxury-waterproof-led-art-light) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315340939316): 20.1" / Neutral (4500K), 20.1" / Warm White (3000K), 20.1" / White (6000K), 26.0" / Neutral (4500K), 26.0" / Warm White (3000K), 26.0" / White (6000K)
+- [Wave Curve Wall Sconce, Black Aluminum Linear Light](https://norafurnish.com/products/minimalist-long-wave-aluminum-black-decorative-led-wall-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315341692980): 23.6" / Left, 23.6" / Right, 31.5" / Left, 31.5" / Right, 39.4" / Left, 39.4" / Right…
+- [Fluted Brass Vanity Light, Copper Bathroom Mirror Light](https://norafurnish.com/products/antique-gold-rotatable-led-bathroom-vanity-light) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315341889588): 3-Step Dimming (3000K/4000K/6000K) / 7W, 3-Step Dimming (3000K/4000K/6000K) / 9W, 3-Step Dimming (3000K/4000K/6000K) / 12W, Warm White (3000K) / 7W, Warm White (3000K) / 9W, Warm White (3000K) / 12W…
+- [Scrollwork Lantern Outdoor Light, Coffee Gold Wall Lantern](https://norafurnish.com/products/vintage-outdoor-wall-light-european-coffee-gold-lantern) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315342053428): Small, Medium, Large
+- [Suspended Cord Wall Lamp, Copper and Smoke Glass Light](https://norafurnish.com/products/nordic-copper-finish-wall-lights-with-suspending-cord-stairway-wall-mounted-sconce) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315343265844): Warm Light, Neutral White Light, White Light
+- [Continuous Loop Vanity Light, Aluminum Mirror Bar Light](https://norafurnish.com/products/annular-ring-led-bathroom-vanity-light) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315343757364): White / 15.7", White / 23.6", White / 31.5", White / 39.4", White / 47.2", Warm White / 15.7"…
+- [Scroll Arm Outdoor Lantern Pair, Aluminum Wall Lantern](https://norafurnish.com/products/2-pcs-metal-outdoor-wall-sconces-european-vintage-aluminum-light) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315343888436): Small, Large
+- [Lattice Glass Outdoor Lantern, Bronze Wall Lantern Set](https://norafurnish.com/products/2-pcs-bronze-outdoor-sconce-vintage-glass-wall-lantern) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315344052276): Hardwired, Solar
+- [Origami Crane Bird Light, White Paper Fold LED Wall Sconce](https://norafurnish.com/products/modern-origami-crane-bird-wall-light-creative-gold-accent-origami-wall-sconce) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315344117812): Wall lamp, Single hoop pendant, Single-head long rod pendant, 1 head floor lamp, 2-head pendant, 2-head floor lamp
+- [River Pebble Wall Light, Frosted Art Glass Wall Sconce](https://norafurnish.com/products/glass-pebbles-led-wall-sconces-ha095600) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315344183348): 13.8"x8.7"x9.4" / White, 13.8"x8.7"x9.4" / Amber, 13.8"x8.7"x9.4" / Gray, 13.8"x8.7"x9.4" / Blue, 11.8"x7.1"x5.1" / White, 11.8"x7.1"x5.1" / Amber…
+- [Polished Steel Vanity Light, Adjustable LED Mirror Bath Bar](https://norafurnish.com/products/31-180-adjustable-stainless-steel-bathroom-vanity-light-with-led-strip) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315344248884): White, Neutral White, Warm White, 3 Step Dimming
+- [Double Strip Wall Light, Black Iron Linear LED Sconce](https://norafurnish.com/products/modern-iron-led-linear-lights-horizontal-vertical-wall-mounted-light) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315344543796): 23.6" / Warm White, 23.6" / 3 Step Dimming, 31.5" / Warm White, 31.5" / 3 Step Dimming, 39.4" / Warm White, 39.4" / 3 Step Dimming…
+- [Guardian Angel Wall Sconce, Gold Resin Crystal Wall Light](https://norafurnish.com/products/antique-angel-european-style-wall-lamp-ha092196) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315344674868): Left, Right
+- [Pebble Cut Outdoor Sconce, Aluminum Up and Down Wall Light](https://norafurnish.com/products/up-and-down-exterior-wall-lights-modern-led-garden-light) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315345002548): Round / 10.2", Round / 15.7", Round / 23.6", Square / 10.2", Square / 15.7", Square / 23.6"
+- [Scrolled Iron Lantern Sconce, Bronze Outdoor Wall Light](https://norafurnish.com/products/vintage-wall-sconce-lighting-european-outdoor-glass-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315345035316): Small, Large
+- [Slender Rod Vanity Light, Black and Gold LED Bath Bar](https://norafurnish.com/products/black-gold-linear-led-bathroom-vanity-light-bar) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315345068084): 23.6" / White, 23.6" / Warm White, 39.4" / White, 39.4" / Warm White
+- [Folded Facet Wall Light, White Metal Sculptural LED Sconce](https://norafurnish.com/products/nordic-minimalist-art-geometric-design-stepless-dimming-led-wall-lamp-for-living-room) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315345100852): 17.71" W x 5.91" H, 11.81" W x 17.71" H, 11.81" W x 47.24" H, 23.62" W x 31.49" H, 27.55" W x 39.37" H, 35.43" W x 47.24" H
+- [Crescent Moon Wall Light, Sandstone LED Wall Art Panel](https://norafurnish.com/products/round-moon-3d-sandstone-painting-usb-voice-control-decorative-painting) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315345166388): 19.7", 23.6", 27.6", 31.5"
+- [Portal Up and Down Outdoor Wall Light, Black Aluminum Sconce](https://norafurnish.com/products/unique-outdoor-wall-lighting-led-up-down-illuminating-decor-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315345231924): 2-head, 3-head, 4-head, 6-head
+- [Pebble Shade Outdoor Wall Light, Black Aluminum Porch Light](https://norafurnish.com/products/up-and-down-outdoor-wall-lights-led-waterproof-minimalist-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315345395764): Small, Large
+- [Slim Column Outdoor Wall Light, Black Aluminum Facade Light](https://norafurnish.com/products/outdoor-up-down-wall-lights-square-minimalist-waterproof-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315345428532): 11.8" / White (6000K), 11.8" / Warm White (3000K), 11.8" / Neutral (4000K), 15.7" / White (6000K), 15.7" / Warm White (3000K), 15.7" / Neutral (4000K)…
+- [Hexagon Matrix Outdoor Wall Light, Black Aluminum Sconce](https://norafurnish.com/products/black-outdoor-up-and-down-wall-lights-nordic-style-led-light) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315345559604): Four Heads, Six Heads, Eight Heads
+- [Gilded Feather Wall Light, White Resin LED Wall Art Sconce](https://norafurnish.com/products/modern-art-decorative-resin-feather-dimmable-white-wall-sconces-with-led-strip) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315346116660): With Accent Feathers / Warm White / Left, With Accent Feathers / Warm White / Right, With Accent Feathers / 3 Step Dimming / Left, With Accent Feathers / 3 Step Dimming / Right, Feather Only / Warm White / Left, Feather Only / Warm White / Right…
+- [Heritage Lantern Outdoor Wall Light, Bronze Garden Sconce](https://norafurnish.com/products/outdoor-lights-for-wall-european-waterproof-garden-light) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315346182196): 22.8", 26.4"
+- [Oval Shell Outdoor Wall Light, Black Aluminum Doorway Lamp](https://norafurnish.com/products/modern-up-down-outdoor-wall-lights-black-geometric-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315346346036): A, B
+- [Faceted Geometric Outdoor Wall Light, Black Patio Sconce](https://norafurnish.com/products/up-down-outdoor-wall-light-geometric-minimalist-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315346378804): A, B
 
 ## Only some options have a photo
 
-- `bouquet-flowers-leaves-white-light-pastoral-american-style-wall-lamp`
+- [Glass Bouquet Wall Sconce, Iron Leaf Floral Wall Light](https://norafurnish.com/products/bouquet-flowers-leaves-white-light-pastoral-american-style-wall-lamp) · [edit in admin](https://admin.shopify.com/store/ij7iyx-13/products/10315344707636)

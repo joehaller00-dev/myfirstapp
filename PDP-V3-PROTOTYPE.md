@@ -109,6 +109,19 @@ Preview: https://norafurnish.com/products/black-gold-minimalist-wall-lamp?previe
 - **No custom orders:** the product page card now reads "Bulk & project orders" (10% on 2, 15% on 3+, project pricing) with a "Get a quote" button. The existing Custom Size Chandeliers, Custom Curtains and Custom Neon/Name Sign pages were left alone. The owner decides whether they stay.
 - **Write a review** on our section opens the store's own review form (NF-REVIEW-FORM in nf-pdp.js), which posts to Judge.me.
 
+## Round 7 (owner feedback)
+
+- **Sculpted Panel Outdoor Wall Light:** option B now shows the oval photo, and A shows the main photo. This is live store data.
+- **No custom work anywhere.** The six custom pages (Custom Lighting Studio, Custom LED Strip and Neon, Custom Neon Signs, Made to Measure Curtains, Custom Size Chandeliers, Custom Name Signs) were already unpublished and in no menu. Visible "custom" wording is now "project" or "bulk":
+  - About Us
+  - Linear Lighting Systems buttons, FAQ and form button
+  - the default labels of every quote form and references block
+  - the product page card (round 6)
+- **Room sets use the new review section.** It shows the real reviews of each piece, each card saying which piece it is about, with an average of those reviews. The old set review section is removed from the template.
+- **Room set gap:** the buy box scrolls until its bottom is on screen and then holds beside the piece photos. The empty rows in the grid are removed.
+- **Option audit:** `docs/variant-audit.md` now has clickable links to each product on the store and in admin.
+- **Set pieces without reviews:** `docs/set-pieces-without-reviews.md` (117 of 184 pieces have none, 39 have one), with links and the sets each piece is in.
+
 ## Before going live
 
 1. The live theme was last edited at 13:36 UTC on 2026-09-25, before the prototype was copied, so **publishing the prototype as it is now loses nothing**. If anyone edits the live theme before you publish, copy those edits across first, or copy the files listed above into the live theme instead.

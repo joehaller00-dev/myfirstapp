@@ -4,7 +4,7 @@
   "In stock" means the selected option can be ordered right now; otherwise it reads "Sold out".
 {%- endcomment -%}
 {%- assign nf_sv = product.selected_or_first_available_variant -%}
-{%- comment -%} room sets: a link to the real reviews of the pieces inside (sections/nf-set-reviews.liquid) {%- endcomment -%}
+{%- comment -%} room sets: a link to the real reviews of the pieces inside (sections/nf-reviews.liquid) {%- endcomment -%}
 {%- if product.type == 'Room Set' and product.metafields.custom.set_items != blank -%}
   {%- liquid
     assign sr_n = 0
@@ -28,7 +28,7 @@
   -%}
   {%- if sr_n > 0 -%}
     {%- assign sr_avg = sr_sum | divided_by: sr_n -%}
-    <a class="nf-setrate" href="#nf-set-reviews"><span class="nfsr__stars" style="--r: {{ sr_avg | times: 20 }}%" aria-hidden="true"></span><span>Pieces rated <b>{{ sr_avg | round: 1 }}</b> from {{ sr_n }} reviews</span></a>
+    <a class="nf-setrate" href="#nf-reviews"><span class="nfsr__stars" style="--r: {{ sr_avg | times: 20 }}%" aria-hidden="true"></span><span>Pieces rated <b>{{ sr_avg | round: 1 }}</b> from {{ sr_n }} reviews</span></a>
   {%- endif -%}
 {%- endif -%}
 <p class="nf-stock{% unless nf_sv.available %} is-out{% endunless %}" data-nf-stock>

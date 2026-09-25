@@ -8,29 +8,59 @@
   Judge.me for the next page (assets/nf-pdp3.js, section 9); if that fails it opens Judge.me's own full list.
   Write a review opens Judge.me's own form, so reviews still go to Judge.me. The Judge.me section stays on the page,
   hidden until it is needed. Questions: the #nf-questions panel (custom-nav.js, NF-QA-V1) is moved into the Questions tab.
-  Not shown on room sets, which have sections/nf-set-reviews.liquid.
+  Room sets (round 7): a set is new and has no reviews of its own, so it shows the real reviews of each piece inside it,
+  every card labelled with the piece it is about, and the summary says so. This replaces sections/nf-set-reviews.liquid.
 {%- endcomment -%}
 {%- liquid
+  assign is_set = false
+  if product.type == 'Room Set' and product.metafields.custom.set_items.value != blank
+    assign is_set = true
+  endif
   assign jd = product.metafields.judgeme.review_widget_data.value
   assign n = jd.number_of_reviews | default: 0
   assign avg = jd.average_rating | default: 0 | plus: 0
   assign revs = jd.reviews
+  assign shown = revs.size | default: 0
+  if is_set
+    assign n = 0
+    assign tot = 0
+    assign shown = 0
+    assign seen = ','
+    for it in product.metafields.custom.set_items.value
+      assign h = it.url | split: '/products/' | last | split: '?' | first
+      assign key = ',' | append: h | append: ','
+      if seen contains key
+        continue
+      endif
+      assign seen = seen | append: h | append: ','
+      assign pjd = all_products[h].metafields.judgeme.review_widget_data.value
+      assign pn = pjd.number_of_reviews | default: 0
+      if pn > 0
+        assign pa = pjd.average_rating | plus: 0
+        assign n = n | plus: pn
+        assign tot = pa | times: pn | plus: tot
+        assign shown = shown | plus: pjd.reviews.size
+      endif
+    endfor
+    if n > 0
+      assign avg = tot | divided_by: n
+    endif
+  endif
   assign nq = 0
   assign qa = product.metafields.custom.qa.value
   if qa != blank
     assign nq = qa.size
   endif
 -%}
-{%- unless product.type == 'Room Set' -%}
   {{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}
-  <section class="nfrv" id="nf-reviews" data-nfrv data-n="{{ n }}" data-loaded="{{ revs.size | default: 0 }}" data-pid="{{ product.id }}" data-shop="{{ shop.permanent_domain }}" aria-labelledby="nfrv-h">
+  <section class="nfrv" id="nf-reviews" data-nfrv data-n="{{ n }}"{% if is_set %} data-set{% endif %} data-loaded="{{ shown }}" data-pid="{{ product.id }}" data-shop="{{ shop.permanent_domain }}" aria-labelledby="nfrv-h">
     <div class="nfrv__in">
       <h2 class="nfrv__sr" id="nfrv-h">Customer reviews</h2>
       <div class="nfrv__top">
         <div class="nfrv__sum">
           {%- if n > 0 -%}
             <p class="nfrv__score">{{ avg | round: 1 }} <span class="nfsr__stars" style="--r: {{ avg | times: 20 }}%" role="img" aria-label="{{ avg | round: 1 }} out of 5 stars"></span></p>
-            <p class="nfrv__count">{{ n }} {% if n == 1 %}review{% else %}reviews{% endif %}</p>
+            <p class="nfrv__count">{{ n }} {% if n == 1 %}review{% else %}reviews{% endif %}{% if is_set %} of the pieces in this set{% endif %}</p>
           {%- else -%}
             <p class="nfrv__score">No reviews yet</p>
             <p class="nfrv__count">Be the first to share how it looks at home.</p>
@@ -48,7 +78,7 @@
       </div>
 
       <div class="nfrv__panel" data-nfrv-panel="r">
-        {%- if revs.size > 0 -%}
+        {%- if shown > 0 -%}
           <div class="nfrv__bar">
             <label class="nfrv__sort"><span class="nfrv__sr">Sort reviews</span>
               <select data-nfrv-sort>
@@ -60,32 +90,21 @@
             </label>
           </div>
           <div class="nfrv__grid" data-nfrv-grid>
-            {%- for r in revs -%}
-              {%- liquid
-                assign pic = blank
-                assign p0 = r.pictures_urls | first
-                if p0 != blank
-                  if p0.urls
-                    assign pic = p0.urls.huge | default: p0.urls.original | default: p0.urls.small
-                  else
-                    assign pic = p0
-                  endif
-                endif
-              -%}
-              <article class="nfrv__card" data-t="{{ r.created_at }}" data-s="{{ r.rating }}" data-p="{% if pic != blank %}1{% else %}0{% endif %}">
-                {%- if pic != blank -%}<img class="nfrv__img" src="{{ pic }}" width="600" height="600" alt="Photo from {{ r.reviewer_name | escape }}'s review" loading="lazy">{%- endif -%}
-                <div class="nfrv__body">
-                  <div class="nfrv__row"><span class="nfsr__stars nfrv__stars" style="--r: {{ r.rating | times: 20 }}%" role="img" aria-label="{{ r.rating }} out of 5 stars"></span><time class="nfrv__when" datetime="{{ r.created_at }}">{{ r.created_at | date: '%b %-d, %Y' }}</time></div>
-                  <p class="nfrv__name">{{ r.reviewer_name | escape }}</p>
-                  {%- if r.verified_buyer -%}<p class="nfrv__ver"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M4.5 8.2l2.2 2.1 4.8-4.8" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified purchase</p>{%- endif -%}
-                  {%- if r.title != blank -%}<p class="nfrv__title">{{ r.title | escape }}</p>{%- endif -%}
-                  <div class="nfrv__text">{{ r.body_html | default: r.body }}</div>
-                  {%- if r.reply_content != blank -%}<details class="nfrv__reply"><summary>Reply from Nora Furnish</summary>{{ r.reply_content }}</details>{%- endif -%}
-                </div>
-              </article>
-            {%- endfor -%}
+            {%- if is_set -%}
+              {%- assign seen = ',' -%}
+              {%- for it in product.metafields.custom.set_items.value -%}
+                {%- assign h = it.url | split: '/products/' | last | split: '?' | first -%}
+                {%- assign key = ',' | append: h | append: ',' -%}
+                {%- if seen contains key -%}{%- continue -%}{%- endif -%}
+                {%- assign seen = seen | append: h | append: ',' -%}
+                {%- assign pc = all_products[h] -%}
+                {%- for r in pc.metafields.judgeme.review_widget_data.value.reviews -%}{%- render 'nf-review-card', r: r, piece: pc -%}{%- endfor -%}
+              {%- endfor -%}
+            {%- else -%}
+              {%- for r in revs -%}{%- render 'nf-review-card', r: r -%}{%- endfor -%}
+            {%- endif -%}
           </div>
-          {%- if n > revs.size -%}
+          {%- if n > shown and is_set == false -%}
             <div class="nfrv__more"><button type="button" class="nfrv__btn" data-nfrv-more>Show more reviews</button></div>
           {%- endif -%}
         {%- else -%}
@@ -96,7 +115,6 @@
       <div class="nfrv__panel" data-nfrv-panel="q" hidden></div>
     </div>
   </section>
-{%- endunless -%}
 
 {% schema %}
 {

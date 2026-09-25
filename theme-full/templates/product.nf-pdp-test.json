@@ -134,7 +134,7 @@
         "nf_custom_version": {
           "type": "liquid",
           "settings": {
-            "liquid": "<p class=\"nfp-pdp\" style=\"margin:6px 0 0;font:500 14px/1.5 Inter,system-ui,sans-serif;color:#655A50\">Need another size, finish or a larger quantity? <a href=\"/pages/custom-lighting?product={{ product.handle }}#custom-quote-form\" style=\"color:#2B2520;font-weight:600;text-decoration:underline;text-decoration-color:#B38B5D;text-decoration-thickness:1.5px;text-underline-offset:4px\">Request a custom version</a></p>"
+            "liquid": "<p class=\"nfp-pdp\" style=\"margin:6px 0 0;font:500 14px/1.5 Inter,system-ui,sans-serif;color:#655A50\">Need another size, finish or a larger quantity? <a href=\"/pages/bulk-project-orders?product={{ product.handle }}\" style=\"color:#2B2520;font-weight:600;text-decoration:underline;text-decoration-color:#B38B5D;text-decoration-thickness:1.5px;text-underline-offset:4px\">Request a custom version</a></p>"
           }
         },
         "nf_ctl": {

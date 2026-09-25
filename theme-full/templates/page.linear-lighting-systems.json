@@ -24,7 +24,7 @@
         "image_file": "nf-pro-linear.jpg",
         "image_alt": "Continuous light for offices, shops and kitchens",
         "fallback_collection": "linear-suspension",
-        "btn1_label": "Start a Custom Request",
+        "btn1_label": "Get a Project Quote",
         "btn1_url": "#quote",
         "btn2_label": "Browse Project References",
         "btn2_url": "#references",
@@ -277,7 +277,7 @@
           "type": "faq",
           "settings": {
             "q": "Is there a minimum order?",
-            "a": "<p>No. You can ask for a single custom piece or the lighting for a whole building. Larger lists simply get a quote that reflects the volume.</p>"
+            "a": "<p>No. You can order a single piece or the lighting for a whole building. Larger lists simply get a quote that reflects the volume.</p>"
           }
         },
         "q4": {
@@ -408,7 +408,7 @@
         "heading": "Application references",
         "caption": "Inspiration showing how linear systems can be used. These are example spaces, not our installed projects.",
         "foot": "Seen a look you like? Pick it in the quote form and we will price it for your space.",
-        "btn1_label": "Start a Custom Request",
+        "btn1_label": "Get a Project Quote",
         "btn1_url": "#quote",
         "btn2_label": "Shop linear suspension",
         "btn2_url": "/collections/linear-suspension",
@@ -512,7 +512,7 @@
         "tool": false,
         "zip": false,
         "msg_placeholder": "Room length and width, ceiling height, where the desks or counters sit, and how the lights will be switched.",
-        "button_label": "Get My Free Custom Quote",
+        "button_label": "Get My Free Project Quote",
         "bg": "grey"
       }
     }

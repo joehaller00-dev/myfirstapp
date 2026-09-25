@@ -1,0 +1,27 @@
+{%- comment -%}
+  One review card for sections/nf-reviews.liquid. Params: r (a review from judgeme.review_widget_data), piece (optional
+  product: on room sets, the piece this review is about, shown on the card so it is never read as a review of the set).
+{%- endcomment -%}
+{%- liquid
+  assign pic = blank
+  assign p0 = r.pictures_urls | first
+  if p0 != blank
+    if p0.urls
+      assign pic = p0.urls.huge | default: p0.urls.original | default: p0.urls.small
+    else
+      assign pic = p0
+    endif
+  endif
+-%}
+<article class="nfrv__card" data-t="{{ r.created_at }}" data-s="{{ r.rating }}" data-p="{% if pic != blank %}1{% else %}0{% endif %}">
+  {%- if pic != blank -%}<img class="nfrv__img" src="{{ pic }}" width="600" height="600" alt="Photo from {{ r.reviewer_name | escape }}'s review" loading="lazy">{%- endif -%}
+  <div class="nfrv__body">
+    <div class="nfrv__row"><span class="nfsr__stars nfrv__stars" style="--r: {{ r.rating | times: 20 }}%" role="img" aria-label="{{ r.rating }} out of 5 stars"></span><time class="nfrv__when" datetime="{{ r.created_at }}">{{ r.created_at | date: '%b %-d, %Y' }}</time></div>
+    <p class="nfrv__name">{{ r.reviewer_name | escape }}</p>
+    {%- if r.verified_buyer -%}<p class="nfrv__ver"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M4.5 8.2l2.2 2.1 4.8-4.8" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified purchase</p>{%- endif -%}
+    {%- if piece != blank -%}<p class="nfrv__piece">Review of <a href="{{ piece.url }}">{{ piece.title | escape }}</a></p>{%- endif -%}
+    {%- if r.title != blank -%}<p class="nfrv__title">{{ r.title | escape }}</p>{%- endif -%}
+    <div class="nfrv__text">{{ r.body_html | default: r.body }}</div>
+    {%- if r.reply_content != blank -%}<details class="nfrv__reply"><summary>Reply from Nora Furnish</summary>{{ r.reply_content }}</details>{%- endif -%}
+  </div>
+</article>

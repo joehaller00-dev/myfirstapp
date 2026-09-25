@@ -384,6 +384,8 @@ html:not(.nfrv-native) body:has(#nf-reviews) .shopify-section--apps:has(.jdgm-wi
 .nfrv__name{margin:12px 0 0;font:700 15px/1.3 var(--text-font-family,Inter,system-ui,sans-serif)}
 .nfrv__ver{display:flex;align-items:center;gap:6px;margin:4px 0 0;font-size:14px;color:var(--nf3-ink)}
 .nfrv__ver svg{width:15px;height:15px}
+.nfrv__piece{margin:6px 0 0;font-size:13px;color:var(--nf3-muted)}
+.nfrv__piece a{color:var(--nf3-gold-d);font-weight:600;text-decoration:none}
 .nfrv__title{margin:10px 0 0;font-weight:600;font-size:14px}
 .nfrv__text{margin:10px 0 0;font-size:14px;line-height:1.5;color:var(--nf3-txt)}
 .nfrv__text p{margin:0 0 6px}
@@ -468,5 +470,7 @@ html:not(.nfrv-native) body:has(#nf-reviews) .shopify-section--apps:has(.jdgm-wi
 /* room sets (round 6): the piece photos make the left column long, so the buy box travels with them instead of leaving
    an empty right column */
 @media screen and (min-width:1000px){
-  .shopify-section--main-product .product.nf3-split:has(.nfsp--main) > .product-info{position:sticky!important;top:calc(var(--sticky-area-height,90px) + 16px)!important;align-self:start!important}
+  .shopify-section--main-product .product.nf3-split:has(.nfsp--main) > .product-info{position:sticky!important;align-self:start!important}
+  .shopify-section--main-product .product.nf3-split:has(.nfsp--main){row-gap:0!important}
+  .shopify-section--main-product .product.nf3-split:has(.nfsp--main) > .nf3-below:empty{display:none}
 }

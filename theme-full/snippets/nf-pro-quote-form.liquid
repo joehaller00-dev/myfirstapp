@@ -6,7 +6,7 @@
 {%- liquid
   assign q_v = variant | default: 'full'
   assign q_id = form_id | default: 'nf-quote-form'
-  assign q_label = form_label | default: 'Custom quote'
+  assign q_label = form_label | default: 'Project quote'
   assign q_btn = button_label | default: 'Get My Free Quote'
 -%}
 {%- form 'contact', id: q_id, class: 'nfp-form', novalidate: 'novalidate', data-nfp-form: q_v -%}

@@ -472,6 +472,19 @@
       if (gal) gal.style.display = 'none';
       sp.classList.add('nfsp--main');
     }
+    /* room sets: the buy box scrolls with the page until its bottom shows, then holds there beside the piece photos,
+       so a tall buy box never leaves an empty right column (round 7) */
+    if (sp && info) {
+      if (!info._nfSticky && window.ResizeObserver) {
+        info._nfSticky = 1;
+        var fit = function () {
+          if (!DESK.matches) { info.style.removeProperty('top'); return; }
+          var top = Math.min(100, window.innerHeight - info.offsetHeight - 24);
+          info.style.setProperty('top', top + 'px', 'important');
+        };
+        new ResizeObserver(fit).observe(info); window.addEventListener('resize', fit); fit();
+      }
+    }
     if (DESK.matches) {
       if (!below) { below = d.createElement('div'); below.className = 'nf3-below'; prod.appendChild(below); }
       /* on room sets the pieces fill the left column; the story stays full width below */
@@ -625,6 +638,8 @@
     });
     var sel = $('[data-nfrv-sort]', box);
     if (sel) sel.addEventListener('change', function () { sort(sel.value); });
+    /* room sets list piece by piece; show the newest first like everywhere else */
+    if (box.hasAttribute('data-set') && grid) sort('new');
     /* "N questions" under the title and #nf-questions links open our Questions tab */
     d.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href$="#nf-questions"]');
