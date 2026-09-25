@@ -472,18 +472,32 @@
       if (gal) gal.style.display = 'none';
       sp.classList.add('nfsp--main');
     }
-    /* room sets: the buy box scrolls with the page until its bottom shows, then holds there beside the piece photos,
-       so a tall buy box never leaves an empty right column (round 7) */
-    if (sp && info) {
-      if (!info._nfSticky && window.ResizeObserver) {
-        info._nfSticky = 1;
-        var fit = function () {
-          if (!DESK.matches) { info.style.removeProperty('top'); return; }
-          var top = Math.min(100, window.innerHeight - info.offsetHeight - 24);
-          info.style.setProperty('top', top + 'px', 'important');
-        };
-        new ResizeObserver(fit).observe(info); window.addEventListener('resize', fit); fit();
-      }
+    /* room sets (round 8): make the photo column as tall as the buy box, so neither side leaves a gap. Every piece
+       starts at one row of photos; pieces open to two rows, in order, while the column still fits beside the buy box.
+       "See all N photos" opens the rest. Re-run when the buy box changes height (accordions) or the window resizes. */
+    if (sp && info && !sp._nfBal) {
+      sp._nfBal = 1;
+      var bal = function () {
+        var pcs = $$('.nfsp__piece', sp);
+        if (!DESK.matches || !sp.classList.contains('nfsp--main')) { pcs.forEach(function (p) { p.classList.remove('is-one', 'is-three'); }); return; }
+        /* three sizes per piece: three smaller photos in a row (is-three), two big ones (is-one), or four big ones */
+        pcs.forEach(function (p) { p.classList.remove('is-three'); p.classList.add('is-one'); });
+        var want = info.offsetHeight + 24, i;
+        if (sp.offsetHeight > want) {
+          for (i = pcs.length - 1; i >= 0 && sp.offsetHeight > want; i--) {
+            if ($$('.nfsp__ph', pcs[i]).length >= 3) { pcs[i].classList.remove('is-one'); pcs[i].classList.add('is-three'); }
+          }
+        } else {
+          for (i = 0; i < pcs.length; i++) {
+            if ($('.nfsp__grid.is-all', pcs[i]) || $$('.nfsp__ph', pcs[i]).length < 3) continue;
+            pcs[i].classList.remove('is-one');
+            if (sp.offsetHeight > want + 60) { pcs[i].classList.add('is-one'); break; }
+          }
+        }
+      };
+      var bt = 0, rebal = function () { clearTimeout(bt); bt = setTimeout(bal, 120); };
+      if (window.ResizeObserver) new ResizeObserver(rebal).observe(info);
+      window.addEventListener('resize', rebal); rebal();
     }
     if (DESK.matches) {
       if (!below) { below = d.createElement('div'); below.className = 'nf3-below'; prod.appendChild(below); }
@@ -550,11 +564,22 @@
       for (var i = 0; i < u.length; i++) { var n = Math.floor(s / u[i][0]); if (n >= 1) return n + ' ' + u[i][1] + (n > 1 ? 's' : '') + ' ago'; }
       return 'Today';
     }
+    /* long reviews: five lines, then "Read more" (owner: "the longest review of my life") */
+    function clamp(root) {
+      $$('.nfrv__text:not([data-cl])', root || box).forEach(function (el) {
+        el.setAttribute('data-cl', ''); el.classList.add('is-clamp');
+        if (el.scrollHeight <= el.clientHeight + 4) { el.classList.remove('is-clamp'); return; }
+        var b = d.createElement('button'); b.type = 'button'; b.className = 'nfrv__rm'; b.textContent = 'Read more';
+        b.addEventListener('click', function () { var open = el.classList.toggle('is-clamp'); b.textContent = open ? 'Read more' : 'Show less'; });
+        el.parentNode.insertBefore(b, el.nextSibling);
+      });
+    }
     function dates(root) { $$('.nfrv__when', root || box).forEach(function (el) { var a = ago(el.getAttribute('datetime')); if (a) el.textContent = a; }); }
-    dates();
+    dates(); clamp();
     function tab(which) {
       $$('[data-nfrv-tab]', box).forEach(function (b) { var on = b.getAttribute('data-nfrv-tab') === which; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); });
       rPanel.hidden = which !== 'r'; qPanel.hidden = which !== 'q';
+      if (which === 'r') clamp();
       if (which === 'q') grabQ();
     }
     /* the Q and A panel is built by custom-nav.js a moment after load, and its own tab bar may move it: keep it here */
@@ -607,7 +632,7 @@
         }).filter(function (r) { return r.body || r.pic; });
         if (!got.length) throw new Error('empty');
         got.forEach(function (r) { grid.appendChild(card(r)); });
-        page++; dates(grid);
+        page++; dates(grid); clamp(grid);
         var sel = $('[data-nfrv-sort]', box); if (sel && sel.value !== 'new') sort(sel.value);
         if ($$('.nfrv__card', grid).length >= n) btn.parentNode.remove(); else { btn.disabled = false; btn.textContent = 'Show more reviews'; }
       }).catch(function () {
@@ -691,9 +716,18 @@
   function start() {
     run();
     firstImage();
-    d.addEventListener('variant:change', function () {
-      setTimeout(run, 60); setTimeout(run, 450); setTimeout(run, 1200);
-    });
+    /* round 8 (owner: switching options was "choppy and loady"): one pass after the theme has swapped its blocks, not
+       three full passes; the observer below still repairs anything the theme replaces later */
+    var vt = 0;
+    d.addEventListener('variant:change', function () { clearTimeout(vt); vt = setTimeout(run, 140); });
+    /* every photo of the product is already in the gallery but lazy loaded, so the photo of an option often only started
+       downloading when it was picked. Fetch them in the background once the page is idle. */
+    var eager = function () {
+      $$('.shopify-section--main-product product-gallery img[loading="lazy"]').forEach(function (im, i) {
+        setTimeout(function () { im.loading = 'eager'; im.fetchPriority = 'low'; }, i * 120);
+      });
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(eager, { timeout: 3500 }); else setTimeout(eager, 2500);
     /* Prestige swaps parts of the product section on option change; put the counter, the stock line and the chosen
        card back */
     var host = $('.shopify-section--main-product') || d.body, t = 0;

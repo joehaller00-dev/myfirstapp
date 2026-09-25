@@ -122,6 +122,20 @@ Preview: https://norafurnish.com/products/black-gold-minimalist-wall-lamp?previe
 - **Option audit:** `docs/variant-audit.md` now has clickable links to each product on the store and in admin.
 - **Set pieces without reviews:** `docs/set-pieces-without-reviews.md` (117 of 184 pieces have none, 39 have one), with links and the sets each piece is in.
 
+## Round 8 (owner feedback)
+
+- **Room set gap, real cause:** a round 2 rule (`min-height:100%` on the buy column, used to run the divider full height) stretched the buy box to the height of the photo column, leaving blank space inside it. On set pages it is now only as tall as its content. The photo column then balances itself against it: each piece shows three small photos, two big ones or four big ones, whichever keeps both columns level, plus "See all N photos".
+- **Reviews:** the cards are now wider and stack in columns (three on desktop, one on phones). Long reviews show five lines and "Read more".
+- **Option changes felt choppy:**
+  - nf-pdp3.js now does one pass after an option change instead of three full passes.
+  - Gallery photos preload in the background once the page is idle, so an option's photo is already downloaded.
+  - custom-nav.js no longer re-orders the gallery on the redesigned page; the CSS keeps that order fixed anyway.
+- **Product fixes (live data), from the option audit:**
+  - #2 archived by the owner.
+  - #3 garland made a single product.
+  - #4 and #5 shape B photos linked.
+  - #9 and #10 sizes renamed to inches, with their size charts updated.
+
 ## Before going live
 
 1. The live theme was last edited at 13:36 UTC on 2026-09-25, before the prototype was copied, so **publishing the prototype as it is now loses nothing**. If anyone edits the live theme before you publish, copy those edits across first, or copy the files listed above into the live theme instead.

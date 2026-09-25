@@ -64,6 +64,9 @@
   }
 
   document.addEventListener('variant:change', function(event) {
+    /* NF round 8: the redesigned product page (marker [data-nf3]) keeps the photo order fixed in CSS, so re-ordering
+       here only cost a full gallery re-layout on every option change */
+    if (document.querySelector('[data-nf3]')) return;
     var detail = event.detail || {};
     var variant = detail.variant;
     var el = styleEl();
