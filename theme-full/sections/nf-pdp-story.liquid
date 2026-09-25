@@ -25,8 +25,13 @@
   assign nf_short = product.metafields.custom.why_special.value | default: product.metafields.custom.why_special
 
   assign jm = shop.metafields.judgeme.reviews_grid.value
-  assign jm_rating = shop.metafields.judgeme.all_reviews_rating.value | default: jm.average_rating
-  assign jm_count = shop.metafields.judgeme.all_reviews_count.value | default: jm.number_of_reviews
+  comment
+    Round 9 (owner): Judge.me's all_reviews_count (4,494) counts reviews that are no longer on any product the store sells.
+    The headline uses shop.metafields.custom.nf_reviews_count / nf_reviews_rating instead: reviews on ACTIVE products only
+    (770 at 4.68 on 2026-09-25). Update those two metafields when the catalog changes.
+  endcomment
+  assign jm_rating = shop.metafields.custom.nf_reviews_rating.value | default: shop.metafields.judgeme.all_reviews_rating.value | default: jm.average_rating
+  assign jm_count = shop.metafields.custom.nf_reviews_count.value | default: shop.metafields.judgeme.all_reviews_count.value | default: jm.number_of_reviews
   assign jm_list = jm.all_reviews.reviews
 -%}
 {{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}

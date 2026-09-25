@@ -9,8 +9,8 @@
 {{- 'nf-about.css' | asset_url | stylesheet_tag -}}
 {%- liquid
   assign s = section.settings
-  assign jm_c = shop.metafields.judgeme.all_reviews_count.value | plus: 0
-  assign jm_r = shop.metafields.judgeme.all_reviews_rating.value | plus: 0
+  assign jm_c = shop.metafields.custom.nf_reviews_count.value | default: shop.metafields.judgeme.all_reviews_count.value | plus: 0
+  assign jm_r = shop.metafields.custom.nf_reviews_rating.value | default: shop.metafields.judgeme.all_reviews_rating.value | plus: 0
   assign jm_r1 = jm_r | round: 1
   assign jm_pct = jm_r | divided_by: 5.0 | times: 100 | round: 1
   assign jm_k = jm_c | divided_by: 1000
