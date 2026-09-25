@@ -540,6 +540,8 @@
     /* NF-STICKY-FIX 2026-09-24: backwards, not both. A transform animation that holds its last frame stays in effect forever, and while it is in effect <main> becomes the containing block for position:fixed children, so the product sticky Add to Cart bar was pinned to the bottom of the PAGE (never seen). backwards looks identical and ends cleanly. */ main.anchor{animation:nfPageIn .38s cubic-bezier(.22,.61,.36,1) backwards}
     @media (prefers-reduced-motion:reduce){main.anchor{animation:nfPageInSoft .26s ease backwards}}
   </style>
+  {%- comment -%} NF-BRAND-V1 (2026-09-25): Ember palette, bold homepage headings, lit footer V3. Last stylesheet in the head. {%- endcomment -%}
+  {{ 'nf-brand.css' | asset_url | stylesheet_tag }}
 </head>
 
   {% liquid
@@ -589,62 +591,67 @@
       prefers-reduced-motion respected. Fixed heights (41px from 768px, 31px below, same as before) so nothing jumps (CLS 0).
       Outranks the older #nora-announcement-bar rules in nf-redesign.css. The .nf-anno-hidden class (set while a drawer is open) still works.
       NF-TOPBAR-V2 rule kept: no dashes in store copy, slides use a middle dot between the message and its link. {%- endcomment -%}
+{%- comment -%} NF-ANNO-V3 (2026-09-25, owner: no sliding, more urgency). One static bar, three parts: the offer, a live countdown
+      to the REAL sale end (shop metafields custom.nf_sale_name / nf_sale_end, the same date as the product page sale bars), and
+      a link. After the end date it falls back to the standing offers that are always true: free US shipping, 10% off 2 items and
+      15% off 3 or more (the two automatic discounts). The countdown never resets or loops. {%- endcomment -%}
+    {%- liquid
+      assign nfa_name = shop.metafields.custom.nf_sale_name.value | default: 'The First Days of Fall Sale'
+      assign nfa_end = shop.metafields.custom.nf_sale_end.value
+      assign nfa_live = false
+      if nfa_end != blank
+        assign nfa_now_s = 'now' | date: '%s' | plus: 0
+        assign nfa_end_s = nfa_end | date: '%s' | plus: 0
+        if nfa_end_s > nfa_now_s
+          assign nfa_live = true
+        endif
+      endif
+    -%}
     <style>
-      html body #nora-announcement-bar{--nfa-gold:#c9a36a;position:relative;z-index:1000;display:flex;align-items:center;width:100%;height:68px;margin:0;padding:0!important;overflow:hidden;box-sizing:border-box;color:#ffffff!important;background-color:#14120e!important;background-image:linear-gradient(0deg,rgba(16,12,9,.6),rgba(16,12,9,.6)),url("https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-annobar-canopy.jpg?v=1790109062&width=1920&height=136&crop=center")!important;background-size:auto,cover!important;background-position:center,center 38%!important;background-repeat:no-repeat,no-repeat!important;font-family:Lora,Georgia,serif!important;font-size:16px!important;font-weight:400!important;letter-spacing:.015em!important;line-height:1.5!important;text-transform:none!important;text-shadow:0 1px 2px rgba(0,0,0,.8);transition:opacity .25s ease}
-html body #nora-announcement-bar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;z-index:3;pointer-events:none;background:linear-gradient(90deg,rgba(201,163,106,0) 0%,rgba(201,163,106,.5) 20%,rgba(201,163,106,.85) 50%,rgba(201,163,106,.5) 80%,rgba(201,163,106,0) 100%)}
-html body #nora-announcement-bar .nora-anno-link{display:block;width:100%;color:inherit!important;text-decoration:none!important}
-html body #nora-announcement-bar .nora-anno-link,html body #nora-announcement-bar .nora-anno-link:link,html body #nora-announcement-bar .nora-anno-link:visited,html body #nora-announcement-bar .nora-anno-item,html body #nora-announcement-bar .nora-anno-seg{-webkit-text-fill-color:#fff!important;color:#fff!important;background-image:none!important;background-color:transparent!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;animation:none!important;letter-spacing:inherit!important;text-decoration:none!important}
-html body #nora-announcement-bar .nora-anno-tape{animation:nfAnnoTape var(--nf-anno-dur,34s) linear infinite!important}
-html body #nora-announcement-bar .nora-anno-marquee{position:relative;width:100%;overflow:hidden}
-html body #nora-announcement-bar .nora-anno-marquee::before,html body #nora-announcement-bar .nora-anno-marquee::after{content:"";position:absolute;top:0;bottom:0;width:110px;z-index:2;pointer-events:none}
-html body #nora-announcement-bar .nora-anno-marquee::before{left:0;width:56px;background:linear-gradient(90deg,rgba(20,17,12,.92) 0%,rgba(20,17,12,0) 100%)}
-html body #nora-announcement-bar .nora-anno-marquee::after{right:0;background:linear-gradient(270deg,#14120e 0%,rgba(20,18,14,0) 100%)}
-html body #nora-announcement-bar .nora-anno-tape{display:flex;width:max-content;white-space:nowrap;will-change:transform;animation:nfAnnoTape var(--nf-anno-dur,34s) linear infinite}
-html body #nora-announcement-bar:hover .nora-anno-tape{animation-play-state:paused}
-html body #nora-announcement-bar .nora-anno-seg{display:flex;align-items:center;flex:0 0 auto}
-html body #nora-announcement-bar .nora-anno-item{padding:0 30px}
-html body #nora-announcement-bar .nora-anno-leaf{flex:0 0 auto;width:15px;height:15px;color:var(--nfa-gold);opacity:.95;filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))}
-html body #nora-announcement-bar.nf-anno-hidden{opacity:0;pointer-events:none}
-@keyframes nfAnnoTape{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(var(--nf-anno-shift,25%) * -1),0,0)}}
-@media (max-width:767px){
-  html body #nora-announcement-bar{height:56px;font-size:14.5px!important;letter-spacing:.01em!important;background-position:center,center 40%!important}
-  html body #nora-announcement-bar .nora-anno-item{padding:0 18px}
-  html body #nora-announcement-bar .nora-anno-leaf{width:12px;height:12px}
-  html body #nora-announcement-bar .nora-anno-marquee::before,html body #nora-announcement-bar .nora-anno-marquee::after{width:52px}
-}</style>
-    <div id="nora-announcement-bar" role="region" aria-label="Store announcements">
-      <a class="nora-anno-link" href="/collections/autumn-at-home" aria-label="The First Days of Fall Sale, up to 30% off Autumn at Home">
-        <div class="nora-anno-marquee">
-          <div class="nora-anno-tape"><span class="nora-anno-seg"><span class="nora-anno-item">The First Days of Fall Sale</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Up to 30% Off Autumn at Home</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Free Shipping on Every Order</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Bulk Orders and Project Pricing</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg></span><span class="nora-anno-seg" aria-hidden="true"><span class="nora-anno-item">The First Days of Fall Sale</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Up to 30% Off Autumn at Home</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Free Shipping on Every Order</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Bulk Orders and Project Pricing</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg></span><span class="nora-anno-seg" aria-hidden="true"><span class="nora-anno-item">The First Days of Fall Sale</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Up to 30% Off Autumn at Home</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Free Shipping on Every Order</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Bulk Orders and Project Pricing</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg></span><span class="nora-anno-seg" aria-hidden="true"><span class="nora-anno-item">The First Days of Fall Sale</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Up to 30% Off Autumn at Home</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Free Shipping on Every Order</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Bulk Orders and Project Pricing</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg></span></div>
-        </div>
-      </a>
+      html body #nora-announcement-bar{position:relative;z-index:1000;display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin:0;padding:8px 16px!important;box-sizing:border-box;background:#1a120d!important;background-image:radial-gradient(ellipse 40% 140% at 50% 0%,rgba(214,168,98,.28),rgba(214,168,98,0) 70%)!important;color:#fff!important;font:500 14.5px/1.35 var(--text-font-family,Inter,system-ui,sans-serif)!important;letter-spacing:.02em!important;text-transform:none!important;transition:opacity .25s ease}
+      html body #nora-announcement-bar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,rgba(214,168,98,0),rgba(214,168,98,.9) 50%,rgba(214,168,98,0))}
+      html body #nora-announcement-bar.nf-anno-hidden{opacity:0;pointer-events:none}
+      html body #nora-announcement-bar .nfa{display:flex;align-items:center;justify-content:center;gap:14px 22px;flex-wrap:wrap;color:#fff!important;text-decoration:none!important}
+      html body #nora-announcement-bar .nfa__msg{display:flex;align-items:center;gap:10px}
+      html body #nora-announcement-bar .nfa__msg b{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;color:#e8c48a}
+      html body #nora-announcement-bar .nfa__dot{width:5px;height:5px;border-radius:50%;background:#e8c48a}
+      html body #nora-announcement-bar .nfa__clock{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:#b3261e;color:#fff;font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;letter-spacing:.04em;box-shadow:0 0 0 1px rgba(255,255,255,.12) inset}
+      html body #nora-announcement-bar .nfa__clock svg{width:13px;height:13px}
+      html body #nora-announcement-bar .nfa__cta{font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #e8c48a;padding-bottom:1px}
+      html body #nora-announcement-bar .nfa:hover .nfa__cta{color:#e8c48a}
+      @media (max-width:749px){
+        html body #nora-announcement-bar{min-height:44px;padding:7px 12px!important;font-size:13px!important}
+        html body #nora-announcement-bar .nfa{gap:6px 12px}html body #nora-announcement-bar .nfa__msg b,html body #nora-announcement-bar .nfa__dot,html body #nora-announcement-bar .nfa__cta{display:none}
+        html body #nora-announcement-bar .nfa__clock{padding:4px 10px;font-size:12px}
+      }
+    </style>
+    <div id="nora-announcement-bar" role="region" aria-label="Store announcement">
+      {%- if nfa_live -%}
+        <a class="nfa" href="/collections/autumn-at-home">
+          <span class="nfa__msg"><b>{{ nfa_name | escape }}</b><span class="nfa__dot" aria-hidden="true"></span><span>Up to 30% off Autumn at Home</span></span>
+          <span class="nfa__clock" data-nfa-end="{{ nfa_end }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg><span data-nfa-t>Ends soon</span></span>
+          <span class="nfa__cta">Shop the sale</span>
+        </a>
+      {%- else -%}
+        <a class="nfa" href="/collections/best-sellers">
+          <span class="nfa__msg"><b>Free US shipping</b><span class="nfa__dot" aria-hidden="true"></span><span>Save 10% on 2 items, 15% on 3 or more</span></span>
+          <span class="nfa__cta">Shop best sellers</span>
+        </a>
+      {%- endif -%}
     </div>
     <script>
     (function(){
-      if (window.__nfAnnoTape) return; window.__nfAnnoTape = 1;
-      var SPEED = 58, SPEED_RM = 34, t0;
-      function build(){
-        var bar = document.getElementById('nora-announcement-bar'); if (!bar) return;
-        var tape = bar.querySelector('.nora-anno-tape'); if (!tape) return;
-        var seg = tape.querySelector('.nora-anno-seg'); if (!seg) return;
-        while (tape.children.length > 1) tape.removeChild(tape.lastChild);
-        var w = seg.getBoundingClientRect().width;
-        if (!w) { setTimeout(build, 300); return; }
-        var barW = bar.getBoundingClientRect().width || window.innerWidth;
-        var copies = Math.max(4, Math.ceil((barW * 2) / w) + 1);
-        for (var n = 1; n < copies; n++) {
-          var c = seg.cloneNode(true);
-          c.setAttribute('aria-hidden', 'true');
-          tape.appendChild(c);
-        }
-        var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        tape.style.setProperty('--nf-anno-shift', w.toFixed(2) + 'px');
-        tape.style.setProperty('--nf-anno-dur', (w / (rm ? SPEED_RM : SPEED)).toFixed(2) + 's');
+      var el = document.querySelector('[data-nfa-end]'); if (!el) return;
+      var end = Date.parse(el.getAttribute('data-nfa-end')), t = el.querySelector('[data-nfa-t]');
+      function two(n){ return (n < 10 ? '0' : '') + n; }
+      function tick(){
+        var left = end - Date.now();
+        if (!(left > 0)) { el.remove(); return; }
+        var s = Math.floor(left / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+        t.textContent = 'Ends in ' + (d ? d + 'd ' : '') + two(h) + 'h ' + two(m) + 'm ' + two(s % 60) + 's';
+        setTimeout(tick, 1000);
       }
-      function go(){ build(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(build); }
-      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
-      window.addEventListener('load', build);
-      window.addEventListener('resize', function(){ clearTimeout(t0); t0 = setTimeout(build, 250); });
+      tick();
     })();
     </script>
 

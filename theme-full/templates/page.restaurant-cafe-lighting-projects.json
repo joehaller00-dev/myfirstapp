@@ -24,13 +24,13 @@
         "image_file": "nf-pro-hospitality.jpg",
         "image_alt": "Light that makes people stay for one more round",
         "fallback_collection": "hospitality-lighting",
-        "btn1_label": "Start a bulk order",
-        "btn1_url": "\/pages\/bulk-order-form?industry=restaurant-cafe-lighting-projects",
-        "btn2_label": "How bulk pricing works",
-        "btn2_url": "\/pages\/bulk-project-orders",
-        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
-        "link_label": "Shop Pendant Lights",
-        "link_url": "\/collections\/pendants"
+        "btn1_label": "Get a free project quote",
+        "btn1_url": "/pages/bulk-order-form?industry=restaurant-cafe-lighting-projects",
+        "btn2_label": "Shop Pendant Lights",
+        "btn2_url": "/collections/pendants",
+        "facts": "Buy 2, save 10%. Buy 3+, save 15%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "",
+        "link_url": "/collections/pendants"
       }
     },
     "approach": {
@@ -44,7 +44,7 @@
         "image_file": "nf-discover-portfolio.jpg",
         "image_alt": "Neighborhood bistro at dusk glowing with glass globe pendant lights",
         "fallback_collection": "pendants",
-        "text": "<p>The best dining rooms use a few layers of light instead of one bright ceiling. Each layer has one simple job.<\/p>",
+        "text": "<p>The best dining rooms use a few layers of light instead of one bright ceiling. Each layer has one simple job.</p>",
         "bullets": "Pendants over every table: A low, warm pendant over each table makes it feel like its own space.\nA bright counter: Linear pendants over the bar or pass keep the working area clear and easy to read.\nWall light for warmth: Sconces between tables soften faces and fill the dark corners.\nWarm color everywhere: Light around 2700K keeps food and people looking their best.\nDimming through the day: Dimmable fixtures take the room from a bright lunch to a quiet dinner.",
         "spaces_label": "Spaces we light",
         "spaces": "Dining rooms\nBars and counters\nCafe seating\nPrivate dining\nPatios and terraces\nEntrances and host stands"
@@ -57,7 +57,7 @@
         "heading": "Recommended fixture types",
         "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
         "link_label": "Shop Pendant Lights",
-        "link_url": "\/collections\/pendants"
+        "link_url": "/collections/pendants"
       },
       "blocks": {
         "r1": {
@@ -185,12 +185,12 @@
         "eyebrow": "Planning a project",
         "heading": "Opening or refreshing a restaurant or cafe?",
         "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
-        "btn1_label": "Start a bulk order",
-        "btn1_url": "\/pages\/bulk-order-form?industry=restaurant-cafe-lighting-projects",
-        "btn2_label": "How bulk pricing works",
-        "btn2_url": "\/pages\/bulk-project-orders",
-        "link_label": "Project Portfolio",
-        "link_url": "\/pages\/project-portfolio"
+        "btn1_label": "Get a free project quote",
+        "btn1_url": "/pages/bulk-order-form?industry=restaurant-cafe-lighting-projects",
+        "btn2_label": "",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "How project pricing works",
+        "link_url": "/pages/bulk-project-orders"
       }
     },
     "faq": {
@@ -206,21 +206,21 @@
           "type": "faq",
           "settings": {
             "q": "What color temperature works best for dining?",
-            "a": "<p>Warm white around 2700K suits most dining rooms and bars. Light color options are listed on each product page, so a whole room can match.<\/p>"
+            "a": "<p>Warm white around 2700K suits most dining rooms and bars. Light color options are listed on each product page, so a whole room can match.</p>"
           }
         },
         "q2": {
           "type": "faq",
           "settings": {
             "q": "Is there a minimum order?",
-            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.<\/p>"
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 items get 10% off, 3 or more get 15% off.</p>"
           }
         },
         "q3": {
           "type": "faq",
           "settings": {
             "q": "Can pendants hang at different heights?",
-            "a": "<p>Many pendants come with an adjustable cord or rod. The hanging length is listed in the Dimensions section of each product.<\/p>"
+            "a": "<p>Many pendants come with an adjustable cord or rod. The hanging length is listed in the Dimensions section of each product.</p>"
           }
         }
       },
@@ -238,10 +238,10 @@
         "heading": "Application references",
         "caption": "Inspiration showing how restaurant and cafe lighting can be used. These are example spaces, not our installed projects.",
         "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
-        "btn1_label": "Start a bulk order",
-        "btn1_url": "\/pages\/bulk-order-form?industry=restaurant-cafe-lighting-projects",
-        "btn2_label": "Shop Pendant Lights",
-        "btn2_url": "\/collections\/pendants",
+        "btn1_label": "",
+        "btn1_url": "/pages/bulk-order-form?industry=restaurant-cafe-lighting-projects",
+        "btn2_label": "",
+        "btn2_url": "/collections/pendants",
         "quote_links": false,
         "quote_anchor": "quote"
       },

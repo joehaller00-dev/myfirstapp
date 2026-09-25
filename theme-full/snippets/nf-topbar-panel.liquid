@@ -186,7 +186,7 @@
         {%- if cu == blank -%}{%- continue -%}{%- endif -%}
         {%- assign ct = c.title | downcase -%}
         {%- if ct contains 'order form' -%}{%- assign d = 'Pick your industry, enter quantities, add it all to your cart' -%}{%- assign sv = '<rect x="3.5" y="3" width="13" height="14" rx="2"/><path d="M6.5 7h7M6.5 10h7M6.5 13h4"/>' -%}
-        {%- elsif ct contains 'hospitality room' -%}{%- assign d = '10 ready to order sets for lobbies, guest rooms, bars and cafes' -%}{%- assign sv = '<path d="M3 17h14M5 17V8l5-4 5 4v9"/><path d="M8.5 17v-4h3v4"/>' -%} {%- elsif ct contains 'room set' -%}{%- assign d = 'Matching lights for a whole room, 10% under the pieces' -%}{%- assign sv = '<rect x="3" y="4" width="6" height="6" rx="1"/><rect x="11" y="4" width="6" height="6" rx="1"/><rect x="3" y="12" width="6" height="5" rx="1"/><rect x="11" y="12" width="6" height="5" rx="1"/>' -%} {%- elsif ct contains 'bulk' -%}{%- assign d = 'Buy 2 or more, save 10%, and how project orders work' -%}{%- assign sv = '<path d="M3 7.5 10 4l7 3.5v8L10 19l-7-3.5z"/><path d="M3 7.5 10 11l7-3.5M10 11v8"/>' -%}
+        {%- elsif ct contains 'hospitality room' -%}{%- assign d = '10 ready to order sets for lobbies, guest rooms, bars and cafes' -%}{%- assign sv = '<path d="M3 17h14M5 17V8l5-4 5 4v9"/><path d="M8.5 17v-4h3v4"/>' -%} {%- elsif ct contains 'room set' -%}{%- assign d = 'Matching lights for a whole room, 10% under the pieces' -%}{%- assign sv = '<rect x="3" y="4" width="6" height="6" rx="1"/><rect x="11" y="4" width="6" height="6" rx="1"/><rect x="3" y="12" width="6" height="5" rx="1"/><rect x="11" y="12" width="6" height="5" rx="1"/>' -%} {%- elsif ct contains 'bulk' -%}{%- assign d = 'Buy 2, save 10%. Buy 3+, save 15%. How project orders work' -%}{%- assign sv = '<path d="M3 7.5 10 4l7 3.5v8L10 19l-7-3.5z"/><path d="M3 7.5 10 11l7-3.5M10 11v8"/>' -%}
         {%- elsif ct contains 'portfolio' -%}{%- assign d = 'Concept boards and finished spaces to start from' -%}{%- assign sv = '<rect x="3" y="4" width="14" height="12" rx="2"/><path d="m3.5 13.5 4-4 3 3 2-2 4 4"/><circle cx="13" cy="7.5" r="1.2"/>' -%}
         {%- elsif ct contains 'quote' -%}{%- assign d = 'Bulk pricing on catalog pieces' -%}{%- assign sv = '<path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3M7.5 10h5M7.5 13h5"/>' -%}
         {%- else -%}{%- assign d = '' -%}{%- assign sv = '<circle cx="10" cy="10" r="7"/><path d="M8.5 7 11.5 10l-3 3"/>' -%}{%- endif -%}
@@ -241,7 +241,7 @@
           <p class="nf-eyebrow">For designers, builders and venues</p>
           <p class="nf-pr2__cta-t">Planning a project?</p>
           <p class="nf-pr2__cta-d">Buying for a hotel, office or shop? Pick your industry and order everything in one list.</p>
-          <a class="nf-pr2__btn" href="/pages/bulk-order-form">Start a bulk order <i aria-hidden="true">&rarr;</i></a>
+          <a class="nf-pr2__btn" href="/pages/bulk-order-form">Get a free project quote <i aria-hidden="true">&rarr;</i></a>
           <a class="nf-pr2__cta-all" href="{{ link.url }}"><span>All professional services</span><i aria-hidden="true">&rarr;</i></a>
         </div>
       </div>

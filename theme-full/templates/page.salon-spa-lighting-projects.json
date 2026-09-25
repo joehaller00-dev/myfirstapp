@@ -24,12 +24,12 @@
         "image_file": "nf-ref-bath-vanity.png",
         "image_alt": "Flattering light for every chair and treatment room",
         "fallback_collection": "vanity-lighting",
-        "btn1_label": "Start a bulk order",
+        "btn1_label": "Get a free project quote",
         "btn1_url": "/pages/bulk-order-form?industry=salon-spa-lighting-projects",
-        "btn2_label": "How bulk pricing works",
-        "btn2_url": "/pages/bulk-project-orders",
-        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
-        "link_label": "Shop Vanity Lights",
+        "btn2_label": "Shop Vanity Lights",
+        "btn2_url": "/collections/vanity-lighting",
+        "facts": "Buy 2, save 10%. Buy 3+, save 15%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "",
         "link_url": "/collections/vanity-lighting"
       }
     },
@@ -185,12 +185,12 @@
         "eyebrow": "Planning a project",
         "heading": "Opening or refreshing a salon or spa?",
         "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
-        "btn1_label": "Start a bulk order",
+        "btn1_label": "Get a free project quote",
         "btn1_url": "/pages/bulk-order-form?industry=salon-spa-lighting-projects",
-        "btn2_label": "How bulk pricing works",
+        "btn2_label": "",
         "btn2_url": "/pages/bulk-project-orders",
-        "link_label": "Project Portfolio",
-        "link_url": "/pages/project-portfolio"
+        "link_label": "How project pricing works",
+        "link_url": "/pages/bulk-project-orders"
       }
     },
     "faq": {
@@ -213,7 +213,7 @@
           "type": "faq",
           "settings": {
             "q": "Is there a minimum order?",
-            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.</p>"
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 items get 10% off, 3 or more get 15% off.</p>"
           }
         },
         "q3": {
@@ -238,9 +238,9 @@
         "heading": "Application references",
         "caption": "Inspiration showing how salon and spa lighting can be used. These are example spaces, not our installed projects.",
         "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
-        "btn1_label": "Start a bulk order",
+        "btn1_label": "",
         "btn1_url": "/pages/bulk-order-form?industry=salon-spa-lighting-projects",
-        "btn2_label": "Shop Vanity Lights",
+        "btn2_label": "",
         "btn2_url": "/collections/vanity-lighting",
         "quote_links": false,
         "quote_anchor": "quote"

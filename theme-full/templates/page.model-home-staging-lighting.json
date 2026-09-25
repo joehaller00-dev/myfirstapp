@@ -28,7 +28,7 @@
         "btn1_url": "/pages/bulk-order-form?industry=model-home-staging-lighting",
         "btn2_label": "How bulk pricing works",
         "btn2_url": "/pages/bulk-project-orders",
-        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "facts": "Buy 2, save 10%. Buy 3+, save 15%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
         "link_label": "Shop Chandeliers",
         "link_url": "/collections/chandeliers"
       }
@@ -206,14 +206,14 @@
           "type": "faq",
           "settings": {
             "q": "Can the same look be repeated across several homes?",
-            "a": "<p>Yes. Every piece is a regular catalog product, so the same fixtures can be ordered for as many homes as needed, and 2 or more items get 10% off.</p>"
+            "a": "<p>Yes. Every piece is a regular catalog product, so the same fixtures can be ordered for as many homes as needed, and 2 items get 10% off, 3 or more get 15% off.</p>"
           }
         },
         "q2": {
           "type": "faq",
           "settings": {
             "q": "Is there a minimum order?",
-            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.</p>"
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 items get 10% off, 3 or more get 15% off.</p>"
           }
         },
         "q3": {

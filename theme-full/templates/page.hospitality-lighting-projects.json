@@ -24,13 +24,13 @@
         "image_file": "nf-pro-hospitality.jpg",
         "image_alt": "Lighting that makes guests want to stay",
         "fallback_collection": "hospitality-lighting",
-        "btn1_label": "Start a bulk order",
-        "btn1_url": "\/pages\/bulk-order-form?industry=hospitality-lighting-projects",
-        "btn2_label": "How bulk pricing works",
-        "btn2_url": "\/pages\/bulk-project-orders",
-        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
-        "link_label": "Shop Hospitality Lighting",
-        "link_url": "\/collections\/hospitality-lighting"
+        "btn1_label": "Get a free project quote",
+        "btn1_url": "/pages/bulk-order-form?industry=hospitality-lighting-projects",
+        "btn2_label": "Shop Hospitality Lighting",
+        "btn2_url": "/collections/hospitality-lighting",
+        "facts": "Buy 2, save 10%. Buy 3+, save 15%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "",
+        "link_url": "/collections/hospitality-lighting"
       }
     },
     "approach": {
@@ -44,7 +44,7 @@
         "image_file": "nf-discover-reviews.jpg",
         "image_alt": "Guest bedroom at night with a pleated table lamp glowing on the nightstand",
         "fallback_collection": "reading-wall-lamps",
-        "text": "<p>Good hospitality lighting is never one big light. It is a few layers working together, each doing its own job, all in the same warm family of color.<\/p>",
+        "text": "<p>Good hospitality lighting is never one big light. It is a few layers working together, each doing its own job, all in the same warm family of color.</p>",
         "bullets": "Start with a welcome: A statement chandelier or a cluster of pendants gives the arrival a focal point and sets the tone for the whole property.\nKeep it warm: Light around 2700K to 3000K in lobbies, dining rooms and guest rooms makes skin, wood and fabric look their best.\nLight people, not just rooms: Sconces at eye level and lamps on tables make faces and conversations feel close and relaxed.\nPlan for every hour: Dimmers and separate circuits let breakfast feel bright and dinner feel intimate in the same space.\nRepeat the details: One finish carried from the entry to the corridors ties a large property together.",
         "spaces_label": "Spaces we light",
         "spaces": "Lobbies and reception\nRestaurants and bars\nGuest rooms and suites\nCorridors and stairs\nTerraces and courtyards\nBreakfast rooms"
@@ -57,7 +57,7 @@
         "heading": "Recommended fixture types",
         "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
         "link_label": "Shop Hospitality Lighting",
-        "link_url": "\/collections\/hospitality-lighting"
+        "link_url": "/collections/hospitality-lighting"
       },
       "blocks": {
         "r1": {
@@ -185,12 +185,12 @@
         "eyebrow": "Planning a project",
         "heading": "Planning a hotel, restaurant or cafe?",
         "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
-        "btn1_label": "Start a bulk order",
-        "btn1_url": "\/pages\/bulk-order-form?industry=hospitality-lighting-projects",
-        "btn2_label": "How bulk pricing works",
-        "btn2_url": "\/pages\/bulk-project-orders",
-        "link_label": "Project Portfolio",
-        "link_url": "\/pages\/project-portfolio"
+        "btn1_label": "Get a free project quote",
+        "btn1_url": "/pages/bulk-order-form?industry=hospitality-lighting-projects",
+        "btn2_label": "",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "How project pricing works",
+        "link_url": "/pages/bulk-project-orders"
       }
     },
     "references_v2": {
@@ -201,10 +201,10 @@
         "heading": "Application references",
         "caption": "Inspiration showing how hospitality lighting can be used. These are example spaces, not our installed projects.",
         "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
-        "btn1_label": "Start a bulk order",
-        "btn1_url": "\/pages\/bulk-order-form?industry=hospitality-lighting-projects",
-        "btn2_label": "Shop Hospitality Lighting",
-        "btn2_url": "\/collections\/hospitality-lighting",
+        "btn1_label": "",
+        "btn1_url": "/pages/bulk-order-form?industry=hospitality-lighting-projects",
+        "btn2_label": "",
+        "btn2_url": "/collections/hospitality-lighting",
         "quote_links": false,
         "quote_anchor": "quote"
       },

@@ -20,7 +20,7 @@
         "crumb_label": "Bulk and Project Orders",
         "eyebrow": "Bulk and project orders",
         "heading": "Many pieces, many rooms, one simple order",
-        "text": "Fitting out several rooms, a whole property or a run of identical units? Pick from the project collections, order the quantities you need, and 10% comes off automatically on 2 or more items.",
+        "text": "Fitting out several rooms, a whole property or a run of identical units? Pick from the project collections, order the quantities you need, and the saving comes off automatically: 10% on 2 items, 15% on 3 or more.",
         "image_file": "nf-pro-bulk.jpg",
         "image_alt": "Matching light fixtures ready for a project",
         "fallback_collection": "hospitality-lighting",
@@ -28,7 +28,7 @@
         "btn1_url": "/pages/bulk-order-form",
         "btn2_label": "Shop project collections",
         "btn2_url": "/pages/professionals#collections",
-        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "facts": "Buy 2, save 10%. Buy 3+, save 15%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
         "link_label": "",
         "link_url": ""
       }
@@ -116,7 +116,7 @@
         "image_alt": "Pathway at night lined with continuous warm LED light strips",
         "fallback_collection": "hospitality-lighting",
         "text": "<p>Every piece is a real product from the catalog, ready to order in the quantities you need.</p>",
-        "bullets": "Automatic savings: Buy 2 or more items and 10% comes off at checkout, no code needed.\nMatching pieces: The same fixture, finish and light color across every room or unit.\nFree shipping: Delivered free anywhere in the United States. Larger orders may arrive in more than one box.\nEmail support: Questions about a large order? Email info@norafurnish.com for a reply within 1 to 2 business days.",
+        "bullets": "Automatic savings: 10% off 2 items and 15% off 3 or more, taken off at checkout, no code needed.\nMatching pieces: The same fixture, finish and light color across every room or unit.\nFree shipping: Delivered free anywhere in the United States. Larger orders may arrive in more than one box.\nEmail support: Questions about a large order? Email info@norafurnish.com for a reply within 1 to 2 business days.",
         "btn_label": "Start a bulk order",
         "btn_url": "/pages/bulk-order-form"
       }
@@ -200,7 +200,7 @@
         "tall": false,
         "eyebrow": "How it works",
         "heading": "From list to delivery in four steps",
-        "note": "No minimum order. 10% off 2 or more items, applied automatically."
+        "note": "No minimum order. 10% off 2 items, 15% off 3 or more, applied automatically."
       },
       "blocks": {
         "b1": {
@@ -216,7 +216,7 @@
           "settings": {
             "meta": "At checkout",
             "title": "Save automatically",
-            "text": "Add 2 or more items and 10% comes off at checkout. No code needed."
+            "text": "Add 2 items for 10% off, 3 or more for 15% off. It comes off at checkout, no code needed."
           }
         },
         "b3": {
@@ -256,14 +256,14 @@
           "type": "faq",
           "settings": {
             "q": "Is there a minimum order?",
-            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.</p>"
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 items get 10% off, 3 or more get 15% off.</p>"
           }
         },
         "q2": {
           "type": "faq",
           "settings": {
             "q": "Is there a discount for buying more?",
-            "a": "<p>Yes. Buy 2 or more items and 10% comes off automatically at checkout, with no code needed.</p>"
+            "a": "<p>Yes. Buy 2 items and 10% comes off, buy 3 or more and 15% comes off, automatically at checkout with no code needed.</p>"
           }
         },
         "q3": {

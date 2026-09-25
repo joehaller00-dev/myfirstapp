@@ -15,7 +15,7 @@
       <p class="nf-cv2-empty__title">Your cart is empty</p>
       <p class="nf-cv2-empty__text">Start with a favorite, or pick a room to light.</p>
       {%- comment -%} NF-CART-OFFER (2026-09-12): the real automatic discount, see nf-cart-v2.css {%- endcomment -%}
-      <p class="nf-cv2-offer"><span class="nf-cv2-offer__dot" aria-hidden="true"></span>Buy 2 or more items, save 10% on your whole order</p>
+      <p class="nf-cv2-offer"><span class="nf-cv2-offer__dot" aria-hidden="true"></span>Buy 2 items, save 10%. Buy 3 or more, save 15%</p>
       <div class="nf-cv2-tiles">
         {%- assign nf_c = collections['best-sellers'] -%}{%- assign nf_img = nf_c.featured_image -%}
         <a class="nf-cv2-tile" href="{{ routes.collections_url }}/best-sellers">

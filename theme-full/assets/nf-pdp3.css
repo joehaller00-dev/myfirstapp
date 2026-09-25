@@ -34,6 +34,43 @@
     border-radius:0!important;background:none!important;box-shadow:none!important;min-height:100%;
   }
 }
+/* V3 desktop split like Baskoraa: the story under the gallery (grid area product-content, assets/nf-pdp3.js moves it in),
+   the buy column spans both rows, so the page has no empty gap under the thumbnails */
+@media screen and (min-width:1000px){
+  .shopify-section--main-product .product.nf3-split:has([data-nf3]){
+    --product-grid:"product-gallery product-info" auto "product-content product-info" minmax(0,1fr) / minmax(0,.52fr) minmax(0,.48fr) !important;
+  }
+  .nf3-below{grid-area:product-content;padding:48px clamp(32px,3.2vw,56px) 0 0;min-width:0}
+  .nf3-below .nf-st__story{padding:0}
+  .nf-lv--side{margin-top:44px;padding-top:40px;border-top:1px solid var(--nf3-line)}
+  .nf-lv--side .nf-lv__track{grid-auto-columns:calc((100% - 18px) / 2)}
+}
+@media screen and (min-width:1400px){.nf-lv--side .nf-lv__track{grid-auto-columns:calc((100% - 2 * 18px) / 3)}}
+.nf-st[hidden]{display:none}
+
+/* V3 Buy it now for a mix of options (the express buttons can only buy one option) */
+.nf3-buymix{display:flex;align-items:center;justify-content:center;width:100%;height:58px;margin-top:12px;border:0;border-radius:999px;background:var(--nf3-gold-d);color:#fff;font:700 14px/1 var(--text-font-family,Inter,system-ui,sans-serif);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background-color .2s}
+.nf3-buymix:hover{background:#6f5133}
+.nf3-buymix[hidden]{display:none}
+.nf3-buymix:disabled{opacity:.6}
+
+/* V3 wishlist email gate */
+.nf-wlg .nf-wlm__in{padding:34px 30px 24px;text-align:center}
+.nf-wlg__eyebrow{margin:0 0 6px;font:700 12px/1 var(--text-font-family,Inter,system-ui,sans-serif);letter-spacing:.2em;text-transform:uppercase;color:var(--nf3-gold-d)}
+.nf-wlg .nf-wlm__h{font-size:30px;margin-bottom:10px}
+.nf-wlg__sub{margin:0 0 18px;color:var(--nf3-txt);font-size:15px;line-height:1.5}
+.nf-wlg__f{display:grid;gap:10px}
+.nf-wlg__f input{height:52px;padding:0 16px;border:1px solid #d9cfc0;border-radius:12px;font-size:16px}
+.nf-wlg__f button{height:52px;border:0;border-radius:999px;background:var(--nf3-ink);color:#fff;font:700 14px/1 var(--text-font-family,Inter,system-ui,sans-serif);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.nf-wlg__f button:disabled{opacity:.6}
+.nf-wlg__err{margin:10px 0 0;color:#8a1f1f;font-size:13px}
+.nf-wlg__err[hidden]{display:none}
+.nf-wlg__or{margin:16px 0 0;font-size:14px;color:var(--nf3-muted)}
+.nf-wlg__or a{color:var(--nf3-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* V3 open on the first image: custom-nav.js pulls the selected option's picture to the front with order:-1 */
+.shopify-section--main-product .product:has([data-nf3]) product-gallery .product-gallery__media[data-media-id]{order:0!important}
+
 @media screen and (max-width:999px){
   .product:has([data-nf3]) > .product-info{border:0!important;border-radius:0!important;background:none!important;padding-inline:0!important}
 }
@@ -234,7 +271,7 @@
 @media screen and (min-width:1000px){
   .nf-st__in{grid-template-columns:minmax(0,.5fr) minmax(0,.5fr);gap:0}
   .nf-st__story{padding-inline-end:clamp(32px,3.4vw,56px)}
-  .nf-lv{padding-inline-start:clamp(32px,3.4vw,56px);border-inline-start:1px solid var(--nf3-line)}
+  .nf-st .nf-lv{padding-inline-start:clamp(32px,3.4vw,56px);border-inline-start:1px solid var(--nf3-line)}
 }
 .nf-st__eyebrow{margin:0 0 12px;font:600 12px/1 var(--text-font-family,Inter,system-ui,sans-serif);letter-spacing:.2em;text-transform:uppercase;color:var(--nf3-gold-d)}
 .nf-st__h{margin:0 0 22px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:clamp(32px,3.6vw,54px);line-height:1.1;letter-spacing:-.005em;color:var(--nf3-ink)}
@@ -315,3 +352,68 @@
   .nf-ctr .nf-bdl__save{margin-left:14px}
   .nf-ctr .nf-bdl__btn{width:auto;min-width:340px}
 }
+
+/* ---------------------------------------------------------------- 6. reviews and questions (V3, owner: neater, like
+   Baskoraa, but keep showing many). The Judge.me widget (jm-*) and the tab bar built by custom-nav.js (NF-REVIEW-TABS-V1)
+   are restyled only; nothing is added or removed. The review list is found by :has(> .jm-review-item) so it does not
+   depend on Judge.me's wrapper class names. */
+.shopify-section--apps:has(.jm-review-widget, #judgeme_product_reviews){background:var(--nf3-warm)}
+html body .nf-rt{display:flex!important;flex-direction:row!important;align-items:flex-end!important;justify-content:space-between!important;gap:20px!important;max-width:1400px;margin:0 auto!important;padding:0 0 0!important;border-bottom:1.5px solid var(--nf3-ink)!important}
+html body .nf-rt .nf-rt__tabs{display:flex!important;gap:34px!important;margin:0!important;align-self:flex-end!important}
+html body .nf-rt .nf-rt__tab{position:relative;padding:0 0 14px!important;border:0!important;background:none!important;font:600 17px/1.2 var(--text-font-family,Inter,system-ui,sans-serif)!important;color:var(--nf3-muted)!important;cursor:pointer}
+html body .nf-rt .nf-rt__tab.is-on{color:var(--nf3-ink)!important}
+html body .nf-rt .nf-rt__tab.is-on::after{content:"";position:absolute;left:0;right:0;bottom:-1.5px;height:3px;background:var(--nf3-ink)}
+html body .nf-rt .nf-rt__acts{display:flex!important;flex-direction:row!important;gap:12px!important;min-width:0!important;margin:0 0 14px!important}
+html body .nf-rt .nf-rt__btn{display:inline-flex!important;align-items:center;justify-content:center;height:48px!important;padding:0 26px!important;border:1.5px solid var(--nf3-ink)!important;border-radius:6px!important;background:#fff!important;color:var(--nf3-ink)!important;font:600 14px/1 var(--text-font-family,Inter,system-ui,sans-serif)!important;letter-spacing:.02em!important;text-decoration:none!important;flex:0 0 auto!important}
+html body .nf-rt .nf-rt__btn:hover{background:var(--nf3-ink)!important;color:#fff!important}
+html body .nf-rt .nf-rt__btn--solid{background:var(--nf3-ink)!important;color:#fff!important}
+html body .nf-rt .nf-rt__btn--solid:hover{background:#000!important}
+@media (max-width:749px){
+  html body .nf-rt{flex-direction:column-reverse!important;align-items:stretch!important}
+  html body .nf-rt .nf-rt__tabs{justify-content:flex-start!important;margin:0!important}
+  html body .nf-rt .nf-rt__acts{margin:0!important}
+  html body .nf-rt .nf-rt__btn{flex:1 1 0!important;padding:0 10px!important}
+}
+/* widget header: the average as the headline */
+html body .jm-review-widget{max-width:1400px!important;margin-inline:auto!important}
+html body .jm-review-widget .jm-review-widget-minimal-header__title{font-family:var(--heading-font-family,Georgia,serif)!important;font-weight:400!important;font-size:clamp(26px,2.4vw,36px)!important;color:var(--nf3-ink)!important}
+html body .jm-review-widget .jm-average-rating-display{font-size:clamp(22px,2vw,30px)!important;font-weight:700!important;color:var(--nf3-ink)!important}
+html body .jm-review-widget .jm-star,html body .jm-review-widget .jm-star-rating__font-icon{color:var(--nf3-gold-d)!important}
+/* the list as a grid of cards */
+html body .jm-review-widget :has(> .jm-review-item){display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:18px!important;align-items:start!important;border:0!important}
+@media (max-width:1199px){html body .jm-review-widget :has(> .jm-review-item){grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media (max-width:899px){html body .jm-review-widget :has(> .jm-review-item){grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (max-width:559px){html body .jm-review-widget :has(> .jm-review-item){grid-template-columns:minmax(0,1fr)!important}}
+html body .jm-review-widget .jm-review-item{display:flex!important;flex-direction:column!important;gap:10px!important;margin:0!important;padding:20px 18px!important;border:1px solid var(--nf3-line)!important;border-radius:12px!important;background:#fff!important;box-shadow:0 12px 26px -24px rgba(0,0,0,.6)!important;overflow:hidden}
+html body .jm-review-widget .jm-review-item img:not(.jm-reviewer-avatar img){width:100%!important;max-height:320px;object-fit:cover!important;border-radius:8px!important}
+html body .jm-review-widget .jm-reviewer-info__name{font-weight:700!important;color:var(--nf3-ink)!important}
+html body .jm-review-widget .jm-review-body-wrapper{font-size:15px!important;line-height:1.55!important;color:var(--nf3-txt)!important}
+html body .jm-review-widget .jm-pagination-controls{margin-top:26px!important;justify-content:center!important}
+/* questions panel as cards too */
+html body #nf-questions .nf-qa__item{padding:18px 20px!important;border:1px solid var(--nf3-line)!important;border-radius:12px!important;background:#fff!important;margin-bottom:12px!important}
+
+/* ---------------------------------------------------------------- 7. room set reviews (sections/nf-set-reviews.liquid) */
+.nfsr{padding:clamp(40px,5vw,72px) 0;border-top:1px solid var(--nf3-line);background:var(--nf3-warm)}
+.nfsr__in{margin:0 auto;padding:0 var(--container-gutter,20px);max-width:1440px}
+.nfsr__eyebrow{margin:0 0 10px;font:700 12px/1 var(--text-font-family,Inter,system-ui,sans-serif);letter-spacing:.2em;text-transform:uppercase;color:var(--nf3-gold-d)}
+.nfsr__h{margin:0 0 12px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:clamp(28px,3vw,44px);line-height:1.12;color:var(--nf3-ink)}
+.nfsr__sum{display:flex;align-items:center;gap:10px;margin:0 0 6px;font-size:16px;color:var(--nf3-txt)}
+.nfsr__sum b{font-size:22px;color:var(--nf3-ink)}
+.nfsr__note{margin:0 0 26px;font-size:14px;color:var(--nf3-muted)}
+.nfsr__stars{--r:0%;position:relative;display:inline-block;width:86px;height:16px;background:linear-gradient(90deg,var(--nf3-gold-d) var(--r),#dcd3c5 var(--r));-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cg%3E%3Cpath d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3Cpath transform='translate(20)' d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3Cpath transform='translate(40)' d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3Cpath transform='translate(60)' d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3Cpath transform='translate(80)' d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3C/g%3E%3C/svg%3E") no-repeat 0 0/100% 100%;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cg%3E%3Cpath d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3Cpath transform='translate(20)' d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3Cpath transform='translate(40)' d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3Cpath transform='translate(60)' d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3Cpath transform='translate(80)' d='M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z'/%3E%3C/g%3E%3C/svg%3E") no-repeat 0 0/100% 100%}
+.nfsr__stars--lg{width:110px;height:21px}
+.nfsr__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.nfsr__piece{display:flex;flex-direction:column;gap:12px;padding:20px;border:1px solid var(--nf3-line);border-radius:14px;background:#fff}
+.nfsr__head{display:flex;align-items:center;gap:14px;color:inherit;text-decoration:none}
+.nfsr__img{flex:none;width:72px;height:72px;overflow:hidden;border-radius:10px;background:#f4f1ec}
+.nfsr__img img{width:100%;height:100%;object-fit:cover}
+.nfsr__t{display:block;font-weight:700;font-size:15px;line-height:1.3;color:var(--nf3-ink)}
+.nfsr__rate{display:flex;align-items:center;gap:8px;margin-top:4px;font-size:13.5px;color:var(--nf3-muted)}
+.nfsr__rate b{color:var(--nf3-ink)}
+.nfsr__q{margin:0;padding:12px 14px;border-radius:10px;background:var(--nf3-warm);font-size:14.5px;line-height:1.5;color:var(--nf3-txt)}
+.nfsr__q p{margin:4px 0 6px}
+.nfsr__qstars{color:var(--nf3-gold-d);letter-spacing:2px;font-size:13px}
+.nfsr__q cite{font-style:normal;font-weight:600;font-size:13px;color:var(--nf3-ink)}
+.nfsr__all{margin-top:auto;font-weight:600;font-size:13.5px;color:var(--nf3-ink);text-decoration:underline;text-underline-offset:3px}
+.nf-setrate{display:inline-flex;align-items:center;gap:8px;margin:0 0 12px;font-size:14px;color:var(--nf3-muted);text-decoration:none}
+.nf-setrate b{color:var(--nf3-ink)}

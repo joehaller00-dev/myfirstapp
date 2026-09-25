@@ -24,12 +24,12 @@
         "image_file": "nf-pro-outdoor.jpg",
         "image_alt": "Outdoor lighting that makes evenings last longer",
         "fallback_collection": "outdoor-project-lighting",
-        "btn1_label": "Start a bulk order",
+        "btn1_label": "Get a free project quote",
         "btn1_url": "/pages/bulk-order-form?industry=outdoor-lighting-projects",
-        "btn2_label": "How bulk pricing works",
-        "btn2_url": "/pages/bulk-project-orders",
-        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
-        "link_label": "Shop Outdoor Project Lighting",
+        "btn2_label": "Shop Outdoor Project Lighting",
+        "btn2_url": "/collections/outdoor-project-lighting",
+        "facts": "Buy 2, save 10%. Buy 3+, save 15%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "",
         "link_url": "/collections/outdoor-project-lighting"
       }
     },
@@ -185,12 +185,12 @@
         "eyebrow": "Planning a project",
         "heading": "Lighting a terrace, garden or facade?",
         "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
-        "btn1_label": "Start a bulk order",
+        "btn1_label": "Get a free project quote",
         "btn1_url": "/pages/bulk-order-form?industry=outdoor-lighting-projects",
-        "btn2_label": "How bulk pricing works",
+        "btn2_label": "",
         "btn2_url": "/pages/bulk-project-orders",
-        "link_label": "Project Portfolio",
-        "link_url": "/pages/project-portfolio"
+        "link_label": "How project pricing works",
+        "link_url": "/pages/bulk-project-orders"
       }
     },
     "references_v2": {
@@ -201,9 +201,9 @@
         "heading": "Application references",
         "caption": "Inspiration showing how outdoor lighting can be used. These are example spaces, not our installed projects.",
         "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
-        "btn1_label": "Start a bulk order",
+        "btn1_label": "",
         "btn1_url": "/pages/bulk-order-form?industry=outdoor-lighting-projects",
-        "btn2_label": "Shop Outdoor Project Lighting",
+        "btn2_label": "",
         "btn2_url": "/collections/outdoor-project-lighting",
         "quote_links": false,
         "quote_anchor": "quote"

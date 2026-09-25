@@ -11,8 +11,8 @@
    Search & Discovery metafield shopify--discovery--product_recommendation.complementary_products, and
    Shopify's recommendations endpoint (intent=complementary) returns exactly those.
 
-   Every claim is true. The saving shown is the live automatic discount "Buy 2+ items, save 10%":
-   10% off the whole order at two or more items, applied at checkout without a code. Nothing here
+   Every claim is true. The saving shown is the live automatic discounts "Buy 2+ items, save 10%" and
+   (2026-09-25) "Buy 3+ items, save 15%": Shopify applies the better one at checkout without a code. Nothing here
    invents scarcity, viewers or deadlines.
 
    Adds follow the theme's own product form protocol (theme.js): ask cart:prepare-bundled-sections
@@ -29,7 +29,8 @@
   if (window.__nfBundle) return; window.__nfBundle = 1;
   var d = document, de = d.documentElement;
   var ROOT = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
-  var RATE = 0.10, MIN_QTY = 2;          /* must match the live automatic discount */
+  var RATE = 0.10, RATE3 = 0.15, MIN_QTY = 2;   /* must match the live automatic discounts (2+ = 10%, 3+ = 15%) */
+  function rateFor(q) { return q >= 3 ? RATE3 : RATE; }
   var cache = {};
 
   function money(c) {
@@ -144,7 +145,7 @@
       box.innerHTML =
         '<div class="nf-bdl__head"><p class="nf-bdl__eyebrow">Buy together</p>' +
         '<h3 id="nf-bdl-h" class="nf-bdl__title">Complete the room</h3>' +
-        '<p class="nf-bdl__deal">Buy 2 or more pieces and <b>save 10% on your whole order</b>, automatically at checkout.</p></div>' +
+        '<p class="nf-bdl__deal">Buy 2 pieces and <b>save 10%</b>, 3 or more and <b>save 15%</b>, automatically at checkout.</p></div>' +
         '<ul class="nf-bdl__grid">' + cards + '</ul>' +
         '<div class="nf-bdl__sum" aria-live="polite"><span class="nf-bdl__label">Set price</span><span class="nf-bdl__was" data-nfb-was></span>' +
         '<span class="nf-bdl__now" data-nfb-now></span><span class="nf-bdl__save" data-nfb-save></span></div>' +
@@ -191,7 +192,7 @@
       });
       /* Shopify rounds a percentage discount DOWN (406.96 x 10% = 40.696 -> it gives 40.69), so floor
          here too: the saving promised must never be a cent more than the saving delivered */
-      var on = qty >= MIN_QTY, save = on ? Math.floor(sum * RATE) : 0;
+      var on = qty >= MIN_QTY, save = on ? Math.floor(sum * rateFor(qty)) : 0;
       box.querySelector('[data-nfb-was]').textContent = on ? money(sum) : '';
       box.querySelector('[data-nfb-now]').textContent = money(sum - save);
       box.querySelector('[data-nfb-save]').textContent = on ? 'You save ' + money(save) : '';
@@ -278,10 +279,11 @@
       '<button type="button" class="nf-bpop__x" aria-label="Close and view cart">&times;</button>' +
       '<p class="nf-bpop__ok"><span aria-hidden="true">&#10003;</span> Added to your cart</p>' +
       '<p class="nf-bpop__added">' + esc(added.product_title || added.title || '') + '</p>' +
-      '<h2 id="nf-bpop-h" class="nf-bpop__h">' + (unlock ? 'Add one more piece and save&nbsp;10%' : 'Your 10%&nbsp;is on') + '</h2>' +
+      '<h2 id="nf-bpop-h" class="nf-bpop__h">' + (unlock ? 'Add one more piece and save&nbsp;10%' : (count >= 3 ? 'Your 15%&nbsp;is on' : 'One more piece makes it&nbsp;15%')) + '</h2>' +
       '<p class="nf-bpop__sub">' + (unlock
-        ? 'Add any second piece and 10% comes off your <b>whole order</b>, automatically at checkout.'
-        : 'Anything you add now is 10% off as well. These two finish the room.') + '</p>' +
+        ? 'Add any second piece and 10% comes off, a third and it is 15%, automatically at checkout.'
+        : (count >= 3 ? 'Anything you add now is 15% off as well. These two finish the room.'
+                      : 'Add a third piece and the saving goes from 10% to 15%. These two finish the room.')) + '</p>' +
       '<div class="nf-bpop__cards">' + cards + '</div>' +
       '<p class="nf-bpop__err" role="alert" hidden></p>' +
       '<button type="button" class="nf-bpop__go">Continue to cart</button></div>';

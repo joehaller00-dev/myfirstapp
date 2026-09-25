@@ -1,0 +1,87 @@
+{%- comment -%}
+  NF-SETREV-V1 (2026-09-25, owner: room sets need reviews). A room set is a new product with no reviews of its own, so this
+  shows the REAL reviews of the pieces inside it, labelled with the piece they belong to, never presented as reviews of
+  the set. Source: each piece's Judge.me metafields (reviews.rating, reviews.rating_count, judgeme.review_widget_data),
+  pieces from custom.set_items. Only 4 and 5 star reviews with text are quoted; the rating and count include every review.
+  Renders nothing on products that are not room sets.
+{%- endcomment -%}
+{%- liquid
+  assign nf_si = product.metafields.custom.set_items.value
+  assign nf_show = false
+  if product.type == 'Room Set' and nf_si != blank
+    assign nf_show = true
+  endif
+-%}
+{%- if nf_show -%}
+  {%- liquid
+    assign tot_n = 0
+    assign tot_sum = 0
+    assign seen = ','
+  -%}
+  {%- capture nf_pieces -%}
+    {%- for it in nf_si -%}
+      {%- assign h = it.url | split: '/products/' | last | split: '?' | first -%}
+      {%- assign key = ',' | append: h | append: ',' -%}
+      {%- if seen contains key -%}{%- continue -%}{%- endif -%}
+      {%- assign seen = seen | append: h | append: ',' -%}
+      {%- assign p = all_products[h] -%}
+      {%- if p == blank or p.id == nil -%}{%- continue -%}{%- endif -%}
+      {%- assign pc = p.metafields.reviews.rating_count.value | default: 0 -%}
+      {%- assign pr = p.metafields.reviews.rating.value.rating | default: 0 -%}
+      {%- if pc > 0 -%}
+        {%- assign tot_n = tot_n | plus: pc -%}
+        {%- assign tot_sum = pr | times: pc | plus: tot_sum -%}
+      {%- endif -%}
+      <article class="nfsr__piece">
+        <a class="nfsr__head" href="{{ p.url }}">
+          <span class="nfsr__img">{{ p.featured_media | image_url: width: 240 | image_tag: loading: 'lazy', alt: p.title, sizes: '96px' }}</span>
+          <span class="nfsr__meta">
+            <span class="nfsr__t">{{ p.title | escape }}</span>
+            {%- if pc > 0 -%}
+              <span class="nfsr__rate"><span class="nfsr__stars" style="--r: {{ pr | times: 20 }}%" aria-hidden="true"></span><b>{{ pr | round: 1 }}</b> from {{ pc }} {% if pc == 1 %}review{% else %}reviews{% endif %}</span>
+            {%- else -%}
+              <span class="nfsr__rate">No reviews yet</span>
+            {%- endif -%}
+          </span>
+        </a>
+        {%- assign rv = p.metafields.judgeme.review_widget_data.value.reviews -%}
+        {%- assign shown = 0 -%}
+        {%- for r in rv -%}
+          {%- if r.rating < 4 or r.body == blank or r.body.size < 12 -%}{%- continue -%}{%- endif -%}
+          <blockquote class="nfsr__q">
+            <span class="nfsr__qstars" aria-label="{{ r.rating }} out of 5 stars">{% for i in (1..5) %}{% if i <= r.rating %}&#9733;{% else %}&#9734;{% endif %}{% endfor %}</span>
+            <p>{{ r.body | strip_html | truncate: 180 }}</p>
+            <cite>{{ r.reviewer_name | escape }}</cite>
+          </blockquote>
+          {%- assign shown = shown | plus: 1 -%}
+          {%- if shown >= 3 -%}{%- break -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if pc > 0 -%}<a class="nfsr__all" href="{{ p.url }}#judgeme_product_reviews">Read all {{ pc }} reviews of this piece</a>{%- endif -%}
+      </article>
+    {%- endfor -%}
+  {%- endcapture -%}
+  {{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}
+  <section class="nfsr" id="nf-set-reviews" aria-labelledby="nfsr-h">
+    <div class="nfsr__in">
+      <p class="nfsr__eyebrow">Reviews</p>
+      <h2 class="nfsr__h" id="nfsr-h">What customers say about the pieces in this set</h2>
+      {%- if tot_n > 0 -%}
+        {%- assign avg = tot_sum | divided_by: tot_n -%}
+        <p class="nfsr__sum"><span class="nfsr__stars nfsr__stars--lg" style="--r: {{ avg | times: 20 }}%" aria-hidden="true"></span><b>{{ avg | round: 1 }}</b> average across {{ tot_n }} reviews of the pieces in this set</p>
+      {%- endif -%}
+      <p class="nfsr__note">This set is new, so it has no reviews of its own yet. These are the reviews of each piece it includes.</p>
+      <div class="nfsr__grid">{{ nf_pieces }}</div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF set reviews",
+  "tag": "div",
+  "class": "shopify-section--nf-set-reviews",
+  "settings": [],
+  "presets": [{ "name": "NF set reviews" }],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

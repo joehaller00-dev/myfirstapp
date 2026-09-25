@@ -1,4 +1,4 @@
-# Nora Furnish: product page redesign, prototype 1 (NF-PDP3-V1)
+# Nora Furnish: product page redesign and store polish (NF-PDP3, rounds 1 to 3)
 
 Store: Nora Furnish (norafurnish.com, `ij7iyx-13.myshopify.com`). It's a US home decor and lighting store that dropships, with the DSers/Fulfiz supply chain behind it.
 Live theme: `nora-warm-atelier` (Prestige based, heavily customised). All products use the `product.default-product-v2` template.
@@ -35,6 +35,45 @@ Preview: https://norafurnish.com/products/black-gold-minimalist-wall-lamp?previe
 - Everything is bigger: title, price, buttons, cards, and the "Why customers love us" cards (3 per view with larger photos).
 - **Live discount created:** "Buy 3+ items, save 15%" (automatic, same collection). Shopify applies the better of 10% / 15%.
 
+## Round 3 (owner feedback, same day). All files are in `theme-full/`; the prototype theme holds every one of them (checksums verified)
+
+**Product page**
+- **Wishlist asks for an email.** A signed-out shopper tapping Add to Wishlist gets a small sign-up box. The email is saved as a customer tagged `newsletter, wishlist`, so it lands in the mailing list, with links to sign in or create an account. Signed-in customers skip the box.
+- **The gap under the gallery is gone.** On desktop the "Why you'll love it" story and the reviews carousel now sit directly under the gallery, in the left column, while the buy column carries on at the right.
+- **PayPal / Buy it now with mixed options.** When the bundle dropdowns hold different options, the PayPal, Shop Pay and Buy it now buttons are hidden and replaced by one "Buy it now" button. It adds exactly the chosen items and goes straight to checkout, so PayPal can no longer buy only the first option.
+- **The hero is always the first product image**, even after the page picks a default option.
+- **Reviews and questions are cleaner.** Tabs are underlined, reviews show as a card grid (4, 3, 2 or 1 per row by screen size), questions show as cards, and nothing is hidden.
+- **Room sets show reviews.** A set's page shows the real reviews of each piece it includes, clearly labelled by piece, with an average across them and a "Pieces rated X" line in the buy box. Nothing is attributed to the set itself.
+
+**Store-wide**
+- **The offer reads "Buy 2, save 10%. Buy 3 or more, save 15%" everywhere:** cart drawer, cart page, progress bar, bundle popups, FAQ, the help widget, every project page, the bulk pages and the lighting catalog.
+- **The announcement bar no longer slides.** During the sale it shows the sale name, "Up to 30% off" and a live countdown ("Ends in 4d 03h 12m 09s"), with a Shop the sale link. After the sale it switches to free shipping and the 10% / 15% offer.
+- **Recently viewed, then the Nora Furnish guide, always last** on every product page and every collection template (default, lighting, mirrors, rugs).
+- **Professional project pages have one clear path.** Each page now has one main button, "Get a free project quote", plus one "Shop [industry] lighting" button in the hero. The duplicate buttons are removed from the inspiration strip. The closing band keeps the quote button and a single "How project pricing works" link. Concept cards open the concept instead of repeating "Order this look in bulk". The same wording is used in the top bar panel.
+
+**Footer V3 and brand** (`assets/nf-brand.css`, `sections/footer.liquid`)
+- **The footer lighting now makes sense.** Five pendants of different shapes light the menus from above, and seven floor uplights at the bottom light a giant "Nora Furnish" wordmark from below. They switch on one after another when the footer scrolls into view.
+- **The logo is bigger** (280px, glowing), with a new brand line. Mock screenshots: `docs/footer-v3-*.png`.
+- **Homepage section titles are bolder:** Fraunces 600, larger and tighter. This covers "Rooms that glow", "Evenings out front", "Watch the kitchen come alive", "New outdoor lighting", and also Pieces, Autumn at Home, Room by room, the journal, the video and the catalog promo.
+- **Signature color "Ember"** (applied in the prototype): ember red `#7a2616`, deep ember `#3d140c`, candle cream `#f6eee2`, with the existing brass. It is used on the announcement bar, the footer, the product page Add to cart button, the Popular tag, eyebrows and homepage titles. Every value is a `--nfb-*` token at the top of `nf-brand.css`, so it swaps in one place.
+
+  | Spitball | Colors | Feel |
+  |---|---|---|
+  | **Ember** (in the prototype) | ember red, deep ember, candle cream, brass | a filament just switched on: warm, ownable, lighting-first |
+  | Midnight Brass | ink navy `#16202e`, brass, cream | evening, hotel bar, premium |
+  | Olive Atelier | deep olive `#3d4231`, linen `#efe9dd`, brass | calm, design-studio, natural materials |
+  | Terracotta Dusk | terracotta `#a4502f`, sand `#efe3d3`, charcoal | sunset, Mediterranean, outdoor-heavy |
+
+**Store data changed directly (live, not theme)**
+- **The lighting catalog is corrected.**
+  - 16 products in it were archived (dead links). Each was replaced with an active product of the same type. Two of them were lifestyle hotspots, and their pins are estimates, so please eyeball the Classic Multi Arm Chandelier and Solar Mason Jar Lantern spreads, plus the Curved Up and Down spread.
+  - 11 more products used old handles. They now use the current handles, so live prices load.
+  - The catalog now has 128 active products in 11 chapters, matching its own text. The "more than 800 fixtures" claim is true (975 active lighting products).
+  - The welcome page offer now reads 10% on 2 / 15% on 3+.
+- **The `lighting-catalog-2026` collection matches exactly:** 16 archived products were removed and 16 were added, for 128 products, all active.
+- **Room sets:** all 50 sets and all 12 industry "room sets" collections have images (added earlier today). If a set still looks bare, send the URL.
+
 ## Before going live
 
-1. To ship, copy these files into the live theme and replace its product template. Don't publish the prototype theme: the live theme is edited almost daily, and publishing the copy would roll those edits back.
+1. The live theme was last edited at 13:36 UTC on 2026-09-25, before the prototype was copied, so **publishing the prototype as it is now loses nothing**. If anyone edits the live theme before you publish, copy those edits across first, or copy the files listed above into the live theme instead.
+2. Delete `assets/nf-zz-test.txt` from the prototype in Shopify admin. It is a harmless test file, and the API blocks deletes.

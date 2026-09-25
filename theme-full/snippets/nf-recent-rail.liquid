@@ -1,0 +1,75 @@
+{%- comment -%}
+  NF-RECENT-V1 (2026-09-25, owner: on collections too, Recently viewed sits right above the Nora Furnish guide, which is
+  always the last thing before the footer). Same list and look as the product page rail in assets/nf-pdp.js (NF-PDPKIT
+  "Recently viewed"): localStorage nf_rv_v1, written on every product page visit. Nothing shows until there is history.
+{%- endcomment -%}
+<style>
+.nf-pk-rv{margin:0;padding:44px 0 8px;border-top:1px solid var(--nf-hair,#e8e8e8)}
+.nf-pk-rv__in{max-width:1400px;margin:0 auto;padding-inline:clamp(16px,4vw,60px)}
+.nf-pk-rv__h{margin:0 0 20px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:clamp(19px,2.1vw,25px);letter-spacing:.02em;color:var(--nf-ink,#1c1c1c)}
+.nf-pk-rv__row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:18px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:6px;scrollbar-width:thin}
+@media(min-width:1000px){.nf-pk-rv__row{grid-auto-flow:row;grid-template-columns:repeat(5,1fr);overflow:visible}}
+.nf-pk-rv__c{display:block;text-decoration:none;color:inherit;scroll-snap-align:start}
+.nf-pk-rv__im,.nf-pk-rv__p{display:block}
+.nf-pk-rv__im{aspect-ratio:1/1;background:#f4f2ee;overflow:hidden;margin-bottom:9px}
+.nf-pk-rv__im img{width:100%;height:100%;object-fit:cover;display:block}
+.nf-pk-rv__t{font-family:var(--heading-font-family,Georgia,serif);font-size:13px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nf-pk-rv__p{margin-top:4px;font-size:12.5px;color:var(--nf-taupe,#5c5047)}
+.nf-pk-rv{padding:56px 0 28px}
+.nf-pk-rv__in{max-width:1600px;margin:0 auto;padding-inline:clamp(16px,4vw,64px)}
+.nf-pk-rv__head{position:relative;display:flex;align-items:center;justify-content:center;min-height:42px;margin:0 0 26px}
+.nf-pk-rv__h{margin:0;text-align:center;font-size:clamp(22px,2.4vw,30px)}
+.nf-pk-rv__nav{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;gap:8px}
+.nf-pk-rv__nav[hidden]{display:none}
+.nf-pk-rv__arr{width:42px;height:42px;border-radius:50%;border:1px solid var(--nf-line,#d4d4d4);background:#fff;color:var(--nf-ink,#1c1c1c);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:border-color .15s ease,opacity .15s ease}
+.nf-pk-rv__arr svg{width:18px;height:18px}
+.nf-pk-rv__arr:hover{border-color:var(--nf-ink,#1c1c1c)}
+.nf-pk-rv__arr:disabled{opacity:.35;cursor:default}
+.nf-pk-rv__row{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding-bottom:4px}
+.nf-pk-rv__row::-webkit-scrollbar{display:none}
+@media(min-width:1000px){.nf-pk-rv__row{display:flex;overflow-x:auto}}
+.nf-pk-rv:not(.is-over) .nf-pk-rv__row{justify-content:center}
+.nf-pk-rv__c{flex:0 0 clamp(220px,19vw,320px);scroll-snap-align:start}
+.nf-pk-rv__im{margin-bottom:12px}
+.nf-pk-rv__t{font-size:15px}
+.nf-pk-rv__p{font-size:14px;margin-top:5px}
+@media(max-width:749px){.nf-pk-rv{padding-top:36px}.nf-pk-rv__c{flex-basis:64%}.nf-pk-rv__nav{display:none}.nf-pk-rv__head{margin-bottom:18px}}
+.nf-pk-rv[hidden]{display:none}
+</style>
+<section class="nf-pk-rv" data-nf-recent hidden aria-label="Recently viewed">
+  <div class="nf-pk-rv__in"><div class="nf-pk-rv__head"><h2 class="nf-pk-rv__h">Recently viewed</h2>
+    <div class="nf-pk-rv__nav"><button type="button" class="nf-pk-rv__arr" data-dir="-1" aria-label="Scroll back"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button><button type="button" class="nf-pk-rv__arr" data-dir="1" aria-label="Scroll forward"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button></div></div>
+  <div class="nf-pk-rv__row" data-nf-recent-row></div></div>
+</section>
+<script>
+(function () {
+  var sec = document.querySelector('[data-nf-recent]'); if (!sec) return;
+  var items = []; try { items = JSON.parse(localStorage.getItem('nf_rv_v1') || '[]') || []; } catch (e) {}
+  items = items.filter(function (x) { return x && x.h && x.t && x.i; }).slice(0, 12);
+  if (!items.length) return;
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var row = sec.querySelector('[data-nf-recent-row]');
+  row.innerHTML = items.map(function (x) {
+    var im = x.i + (x.i.indexOf('?') > -1 ? '&' : '?') + 'width=600';
+    return '<a class="nf-pk-rv__c" href="/products/' + esc(x.h) + '"><span class="nf-pk-rv__im"><img src="' + esc(im) + '" alt="' + esc(x.t) + '" loading="lazy" width="600" height="600"></span>' +
+      '<span class="nf-pk-rv__t">' + esc(x.t) + '</span>' + (x.p ? '<span class="nf-pk-rv__p">' + esc(x.p) + '</span>' : '') + '</a>';
+  }).join('');
+  sec.hidden = false;
+  var nav = sec.querySelector('.nf-pk-rv__nav');
+  function upd() {
+    var over = row.scrollWidth > row.clientWidth + 4;
+    sec.classList.toggle('is-over', over); nav.hidden = !over;
+    [].forEach.call(sec.querySelectorAll('.nf-pk-rv__arr'), function (b) {
+      var dir = +b.getAttribute('data-dir');
+      b.disabled = dir < 0 ? row.scrollLeft < 4 : row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
+    });
+  }
+  nav.addEventListener('click', function (e) {
+    var b = e.target.closest('.nf-pk-rv__arr'); if (!b) return;
+    var c = row.querySelector('.nf-pk-rv__c'), step = c ? c.getBoundingClientRect().width + 22 : row.clientWidth * .8;
+    row.scrollBy({ left: +b.getAttribute('data-dir') * step * 2, behavior: 'smooth' });
+  });
+  row.addEventListener('scroll', function () { requestAnimationFrame(upd); }, { passive: true });
+  window.addEventListener('resize', upd); upd();
+})();
+</script>

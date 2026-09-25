@@ -1,7 +1,7 @@
 {%- comment -%}
   NF-CART-V2 gold progress line, used by the cart drawer and the cart page.
-  Tied to the REAL automatic discount "Buy 2+ items, save 10%" (DiscountAutomaticNode/1616713646132, checked live
-  2026-09-12): minimum QUANTITY 2 across the cart, 10% off all items, no end date. If that discount ever changes or
+  Tied to the REAL automatic discounts "Buy 2+ items, save 10%" (DiscountAutomaticNode/1616713646132) and, since 2026-09-25,
+  "Buy 3+ items, save 15%" (DiscountAutomaticNode/1622110830644): same collection, no end date, Shopify gives the better one. If that discount ever changes or
   ends, change or remove this snippet the same day, or the copy stops being true.
   "applied" is only claimed when Shopify has actually applied a discount to the cart (cart.total_discount > 0).
 {%- endcomment -%}
@@ -11,13 +11,24 @@
 {%- assign nf_elig = 0 -%}{%- assign nf_sets = 0 -%}
 {%- for li in cart.items -%}{%- if li.product.type == 'Room Set' -%}{%- assign nf_sets = nf_sets | plus: li.quantity -%}{%- else -%}{%- assign nf_elig = nf_elig | plus: li.quantity -%}{%- endif -%}{%- endfor -%}
 {%- if cart.item_count > 0 -%}
-  {%- if nf_elig >= 2 -%}
+  {%- if nf_elig >= 3 -%}
     <div class="nf-cv2-progress is-done" data-nf-cv2-count="{{ nf_elig }}">
       <p class="nf-cv2-progress__text" role="status">
         {%- if cart.total_discount > 0 -%}
-          <strong>10% off applied</strong><span class="nf-cv2-progress__save">You save {{ cart.total_discount | money }}</span>
+          <strong>15% off applied</strong><span class="nf-cv2-progress__save">You save {{ cart.total_discount | money }}</span>
         {%- else -%}
-          <strong>10% off unlocked</strong><span class="nf-cv2-progress__save">Applied at checkout</span>
+          <strong>15% off unlocked</strong><span class="nf-cv2-progress__save">Applied at checkout</span>
+        {%- endif -%}
+      </p>
+      <div class="nf-cv2-progress__track" aria-hidden="true"><span class="nf-cv2-progress__fill"></span></div>
+    </div>
+  {%- elsif nf_elig == 2 -%}
+    <div class="nf-cv2-progress is-done" data-nf-cv2-count="{{ nf_elig }}">
+      <p class="nf-cv2-progress__text" role="status">
+        {%- if cart.total_discount > 0 -%}
+          <strong>10% off applied</strong><span class="nf-cv2-progress__save">1 more item makes it 15%</span>
+        {%- else -%}
+          <strong>10% off unlocked</strong><span class="nf-cv2-progress__save">1 more item makes it 15%</span>
         {%- endif -%}
       </p>
       <div class="nf-cv2-progress__track" aria-hidden="true"><span class="nf-cv2-progress__fill"></span></div>
@@ -29,7 +40,7 @@
     </div>
   {%- else -%}
     <div class="nf-cv2-progress" data-nf-cv2-count="{{ nf_elig }}">
-      <p class="nf-cv2-progress__text" role="status"><strong>1 more item</strong> unlocks 10% off {% if nf_sets > 0 %}your other pieces{% else %}your whole order{% endif %}</p>
+      <p class="nf-cv2-progress__text" role="status"><strong>1 more item</strong> unlocks 10% off, 2 more unlock 15%</p>
       <div class="nf-cv2-progress__track" aria-hidden="true"><span class="nf-cv2-progress__fill"></span></div>
     </div>
   {%- endif -%}

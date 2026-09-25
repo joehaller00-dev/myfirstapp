@@ -1,8 +1,10 @@
 {%- comment -%}
   NF-PDP3-V2 (2026-09-25) "Add to Wishlist" under Bundle & Save (owner: like Baskoraa). The store has no wishlist app,
   so the list is kept in this browser (localStorage, assets/nf-pdp3.js) and opened from the "View wishlist" link.
+  V3 (owner: capture emails): a shopper who is not signed in is asked for an email (customer signup, tagged wishlist)
+  or to sign in before the first save.
 {%- endcomment -%}
-<div class="nf-wl" data-nf-wl
+<div class="nf-wl" data-nf-wl data-customer="{% if customer %}{{ customer.id }}{% endif %}"
   data-handle="{{ product.handle | escape }}"
   data-title="{{ product.title | escape }}"
   data-url="{{ product.url }}"

@@ -24,12 +24,12 @@
         "image_file": "nf-pro-office.jpg",
         "image_alt": "Office lighting that helps people do their best work",
         "fallback_collection": "office-lighting",
-        "btn1_label": "Start a bulk order",
+        "btn1_label": "Get a free project quote",
         "btn1_url": "/pages/bulk-order-form?industry=office-lighting-projects",
-        "btn2_label": "How bulk pricing works",
-        "btn2_url": "/pages/bulk-project-orders",
-        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
-        "link_label": "Shop Office Lighting",
+        "btn2_label": "Shop Office Lighting",
+        "btn2_url": "/collections/office-lighting",
+        "facts": "Buy 2, save 10%. Buy 3+, save 15%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "",
         "link_url": "/collections/office-lighting"
       }
     },
@@ -185,12 +185,12 @@
         "eyebrow": "Planning a project",
         "heading": "Fitting out an office or studio?",
         "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
-        "btn1_label": "Start a bulk order",
+        "btn1_label": "Get a free project quote",
         "btn1_url": "/pages/bulk-order-form?industry=office-lighting-projects",
-        "btn2_label": "How bulk pricing works",
+        "btn2_label": "",
         "btn2_url": "/pages/bulk-project-orders",
-        "link_label": "Project Portfolio",
-        "link_url": "/pages/project-portfolio"
+        "link_label": "How project pricing works",
+        "link_url": "/pages/bulk-project-orders"
       }
     },
     "faq": {
@@ -230,9 +230,9 @@
         "heading": "Application references",
         "caption": "Inspiration showing how office lighting can be used. These are example spaces, not our installed projects.",
         "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
-        "btn1_label": "Start a bulk order",
+        "btn1_label": "",
         "btn1_url": "/pages/bulk-order-form?industry=office-lighting-projects",
-        "btn2_label": "Shop Office Lighting",
+        "btn2_label": "",
         "btn2_url": "/collections/office-lighting",
         "quote_links": false,
         "quote_anchor": "quote"

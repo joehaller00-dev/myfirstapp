@@ -79,7 +79,7 @@
             {%- if s.mode == 'portfolio' -%}
               <button type="button" class="nfp-link" data-nfp-open="{{ did }}" aria-haspopup="dialog">View the concept <span class="nfp-arrow" aria-hidden="true">&rarr;</span></button>
             {%- else -%}
-              <a class="nfp-link" href="{{ quote_url }}">Order this look in bulk <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="nfp-link" href="{{ portfolio_url }}#{{ did }}">View the concept <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>
             {%- endif -%}
           </div>
         </article>
@@ -123,9 +123,8 @@
               </div>
             {%- endif -%}
             <div class="nfp-dialog__actions">
-              <a class="nfp-btn nfp-btn--primary" href="{{ quote_url }}">Start a bulk order</a>
+              <a class="nfp-btn nfp-btn--primary" href="{{ quote_url }}">Get a free project quote</a>
               {%- if b.shop_collection != blank -%}<a class="nfp-btn nfp-btn--browse" href="{{ b.shop_collection.url }}">Shop {{ b.shop_collection.title | escape }} <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
-              <a class="nfp-link" href="{{ quote_url }}">Order this look in bulk <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>
             </div>
             <p class="nfp-note" style="margin-top:22px">{% render 'nf-pro-icon', name: 'info' %}<span>A design concept created by the Nora Furnish team to show what our lighting can do. It is not a client project.</span></p>
           </div>

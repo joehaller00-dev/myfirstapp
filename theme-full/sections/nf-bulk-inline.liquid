@@ -12,7 +12,7 @@
     <p class="nfbo__lead">Every piece picked for {{ nfbo_name | downcase | escape }} projects, in one list. Enter how many of each you need, then add everything to your cart at once.</p>
     {%- capture nfbo_ck -%}<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8.2"/><path d="M6.4 10.3l2.4 2.4 4.8-5"/></svg>{%- endcapture -%}
     <ul class="nfbo__perks" role="list">
-      <li>{{ nfbo_ck }}Buy 2 or more, save 10%</li>
+      <li>{{ nfbo_ck }}Buy 2, save 10%. Buy 3+, save 15%</li>
       <li>{{ nfbo_ck }}No minimum order</li>
       <li>{{ nfbo_ck }}Free US shipping</li>
       <li>{{ nfbo_ck }}Delivered in 6 to 9 business days</li>
@@ -35,7 +35,7 @@
       <div class="nfbo-bar__sum">
         <span class="nfbo-bar__for"><span class="nfbo-step__n nfbo-step__n--sm">2</span><span>Your <span data-nfbo-for>{{ nfbo_name | escape }}</span> order</span></span>
         <span class="nfbo-bar__line"><span data-nfbo-count>0 items</span><span class="nfbo-bar__dot" aria-hidden="true">·</span><span data-nfbo-sub>$0.00</span></span>
-        <span class="nfbo-bar__save" data-nfbo-save hidden>10% off comes off automatically at checkout</span>
+        <span class="nfbo-bar__save" data-nfbo-save hidden>Your saving comes off automatically at checkout</span>
       </div>
       <div class="nfbo-bar__acts">
         <button type="button" class="nfbo-clear" data-nfbo-clear>Clear all</button>

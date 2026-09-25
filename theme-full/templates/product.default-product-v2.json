@@ -342,10 +342,15 @@
     "nf_pdp_ctr": {
       "type": "nf-pdp-ctr",
       "settings": {}
+    },
+    "nf_set_reviews": {
+      "type": "nf-set-reviews",
+      "settings": {}
     }
   },
   "order": [
     "main",
+    "nf_set_reviews",
     "nf_pdp_story",
     "1788818754e2571264",
     "nf_pdp_ctr",

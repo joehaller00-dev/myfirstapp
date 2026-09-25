@@ -9,7 +9,7 @@
     ['How long does shipping take?', 'Shipping is free across the USA. Most orders arrive in 6 to 9 business days in total. Made to order pieces take 3 to 4 weeks because each one is built for you.'],
     ['Can I return something?', 'Yes. You have 30 days from delivery. Send us a message below with your order number and we will walk you through it. Details are in our <a href="/policies/refund-policy">return policy</a>.'],
     ['Will it fit my room?', 'Every product page has a Dimensions section and a size chart. If you are between two sizes, send us your ceiling height or wall width below and we will tell you which one works.'],
-    ['Do you offer bulk or trade pricing?', 'Yes. Buy any 2 items and 10% comes off automatically. For larger projects, use Request a Bulk Quote on any product page or message us here.']
+    ['Do you offer bulk or trade pricing?', 'Yes. Buy any 2 items and 10% comes off automatically, or 3 or more for 15%. For larger projects, use Request a Bulk Quote on any product page or message us here.']
   ];
   var btn = d.createElement('button');
   btn.type = 'button'; btn.className = 'nfh-btn'; btn.setAttribute('aria-label', 'Need help? Ask us');

@@ -4,6 +4,33 @@
   "In stock" means the selected option can be ordered right now; otherwise it reads "Sold out".
 {%- endcomment -%}
 {%- assign nf_sv = product.selected_or_first_available_variant -%}
+{%- comment -%} room sets: a link to the real reviews of the pieces inside (sections/nf-set-reviews.liquid) {%- endcomment -%}
+{%- if product.type == 'Room Set' and product.metafields.custom.set_items != blank -%}
+  {%- liquid
+    assign sr_n = 0
+    assign sr_sum = 0
+    assign sr_seen = ','
+    for it in product.metafields.custom.set_items.value
+      assign h = it.url | split: '/products/' | last | split: '?' | first
+      assign key = ',' | append: h | append: ','
+      if sr_seen contains key
+        continue
+      endif
+      assign sr_seen = sr_seen | append: h | append: ','
+      assign p = all_products[h]
+      assign pc = p.metafields.reviews.rating_count.value | default: 0
+      if pc > 0
+        assign pr = p.metafields.reviews.rating.value.rating | default: 0
+        assign sr_n = sr_n | plus: pc
+        assign sr_sum = pr | times: pc | plus: sr_sum
+      endif
+    endfor
+  -%}
+  {%- if sr_n > 0 -%}
+    {%- assign sr_avg = sr_sum | divided_by: sr_n -%}
+    <a class="nf-setrate" href="#nf-set-reviews"><span class="nfsr__stars" style="--r: {{ sr_avg | times: 20 }}%" aria-hidden="true"></span><span>Pieces rated <b>{{ sr_avg | round: 1 }}</b> from {{ sr_n }} reviews</span></a>
+  {%- endif -%}
+{%- endif -%}
 <p class="nf-stock{% unless nf_sv.available %} is-out{% endunless %}" data-nf-stock>
   <span class="nf-stock__dot" aria-hidden="true"></span>
   <span data-nf-stock-t>{% if nf_sv.available %}In stock{% else %}Sold out{% endif %}</span>

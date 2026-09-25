@@ -9,7 +9,13 @@
       choice is kept here and put back after each re-render.
    4. "Why customers love us" carousel (sections/nf-pdp-story.liquid)
    5. hand-offs: Complete the room moves into its own band, Enquire opens the existing bulk quote form
-   6. wishlist kept in this browser (snippets/nf-pdp-wish.liquid)
+   6. wishlist kept in this browser (snippets/nf-pdp-wish.liquid); shoppers who are not signed in are asked for their
+      email first (a Shopify customer signup, tagged wishlist) or to sign in
+   V3 (2026-09-25, owner round 3):
+   7. desktop layout like Baskoraa: the story sits under the gallery and "Why customers love us" under the buy column, so
+      there is no empty gap under the thumbnails (phones keep the story band below the product)
+   8. when the Bundle & Save items are different options, the express buttons (PayPal etc.) are swapped for a Buy it now
+      that adds the exact mix and goes to checkout (the express buttons can only buy one option)
    No class is put on <html> or <body>. */
 (function () {
   'use strict';
@@ -86,9 +92,8 @@
     var stop = false, t0 = Date.now();
     function halt() { stop = true; }
     ['pointerdown', 'wheel', 'keydown', 'touchstart'].forEach(function (e) { d.addEventListener(e, halt, { once: true, passive: true }); });
-    d.addEventListener('variant:change', halt, { once: true });
     (function hold() {
-      if (stop || Date.now() - t0 > 3500) return;
+      if (stop || Date.now() - t0 > 6000) return;
       var gal = $('.shopify-section--main-product product-gallery'), car = gal && $('scroll-carousel', gal);
       if (car) {
         var first = $$('.product-gallery__media', car).filter(function (m) { return !m.hidden; })[0];
@@ -191,6 +196,7 @@
     var root = $('[data-nf-bt]');
     if (root) paint(root);
     setQty(wantQty());
+    express();
   }
   function tiers() {
     var root = $('[data-nf-bt]');
@@ -211,7 +217,7 @@
       root.addEventListener('change', function (e) {
         var s = e.target.closest('select[data-pick]'); if (!s) return;
         st.picks[+s.getAttribute('data-pick')] = +s.value;
-        paint(root);
+        paint(root); express();
       });
       root.addEventListener('keydown', function (e) {
         if (e.target.closest('select')) return;
@@ -236,6 +242,7 @@
     if (q >= 3) { st.n = 3; st.q3 = Math.min(MAX3, q); } else st.n = q;
     var root = $('[data-nf-bt]'); if (root) paint(root);
     if (q > MAX3) setQty(MAX3);
+    express();
   }
   d.addEventListener('change', onQty, true);
   d.addEventListener('input', onQty, true);
@@ -379,22 +386,137 @@
     fill();
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
   }
+  function wlItem(box) {
+    var im = box.getAttribute('data-img') || '';
+    return { h: box.getAttribute('data-handle'), t: box.getAttribute('data-title'), u: box.getAttribute('data-url'), i: im.indexOf('//') === 0 ? 'https:' + im : im, p: box.getAttribute('data-price') };
+  }
+  function wlAdd(item) { var list = wlRead().filter(function (x) { return x.h !== item.h; }); list.unshift(item); wlWrite(list); wlPaint(); }
+  function known(box) {
+    if (box.getAttribute('data-customer')) return true;
+    try { return !!localStorage.getItem('nf_wl_email'); } catch (e) { return false; }
+  }
+  /* not signed in: ask for an email (Shopify customer signup with the wishlist tag) or a sign in, then save */
+  function wlGate(box) {
+    var item = wlItem(box), back = location.pathname + location.search;
+    var dlg = d.createElement('dialog'); dlg.className = 'nf-wlm nf-wlg'; dlg.setAttribute('aria-labelledby', 'nf-wlg-h');
+    dlg.innerHTML = '<div class="nf-wlm__in"><button type="button" class="nf-wlm__x" aria-label="Close">&times;</button>' +
+      '<p class="nf-wlg__eyebrow">Your wishlist</p><h2 class="nf-wlm__h" id="nf-wlg-h">Save it for later</h2>' +
+      '<p class="nf-wlg__sub">Enter your email and we will keep <b>' + esc(item.t) + '</b> on your list, and let you know if it goes on sale.</p>' +
+      '<form class="nf-wlg__f" novalidate><input type="email" name="email" autocomplete="email" placeholder="Email address" required aria-label="Email address">' +
+      '<button type="submit">Save to wishlist</button></form>' +
+      '<p class="nf-wlg__err" role="alert" hidden></p>' +
+      '<p class="nf-wlg__or">Already have an account? <a href="/account/login?return_url=' + encodeURIComponent(back) + '">Sign in</a> or <a href="/account/register?return_url=' + encodeURIComponent(back) + '">create one</a></p>' +
+      '<p class="nf-wlm__note">By saving you agree to receive Nora Furnish emails. Unsubscribe anytime.</p></div>';
+    d.body.appendChild(dlg);
+    function close() { try { dlg.close(); } catch (e) {} dlg.remove(); }
+    dlg.addEventListener('click', function (e) { if (e.target === dlg || e.target.closest('.nf-wlm__x')) close(); });
+    dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+    var form = $('form', dlg), err = $('.nf-wlg__err', dlg), btn = $('button[type="submit"]', form);
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.email.value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = 'Please enter a valid email address.'; err.hidden = false; return; }
+      err.hidden = true; btn.disabled = true; btn.textContent = 'Saving';
+      var fd = new FormData();
+      fd.append('form_type', 'customer'); fd.append('utf8', '\u2713');
+      fd.append('contact[email]', email); fd.append('contact[tags]', 'newsletter,wishlist');
+      fetch(ROOT + 'contact', { method: 'POST', body: fd, credentials: 'same-origin' })
+        .then(function (r) {
+          if (!r.ok || /challenge/.test(r.url || '')) throw new Error('challenge');
+          try { localStorage.setItem('nf_wl_email', email); } catch (x) {}
+          wlAdd(item);
+          $('.nf-wlm__in', dlg).innerHTML = '<button type="button" class="nf-wlm__x" aria-label="Close">&times;</button>' +
+            '<p class="nf-wlg__eyebrow">Saved</p><h2 class="nf-wlm__h">It is on your wishlist</h2>' +
+            '<p class="nf-wlg__sub">We will email ' + esc(email) + ' if anything on your list goes on sale.</p>';
+          setTimeout(close, 2600);
+        })
+        .catch(function () {
+          /* Shopify asked for a captcha: send the same signup as a normal form post, which shows it, then come back */
+          try { sessionStorage.setItem('nf_wl_pending', JSON.stringify(item)); localStorage.setItem('nf_wl_email', email); } catch (x) {}
+          var f = d.createElement('form'); f.method = 'post'; f.action = ROOT + 'contact#nf-wishlist'; f.hidden = true;
+          [['form_type', 'customer'], ['utf8', '\u2713'], ['contact[email]', email], ['contact[tags]', 'newsletter,wishlist'], ['return_to', back]].forEach(function (kv) {
+            var i = d.createElement('input'); i.type = 'hidden'; i.name = kv[0]; i.value = kv[1]; f.appendChild(i);
+          });
+          d.body.appendChild(f); f.submit();
+        });
+    });
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    setTimeout(function () { form.email.focus(); }, 50);
+  }
+  try {
+    var pend = sessionStorage.getItem('nf_wl_pending');
+    if (pend) { sessionStorage.removeItem('nf_wl_pending'); wlAdd(JSON.parse(pend)); }
+  } catch (e) {}
   d.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-nf-wl-btn], [data-nf-wl-view]');
     if (!b) return;
     var box = b.closest('[data-nf-wl]');
     if (b.hasAttribute('data-nf-wl-view')) { wlOpen(); return; }
-    var h = box.getAttribute('data-handle'), list = wlRead();
-    if (list.some(function (x) { return x.h === h; })) list = list.filter(function (x) { return x.h !== h; });
-    else {
-      var im = box.getAttribute('data-img') || '';
-      list.unshift({ h: h, t: box.getAttribute('data-title'), u: box.getAttribute('data-url'), i: im.indexOf('//') === 0 ? 'https:' + im : im, p: box.getAttribute('data-price') });
-    }
-    wlWrite(list); wlPaint();
+    var h = box.getAttribute('data-handle');
+    if (wlRead().some(function (x) { return x.h === h; })) { wlWrite(wlRead().filter(function (x) { return x.h !== h; })); wlPaint(); return; }
+    if (!known(box)) { wlGate(box); return; }
+    wlAdd(wlItem(box));
   });
 
+  /* ------------------------------------------------------------------ 7. desktop layout */
+  var DESK = window.matchMedia('(min-width: 1000px)');
+  function layout() {
+    var prod = $('.shopify-section--main-product .product'), info = prod && $('.product-info', prod);
+    var story = $('.nf-st__story'), lv = $('[data-nf-lv]'), band = $('.nf-st__in');
+    if (!prod || !$('[data-nf3]', prod) || !band) return;
+    var below = $('.nf3-below', prod);
+    if (DESK.matches) {
+      if (!below) { below = d.createElement('div'); below.className = 'nf3-below'; prod.appendChild(below); }
+      if (story && story.parentNode !== below) below.appendChild(story);
+      if (lv && info && lv.parentNode !== info) { info.appendChild(lv); lv.classList.add('nf-lv--side'); }
+      prod.classList.add('nf3-split');
+    } else {
+      if (story && story.parentNode !== band) band.insertBefore(story, band.firstChild);
+      if (lv && lv.parentNode !== band) { band.appendChild(lv); lv.classList.remove('nf-lv--side'); }
+      if (below) below.remove();
+      prod.classList.remove('nf3-split');
+    }
+    var sec = band.closest('.nf-st'); if (sec) sec.hidden = !band.children.length;
+  }
+  if (DESK.addEventListener) DESK.addEventListener('change', function () { layout(); $$('[data-nf-lv]').forEach(function (b) { b._nf3 = 0; }); loves(); });
+
+  /* ------------------------------------------------------------------ 8. express checkout with a mix of options */
+  function mixedNow() {
+    if (!$('[data-nf-bt]') || st.n < 2 || !multi()) return false;
+    syncPicks();
+    var cur = curId();
+    return st.picks.some(function (id) { return id !== cur; });
+  }
+  function mixItems() {
+    var counts = {}, order = [];
+    st.picks.forEach(function (id) { if (!counts[id]) { counts[id] = 0; order.push(id); } counts[id]++; });
+    return order.map(function (id) { return { id: id, quantity: counts[id] }; });
+  }
+  function express() {
+    var mixed = mixedNow();
+    $$('.shopify-payment-button, shopify-accelerated-checkout, .nf-buynow').forEach(function (el) {
+      if (el.closest('.nf3-buymix')) return;
+      if (mixed) { if (!el.hasAttribute('data-nf3-hid')) { el.setAttribute('data-nf3-hid', ''); el.style.display = 'none'; } }
+      else if (el.hasAttribute('data-nf3-hid')) { el.removeAttribute('data-nf3-hid'); el.style.display = ''; }
+    });
+    var host = $('.shopify-section--main-product .nf-buynow') || $('.shopify-section--main-product .nf-qty-atc-row');
+    var btn = $('.nf3-buymix');
+    if (mixed && host && !btn) {
+      btn = d.createElement('button'); btn.type = 'button'; btn.className = 'nf3-buymix'; btn.textContent = 'Buy it now';
+      host.parentNode.insertBefore(btn, host.nextSibling);
+      btn.addEventListener('click', function () {
+        btn.disabled = true; btn.textContent = 'One moment';
+        fetch(ROOT + 'cart/add.js', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ items: mixItems() }) })
+          .then(function (r) { if (!r.ok) throw r; location.href = ROOT + 'checkout'; })
+          .catch(function () { btn.disabled = false; btn.textContent = 'Buy it now'; });
+      });
+    }
+    if (btn) btn.hidden = !mixed;
+  }
+
   /* ------------------------------------------------------------------ wiring */
-  function run() { gallery(); stock(); tiers(); loves(); room(); wlPaint(); }
+  function run() { layout(); gallery(); stock(); tiers(); loves(); room(); wlPaint(); express(); }
   function start() {
     run();
     firstImage();
@@ -411,7 +533,7 @@
         var root = $('[data-nf-bt]'), stage = $('.shopify-section--main-product product-gallery scroll-carousel');
         if ((root && !root._nf3) || (stage && !stage._nf3) ||
             (root && qtyInputs().some(function (i) { return String(i.value) !== String(wantQty()); }))) run();
-        else { stock(); wlPaint(); }
+        else { stock(); wlPaint(); express(); if (DESK.matches && $('.nf-st__story') && !$('.nf3-below .nf-st__story')) layout(); }
       }, 30);
     }).observe(host, { childList: true, subtree: true });
   }

@@ -510,12 +510,13 @@
     wrap.className = 'nf-pk-chips';
     wrap.innerHTML =
       '<div class="nf-pk-ship"><span>+Free Shipping</span></div>' +
-      '<div class="nf-pk-save"><b>Save 10% on 2+ Items</b>' +
+      '<div class="nf-pk-save"><b>Save 10% on 2, 15% on 3+</b>' +
         '<i>Applied automatically <button type="button" class="nf-pk-q" aria-expanded="false" aria-label="How the 2+ item saving works">?</button></i>' +
         '<div class="nf-pk-pop" hidden role="dialog" aria-label="Multi buy saving">' +
           '<b>How it works</b><ul>' +
-          '<li>Add any 2 or more items to your bag.</li>' +
-          '<li>10% comes off automatically at checkout.</li>' +
+          '<li>Add any 2 items to your bag for 10% off.</li>' +
+          '<li>Add 3 or more for 15% off.</li>' +
+          '<li>It comes off automatically at checkout.</li>' +
           '<li>No code needed.</li>' +
           '</ul>' +
         '</div></div>';
@@ -576,12 +577,12 @@
     }
     var unit = Math.round(parseFloat((sp.textContent || '').replace(/[^0-9.]/g, '')) * 100);
     if (!unit) return;
-    var full = unit * n, now = Math.round(full * 0.9), key = n + ':' + unit;
+    var pct = n >= 3 ? 15 : 10, full = unit * n, now = full - Math.floor(full * pct / 100), key = n + ':' + unit;
     if (!box) { box = d.createElement('div'); box.className = 'nf-pk-total'; pl.insertAdjacentElement('afterend', box); }
     if (box.getAttribute('data-k') !== key) {
       box.setAttribute('data-k', key);
       box.innerHTML = '<span class="nf-pk-total__now">' + money(now) + '</span><s class="nf-pk-total__was">' + money(full) + '</s>' +
-        '<span class="nf-pk-total__per">' + n + ' pieces, 10% off applied</span>';
+        '<span class="nf-pk-total__per">' + n + ' pieces, ' + pct + '% off applied</span>';
     }
     if (!pl.classList.contains('nf-pk-hide')) pl.classList.add('nf-pk-hide');
   }
@@ -624,7 +625,7 @@
         var want = +b.getAttribute('data-n') === n ? 'true' : 'false';
         if (b.getAttribute('aria-pressed') !== want) b.setAttribute('aria-pressed', want);
       });
-      var txt = n > 1 ? n + ' will go in your bag. 10% comes off the order at checkout.' : '';
+      var txt = n > 1 ? n + ' will go in your bag. ' + (n >= 3 ? '15%' : '10%') + ' comes off at checkout.' : '';
       if (note.textContent !== txt) note.textContent = txt;
       if (note.hidden !== !txt) note.hidden = !txt;
     }
@@ -761,8 +762,12 @@
           '<span class="nf-pk-rv__t">' + esc(x.t) + '</span>' +
           (x.p ? '<span class="nf-pk-rv__p">' + esc(x.p) + '</span>' : '') + '</a>';
       }).join('') + '</div></div>';
+    /* NF-PDP3-V3 (2026-09-25, owner): the Nora Furnish guide is always the last thing before the footer, so Recently
+       viewed goes right above it; pages without a guide keep it above the footer */
+    var guide = d.querySelector('[id$="__nf_pdp_article"]');
     var foot = d.querySelector('.shopify-section-group-footer-group, footer');
-    if (foot && foot.parentNode) foot.parentNode.insertBefore(sec, foot);
+    if (guide && guide.parentNode) guide.parentNode.insertBefore(sec, guide);
+    else if (foot && foot.parentNode) foot.parentNode.insertBefore(sec, foot);
     else d.body.appendChild(sec);
     var row = $('.nf-pk-rv__row', sec), nav = $('.nf-pk-rv__nav', sec);
     function upd() {

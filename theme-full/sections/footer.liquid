@@ -31,7 +31,12 @@
 
 <div class="footer nf-footer color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
   {%- comment -%} NF-CHROME-V1: the footer lamp. Styles assets/nf-chrome.css; assets/nf-chrome.js switches it on when the footer scrolls into view. {%- endcomment -%}
-  <div class="nfc-lamp-wrap" aria-hidden="true"><span class="nfc-lamp"><span class="nfc-lamp__cord"></span><span class="nfc-lamp__shade"></span><span class="nfc-lamp__bulb"></span></span><span class="nfc-lamp__cone"></span></div>
+  {%- comment -%} NF-FOOTER-V3 (2026-09-25, owner: "how is the bottom lit?"): a row of five pendants lights the menus from
+    the ceiling, and a row of floor uplights lights the giant wordmark from below. Styles in assets/nf-brand.css; the script
+    at the bottom switches them on in sequence when the footer scrolls into view. {%- endcomment -%}
+  <div class="nff-lights" aria-hidden="true">
+    {%- for i in (1..5) -%}<span class="nff-pend nff-pend--{{ i }}"><span class="nff-pend__cord"></span><span class="nff-pend__shade"></span><span class="nff-pend__bulb"></span><span class="nff-pend__cone"></span></span>{%- endfor -%}
+  </div>
   <div class="nf-footer__inner">
     {%- if section.blocks.size > 0 -%}
       <div class="nf-footer__grid{% if nf_has_nl %} nf-footer__grid--nl{% endif %}" style="--nf-cols: {{ nf_cols | at_least: 1 }};">
@@ -140,16 +145,21 @@
       </div>
     {%- endif -%}
 
-    {%- comment -%} BOTTOM BAR: logo + copyright (+ localization and payment icons when enabled) {%- endcomment -%}
-    <div class="nf-footer__bar">
+    {%- comment -%} NF-FOOTER-V3 STAGE: large logo, brand line and the giant wordmark, lit from below by floor uplights. {%- endcomment -%}
+    <div class="nff-stage">
       {%- if nf_logo_block -%}
         {%- assign nf_logo_link = nf_logo_block.settings.link | default: routes.root_url -%}
-        <a href="{{ nf_logo_link }}" class="nf-footer__logo" style="--nf-logo-w: {{ nf_logo_block.settings.image_width }}px;" {{ nf_logo_block.shopify_attributes }}>
-          {{- nf_logo_block.settings.image | image_url: width: 480 | image_tag: alt: shop.name, loading: 'lazy', sizes: '200px', widths: '240, 480', class: 'nf-footer__logo-img' -}}
+        <a href="{{ nf_logo_link }}" class="nf-footer__logo nff-logo" style="--nf-logo-w: {{ nf_logo_block.settings.image_width }}px;" {{ nf_logo_block.shopify_attributes }}>
+          {{- nf_logo_block.settings.image | image_url: width: 720 | image_tag: alt: shop.name, loading: 'lazy', sizes: '(max-width: 749px) 220px, 320px', widths: '360, 720', class: 'nf-footer__logo-img' -}}
         </a>
       {%- endif -%}
+      <p class="nf-footer__brandline nff-line">Lighting and decor for rooms that glow. Shipped free across the USA.</p>
+      <div class="nff-mark" aria-hidden="true"><span class="nff-mark__word">Nora Furnish</span></div>
+      <div class="nff-ups" aria-hidden="true">{%- for i in (1..7) -%}<i></i>{%- endfor -%}</div>
+    </div>
 
-      <p class="nf-footer__brandline">Lighting and decor, shipped free across the USA</p>
+    {%- comment -%} BOTTOM BAR: copyright (+ localization and payment icons when enabled) {%- endcomment -%}
+    <div class="nf-footer__bar">
 
       {%- unless nf_has_nl -%}
         {%- if nf_social != blank -%}
@@ -218,6 +228,20 @@
         var summary = event.target.closest ? event.target.closest('.nf-footer-accordion__summary') : null;
         if (summary && !mq.matches) { event.preventDefault(); }
       });
+
+      /* NF-FOOTER-V3: pendants and uplights switch on one after another when the footer comes into view.
+         Lit by default (no JS, reduced motion, or no IntersectionObserver). */
+      var foot = root.querySelector('.nf-footer');
+      var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (foot && !calm && 'IntersectionObserver' in window) {
+        foot.classList.add('nff-armed');
+        var fio = new IntersectionObserver(function (entries) {
+          for (var j = 0; j < entries.length; j++) {
+            if (entries[j].isIntersecting) { foot.classList.add('nff-on'); fio.disconnect(); return; }
+          }
+        }, { threshold: 0.12 });
+        fio.observe(foot);
+      }
 
       var formId = {{ nf_form_id | json }};
       var form = document.getElementById(formId);
@@ -334,7 +358,7 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "The logo shows centered in the footer bottom bar, above the copyright line."
+          "content": "The logo shows large and centered above the giant wordmark at the bottom of the footer."
         },
         {
           "type": "image_picker",
@@ -346,7 +370,7 @@
           "type": "range",
           "id": "image_width",
           "min": 50,
-          "max": 300,
+          "max": 400,
           "step": 10,
           "unit": "px",
           "label": "t:global.image.width",

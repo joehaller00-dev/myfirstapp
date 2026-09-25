@@ -125,13 +125,26 @@
       "settings": {
         "faq_open": true
       }
+    },
+    "nf_recent": {
+      "type": "custom-liquid",
+      "name": "Recently viewed",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "{%- render 'nf-recent-rail' -%}",
+        "text_alignment": "center"
+      }
     }
   },
   "order": [
     "collection-banner",
     "rich_text_EpHjwg",
     "main",
-    "nf_collection_story",
-    "text_with_icons_coll"
+    "text_with_icons_coll",
+    "nf_recent",
+    "nf_collection_story"
   ]
 }

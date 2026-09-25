@@ -334,8 +334,8 @@
           "type": "question",
           "settings": {
             "question": "Is there a discount when I buy more than one item?",
-            "answer": "<p>Yes. Add <strong>2 or more items</strong> to your cart and you save <strong>10% on your entire order</strong>. The discount applies automatically in your cart and at checkout, with no code needed. It cannot be combined with other discount codes.</p>",
-            "keywords": "discount buy 2 save 10% two items bundle promo deal offer sale code",
+            "answer": "<p>Yes. Add <strong>2 items</strong> to your cart and you save <strong>10%</strong>, add <strong>3 or more</strong> and you save <strong>15%</strong>. The discount applies automatically in your cart and at checkout, with no code needed. It cannot be combined with other discount codes.</p>",
+            "keywords": "discount buy 2 save 10% buy 3 save 15% two three items bundle promo deal offer sale code",
             "anchor": "",
             "show_payment_icons": false
           }
