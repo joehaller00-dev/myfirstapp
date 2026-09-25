@@ -100,6 +100,15 @@ Preview: https://norafurnish.com/products/black-gold-minimalist-wall-lamp?previe
   - The floor uplights are replaced by a brass picture light that lights the logo from above.
 - **Room sets:** "Every piece, photo by photo" replaces the set's own gallery at the top left. Each piece shows big photos two to a row: four on desktop and two on phones, then "See all N photos". Mock: `docs/room-set-pieces-mock.png`.
 
+## Round 6 (owner feedback)
+
+- **Variant A/B "not doing anything":** the code is fine. On the Sculpted Panel wall light, A and B have the same price and no photo linked to either, so there is nothing to change. Five other products name their options with letters only, and 28 multi-option products have no option photos at all. The full list is in `docs/variant-audit.md`.
+- **Complete the room:** the "This item" card now has an option dropdown that changes the option on the page itself.
+- **Reviews background:** changed from a pinkish cream to a light tan (#efe6d3).
+- **Room sets:** the buy box now stays on screen beside the piece photos, and "Why you'll love it" runs full width below them, so there is no empty right column.
+- **No custom orders:** the product page card now reads "Bulk & project orders" (10% on 2, 15% on 3+, project pricing) with a "Get a quote" button. The existing Custom Size Chandeliers, Custom Curtains and Custom Neon/Name Sign pages were left alone. The owner decides whether they stay.
+- **Write a review** on our section opens the store's own review form (NF-REVIEW-FORM in nf-pdp.js), which posts to Judge.me.
+
 ## Before going live
 
 1. The live theme was last edited at 13:36 UTC on 2026-09-25, before the prototype was copied, so **publishing the prototype as it is now loses nothing**. If anyone edits the live theme before you publish, copy those edits across first, or copy the files listed above into the live theme instead.

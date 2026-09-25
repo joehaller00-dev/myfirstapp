@@ -474,7 +474,9 @@
     }
     if (DESK.matches) {
       if (!below) { below = d.createElement('div'); below.className = 'nf3-below'; prod.appendChild(below); }
-      if (story && story.parentNode !== below) below.appendChild(story);
+      /* on room sets the pieces fill the left column; the story stays full width below */
+      if (story && !sp && story.parentNode !== below) below.appendChild(story);
+      if (story && sp && band && story.parentNode !== band) band.insertBefore(story, band.firstChild);
       if (lv && info && lv.parentNode !== info) { info.appendChild(lv); lv.classList.add('nf-lv--side'); }
       prod.classList.add('nf3-split');
     } else {
@@ -613,6 +615,8 @@
         return;
       }
       if (e.target.closest('[data-nfrv-write]')) {
+        /* nf-pdp.js NF-REVIEW-FORM: our own form that posts to Judge.me (their popup never opens) */
+        if (window.__nfRv && window.__nfRv.pid && window.__nfRv.pid()) { window.__nfRv.open(); return; }
         var w = native(false);
         var btn = $$('.jdgm-write-rev-link, .jm-button, .jm-action-buttons__button, .nf-rt__btn--solid').filter(function (b) { return /write a review/i.test(b.textContent || ''); })[0];
         if (btn) { btn.style.removeProperty('display'); btn.click(); }
@@ -685,7 +689,7 @@
         var root = $('[data-nf-bt]'), stage = $('.shopify-section--main-product product-gallery scroll-carousel');
         if ((root && !root._nf3) || (stage && !stage._nf3) ||
             (root && qtyInputs().some(function (i) { return String(i.value) !== String(wantQty()); }))) run();
-        else { stock(); wlPaint(); express(); if (DESK.matches && $('.nf-st__story') && !$('.nf3-below .nf-st__story')) layout(); }
+        else { stock(); wlPaint(); express(); if (DESK.matches && !$('[data-nfsp]') && $('.nf-st__story') && !$('.nf3-below .nf-st__story')) layout(); }
       }, 30);
     }).observe(host, { childList: true, subtree: true });
   }

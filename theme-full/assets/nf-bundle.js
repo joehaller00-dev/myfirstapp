@@ -167,7 +167,36 @@
        (owner 09-24: the generic room shot did not show the product) */
     var baseP = null, lastImg = '';
     fetch('/products/' + location.pathname.split('/').filter(Boolean).pop() + '.js')
-      .then(function (r) { return r.ok ? r.json() : null; }).then(function (p) { baseP = p; paint(); }).catch(function () {});
+      .then(function (r) { return r.ok ? r.json() : null; }).then(function (p) { baseP = p; baseSel(); paint(); }).catch(function () {});
+    /* NF-BDL-BASESEL (2026-09-25, owner: "This item" only printed the option name, e.g. "B"): with more than one option,
+       "This item" gets a dropdown that changes the option on the page itself, so the price, photos and Add to Cart all
+       follow. It ticks the page's own option radios, the same way the sticky bar's select does (nf-cart-v2.js). */
+    function baseSel() {
+      if (!baseP || !baseP.variants || baseP.variants.length < 2) return;
+      var opt = box.querySelector('[data-nfb-base-opt]'); if (!opt || box.querySelector('.nf-bdl__sel--base')) return;
+      var s = d.createElement('select');
+      s.className = 'nf-bdl__sel nf-bdl__sel--base';
+      s.setAttribute('aria-label', 'Option for this item');
+      s.innerHTML = baseP.variants.map(function (v) {
+        return '<option value="' + v.id + '"' + (v.available ? '' : ' disabled') + '>' + esc(v.title) + (v.available ? '' : ' (sold out)') + '</option>';
+      }).join('');
+      opt.parentNode.replaceChild(s, opt);
+    }
+    function setMain(vid) {
+      var v = baseP && baseP.variants.filter(function (x) { return x.id === vid; })[0]; if (!v) return;
+      var fid = form && form.id, ids = [];
+      var so = d.querySelector('.nf-sb-native option[value="' + vid + '"]');
+      if (so) ids = (so.getAttribute('data-value-ids') || '').split(',');
+      (v.options || []).forEach(function (name, i) {
+        var pos = i + 1, radios = [].slice.call(d.querySelectorAll('input[type="radio"][data-option-position="' + pos + '"]' + (fid ? '[form="' + fid + '"]' : '')));
+        var r = ids[i] ? radios.filter(function (x) { return x.value === ids[i]; })[0] : null;
+        if (!r) r = radios.filter(function (x) {
+          var l = x.closest('label') || x.parentNode, txt = ((l && l.textContent) || '').replace(/\s+/g, ' ').trim();
+          return txt === name || txt.indexOf(name + ' ') === 0;
+        })[0];
+        if (r && !r.checked) { r.checked = true; r.dispatchEvent(new Event('change', { bubbles: true })); }
+      });
+    }
     function base() {
       var idEl = form && form.querySelector('[name="id"]');
       var id = idEl ? +idEl.value : 0;
@@ -182,7 +211,8 @@
         var u = vimg(baseP, b.id);
         if (u && u !== lastImg) { lastImg = u; var bi = box.querySelector('[data-nfb-base-img]'); if (bi) bi.src = img(u, 400); }
       }
-      box.querySelector('[data-nfb-base-opt]').textContent = b.title || '';
+      var bo = box.querySelector('[data-nfb-base-opt]'); if (bo) bo.textContent = b.title || '';
+      var bs = box.querySelector('.nf-bdl__sel--base'); if (bs && b.id && +bs.value !== b.id) bs.value = String(b.id);
       box.querySelector('[data-nfb-base-price]').textContent = money(b.price * b.qty);
       var sum = b.price * b.qty, n = 0, qty = b.qty;
       box.querySelectorAll('input[type="checkbox"]').forEach(function (c) {
@@ -203,6 +233,7 @@
     }
     box.addEventListener('change', function (e) {
       var t = e.target;
+      if (t.classList.contains('nf-bdl__sel--base')) { setMain(+t.value); setTimeout(paint, 400); return; }
       if (t.classList.contains('nf-bdl__sel')) {
         var row = t.closest('.nf-bdl__card'), cb = row.querySelector('input[type="checkbox"]'), i = +cb.getAttribute('data-i');
         var v = avail(list[i]).filter(function (x) { return String(x.id) === t.value; })[0];
