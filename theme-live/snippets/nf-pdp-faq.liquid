@@ -1,0 +1,51 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) D2 FAQ accordion content (styled like /pages/faq, in accordion form).
+  1. Three questions about this product: custom.faq_short (json [{"q":"...","a":"..."}]). Fallback when empty: up to
+     three questions answered from the product's own Materials / Care / What's Included metafields (no new facts).
+  2. Our real store FAQ, the key answers copied from /pages/faq (NF-FAQ-V2, 2026-09-12). Keep in sync with that page.
+  FAQPage JSON-LD for the product questions is printed once by sections/nf-pdp-article.liquid.
+{%- endcomment -%}
+{%- liquid
+  assign nf_fq = product.metafields.custom.faq_short.value
+  assign nf_tags = product.tags | join: ' '
+  assign nf_is_light = false
+  if nf_tags contains 'nav-ceiling-light' or nf_tags contains 'nav-wall-lights' or nf_tags contains 'nav-lamps' or nf_tags contains 'nav-ambient-lighting' or nf_tags contains 'nav-outdoor-lighting'
+    assign nf_is_light = true
+  endif
+-%}
+<div class="nf-faqa">
+  <p class="nf-faqa__h">About this piece</p>
+  <div class="nf-faqa__list">
+  {%- if nf_fq != blank and nf_fq.size > 0 -%}
+    {%- for qa in nf_fq limit: 3 -%}
+      <details class="nf-faqa__q"><summary><span>{{ qa.q | escape }}</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>{{ qa.a | escape }}</p></div></details>
+    {%- endfor -%}
+  {%- else -%}
+    {%- liquid
+      assign fb_m = product.metafields.custom.materials.value | default: product.metafields.custom.materials | replace: '</p>', ' ' | strip_html | strip
+      assign fb_c = product.metafields.custom.care.value | default: product.metafields.custom.care | replace: '</p>', ' ' | strip_html | strip
+      assign fb_i = product.metafields.custom.additional_details.value | default: product.metafields.custom.additional_details | replace: '</p>', ' ' | strip_html | strip
+      assign fb_i1 = fb_i | split: '. ' | first
+    -%}
+    {%- if fb_m != blank -%}<details class="nf-faqa__q"><summary><span>What is it made of?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>{{ fb_m }}</p></div></details>{%- endif -%}
+    {%- if fb_i1 != blank -%}<details class="nf-faqa__q"><summary><span>What comes with it?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>{{ fb_i1 | remove_last: '.' }}.</p></div></details>{%- endif -%}
+    {%- if fb_c != blank -%}<details class="nf-faqa__q"><summary><span>How do I look after it?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>{{ fb_c }}</p></div></details>{%- endif -%}
+  {%- endif -%}
+  </div>
+
+  <p class="nf-faqa__h">Shipping, returns and help</p>
+  <div class="nf-faqa__list">
+    <details class="nf-faqa__q"><summary><span>How long does delivery take?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>Most orders arrive within 6 to 9 business days: 1 to 2 business days to prepare and pack your order, then 5 to 7 business days in transit. You get a tracking number as soon as it ships.</p></div></details>
+    <details class="nf-faqa__q"><summary><span>Is shipping free?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>Yes. Standard shipping is free on every order delivered within the United States, with no minimum purchase.</p></div></details>
+    <details class="nf-faqa__q"><summary><span>What is your return policy?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>You can request a return within 30 days of delivery. Items must be unused, in their original condition and in the original packaging. Email <a href="mailto:info@norafurnish.com">info@norafurnish.com</a> before sending anything back.</p></div></details>
+    <details class="nf-faqa__q"><summary><span>What if it arrives damaged or faulty?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>We send a replacement at no charge, and the return costs you nothing. Email your order number and a photo of the problem to <a href="mailto:info@norafurnish.com">info@norafurnish.com</a>.</p></div></details>
+    <details class="nf-faqa__q"><summary><span>When will I receive my refund?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>Once your return arrives and is approved, the refund usually shows on your original payment method within 5 to 7 business days.</p></div></details>
+    <details class="nf-faqa__q"><summary><span>Is there a discount when I buy more than one item?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>Yes. Add 2 or more items to your cart and you save 10% on the whole order. It applies automatically, no code needed, and cannot be combined with other discount codes.</p></div></details>
+    {%- if nf_is_light -%}
+    <details class="nf-faqa__q"><summary><span>Do I need an electrician?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>Hardwired fixtures such as chandeliers, pendants, flush mounts and wall sconces connect to your home wiring, so we recommend a licensed electrician for those. Plug in, battery, solar and rechargeable lights need no wiring.</p></div></details>
+    {%- endif -%}
+    <details class="nf-faqa__q"><summary><span>Can I order it in another size or finish?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>Every size and finish available is listed in the options above. For help finding the closest match in the catalog, email <a href="mailto:info@norafurnish.com">info@norafurnish.com</a>.</p></div></details>
+    <details class="nf-faqa__q"><summary><span>How do I reach you?</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>Email <a href="mailto:info@norafurnish.com">info@norafurnish.com</a>. The team works Monday through Friday, 9:00 AM to 5:00 PM (CST), and replies within 1 to 2 business days.</p></div></details>
+  </div>
+  <a class="nf-faqa__all" href="/pages/faq">See every question on our FAQ page <span aria-hidden="true">&rarr;</span></a>
+</div>

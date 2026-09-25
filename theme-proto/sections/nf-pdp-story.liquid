@@ -1,0 +1,138 @@
+{%- comment -%}
+  NF-PDP3-V1 (2026-09-25) the band straight under the product (owner: like Baskoraa's "Soft Radiance, Modern Elegance").
+  Left:  headline, the product story, a "Custom, trade & project orders" card and three reassurance tiles.
+  Right: "Why customers love us", a carousel of store reviews.
+
+  Story text: custom.story_headline (optional) else the first of custom.highlights else the product title; custom.why_special_long (paragraphs split by a
+  blank line) else custom.why_special else the description.
+  Reviews: Judge.me's own shop metafields, exactly as Judge.me publishes them (judgeme.reviews_grid, the latest 25,
+  and judgeme.all_reviews_rating / all_reviews_count for the headline). Names and text are never edited. Only 4 and
+  5 star reviews with some text are shown, and there is no "verified" mark because Judge.me marks these reviews as
+  not verified. The whole column hides itself if Judge.me has nothing to show.
+  Enquire opens the existing bulk quote form (assets/nf-pdp.js, NF-PDPKIT quote), and falls back to the page.
+  Styles in assets/nf-pdp3.css, carousel in assets/nf-pdp3.js.
+{%- endcomment -%}
+{%- liquid
+  assign nf_hl = product.metafields.custom.highlights.value
+  assign nf_head = product.metafields.custom.story_headline.value
+  if nf_head == blank and nf_hl != blank and nf_hl.size > 0
+    assign nf_head = nf_hl | first
+  endif
+  if nf_head == blank
+    assign nf_head = product.title
+  endif
+  assign nf_long = product.metafields.custom.why_special_long.value
+  assign nf_short = product.metafields.custom.why_special.value | default: product.metafields.custom.why_special
+
+  assign jm = shop.metafields.judgeme.reviews_grid.value
+  assign jm_rating = shop.metafields.judgeme.all_reviews_rating.value | default: jm.average_rating
+  assign jm_count = shop.metafields.judgeme.all_reviews_count.value | default: jm.number_of_reviews
+  assign jm_list = jm.all_reviews.reviews
+-%}
+{{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}
+<section class="nf-st" aria-label="About this piece">
+  <div class="nf-st__in">
+    <div class="nf-st__story">
+      {%- if section.settings.eyebrow != blank -%}<p class="nf-st__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="nf-st__h">{{ nf_head | escape }}</h2>
+      <div class="nf-st__body">
+        {%- if nf_long != blank -%}
+          {%- assign nf_paras = nf_long | replace: '\r', '' | newline_to_br | split: '<br />' -%}
+          {%- for p in nf_paras -%}
+            {%- assign pp = p | strip -%}
+            {%- if pp != blank -%}<p>{{ pp }}</p>{%- endif -%}
+          {%- endfor -%}
+        {%- elsif nf_short != blank -%}
+          {%- if nf_short contains '<p' -%}{{ nf_short }}{%- else -%}<p>{{ nf_short }}</p>{%- endif -%}
+        {%- else -%}
+          {{ product.description }}
+        {%- endif -%}
+      </div>
+
+      <div class="nf-st__trade">
+        <svg class="nf-st__trade-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V8l6-4v17M9 21V4l12 5v12M3 21h18M13 12h4M13 16h4"/></svg>
+        <div class="nf-st__trade-t">
+          <p class="nf-st__trade-h">Custom, trade &amp; project orders</p>
+          <p class="nf-st__trade-s">Furnishing a larger project or need another size or finish? We offer tailored options, trade pricing and volume ordering on selected pieces.</p>
+        </div>
+        <a class="nf-st__trade-btn" href="/pages/bulk-project-orders?product={{ product.handle }}" data-nf-quote-trigger>Enquire <span aria-hidden="true">&rarr;</span></a>
+      </div>
+
+      <ul class="nf-st__tiles">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 8l-3.6 3 1.1 4.8L12 13.3 8 15.8 9.1 11 5.5 8l4.7-.4z"/></svg>
+          <strong>Premium craftsmanship</strong><small>Quality materials, carefully finished.</small>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg>
+          <strong>Free &amp; tracked shipping</strong><small>Tracked delivery across the USA.</small>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg>
+          <strong>Easy 30 day returns</strong><small>Shop with complete peace of mind.</small>
+        </li>
+      </ul>
+    </div>
+
+    {%- capture nf_cards -%}
+      {%- assign nf_n = 0 -%}
+      {%- for r in jm_list -%}
+        {%- if r.rating < 4 or r.body == blank or r.body.size < 20 or r.product_in_store == false -%}{%- continue -%}{%- endif -%}
+        {%- assign nf_n = nf_n | plus: 1 -%}
+        <li class="nf-lv__card">
+          <a class="nf-lv__link" href="{{ r.product_url }}">
+            <span class="nf-lv__q" aria-hidden="true">&ldquo;&rdquo;</span>
+            {%- if r.product_pictures_url != blank -%}
+              <span class="nf-lv__img"><img src="{{ r.product_pictures_url | split: '?' | first }}?width=200" alt="{{ r.product_title | escape }}" width="100" height="100" loading="lazy" decoding="async"></span>
+            {%- endif -%}
+            <span class="nf-lv__txt">{{ r.body | strip_html | truncate: 110 }}</span>
+            <span class="nf-lv__stars" role="img" aria-label="{{ r.rating }} out of 5 stars">{%- for i in (1..5) -%}<svg viewBox="0 0 20 20" class="{% if i > r.rating %}is-off{% endif %}" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 5.9L10 15l-5.3 2.8 1.1-5.9L1.4 7.8l6-.8z"/></svg>{%- endfor -%}</span>
+            <span class="nf-lv__name">{{ r.reviewer_name | escape }}</span>
+            <span class="nf-lv__prod">{{ r.product_title | escape }}</span>
+          </a>
+        </li>
+        {%- if nf_n >= 16 -%}{%- break -%}{%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+
+    {%- if nf_n > 0 -%}
+      <div class="nf-lv" data-nf-lv>
+        <h2 class="nf-lv__h">Why customers love us</h2>
+        {%- if jm_count != blank and jm_rating != blank -%}
+          {%- liquid
+            assign nf_c = jm_count | plus: 0
+            if nf_c >= 1000
+              assign nf_c_hi = nf_c | divided_by: 1000
+              assign nf_c_lo = nf_c | modulo: 1000 | prepend: '00' | slice: -3, 3
+              assign nf_c_txt = nf_c_hi | append: ',' | append: nf_c_lo
+            else
+              assign nf_c_txt = nf_c
+            endif
+          -%}
+          <p class="nf-lv__sub">{{ jm_rating | plus: 0 | round: 1 }} stars based on {{ nf_c_txt }} reviews</p>
+        {%- endif -%}
+        <div class="nf-lv__view">
+          <ul class="nf-lv__track" data-nf-lv-track>{{ nf_cards }}</ul>
+        </div>
+        <div class="nf-lv__nav">
+          <button type="button" class="nf-lv__arr" data-dir="-1" aria-label="Previous reviews"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
+          <div class="nf-lv__dots" data-nf-lv-dots></div>
+          <button type="button" class="nf-lv__arr" data-dir="1" aria-label="Next reviews"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF story and reviews",
+  "tag": "div",
+  "class": "shopify-section--nf-pdp-story",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small heading above the title", "default": "Why you'll love it" }
+  ],
+  "presets": [{ "name": "NF story and reviews" }],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

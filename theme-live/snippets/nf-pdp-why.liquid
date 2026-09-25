@@ -1,0 +1,29 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) "Why This Is Special" body.
+  1. custom.why_special_long (multi_line_text_field, plain text, paragraphs split by a blank line) + custom.highlights
+     (json array of 3 short strings) when present (Phase 2 content).
+  2. Otherwise the existing custom.why_special (unchanged) so every product still reads normally.
+{%- endcomment -%}
+{%- liquid
+  assign nf_long = product.metafields.custom.why_special_long.value
+  assign nf_short = product.metafields.custom.why_special.value | default: product.metafields.custom.why_special
+  assign nf_hl = product.metafields.custom.highlights.value
+-%}
+<div class="nf-why">
+  {%- if nf_long != blank -%}
+    {%- assign nf_paras = nf_long | replace: '\r', '' | newline_to_br | split: '<br />' -%}
+    {%- for p in nf_paras -%}
+      {%- assign pp = p | strip -%}
+      {%- if pp != blank -%}<p class="nf-why__p">{{ pp }}</p>{%- endif -%}
+    {%- endfor -%}
+  {%- elsif nf_short != blank -%}
+    {%- if nf_short contains '<p' -%}{{ nf_short }}{%- else -%}<p class="nf-why__p">{{ nf_short }}</p>{%- endif -%}
+  {%- else -%}
+    <p class="nf-why__p">{{ product.description | strip_html | truncatewords: 60 }}</p>
+  {%- endif -%}
+  {%- if nf_hl != blank and nf_hl.size > 0 -%}
+    <ul class="nf-why__hl">
+      {%- for h in nf_hl limit: 4 -%}<li>{{ h | escape }}</li>{%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
