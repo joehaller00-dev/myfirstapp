@@ -1,0 +1,281 @@
+{%- unless request.page_type == 'captcha' -%}
+  {%- unless section.settings.show_only_for_visitors and customer -%}
+    {%- assign newsletter_id = 'nf-nl-form-' | append: section.id -%}
+    {%- capture _tmp -%}
+      {%- form 'customer', id: newsletter_id -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+            {%- assign posted_successfully = form.posted_successfully? -%}
+      {%- endform -%}
+    {%- endcapture -%}
+
+<style>
+  .nf-nl-tab {
+    position: fixed; left: 0; top: 50%; transform: translateY(-50%);
+    background: #cec4b8; z-index: 9998; cursor: pointer; display: none;
+    border-radius: 0 4px 4px 0; padding: 16px 10px;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.12); transition: background 0.2s;
+  }
+  .nf-nl-tab:hover { background: #bfb4a8; }
+  @media (max-width: 749px) {
+    .nf-nl-tab {
+      top: auto !important; bottom: 16px !important; left: 10px !important; right: auto !important;
+      transform: none !important; border-radius: 999px; padding: 10px 14px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    }
+    .nf-nl-tab span {
+      writing-mode: horizontal-tb !important; transform: none !important;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em; line-height: 1;
+    }
+  }
+  .nf-nl-tab.visible { display: block; }
+  .nf-nl-tab span {
+    display: block; writing-mode: vertical-rl; transform: rotate(180deg);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #3d3530; white-space: nowrap;
+  }
+  .nf-nl-overlay {
+    position: fixed; inset: 0; background: rgba(40,35,30,0.55);
+    z-index: 9999; display: none; align-items: center; justify-content: center;
+    padding: 16px; box-sizing: border-box;
+  }
+  .nf-nl-overlay.open { display: flex; }
+  .nf-nl-modal {
+    position: relative; background: #f9f6f2; display: flex;
+    flex-direction: row; width: 100%; max-width: 820px; max-height: 90vh;
+    border-radius: 4px; overflow: hidden;
+    box-shadow: 0 12px 48px rgba(40,35,30,0.22);
+  }
+  .nf-nl-close {
+    position: absolute; top: 14px; right: 14px; background: none;
+    border: none; cursor: pointer; padding: 6px; z-index: 2; color: #3d3530;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.65; transition: opacity 0.2s; border-radius: 2px;
+  }
+  .nf-nl-close:hover { opacity: 1; }
+  .nf-nl-close svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+  .nf-nl-image { flex: 0 0 45%; overflow: hidden; min-height: 320px; }
+  .nf-nl-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .nf-nl-right {
+    flex: 0 0 55%; padding: 52px 44px 44px; display: flex;
+    flex-direction: column; justify-content: center;
+    box-sizing: border-box; background: #f9f6f2;
+  }
+  .nf-nl-eyebrow {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: #7a6e65; margin: 0 0 14px;
+  }
+  .nf-nl-percent {
+    font-family: Georgia, 'Times New Roman', serif; font-size: 62px;
+    font-weight: 300; color: #2e2a26; line-height: 1; margin: 0;
+  }
+  .nf-nl-subhead {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #4a423c; margin: 10px 0 20px;
+  }
+  .nf-nl-divider { width: 36px; height: 1px; background: #a09488; margin: 0 0 20px; }
+  .nf-nl-body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px;
+    line-height: 1.65; color: #5c5048; margin: 0 0 22px;
+  }
+  .nf-nl-input-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .nf-nl-input {
+    width: 100%; border: 1px solid #b0a498; background: rgba(255,255,255,0.55);
+    padding: 13px 14px; font-size: 12px; color: #2e2a26; outline: none;
+    box-sizing: border-box; font-family: inherit; border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .nf-nl-input:focus { border-color: #8a7d74; background: rgba(255,255,255,0.75); }
+  .nf-nl-input::placeholder { color: #9a8e88; font-size: 11px; }
+  .nf-nl-submit {
+    width: 100%; background: #2e2a26; color: #fff; border: none;
+    padding: 14px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    cursor: pointer; font-family: inherit; border-radius: 2px; transition: background 0.2s;
+  }
+  .nf-nl-submit:hover { background: #4a423c; }
+  /* REVEAL SCREEN */
+  .nf-nl-success-wrap { text-align: center; }
+  .nf-nl-success-eyebrow {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: #9a8e88; margin: 0 0 16px;
+  }
+  .nf-nl-success-title {
+    font-family: Georgia, 'Times New Roman', serif; font-size: 26px;
+    font-weight: 400; color: #2e2a26; line-height: 1.3; margin: 0 0 8px;
+  }
+  .nf-nl-success-sub {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px;
+    color: #7a6e65; margin: 0 0 22px; line-height: 1.5;
+  }
+  .nf-nl-success-divider { width: 28px; height: 1px; background: #c4b8b0; margin: 0 auto 22px; }
+  .nf-nl-code-label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 8px;
+    letter-spacing: 0.25em; text-transform: uppercase; color: #9a8e88; margin: 0 0 10px;
+  }
+  .nf-nl-code-box {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: #fff; border: 1px solid #d4ccc6; border-radius: 3px;
+    padding: 14px 20px; margin-bottom: 12px;
+  }
+  .nf-nl-code {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 20px;
+    font-weight: 600; letter-spacing: 0.18em; color: #2e2a26;
+  }
+  .nf-nl-copy-btn {
+    background: #2e2a26; color: #fff; border: none; padding: 8px 14px;
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; font-family: inherit; border-radius: 2px;
+    transition: background 0.2s; white-space: nowrap; flex-shrink: 0;
+  }
+  .nf-nl-copy-btn:hover { background: #4a423c; }
+  .nf-nl-note {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 10px;
+    color: #a09488; margin: 0; letter-spacing: 0.02em;
+  }
+  /* MOBILE */
+  @media (max-width: 599px) {
+    .nf-nl-overlay { padding: 10px; }
+    .nf-nl-modal { max-height: 85vh; border-radius: 6px; overflow: hidden; }
+    .nf-nl-image { flex: 0 0 38%; }
+    .nf-nl-image img { height: 100%; }
+    .nf-nl-right { flex: 0 0 62%; padding: 20px 16px; overflow-y: auto; }
+    .nf-nl-percent { font-size: 36px; }
+    .nf-nl-eyebrow { margin-bottom: 8px; font-size: 8px; }
+    .nf-nl-subhead { margin: 5px 0 12px; font-size: 9px; }
+    .nf-nl-divider { margin-bottom: 12px; }
+    .nf-nl-body { font-size: 11px; margin-bottom: 14px; line-height: 1.5; }
+    .nf-nl-input { padding: 11px 12px; font-size: 11px; }
+    .nf-nl-submit { padding: 12px; font-size: 9px; }
+    .nf-nl-success-eyebrow { margin-bottom: 10px; }
+    .nf-nl-success-title { font-size: 19px; }
+    .nf-nl-success-sub { font-size: 10px; margin-bottom: 14px; }
+    .nf-nl-success-divider { margin-bottom: 14px; }
+    .nf-nl-code-label { margin-bottom: 8px; }
+    .nf-nl-code-box { padding: 10px 12px; flex-direction: column; gap: 7px; }
+    .nf-nl-code { font-size: 16px; letter-spacing: 0.14em; }
+    .nf-nl-copy-btn { width: 100%; padding: 9px; text-align: center; }
+    .nf-nl-note { font-size: 9px; }
+  }
+</style>
+
+{%- comment -%} NF-CHROME-V1: charcoal and gold popup and the horizontal 10% pill; the look lives in assets/nf-chrome.css. Form, cookie and WELCOME10 email flow unchanged. {%- endcomment -%}
+<div class="nf-nl-tab" id="nf-nl-tab" role="button" aria-label="Open newsletter signup">
+  <span class="nf-nl-tab__dot" aria-hidden="true"></span><span class="nf-nl-tab__label"><span class="nfc-lead">Get </span>10% off<span class="nfc-tail"> your first order</span></span>
+</div>
+
+<div class="nf-nl-overlay" id="nf-nl-overlay" role="dialog" aria-modal="true">
+  <div class="nf-nl-modal">
+    <button class="nf-nl-close" id="nf-nl-close" aria-label="Close">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="nf-nl-image">
+      <img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-newsletter-bedroom-lamps.png?width=900" srcset="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-newsletter-bedroom-lamps.png?width=400 400w, https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-newsletter-bedroom-lamps.png?width=600 600w, https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-newsletter-bedroom-lamps.png?width=900 900w" sizes="(max-width: 699px) 285px, 385px" alt="Cozy bedroom with two glowing bedside lamps" loading="lazy" fetchpriority="low" decoding="async">{%- comment -%} NF-SPEED-0913: low priority so the hidden popup photo never competes with the hero on the first screen. {%- endcomment -%}{%- comment -%} NF-PERF3-0911: the popup only auto-opens on the homepage; everywhere else it opens from a tab click, so the 87KB image no longer downloads on every collection and product view. {%- endcomment -%}
+    </div>
+    <div class="nf-nl-right">
+      {%- if posted_successfully -%}
+        <div class="nf-nl-success-wrap">
+          <p class="nf-nl-success-eyebrow">You&rsquo;re in</p>
+          <h2 class="nf-nl-success-title">Welcome to<br>Nora Furnish</h2>
+          <p class="nf-nl-success-sub">We just emailed your exclusive code to your inbox.</p>
+          <p class="nf-nl-note">Your 10&#37; off code is on its way to your email. Don&rsquo;t see it? Check your spam or promotions folder.</p>
+        </div>
+      {%- else -%}
+        <p class="nf-nl-eyebrow">Welcome to Nora Furnish</p>
+        <p class="nf-nl-percent">10%</p>
+        <p class="nf-nl-subhead">Off Your First Order</p>
+        <p class="nf-nl-body">Subscribe for exclusive offers, new arrivals, and interior inspiration, delivered to your inbox.</p>
+        {%- form 'customer', id: newsletter_id -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="nf-nl-input-wrap">
+            <input class="nf-nl-input" type="email" name="contact[email]" placeholder="Your email address" required autocomplete="email">
+            <button class="nf-nl-submit" type="submit">Subscribe &amp; Email My Code</button>
+          </div>
+          {%- if form.errors -%}
+            <p style="color:#b05050;font-size:11px;margin:8px 0 0;font-family:inherit;">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+          {%- endif -%}
+        {%- endform -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var COOKIE = 'nf_nl_dismissed';
+
+  function getCookie(name) {
+    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return v ? v[2] : null;
+  }
+  function setCookie(name, value, days) {
+    var d = new Date();
+    d.setTime(d.getTime() + 24*60*60*1000*days);
+    document.cookie = name + '=' + value + ';path=/;expires=' + d.toGMTString();
+  }
+
+  var overlay = document.getElementById('nf-nl-overlay');
+  var closeBtn = document.getElementById('nf-nl-close');
+  var tab = document.getElementById('nf-nl-tab');
+
+  function showTab() {
+    if (tab) { tab.classList.add('visible'); }
+  }
+
+  function openModal() {
+    if (overlay) { overlay.classList.add('open'); }
+    if (tab) { tab.classList.remove('visible'); }
+  }
+
+  function closeModal() {
+    if (overlay) { overlay.classList.remove('open'); }
+    setCookie(COOKIE, '1', 30);
+    setTimeout(showTab, 600);
+  }
+
+  if (tab) { tab.addEventListener('click', openModal); }
+  if (closeBtn) { closeBtn.addEventListener('click', closeModal); }
+  if (overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeModal();
+    });
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  /* Auto-open after 4 s on first visit only */
+  if (!getCookie(COOKIE)) {
+    {%- if request.page_type == 'index' -%}
+    /* NF-SPEED-A-0916: the popup used to open 6s after parse and dimmed the page while it was still loading. It now opens 6s after the visitor first scrolls, taps or types, or 15s after the page has fully loaded if they never do. */
+    (function(){var nfT=0,EV=['scroll','pointerdown','keydown','touchstart','wheel'];function off(){EV.forEach(function(e){window.removeEventListener(e,onI,true);});}function warm(){var im=overlay&&overlay.querySelector('.nf-nl-image img');if(im&&im.loading!=='eager'){im.loading='eager';}}function fire(){off();warm();openModal();}function onI(){off();warm();if(nfT)clearTimeout(nfT);nfT=setTimeout(fire,6000);}EV.forEach(function(e){window.addEventListener(e,onI,{capture:true,passive:true});});function late(){setTimeout(warm,4000);if(!nfT)nfT=setTimeout(fire,15000);}if(document.readyState==='complete'){late();}else{window.addEventListener('load',late);}})();
+    {%- else -%}
+    showTab();
+    {%- endif -%}
+  } else {
+    /* Already dismissed before — show tab immediately */
+    showTab();
+  }
+
+  {%- if posted_successfully -%}openModal();{%- endif -%}
+})();
+</script>
+
+  {%- endunless -%}
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Newsletter Popup",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_only_for_visitors",
+      "label": "Hide for logged-in customers",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

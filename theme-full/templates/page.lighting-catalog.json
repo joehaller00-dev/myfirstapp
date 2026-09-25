@@ -1,0 +1,24 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "nf-catalog-viewer",
+      "settings": {
+        "collection": "lighting-catalog-2026",
+        "eyebrow": "Nora Furnish Lighting",
+        "title": "2026 Nora Furnish Lighting Catalog",
+        "lede": "Explore lighting by room and select any hotspot to view the matching fixture.",
+        "hint": "Select a + hotspot to view the matching fixture. Swipe or use the arrows to change pages."
+      }
+    }
+  },
+  "order": ["main"]
+}

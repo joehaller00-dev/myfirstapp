@@ -1,0 +1,172 @@
+{%- comment -%}
+  nf-hub-page : Ideas & Guides hub (/pages/ideas-and-guides, template page.ideas-and-guides.json). 2026-09-10.
+  Hero and topic pills, the digital catalog as an open book, the latest blog articles, a curated list of
+  lighting guides (one "guide" block per article handle) and an email help line.
+  Reuses snippets/nf-blog-card.liquid and snippets/nf-catalog-book.liquid without changing them.
+{%- endcomment -%}
+{{- 'nf-blog.css' | asset_url | stylesheet_tag -}}
+{{- 'nf-catalog.css' | asset_url | stylesheet_tag -}}
+{{- 'nf-hub-page.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign hub_blog = blogs[section.settings.blog_handle]
+  if hub_blog == blank
+    assign hub_blog = blogs['blog']
+  endif
+
+  assign cat_page = section.settings.catalog_page
+  if cat_page == blank
+    assign cat_page = pages['lighting-catalog']
+  endif
+  assign cat = cat_page.metafields.custom.catalog.value
+  assign n_pages = 0
+  assign n_chapters = 0
+  if cat != blank
+    assign n_chapters = cat.chapters.size
+    assign n_sp = 0
+    for ch in cat.chapters
+      assign n_sp = n_sp | plus: ch.spreads.size
+    endfor
+    assign n_pages = cat.chapters.size | plus: n_sp | plus: 1 | times: 2 | plus: 2
+    if cat.welcome
+      assign n_pages = n_pages | plus: 2
+    endif
+  endif
+
+  assign hub_title = section.settings.heading | default: page.title
+  assign topics = section.settings.topics | split: ','
+-%}
+<div class="nf-hub">
+  <div class="nf-hub__wrap">
+    <header class="nf-hub__hero">
+      {%- if section.settings.eyebrow != blank -%}<p class="nf-hub__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h1 class="nf-hub__title">{{ hub_title | escape }}</h1>
+      {%- if section.settings.intro != blank -%}<p class="nf-hub__intro">{{ section.settings.intro | escape }}</p>{%- endif -%}
+
+      {%- if hub_blog != blank -%}
+        <nav class="nf-pills nf-hub__pills" aria-label="Browse articles by topic">
+          <a class="nf-pill" href="{{ hub_blog.url }}">All articles</a>
+          {%- for raw in topics -%}
+            {%- assign tg = raw | strip -%}
+            {%- if tg != blank and hub_blog.all_tags contains tg -%}
+              <a class="nf-pill" href="{{ hub_blog.url }}/tagged/{{ tg | handle }}">{{ tg }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
+    </header>
+
+    {%- if cat != blank -%}
+      <section class="nf-hub-cat" aria-labelledby="nf-hub-cat-h-{{ section.id }}">
+        <div class="nf-hub-cat__book">
+          {%- render 'nf-catalog-book', cat: cat, url: cat_page.url, sizes: '(max-width: 899px) 45vw, 290px' -%}
+        </div>
+        <div class="nf-hub-cat__text">
+          {%- if section.settings.catalog_eyebrow != blank -%}<p class="nf-hub__eyebrow">{{ section.settings.catalog_eyebrow | escape }}</p>{%- endif -%}
+          <h2 class="nf-hub-cat__h" id="nf-hub-cat-h-{{ section.id }}">{{ cat_page.title | escape }}</h2>
+          {%- if n_pages > 0 -%}<p class="nf-hub-cat__meta">{{ n_pages }} pages{% if n_chapters > 0 %}, {{ n_chapters }} chapters{% endif %}</p>{%- endif -%}
+          {%- if section.settings.catalog_text != blank -%}<p class="nf-hub-cat__p">{{ section.settings.catalog_text | escape }}</p>{%- endif -%}
+          <div class="nf-hub-cat__cta">
+            <a class="nf-hub-btn nf-hub-btn--dark" href="{{ cat_page.url }}">{{ section.settings.catalog_button | default: 'Open the catalog' | escape }}</a>
+            <a class="nf-hub-btn" href="{{ section.settings.catalogs_url | default: '/pages/catalog' }}">{{ section.settings.catalogs_label | default: 'All catalogs' | escape }}</a>
+          </div>
+        </div>
+      </section>
+    {%- endif -%}
+
+    {%- if hub_blog != blank and hub_blog.articles_count > 0 -%}
+      <section class="nf-hub-sec" aria-labelledby="nf-hub-latest-{{ section.id }}">
+        <div class="nf-hub-sec__head">
+          <div>
+            <h2 class="nf-hub-sec__h" id="nf-hub-latest-{{ section.id }}">{{ section.settings.articles_heading | escape }}</h2>
+            {%- if section.settings.articles_text != blank -%}<p class="nf-hub-sec__sub">{{ section.settings.articles_text | escape }}</p>{%- endif -%}
+          </div>
+          <a class="nf-hub-sec__link" href="{{ hub_blog.url }}">{{ section.settings.articles_link | default: 'View all articles' | escape }}</a>
+        </div>
+        <div class="nf-bgrid">
+          {%- for article in hub_blog.articles limit: section.settings.articles_count -%}
+            {%- render 'nf-blog-card', article: article, blog: hub_blog, position: forloop.index, heading_tag: 'h3' -%}
+          {%- endfor -%}
+        </div>
+      </section>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <section class="nf-hub-sec nf-hub-guides" id="guides" aria-labelledby="nf-hub-guides-{{ section.id }}">
+        <div class="nf-hub-sec__head">
+          <div>
+            <h2 class="nf-hub-sec__h" id="nf-hub-guides-{{ section.id }}">{{ section.settings.guides_heading | escape }}</h2>
+            {%- if section.settings.guides_text != blank -%}<p class="nf-hub-sec__sub">{{ section.settings.guides_text | escape }}</p>{%- endif -%}
+          </div>
+        </div>
+        <ol class="nf-hub-guides__list" role="list">
+          {%- for block in section.blocks -%}
+            {%- assign g_handle = block.settings.handle | strip -%}
+            {%- if g_handle == blank -%}{%- continue -%}{%- endif -%}
+            {%- assign g_key = hub_blog.handle | append: '/' | append: g_handle -%}
+            {%- assign g = articles[g_key] -%}
+            {%- if g == blank or g.title == blank -%}{%- continue -%}{%- endif -%}
+            <li {{ block.shopify_attributes }}>
+              <a class="nf-hub-guide" href="{{ g.url }}">
+                <span class="nf-hub-guide__img" aria-hidden="true">
+                  {%- if g.image != blank -%}
+                    {{- g.image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120,160,240', sizes: '76px', alt: '' -}}
+                  {%- endif -%}
+                </span>
+                <span class="nf-hub-guide__txt">
+                  {%- if g.tags.size > 0 -%}<span class="nf-hub-guide__tag">{{ g.tags.first }}</span>{%- endif -%}
+                  <span class="nf-hub-guide__t">{{ block.settings.label | default: g.title | escape }}</span>
+                </span>
+                <span class="nf-hub-guide__arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </section>
+    {%- endif -%}
+
+    {%- if section.settings.help_text != blank -%}
+      <div class="nf-hub-help">{{ section.settings.help_text }}</div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "NF ideas and guides hub",
+  "class": "nf-hub-page-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Nora Furnish" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title." },
+    { "type": "textarea", "id": "intro", "label": "Intro line", "default": "Buying guides, how to articles and our digital catalog, gathered in one place." },
+    { "type": "text", "id": "blog_handle", "label": "Blog handle", "default": "blog" },
+    { "type": "text", "id": "topics", "label": "Topic pills", "info": "Blog tags separated by commas. Tags the blog does not use are skipped.", "default": "Buying Guides, How To, Installation, Maintenance, Indoor, Outdoor, 101" },
+    { "type": "header", "content": "Catalog" },
+    { "type": "page", "id": "catalog_page", "label": "Catalog page", "info": "Page whose metafield custom.catalog holds the catalog. Default: lighting-catalog." },
+    { "type": "text", "id": "catalog_eyebrow", "label": "Eyebrow", "default": "Digital catalog" },
+    { "type": "textarea", "id": "catalog_text", "label": "Text", "default": "Flip through our lighting room by room. Every page links to the products inside, with live prices." },
+    { "type": "text", "id": "catalog_button", "label": "Button label", "default": "Open the catalog" },
+    { "type": "text", "id": "catalogs_label", "label": "Second button label", "default": "All catalogs" },
+    { "type": "url", "id": "catalogs_url", "label": "Second button link" },
+    { "type": "header", "content": "Latest articles" },
+    { "type": "text", "id": "articles_heading", "label": "Heading", "default": "Latest articles" },
+    { "type": "text", "id": "articles_text", "label": "Text" },
+    { "type": "text", "id": "articles_link", "label": "Link label", "default": "View all articles" },
+    { "type": "range", "id": "articles_count", "label": "Articles shown", "min": 3, "max": 12, "step": 3, "default": 6 },
+    { "type": "header", "content": "Lighting guides" },
+    { "type": "text", "id": "guides_heading", "label": "Heading", "default": "Lighting guides" },
+    { "type": "text", "id": "guides_text", "label": "Text", "default": "Quick answers on sizing, spacing, brightness and color temperature." },
+    { "type": "richtext", "id": "help_text", "label": "Help line", "default": "<p>Can't find an answer? Email us at <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a> and we'll help you choose.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "guide",
+      "name": "Guide",
+      "settings": [
+        { "type": "text", "id": "handle", "label": "Article handle", "info": "The last part of the article URL, for example chandelier-size-guide." },
+        { "type": "text", "id": "label", "label": "Title override", "info": "Leave blank to use the article title." }
+      ]
+    }
+  ],
+  "max_blocks": 12
+}
+{% endschema %}

@@ -1,0 +1,335 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Short Term Rentals",
+        "eyebrow": "Short term rentals and Airbnb",
+        "heading": "Lighting that earns five star stays",
+        "text": "Guests notice light before anything else: a warm bedside lamp, a bright bathroom mirror, a lit path to the door. Matching pieces across every unit make each stay feel cared for, and they are simple to reorder.",
+        "image_file": "nf-ref-guest-suite.png",
+        "image_alt": "Lighting that earns five star stays",
+        "fallback_collection": "home-project-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=rental-property-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Bedside Lamps",
+        "link_url": "/collections/bedside-lamps"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Easy for guests, easy to look after",
+        "image_file": "nf-ref-bedside.png",
+        "image_alt": "A bedside lamp glowing in a guest bedroom",
+        "fallback_collection": "bedside-lamps",
+        "text": "<p>Rentals need light that any guest understands on the first night, and pieces that are simple to replace when something breaks.</p>",
+        "bullets": "A lamp on each side of the bed: Guests read, charge phones and find their way at night without the ceiling light.\nRechargeable lamps where outlets are short: Cordless lamps go anywhere, with no cables for guests to trip on.\nA bright, flattering mirror: Vanity and mirror lights make the bathroom the room guests photograph.\nA lit path to the door: Porch and path lights help late arrivals find the entrance.\nThe same pieces in every unit: One set of fixtures repeated across units keeps the look consistent and reordering simple.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Bedrooms\nLiving rooms\nBathrooms\nKitchens\nEntrances and porches\nPatios and decks"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Bedside Lamps",
+        "link_url": "/collections/bedside-lamps"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Bedside lamps",
+            "collection": "bedside-lamps",
+            "text": "Warm reading light on each side of the bed.",
+            "shop_label": "Shop bedside lamps",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Rechargeable lamps",
+            "collection": "rechargeable-lamps",
+            "text": "Cordless light for tables, shelves and patios.",
+            "shop_label": "Shop rechargeable lamps",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Vanity lights",
+            "collection": "vanity-lighting",
+            "text": "Bright, even light over the bathroom mirror.",
+            "shop_label": "Shop vanity lights",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "Flush mount",
+            "collection": "flush-mount-lighting",
+            "text": "Low profile ceiling light for hallways and bedrooms.",
+            "shop_label": "Shop flush mount lights",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Outdoor wall lights",
+            "collection": "outdoor-wall-lighting",
+            "text": "A welcoming light at the front door.",
+            "shop_label": "Shop outdoor wall lights",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-office-concepts-3.webp",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "image_file": "nf-pro3-office-concepts-1.png",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "image_file": "nf-pro3-office-concepts-2.webp",
+            "fallback_collection": "pendants"
+          }
+        }
+      },
+      "block_order": [
+        "c_maker_studio",
+        "c_linen_and_oak",
+        "c_alder_lobby"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Furnishing one unit or twenty?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=rental-property-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Can the same fixtures be ordered for several units?",
+            "a": "<p>Yes. Every piece is a regular catalog product, so the same fixture can be ordered in any quantity, and 2 or more items get 10% off.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "What if a fixture arrives damaged?",
+            "a": "<p>Anything that arrives damaged or faulty is replaced or refunded. Email info@norafurnish.com with a photo and the order number.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how rental property lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=rental-property-lighting-projects",
+        "btn2_label": "Shop Bedside Lamps",
+        "btn2_url": "/collections/bedside-lamps",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Guest Suite",
+            "image_file": "nf-ref-guest-suite.png",
+            "alt": "Guest Suite, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Bedside Lamp",
+            "image_file": "nf-ref-bedside.png",
+            "alt": "Bedside Lamp, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Bedroom Sconces",
+            "image_file": "nf-ref-bedroom-sconces.png",
+            "alt": "Bedroom Sconces, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Rental Bath",
+            "image_file": "nf-ref-family-bath.png",
+            "alt": "Rental Bath, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Vanity Mirror",
+            "image_file": "nf-ref-bath-vanity.png",
+            "alt": "Vanity Mirror, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Reading Nook",
+            "image_file": "nf-blog-reading-nook-floor-lamp.png",
+            "alt": "Reading Nook, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Front Porch",
+            "image_file": "nf-blog-front-porch-lanterns.png",
+            "alt": "Front Porch, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Deck Lounge",
+            "image_file": "nf-ref-deck-lounge.png",
+            "alt": "Deck Lounge, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band",
+    "faq"
+  ]
+}

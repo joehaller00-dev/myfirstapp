@@ -1,0 +1,160 @@
+{%- comment -%}
+  NF-HELP-V1 (2026-09-12): "Lights out" page not found (templates/404.json). A compact dark room with an unlit pendant and
+  the same wall switch as the About Us hero (same matched day and night pair from Files: nf-about-room-dark.jpg and
+  nf-about-room-lit.jpg). Flipping the switch lights the pendant, warms the room and fades in a search box, four big
+  category tiles and a Best Sellers row. It also turns on by itself after a few seconds, or on scroll.
+  Script: assets/nf-hc.js. Styles: assets/nf-hc.css. Reduced motion: shown lit. No JS: shown lit.
+  The previous section (main-not-found) is still in the template, disabled, for a one click rollback.
+{%- endcomment -%}
+{{- 'nf-hc.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'nf-hc.js' | asset_url }}" defer></script>
+{%- liquid
+  assign s = section.settings
+  assign i_off = blank
+  assign i_on = blank
+  if s.image_off != blank
+    assign i_off = images[s.image_off]
+  endif
+  if s.image_on != blank
+    assign i_on = images[s.image_on]
+  endif
+  assign bs = s.collection
+  if bs == blank
+    assign bs = collections['best-sellers']
+  endif
+  assign i_widths = '600,900,1200,1600,2000,2400'
+-%}
+{%- comment -%} NF-IMG-SHARP-0916: hero base image_url width 2000 -> 2400 so the 2400 srcset candidate is kept on 2x screens {%- endcomment -%}
+<div class="nfhc nfhc-404" id="nfhc-404-{{ section.id }}" data-nfhc-404 data-auto="{{ s.auto_seconds }}">
+  <div class="nfhc-404__room nfhc-on-dark" style="--x:{{ s.pos_x }}%;--xm:{{ s.pos_x_mobile }}%">
+    <div class="nfhc-404__media" aria-hidden="true">
+      {%- if i_off != blank and i_off.width > 0 -%}
+        {{- i_off | image_url: width: 2400 | image_tag: class: 'nfhc-404__img nfhc-404__off', loading: 'eager', fetchpriority: 'high', widths: i_widths, sizes: '100vw', alt: '' -}}
+      {%- endif -%}
+      {%- if i_on != blank and i_on.width > 0 -%}
+        {{- i_on | image_url: width: 2400 | image_tag: class: 'nfhc-404__img nfhc-404__on', loading: 'eager', widths: i_widths, sizes: '100vw', alt: '' -}}
+      {%- endif -%}
+      <span class="nfhc-404__glow"></span>
+      <span class="nfhc-404__shade"></span>
+    </div>
+    <div class="nfhc-wrap nfhc-404__inner">
+      <div class="nfhc-404__copy">
+        {%- if s.eyebrow != blank -%}<p class="nfhc-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h1 class="nfhc-404__h1">{{ s.heading | escape }}</h1>
+        <div class="nfhc-404__switchrow">
+          <button type="button" class="nfhc-switch" role="switch" aria-checked="false" aria-label="Turn on the light" data-label-on="Turn on the light" data-label-off="Turn off the light" data-nfhc-switch>
+            <span class="nfhc-switch__plate">
+              <span class="nfhc-switch__screw"></span>
+              <span class="nfhc-switch__paddle"><span class="nfhc-switch__led"></span></span>
+              <span class="nfhc-switch__screw"></span>
+            </span>
+          </button>
+          <span class="nfhc-404__hint" data-nfhc-hint aria-hidden="true"><span class="nfhc-404__arrow">&larr;</span> {{ s.hint | default: 'Flip the switch' | escape }}</span>
+        </div>
+        {%- if s.text != blank -%}<p class="nfhc-404__sub" data-nfhc-reveal>{{ s.text | escape }}</p>{%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="nfhc-404__more" data-nfhc-more>
+    <div class="nfhc-wrap">
+      <form class="nfhc-search" action="{{ routes.search_url }}" method="get" role="search">
+        <label class="nfhc-sr" for="nfhc-q-{{ section.id }}">Search the store</label>
+        <input class="nfhc-search__in" id="nfhc-q-{{ section.id }}" type="search" name="q" placeholder="{{ s.search_placeholder | default: 'Search lights and decor' | escape }}" autocomplete="off">
+        <button type="submit" class="nfhc-btn nfhc-btn--dark">Search</button>
+      </form>
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="nfhc-tiles" role="list">
+          {%- for block in section.blocks -%}
+            {%- assign t_img = blank -%}
+            {%- if block.settings.image != blank -%}{%- assign t_img = images[block.settings.image] -%}{%- endif -%}
+            <li class="nfhc-tile" {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.url | default: '/collections/all' }}">
+                {%- if t_img != blank and t_img.width > 0 -%}
+                  {%- comment -%} NF-IMG-SHARP-0916: tiles crop the photo (~480px of image per 300px tile) and the room hero is full width, so bigger candidates + honest sizes (were soft on retina). {%- endcomment -%}{{- t_img | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '360,540,720,900,1200,1400', sizes: '(max-width: 749px) 72vw, 480px', alt: '' -}}
+                {%- endif -%}
+                <span class="nfhc-tile__label">{{ block.settings.label | escape }}<span class="nfhc-arrow" aria-hidden="true">&rarr;</span></span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if bs != blank and bs.products_count > 0 -%}
+        <div class="nfhc-bs">
+          <div class="nfhc-bs__head">
+            <h2 class="nfhc-h2">{{ s.bs_heading | default: 'Best Sellers' | escape }}</h2>
+            <a class="nfhc-link" href="{{ bs.url }}">Shop all best sellers <span class="nfhc-arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
+          <ul class="nfhc-bs__row" role="list">
+            {%- assign shown = 0 -%}
+            {%- for p in bs.products limit: 16 -%}
+              {%- if p.available and shown < 4 -%}
+                {%- assign shown = shown | plus: 1 -%}
+                {%- assign on_sale = false -%}
+                {%- if p.compare_at_price_min > p.price_min -%}{%- assign on_sale = true -%}{%- endif -%}
+                <li>
+                  <a class="nfhc-pc__a" href="{{ p.url }}">
+                    <span class="nfhc-pc__img">
+                      {%- if p.featured_image -%}
+                        {{- p.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300,450,600', sizes: '(max-width: 749px) 44vw, 300px', alt: p.title -}}
+                      {%- endif -%}
+                    </span>
+                    <span class="nfhc-pc__t">{{ p.title | escape }}</span>
+                    <span class="nfhc-pc__p{% if on_sale %} is-sale{% endif %}">{% if p.price_varies %}From {% endif %}{% render 'nf-acc-price', product: p %}{% if on_sale %}<s>{{ p.compare_at_price_min | money }}</s>{% endif %}</span>
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+<script>
+  (function (h) {
+    if (!h || !h.classList) return;
+    var rm = false;
+    try { rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    if (rm) h.classList.add('is-reduced', 'is-lit', 'is-open');
+    else h.classList.add('is-js');
+    // Failsafe: if assets/nf-hc.js never runs, show the lit room and everything below it.
+    setTimeout(function () { if (!h.__nfhc) { h.classList.remove('is-js'); h.classList.add('is-lit', 'is-open'); } }, 5000);
+  })(document.getElementById('nfhc-404-{{ section.id }}'));
+</script>
+
+{% schema %}
+{
+  "name": "NF lights out 404",
+  "class": "nfhc-section nfhc-section--404",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "image_off", "label": "Lights OFF image filename in Files", "default": "nf-about-room-dark.jpg" },
+    { "type": "text", "id": "image_on", "label": "Lights ON image filename in Files", "default": "nf-about-room-lit.jpg", "info": "Must be the same room and framing as the OFF image." },
+    { "type": "range", "id": "pos_x", "label": "Image focus, desktop (%)", "min": 0, "max": 100, "step": 1, "default": 60 },
+    { "type": "range", "id": "pos_x_mobile", "label": "Image focus, phones (%)", "min": 0, "max": 100, "step": 1, "default": 58 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Page not found" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Looks like this light is out." },
+    { "type": "text", "id": "hint", "label": "Switch hint", "default": "Flip the switch" },
+    { "type": "textarea", "id": "text", "label": "Text revealed by the light" },
+    { "type": "text", "id": "search_placeholder", "label": "Search placeholder", "default": "Search lights and decor" },
+    { "type": "collection", "id": "collection", "label": "Best sellers collection" },
+    { "type": "text", "id": "bs_heading", "label": "Best sellers heading", "default": "Best Sellers" },
+    { "type": "range", "id": "auto_seconds", "label": "Turn on by itself after (seconds, 0 = never)", "min": 0, "max": 20, "step": 1, "default": 4 }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Category tile",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "url", "id": "url", "label": "Link" },
+        { "type": "text", "id": "image", "label": "Image filename in Files", "info": "Use a bright photo with the lights on." }
+      ]
+    }
+  ]
+}
+{% endschema %}

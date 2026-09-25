@@ -1,0 +1,418 @@
+/* NF-GUIDES-3D (2026-09-11): live 3D cards for the three Ideas & Guides children (Blogs, Catalogs, Lighting Guides).
+   Markup: snippets/mega-menu.liquid, rendered only inside the Ideas & Guides dropdown, which is also the only place this file loads.
+   Motion is hover or keyboard focus only, never looped. Transforms and opacity only, plus stroke-dashoffset on the sizing arrows.
+   Every length inside a card is in cqw so the scene scales with the figure box (215px; 180 to 215px between 1000 and 1440, see below). */
+
+/* ---------- the card box: same size and 2:3 ratio as the photo figures ---------- */
+.nf-g3d {
+  --nf-g3d-ease: cubic-bezier(.22, .61, .36, 1);
+  --nf-g3d-dur: .55s;
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  container-type: inline-size;
+  isolation: isolate;
+  text-transform: none;
+  background:
+    radial-gradient(85% 55% at 50% 46%, rgba(214, 160, 98, .30) 0%, rgba(214, 160, 98, 0) 70%),
+    linear-gradient(168deg, #45372d 0%, #2e2620 48%, #1d1814 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 236, 210, .06);
+}
+.nf-g3d::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(58% 40% at 50% 52%, rgba(255, 200, 130, .30), rgba(255, 200, 130, 0) 72%);
+  opacity: .45;
+  transition: opacity var(--nf-g3d-dur) var(--nf-g3d-ease);
+}
+/* 1000 to 1440 (laptops), NF-GUIDES-3D-LAPTOP (2026-09-11): the theme shrinks figures here (160px at 1280 and below,
+   hidden at 1080 and below, photos clamped to 96 to 140px), which hid the in scene labels. The Ideas & Guides cards opt out:
+   180px up to 1200, 15vw in between, 215px from about 1434, the same card as the 1920 view. The row panel keeps 300px and lets
+   its descriptions wrap so the arrows stay inside the panel. Every rule is scoped to .mega-menu--guides or to the cards. */
+@media (min-width: 1000px) and (max-width: 1440px) {
+  .mega-menu--guides .mega-menu__figures { display: flex !important; max-width: none !important; }
+  .mega-menu--guides .mega-menu__figures .mega-menu__figure.nf-g3d-fig {
+    flex: 0 0 clamp(180px, 15vw, 215px) !important;
+    width: clamp(180px, 15vw, 215px) !important;
+    max-width: clamp(180px, 15vw, 215px) !important;
+  }
+  .mega-menu--guides .nf-sale-panel { flex-basis: 300px; width: 300px; }
+  .mega-menu--guides .nf-sale-panel__text { flex: 1 1 auto; min-width: 0; }
+  .mega-menu--guides .nf-sale-panel__desc { white-space: normal !important; }
+  .nf-g3d .nf-g3d__eyebrow { font-size: max(4.2cqw, 8.5px); }
+  /* the nav forces nowrap in this range, which cut the blog title and the catalog welcome line mid word; let them wrap like at 1920 */
+  .mega-menu--guides .nf-g3d .nf-g3d__card-title,
+  .mega-menu--guides .nf-g3d .nf-g3d__welcome { white-space: normal !important; }
+}
+/* the theme styles every img inside a figure as a 2:3 rounded photo; undo that inside the scenes */
+.mega-menu__figures .nf-g3d img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  border-radius: 0 !important;
+  object-fit: cover !important;
+  margin: 0 !important;
+}
+
+.nf-g3d__scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  perspective: 190cqw;
+  perspective-origin: 50% 36%;
+}
+.nf-g3d__eyebrow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9cqw;
+  display: block;
+  text-align: center;
+  font-family: var(--text-font-family);
+  font-size: 4.2cqw;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(236, 205, 166, .85);
+}
+@container (max-width: 150px) {
+  .nf-g3d__eyebrow { display: none; }
+}
+.nf-g3d__shadow {
+  position: absolute;
+  left: 16cqw;
+  right: 16cqw;
+  bottom: 20cqw;
+  height: 10cqw;
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0));
+  opacity: .9;
+  transition: transform var(--nf-g3d-dur) var(--nf-g3d-ease), opacity var(--nf-g3d-dur) var(--nf-g3d-ease);
+}
+
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d::before { opacity: 1; }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__shadow { transform: scale(1.12, .9); opacity: .7; }
+
+/* ---------- 1. Blogs: fanned stack of the three newest articles ---------- */
+.nf-g3d__stack {
+  position: absolute;
+  left: 50%;
+  top: 53%;
+  width: 50cqw;
+  height: 66cqw;
+  margin: -33cqw 0 0 -25cqw;
+  display: block;
+  transform-style: preserve-3d;
+  transform: rotateX(14deg) rotateY(-16deg) rotateZ(-2deg);
+  transition: transform var(--nf-g3d-dur) var(--nf-g3d-ease);
+}
+.nf-g3d__card {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 2.6cqw 2.6cqw 0;
+  background: #f5f5f5;
+  border-radius: 2.2cqw;
+  box-shadow: 0 1.4cqw 4cqw rgba(0, 0, 0, .38), 0 0 0 1px rgba(60, 40, 20, .06);
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+  transition: transform var(--nf-g3d-dur) var(--nf-g3d-ease);
+}
+.nf-g3d__card-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 1.4cqw;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+.nf-g3d__card-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 2.4cqw;
+  font-family: var(--heading-font-family);
+  font-size: 4.1cqw;
+  line-height: 1.22;
+  letter-spacing: .005em;
+  text-align: left;
+  text-transform: none;
+  color: #2b2520;
+}
+.nf-g3d__card--3 { transform: translate3d(-3cqw, 0, 0) rotateZ(-8deg); }
+.nf-g3d__card--2 { transform: translate3d(3cqw, -1cqw, 3cqw) rotateZ(6deg); }
+.nf-g3d__card--1 { transform: translate3d(0, 1cqw, 6cqw) rotateZ(-1.5deg); }
+.nf-g3d--blog .nf-g3d__shadow { bottom: 22cqw; }
+
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__stack { transform: rotateX(8deg) rotateY(-6deg) rotateZ(0deg); }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__card--3 { transform: translate3d(-5cqw, -1cqw, 0) rotateZ(-13deg); }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__card--2 { transform: translate3d(5cqw, -2cqw, 3cqw) rotateZ(12deg); }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__card--1 { transform: translate3d(0, -2cqw, 10cqw) rotateZ(0deg); }
+
+/* ---------- 2. Catalogs: open book, cover photo left, welcome page right ---------- */
+.nf-g3d__book {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 86cqw;
+  height: 60cqw;
+  margin: -30cqw 0 0 -43cqw;
+  display: block;
+  transform-style: preserve-3d;
+  transform: rotateX(26deg) rotateZ(-5deg);
+  transition: transform var(--nf-g3d-dur) var(--nf-g3d-ease);
+}
+.nf-g3d__page,
+.nf-g3d__leaf {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 50%;
+  height: 100%;
+  transition: transform var(--nf-g3d-dur) var(--nf-g3d-ease);
+}
+.nf-g3d__page {
+  overflow: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 2cqw 5cqw rgba(0, 0, 0, .35);
+}
+.nf-g3d__page::after,
+.nf-g3d__leaf-f::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.nf-g3d__page--l {
+  left: 0;
+  transform-origin: 100% 50%;
+  transform: rotateY(30deg);
+  border-radius: 1.6cqw 0 0 1.6cqw;
+  background: #2b2520;
+}
+.nf-g3d__page--l img { object-position: 45% 40%; }
+.nf-g3d__page--l::after {
+  background:
+    linear-gradient(to left, rgba(0, 0, 0, .34), rgba(0, 0, 0, 0) 16%),
+    linear-gradient(to bottom, rgba(20, 14, 10, .55), rgba(20, 14, 10, 0) 36%);
+}
+/* wordmark set like the real cover: NORA FURNISH, a hairline, then CATALOG 2026 stacked small */
+.nf-g3d__mark {
+  position: absolute;
+  left: 2.6cqw;
+  right: 1.6cqw;
+  top: 4.4cqw;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1.3cqw;
+  color: #fff;
+  font-family: var(--heading-font-family);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.nf-g3d__mark-a { display: block; font-size: 3.4cqw; letter-spacing: .03em; }
+.nf-g3d__mark-b {
+  display: block;
+  padding-left: 1.3cqw;
+  border-left: 1px solid rgba(255, 255, 255, .7);
+  font-size: 1.45cqw;
+  letter-spacing: .22em;
+  line-height: 1.35;
+  opacity: .92;
+}
+.nf-g3d__mark-b span { display: block; }
+.nf-g3d__page--r {
+  left: 50%;
+  transform-origin: 0 50%;
+  transform: rotateY(-30deg);
+  border-radius: 0 1.6cqw 1.6cqw 0;
+  background: #f3f3f3;
+  padding: 4cqw 4cqw 0;
+}
+.nf-g3d__page--r::after { background: linear-gradient(to right, rgba(60, 40, 20, .22), rgba(60, 40, 20, 0) 16%); }
+.nf-g3d__pimg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: .8cqw;
+  background: #d9d9d9;
+}
+.nf-g3d__ptitle {
+  display: block;
+  margin-top: 2.4cqw;
+  font-family: var(--heading-font-family);
+  font-size: 3.2cqw;
+  line-height: 1.1;
+  color: #2b2520;
+  white-space: nowrap;
+}
+.nf-g3d__lines { display: block; margin-top: 1.8cqw; }
+.nf-g3d__lines i {
+  display: block;
+  height: .8cqw;
+  margin-top: 1.5cqw;
+  border-radius: 1cqw;
+  background: #d6d6d6;
+}
+.nf-g3d__lines i:nth-child(2n) { width: 86%; }
+.nf-g3d__lines i:last-child { width: 58%; }
+.nf-g3d__lines i.is-accent { width: 32%; background: #c49460; }
+.nf-g3d__leaf {
+  left: 50%;
+  transform-origin: 0 50%;
+  transform: rotateY(-32deg);
+  transform-style: preserve-3d;
+  transition-duration: .6s;
+}
+.nf-g3d__leaf-f,
+.nf-g3d__leaf-b {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  backface-visibility: hidden;
+  padding: 5cqw 4cqw 0;
+  border-radius: 0 1.6cqw 1.6cqw 0;
+  background: #ffffff;
+  box-shadow: 0 1cqw 3cqw rgba(0, 0, 0, .22);
+}
+.nf-g3d__leaf-f::after { background: linear-gradient(to right, rgba(60, 40, 20, .18), rgba(60, 40, 20, 0) 18%); }
+.nf-g3d__leaf-b {
+  transform: rotateY(180deg);
+  border-radius: 1.6cqw 0 0 1.6cqw;
+  background: #ececec;
+}
+.nf-g3d__welcome {
+  display: block;
+  font-family: var(--heading-font-family);
+  font-size: 3.4cqw;
+  line-height: 1.15;
+  color: #2b2520;
+}
+.nf-g3d__cols {
+  display: flex;
+  gap: 2.4cqw;
+  margin-top: 2.6cqw;
+  padding-top: .6cqw;
+  border-top: 1px solid #e2d7c8;
+}
+.nf-g3d__cols .nf-g3d__lines { flex: 1 1 0; margin-top: 0; }
+.nf-g3d__cols .nf-g3d__lines i { height: .6cqw; margin-top: 1.2cqw; }
+.nf-g3d--catalog .nf-g3d__shadow { left: 10cqw; right: 10cqw; bottom: 30cqw; }
+
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__book { transform: rotateX(20deg) rotateZ(-3deg) translate3d(0, -1cqw, 4cqw); }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__page--l { transform: rotateY(12deg); }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__page--r { transform: rotateY(-12deg); }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__leaf { transform: rotateY(-118deg); transition-delay: .05s; }
+
+/* ---------- 3. Lighting Guides: tablet with a hang height diagram ---------- */
+.nf-g3d__tab {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: 72cqw;
+  height: 98cqw;
+  margin: -49cqw 0 0 -36cqw;
+  display: block;
+  padding: 3.2cqw;
+  border-radius: 6cqw;
+  background: linear-gradient(145deg, #2c2622, #141110);
+  box-shadow: 1.2cqw 1.8cqw 0 #0b0908, 0 5cqw 9cqw rgba(0, 0, 0, .45), inset 0 0 0 .5cqw rgba(255, 255, 255, .05);
+  transform: rotateX(18deg) rotateY(-24deg) rotateZ(6deg);
+  transition: transform var(--nf-g3d-dur) var(--nf-g3d-ease);
+}
+.nf-g3d__screen {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 3.4cqw;
+  background: #f7f7f7;
+}
+.nf-g3d__screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgba(255, 255, 255, .34) 0%, rgba(255, 255, 255, 0) 40%);
+  opacity: .8;
+  transition: opacity var(--nf-g3d-dur) var(--nf-g3d-ease);
+}
+.nf-g3d__screen svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.nf-g3d--guide .nf-g3d__shadow { bottom: 16cqw; }
+
+.nf-g3d-sv-h { font-family: var(--heading-font-family); font-size: 10.5px; fill: #2b2520; }
+.nf-g3d-sv-s { font-family: var(--text-font-family); font-size: 6px; letter-spacing: .03em; fill: #8a7a6a; }
+.nf-g3d-sv-t { font-family: var(--text-font-family); font-size: 7.4px; font-weight: 600; letter-spacing: .02em; fill: #fff; text-anchor: middle; }
+.nf-g3d-sv-rule { fill: none; stroke: #e2d7c8; stroke-width: .6; }
+.nf-g3d-sv-line { fill: none; stroke: #d6c8b6; stroke-width: .8; }
+.nf-g3d-sv-ink { fill: none; stroke: #3a2f27; stroke-width: 1; stroke-linecap: round; }
+.nf-g3d-sv-inkf { fill: #3a2f27; }
+.nf-g3d-sv-bulb { fill: #f3b562; }
+.nf-g3d-sv-wood { fill: #6b5443; }
+.nf-g3d-sv-vase { fill: #c9a27a; }
+.nf-g3d-sv-pill { fill: #2b2520; }
+.nf-g3d-sv-g {
+  fill: none;
+  stroke: #b0773a;
+  stroke-width: .8;
+  stroke-dasharray: 1.2 1.8;
+  opacity: .55;
+  transition: opacity var(--nf-g3d-dur) var(--nf-g3d-ease);
+}
+.nf-g3d-sv-a {
+  fill: none;
+  stroke: #b0773a;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset .6s var(--nf-g3d-ease) .1s;
+}
+.nf-g3d-sv-hd {
+  fill: none;
+  stroke: #b0773a;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__tab { transform: rotateX(5deg) rotateY(-7deg) rotateZ(1.5deg) translate3d(0, -1cqw, 12cqw); }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__screen::after { opacity: .35; }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d-sv-a { stroke-dashoffset: 0; }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d-sv-hd { opacity: 1; transition-delay: .42s; }
+.nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d-sv-g { opacity: .15; }
+
+/* ---------- reduced motion: same ideas, smaller moves, a little quicker ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .nf-g3d { --nf-g3d-dur: .42s; }
+  .nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__stack { transform: rotateX(11deg) rotateY(-11deg) rotateZ(-1deg); }
+  .nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__card--3 { transform: translate3d(-3.5cqw, -.5cqw, 0) rotateZ(-11deg); }
+  .nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__card--2 { transform: translate3d(3.5cqw, -1.5cqw, 3cqw) rotateZ(9deg); }
+  .nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__card--1 { transform: translate3d(0, -.5cqw, 8cqw) rotateZ(-.5deg); }
+  .nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__book { transform: rotateX(23deg) rotateZ(-4deg) translate3d(0, -.5cqw, 2cqw); }
+  .nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__page--l { transform: rotateY(20deg); }
+  .nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__page--r { transform: rotateY(-20deg); }
+  .nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__leaf { transform: rotateY(-64deg); }
+  .nf-g3d__leaf { transition-duration: .5s; }
+  .nf-g3d-fig:is(:hover, :focus-visible) .nf-g3d__tab { transform: rotateX(11deg) rotateY(-15deg) rotateZ(3.5deg) translate3d(0, -.5cqw, 6cqw); }
+  .nf-g3d-sv-a { transition-duration: .5s; }
+}

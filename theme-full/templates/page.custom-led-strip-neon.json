@@ -1,0 +1,530 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "LED Strip and Neon",
+        "eyebrow": "Custom LED strip and neon",
+        "heading": "Lines of light, cut to fit your space",
+        "text": "LED strip and neon flex add a soft glow under cabinets, along shelves, around bars and behind signs. Tell us where it goes and we will quote the right strip, length and color for you.",
+        "image_file": "nf-pro-led-neon.jpg",
+        "image_alt": "Lines of light, cut to fit your space",
+        "fallback_collection": "led-strip-lights",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn2_label": "Browse Project References",
+        "btn2_url": "#references",
+        "facts": "Reply within 2 business days\nMade and delivered in 4 to 7 weeks\nNo minimum order\nFree US shipping",
+        "link_label": "Shop LED strip lights",
+        "link_url": "/collections/led-strip-lights"
+      }
+    },
+    "uses": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "text",
+        "columns": "3",
+        "bg": "cream",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "Where it works",
+        "heading": "Small lines of light, big difference"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "icon": "home",
+            "title": "Kitchens and cabinets",
+            "text": "A clean line of light under cabinets and above counters."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "icon": "shop",
+            "title": "Shelves and displays",
+            "text": "Make products and collections glow on every shelf."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "icon": "dining",
+            "title": "Bars and counters",
+            "text": "A warm line under the bar top or behind the bottles."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "icon": "layers",
+            "title": "Ceilings and coves",
+            "text": "Hidden light that washes a ceiling or a wall with a gentle glow."
+          }
+        },
+        "b5": {
+          "type": "card",
+          "settings": {
+            "icon": "spark",
+            "title": "Stairs and steps",
+            "text": "Low light that marks each step at night."
+          }
+        },
+        "b6": {
+          "type": "card",
+          "settings": {
+            "icon": "shape",
+            "title": "Signs and shapes",
+            "text": "Neon flex bent into words, outlines and simple shapes."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ]
+    },
+    "tailor": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "numbered",
+        "columns": "3",
+        "bg": "sand",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "What we can tailor",
+        "heading": "Made to your runs and your mood"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Length and cut points",
+            "text": "Strips cut to your runs, with the right connectors for corners and gaps."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Color and color temperature",
+            "text": "Warm white, neutral white, cool white or color changing options."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Brightness",
+            "text": "A soft glow for mood, or brighter output for tasks and displays."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "Indoor or outdoor",
+            "text": "Versions for dry rooms and weather resistant versions for outside, confirmed in your quote."
+          }
+        },
+        "b5": {
+          "type": "card",
+          "settings": {
+            "title": "Control and power",
+            "text": "Dimmers, remotes or app control, with a power supply sized to your runs."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ],
+      "disabled": true
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "white",
+        "heading": "Start from a product",
+        "text": "Real products from our range. Order them as they are, or ask us to tailor them."
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "LED strip lights",
+            "collection": "led-strip-lights",
+            "text": "Indoor strips for cabinets, shelves, coves and screens.",
+            "shop_label": "Shop LED strip lights",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Outdoor LED strip",
+            "collection": "outdoor-led-strip-lights",
+            "text": "Weather resistant strips for steps, decks and facades.",
+            "shop_label": "Shop outdoor LED strip",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2"
+      ]
+    },
+    "how": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "steps",
+        "columns": "3",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "How it works",
+        "heading": "Four simple steps, and you approve every one",
+        "note": "Free quote. No commitment until you approve."
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "meta": "A few minutes",
+            "title": "Tell us what you need",
+            "text": "Share a product link, a photo or a short description. Rough sizes and quantities are enough to start."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "meta": "Within 2 business days",
+            "title": "We reply with options",
+            "text": "We confirm what is possible and send pricing, options and timing in writing, or ask what we need to know."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "meta": "At your pace",
+            "title": "You approve, then pay",
+            "text": "Nothing is made until you are happy. When you approve, we send a secure Shopify invoice."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "meta": "4 to 7 weeks",
+            "title": "Made and delivered",
+            "text": "Your pieces are made to order and shipped free to your door anywhere in the United States."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "cream",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "How do I measure for LED strip?",
+            "a": "<p>Measure each run in inches along the surface where the strip will sit, and note where the power outlet is. A quick sketch or photo with the measurements written on it is perfect.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Can LED strip go outside?",
+            "a": "<p>Yes, if it is a weather resistant version. Tell us where it will go and we will quote a strip rated for that spot.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. You can ask for a single custom piece or the lighting for a whole building. Larger lists simply get a quote that reflects the volume.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I return a custom or made to order piece?",
+            "a": "<p>Custom and made to order pieces are built for your order, so they cannot be returned for a change of mind. If anything arrives damaged or faulty, we replace it or refund it. Email photos to info@norafurnish.com as soon as you can and we will put it right.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ]
+    },
+    "quote": {
+      "type": "nf-pro-quote",
+      "settings": {
+        "bg": "sand",
+        "anchor": "quote",
+        "variant": "short",
+        "form_id": "nf-quote-form",
+        "button_label": "Get My Free Quote",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request, your links and your photos.\nWe confirm what is possible: You get options, pricing and timing in writing within 2 business days.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "Where the strip will go, with a photo if you can\nThe length of each run in inches\nWhere the nearest power outlet is\nThe light color you like, from warm white to color changing\nIndoors or outdoors",
+        "heading": "Tell us about your runs",
+        "text": "Share what you know. A rough idea is enough to start.",
+        "form_label": "LED strip and neon quote",
+        "service": "Custom LED strip or neon"
+      },
+      "disabled": true
+    },
+    "customize_v2": {
+      "type": "nf-pro2-customize",
+      "settings": {
+        "bg": "grey",
+        "anchor": "customize",
+        "eyebrow": "Custom LED strip and neon",
+        "heading": "What can be customized",
+        "note": "Production begins after dimensions, specifications and installation details are confirmed."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "icon": "cut",
+            "title": "Length and cut points",
+            "text": "Strips cut to your exact runs, with cut points planned around corners and cabinet ends."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "icon": "cct",
+            "title": "Color and temperature",
+            "text": "Warm white, neutral white, tunable white or full color for bars and signs."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "icon": "output",
+            "title": "Brightness",
+            "text": "Soft output for coves and under beds, stronger output for task and display lighting."
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "icon": "waterproof",
+            "title": "Indoor or outdoor",
+            "text": "Waterproof strip and neon flex for decks, steps, facades and wet areas."
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "icon": "diffuser",
+            "title": "Profiles and diffusers",
+            "text": "Aluminum channels and opal covers that hide the dots and give one clean line."
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "icon": "neon",
+            "title": "Neon flex shapes",
+            "text": "Flexible neon bent into lines, curves, letters and outlines."
+          }
+        },
+        "c7": {
+          "type": "card",
+          "settings": {
+            "icon": "dimmer",
+            "title": "Control and power",
+            "text": "Dimmers, remotes, motion sensors and power supplies sized for the total length."
+          }
+        },
+        "c8": {
+          "type": "card",
+          "settings": {
+            "icon": "mount",
+            "title": "Mounting method",
+            "text": "Clips, channels, recessed profiles or adhesive backing chosen for the surface."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how strip and neon can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Pick it in the quote form and we will price it for your space.",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn2_label": "Shop LED strip lights",
+        "btn2_url": "/collections/led-strip-lights",
+        "quote_links": true,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Under Cabinet",
+            "image_file": "nf-ref-under-cabinet.png",
+            "alt": "Under Cabinet lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Stair Treads",
+            "image_file": "nf-stair28-1.jpg",
+            "alt": "Stair Treads lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Handrail Glow",
+            "image_file": "nf-ref-handrail-strip.png",
+            "alt": "Handrail Glow lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Baseboard Line",
+            "image_file": "nf-ref-baseboard-strip.png",
+            "alt": "Baseboard Line lit in the evening, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Under Bed",
+            "image_file": "nf-ref-under-bed.png",
+            "alt": "Under Bed lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Deck Steps",
+            "image_file": "nf-ref-deck-strips.png",
+            "alt": "Deck Steps lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Ceiling Cove",
+            "image_file": "nf-ref-strip-cove.jpg",
+            "alt": "Ceiling Cove lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Back Bar",
+            "image_file": "nf-pro3-strip-ref-8.jpg",
+            "alt": "Back Bar inspiration photo, lit in the evening"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    },
+    "quote_v2": {
+      "type": "nf-pro2-quote",
+      "settings": {
+        "anchor": "quote",
+        "heading": "Tell us about your runs",
+        "text": "Share what you know. A rough idea is enough to start.",
+        "form_id": "nf-quote-form",
+        "form_label": "LED strip and neon quote",
+        "service": "Custom LED strip or neon",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request, your links and your photos.\nWe confirm what is possible: You get options, pricing and timing in writing within 2 business days.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "Where the strip will go, with a photo if you can\nThe length of each run in inches\nWhere the nearest power outlet is\nThe light color you like, from warm white to color changing\nIndoors or outdoors",
+        "adjust": "length|cut|Length and cut points\ncct|cct|Color or color temperature\noutput|output|Brightness\nweather|waterproof|Indoor or outdoor\nprofile|diffuser|Profiles and diffusers\nshape|neon|Neon flex shapes\ncontrol|dimmer|Control and power\nmounting|mount|Mounting method",
+        "refs": "Under Cabinet\nStair Treads\nHandrail Glow\nBaseboard Line\nUnder Bed\nDeck Steps\nCeiling Cove\nBack Bar",
+        "zone_placeholder": "For example under cabinets, stairs or a ceiling cove",
+        "tool": false,
+        "zip": false,
+        "button_label": "Get My Free Custom Quote",
+        "bg": "grey"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "uses",
+    "customize_v2",
+    "references_v2",
+    "tailor",
+    "fixtures",
+    "how",
+    "faq",
+    "quote",
+    "quote_v2"
+  ]
+}

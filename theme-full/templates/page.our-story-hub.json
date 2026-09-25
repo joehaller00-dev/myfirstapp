@@ -1,0 +1,75 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+/*
+ * NF-STORY-V1 (2026-09-11): Our Story "Stories and Projects" hub for /pages/our-story.
+ * Replaces the old rich text box template (templates/page.our-story.json, kept unchanged for rollback).
+ * Cover overrides swap daylight or bleak article covers for an evening, lights on photo from the SAME article
+ * (or a new render for are-led-lights-dimmable and how-to-replace-a-ceiling-light-fixture).
+ */
+{
+  "sections": {
+    "hub": {
+      "type": "nf-story-hub",
+      "blocks": {
+        "c1": { "type": "concept", "settings": { "slug": "alder-lobby", "title": "The Alder Lobby", "space": "Boutique hotel lobby", "cat": "indoor", "image_file": "nf-pro-concept-01.jpg" } },
+        "c2": { "type": "concept", "settings": { "slug": "corner-bistro", "title": "Corner Bistro", "space": "Neighborhood restaurant", "cat": "indoor", "image_file": "nf-pro-concept-02.jpg" } },
+        "c3": { "type": "concept", "settings": { "slug": "rooftop-at-nine", "title": "Rooftop at Nine", "space": "Rooftop terrace bar", "cat": "outdoor", "image_file": "nf-pro-concept-03.jpg" } },
+        "c4": { "type": "concept", "settings": { "slug": "maker-studio", "title": "Maker Studio", "space": "Creative studio office", "cat": "indoor", "image_file": "nf-pro-concept-04.jpg" } },
+        "c5": { "type": "concept", "settings": { "slug": "linen-and-oak", "title": "Linen and Oak", "space": "Home goods boutique", "cat": "indoor", "image_file": "nf-pro-concept-05.jpg" } },
+        "c6": { "type": "concept", "settings": { "slug": "family-kitchen", "title": "Family Kitchen", "space": "Open plan family kitchen", "cat": "indoor", "image_file": "nf-pro-concept-06.jpg" } },
+        "c7": { "type": "concept", "settings": { "slug": "garden-courtyard", "title": "Garden Courtyard", "space": "Walled garden courtyard", "cat": "outdoor", "image_file": "nf-pro-concept-07.jpg" } },
+        "c8": { "type": "concept", "settings": { "slug": "guest-suite", "title": "Guest Suite", "space": "Hotel guest suite", "cat": "indoor", "image_file": "nf-pro-concept-08.jpg" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8"],
+      "settings": {
+        "eyebrow": "Our Story",
+        "heading": "Stories and projects",
+        "text": "<p>Nora Furnish started with a simple belief: a home should feel like the people who live in it, and nothing changes how a room feels faster than its light.</p><p>This is where we share what we have learned. Room by room guides, outdoor ideas and design concepts from our team, all in one place.</p>",
+        "count_articles_label": "guides and ideas",
+        "count_concepts_label": "design concepts",
+        "link1_label": "About Nora Furnish",
+        "link1_url": "/pages/about-us",
+        "link2_label": "For professionals",
+        "link2_url": "/pages/professionals",
+        "image_file": "nf-discover-our-story.jpg",
+        "image_alt": "A desk at night under three glass globe pendants on long cords, with sketches of light fittings and a stack of books",
+        "blog_handle": "blog",
+        "logo_file": "e0cf0a7c-0740-403b-9bd3-70fc7e7f6dc9.png",
+        "portfolio_handle": "project-portfolio",
+        "concept_every": 3,
+        "concept_word": "Design Concept",
+        "concept_line": "A lighting concept by our team",
+        "first_count": 12,
+        "step_count": 9,
+        "more_label": "Load more stories",
+        "filter_label": "Filter stories",
+        "label_all": "All",
+        "label_indoor": "Indoor",
+        "label_outdoor": "Outdoor",
+        "label_style": "Style and Trends",
+        "label_concepts": "Design Concepts",
+        "order": "how-to-layer-lighting-in-a-living-room\nfront-porch-lighting-guide\nchandelier-size-guide\nkitchen-island-pendant-lights-guide\nhow-to-hang-patio-string-lights\nwarm-white-vs-cool-white-color-temperature\nhow-high-to-hang-a-chandelier-over-a-dining-table\nbedroom-lighting-ideas\npath-light-spacing-guide\nhow-to-choose-a-floor-lamp-for-reading\nstaircase-lighting-ideas\nsolar-outdoor-lights-buying-guide\nbathroom-vanity-lighting-guide\nhow-to-light-artwork-with-picture-lights\noutdoor-light-ip-ratings-explained\nare-led-lights-dimmable\ntable-lamp-size-guide\nmotion-sensor-outdoor-lights-guide\nwall-sconce-height-and-spacing-guide\nhow-to-clean-a-crystal-chandelier\nhow-to-clean-outdoor-light-fixtures\nplug-in-wall-sconces-guide\nlumens-watts-and-brightness-explained\nhome-office-lighting-guide\nflush-mount-vs-semi-flush-mount-ceiling-lights\nnight-lights-for-hallways-and-kids-rooms\nhow-to-replace-a-ceiling-light-fixture\nceiling-fan-with-light-buying-guide\nled-strip-lights-guide\nwhy-do-led-lights-flicker",
+        "cover_overrides": "lumens-watts-and-brightness-explained = image_1786137371217_aa0b0155_1786137372026_a01e0b42.png\nceiling-fan-with-light-buying-guide = multi-bladed-modern-rustic-tangled-flush-mount-ceiling-fans-with-led-light-remote-control-474856.jpg\nflush-mount-vs-semi-flush-mount-ceiling-lights = image_1787890301702_6ad485e3_1787890301895_6cf5e048.png\nmotion-sensor-outdoor-lights-guide = image_1787958140154_65bc4eef_1787958140265_4b543f8a.png\nwhy-do-led-lights-flicker = Sbbf8ea1e7611467f9e6cc7da62b93697x.webp\nare-led-lights-dimmable = nf-story-cover-dimmable.jpg\nhow-to-replace-a-ceiling-light-fixture = nf-story-cover-ceiling-light.jpg",
+        "note": "Design concepts are spaces imagined and lit by our team to show what our lighting can do. They are not client projects.",
+        "close_heading": "Planning a room?",
+        "close_text": "Start with a guide above, or email us about your space and we will help you choose. We reply within one to two business days.",
+        "close1_label": "Ideas & Guides",
+        "close1_url": "/pages/ideas-and-guides",
+        "close2_label": "About Nora Furnish",
+        "close2_url": "/pages/about-us",
+        "close3_label": "Professionals",
+        "close3_url": "/pages/professionals",
+        "close4_label": "Contact us",
+        "close4_url": "/pages/contact"
+      }
+    }
+  },
+  "order": ["hub"]
+}

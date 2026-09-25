@@ -1,0 +1,24 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+/*
+ * NF-PDP-V1 (2026-09-13): the product.nf-pdp-below view. Never linked; nf-pdp.js fetches these four sections through
+ * the Section Rendering API (?view=nf-pdp-below&sections=...) when the shells on the product page come near the viewport.
+ * Keep the section keys identical to templates/product.default-product-v2.json.
+ */
+{
+  "layout": false,
+  "sections": {
+    "nf_pdp_spaces": { "type": "nf-pdp-spaces", "settings": { "defer": false } },
+    "nf_pdp_standard": { "type": "nf-pdp-standard", "settings": { "defer": false } },
+    "nf_pdp_shopby": { "type": "nf-pdp-shopby", "settings": { "defer": false } },
+    "nf_pdp_catalog": { "type": "nf-pdp-catalog", "settings": { "defer": false } }
+  },
+  "order": ["nf_pdp_spaces", "nf_pdp_standard", "nf_pdp_shopby", "nf_pdp_catalog"]
+}

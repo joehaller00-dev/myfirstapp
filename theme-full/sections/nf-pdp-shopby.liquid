@@ -1,0 +1,82 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) Shop by Room / Style / Material / Area / Project. Accordions that open into image rails.
+  Rooms, styles, materials and areas are the 29 shop-* smart collections (their own collection images); Project links
+  the Professionals project pages. Every panel starts closed (owner 2026-09-14). No custom work tiles. Images inside a closed
+  panel are not fetched (lazy + closed details). Motion is transform and opacity only.
+{%- endcomment -%}
+{%- comment -%} NF-PDP-V1: with "defer" on, only an empty shell is printed; nf-pdp.js fetches the full section from the
+  product.nf-pdp-below view when it comes near the viewport (keeps the first load light). {%- endcomment -%}
+{%- if section.settings.defer -%}
+{%- comment -%} NF-SPEED-B-0916: shell only, so its CSS loads without blocking render (the full section is fetched later) {%- endcomment -%}
+<link rel="stylesheet" href="{{ 'nf-pdp-below.css' | asset_url }}" media="print" onload="this.media='all'">
+<div class="nf-defer nf-defer--shopby" data-nf-defer="nf_pdp_shopby" aria-busy="true"></div>
+{%- else -%}
+{{ 'nf-pdp-below.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign tg = product.tags | join: ' '
+  assign groups = 'room|Shop by Room|Lighting and decor chosen room by room, from the sofa to the sink.|living-room,bedroom,kitchen-dining,bathroom,entryway-hallway,home-office,kids-nursery~style|Shop by Style|Find the look that already lives in your home.|style-modern,style-minimalist,style-scandinavian-japandi,style-mid-century,style-industrial,style-farmhouse-rustic,style-vintage-classic,style-glam,style-boho~material|Shop by Material|Brass, glass, rattan, linen and stone, each with its own glow.|material-metal,material-glass,material-crystal,material-wood,material-rattan-bamboo,material-fabric-paper,material-stone-ceramic~area|Shop by Area|Porches, patios, paths and driveways, lit for the evening.|porch-entry,patio-deck,garden-pathway,driveway-security,outdoor-lighting~project|Shop by Project|Lighting ideas for hotels, offices, shops and whole homes, with bulk pricing.|P' | split: '~'
+-%}
+<section class="nf-sb nf-lz" data-nf-sb aria-labelledby="nf-sb-h-{{ section.id }}">
+  <div class="nf-sb__in">
+    <div class="nf-sb__head nf-rv">
+      <p class="nf-eyebrow">Keep exploring</p>
+      <h2 class="nf-h2" id="nf-sb-h-{{ section.id }}">Shop by Room, Style and More</h2>
+    </div>
+    <div class="nf-sb__list">
+      {%- for g_raw in groups -%}
+        {%- assign g = g_raw | split: '|' -%}
+        {%- assign gk = g[0] -%}
+        <details class="nf-sb__acc" data-nf-sbacc>
+          <summary class="nf-sb__sum">
+            <span class="nf-sb__num">0{{ forloop.index }}</span>
+            <span class="nf-sb__title">{{ g[1] }}</span>
+            <span class="nf-sb__pm" aria-hidden="true"></span>
+          </summary>
+          <div class="nf-sb__body">
+            <p class="nf-sb__lead">{{ g[2] }}</p>
+            <div class="nf-sb__rail">
+              <div class="nf-sb__track" data-nf-track tabindex="0">
+                {%- if g[3] == 'P' -%}
+                  {%- assign projs = 'hospitality-lighting-projects@hospitality-lighting@Hotels and hospitality,office-lighting-projects@office-lighting@Offices and workspaces,retail-lighting-projects@retail-lighting@Shops and retail,home-lighting-projects@home-project-lighting@Whole home projects,outdoor-lighting-projects@outdoor-project-lighting@Outdoor and landscape' | split: ',' -%}
+                  {%- for pr_raw in projs -%}
+                    {%- assign pr = pr_raw | split: '@' -%}
+                    {%- assign pcoll = collections[pr[1]] -%}
+                    <a class="nf-sb__tile" href="/pages/{{ pr[0] }}">
+                      {%- if pcoll.image != blank -%}{{ pcoll.image | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320,480,640', sizes: '(max-width: 699px) 62vw, 300px', alt: pr[2], class: 'nf-sb__img' }}{%- endif -%}
+                      <span class="nf-sb__cap"><span class="nf-sb__name">{{ pr[2] }}</span><span class="nf-sb__meta">Ideas and bulk pricing</span></span>
+                    </a>
+                  {%- endfor -%}
+                {%- else -%}
+                  {%- assign hs = g[3] | split: ',' -%}
+                  {%- for h in hs -%}
+                    {%- assign c = collections[h] -%}
+                    {%- if c != blank and c.all_products_count > 0 -%}
+                      {%- assign cimg = c.image | default: c.products.first.featured_image -%}
+                      <a class="nf-sb__tile" href="{{ c.url }}">
+                        {%- if cimg != blank -%}{{ cimg | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320,480,640', sizes: '(max-width: 699px) 62vw, 300px', alt: c.title, class: 'nf-sb__img' }}{%- endif -%}
+                        <span class="nf-sb__cap"><span class="nf-sb__name">{% if h == 'outdoor-lighting' %}All outdoor lighting{% else %}{{ c.title }}{% endif %}</span><span class="nf-sb__meta">{{ c.all_products_count }} designs</span></span>
+                      </a>
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              </div>
+              <div class="nf-rail-nav nf-rail-nav--sb">
+                <button type="button" class="nf-rail-nav__b" data-nf-prev aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+                <span class="nf-rail-nav__bar" aria-hidden="true"><i data-nf-bar></i></span>
+                <button type="button" class="nf-rail-nav__b" data-nf-next aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "NF Shop by",
+  "settings": [
+    { "type": "checkbox", "id": "defer", "label": "Load when scrolled near (faster first load)", "default": false }]
+}
+{% endschema %}

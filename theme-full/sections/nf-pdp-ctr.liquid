@@ -1,0 +1,19 @@
+{%- comment -%}
+  NF-PDP3-V1 (2026-09-25) where "Complete the room" (assets/nf-bundle.js) now lives: its own band further down the
+  page instead of inside the buy box, under Add to Cart (owner: likes the buy together, but not there).
+  assets/nf-pdp3.js moves the module nf-bundle.js builds into [data-nfb-mount]; the band stays hidden until then.
+{%- endcomment -%}
+<div class="nf-ctr" data-nf-ctr hidden>
+  <div class="nf-ctr__in" data-nfb-mount></div>
+</div>
+
+{% schema %}
+{
+  "name": "NF complete the room",
+  "tag": "div",
+  "class": "shopify-section--nf-pdp-ctr",
+  "settings": [],
+  "presets": [{ "name": "NF complete the room" }],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

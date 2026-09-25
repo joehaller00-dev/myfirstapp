@@ -1,0 +1,533 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Linear Lighting Systems",
+        "eyebrow": "Linear lighting systems",
+        "heading": "Continuous light for offices, shops and kitchens",
+        "text": "Linear lighting draws clean lines of light across a ceiling or a wall. It lights long desks, counters and displays evenly and gives a space a crisp, modern shape. We quote systems sized to your room.",
+        "image_file": "nf-pro-linear.jpg",
+        "image_alt": "Continuous light for offices, shops and kitchens",
+        "fallback_collection": "linear-suspension",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn2_label": "Browse Project References",
+        "btn2_url": "#references",
+        "facts": "Reply within 2 business days\nMade and delivered in 4 to 7 weeks\nNo minimum order\nFree US shipping",
+        "link_label": "Shop linear suspension",
+        "link_url": "/collections/linear-suspension"
+      }
+    },
+    "uses": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "text",
+        "columns": "4",
+        "bg": "cream",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "Where it works",
+        "heading": "Built for long rooms and long tables"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "icon": "office",
+            "title": "Offices and studios",
+            "text": "Even light over desk rows, work tables and meeting rooms."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "icon": "shop",
+            "title": "Shops and showrooms",
+            "text": "Clean lines over displays, counters and cash desks."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "icon": "home",
+            "title": "Kitchens and islands",
+            "text": "A long, slim fixture that matches the length of the island."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "icon": "line",
+            "title": "Corridors and stairs",
+            "text": "Continuous lines that lead the way along walls and ceilings."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "send": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Plan the lines, then the light",
+        "image_file": "nf-pro3-linear-send-1b.png",
+        "image_alt": "Green dining room with a glowing linear pendant over a candlelit table",
+        "fallback_collection": "linear-suspension",
+        "text": "<p>A linear system looks best when it follows the architecture: along a desk row, down a corridor or over the full length of an island.</p>",
+        "bullets": "Follow the furniture: Run lines along desks, counters and shelves so light lands where people work.\nSuspended or surface: Hang it on cables for tall ceilings, or mount it flush where ceilings are low.\nLonger runs: Many systems can be joined into longer runs or simple shapes, and your quote confirms how.\nRight color for the task: Neutral white for work areas, warmer white for kitchens and lounges.\nMatching wall lights: Linear wall lights in the same finish carry the line onto the walls."
+      }
+    },
+    "tailor": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "numbered",
+        "columns": "4",
+        "bg": "sand",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "What we can tailor",
+        "heading": "Sized to your room"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Length and layout",
+            "text": "Single lengths, long runs or simple shapes planned around your room."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Mounting and drop",
+            "text": "Cable length, surface mounting and canopies to suit your ceiling."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Color temperature and output",
+            "text": "Neutral for focus, warmer for hospitality and homes, with the output your space needs."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "Finish and dimming",
+            "text": "Black, white or metal finishes, with dimmable versions to suit your controls."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "disabled": true
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Start from a product",
+        "text": "Real products from our range. Order them as they are, or ask us to tailor them."
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Linear suspension",
+            "collection": "linear-suspension",
+            "text": "Suspended lines of light for desks, tables and islands.",
+            "shop_label": "Shop linear suspension",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Linear wall lights",
+            "collection": "linear-wall-sconces",
+            "text": "Matching lines of light for walls and corridors.",
+            "shop_label": "Shop linear wall sconces",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Flush mount",
+            "collection": "flush-mount-lighting",
+            "text": "Surface mounted options for lower ceilings.",
+            "shop_label": "Shop flush mount lights",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ]
+    },
+    "how": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "steps",
+        "columns": "3",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "How it works",
+        "heading": "Four simple steps, and you approve every one",
+        "note": "Free quote. No commitment until you approve."
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "meta": "A few minutes",
+            "title": "Tell us what you need",
+            "text": "Share a product link, a photo or a short description. Rough sizes and quantities are enough to start."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "meta": "Within 2 business days",
+            "title": "We reply with options",
+            "text": "We confirm what is possible and send pricing, options and timing in writing, or ask what we need to know."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "meta": "At your pace",
+            "title": "You approve, then pay",
+            "text": "Nothing is made until you are happy. When you approve, we send a secure Shopify invoice."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "meta": "4 to 7 weeks",
+            "title": "Made and delivered",
+            "text": "Your pieces are made to order and shipped free to your door anywhere in the United States."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "cream",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "What information do you need for a linear system?",
+            "a": "<p>The room length and width, the ceiling height, where the desks or counters sit and how the lights will be switched. A simple sketch with measurements is perfect.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Can linear lights be dimmed?",
+            "a": "<p>Many can. Tell us the controls you plan to use and we will confirm a compatible version in your quote.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. You can ask for a single custom piece or the lighting for a whole building. Larger lists simply get a quote that reflects the volume.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "How long does it take?",
+            "a": "<p>We reply to every request within 2 business days. Once you approve the quote, production and delivery usually take 4 to 7 weeks. Your quote shows the timing for your exact order.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ]
+    },
+    "quote": {
+      "type": "nf-pro-quote",
+      "settings": {
+        "bg": "sand",
+        "anchor": "quote",
+        "variant": "short",
+        "form_id": "nf-quote-form",
+        "button_label": "Get My Free Quote",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request, your links and your photos.\nWe confirm what is possible: You get options, pricing and timing in writing within 2 business days.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "The room length, width and ceiling height\nWhere the desks, counters or displays sit\nSuspended or surface mounted\nHow the lights will be switched or dimmed\nA sketch or photo with measurements",
+        "heading": "Tell us about your space",
+        "text": "Share what you know. A rough idea is enough to start.",
+        "form_label": "Linear lighting quote",
+        "service": "Linear lighting system"
+      },
+      "disabled": true
+    },
+    "customize_v2": {
+      "type": "nf-pro2-customize",
+      "settings": {
+        "bg": "grey",
+        "anchor": "customize",
+        "eyebrow": "Linear lighting systems",
+        "heading": "What can be customized",
+        "note": "Production begins after dimensions, specifications and installation details are confirmed."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "icon": "run",
+            "title": "Layout and run length",
+            "text": "Single bars, long continuous runs or joined sections planned to the length of your desks, counters or corridor."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "icon": "mount",
+            "title": "Installation method",
+            "text": "Suspended on adjustable cables, mounted flat to the ceiling or recessed into drywall where the ceiling allows."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "icon": "updown",
+            "title": "Direct and indirect light",
+            "text": "Light aimed down onto the work surface, up across the ceiling, or both from the same profile."
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "icon": "corner",
+            "title": "Shapes and corners",
+            "text": "L shapes, rectangles and continuous corners that follow the room instead of stopping short of it."
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "icon": "diffuser",
+            "title": "Finish and diffuser",
+            "text": "Black, white or aluminum housings with opal, prismatic or louvered diffusers to control glare."
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "icon": "output",
+            "title": "Light quality and output",
+            "text": "Warm 3000K to neutral 4000K light, with output matched to desks, retail displays or dining."
+          }
+        },
+        "c7": {
+          "type": "card",
+          "settings": {
+            "icon": "dimmer",
+            "title": "Dimming and controls",
+            "text": "Dimmable drivers chosen for the controls you already have, from a wall dimmer to a building system."
+          }
+        },
+        "c8": {
+          "type": "card",
+          "settings": {
+            "icon": "power",
+            "title": "Power and ceiling details",
+            "text": "Canopy positions, feed points and cable lengths worked out from your ceiling height and junction boxes."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how linear systems can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Pick it in the quote form and we will price it for your space.",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn2_label": "Shop linear suspension",
+        "btn2_url": "/collections/linear-suspension",
+        "quote_links": true,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Conference Table",
+            "image_file": "nf-pro3-linear-ref-1.jpg",
+            "alt": "Conference Table inspiration photo, lit in the evening"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Glass Office",
+            "image_file": "nf-pro3-linear-ref-2.jpg",
+            "alt": "Glass Office inspiration photo, lit in the evening"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Reception Frame",
+            "image_file": "nf-ref-reception-linear.jpg",
+            "alt": "Reception Frame lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Supper Table",
+            "image_file": "nf-pro3-linear-ref-4.jpg",
+            "alt": "Supper Table inspiration photo, lit in the evening"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Kitchen Island",
+            "image_file": "nf-ref-kitchen-island-linear.png",
+            "alt": "Kitchen Island lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Dining Run",
+            "image_file": "nf-ref-dining-linear.png",
+            "alt": "Dining Run lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Feature Corridor",
+            "image_file": "nf-ref-corridor-linear.png",
+            "alt": "Feature Corridor lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Wall Line",
+            "image_file": "nf-ref-wall-line.png",
+            "alt": "Wall Line lit in the evening, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    },
+    "quote_v2": {
+      "type": "nf-pro2-quote",
+      "settings": {
+        "anchor": "quote",
+        "heading": "Tell us about your space",
+        "text": "Share what you know. A rough idea is enough to start.",
+        "form_id": "nf-quote-form",
+        "form_label": "Linear lighting quote",
+        "service": "Linear lighting system",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request, your links and your photos.\nWe confirm what is possible: You get options, pricing and timing in writing within 2 business days.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "The room length, width and ceiling height\nWhere the desks, counters or displays sit\nSuspended or surface mounted\nHow the lights will be switched or dimmed\nA sketch or photo with measurements",
+        "adjust": "run|run|Run length and layout\nmounting|mount|Suspended, surface or recessed\nupdown|updown|Direct and indirect light\ncorner|corner|Shapes and corners\nfinish|diffuser|Finish and diffuser\noutput|cct|Light output or color temperature\ndimming|dimmer|Dimming and controls\npower|power|Power and ceiling details",
+        "refs": "Open Workspace\nMeeting Table\nReception Frame\nRetail Run\nKitchen Island\nDining Run\nFeature Corridor\nWall Line",
+        "zone_placeholder": "For example desk rows, meeting room or kitchen island",
+        "space_default": "Office or workspace",
+        "tool": false,
+        "zip": false,
+        "msg_placeholder": "Room length and width, ceiling height, where the desks or counters sit, and how the lights will be switched.",
+        "button_label": "Get My Free Custom Quote",
+        "bg": "grey"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "uses",
+    "customize_v2",
+    "references_v2",
+    "send",
+    "tailor",
+    "fixtures",
+    "how",
+    "faq",
+    "quote",
+    "quote_v2"
+  ]
+}

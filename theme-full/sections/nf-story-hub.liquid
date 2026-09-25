@@ -1,0 +1,259 @@
+{%- comment -%}
+  NF-STORY-V1 (2026-09-11): the Our Story "Stories and Projects" hub at /pages/our-story (templates/page.our-story-hub.json).
+  The owner asked for Our Story to read like blogs and case studies, the way Dazuma's Our Story does, instead of a text box.
+  1. Intro: short heading and text, live counts, a dusk photo.
+  2. Filter pills (All, Indoor, Outdoor, Style and Trends, Design Concepts) and a 3 column grid of EVERY blog article plus
+     one card per Project Portfolio design concept (blocks). Concepts are team concepts, not client jobs, so they are always
+     labeled "Design Concept", never "Case Study".
+  3. Filtering and Load more run in place in assets/nf-story.js (no reload). Without JS every card shows.
+  Article order: articles NOT in the "order" list come first (so new posts lead), then the curated order.
+  Better covers: "cover_overrides" lines "handle = filename" swap a dark or daylight cover for a photo from Files.
+{%- endcomment -%}
+{{- 'nf-story.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'nf-story.js' | asset_url }}" defer></script>
+{%- comment -%} A literal newline, so textarea lines split whether or not newline_to_br marks them. {%- endcomment -%}
+{%- capture s_nl %}
+{% endcapture -%}
+{%- liquid
+  assign s = section.settings
+  assign s_blog = blogs[s.blog_handle]
+  if s_blog == blank
+    assign s_blog = blogs['blog']
+  endif
+  assign s_logo = blank
+  if s.logo_file != blank
+    assign s_logo = images[s.logo_file]
+  endif
+  assign s_intro_img = blank
+  if s.image_file != blank
+    assign s_intro_img = images[s.image_file]
+  endif
+  assign s_pf_url = '/pages/' | append: s.portfolio_handle
+  assign s_every = s.concept_every
+  assign s_lbl_in = s.label_indoor | default: 'Indoor'
+  assign s_lbl_out = s.label_outdoor | default: 'Outdoor'
+  assign s_lbl_style = s.label_style | default: 'Style and Trends'
+  assign s_lbl_con = s.label_concepts | default: 'Design Concepts'
+  assign s_con_word = s.concept_word | default: 'Design Concept'
+  assign s_sizes = '(max-width: 639px) 92vw, (max-width: 999px) 46vw, 430px'
+  assign s_ov = s.cover_overrides | newline_to_br | replace: '<br />', ';' | replace: s_nl, ';' | split: ';'
+  assign s_order_raw = s.order | newline_to_br | replace: '<br />', ',' | replace: s_nl, ',' | split: ','
+  assign s_order_key = '|'
+  for h in s_order_raw
+    assign hh = h | strip
+    if hh != blank
+      assign s_order_key = s_order_key | append: hh | append: '|'
+    endif
+  endfor
+  assign s_order = s_order_key | split: '|'
+-%}
+{%- capture s_logo_html -%}
+  {%- if s_logo != blank and s_logo.width > 0 -%}<span class="nfs-card__logo" aria-hidden="true">{{ s_logo | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120,240', sizes: '112px', alt: '' }}</span>{%- endif -%}
+{%- endcapture -%}
+
+{%- comment -%} Article cards, in display order, separated by a marker so concepts can be interleaved. {%- endcomment -%}
+{%- assign s_n = 0 -%}
+{%- capture s_cards -%}
+  {%- if s_blog != blank -%}
+    {%- for article in s_blog.articles limit: 100 -%}
+      {%- assign a_hh = article.handle | split: '/' | last -%}
+      {%- assign key = '|' | append: a_hh | append: '|' -%}
+      {%- unless s_order_key contains key -%}
+        {%- assign s_n = s_n | plus: 1 -%}
+        {%- if s_n <= 3 -%}{%- assign eg = true -%}{%- else -%}{%- assign eg = false -%}{%- endif -%}
+        {%- render 'nf-story-card', article: article, ov: s_ov, lbl_in: s_lbl_in, lbl_out: s_lbl_out, lbl_style: s_lbl_style, logo_html: s_logo_html, sizes: s_sizes, eager: eg -%}<!--nfs-->
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- for h in s_order -%}
+      {%- if h == blank -%}{%- continue -%}{%- endif -%}
+      {%- for article in s_blog.articles limit: 100 -%}
+        {%- assign a_hh = article.handle | split: '/' | last -%}
+        {%- if a_hh == h -%}
+          {%- assign s_n = s_n | plus: 1 -%}
+          {%- if s_n <= 3 -%}{%- assign eg = true -%}{%- else -%}{%- assign eg = false -%}{%- endif -%}
+          {%- render 'nf-story-card', article: article, ov: s_ov, lbl_in: s_lbl_in, lbl_out: s_lbl_out, lbl_style: s_lbl_style, logo_html: s_logo_html, sizes: s_sizes, eager: eg -%}<!--nfs-->
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+{%- assign s_list = s_cards | split: '<!--nfs-->' -%}
+
+{%- comment -%} Concept cards (blocks). {%- endcomment -%}
+{%- assign s_cn = 0 -%}
+{%- capture s_concepts -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type != 'concept' or block.settings.slug == blank -%}{%- continue -%}{%- endif -%}
+    {%- liquid
+      assign s_cn = s_cn | plus: 1
+      assign c_img = blank
+      if block.settings.image_file != blank
+        assign c_img = images[block.settings.image_file]
+      endif
+      assign c_cat = block.settings.cat | default: 'indoor'
+    -%}
+    <li class="nfs-card nfs-card--concept" data-cats="concepts {{ c_cat }}" {{ block.shopify_attributes }}>
+      <a class="nfs-card__a" href="{{ s_pf_url }}#concept-{{ block.settings.slug | handle }}">
+        <span class="nfs-card__media">
+          {%- if c_img != blank and c_img.width > 0 -%}
+            {{- c_img | image_url: width: 1100 | image_tag: class: 'nfs-card__img', loading: 'lazy', widths: '420,640,860,1100', sizes: s_sizes, alt: '' -}}
+          {%- endif -%}
+          <span class="nfs-card__badge">{{ s_con_word | escape }}</span>
+          {{- s_logo_html -}}
+        </span>
+        <span class="nfs-card__eyebrow">{% if c_cat == 'outdoor' %}{{ s_lbl_out | escape }}{% else %}{{ s_lbl_in | escape }}{% endif %}{% if block.settings.space != blank %} <span aria-hidden="true">&middot;</span> {{ block.settings.space | escape }}{% endif %}</span>
+        <h3 class="nfs-card__t">{{ s_con_word | escape }}: {{ block.settings.title | escape }}</h3>
+        <span class="nfs-card__date">{{ s.concept_line | default: 'A lighting concept by our team' | escape }}</span>
+      </a>
+    </li>
+    <!--nfc-->
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign s_con_list = s_concepts | split: '<!--nfc-->' -%}
+{%- assign s_articles = s_list.size -%}
+{%- assign s_last = s_list | last | strip -%}
+{%- if s_last == blank and s_articles > 0 -%}{%- assign s_articles = s_articles | minus: 1 -%}{%- endif -%}
+
+<section class="nfs" id="nfs-{{ section.id }}" data-nfs aria-labelledby="nfs-h-{{ section.id }}">
+  <div class="nfs-wrap">
+    <header class="nfs-intro">
+      <div class="nfs-intro__copy">
+        {%- if s.eyebrow != blank -%}<p class="nfs-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h1 class="nfs-h1" id="nfs-h-{{ section.id }}">{{ s.heading | escape }}</h1>
+        {%- if s.text != blank -%}<div class="nfs-lead">{{ s.text }}</div>{%- endif -%}
+        <ul class="nfs-meta" role="list">
+          <li><strong>{{ s_articles }}</strong>{{ s.count_articles_label | default: 'guides and ideas' | escape }}</li>
+          {%- if s_cn > 0 -%}<li><strong>{{ s_cn }}</strong>{{ s.count_concepts_label | default: 'design concepts' | escape }}</li>{%- endif -%}
+        </ul>
+        <div class="nfs-links">
+          {%- if s.link1_label != blank -%}<a class="nfs-link" href="{{ s.link1_url | default: '/pages/about-us' }}">{{ s.link1_label | escape }}<span class="nfs-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+          {%- if s.link2_label != blank -%}<a class="nfs-link" href="{{ s.link2_url | default: '/pages/professionals' }}">{{ s.link2_label | escape }}<span class="nfs-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+        </div>
+      </div>
+      {%- if s_intro_img != blank and s_intro_img.width > 0 -%}
+        <figure class="nfs-intro__media">
+          {{- s_intro_img | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '500,700,900,1100,1400', sizes: '(max-width: 999px) 92vw, 560px', alt: s.image_alt -}}
+          {{- s_logo_html -}}
+        </figure>
+      {%- endif -%}
+    </header>
+
+    <div class="nfs-bar">
+      <div class="nfs-pills" role="group" aria-label="{{ s.filter_label | default: 'Filter stories' | escape }}">
+        <button type="button" class="nfs-pill" data-nfs-filter="all" aria-pressed="true">{{ s.label_all | default: 'All' | escape }} <span class="nfs-pill__n" aria-hidden="true"></span></button>
+        <button type="button" class="nfs-pill" data-nfs-filter="indoor" aria-pressed="false">{{ s_lbl_in | escape }} <span class="nfs-pill__n" aria-hidden="true"></span></button>
+        <button type="button" class="nfs-pill" data-nfs-filter="outdoor" aria-pressed="false">{{ s_lbl_out | escape }} <span class="nfs-pill__n" aria-hidden="true"></span></button>
+        <button type="button" class="nfs-pill" data-nfs-filter="style" aria-pressed="false">{{ s_lbl_style | escape }} <span class="nfs-pill__n" aria-hidden="true"></span></button>
+        {%- if s_cn > 0 -%}<button type="button" class="nfs-pill" data-nfs-filter="concepts" aria-pressed="false">{{ s_lbl_con | escape }} <span class="nfs-pill__n" aria-hidden="true"></span></button>{%- endif -%}
+      </div>
+      <p class="nfs-status" data-nfs-status aria-live="polite"></p>
+    </div>
+
+    <ul class="nfs-grid" role="list" id="nfs-grid-{{ section.id }}" data-nfs-list data-first="{{ s.first_count }}" data-step="{{ s.step_count }}">
+      {%- assign s_ci = 0 -%}
+      {%- assign s_ai = 0 -%}
+      {%- for card in s_list -%}
+        {%- assign c_trim = card | strip -%}
+        {%- if c_trim == blank -%}{%- continue -%}{%- endif -%}
+        {{- card -}}
+        {%- assign s_ai = s_ai | plus: 1 -%}
+        {%- if s_every > 0 -%}
+          {%- assign m = s_ai | modulo: s_every -%}
+          {%- if m == 0 and s_ci < s_cn -%}
+            {{- s_con_list[s_ci] -}}
+            {%- assign s_ci = s_ci | plus: 1 -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if s_ci < s_cn -%}
+        {%- assign s_rem = s_cn | minus: s_ci -%}
+        {%- for c in s_con_list offset: s_ci limit: s_rem -%}{{- c -}}{%- endfor -%}
+      {%- endif -%}
+    </ul>
+
+    <div class="nfs-foot">
+      <button type="button" class="nfs-more" data-nfs-more aria-controls="nfs-grid-{{ section.id }}" hidden>{{ s.more_label | default: 'Load more stories' | escape }}</button>
+      {%- if s.note != blank -%}<p class="nfs-note">{{ s.note | escape }}</p>{%- endif -%}
+    </div>
+  </div>
+
+  {%- if s.close_heading != blank -%}
+    <div class="nfs-close">
+      <div class="nfs-wrap nfs-close__in">
+        <div>
+          <h2 class="nfs-h2">{{ s.close_heading | escape }}</h2>
+          {%- if s.close_text != blank -%}<p class="nfs-close__text">{{ s.close_text | escape }}</p>{%- endif -%}
+        </div>
+        <ul class="nfs-close__links" role="list">
+          {%- if s.close1_label != blank -%}<li><a class="nfs-link" href="{{ s.close1_url }}">{{ s.close1_label | escape }}<span class="nfs-arrow" aria-hidden="true">&rarr;</span></a></li>{%- endif -%}
+          {%- if s.close2_label != blank -%}<li><a class="nfs-link" href="{{ s.close2_url }}">{{ s.close2_label | escape }}<span class="nfs-arrow" aria-hidden="true">&rarr;</span></a></li>{%- endif -%}
+          {%- if s.close3_label != blank -%}<li><a class="nfs-link" href="{{ s.close3_url }}">{{ s.close3_label | escape }}<span class="nfs-arrow" aria-hidden="true">&rarr;</span></a></li>{%- endif -%}
+          {%- if s.close4_label != blank -%}<li><a class="nfs-link" href="{{ s.close4_url }}">{{ s.close4_label | escape }}<span class="nfs-arrow" aria-hidden="true">&rarr;</span></a></li>{%- endif -%}
+        </ul>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "NF story hub",
+  "class": "nfs-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Story" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Stories and projects" },
+    { "type": "richtext", "id": "text", "label": "Intro text" },
+    { "type": "text", "id": "count_articles_label", "label": "Count label: articles", "default": "guides and ideas" },
+    { "type": "text", "id": "count_concepts_label", "label": "Count label: concepts", "default": "design concepts" },
+    { "type": "text", "id": "link1_label", "label": "Intro link 1 label" },
+    { "type": "text", "id": "link1_url", "label": "Intro link 1 URL" },
+    { "type": "text", "id": "link2_label", "label": "Intro link 2 label" },
+    { "type": "text", "id": "link2_url", "label": "Intro link 2 URL" },
+    { "type": "text", "id": "image_file", "label": "Intro image filename in Files" },
+    { "type": "text", "id": "image_alt", "label": "Intro image alt text" },
+    { "type": "text", "id": "blog_handle", "label": "Blog handle", "default": "blog" },
+    { "type": "text", "id": "logo_file", "label": "Wordmark filename in Files", "info": "Shown in white on every card image." },
+    { "type": "text", "id": "portfolio_handle", "label": "Portfolio page handle", "default": "project-portfolio" },
+    { "type": "range", "id": "concept_every", "label": "Place a design concept after every N articles", "min": 1, "max": 6, "step": 1, "default": 3 },
+    { "type": "text", "id": "concept_word", "label": "Concept label", "default": "Design Concept", "info": "Concepts are not client projects. Never call them case studies." },
+    { "type": "text", "id": "concept_line", "label": "Line under concept titles", "default": "A lighting concept by our team" },
+    { "type": "range", "id": "first_count", "label": "Cards shown before Load more", "min": 3, "max": 24, "step": 3, "default": 12 },
+    { "type": "range", "id": "step_count", "label": "Cards added by Load more", "min": 3, "max": 18, "step": 3, "default": 9 },
+    { "type": "text", "id": "more_label", "label": "Load more label", "default": "Load more stories" },
+    { "type": "text", "id": "filter_label", "label": "Filter group label (screen readers)", "default": "Filter stories" },
+    { "type": "text", "id": "label_all", "label": "Pill: all", "default": "All" },
+    { "type": "text", "id": "label_indoor", "label": "Pill: indoor", "default": "Indoor" },
+    { "type": "text", "id": "label_outdoor", "label": "Pill: outdoor", "default": "Outdoor" },
+    { "type": "text", "id": "label_style", "label": "Pill: style", "default": "Style and Trends" },
+    { "type": "text", "id": "label_concepts", "label": "Pill: concepts", "default": "Design Concepts" },
+    { "type": "textarea", "id": "order", "label": "Article order", "info": "One article handle per line. Articles not listed show first, newest first." },
+    { "type": "textarea", "id": "cover_overrides", "label": "Better card covers", "info": "One per line: article-handle = filename-in-Files" },
+    { "type": "textarea", "id": "note", "label": "Small note under the grid" },
+    { "type": "text", "id": "close_heading", "label": "Closing band heading" },
+    { "type": "textarea", "id": "close_text", "label": "Closing band text" },
+    { "type": "text", "id": "close1_label", "label": "Closing link 1 label" },
+    { "type": "text", "id": "close1_url", "label": "Closing link 1 URL" },
+    { "type": "text", "id": "close2_label", "label": "Closing link 2 label" },
+    { "type": "text", "id": "close2_url", "label": "Closing link 2 URL" },
+    { "type": "text", "id": "close3_label", "label": "Closing link 3 label" },
+    { "type": "text", "id": "close3_url", "label": "Closing link 3 URL" },
+    { "type": "text", "id": "close4_label", "label": "Closing link 4 label" },
+    { "type": "text", "id": "close4_url", "label": "Closing link 4 URL" }
+  ],
+  "blocks": [
+    {
+      "type": "concept",
+      "name": "Design concept",
+      "settings": [
+        { "type": "text", "id": "slug", "label": "Concept slug", "info": "Matches #concept-<slug> on the portfolio page" },
+        { "type": "text", "id": "title", "label": "Concept name" },
+        { "type": "text", "id": "space", "label": "Kind of space" },
+        { "type": "select", "id": "cat", "label": "Indoor or outdoor", "options": [ { "value": "indoor", "label": "Indoor" }, { "value": "outdoor", "label": "Outdoor" } ], "default": "indoor" },
+        { "type": "text", "id": "image_file", "label": "Image filename in Files" }
+      ]
+    }
+  ],
+  "max_blocks": 24
+}
+{% endschema %}

@@ -1,0 +1,98 @@
+{%- comment -%}
+  NF-TOPBAR-V1 (2026-09-11): secondary top bar above the logo row (layout idea from Dazuma, Nora Furnish styling and copy).
+  Left and right: the small help links from the Info menu. Blogs and Catalogs are skipped here because they live in
+  the Ideas & Guides dropdown. Phone links are never shown (the store is email only).
+  Centre: the "top-bar" menu (Online Store > Navigation > Top bar). An item without children is a plain link.
+  NF-TOPBAR-V2 (2026-09-11, rebuilt after the owner's review): the centre items are Montserrat 500, title case, gently
+  tracked, on plain white (the sand band is gone: the owner disliked the yellowish fill), each with a small grey line icon.
+  Montserrat is a sans face the theme already loads, clearly different from Dazuma's serif capitals and from our Poynter
+  Oldstyle main nav, so there is no extra font download. Dropdowns:
+    Ideas & Guides                          = snippets/mega-menu.liquid (unchanged)
+    Professionals                           = snippets/nf-topbar-panel.liquid kind 'pro' (Industries, Custom Lighting,
+                                              Services and the free quote card)
+    an item whose children have children    = kind 'shopby' (tabs: Shop by Room, Outdoor Area, Style, Material, Category)
+    an item whose children have no children = kind 'compact', a small card dropdown under the item (Best Sellers >
+                                              Best Sellers Indoor, Best Sellers Outdoor, Shop all best sellers)
+  A mouse click on a dropdown item still follows its own link (Best Sellers goes to /collections/best-sellers).
+  Rendered from the "Utility Menu" custom liquid section in sections/header-group.json.
+  Styles: assets/nf-topbar.css (bar) and assets/nf-topbar-panels.css (dropdowns, loaded without blocking).
+  Behaviour: assets/nf-topbar.js. Phone and tablet drawer: snippets/header-sidebar.liquid.
+{%- endcomment -%}
+{{ 'nf-topbar.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'nf-topbar-panels.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'nf-topbar-panels.css' | asset_url }}"></noscript>
+{%- assign nf_tb_menu = linklists['top-bar'] -%}
+{%- comment -%} NF-MENUS-DEFER (2026-09-14): the dropdown panels below start empty and are filled after load by assets/nf-menus.js from
+  sections/nf-menus-deferred.liquid (same snippets, same markup). Rollback: set nf_menus_defer to false. {%- endcomment -%}
+{%- assign nf_menus_defer = true -%}
+{%- assign nf_tb_left = '' -%}
+{%- assign nf_tb_right = '' -%}
+{%- for l in linklists['info'].links -%}
+  {%- assign nf_tb_u = l.url | downcase -%}
+  {%- if nf_tb_u contains '/blogs/' or nf_tb_u contains 'catalog' or nf_tb_u contains 'tel:' -%}{%- continue -%}{%- endif -%}
+  {%- capture nf_tb_li -%}<li><a href="{{ l.url }}" class="nf-topbar__link{% if nf_tb_u contains 'our-story' %} nf-topbar__link--optional{% endif %}"><span class="nf-topbar__txt">{{ l.title | escape }}</span></a></li>{%- endcapture -%}
+  {%- if nf_tb_u contains 'track' or nf_tb_u contains 'faq' -%}
+    {%- assign nf_tb_left = nf_tb_left | append: nf_tb_li -%}
+  {%- else -%}
+    {%- assign nf_tb_right = nf_tb_right | append: nf_tb_li -%}
+  {%- endif -%}
+{%- endfor -%}
+<div class="nf-topbar" data-nf-topbar>
+  <div class="nf-topbar__row">
+    <ul class="nf-topbar__side nf-topbar__side--left" role="list">{{ nf_tb_left }}</ul>
+    {%- if nf_tb_menu.links.size > 0 -%}
+    <nav class="nf-topbar__center" aria-label="Shop and explore">
+      <ul class="nf-topbar__list" role="list">
+        {%- for link in nf_tb_menu.links -%}
+          {%- assign nf_tb_t = link.title | downcase | strip -%}
+          {%- assign nf_tb_kind = '' -%}
+          {%- if link.links.size > 0 -%}
+            {%- if nf_tb_t == 'ideas & guides' -%}{%- assign nf_tb_kind = 'guides' -%}
+            {%- elsif nf_tb_t == 'professionals' -%}{%- assign nf_tb_kind = 'pro' -%}
+            {%- else -%}
+              {%- assign nf_tb_kind = 'compact' -%}
+              {%- for s in link.links -%}{%- if s.links.size > 0 -%}{%- assign nf_tb_kind = 'shopby' -%}{%- break -%}{%- endif -%}{%- endfor -%}
+            {%- endif -%}
+          {%- endif -%}
+          {%- capture nf_tb_ic -%}
+            {%- if nf_tb_t contains 'best seller' -%}<path d="M8 1.9l1.85 3.75 4.15.6-3 2.92.7 4.13L8 11.35 4.3 13.3l.7-4.13-3-2.92 4.15-.6z"/>
+            {%- elsif nf_tb_t contains 'shop' -%}<rect x="2.2" y="2.2" width="4.8" height="4.8" rx="1"/><rect x="9" y="2.2" width="4.8" height="4.8" rx="1"/><rect x="2.2" y="9" width="4.8" height="4.8" rx="1"/><rect x="9" y="9" width="4.8" height="4.8" rx="1"/>
+            {%- elsif nf_tb_t contains 'idea' or nf_tb_t contains 'guide' -%}<path d="M8 4.3C6.6 3.1 4.6 2.7 2 2.9v9.3c2.6-.2 4.6.2 6 1.4 1.4-1.2 3.4-1.6 6-1.4V2.9c-2.6-.2-4.6.2-6 1.4zM8 4.3v9.3"/>
+            {%- elsif nf_tb_t contains 'professional' -%}<path d="M2.5 13.5V2.5l11 11z"/><path d="M5.3 10.7V8l2.7 2.7z"/><path d="M2.5 5.6h1.7M2.5 8.1h1.1"/>
+            {%- endif -%}
+          {%- endcapture -%}
+          {%- capture nf_tb_icon -%}{%- if nf_tb_ic != blank -%}<svg class="nf-topbar__ic" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true" focusable="false">{{ nf_tb_ic }}</svg>{%- endif -%}{%- endcapture -%}
+          {%- if nf_tb_kind != '' -%}
+            <li class="nf-topbar__item{% if nf_tb_kind == 'compact' %} nf-topbar__item--compact{% endif %}">
+              <button type="button" class="nf-topbar__trigger" aria-expanded="false" aria-controls="nf-tb-panel-{{ forloop.index }}" data-url="{{ link.url }}">
+                {{- nf_tb_icon -}}
+                <span class="nf-topbar__txt">{{ link.title | escape }}</span>
+                <svg class="nf-topbar__chev" width="9" height="6" viewBox="0 0 9 6" aria-hidden="true" focusable="false"><path d="M.8.9 4.5 4.6 8.2.9" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div id="nf-tb-panel-{{ forloop.index }}" class="nf-topbar__panel{% if nf_tb_kind == 'compact' %} nf-topbar__panel--compact{% endif %}" data-nf-tb-panel hidden>
+                {%- unless nf_menus_defer -%}
+                {%- if nf_tb_kind == 'guides' -%}
+                  {%- render 'mega-menu', link: link -%}
+                {%- else -%}
+                  {%- render 'nf-topbar-panel', link: link, kind: nf_tb_kind -%}
+                {%- endif -%}
+                {%- endunless -%}
+              </div>
+            </li>
+          {%- else -%}
+            <li class="nf-topbar__item">
+              <a href="{{ link.url }}" class="nf-topbar__trigger nf-topbar__trigger--link">{{- nf_tb_icon -}}<span class="nf-topbar__txt">{{ link.title | escape }}</span></a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+    {%- endif -%}
+    <ul class="nf-topbar__side nf-topbar__side--right" role="list">{{ nf_tb_right }}</ul>
+  </div>
+</div>
+{%- if nf_menus_defer -%}
+{%- capture nf_menus_fp -%}nfm1{%- for l1 in linklists['main-menu'].links -%}{{ l1.url }}{{ l1.title }}{%- for l2 in l1.links -%}{{ l2.url }}{{ l2.title }}{%- for l3 in l2.links -%}{{ l3.url }}{{ l3.title }}{%- endfor -%}{%- endfor -%}{%- endfor -%}|{%- for l1 in nf_tb_menu.links -%}{{ l1.url }}{{ l1.title }}{%- for l2 in l1.links -%}{{ l2.url }}{{ l2.title }}{%- for l3 in l2.links -%}{{ l3.url }}{{ l3.title }}{%- endfor -%}{%- endfor -%}{%- endfor -%}{%- endcapture -%}
+<script src="{{ 'nf-menus.js' | asset_url }}" defer data-nf-menus-key="{{ nf_menus_fp | md5 }}-{{ 'nf-menus.js' | asset_url | split: 'v=' | last }}" data-nf-menus-url="{{ routes.root_url }}"></script>
+{%- endif -%}
+<script src="{{ 'nf-topbar.js' | asset_url }}" defer></script>

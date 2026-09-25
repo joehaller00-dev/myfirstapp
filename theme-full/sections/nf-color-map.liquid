@@ -1,0 +1,17 @@
+{%- comment -%}
+  NF-COLOR-GROUPS-V1 helper (2026-09-11). Not placed in any template. custom-nav.js NF-COLOR-GROUPS-V1
+  requests it as ?section_id=nf-color-map on a collection URL (with the shopper's other active filters)
+  and reads each product's Color option values, so the grouped Color filter can show an exact product
+  count per base color. Output is one small JSON script tag.
+{%- endcomment -%}
+{%- if collection -%}
+{%- paginate collection.products by 250 -%}
+<script type="application/json" data-nf-cm>{"n":{{ collection.products_count | json }},"pages":{{ paginate.pages | json }},"size":{{ paginate.page_size | json }},"p":[
+{%- for product in collection.products -%}
+[{%- assign nf_first = true -%}{%- for option in product.options_with_values -%}{%- assign nf_on = option.name | downcase | strip -%}{%- if nf_on == 'color' or nf_on == 'colour' or nf_on == 'colors' or nf_on == 'colours' -%}{%- for value in option.values -%}{%- unless nf_first -%},{%- endunless -%}{{ value.name | default: value | json }}{%- assign nf_first = false -%}{%- endfor -%}{%- endif -%}{%- endfor -%}]{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}]}</script>
+{%- endpaginate -%}
+{%- endif -%}
+{% schema %}
+{"name":"NF color map","settings":[]}
+{% endschema %}

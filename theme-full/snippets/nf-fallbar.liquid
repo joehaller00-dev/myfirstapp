@@ -1,0 +1,105 @@
+{%- comment -%}
+  NF-FALLBAR-V12 (2026-09-23): the snippet now takes optional overrides so one bar serves three
+  places. Defaults are the Autumn at Home wording used on the home page.
+  Usage: {%- render 'nf-fallbar', sub: '15% off Best Sellers', cta_text: 'Shop Best Sellers', cta_url: '/collections/best-sellers' -%}
+{%- endcomment -%}
+{%- assign nf_sub = sub | default: 'Up to 30% off Autumn at Home' -%}
+{%- assign nf_cta_text = cta_text | default: 'Shop Autumn at Home' -%}
+{%- assign nf_cta_url = cta_url | default: '/collections/autumn-at-home' -%}
+{%- comment -%}
+  NF-FALLBAR-V12 (2026-09-22) Fall sale timer bar. Owner on V8: the countdown looked "the same exact
+  style as other people" and the bar needed decorating. V9 drops the generic boxed digit tiles for
+  the store's own serif (var(--heading-font-family), the Roboto Serif the headings use): large gold
+  numerals separated by thin gold hairlines, letterspaced small labels beneath, a warm glow behind
+  the clock and two oversized gold maple leaves bleeding off the edges at low opacity.
+  Ground stays charcoal - no cream, gold as accent not a fill. CTA -> /collections/autumn-at-home.
+  Self-removes once data-ends passes. To change or end the sale, edit data-ends below.
+{%- endcomment -%}
+<style>
+.nf-fbar{width:100vw;margin-left:calc(50% - 50vw);position:relative;overflow:hidden;background:#16130e linear-gradient(115deg,#181310 0%,#241a12 34%,#1a1511 62%,#261c12 100%);color:#faf9f7;font-family:Montserrat,Inter,system-ui,sans-serif}
+.nf-fbar::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;z-index:3;background:linear-gradient(90deg,rgba(201,163,106,0) 0%,rgba(201,163,106,.5) 30%,rgba(201,163,106,.85) 50%,rgba(201,163,106,.5) 70%,rgba(201,163,106,0) 100%)}
+.nf-fbar::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(42% 150% at 58% 52%,rgba(214,168,96,.16) 0%,rgba(214,168,96,0) 72%),radial-gradient(34% 130% at 14% 42%,rgba(196,96,42,.11) 0%,rgba(196,96,42,0) 70%),linear-gradient(180deg,rgba(255,255,255,.035) 0%,rgba(255,255,255,0) 26%,rgba(0,0,0,.16) 100%)}
+.nf-fbar::selection{background:#e6c48d}
+.nf-fbar__deco{position:absolute;top:50%;color:#c9a36a;opacity:.085;pointer-events:none;z-index:1}
+.nf-fbar__deco--l{left:-58px;width:210px;height:210px;transform:translateY(-50%) rotate(-18deg)}
+.nf-fbar__deco--r{right:-58px;width:210px;height:210px;transform:translateY(-50%) rotate(14deg)}
+.nf-fbar__deco--a{left:12%;width:104px;height:104px;opacity:.075;transform:translateY(-62%) rotate(26deg)}
+.nf-fbar__deco--b{left:31%;width:66px;height:66px;opacity:.06;transform:translateY(-6%) rotate(-38deg)}
+.nf-fbar__deco--c{right:31%;width:82px;height:82px;opacity:.07;transform:translateY(-78%) rotate(12deg)}
+.nf-fbar__deco--d{right:13%;width:116px;height:116px;opacity:.075;transform:translateY(-34%) rotate(-22deg)}
+.nf-fbar__in{position:relative;z-index:2;max-width:1480px;margin:0 auto;padding:24px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 50px}
+.nf-fbar__copy{text-align:left}
+.nf-fbar__hd{margin:0;font-family:var(--heading-font-family,Georgia,serif);font-size:clamp(21px,2.2vw,32px);font-weight:400;letter-spacing:.055em;line-height:1.08;text-transform:uppercase;color:#fff}
+.nf-fbar__sub{margin:10px 0 0;font-size:15px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:#e8c98f}
+.nf-fbar__clock{display:flex;align-items:stretch}
+.nf-fbar__unit{position:relative;display:flex;flex-direction:column;align-items:center;gap:9px;padding:0 24px}
+.nf-fbar__unit+.nf-fbar__unit::before{content:"";position:absolute;left:0;top:4px;bottom:2px;width:1px;background:linear-gradient(180deg,rgba(201,163,106,0) 0%,rgba(201,163,106,.45) 45%,rgba(201,163,106,0) 100%)}
+.nf-fbar__n{font-family:var(--heading-font-family,Georgia,serif);font-size:clamp(28px,3vw,42px);font-weight:400;line-height:1;color:#e6c48d;font-variant-numeric:tabular-nums}
+.nf-fbar__l{font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:#958b7e;line-height:1}
+.nf-fbar__cta{display:inline-block;background:#faf9f7;color:#1c1c1c;text-decoration:none;border-radius:999px;padding:16px 32px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;transition:background-color .2s ease}
+.nf-fbar a.nf-fbar__cta,.nf-fbar a.nf-fbar__cta:link,.nf-fbar a.nf-fbar__cta:visited{animation:none !important;background-image:none !important;background-color:#faf9f7 !important;background-position:0 0 !important;-webkit-background-clip:border-box !important;background-clip:border-box !important;-webkit-text-fill-color:#1c1c1c !important;color:#1c1c1c !important;letter-spacing:.14em !important;display:inline-block !important;text-decoration:none !important}
+.nf-fbar a.nf-fbar__cta:hover{background-color:#e6c48d !important}
+@media (max-width:1099px){.nf-fbar__in{gap:14px 30px}.nf-fbar__unit{padding:0 17px}}
+@media (max-width:899px){
+  .nf-fbar__in{padding:20px 14px;gap:14px;flex-direction:column}
+  .nf-fbar__copy{text-align:center}
+  .nf-fbar__hd{font-size:20px;letter-spacing:.05em}
+  .nf-fbar__sub{font-size:12.5px;letter-spacing:.14em;margin-top:8px}
+  .nf-fbar__unit{padding:0 13px;gap:7px}
+  .nf-fbar__n{font-size:27px}
+  .nf-fbar__l{font-size:9px;letter-spacing:.16em}
+  .nf-fbar__deco--l,.nf-fbar__deco--r{width:150px;height:150px;opacity:.07}
+  .nf-fbar__deco--l{left:-52px}.nf-fbar__deco--r{right:-52px}
+  .nf-fbar__deco--a,.nf-fbar__deco--b,.nf-fbar__deco--c,.nf-fbar__deco--d{display:none}
+  .nf-fbar__cta{padding:13px 26px;font-size:11.5px}
+}
+.nf-fbar-inline .nf-fbar{margin-top:4px;margin-bottom:30px}
+</style>
+<div class="nf-fbar" data-ends="2026-09-30T23:59:59-05:00">
+  <svg class="nf-fbar__deco nf-fbar__deco--l" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg>
+  <svg class="nf-fbar__deco nf-fbar__deco--r" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg>
+  <svg class="nf-fbar__deco nf-fbar__deco--a" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg>
+  <svg class="nf-fbar__deco nf-fbar__deco--b" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg>
+  <svg class="nf-fbar__deco nf-fbar__deco--c" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg>
+  <svg class="nf-fbar__deco nf-fbar__deco--d" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg>
+  <div class="nf-fbar__in">
+    <div class="nf-fbar__copy">
+      <p class="nf-fbar__hd">The First Days of Fall Sale</p>
+      <p class="nf-fbar__sub">{{ nf_sub }}</p>
+    </div>
+    <div class="nf-fbar__clock" role="timer" aria-live="off" aria-label="Time left in the fall sale">
+      <span class="nf-fbar__unit"><span class="nf-fbar__n nf-fbar__d">00</span><span class="nf-fbar__l">Days</span></span>
+      <span class="nf-fbar__unit"><span class="nf-fbar__n nf-fbar__h">00</span><span class="nf-fbar__l">Hours</span></span>
+      <span class="nf-fbar__unit"><span class="nf-fbar__n nf-fbar__m">00</span><span class="nf-fbar__l">Minutes</span></span>
+      <span class="nf-fbar__unit"><span class="nf-fbar__n nf-fbar__s">00</span><span class="nf-fbar__l">Seconds</span></span>
+    </div>
+    <a class="nf-fbar__cta" href="{{ nf_cta_url }}">{{ nf_cta_text }}</a>
+  </div>
+</div>
+<script>
+(function(){
+  if (window.__nfFallBar) return; window.__nfFallBar = 1;
+  function init(){
+    var el = document.querySelector(".nf-fbar"); if (!el) return;
+    var ends = Date.parse(el.getAttribute("data-ends"));
+    if (isNaN(ends) || ends <= Date.now()) { el.remove(); return; }
+    var d = el.querySelector(".nf-fbar__d"), h = el.querySelector(".nf-fbar__h"),
+        m = el.querySelector(".nf-fbar__m"), s = el.querySelector(".nf-fbar__s");
+    function pad(n){ return n < 10 ? "0" + n : "" + n; }
+    function tick(){
+      var left = ends - Date.now();
+      if (left <= 0) { el.remove(); return; }
+      var sec = Math.floor(left / 1000);
+      d.textContent = pad(Math.floor(sec / 86400));
+      h.textContent = pad(Math.floor(sec % 86400 / 3600));
+      m.textContent = pad(Math.floor(sec % 3600 / 60));
+      s.textContent = pad(sec % 60);
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+  if (document.querySelector(".nf-fbar")) init();
+  else if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>

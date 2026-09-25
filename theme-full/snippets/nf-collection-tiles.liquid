@@ -1,0 +1,135 @@
+{%- comment -%}
+  NF-COLTILES-V1 (2026-09-14, owner: like Dazuma, a row of small photo tiles of related collections above the products on
+  EVERY collection, Best Sellers first on the left, the prettiest images). Related = the same menu logic as the old header
+  chips (main-menu, then top-bar): a parent shows its groups and leaves, a group shows its leaves and its siblings, a leaf
+  shows its group mates, its group and its parent; then the main categories fill the row. Max 10 plus Best Sellers.
+  Each tile shows that collection's own image (the curated band photo), else its first product photo. Styles: the
+  NF-COLTILES-V1 block in assets/nf-colhead.css. Rendered by sections/nf-collection-head.liquid (band and plain title
+  pages) and sections/main-collection.liquid (under the hero of the main nav collections).
+{%- endcomment -%}
+{%- if collection -%}
+{%- liquid
+  assign h = collection.handle
+  assign picks = ''
+    # NF-COLTILES-BS Best Sellers shows real sub collections, not the nav parents
+    if h == 'best-sellers'
+      assign picks = '/collections/wall-sconces##/collections/chandeliers##/collections/led-wall-art##/collections/linear-suspension##/collections/pendants##/collections/outdoor-post-lights##/collections/landscape-lighting##/collections/outdoor-wall-lighting##/collections/bollard-lights##/collections/path-lights##/collections/flush-mount-lighting##/collections/table-lamps##/collections/floor-lamps##/collections/led-strip-lights##'
+      assign found = true
+    endif
+  assign found = false
+  assign menu_handles = 'main-menu,top-bar' | split: ','
+  for mh in menu_handles
+    if found
+      break
+    endif
+    for l1 in linklists[mh].links
+      assign h1 = ''
+      if l1.url contains '/collections/'
+        assign h1 = l1.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+      endif
+      if h1 == h
+        for l2 in l1.links
+          assign picks = picks | append: l2.url | append: '##'
+        endfor
+        for l2 in l1.links
+          for l3 in l2.links
+            assign picks = picks | append: l3.url | append: '##'
+          endfor
+        endfor
+        assign found = true
+        break
+      endif
+      for l2 in l1.links
+        assign h2 = ''
+        if l2.url contains '/collections/'
+          assign h2 = l2.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+        endif
+        if h2 == h
+          for l3 in l2.links
+            assign picks = picks | append: l3.url | append: '##'
+          endfor
+          for s in l1.links
+            assign picks = picks | append: s.url | append: '##'
+          endfor
+          assign picks = picks | append: l1.url | append: '##'
+          assign found = true
+          break
+        endif
+        for l3 in l2.links
+          assign h3 = ''
+          if l3.url contains '/collections/'
+            assign h3 = l3.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+          endif
+          if h3 == h
+            for s in l2.links
+              assign picks = picks | append: s.url | append: '##'
+            endfor
+            assign picks = picks | append: l2.url | append: '##' | append: l1.url | append: '##'
+            for s in l1.links
+              assign picks = picks | append: s.url | append: '##'
+            endfor
+            assign found = true
+            break
+          endif
+        endfor
+        if found
+          break
+        endif
+      endfor
+      if found
+        break
+      endif
+    endfor
+  endfor
+  for t in linklists['main-menu'].links
+    assign picks = picks | append: t.url | append: '##'
+  endfor
+  assign seen = '|best-sellers|' | append: h | append: '|'
+  assign seen_img = '|'
+  if collections['best-sellers'].image != blank
+    assign seen_img = seen_img | append: collections['best-sellers'].image.id | append: '|'
+  endif
+  assign n = 0
+-%}
+{%- capture nf_ct_items -%}
+  {%- assign items = picks | split: '##' -%}
+  {%- for u in items -%}
+    {%- unless u contains '/collections/' -%}{%- continue -%}{%- endunless -%}
+    {%- assign ch = u | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first -%}
+    {%- assign key = '|' | append: ch | append: '|' -%}
+    {%- if ch == blank or ch == 'sale' or ch == 'clearance' or seen contains key -%}{%- continue -%}{%- endif -%}
+    {%- assign c = collections[ch] -%}
+    {%- if c.id == blank or c.all_products_count == 0 -%}{%- continue -%}{%- endif -%}
+    {%- assign seen = seen | append: ch | append: '|' -%}
+    {%- comment -%} no photo twice in one row: a collection image already used, or a shared first product, falls through to the next product photo {%- endcomment -%}
+    {%- assign ti = c.image -%}
+    {%- if ti != blank -%}
+      {%- assign probe = ti | image_url: width: 60 -%}
+      {%- assign ik = '|' | append: ti.id | append: '|' -%}
+      {%- if probe contains 'BRANDED_1_CLEAN' or probe contains 'nf-custom-chandelier-foyer' or seen_img contains ik -%}{%- assign ti = blank -%}{%- endif -%}
+    {%- endif -%}
+    {%- if ti == blank -%}
+      {%- for p in c.products limit: 10 -%}
+        {%- if p.featured_image != blank -%}
+          {%- assign probe = p.featured_image | image_url: width: 60 | downcase -%}
+          {%- assign ik = '|' | append: p.featured_image.id | append: '|' -%}
+          {%- unless probe contains 'branded_1_clean' or probe contains 'rgb' or seen_img contains ik -%}{%- assign ti = p.featured_image -%}{%- break -%}{%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- if ti != blank -%}{%- assign seen_img = seen_img | append: ti.id | append: '|' -%}{%- endif -%}
+    {%- comment -%} the first tiles sit on the first screen on phones, so they load at once {%- endcomment -%}{%- if n < 4 -%}{%- assign ld = 'eager' -%}{%- else -%}{%- assign ld = 'lazy' -%}{%- endif -%}<li class="nf-ct__it"><a class="nf-ct__a" href="{{ c.url }}"><span class="nf-ct__img">{%- if ti != blank -%}{{ ti | image_url: width: 240 | image_tag: widths: '120, 180, 240', sizes: '88px', loading: ld, alt: '' }}{%- endif -%}</span><span class="nf-ct__t">{{ c.title | escape }}</span></a></li>
+    {%- assign n = n | plus: 1 -%}
+    {%- if n >= 14 -%}{%- break -%}{%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign bs = collections['best-sellers'] -%}
+<nav class="nf-ct" aria-label="Shop related collections">
+  <ul class="nf-ct__list" role="list">
+    {%- if h != 'best-sellers' and bs.id != blank -%}
+      <li class="nf-ct__it nf-ct__it--bs"><a class="nf-ct__a" href="{{ bs.url }}"><span class="nf-ct__img">{%- if bs.image != blank -%}{{ bs.image | image_url: width: 240 | image_tag: widths: '120, 180, 240', sizes: '88px', loading: 'eager', alt: '' }}{%- endif -%}<span class="nf-ct__badge" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 1.9l1.85 3.75 4.15.6-3 2.92.7 4.13L8 11.35 4.3 13.3l.7-4.13-3-2.92 4.15-.6z"/></svg></span></span><span class="nf-ct__t">Best Sellers</span></a></li>
+    {%- endif -%}
+    {{ nf_ct_items }}
+  </ul>
+</nav>
+{%- endif -%}

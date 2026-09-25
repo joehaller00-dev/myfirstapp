@@ -1,0 +1,127 @@
+/* NF-STORY-V1 (2026-09-11) Our Story "Stories and Projects" hub. Loaded by sections/nf-story-hub.liquid only.
+   White ground, charcoal ink, gold only as a small accent (eyebrows, concept badge). No cream, ivory or beige grounds.
+   The evening feel comes from the photographs, not dark backgrounds.
+   Motion: cards fade up when filtered in; under prefers-reduced-motion they only fade (no movement). */
+.nfs{--nfs-ink:#1c1c1c;--nfs-ink2:#2b2520;--nfs-muted:#5c5c5c;--nfs-line:#e2e2e2;--nfs-grey:#f3f3f3;--nfs-gold:#b38b5d;--nfs-gold-txt:#8a6640;--nfs-gold-hi:#d9b77e;--nfs-ease:cubic-bezier(.2,.8,.2,1);--nfs-serif:var(--heading-font-family,"Roboto Serif",Georgia,serif);--nfs-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);--nfs-pad:clamp(18px,4vw,56px);position:relative;background:#fff;color:var(--nfs-ink);font-family:var(--nfs-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.nfs *,.nfs *::before,.nfs *::after{box-sizing:border-box}
+.nfs img{display:block;max-width:100%}
+.nfs-wrap{max-width:1360px;margin:0 auto;padding-inline:var(--nfs-pad)}
+
+/* ---------- Intro ---------- */
+.nfs-intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,6vw,104px);align-items:center;padding-block:clamp(36px,5.4vw,88px) clamp(44px,5vw,80px)}
+.nfs .nfs-eyebrow{display:inline-flex;align-items:center;gap:12px;margin:0 0 18px;font:600 11.5px/1.3 var(--nfs-sans);letter-spacing:.2em;text-transform:uppercase;color:var(--nfs-gold-txt)}
+.nfs-eyebrow::before{content:none;display:none} /* owner: no lead line before eyebrows */
+.nfs .nfs-h1{margin:0;font-family:var(--nfs-serif);font-weight:300;font-size:clamp(40px,5.1vw,76px);line-height:1.04;letter-spacing:-.012em;text-transform:none;color:var(--nfs-ink)}
+.nfs .nfs-h2{margin:0;font-family:var(--nfs-serif);font-weight:300;font-size:clamp(28px,2.8vw,40px);line-height:1.12;letter-spacing:-.005em;text-transform:none;color:var(--nfs-ink)}
+.nfs-lead{margin:24px 0 0;max-width:54ch;font-size:clamp(16px,1.12vw,18px);line-height:1.75;color:var(--nfs-muted)}
+.nfs-lead p{margin:0}
+.nfs-lead p+p{margin-top:12px}
+.nfs-meta{display:flex;flex-wrap:wrap;gap:12px 36px;margin:30px 0 0;padding:20px 0 0;border-top:1px solid var(--nfs-line);list-style:none}
+.nfs-meta li{display:flex;align-items:baseline;gap:10px;font:500 13px/1.3 var(--nfs-sans);letter-spacing:.04em;color:var(--nfs-muted)}
+.nfs-meta strong{font-family:var(--nfs-serif);font-weight:300;font-size:30px;line-height:1;color:var(--nfs-ink)}
+.nfs-links{display:flex;flex-wrap:wrap;gap:14px 30px;margin-top:28px}
+.nfs-link{display:inline-flex;align-items:center;gap:.55em;padding:3px 0 6px;font:600 12.5px/1.3 var(--nfs-sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--nfs-ink);background-image:linear-gradient(var(--nfs-gold),var(--nfs-gold)),linear-gradient(rgba(28,28,28,.22),rgba(28,28,28,.22));background-size:0% 2px,100% 1px;background-position:0 100%,0 100%;background-repeat:no-repeat;transition:background-size .35s var(--nfs-ease),transform .35s var(--nfs-ease)}
+.nfs-link:hover{background-size:100% 2px,100% 1px;transform:translateY(-2px)}
+.nfs-arrow{display:inline-block;transition:transform .35s var(--nfs-ease)}
+.nfs-link:hover .nfs-arrow{transform:translateX(4px)}
+.nfs-intro__media{position:relative;margin:0;aspect-ratio:1/1;max-height:640px;overflow:hidden;border-radius:8px;background:#161412}
+.nfs-intro__media img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.nfs-intro__media::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(0deg,rgba(14,12,10,.55),rgba(14,12,10,0));pointer-events:none}
+
+/* ---------- Filter bar ---------- */
+.nfs-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin:0 0 clamp(26px,3vw,42px);padding-top:clamp(8px,1vw,14px)}
+.nfs-pills{display:flex;flex-wrap:wrap;gap:10px}
+.nfs-pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border:1px solid var(--nfs-ink);border-radius:999px;background:#fff;color:var(--nfs-ink);font:600 11.5px/1 var(--nfs-sans);letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-color .3s var(--nfs-ease),color .3s var(--nfs-ease),transform .3s var(--nfs-ease),box-shadow .3s var(--nfs-ease)}
+.nfs-pill:hover{transform:translateY(-1px);box-shadow:0 8px 16px -12px rgba(28,28,28,.55)}
+.nfs-pill[aria-pressed="true"]{background:var(--nfs-ink);color:#fff}
+.nfs-pill[hidden]{display:none}
+.nfs-pill__n{font-weight:500;letter-spacing:0;font-size:11px;opacity:.55}
+.nfs-pill__n:empty{display:none}
+.nfs-status{margin:0;font-size:13px;color:var(--nfs-muted)}
+
+/* ---------- Grid and cards ---------- */
+.nfs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,3.6vw,58px) clamp(16px,1.8vw,28px);margin:0;padding:0;list-style:none}
+.nfs-card{min-width:0}
+.nfs-card[hidden]{display:none}
+.nfs-card__a{display:block;color:inherit;text-decoration:none;border-radius:6px}
+.nfs-card__media{position:relative;display:block;width:100%;aspect-ratio:5/4;overflow:hidden;border-radius:6px;background:#1c1a18}
+.nfs-card__media img.nfs-card__img{width:100%;height:100%;object-fit:cover;object-position:50% 38%;transition:transform 1.1s var(--nfs-ease)}
+.nfs-card__a:hover .nfs-card__img{transform:scale(1.045)}
+.nfs-card__media::after{content:"";position:absolute;inset:auto 0 0 0;height:44%;background:linear-gradient(0deg,rgba(14,12,10,.6),rgba(14,12,10,0));pointer-events:none}
+.nfs-card__logo{position:absolute;left:clamp(14px,1.4vw,20px);bottom:clamp(12px,1.2vw,18px);z-index:1;width:clamp(88px,7.2vw,112px)}
+.nfs-card__logo img{width:100%;height:auto;filter:brightness(0) invert(1);opacity:.96}
+.nfs-intro__media .nfs-card__logo{width:clamp(110px,9vw,150px);left:clamp(18px,2vw,28px);bottom:clamp(16px,2vw,26px)}
+.nfs-card__badge{position:absolute;top:14px;left:14px;z-index:1;padding:7px 12px;border-radius:999px;background:rgba(20,18,16,.72);border:1px solid rgba(217,183,126,.6);color:var(--nfs-gold-hi);font:600 10px/1 var(--nfs-sans);letter-spacing:.18em;text-transform:uppercase;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.nfs-card__eyebrow{display:block;margin-top:18px;font:600 10.5px/1.45 var(--nfs-sans);letter-spacing:.19em;text-transform:uppercase;color:var(--nfs-gold-txt)}
+.nfs .nfs-card__t{margin:9px 0 0;font-family:var(--nfs-serif);font-weight:400;font-size:clamp(16.5px,1.24vw,19.5px);line-height:1.36;letter-spacing:.045em;text-transform:uppercase;color:var(--nfs-ink);transition:color .35s var(--nfs-ease)}
+.nfs-card__a:hover .nfs-card__t{color:var(--nfs-gold-txt)}
+.nfs-card__date{display:block;margin-top:9px;font-size:12.5px;letter-spacing:.02em;color:var(--nfs-muted)}
+.nfs-card--concept .nfs-card__date{font-style:italic}
+.nfs-card.is-in{animation:nfs-in .6s var(--nfs-ease) both;animation-delay:var(--nfs-d,0ms)}
+@keyframes nfs-in{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:none}}
+@keyframes nfs-fade{from{opacity:0}to{opacity:1}}
+
+/* ---------- Foot ---------- */
+.nfs-foot{display:flex;flex-direction:column;align-items:center;gap:18px;padding:clamp(40px,4.4vw,64px) 0 clamp(56px,6vw,96px)}
+.nfs-more{--f:var(--nfs-ink);display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 34px;border:1.5px solid var(--nfs-ink);border-radius:2px;background:#fff linear-gradient(var(--f),var(--f)) no-repeat 0 0/0% 100%;color:var(--nfs-ink);font:600 12.5px/1 var(--nfs-sans);letter-spacing:.16em;text-transform:uppercase;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-size .35s var(--nfs-ease),color .35s var(--nfs-ease),transform .35s var(--nfs-ease)}
+.nfs-more:hover{background-size:100% 100%;color:#fff;transform:translateY(-2px)}
+.nfs-more[hidden]{display:none}
+.nfs-note{max-width:640px;margin:0;text-align:center;font-size:13px;line-height:1.6;color:var(--nfs-muted)}
+
+/* ---------- Closing band (neutral grey, not cream) ---------- */
+.nfs-close{background:var(--nfs-grey);border-top:1px solid var(--nfs-line)}
+.nfs-close__in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 64px;align-items:center;padding-block:clamp(44px,5vw,72px)}
+.nfs-close__text{margin:12px 0 0;max-width:56ch;color:var(--nfs-muted)}
+.nfs-close__links{display:grid;grid-template-columns:repeat(2,auto);gap:14px 40px;margin:0;padding:0;list-style:none}
+
+.nfs-pill:focus-visible,.nfs-card__a:focus-visible,.nfs-link:focus-visible,.nfs-more:focus-visible{outline:2px solid var(--nfs-gold);outline-offset:4px}
+
+@media (max-width:999px){
+  .nfs-intro{grid-template-columns:1fr}
+  .nfs-intro__media{aspect-ratio:4/3;max-height:none}
+  .nfs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nfs-close__in{grid-template-columns:1fr}
+}
+@media (max-width:639px){
+  .nfs-intro{padding-top:28px;gap:28px}
+  .nfs-bar{margin-inline:calc(var(--nfs-pad) * -1);padding-inline:0}
+  .nfs-pills{flex-wrap:nowrap;width:100%;overflow-x:auto;padding:2px var(--nfs-pad) 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .nfs-pills::-webkit-scrollbar{display:none}
+  .nfs-pill{flex:0 0 auto;min-height:42px;padding:0 16px}
+  .nfs-status{padding-inline:var(--nfs-pad)}
+  .nfs-grid{grid-template-columns:1fr;gap:38px}
+  .nfs-close__links{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .nfs-card.is-in{animation-name:nfs-fade;animation-duration:.3s}
+  .nfs-card__media img.nfs-card__img{transition-duration:.01s}
+  .nfs-card__a:hover .nfs-card__img{transform:none}
+}
+
+
+/* NF-RHYTHM-V1 (2026-09-12): the intro sits on a full width charcoal band so the page opens dark, like Ideas & Guides,
+   before the white story grid. Box shadow plus clip-path paints the band edge to edge without any horizontal scroll. */
+.nfs .nfs-intro{position:relative;background:#1c1c1c;box-shadow:0 0 0 100vmax #1c1c1c;clip-path:inset(0 -100vmax);color:#e9e6e2;margin-bottom:clamp(26px,3vw,40px)}
+.nfs .nfs-intro .nfs-h1{color:#fff}
+.nfs .nfs-intro .nfs-eyebrow{color:#d9b77e}
+.nfs .nfs-intro .nfs-lead,.nfs .nfs-intro .nfs-lead p{color:#cfcac4}
+.nfs .nfs-intro .nfs-meta{border-top-color:rgba(255,255,255,.16)}
+.nfs .nfs-intro .nfs-meta li{color:#cfcac4}
+.nfs .nfs-intro .nfs-meta strong{color:#fff}
+.nfs .nfs-intro .nfs-link{color:#fff;background-image:linear-gradient(#c9a36a,#c9a36a),linear-gradient(rgba(255,255,255,.35),rgba(255,255,255,.35))}
+.nfs .nfs-intro .nfs-intro__media{box-shadow:0 30px 60px -34px rgba(0,0,0,.9)}
+
+/* NF-RHYTHM-V1 guard (2026-09-12): assets/nf-search.css (NF-SEARCH-V2) also uses the class "nfs" for the search panel
+   and gives it max-height plus overflow auto, which cut this whole page down to one screen. Scoped to the story hub
+   section by its id so the search panel keeps its own rule. */
+section.nfs[id^="nfs-template"]{max-height:none;overflow:visible;overscroll-behavior:auto}
+
+/* NF-RHYTHM-V1 guard, part 2: nf-search.css also styles .nfs-grid, .nfs-card, .nfs-card__media and .nfs-foot for the
+   search panel. On phones it hid every story after the 4th (.nfs-card:nth-child(n+5)) and made "Load more" a sticky
+   white bar over the intro. These restore the story hub's own values, scoped to the hub section id. */
+section.nfs[id^="nfs-template"] .nfs-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,3.6vw,58px) clamp(16px,1.8vw,28px);align-items:stretch}
+section.nfs[id^="nfs-template"] .nfs-card:not([hidden]){display:block}
+section.nfs[id^="nfs-template"] .nfs-card__media{aspect-ratio:5/4;border-radius:6px;background:#1c1a18}
+section.nfs[id^="nfs-template"] .nfs-foot{position:static;bottom:auto;margin-bottom:0;background:none;border-top:0;display:flex;flex-direction:column;align-items:center;gap:18px;padding:clamp(40px,4.4vw,64px) 0 clamp(56px,6vw,96px)}
+@media(max-width:999px){section.nfs[id^="nfs-template"] .nfs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:639px){section.nfs[id^="nfs-template"] .nfs-grid{grid-template-columns:1fr;gap:38px}}

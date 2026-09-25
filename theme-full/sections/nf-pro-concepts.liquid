@@ -1,0 +1,178 @@
+{%- comment -%}
+  nf-pro-concepts (Professionals, 2026-09-11). Design concept projects.
+  Mode "portfolio": filter chips, cards and a detail dialog per concept (deep link #concept-<slug>).
+  Mode "related": a few cards that link to the portfolio detail.
+  Each concept is a block. Its fixture list is the block setting "products" (product_list), editable in the theme editor.
+  These are design concepts made by our team, not client projects. Keep the "Design concept" label and the note.
+{%- endcomment -%}
+{{- 'nf-pro.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'nf-pro.js' | asset_url }}" defer></script>
+{%- liquid
+  assign s = section.settings
+  assign quote_url = s.quote_url | default: '/pages/bulk-order-form'
+  assign portfolio_url = s.portfolio_url | default: '/pages/project-portfolio'
+  assign cats = 'hospitality,office,retail,homes,outdoor' | split: ','
+  assign cat_names = 'Hospitality,Office,Retail,Homes,Outdoor' | split: ','
+-%}
+<section class="nfp nfp--{{ s.bg }} nfp-sec"{% if s.anchor != blank %} id="{{ s.anchor | handle }}"{% endif %} data-nfp-concepts>
+  <div class="nfp-wrap">
+    <div class="nfp-head">
+      <div class="nfp-head__main">
+        {%- if s.eyebrow != blank -%}<p class="nfp-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {%- if s.heading != blank -%}<h2 class="nfp-h2">{{ s.heading | escape }}</h2>{%- endif -%}
+        {%- if s.text != blank -%}<p class="nfp-lead">{{ s.text | escape }}</p>{%- endif -%}
+        {%- if s.note != blank -%}<p class="nfp-note">{% render 'nf-pro-icon', name: 'info' %}<span>{{ s.note | escape }}</span></p>{%- endif -%}
+      </div>
+      {%- if s.mode == 'related' -%}<a class="nfp-btn nfp-btn--browse" href="{{ portfolio_url }}">{{ s.link_label | default: 'See all design concepts' | escape }} <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+    </div>
+
+    {%- if s.mode == 'portfolio' -%}
+      <div class="nfp-filters" role="group" aria-label="Filter concepts by project type">
+        <button type="button" class="nfp-chip" data-nfp-filter="all" aria-pressed="true">All <span class="nfp-chip__n">{{ section.blocks.size }}</span></button>
+        {%- for c in cats -%}
+          {%- assign n = 0 -%}
+          {%- for block in section.blocks -%}{%- if block.settings.category == c -%}{%- assign n = n | plus: 1 -%}{%- endif -%}{%- endfor -%}
+          {%- if n > 0 -%}<button type="button" class="nfp-chip" data-nfp-filter="{{ c }}" aria-pressed="false">{{ cat_names[forloop.index0] }} <span class="nfp-chip__n">{{ n }}</span></button>{%- endif -%}
+        {%- endfor -%}
+        <span class="nfp-sr" aria-live="polite" data-nfp-count></span>
+      </div>
+    {%- endif -%}
+
+    <div class="nfp-concepts">
+      {%- assign shown = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign b = block.settings
+          if s.mode == 'related' and s.filter != 'all' and b.category != s.filter
+            continue
+          endif
+          if s.mode == 'related' and shown >= s.limit
+            break
+          endif
+          assign shown = shown | plus: 1
+          assign ci = 0
+          for c in cats
+            if c == b.category
+              assign ci = forloop.index0
+            endif
+          endfor
+          assign cat_name = cat_names[ci]
+          assign did = 'concept-' | append: b.slug
+        -%}
+        <article class="nfp-concept" data-nfp-cat="{{ b.category }}" {{ block.shopify_attributes }}>
+          {%- if s.mode == 'portfolio' -%}
+            <a class="nfp-concept__open" href="#{{ did }}" data-nfp-open="{{ did }}" aria-haspopup="dialog">
+          {%- else -%}
+            <a class="nfp-concept__open" href="{{ portfolio_url }}#{{ did }}">
+          {%- endif -%}
+              <span class="nfp-media nfp-concept__img">
+                {%- render 'nf-pro-media', file: b.image_file, alt: b.title, fallback: b.fallback_collection, sizes: '(max-width: 640px) 100vw, 33vw', label: b.title -%}
+              </span>
+              <span class="nfp-label">Design concept</span>
+              <span class="nfp-concept__num" aria-hidden="true">{{ b.number }}</span>
+              <span class="nfp-sr">Open {{ b.title | escape }}</span>
+            </a>
+          <div class="nfp-concept__body">
+            <span class="nfp-concept__cat">{{ cat_name }}{% if b.space != blank %} &middot; {{ b.space | escape }}{% endif %}</span>
+            <h3 class="nfp-h3 nfp-concept__title">{{ b.title | escape }}</h3>
+            {%- if b.summary != blank -%}<p class="nfp-concept__sum">{{ b.summary | escape }}</p>{%- endif -%}
+            {%- if s.mode == 'portfolio' -%}
+              <button type="button" class="nfp-link" data-nfp-open="{{ did }}" aria-haspopup="dialog">View the concept <span class="nfp-arrow" aria-hidden="true">&rarr;</span></button>
+            {%- else -%}
+              <a class="nfp-link" href="{{ quote_url }}">Order this look in bulk <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- if s.mode == 'portfolio' -%}
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign b = block.settings
+        assign did = 'concept-' | append: b.slug
+        assign ci = 0
+        for c in cats
+          if c == b.category
+            assign ci = forloop.index0
+          endif
+        endfor
+        assign notes = b.notes | newline_to_br | split: '<br />'
+      -%}
+      <dialog class="nfp nfp-dialog" id="{{ did }}" aria-labelledby="{{ did }}-t">
+        <button type="button" class="nfp-iconbtn nfp-dialog__close" data-nfp-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <div class="nfp-dialog__grid">
+          <div class="nfp-media nfp-dialog__media">
+            {%- render 'nf-pro-media', file: b.image_file, alt: b.title, fallback: b.fallback_collection, sizes: '(max-width: 899px) 100vw, 540px', label: b.title -%}
+          </div>
+          <div class="nfp-dialog__body">
+            <div class="nfp-dialog__meta"><span class="nfp-label nfp-label--static">Design concept {{ b.number }}</span><span>{{ cat_names[ci] }}{% if b.space != blank %} &middot; {{ b.space | escape }}{% endif %}</span></div>
+            <h2 class="nfp-h2" id="{{ did }}-t">{{ b.title | escape }}</h2>
+            {%- if b.story != blank -%}<div class="nfp-dialog__story">{{ b.story }}</div>{%- endif -%}
+            {%- if b.notes != blank -%}
+              <h3 class="nfp-h3">Design notes</h3>
+              <ul class="nfp-ticks">
+                {%- for t in notes -%}{%- assign tt = t | strip -%}{%- if tt != blank -%}<li>{{ tt | escape }}</li>{%- endif -%}{%- endfor -%}
+              </ul>
+            {%- endif -%}
+            {%- if b.products != blank and b.products.size > 0 -%}
+              <h3 class="nfp-h3">Fixtures for this look</h3>
+              <div class="nfp-mini">
+                {%- for p in b.products -%}{%- render 'nf-pro-product-card', product: p, sizes: '160px' -%}{%- endfor -%}
+              </div>
+            {%- endif -%}
+            <div class="nfp-dialog__actions">
+              <a class="nfp-btn nfp-btn--primary" href="{{ quote_url }}">Start a bulk order</a>
+              {%- if b.shop_collection != blank -%}<a class="nfp-btn nfp-btn--browse" href="{{ b.shop_collection.url }}">Shop {{ b.shop_collection.title | escape }} <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+              <a class="nfp-link" href="{{ quote_url }}">Order this look in bulk <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>
+            </div>
+            <p class="nfp-note" style="margin-top:22px">{% render 'nf-pro-icon', name: 'info' %}<span>A design concept created by the Nora Furnish team to show what our lighting can do. It is not a client project.</span></p>
+          </div>
+        </div>
+      </dialog>
+    {%- endfor -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "NF Pro design concepts",
+  "class": "nfp-shell",
+  "settings": [
+    { "type": "select", "id": "mode", "label": "Mode", "default": "portfolio", "options": [ { "value": "portfolio", "label": "Portfolio with filters and details" }, { "value": "related", "label": "Related cards" } ] },
+    { "type": "select", "id": "filter", "label": "Related: project type", "default": "all", "options": [ { "value": "all", "label": "All" }, { "value": "hospitality", "label": "Hospitality" }, { "value": "office", "label": "Office" }, { "value": "retail", "label": "Retail" }, { "value": "homes", "label": "Homes" }, { "value": "outdoor", "label": "Outdoor" } ] },
+    { "type": "range", "id": "limit", "label": "Related: cards shown", "min": 1, "max": 8, "step": 1, "default": 3 },
+    { "type": "select", "id": "bg", "label": "Background", "default": "cream", "options": [ { "value": "cream", "label": "Cream" }, { "value": "sand", "label": "Sand" }, { "value": "white", "label": "White" } ] },
+    { "type": "text", "id": "anchor", "label": "Anchor id" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "note", "label": "Honesty note", "default": "These are design concepts created by our team to show what our lighting can do. They are not client projects." },
+    { "type": "text", "id": "link_label", "label": "Related: button label" },
+    { "type": "text", "id": "quote_url", "label": "Quote page", "default": "/pages/bulk-order-form" },
+    { "type": "text", "id": "portfolio_url", "label": "Portfolio page", "default": "/pages/project-portfolio" }
+  ],
+  "blocks": [
+    {
+      "type": "concept",
+      "name": "Concept",
+      "settings": [
+        { "type": "text", "id": "slug", "label": "Slug", "info": "Used in links, for example alder-lobby" },
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "select", "id": "category", "label": "Project type", "default": "hospitality", "options": [ { "value": "hospitality", "label": "Hospitality" }, { "value": "office", "label": "Office" }, { "value": "retail", "label": "Retail" }, { "value": "homes", "label": "Homes" }, { "value": "outdoor", "label": "Outdoor" } ] },
+        { "type": "text", "id": "space", "label": "Space" },
+        { "type": "textarea", "id": "summary", "label": "Summary" },
+        { "type": "richtext", "id": "story", "label": "Concept story" },
+        { "type": "textarea", "id": "notes", "label": "Design notes", "info": "One per line" },
+        { "type": "product_list", "id": "products", "label": "Fixtures used", "limit": 8 },
+        { "type": "collection", "id": "shop_collection", "label": "Shop the look collection" },
+        { "type": "text", "id": "image_file", "label": "Image file name in Files" },
+        { "type": "text", "id": "fallback_collection", "label": "Fallback collection handle" }
+      ]
+    }
+  ],
+  "max_blocks": 12
+}
+{% endschema %}

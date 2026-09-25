@@ -1,0 +1,36 @@
+{%- comment -%} NF previous / next post links (nf-blog). Renders nothing when there is no other post. {%- endcomment -%}
+{%- assign nf_prev = blog.previous_article -%}
+{%- assign nf_next = blog.next_article -%}
+{%- if nf_prev or nf_next -%}
+  <div class="nf-prevnext-wrap">
+    <nav class="nf-prevnext nf-article__col" aria-label="More posts">
+      {%- if nf_prev -%}
+        <a class="nf-prevnext__link nf-prevnext__link--prev" href="{{ nf_prev.url }}">
+          <span class="nf-prevnext__label">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Previous Post
+          </span>
+          <span class="nf-prevnext__title">{{ nf_prev.title | truncate: 80 }}</span>
+        </a>
+      {%- endif -%}
+      {%- if nf_next -%}
+        <a class="nf-prevnext__link nf-prevnext__link--next" href="{{ nf_next.url }}">
+          <span class="nf-prevnext__label">
+            Next Post
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="nf-prevnext__title">{{ nf_next.title | truncate: 80 }}</span>
+        </a>
+      {%- endif -%}
+    </nav>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF Prev and next posts",
+  "class": "shopify-section--nf-prevnext",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

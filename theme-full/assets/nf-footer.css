@@ -1,0 +1,599 @@
+/* =====================================================================================================
+   NF FOOTER (2026-09-10)
+   Loaded by sections/footer.liquid. Newsletter signup on the left, Policies / Info / Contact on the right,
+   logo centered in the bottom bar. Everything is scoped to .nf-footer so nothing else on the site moves.
+   ===================================================================================================== */
+
+.nf-footer {
+  --nf-ft-ink: #1c1c1c;
+  --nf-ft-soft: #3d3b38;
+  --nf-ft-muted: #6b6762;
+  --nf-ft-line: #e5e5e5;
+  --nf-ft-field: #cccccc;
+  --nf-ft-gutter: var(--container-gutter, 3rem);
+}
+
+.nf-footer .nf-footer__inner {
+  padding-inline: var(--nf-ft-gutter);
+}
+
+/* ---------- Grid ---------- */
+.nf-footer .nf-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--nf-cols, 3), minmax(0, 1fr));
+  column-gap: clamp(28px, 3.4vw, 72px);
+  row-gap: 40px;
+  align-items: start;
+}
+
+.nf-footer .nf-footer__grid--nl {
+  grid-template-columns: minmax(300px, 1.55fr) repeat(var(--nf-cols, 3), minmax(0, 1fr));
+}
+
+.nf-footer .nf-footer__col--newsletter {
+  order: -1;
+}
+
+/* ---------- Menu columns ---------- */
+.nf-footer .nf-footer-accordion {
+  border: 0;
+}
+
+.nf-footer .nf-footer-accordion__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+  cursor: default;
+}
+
+.nf-footer .nf-footer-accordion__summary::-webkit-details-marker {
+  display: none;
+}
+
+.nf-footer .nf-footer-accordion__summary::marker {
+  content: '';
+}
+
+.nf-footer .nf-footer-accordion__title {
+  margin: 0;
+}
+
+.nf-footer .nf-footer-accordion__chevron {
+  display: none;
+}
+
+.nf-footer .nf-footer-accordion__body {
+  margin-top: 18px;
+}
+
+.nf-footer .nf-footer__prose p {
+  margin-block: 0 4px;
+  line-height: 1.5;
+}
+
+.nf-footer .nf-footer__prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Newsletter ---------- */
+.nf-footer .nf-footer-nl {
+  max-width: 440px;
+}
+
+.nf-footer .nf-footer-nl__title {
+  margin: 0 0 10px;
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight, 400);
+  font-style: var(--heading-font-style, normal);
+  font-size: clamp(26px, 2vw, 32px);
+  line-height: 1.12;
+  letter-spacing: var(--heading-letter-spacing, 0);
+  text-transform: none;
+  color: var(--nf-ft-ink);
+}
+
+.nf-footer .nf-footer-nl__text {
+  margin: 0 0 24px;
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--nf-ft-soft);
+}
+
+.nf-footer .nf-footer-nl__text p {
+  margin: 0;
+}
+
+.nf-footer .nf-footer-nl__form {
+  margin: 0;
+  scroll-margin-top: 140px;
+}
+
+.nf-footer .nf-footer-nl__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nf-footer .nf-footer-nl__input {
+  flex: 1 1 170px;
+  min-width: 0;
+  height: 50px;
+  margin: 0;
+  padding: 0 22px;
+  border: 1px solid var(--nf-ft-field);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--nf-ft-ink);
+  font-family: var(--text-font-family);
+  font-size: 15px;
+  line-height: normal;
+  box-shadow: none;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.nf-footer .nf-footer-nl__input::placeholder {
+  color: #8b8680;
+  opacity: 1;
+}
+
+.nf-footer .nf-footer-nl__input:hover {
+  border-color: #a9a39b;
+}
+
+.nf-footer .nf-footer-nl__input:focus,
+.nf-footer .nf-footer-nl__input:focus-visible {
+  border-color: var(--nf-ft-ink);
+  box-shadow: 0 0 0 3px rgba(28, 28, 28, .08);
+}
+
+.nf-footer .nf-footer-nl__input[aria-invalid="true"] {
+  border-color: #b3261e;
+}
+
+.nf-footer .nf-footer-nl__button {
+  flex: 0 0 auto;
+  height: 50px;
+  margin: 0;
+  padding: 0 30px;
+  border: 1px solid var(--nf-ft-btn-bg, var(--nf-ft-ink));
+  border-radius: 999px;
+  background: var(--nf-ft-btn-bg, var(--nf-ft-ink));
+  color: var(--nf-ft-btn-fg, #fff);
+  font-family: var(--text-font-family);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.nf-footer .nf-footer-nl__button:hover {
+  background: transparent;
+  color: var(--nf-ft-btn-bg, var(--nf-ft-ink));
+}
+
+.nf-footer .nf-footer-nl__button:focus-visible {
+  outline: 2px solid var(--nf-ft-ink);
+  outline-offset: 3px;
+}
+
+.nf-footer .nf-footer-nl__status {
+  margin: 12px 0 0;
+  font-family: var(--text-font-family);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.nf-footer .nf-footer-nl__status--error {
+  color: #b3261e;
+}
+
+.nf-footer .nf-footer-nl__status--success {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 14px 20px;
+  border: 1px solid var(--nf-ft-line);
+  border-radius: 16px;
+  background: #faf9f7;
+  color: var(--nf-ft-ink);
+  outline: none;
+}
+
+.nf-footer .nf-footer-nl__check {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+}
+
+/* ---------- Round social buttons ---------- */
+.nf-footer .nf-footer-nl__social {
+  margin-top: 28px;
+}
+
+.nf-footer .nf-footer-nl__social .social-media {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.nf-footer .nf-footer-nl__social .social-media__item {
+  opacity: 1;
+}
+
+.nf-footer .nf-footer-nl__social .social-media__item a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--nf-ft-field);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--nf-ft-ink);
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.nf-footer .nf-footer-nl__social .social-media__item svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nf-footer .nf-footer-nl__social .social-media__item a:focus-visible {
+  outline: 2px solid var(--nf-ft-ink);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .nf-footer .nf-footer-nl__social .social-media__item a:hover {
+    border-color: var(--nf-ft-ink);
+    background: var(--nf-ft-ink);
+    color: #fff;
+  }
+}
+
+/* ---------- Bottom bar: logo + copyright ---------- */
+.nf-footer .nf-footer__bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: clamp(48px, 5vw, 72px);
+  padding-top: 32px;
+  border-top: 1px solid var(--nf-ft-line);
+  text-align: center;
+}
+
+.nf-footer .nf-footer__logo {
+  display: inline-flex;
+  line-height: 0;
+}
+
+.nf-footer .nf-footer__logo-img {
+  display: block;
+  width: min(var(--nf-logo-w, 170px), 60vw);
+  height: auto;
+}
+
+.nf-footer .nf-footer__copy {
+  margin: 0;
+  font-family: var(--text-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--nf-ft-muted);
+}
+
+.nf-footer .nf-footer__bar .payment-methods {
+  justify-content: center;
+}
+
+.nf-footer .nf-footer__bar-social {
+  margin-top: 0;
+}
+
+.nf-footer .nf-footer__bar-social .social-media {
+  justify-content: center;
+}
+
+/* ---------- Tablet: newsletter across the top, three menus below ---------- */
+@media screen and (min-width: 750px) and (max-width: 999px) {
+  .nf-footer .nf-footer__grid--nl {
+    grid-template-columns: repeat(var(--nf-cols, 3), minmax(0, 1fr));
+  }
+
+  .nf-footer .nf-footer__col--newsletter {
+    grid-column: 1 / -1;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--nf-ft-line);
+  }
+
+  .nf-footer .nf-footer-nl {
+    max-width: 520px;
+  }
+}
+
+/* ---------- Mobile: newsletter on top, menus as accordions, logo and copyright last ---------- */
+@media screen and (max-width: 749px) {
+  .footer.nf-footer {
+    padding-block-end: 0 !important;
+  }
+
+  .nf-footer .nf-footer__inner {
+    padding-inline: 0;
+  }
+
+  .nf-footer .nf-footer__grid,
+  .nf-footer .nf-footer__grid--nl {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nf-footer .nf-footer__col--newsletter {
+    padding: 0 20px 40px;
+    text-align: center;
+  }
+
+  .nf-footer .nf-footer__col--app {
+    padding: 0 20px 24px;
+  }
+
+  .nf-footer .nf-footer-nl {
+    max-width: 480px;
+    margin-inline: auto;
+  }
+
+  .nf-footer .nf-footer-nl__title {
+    font-size: 28px;
+  }
+
+  .nf-footer .nf-footer-nl__text {
+    margin-bottom: 20px;
+  }
+
+  .nf-footer .nf-footer-nl__row {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .nf-footer .nf-footer-nl__input,
+  .nf-footer .nf-footer-nl__button {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    height: 52px;
+  }
+
+  .nf-footer .nf-footer-nl__input {
+    font-size: 16px; /* 16px stops iOS zooming into the field */
+  }
+
+  .nf-footer .nf-footer-nl__status--success {
+    text-align: left;
+  }
+
+  .nf-footer .nf-footer-nl__social .social-media {
+    justify-content: center;
+  }
+
+  .nf-footer .nf-footer__col--menu {
+    padding-inline: 20px;
+    border-top: 1px solid var(--nf-ft-line);
+  }
+
+  .nf-footer .nf-footer-accordion__summary {
+    min-height: 56px;
+    padding-block: 16px;
+    cursor: pointer;
+  }
+
+  .nf-footer .nf-footer-accordion__chevron {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 4px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform .25s ease;
+  }
+
+  .nf-footer .nf-footer-accordion[open] .nf-footer-accordion__chevron {
+    transform: translateY(2px) rotate(-135deg);
+  }
+
+  .nf-footer .nf-footer-accordion__body {
+    margin-top: 0;
+    padding-bottom: 20px;
+  }
+
+  /* Extra bottom room so the fixed "GET 10% OFF" pill never sits on top of the copyright line. */
+  .nf-footer .nf-footer__bar {
+    margin-top: 0;
+    padding: 32px 20px 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-footer .nf-footer-nl__input,
+  .nf-footer .nf-footer-nl__button,
+  .nf-footer .nf-footer-nl__social .social-media__item a,
+  .nf-footer .nf-footer-accordion__chevron {
+    transition: none;
+  }
+}
+
+/* =====================================================================================================
+   OVERRIDE LAYER
+   nf-redesign.css and custom-nav.css style every footer h2, input, a and p with !important
+   (".shopify-section--footer .footer h2 { font-size: .72rem !important }" and similar).
+   These rules win back only the properties this footer depends on.
+   ===================================================================================================== */
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__title {
+  font-family: var(--heading-font-family) !important;
+  font-size: clamp(26px, 2vw, 32px) !important;
+  font-weight: var(--heading-font-weight, 400) !important;
+  letter-spacing: var(--heading-letter-spacing, 0) !important;
+  line-height: 1.12 !important;
+  text-transform: none !important;
+  color: var(--nf-ft-ink) !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__text,
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__text p {
+  color: var(--nf-ft-soft) !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__input {
+  border: 1px solid var(--nf-ft-field) !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  color: var(--nf-ft-ink) !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__input:hover {
+  border-color: #a9a39b !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__input:focus,
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__input:focus-visible {
+  border-color: var(--nf-ft-ink) !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__input[aria-invalid="true"] {
+  border-color: #b3261e !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__button {
+  border-color: var(--nf-ft-btn-bg, var(--nf-ft-ink)) !important;
+  border-radius: 999px !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__status {
+  font-family: var(--text-font-family) !important;
+  font-size: 14px !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__status--success {
+  border-color: var(--nf-ft-line) !important;
+  color: var(--nf-ft-ink) !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__status--error {
+  color: #b3261e !important;
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer-nl__social .social-media__item a {
+  border-color: var(--nf-ft-field) !important;
+  color: var(--nf-ft-ink) !important;
+}
+
+@media (hover: hover) {
+  .shopify-section--footer .nf-footer.footer .nf-footer-nl__social .social-media__item a:hover {
+    border-color: var(--nf-ft-ink) !important;
+    background: var(--nf-ft-ink) !important;
+    color: #fff !important;
+  }
+}
+
+.shopify-section--footer .nf-footer.footer .nf-footer__copy {
+  font-family: var(--text-font-family) !important;
+  font-size: 11px !important;
+  color: var(--nf-ft-muted) !important;
+}
+
+@media screen and (max-width: 749px) {
+  .shopify-section--footer .nf-footer.footer .nf-footer-nl__title {
+    font-size: 28px !important;
+  }
+}
+
+/* =====================================================================================================
+   NF-FOOTER-COLUMNS-MATCH (2026-09-10)
+   Every column under its heading now uses the Policies list rhythm. Policies and Info already render the
+   same markup (a v-stack gap-2.5 list of link-faded links: 16px, line height 1.65, 10px between rows).
+   The Contact Us text column follows the same size, line height, row gap and color, on desktop and in the
+   mobile accordion. Wording is unchanged; only its <br> spacers were removed in footer-group.json.
+   ===================================================================================================== */
+.shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+.shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose > * {
+  margin: 0 !important;
+}
+.shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose p {
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+  letter-spacing: .0075em !important;
+  font-weight: 420 !important;
+  color: #5f5c58 !important;
+}
+.shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose p:empty {
+  display: none !important;
+}
+.shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose strong {
+  font-weight: inherit !important;
+  color: inherit !important;
+}
+.shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose a:hover {
+  color: #1c1c1c !important;
+}
+
+
+/* nf-footer-even-gaps (2026-09-10): each link column is as wide as its own text and every column shares one gap,
+   so the space after Info matches the space after Policies. Newsletter column takes the remaining width. */
+@media (min-width: 1000px) {
+  .nf-footer .nf-footer__grid--nl { grid-template-columns: minmax(300px, 1fr) repeat(var(--nf-cols, 3), auto); column-gap: clamp(64px, 6.4vw, 132px); }
+  .nf-footer .nf-footer__grid--nl .nf-footer__col--text { max-width: 330px; }
+}
+
+
+/* ===== NF-FOOTER-RHYTHM-V1 (owner, 2026-09-11) : "the Info links are too spaced out" =====
+   Policies and Info stepped 36px per link (16px type on a 1.65 line plus a 10px row gap). Both lists
+   now step about 29px (a 1.55 line plus 4px), identical in both columns, and the Contact Us text
+   column keeps the same rhythm so the three columns still read as one set. The gap between the link
+   columns comes down from clamp(64px, 6.4vw, 132px) to clamp(60px, 5vw, 96px): 96px at 1920,
+   72px at 1440, 64px at 1280. */
+.shopify-section--footer .nf-footer.footer .nf-footer__col--menu ul.nf-footer-accordion__body {
+  gap: 4px !important;
+  row-gap: 4px !important;
+}
+.shopify-section--footer .nf-footer.footer .nf-footer__col--menu ul.nf-footer-accordion__body > li,
+.shopify-section--footer .nf-footer.footer .nf-footer__col--menu ul.nf-footer-accordion__body a {
+  line-height: 1.55 !important;
+}
+.shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose {
+  gap: 4px !important;
+}
+.shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose p {
+  line-height: 1.55 !important;
+}
+@media (min-width: 1000px) {
+  .nf-footer .nf-footer__grid--nl { column-gap: clamp(60px, 5vw, 96px); }
+}
+/* ===== /NF-FOOTER-RHYTHM-V1 ===== */

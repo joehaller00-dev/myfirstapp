@@ -1,0 +1,26 @@
+{%- comment -%}
+  NF-LIGHTCARDS-V1 / NF-OPTCARDS-V1 QA view. Not used by any template and has no preset, so it never shows on the
+  storefront or in the theme editor. Request it through the Section Rendering API on a product URL:
+    /products/<handle>?section_id=nf-lightcards-qa
+  It prints how snippets/nf-light-cards.liquid (classify, look) and snippets/nf-option-cards.liquid (classify ungated,
+  fin, pw) see each option and value, so the Liquid can be audited against the Python mirrors (scratchpad
+  newbuild/lightcards/classify.py and phase2_scan.py) for the whole catalog.
+{%- endcomment -%}
+{%- if product -%}
+<pre id="nf-lc-qa">
+{%- for nf_o in product.options_with_values %}
+OPT~~{{ nf_o.position }}~~{{ nf_o.name | escape }}~~{%- capture nf_c -%}{%- render 'nf-light-cards', part: 'classify', option: nf_o -%}{%- endcapture -%}{{ nf_c | strip }}~~{%- capture nf_oc -%}{%- render 'nf-option-cards', part: 'classify', product: product, option: nf_o, nf_ungated: true -%}{%- endcapture -%}{{ nf_oc | strip }}
+{%- for nf_v in nf_o.values %}
+VAL~~{{ nf_v.name | escape }}~~{%- capture nf_l -%}{%- render 'nf-light-cards', part: 'look', value: nf_v.name -%}{%- endcapture -%}{{ nf_l | strip | escape }}~~{%- capture nf_f -%}{%- render 'nf-option-cards', part: 'fin', value: nf_v.name -%}{%- endcapture -%}{{ nf_f | strip }}~~{%- capture nf_p -%}{%- render 'nf-option-cards', part: 'pw', value: nf_v.name -%}{%- endcapture -%}{{ nf_p | strip | escape }}
+{%- endfor -%}
+{%- endfor %}
+DETECT~~{%- capture nf_d -%}{%- render 'nf-light-cards', part: 'detect', product: product -%}{%- endcapture -%}{{ nf_d | strip }}~~{%- capture nf_d2 -%}{%- render 'nf-option-cards', part: 'detect', product: product -%}{%- endcapture -%}{{ nf_d2 | strip }}
+</pre>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF light cards QA",
+  "settings": []
+}
+{% endschema %}

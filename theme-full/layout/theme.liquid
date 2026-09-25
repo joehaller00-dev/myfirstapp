@@ -1,0 +1,1276 @@
+<!doctype html>
+
+<html lang="{{ request.locale.iso_code }}" dir="{% render 'direction' %}">
+  <meta name="google-site-verification" content="DqBFuBWA5R0hjZfLvXm7Lz7jy24KgfrD4HdsUa_zoJs" />
+  <head>
+    <style>/* NF-NO-SEARCH-FLASH 0921: the native header search is replaced by NF-SEARCH; hide it before any CSS loads */header-search{display:none!important}</style>
+    {%- comment -%} NF-CHEAPEST-V2 (2026-09-11): the nf-default-variant reload script that used to sit here is gone. Bare product URLs
+      now render the cheapest available variant server side (sections/main-product.liquid), so there is no second page load. {%- endcomment -%}
+
+    <script async src="https://pixel.wetracked.io/{{shop.permanent_domain}}/events.js"></script>
+    <!-- Google tag (gtag.js) -->
+{%- comment -%} NF-PERF-0911: gtag.js is now injected by the tag loader below the Meta Pixel block (first interaction or 4s). The dataLayer queue and both AW configs are unchanged and are sent when it loads. {%- endcomment -%}
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18133462360');
+  gtag('config', 'AW-18130838733');
+</script>
+    <meta charset="utf-8">
+    {%- comment -%} Cormorant Garamond link removed 2026-08-30: the font was requested from Google Fonts on every page load but had ZERO references in any stylesheet and never appeared in any computed style. {%- endcomment -%}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0">
+
+    {%- comment -%} NF-HERO-PRELOAD-V2 (2026-09-16): the homepage hero was requested ~4s late on phones (the parser only reached it after the head CSS). These three hints mirror the <picture> in the hero section exactly (same media, srcset and sizes), so the browser starts the one it will use at once and never a second copy. If the homepage hero photo is changed, change the filename here too (or delete this block). {%- endcomment -%}
+    {%- if request.page_type == 'index' -%}
+      {%- assign nf_hero = images['nf-hero-patio-evening.jpg'] -%}
+      {%- if nf_hero != blank -%}
+        {%- capture nf_hs1 -%}{%- for w in (0..2) -%}{%- assign nw = '360,450,550' | split: ',' | slice: w | first | plus: 0 -%}{{ nf_hero | image_url: width: nw, crop: 'region', crop_width: 1700, crop_height: 1786, crop_left: 930, crop_top: 0 }} {{ nw }}w{% unless forloop.last %}, {% endunless %}{%- endfor -%}{%- endcapture -%}
+        {%- capture nf_hs2 -%}{%- for w in (0..3) -%}{%- assign nw = '400,600,800,1000' | split: ',' | slice: w | first | plus: 0 -%}{{ nf_hero | image_url: width: nw }} {{ nw }}w{% unless forloop.last %}, {% endunless %}{%- endfor -%}{%- endcapture -%}
+        {%- capture nf_hs3 -%}{%- for w in (0..19) -%}{%- assign nw = '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' | split: ',' | slice: w | first | plus: 0 -%}{{ nf_hero | image_url: width: nw }} {{ nw }}w{% unless forloop.last %}, {% endunless %}{%- endfor -%}{%- endcapture -%}
+        <link rel="preload" as="image" fetchpriority="high" media="(max-width: 499px)" imagesrcset="{{ nf_hs1 }}" imagesizes="460px">
+        <link rel="preload" as="image" fetchpriority="high" media="(min-width: 500px) and (max-width: 699px)" imagesrcset="{{ nf_hs2 }}" imagesizes="100vw">
+        <link rel="preload" as="image" fetchpriority="high" media="(min-width: 700px)" imagesrcset="{{ nf_hs3 }}" imagesizes="100vw">
+      {%- endif -%}
+    {%- endif -%}
+    <meta name="p:domain_verify" content="39ed78a4b9b8c28158601782b1d9472a"/>
+    <title>
+      {% if page_title == blank -%}
+        {{- shop.name -}}
+      {%- else -%}
+        {{- page_title -}}
+        {%- if current_page != 1 %} | {{ 'general.page' | t: page: current_page }}{% endif -%}
+      {%- endif %}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 96 }}">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180 }}">
+    {%- endif -%}
+
+    {%- comment -%}Few prefetch to increase performance on commonly used third-parties{%- endcomment -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
+    {%- comment -%} NF-PERF-0911: heading_font (Roboto Serif) preload removed. Headings render in Poynter Oldstyle (--heading-font-family is overridden), so this ~220KB file was fetched at top priority on every page and never used. Its @font-face stays, so anything that does use it still loads it on demand. {%- endcomment -%}
+
+    {%- unless settings.text_font.system? -%}
+      <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
+    {%- endunless -%}
+
+    {%- comment -%} NF-SPEED-0914: Meta Pixel 1312346300797035 removed (owner 2026-09-14: no Meta or Facebook ads, Google Ads only), so fbevents.js
+      no longer loads. fbq stays as a harmless no-op so the AddToCart and Purchase calls further down never throw. {%- endcomment -%}
+    <script>window.fbq = window.fbq || function () {};</script>
+    <script>
+      /* NF-PERF-0911 tag loader. The Google tag and Meta Pixel command queues (dataLayer, fbq) are created above,
+         so every call (both AW configs, PageView, AddToCart, Purchase) is queued and sent the moment the library
+         arrives. The libraries load on the first interaction or after 4s, so ~1s of third party script parsing no
+         longer lands on top of first paint on low end phones. GSF custom pixel conversions are not affected. */
+      (function(){
+        var done = false, EV = ['pointerdown','keydown','touchstart','scroll','wheel'];
+        function add(src){ var t = document.createElement('script'); t.async = true; t.src = src; document.head.appendChild(t); }
+        function load(){
+          if (done) return; done = true;
+          EV.forEach(function(e){ window.removeEventListener(e, load, true); });
+          add('https://www.googletagmanager.com/gtag/js?id=AW-18133462360');
+        }
+        EV.forEach(function(e){ window.addEventListener(e, load, {capture:true, passive:true}); });
+        /* NF-SPEED-0913: without an interaction, wait until the page has finished loading plus a quiet moment instead of a flat 4s, so the tag libraries never share a slow phone connection with the first screen. Hard ceiling 12s. Every queued call (both AW configs, PageView, AddToCart) is still sent when they arrive. */
+        function nfIdle(){ (window.requestIdleCallback || function(f){ setTimeout(f, 1); })(load, { timeout: 2000 }); }
+        if (document.readyState === 'complete') { setTimeout(nfIdle, 1000); } else { window.addEventListener('load', function(){ setTimeout(nfIdle, 1000); }); }
+        setTimeout(load, 12000);
+      })();
+    </script>
+
+    {%- render 'social-meta-tags' -%}
+    {%- comment -%} NF-SPEED-0916: microdata-schema moved to the end of <body> (144KB of JSON-LD on big products sat at the top of <head> and delayed first paint). {%- endcomment -%}
+    {%- render 'css-variables' -%}
+    {%- render 'js-variables' -%}
+
+    {%- if request.page_type == 'gift_card' -%}
+      <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer></script>
+    {%- endif -%}
+
+    <script type="importmap">
+      {%- comment -%}On Safari 16.3 and lower, a polyfill is used to load importmap{%- endcomment -%}
+      {
+        "imports": {
+          "vendor": "{{ 'vendor.min.js' | asset_url }}",
+          "theme": "{{ 'theme.js' | asset_url }}",
+          "photoswipe": "{{ 'photoswipe.min.js' | asset_url }}"
+        }
+      }
+    </script>
+
+    <script type="module" src="{{ 'vendor.min.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'theme.js' | asset_url }}"></script>
+
+    {{ content_for_header }}
+
+    {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
+
+    {%- if request.page_type == 'customers/order' -%}
+      <script>
+        fbq('track', 'Purchase');
+      </script>
+    {%- endif -%}
+
+    {%- if request.page_type == 'product' -%}
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var addToCartBtn = document.querySelector('[data-add-to-cart], [name="add"], button[type="submit"].product-form__submit, .product-form__cart-submit');
+          if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', function() {
+              fbq('track', 'AddToCart');
+            });
+          }
+        });
+      </script>
+    {%- endif -%}
+  
+  {{ "custom-nav.css" | asset_url | stylesheet_tag }}
+  {%- comment -%} NF-SPEED-A-0916: on the homepage custom-nav.js (160KB, mostly collection and product page code) loads once the page has loaded or on the first tap or key, so it no longer competes with the hero. Every init in it checks document.readyState, so it runs the same when it arrives late. {%- endcomment -%}
+  {%- if request.page_type == 'index' -%}
+  <script>(function(){var d=0;function go(){if(d)return;d=1;var s=document.createElement("script");s.src="{{ "custom-nav.js" | asset_url }}";document.head.appendChild(s);}if(document.readyState==="complete"){go();}else{window.addEventListener("load",go,{once:true});["pointerdown","touchstart","keydown"].forEach(function(e){window.addEventListener(e,go,{once:true,passive:true,capture:true});});}})();</script>
+  {%- else -%}
+  <script src="{{ "custom-nav.js" | asset_url }}" defer></script>
+  {%- endif -%}
+  <style id="nora-overflow-fix">
+    /* Fix: theme sets overflow-x:hidden on html+body which breaks position:sticky */
+    html, body { overflow-x: clip !important; }
+  </style>
+  <style id="nora-bestsellers-banner">
+    /* Best Sellers banner: inset with gaps */
+    .shopify-section--main-product ~ .shopify-section--image-with-text-overlay {
+      padding-left: 60px !important;
+      padding-right: 60px !important;
+    }
+    .shopify-section--main-product ~ .shopify-section--image-with-text-overlay .content-over-media {
+      background-color: #1c1c1c !important;
+      border-radius: 12px !important;
+      min-height: 580px !important;
+      overflow: hidden !important;
+    }
+    /* Push content below the sticky add-to-cart bar, match nf-hero-content spacing */
+    .shopify-section--main-product ~ .shopify-section--image-with-text-overlay .content {
+      padding: 60px 40px 32px !important;
+      gap: 14px !important;
+      row-gap: 14px !important;
+      align-items: flex-start !important;
+    }
+    /* Center button under heading */
+    .shopify-section--main-product ~ .shopify-section--image-with-text-overlay .button,
+    .shopify-section--main-product ~ .shopify-section--image-with-text-overlay .button--solid {
+      align-self: center !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    /* Heading: match nf-hero-heading */
+    .shopify-section--main-product ~ .shopify-section--image-with-text-overlay .content p,
+    .shopify-section--main-product ~ .shopify-section--image-with-text-overlay .content h2 {
+      font-size: clamp(26px, 2.5vw, 36.4px) !important;
+      font-weight: 300 !important;
+      letter-spacing: 0.5px !important;
+      line-height: 1.4 !important;
+      margin: 0 !important;
+    }
+    /* Button: match nf-hero-btn */
+    .shopify-section--main-product ~ .shopify-section--image-with-text-overlay a.button,
+    .shopify-section--main-product ~ .shopify-section--image-with-text-overlay .button {
+      font-size: 11px !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      padding: 13px 22px !important;
+      font-weight: 500 !important;
+      min-height: 0 !important;
+      line-height: 1 !important;
+      margin-top: 4px !important;
+    }
+  </style>
+
+
+  <style id="nora-related-products-spacing">
+    /* You May Also Like - reduce all spacing */
+    .shopify-section--main-product .section-spacing {
+      padding-block-end: 8px !important;
+    }
+    .shopify-section--related-products .section-spacing {
+      padding-block-start: 8px !important;
+      padding-block-end: 8px !important;
+    }
+    .shopify-section--related-products .section-stack {
+      gap: 10px !important;
+    }
+    /* Reduce letter spacing on You May Also Like heading */
+    .shopify-section--related-products .section-header h2,
+    .shopify-section--related-products .section-header .h2 {
+      letter-spacing: 0.5px !important;
+    }
+  </style>
+
+  <style>
+    /* === Nora Furnish Cart Drawer === */
+    #cart-drawer p.h4[slot="header"]{ font-family:var(--heading-font-family); text-transform:uppercase; letter-spacing:0.14em; font-size:15px; font-weight:400; }
+    /* Frame product photos so white/transparent images don't vanish */
+    #cart-drawer .line-item__media{ background:#f6f4f1 !important; border:1px solid #ece8e3 !important; border-radius:10px !important; object-fit:contain !important; }
+    #cart-drawer .line-item{ padding-bottom:18px; border-bottom:1px solid #ece8e3; }
+    #cart-drawer .line-item-info a.h6{ font-family:var(--heading-font-family); font-size:13.5px; line-height:1.4; letter-spacing:0.01em; }
+    #cart-drawer .cart-drawer__footer{ border-top:1px solid #e4e0db; padding-top:4px; }
+    #cart-drawer .cart-drawer__footer .text-subdued{ font-size:11px; letter-spacing:0.02em; }
+    /* Checkout button: Nora Furnish charcoal, authoritative */
+    #cart-drawer .cart-drawer__footer .button, #cart-drawer .button-group .button{
+      background:#1c1c1c !important; background-image:none !important; color:#ffffff !important; -webkit-text-fill-color:#ffffff !important;
+      border:1px solid #1c1c1c !important; border-radius:0 !important; text-transform:uppercase !important; letter-spacing:0.14em !important;
+      font-size:13px !important; font-weight:500 !important; padding:18px 22px !important; width:100% !important; min-height:0 !important;
+    }
+    #cart-drawer .cart-drawer__footer .button *, #cart-drawer .button-group .button *{ color:#ffffff !important; -webkit-text-fill-color:#ffffff !important; }
+    #cart-drawer .cart-drawer__footer .button:hover, #cart-drawer .button-group .button:hover{ background:#2b2520 !important; border-color:#2b2520 !important; }
+    /* Trust / authority badges above checkout */
+    #cart-drawer .nf-cart-trust{ display:flex; justify-content:space-between; align-items:flex-start; gap:8px; padding:16px 0; margin:6px 0 4px; border-top:1px solid #ece8e3; }
+    #cart-drawer .nf-cart-trust__item{ display:flex; flex-direction:column; align-items:center; gap:6px; flex:1; text-align:center; color:#1c1c1c; }
+    #cart-drawer .nf-cart-trust__item svg{ width:20px; height:20px; }
+    #cart-drawer .nf-cart-trust__item span{ font-size:9.5px; letter-spacing:0.07em; text-transform:uppercase; color:#5c5047; line-height:1.25; }
+    /* Reassurance line */
+    #cart-drawer .nf-cart-reassure{ display:flex; align-items:center; justify-content:center; gap:7px; font-size:11px; letter-spacing:0.04em; color:#1c1c1c; padding:2px 0 0; }
+    #cart-drawer .cart-drawer__footer p.nf-cart-note{ display:block; width:100%; flex:0 0 100%; text-align:center; font-size:11px; letter-spacing:0.04em; color:#1c1c1c; margin:10px 0 0; padding:0; }
+    .nf-cart-reassure svg{ width:14px; height:14px; flex:0 0 auto; }
+    /* Empty state */
+    #cart-drawer .nf-cart-empty{ display:flex; flex-direction:column; align-items:center; text-align:center; padding:8px 24px; gap:9px; }
+    #cart-drawer .nf-cart-empty__icon{ width:42px; height:42px; color:#1c1c1c; opacity:0.5; margin-bottom:2px; }
+    #cart-drawer .nf-cart-empty__title{ font-family:var(--heading-font-family); font-size:20px; letter-spacing:0.05em; margin:0; }
+    #cart-drawer .nf-cart-empty__text{ font-size:13px; color:#5c5047; max-width:250px; line-height:1.5; margin:0; }
+    #cart-drawer .nf-cart-empty__btn{ display:inline-block; margin-top:8px; background:#1c1c1c; color:#fff; text-decoration:none; text-transform:uppercase; letter-spacing:0.14em; font-size:12px; font-weight:500; padding:14px 30px; }
+    #cart-drawer .nf-cart-empty__btn:hover{ background:#2b2520; }
+    #cart-drawer .nf-cart-trust--empty{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:20px; padding-top:16px; border-top:1px solid #ece8e3; width:100%; }
+    #cart-drawer .nf-cart-trust--empty span{ font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:#5c5047; }
+  </style>
+
+  <style id="nora-mobile-tap-targets">
+    /* 44px minimum touch targets on mobile. Added 2026-08-04. */
+    @media (max-width: 768px) {
+      /* variant option buttons (were 30px) */
+      .block-swatch {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      /* quantity selector on product page and cart (input was 26px, buttons 38px) */
+      .quantity-selector { min-height: 44px; }
+      .quantity-selector__button { min-width: 44px; min-height: 44px; }
+      .quantity-selector__input { min-height: 44px; }
+      /* small circle buttons (were 34-36px) */
+      .product-gallery__zoom-button,
+      .header-search-panel__close { min-width: 44px; min-height: 44px; }
+    }
+  </style>
+{% unless template == 'index' %}<style>.nf-footer-phone, p:has(> a[href^="tel:"]) {display:none !important}</style>{% endunless %}
+    <style id="nf-inline-fixes">
+    .discount-badge{ display:none !important; }
+    .badge--on-sale{ display:none !important; }
+    .nf-buy2-hint{ display:block; text-align:center; font-size:13px; line-height:1.45; background:#f7f4ef; color:#2b2520; border:1px solid #e4ddd3; border-radius:8px; padding:10px 14px; margin:10px 0; }
+    .nf-buy2-hint--ok{ background:#eef6ee; border-color:#cfe6cf; color:#1e4620; }
+    .text-with-icons--stacked.text-with-icons--stacked.text-with-icons--stacked{ display:flex !important; flex-direction:row !important; flex-wrap:wrap !important; justify-content:center !important; align-items:flex-start !important; gap:36px 48px !important; padding:8px 0 !important; column-gap:48px !important; row-gap:36px !important; width:100% !important; max-width:1080px !important; margin-inline:auto !important; grid-template-columns:none !important; }
+    .text-with-icons--stacked.text-with-icons--stacked.text-with-icons--stacked > .text-with-icons__item{ flex:1 1 240px !important; min-width:220px !important; max-width:330px !important; width:auto !important; }
+    .text-with-icons--stacked.text-with-icons--stacked.text-with-icons--stacked .text-with-icons__item > .v-stack{ width:100% !important; justify-items:center !important; }
+    .text-with-icons--stacked.text-with-icons--stacked.text-with-icons--stacked .h6{ font-size:16px !important; letter-spacing:0.08em !important; line-height:1.4 !important; text-align:center !important; white-space:normal; }
+    .text-with-icons--stacked.text-with-icons--stacked.text-with-icons--stacked .prose{ font-size:13px !important; line-height:1.5 !important; max-width:30ch; margin-inline:auto; text-align:center !important; }
+    @media (max-width:700px){ .text-with-icons--stacked.text-with-icons--stacked.text-with-icons--stacked{ gap:28px !important; } .text-with-icons--stacked.text-with-icons--stacked.text-with-icons--stacked > .text-with-icons__item{ flex-basis:100% !important; max-width:none !important; } }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {%- comment -%} NF-PERF-0911: non-blocking. As a plain stylesheet this cross-origin file held up the parser at the next inline script. display=swap already applies. {%- endcomment -%}
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Lora:wght@400;500&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Lora:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  {{ "nf-redesign.css" | asset_url | stylesheet_tag }}
+  {%- comment -%} NF-CHROME-V1 (2026-09-12): promise band, evening footer and lamp, charcoal popup, 10% pill, quick polish. {%- endcomment -%}
+  {{ "nf-chrome.css" | asset_url | stylesheet_tag }}
+  <script src="{{ 'nf-chrome.js' | asset_url }}" defer></script>
+  {%- comment -%} NF-CART-V2 (2026-09-12): cart drawer pairs, gold Buy 2 progress line, lamp empty state, cart page band, product sticky bar. {%- endcomment -%}
+  {%- comment -%} NF-SPEED-A-0916: on the homepage nf-cart-v2.css only styles the closed cart drawer, so it loads without holding up first paint. Sections far below the first homepage screen skip layout and paint until they come near the viewport (content-visibility); they look the same once scrolled to. {%- endcomment -%}
+  {%- if request.page_type == 'index' -%}
+  <link rel="stylesheet" href="{{ 'nf-cart-v2.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'nf-cart-v2.css' | asset_url | stylesheet_tag }}</noscript>
+  <style>#main > .shopify-section--nf-pieces ~ .shopify-section:not(.shopify-section--footer){content-visibility:auto;contain-intrinsic-size:auto 900px}</style>
+  <script>/* NF-SPEED-A-0916: homepage section scripts far below the first screen (dusk slider, catalog promo, journal) load when their section comes within 1500px, or 2.5s after the page has loaded, instead of competing with the hero. */window.nfLazyJs=function(src,sel){var done=0;function load(){if(done)return;done=1;var s=document.createElement('script');s.src=src;document.head.appendChild(s);}function late(){setTimeout(function(){(window.requestIdleCallback||setTimeout)(load,{timeout:2500});},2500);}function arm(){var el=document.querySelector(sel);if(el&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){io.disconnect();load();return;}}},{rootMargin:'1500px 0px'});io.observe(el);}if(document.readyState==='complete'){late();}else{window.addEventListener('load',late,{once:true});}}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',arm,{once:true});}else{arm();}};</script>
+  {%- else -%}
+  {{ 'nf-cart-v2.css' | asset_url | stylesheet_tag }}
+  {%- endif -%}
+  <script src="{{ 'nf-cart-v2.js' | asset_url }}" defer></script>
+
+  {%- comment -%} NF-FOUC-V1: paint the curtain from the first frame.
+    #nf-curtain sits after </main>, so the browser streams and paints the whole
+    header, announcement bar and hero before it ever reaches that element. That
+    is the second of un-decorated store the transition then covers up. This head
+    level sheet covers the viewport at first paint and hands off to the real
+    curtain, which sits one z-index above it. {%- endcomment -%}
+  <style>
+    html.nf-preload::before{
+      content:""; position:fixed; inset:0; background:#ffffff;
+      z-index:99998; pointer-events:none;
+    }
+    html.nf-preload body{ overflow:hidden !important; }
+    /* NF-PERF3-0911: when the 2.5s cap (not DOMContentLoaded) revealed the page, a curtain parsed later must never paint over it */
+    html.nf-sheet-capped #nf-curtain:not([style]){ display:none; }
+    /* NF-SPEED-0913 (curtain v2): when no curtain is on screen yet the sheet fades out instead of cutting, and a curtain parsed after the page was revealed never shows. */
+    html.nf-preload::before{ transition: opacity .25s ease; }
+    html.nf-sheet-out::before{ opacity:0; }
+    html.nf-lifted #nf-curtain:not([style]){ display:none; }
+    /* NF-SPEED-0913 (curtain v2): curtain styles moved here from the end of <body>, so the curtain is styled at first paint. */
+    #nf-curtain {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      will-change: transform;
+    }
+    /* NF-PERF3-0911: CSS-only failsafe. If the curtain script never runs, the first-paint curtain stops covering the page and taking clicks after 3s. It only applies while the curtain has no inline style, so click transitions are unaffected. A lifting curtain never takes clicks. */
+    #nf-curtain:not([style]) { animation: nf-curtain-failsafe 1ms linear 3s forwards; }
+    @keyframes nf-curtain-failsafe { to { visibility: hidden; pointer-events: none; } }
+    #nf-curtain.lift { pointer-events: none; }
+    #nf-curtain.lift { transition: transform 0.42s cubic-bezier(0.76, 0, 0.24, 1);
+      transform: translateY(-100%);
+    }
+    #nf-favicon-img {
+      width: 280px;
+      height: 280px;
+      object-fit: contain;
+      will-change: transform, opacity;
+      opacity: 0;
+      transform: scale(0.88);
+    }
+    #nf-favicon-img.snap, html.nf-cur-in #nf-favicon-img {
+      animation: nf-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes nf-in {
+      0%   { opacity: 0; transform: scale(0.88); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    #nf-wordmark-img {
+      width: 180px;
+      object-fit: contain;
+      will-change: transform, opacity;
+      opacity: 0;
+      transform: translateY(10px);
+      margin-top: -30px;
+      margin-right: 30px;
+    }
+    #nf-wordmark-img.fade, html.nf-cur-in #nf-wordmark-img {
+      animation: nf-wm-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.3s;
+    }
+    @keyframes nf-wm-in {
+      0%   { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 0.9; transform: translateY(0); }
+    }
+    /* NF-SPEED-0913: internal navigation. No curtain; the browser keeps the old page on screen and cross fades to the new one. */
+    html.nf-soft #nf-curtain{ display:none !important; }
+    /* NF-SPEED-0913: the search panel's own rules sit at the very end of the page, so while the page streams it showed at full height inside the header and the whole page jumped up 41px when they arrived (desktop CLS 0.48). Collapse it from the first paint; the later rules still take over. */
+    .header-search-panel{ position:fixed; left:0; right:0; max-height:0; overflow:hidden; }
+    @view-transition { navigation: none; /* NF 2026-09-22: owner asked for no click-to-navigate animation */ }
+    ::view-transition-old(root), ::view-transition-new(root){ animation-duration: .2s; }
+    @media (prefers-reduced-motion: reduce){ ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*){ animation: none !important; } }
+  </style>
+  <link rel="expect" href="#main" blocking="render">
+  <script>
+    (function(){
+      var d = document.documentElement;
+      /* NF-SPEED-0913: moving between our own pages never shows the white sheet or the curtain. The old page stays on screen until the new one can paint (cross document view transition), so there is no blank white moment. The sheet is kept only for a fresh landing. */
+      try { var nfNav = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || {}; var nfRef = document.referrer; /* NF-RELOAD-SOFT (2026-09-14, owner: reload felt slow and showed the page half ready): a reload or back/forward is not a fresh landing, so no sheet and no logo curtain. */ if (nfNav.type === "reload" || nfNav.type === "back_forward" || (nfRef && new URL(nfRef).host === location.host)) { d.classList.add("nf-soft"); return; } } catch (e) {}
+      /* NF-SPEED-0916 (owner 09-16: page must load at least 40% faster, "it could be the animations"): a fresh landing no longer waits behind the white sheet, the logo curtain or the #main render block. The page paints while it streams. Internal clicks keep the #main block so their cross fade still works. To restore the landing curtain, delete this line. */
+      d.classList.add("nf-soft"); try { var nfEx = document.querySelector('link[rel="expect"]'); if (nfEx) nfEx.remove(); } catch (e) {} return;
+      d.classList.add("nf-preload", "nf-cur-in");
+      /* NF-SPEED-0913 (curtain v2): the logo curtain now sits at the top of <body> (styles in this head, entrance driven by CSS
+         through html.nf-cur-in), so the brand moment shows from the first paint while the page loads underneath. It lifts the
+         moment the page is ready: when the hero or LCP image (img[fetchpriority=high]) has decoded, or on pages without one at
+         DOMContentLoaded + 250ms, and never later than 1.2s from navigation start (it used to wait for DOMContentLoaded, cap 2.5s,
+         which held pages that had already painted). The cap is checked by a timer and on every parser chunk, because a busy parser
+         starves timers on slow phones. The curtain slides up and the sheet goes at the same instant underneath it, so the page,
+         not white, is revealed. The logo keeps at least 90ms on screen. */
+      var CAP = 1200, done = false, hero = null, mo = null, curAt = 0;
+      function lift(capped){
+        if (done) return; done = true;
+        if (mo) mo.disconnect();
+        var c = document.getElementById("nf-curtain");
+        if (c && c.style.display !== "none" && getComputedStyle(c).display !== "none") {
+          var wait = curAt ? Math.max(0, 90 - (performance.now() - curAt)) : 0;
+          setTimeout(function(){ d.classList.remove("nf-preload"); c.classList.add("lift"); setTimeout(function(){ c.style.display = "none"; }, 460); }, wait);
+          return;
+        }
+        if (capped) d.classList.add("nf-sheet-capped");
+        d.classList.add("nf-lifted", "nf-sheet-out");
+        setTimeout(function(){ d.classList.remove("nf-preload", "nf-sheet-out"); }, 260);
+      }
+      window.__nfPageReady = lift;
+      function watchHero(img){
+        hero = img;
+        var ok = function(){ lift(false); };
+        var dec = function(){ if (img.decode) { img.decode().then(ok, ok); } else { ok(); } };
+        if (img.complete) { dec(); } else { img.addEventListener("load", dec, { once: true }); img.addEventListener("error", ok, { once: true }); }
+      }
+      function scan(){
+        if (!curAt && document.getElementById("nf-curtain")) curAt = performance.now();
+        if (!hero) { var h = document.querySelector('img[fetchpriority="high"]'); if (h) watchHero(h); }
+      }
+      setTimeout(function(){ lift(true); }, Math.max(0, CAP - performance.now()));
+      if (window.MutationObserver) {
+        mo = new MutationObserver(function(){ if (performance.now() > CAP) { lift(true); return; } scan(); });
+        mo.observe(d, { childList: true, subtree: true });
+      }
+      document.addEventListener("DOMContentLoaded", function(){ scan(); if (!hero) setTimeout(function(){ lift(false); }, 250); }, { once: true });
+    })();
+  </script>
+  {%- comment -%} NF-PERF3-0911: visitors without JavaScript never get the curtain (the sheet is script-only already). {%- endcomment -%}
+  <noscript><style>#nf-curtain{display:none !important}</style></noscript>
+  {%- comment -%} NF-SPEED-V1: Chrome prefetches a same-site page's HTML when the pointer rests on its link (~200ms), so the click lands on a page that is already downloaded. Prefetch only, never prerender, so no pixel or analytics script runs early. Cart, checkout, account and query-string URLs are excluded. {%- endcomment -%}
+  <script type="speculationrules">
+  {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/cart","/cart/*","/checkout","/checkouts/*","/account","/account/*","/*\\?*"]}},{"not":{"selector_matches":"[data-no-instant], [target=_blank], [download]"}}]},"eagerness":"moderate"}]}
+  </script>
+
+
+
+{%- comment -%} NF-COLGUTTER-V1 centred collection column, kept in Liquid because asset rebuilds lag {%- endcomment -%}
+<style>
+@media (min-width:1200px){
+  .shopify-section--main-collection .container{
+    max-width:min(2400px, 82%) !important;
+    margin-left:auto !important; margin-right:auto !important;
+  }
+}
+@media (min-width:1700px){
+  .shopify-section--main-collection .container{ max-width:min(2400px, 82%) !important; }
+}
+</style>
+
+{%- comment -%} NF-TOTOP-FIX is-on never restored display {%- endcomment -%}
+<style>.nf-totop.is-on{display:flex !important}</style>
+
+{%- comment -%} NF-COLHERO-V3 taller hero, type left over the dark side, brand serif, tile strip hard left {%- endcomment -%}
+<style>
+.nf-subcategory-hero{
+  position:relative !important; display:block !important; width:auto !important;
+  max-width:min(2400px, 82%) !important; margin:0 auto !important;
+  border-bottom:0 !important; background:#1c1c1c !important;
+  aspect-ratio:2.0 !important; min-height:360px !important; border-radius:4px; overflow:hidden;
+}
+.nf-subcategory-hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to right,rgba(0,0,0,.42) 0%,rgba(0,0,0,.20) 45%,rgba(0,0,0,0) 72%)}
+.nf-subcategory-hero__img{position:absolute !important;inset:0 !important;z-index:0;width:100% !important;height:100% !important;margin:0 !important;flex:none !important}
+.nf-subcategory-hero__img img{width:100% !important;height:100% !important;object-fit:cover !important}
+.nf-subcategory-hero__title{
+  position:relative !important; z-index:2; flex:none !important; width:100% !important;
+  display:flex !important; flex-direction:column !important;
+  align-items:flex-start !important; justify-content:center !important;
+  min-height:100% !important; height:100% !important; position:absolute !important; inset:0 !important;
+  padding:3rem clamp(1.5rem,5vw,4.5rem) !important; text-align:left !important;
+  font-family:var(--heading-font-family, "Poynter Oldstyle", Georgia, serif) !important; font-weight:300 !important;
+  color:#ffffff !important; font-size:clamp(30px, 3.6vw, 52px) !important;
+  letter-spacing:.5px !important; line-height:1.18 !important; text-transform:none !important;
+  text-shadow:0 2px 22px rgba(0,0,0,.5);
+}
+.nf-subcategory-hero__h1{
+  font-family:var(--heading-font-family, "Poynter Oldstyle", Georgia, serif) !important; font-weight:300 !important;
+  color:#ffffff !important; text-align:left !important; letter-spacing:.5px !important; margin:0 !important;
+}
+.nf-subcategory-hero__tagline{
+  font-family:var(--heading-font-family, "Poynter Oldstyle", Georgia, serif) !important;
+  color:rgba(255,255,255,.9) !important; text-align:left !important;
+  text-shadow:0 1px 12px rgba(0,0,0,.5); margin-top:.9rem !important;
+}
+.nf-ct{max-width:min(2400px, 82%) !important; margin-left:auto !important; margin-right:auto !important; padding-top:30px !important;}
+.nf-ct__list{display:flex !important; justify-content:center !important; flex-wrap:nowrap !important; gap:14px 16px !important; margin:0 !important; padding-left:0 !important; padding-right:0 !important; width:100% !important; text-align:center !important; overflow:visible !important}
+.nf-ct__list>li:first-child{margin-left:0 !important}
+@media (max-width:699px){
+.nf-subcategory-hero{max-width:calc(100% - 32px) !important; min-height:280px !important}
+.nf-subcategory-hero__title{min-height:280px !important; padding:2rem 1.25rem !important; font-size:26px !important}
+.nf-ct{max-width:calc(100% - 32px) !important; padding-top:22px !important}
+}
+</style>
+
+{%- comment -%} NF-COLLINE-V1 {%- endcomment -%}
+<style>
+.nf-colline{
+  max-width:min(2400px, 82%);
+  margin:54px auto 30px !important;
+  text-align:center;
+  font-family:var(--heading-font-family, "Poynter Oldstyle", Georgia, serif);
+  font-weight:600; font-size:clamp(22px, 2.3vw, 35px); line-height:1.22;
+  letter-spacing:-.02em !important; color:#1c1c1c;
+}
+@media (max-width:699px){
+  .nf-colline{max-width:calc(100% - 32px); margin:34px auto 20px !important; font-size:19px}
+}
+</style>
+
+{%- comment -%} NF-CTSIZE-V1 larger sub collection tiles {%- endcomment -%}
+<style>
+.nf-ct__it{flex:0 1 auto !important; width:auto !important; min-width:0 !important; max-width:none !important}
+.nf-ct__a{width:100% !important; display:flex !important; flex-direction:column !important; align-items:center !important}
+.nf-ct__img{width:92px !important; height:92px !important; aspect-ratio:1 !important}
+.nf-ct__img img{width:100% !important;height:100% !important;object-fit:cover !important}
+.nf-ct__t{font-size:11.5px !important;width:100px !important; text-align:center !important; line-height:1.3 !important}
+@media (max-width:699px){
+.nf-ct__it{width:96px !important}.nf-ct__a{width:92px !important}
+.nf-ct__img{width:86px !important;height:86px !important}.nf-ct__t{width:86px !important}
+}
+</style>
+
+
+  {%- comment -%}
+    NF-PAGEFEEL-V1 (2026-09-22)
+    1. The top loading bar is Prestige's loading-bar element. Its own CSS is background:#fff plus
+       mix-blend-mode: exclusion, and excluding white against our warm brown announcement bar is
+       what turned it BLUE. Blend mode off, warm tan gradient on, soft glow.
+    2. A very light entrance for the page body. Deliberately starts at opacity .55, NOT 0, so the
+       largest element counts as painted immediately and LCP is not pushed back by the fade.
+       Reduced motion keeps a shorter opacity-only version rather than nothing, because the owner
+       browses with reduced motion ON.
+  {%- endcomment -%}
+  <style id="nf-pagefeel">
+    loading-bar.loading-bar{mix-blend-mode:normal !important;height:3px !important;background:linear-gradient(90deg,#b8925c 0%,#e6c48d 45%,#f0d9b0 55%,#b8925c 100%) !important;box-shadow:0 0 10px rgba(201,163,106,.55),0 1px 0 rgba(0,0,0,.25) !important;border-radius:0 2px 2px 0 !important}
+    @media screen and (max-width:699px){loading-bar.loading-bar{height:2.5px !important}}
+    @keyframes nfPageIn{from{opacity:.55;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+    @keyframes nfPageInSoft{from{opacity:.65;transform:translate3d(0,3px,0)}to{opacity:1;transform:none}}
+    /* NF-STICKY-FIX 2026-09-24: backwards, not both. A transform animation that holds its last frame stays in effect forever, and while it is in effect <main> becomes the containing block for position:fixed children, so the product sticky Add to Cart bar was pinned to the bottom of the PAGE (never seen). backwards looks identical and ends cleanly. */ main.anchor{animation:nfPageIn .38s cubic-bezier(.22,.61,.36,1) backwards}
+    @media (prefers-reduced-motion:reduce){main.anchor{animation:nfPageInSoft .26s ease backwards}}
+  </style>
+</head>
+
+  {% liquid
+    assign features_class = ''
+
+    if settings.show_button_transition
+      assign features_class = features_class | append: 'features--button-transition '
+    endif
+
+    if settings.show_image_zoom_on_hover
+      assign features_class = features_class | append: 'features--zoom-image '
+    endif
+  %}
+
+  <body class="{{ features_class }} color-scheme color-scheme--{{ settings.default_color_scheme.id }}">
+    {%- render 'shadow-dom-templates' -%}
+
+      <div id="nf-curtain">
+    <img id="nf-favicon-img" loading="lazy" src="https://norafurnish.com/cdn/shop/files/CLEAN_FAVICON_5d2cf12a-af04-42d0-b484-32f64b64db3a.png?width=600" alt="" />
+    <img id="nf-wordmark-img" loading="lazy" src="https://norafurnish.com/cdn/shop/files/e0cf0a7c-0740-403b-9bd3-70fc7e7f6dc9.png?width=480" alt="Nora Furnish" />
+  </div>
+<loading-bar class="loading-bar" aria-hidden="true"></loading-bar>
+    <a href="#main" allow-hash-change class="skip-to-content sr-only">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    {%- comment -%}
+      This placeholder will be filled to screen readers for any kind of announcements
+    {%- endcomment -%}
+    <div class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+      <span id="status-announcement"></span>
+    </div>
+
+    <div class="sr-only" role="alert" aria-live="assertive" aria-atomic="true">
+      <span id="error-announcement"></span>
+    </div>
+
+    <span id="header-scroll-tracker" style="position: absolute; width: 1px; height: 1px; top: var(--header-scroll-tracker-offset, 10px); left: 0;">
+      {%- comment -%}
+        This allows our theme to track when the user has scrolled a given amount of pixels, without relying on a global scroll listener. This helps
+        to improve performance and reduce reflows.
+      {%- endcomment -%}
+    </span>
+
+    {%- if request.page_type != 'password' -%}
+      
+    {%- comment -%} Rotating Announcement Bar. NF-ANNO-V2 (2026-09-13, owner: "better looking than plain black"): warm charcoal band
+      with a fine gold hairline, small gold line icons, slides crossfade with opacity and transform only, pause on hover and focus,
+      prefers-reduced-motion respected. Fixed heights (41px from 768px, 31px below, same as before) so nothing jumps (CLS 0).
+      Outranks the older #nora-announcement-bar rules in nf-redesign.css. The .nf-anno-hidden class (set while a drawer is open) still works.
+      NF-TOPBAR-V2 rule kept: no dashes in store copy, slides use a middle dot between the message and its link. {%- endcomment -%}
+    <style>
+      html body #nora-announcement-bar{--nfa-gold:#c9a36a;position:relative;z-index:1000;display:flex;align-items:center;width:100%;height:68px;margin:0;padding:0!important;overflow:hidden;box-sizing:border-box;color:#ffffff!important;background-color:#14120e!important;background-image:linear-gradient(0deg,rgba(16,12,9,.6),rgba(16,12,9,.6)),url("https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-annobar-canopy.jpg?v=1790109062&width=1920&height=136&crop=center")!important;background-size:auto,cover!important;background-position:center,center 38%!important;background-repeat:no-repeat,no-repeat!important;font-family:Lora,Georgia,serif!important;font-size:16px!important;font-weight:400!important;letter-spacing:.015em!important;line-height:1.5!important;text-transform:none!important;text-shadow:0 1px 2px rgba(0,0,0,.8);transition:opacity .25s ease}
+html body #nora-announcement-bar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;z-index:3;pointer-events:none;background:linear-gradient(90deg,rgba(201,163,106,0) 0%,rgba(201,163,106,.5) 20%,rgba(201,163,106,.85) 50%,rgba(201,163,106,.5) 80%,rgba(201,163,106,0) 100%)}
+html body #nora-announcement-bar .nora-anno-link{display:block;width:100%;color:inherit!important;text-decoration:none!important}
+html body #nora-announcement-bar .nora-anno-link,html body #nora-announcement-bar .nora-anno-link:link,html body #nora-announcement-bar .nora-anno-link:visited,html body #nora-announcement-bar .nora-anno-item,html body #nora-announcement-bar .nora-anno-seg{-webkit-text-fill-color:#fff!important;color:#fff!important;background-image:none!important;background-color:transparent!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;animation:none!important;letter-spacing:inherit!important;text-decoration:none!important}
+html body #nora-announcement-bar .nora-anno-tape{animation:nfAnnoTape var(--nf-anno-dur,34s) linear infinite!important}
+html body #nora-announcement-bar .nora-anno-marquee{position:relative;width:100%;overflow:hidden}
+html body #nora-announcement-bar .nora-anno-marquee::before,html body #nora-announcement-bar .nora-anno-marquee::after{content:"";position:absolute;top:0;bottom:0;width:110px;z-index:2;pointer-events:none}
+html body #nora-announcement-bar .nora-anno-marquee::before{left:0;width:56px;background:linear-gradient(90deg,rgba(20,17,12,.92) 0%,rgba(20,17,12,0) 100%)}
+html body #nora-announcement-bar .nora-anno-marquee::after{right:0;background:linear-gradient(270deg,#14120e 0%,rgba(20,18,14,0) 100%)}
+html body #nora-announcement-bar .nora-anno-tape{display:flex;width:max-content;white-space:nowrap;will-change:transform;animation:nfAnnoTape var(--nf-anno-dur,34s) linear infinite}
+html body #nora-announcement-bar:hover .nora-anno-tape{animation-play-state:paused}
+html body #nora-announcement-bar .nora-anno-seg{display:flex;align-items:center;flex:0 0 auto}
+html body #nora-announcement-bar .nora-anno-item{padding:0 30px}
+html body #nora-announcement-bar .nora-anno-leaf{flex:0 0 auto;width:15px;height:15px;color:var(--nfa-gold);opacity:.95;filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))}
+html body #nora-announcement-bar.nf-anno-hidden{opacity:0;pointer-events:none}
+@keyframes nfAnnoTape{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(var(--nf-anno-shift,25%) * -1),0,0)}}
+@media (max-width:767px){
+  html body #nora-announcement-bar{height:56px;font-size:14.5px!important;letter-spacing:.01em!important;background-position:center,center 40%!important}
+  html body #nora-announcement-bar .nora-anno-item{padding:0 18px}
+  html body #nora-announcement-bar .nora-anno-leaf{width:12px;height:12px}
+  html body #nora-announcement-bar .nora-anno-marquee::before,html body #nora-announcement-bar .nora-anno-marquee::after{width:52px}
+}</style>
+    <div id="nora-announcement-bar" role="region" aria-label="Store announcements">
+      <a class="nora-anno-link" href="/collections/autumn-at-home" aria-label="The First Days of Fall Sale, up to 30% off Autumn at Home">
+        <div class="nora-anno-marquee">
+          <div class="nora-anno-tape"><span class="nora-anno-seg"><span class="nora-anno-item">The First Days of Fall Sale</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Up to 30% Off Autumn at Home</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Free Shipping on Every Order</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Bulk Orders and Project Pricing</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg></span><span class="nora-anno-seg" aria-hidden="true"><span class="nora-anno-item">The First Days of Fall Sale</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Up to 30% Off Autumn at Home</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Free Shipping on Every Order</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Bulk Orders and Project Pricing</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg></span><span class="nora-anno-seg" aria-hidden="true"><span class="nora-anno-item">The First Days of Fall Sale</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Up to 30% Off Autumn at Home</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Free Shipping on Every Order</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Bulk Orders and Project Pricing</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg></span><span class="nora-anno-seg" aria-hidden="true"><span class="nora-anno-item">The First Days of Fall Sale</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Up to 30% Off Autumn at Home</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Free Shipping on Every Order</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg><span class="nora-anno-item">Bulk Orders and Project Pricing</span><svg class="nora-anno-leaf" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 21c0-2 .2-3.2.5-4.1l-4.2.9.6-1.8-4.4-2.4 1-.9-1.2-3.4 3 .6.5-1.6 3 2.6-1.1-5.1 1.9 1L12 3l1.4 3.8 1.9-1-1.1 5.1 3-2.6.5 1.6 3-.6-1.2 3.4 1 .9-4.4 2.4.6 1.8-4.2-.9c.3.9.5 2.1.5 4.1z"/></svg></span></div>
+        </div>
+      </a>
+    </div>
+    <script>
+    (function(){
+      if (window.__nfAnnoTape) return; window.__nfAnnoTape = 1;
+      var SPEED = 58, SPEED_RM = 34, t0;
+      function build(){
+        var bar = document.getElementById('nora-announcement-bar'); if (!bar) return;
+        var tape = bar.querySelector('.nora-anno-tape'); if (!tape) return;
+        var seg = tape.querySelector('.nora-anno-seg'); if (!seg) return;
+        while (tape.children.length > 1) tape.removeChild(tape.lastChild);
+        var w = seg.getBoundingClientRect().width;
+        if (!w) { setTimeout(build, 300); return; }
+        var barW = bar.getBoundingClientRect().width || window.innerWidth;
+        var copies = Math.max(4, Math.ceil((barW * 2) / w) + 1);
+        for (var n = 1; n < copies; n++) {
+          var c = seg.cloneNode(true);
+          c.setAttribute('aria-hidden', 'true');
+          tape.appendChild(c);
+        }
+        var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        tape.style.setProperty('--nf-anno-shift', w.toFixed(2) + 'px');
+        tape.style.setProperty('--nf-anno-dur', (w / (rm ? SPEED_RM : SPEED)).toFixed(2) + 's');
+      }
+      function go(){ build(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(build); }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+      window.addEventListener('load', build);
+      window.addEventListener('resize', function(){ clearTimeout(t0); t0 = setTimeout(build, 250); });
+    })();
+    </script>
+
+      {%- sections 'header-group' -%}
+    <script>(function(){function init(){var bar=document.getElementById('nora-announcement-bar');if(!bar)return;var toggles=document.querySelectorAll('[aria-controls="sidebar-menu"],[aria-controls="cart-drawer"]');if(!toggles.length)return;function sync(){var any=false;toggles.forEach(function(t){if(t.getAttribute('aria-expanded')==='true')any=true;});bar.classList.toggle('nf-anno-hidden',any);}toggles.forEach(function(t){new MutationObserver(sync).observe(t,{attributes:true,attributeFilter:['aria-expanded']});t.addEventListener('click',function(){setTimeout(sync,0);});});}if(document.readyState!=='loading'){init();}else{document.addEventListener('DOMContentLoaded',init);}})();</script>
+      {%- unless request.page_type == "index" -%}
+      <style>
+      .info-bar{display:flex;justify-content:center;align-items:center;padding:8px 0;font-size:13px;font-weight:300;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;width:100%;box-sizing:border-box;background:#fff;}
+      .info-bar div{flex:1;text-align:center;padding:0 40px;border-right:1px solid #a8a8a8;}
+      .info-bar div:last-child{border-right:none;}
+      .mobile-collection-pills{display:none;}
+      @media(max-width:699px){
+        .info-bar{display:none!important;}
+        .mobile-collection-pills{display:flex;gap:10px;padding:14px 16px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;background:#fff;}
+        .mobile-collection-pills::-webkit-scrollbar{display:none;}
+        .pill-btn{display:inline-block;padding:14px 16px;background:#e8e8e8;color:#222;font-size:12px;font-weight:500;line-height:1.4;border-radius:10px;text-decoration:none;white-space:nowrap;letter-spacing:.02em;flex-shrink:0;}
+        .pill-btn:hover{background:#d0d0d0;}
+      }
+      </style>
+      {%- comment -%} info-bar removed 2026-08-30: it duplicated the trust-icons section near the footer and was one of five stacked header bands (~215px of chrome). Its CSS is left in place above so it can be restored by pasting this div back. {%- endcomment -%}
+      {%- render 'nf-cpills' -%}
+      {%- endunless -%}
+      {%- sections 'overlay-group' -%}
+    {%- endif -%}
+
+    <main id="main" class="anchor">
+      {%- comment -%} NF-HELP-V1 (2026-09-12): Track Your Order delivery path and help corner, policy At a glance cards and Ask us band. Renders nothing elsewhere. {%- endcomment -%}
+      {%- render 'nf-hc-layout', slot: 'before' -%}
+      {{ content_for_layout }}
+      {%- render 'nf-hc-layout', slot: 'after' -%}
+
+      {%- comment -%}
+        IMPLEMENTATION NOTE: For best semantics, having the footer group outside the main would be slightly better, but
+          moving it inside the main allows to have all the sections (including sections inside the footer group) to be
+          consecutive, and hence having a cleaner margin collapsing management.
+      {%- endcomment -%}
+      {%- if request.page_type != 'password' -%}
+        {%- sections 'footer-group' -%}
+      {%- endif -%}
+    </main>
+  <script>
+    /* NF-PERF-0911 lazy backgrounds: homepage mosaic and category tiles carry data-nf-bg instead of an inline
+       background-image, so about 2MB of below the fold photos no longer compete with the hero on first load.
+       A whole section's tiles get their images when that section comes within 900px of the viewport. */
+    (function(){
+      function apply(root){ var els = root.querySelectorAll ? root.querySelectorAll('[data-nf-bg]') : []; for (var i = 0; i < els.length; i++){ var u = els[i].getAttribute('data-nf-bg'); if (u){ els[i].style.backgroundImage = "url('" + u + "')"; els[i].removeAttribute('data-nf-bg'); } } }
+      function init(){
+        var els = document.querySelectorAll('[data-nf-bg]'); if (!els.length) return;
+        if (!('IntersectionObserver' in window)) { apply(document); return; }
+        var groups = [];
+        for (var i = 0; i < els.length; i++){ var g = els[i].closest('.shopify-section') || els[i]; if (groups.indexOf(g) < 0) groups.push(g); }
+        var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if (e.isIntersecting){ io.unobserve(e.target); apply(e.target.matches('[data-nf-bg]') ? e.target.parentNode : e.target); } }); }, { rootMargin: '900px 0px' });
+        groups.forEach(function(g){ io.observe(g); });
+      }
+      /* NF-SPEED-0913: start only once the first screen has loaded (or the shopper scrolls or taps), so these photos never share a slow phone connection with the hero. */
+      var nfBgGo = false; function go(){ if (nfBgGo) return; nfBgGo = true; init(); }
+      if (document.readyState === 'complete') { go(); } else { window.addEventListener('load', go, { once: true }); window.addEventListener('scroll', go, { once: true, passive: true }); window.addEventListener('touchstart', go, { once: true, passive: true }); setTimeout(go, 6000); }
+      document.addEventListener('shopify:section:load', init);
+    })();
+  </script>
+  
+  
+
+  <!-- NF Page Transition: markup now at the top of <body>, styles in the head (NF-SPEED-0913 curtain v2) -->
+
+  <script>
+    (function() {
+      var curtain = document.getElementById('nf-curtain');
+      var favicon = document.getElementById('nf-favicon-img');
+      var wordmark = document.getElementById('nf-wordmark-img');
+
+      /* NF-SPEED-0913 (curtain v2): the curtain now sits at the top of <body> with a CSS entrance (html.nf-cur-in), and the head gate
+         (window.__nfPageReady) lifts it with the sheet when the page is ready: hero decoded, DOMContentLoaded + 250ms without a hero,
+         or 1.2s at the latest. Here it only needs hiding on pages where it never ran (internal navigation). */
+      if (!document.documentElement.classList.contains('nf-cur-in')) { curtain.style.display = 'none'; }
+
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        if (a.hasAttribute('aria-controls') || a.hasAttribute('data-no-instant')) return; var _h = a.getAttribute('href') || ''; if (_h === '/cart' || _h.indexOf('/cart/') === 0 || _h.indexOf('/cart?') === 0 || _h.indexOf('/checkout') === 0) return; if (a.closest('cart-drawer, .cart-drawer, form[action="/cart"], .cart, [data-cart]')) return;
+        var href = a.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (a.target === '_blank') return;
+        try {
+          var url = new URL(href, window.location.href);
+          if (url.hostname !== window.location.hostname) return;
+          if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+        } catch(err) { return; }
+        /* NF-SPEED-0913: no white curtain on the way out. The page stays visible, the thin loading line shows the tap registered, and the next page fades in over this one. */
+        if (e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        document.documentElement.dispatchEvent(new CustomEvent('theme:loading:start', { bubbles: true }));
+        setTimeout(function(){ if (document.visibilityState === 'visible') document.documentElement.dispatchEvent(new CustomEvent('theme:loading:end', { bubbles: true })); }, 8000);
+      });
+    })();
+  
+  // NF fix: never leave the curtain stuck (bfcache back/forward + stalled entrance)
+  var curtain = document.getElementById('nf-curtain');
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      document.documentElement.classList.remove('nf-preload'); /* NF-PERF3-0911: a bfcache restore is already a painted page */
+      document.documentElement.dispatchEvent(new CustomEvent('theme:loading:end', { bubbles: true })); /* NF-SPEED-0913: the back button restores a page whose loading line was showing */
+      curtain.style.transition = 'none';
+      curtain.style.display = 'none';
+      curtain.classList.remove('lift');
+      setTimeout(function () { curtain.style.transition = ''; }, 50);
+      return;
+    }
+    setTimeout(function () {
+      if (curtain.style.display !== 'none' && !curtain.classList.contains('lift')) {
+        curtain.classList.add('lift');
+        setTimeout(function () { curtain.style.display = 'none'; }, 700);
+      }
+    }, 2500);
+  });
+  document.addEventListener('click', function () {
+    setTimeout(function () {
+      if (curtain.style.display === 'flex' && !curtain.classList.contains('lift') && document.visibilityState === 'visible') {
+        curtain.style.display = 'none';
+      }
+    }, 6000);
+  });
+</script>
+
+<style>
+/* ── MOBILE ONLY ─────────────────────────────────────────── */
+@media screen and (max-width: 699px) {
+
+  /* 1. Hide utility bar */
+  .top-utility-bar,
+  body .top-utility-bar,
+  html body .top-utility-bar,
+  #shopify-section-sections--20618985603124__custom_liquid_GR9NV8 .top-utility-bar {
+    display: none !important;
+  }
+
+  /* 2. Search panel */
+  .header-search-panel {
+    position: fixed !important;
+    top: var(--nf-header-bottom, 104px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 201 !important;
+    background: #fff !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.25s ease, box-shadow 0.25s ease !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-bottom: none !important;
+  }
+  .header-search-panel.is-open {
+    max-height: 56px !important;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10) !important;
+  }
+
+  /* 3. Inner */
+  .header-search-panel__inner {
+    max-width: 100% !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 4. Form */
+  .header-search-panel__form {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    height: 52px !important;
+    background: #fff !important;
+    border: none !important;
+    border-bottom: none !important;
+    outline: none !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .header-search-panel__form:focus-within {
+    border-bottom-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 5. Search icon — bigger */
+  .header-search-panel__icon {
+    flex-shrink: 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+    color: #555 !important;
+  }
+
+  /* 6. Input — no italic */
+  .header-search-panel__input {
+    flex: 1 1 0% !important;
+    background: #fff !important;
+    border: none !important;
+    outline: none !important;
+    -webkit-appearance: none !important;
+    font-family: "Poynter Oldstyle", Georgia, serif !important;
+    font-size: 17px !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.05em !important;
+    color: #1a1a1a !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+  .header-search-panel__input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .header-search-panel__input::placeholder {
+    font-family: "Poynter Oldstyle", Georgia, serif !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    color: #bbb !important;
+  }
+
+  /* 7. Close button — bigger */
+  .header-search-panel__close {
+    flex-shrink: 0 !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    color: #555 !important;
+    padding: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .header-search-panel__close svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  /* 8. Dark overlay — starts BELOW the search bar */
+  #nf-search-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: 98px;
+    background: rgba(0,0,0,0.45);
+    z-index: 199;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  #nf-search-overlay.visible {
+    display: block;
+    opacity: 1;
+  }
+
+}
+/* ── DESKTOP SEARCH PANEL (min-width: 700px) ─────────────── */
+@media screen and (min-width: 700px) {
+
+  .header-search-panel {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    background: #fff !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.25s ease, box-shadow 0.25s ease !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-bottom: none !important;
+    top: var(--nf-header-bottom, 171px) !important;
+  }
+  .header-search-panel.is-open {
+    max-height: 84px !important;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12) !important;
+  }
+  /* Bigger left gap */
+  .header-search-panel__inner {
+    width: 100% !important;
+    padding: 0 48px !important;
+    box-sizing: border-box !important;
+  }
+  .header-search-panel__form {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    height: 78px !important;
+    background: #fff !important;
+    border: none !important;
+    outline: none !important;
+    gap: 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  /* Bigger search icon */
+  .header-search-panel__icon {
+    flex-shrink: 0 !important;
+    width: 26px !important;
+    height: 26px !important;
+    color: #444 !important;
+  }
+  /* Bigger input text */
+  .header-search-panel__input {
+    flex: 1 1 0% !important;
+    background: #fff !important;
+    border: none !important;
+    outline: none !important;
+    -webkit-appearance: none !important;
+    font-family: "Poynter Oldstyle", Georgia, serif !important;
+    font-size: 22px !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    letter-spacing: 0.06em !important;
+    color: #1a1a1a !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+  .header-search-panel__input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .header-search-panel__input::placeholder {
+    font-family: "Poynter Oldstyle", Georgia, serif !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    color: #bbb !important;
+  }
+  /* Bigger X button, pushed far right */
+  .header-search-panel__close {
+    flex-shrink: 0 !important;
+    margin-left: auto !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    color: #444 !important;
+    padding: 8px !important;
+    font-size: 28px !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .header-search-panel__close svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  /* No dark overlay on desktop */
+  #nf-search-overlay {
+    display: none !important;
+  }
+}
+</style>
+
+<div id="nf-search-overlay"></div>
+<script>
+(function(){
+  var panel=document.getElementById("header-search-panel");
+  var toggle=document.querySelector(".header__search-toggle");
+  var root=document.documentElement;
+  if(!panel||!toggle) return;
+  // Move panel to body to escape header transform stacking context
+  if(panel.parentElement!==document.body){
+    document.body.appendChild(panel);
+  }
+  var overlay=document.getElementById("nf-search-overlay");
+  var closeBtn=panel.querySelector(".header-search-panel__close");
+  function getHeaderSectionBottom(){
+    var sec=document.querySelector("#shopify-section-sections--20618985603124__header");
+    if(!sec) return 171;
+    var r=sec.getBoundingClientRect();
+    return Math.round(r.bottom);
+  }
+  function isMobile(){ return window.innerWidth<=699; }
+  function openSearch(){
+    var hb=isMobile()?54:getHeaderSectionBottom();
+    var panelH=isMobile()?44:68;
+    /* NF-SMOOTH-V1: set on the panel and its scrim only; a :root custom property restyled the whole page on every open */
+    (function(v){panel.style.setProperty("--nf-header-bottom",v);var sc=document.querySelector(".nf-srch-scrim");if(sc)sc.style.setProperty("--nf-header-bottom",v);})(hb+"px");
+    panel.classList.add("is-open");
+    panel.setAttribute("aria-hidden","false");
+    if(isMobile()&&overlay){
+      overlay.classList.add("visible");
+      /* NF-MOBILE-V4: no body overflow here. It turned body into a scroll container and moved the page; custom-nav.js locks the root instead. */
+    }
+    (function(){var inp=panel.querySelector(".header-search-panel__input");if(!inp)return;var f=function(){if(document.activeElement===inp)return;try{inp.focus({preventScroll:true});}catch(e){}};f();setTimeout(f,60);})();
+  }
+  function closeSearch(){
+    panel.classList.remove("is-open");
+    panel.setAttribute("aria-hidden","true");
+    if(overlay) overlay.classList.remove("visible");
+    document.body.style.overflow="";
+  }
+  toggle.addEventListener("click",function(e){
+    e.stopPropagation();e.preventDefault();
+    if(panel.classList.contains("is-open")){closeSearch();}else{openSearch();}
+  },true);
+  if(closeBtn) closeBtn.addEventListener("click",function(){closeSearch();});
+  if(overlay) overlay.addEventListener("click",function(){closeSearch();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSearch();});
+})();
+</script>
+{%- if template.name == "collection" or template.name == "product" -%}
+{%- comment -%} nf-autohide-nav: header hides on scroll-down, returns on scroll-up or pointer-at-top {%- endcomment -%}
+<style>
+@media (min-width: 1000px) and (prefers-reduced-motion: no-preference) {
+  html.nf-autohide-nav header[id$="__header"] { transition: transform .28s ease; will-change: transform; }
+}
+@media (min-width: 1000px) {
+  html.nf-autohide-nav.nf-nav-off header[id$="__header"] { transform: translateY(-100%); }
+  html.nf-autohide-nav.nf-nav-off .collection-toolbar { top: 0 !important; }
+  html.nf-autohide-nav .collection-toolbar { transition: top .28s ease; z-index: 3; }
+}
+</style>
+<script>
+(function(){
+  if (!window.matchMedia("(min-width: 1000px)").matches) return;
+  var hdr = document.querySelector('header[id$="__header"]');
+  if (!hdr) return;
+  var root = document.documentElement;
+  root.classList.add("nf-autohide-nav");
+  var lastY = window.scrollY, ticking = false, nearTop = false;
+  var REVEAL_PX = 70, SHOW_ABOVE = 140, DELTA = 5;
+  function blocked(){
+    if (hdr.matches(":hover")) return true;
+    if (hdr.querySelector('[aria-expanded="true"], details[open]')) return true;
+    var modals = document.querySelectorAll("dialog[open], [aria-modal='true']");
+    for (var i = 0; i < modals.length; i++) {
+      var m = modals[i];
+      if (m.offsetParent !== null && m.getBoundingClientRect().width > 0) return true;
+    }
+    return false;
+  }
+  function update(){
+    ticking = false;
+    var y = window.scrollY;
+    /* NF-SMOOTH-V1: blocked() reads layout, so only ask it at the moment the header would hide */
+    if (nearTop || y < SHOW_ABOVE || (y > lastY + DELTA && !root.classList.contains("nf-nav-off") && blocked())) { root.classList.remove("nf-nav-off"); lastY = y; return; }
+    if (y > lastY + DELTA) root.classList.add("nf-nav-off");
+    else if (y < lastY - DELTA) root.classList.remove("nf-nav-off");
+    lastY = y;
+  }
+  window.addEventListener("scroll", function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
+  document.addEventListener("mousemove", function(e){
+    var top = e.clientY <= REVEAL_PX;
+    if (top && !nearTop) { nearTop = true; root.classList.remove("nf-nav-off"); }
+    else if (!top && nearTop && !hdr.matches(":hover")) { nearTop = false; }
+  }, {passive:true});
+  hdr.addEventListener("mouseenter", function(){ nearTop = true; root.classList.remove("nf-nav-off"); });
+  hdr.addEventListener("mouseleave", function(){ nearTop = false; });
+  window.addEventListener("keydown", function(e){ if(e.key === "Tab") root.classList.remove("nf-nav-off"); });
+})();
+</script>
+{%- endif -%}
+
+<!-- nf-gallery-start-at-first: mobile product galleries must open on image 1 -->
+<script>
+(function(){
+  if (location.pathname.indexOf('/products/') === -1) return;
+  if (window.matchMedia('(min-width: 1000px)').matches) return;
+  var stop = false;
+  var halt = function(){ stop = true; };
+  ['touchstart','pointerdown','wheel','keydown'].forEach(function(e){ document.addEventListener(e, halt, {once:true, passive:true}); });
+  document.addEventListener('variant:change', halt);
+  var reset = function(){
+    if (stop) return;
+    var c = document.querySelector('product-gallery .product-gallery__carousel');
+    if (c && c.scrollLeft > 0) { c.scrollLeft = 0; }
+  };
+  var t0 = Date.now();
+  var iv = setInterval(function(){ reset(); if (stop || Date.now() - t0 > 2500) clearInterval(iv); }, 50);
+  document.addEventListener('DOMContentLoaded', reset);
+  window.addEventListener('load', reset);
+})();
+</script>
+
+<!-- nf-search-panel-align v2: panel tracks the LIVE header bottom every frame while open (2026-08-29) -->
+<script>
+(function(){
+  var root = document.documentElement, raf = 0, mo = null, iv = 0;
+  function headerEl(){
+    return document.querySelector(".shopify-section--header")
+        || document.querySelector(".shopify-section-group-header-group")
+        || document.querySelector("header.shopify-section");
+  }
+  function panelEl(){ return document.querySelector(".header-search-panel"); }
+  function sync(){
+    var h = headerEl(), p = panelEl();
+    if (!h || !p) return;
+    var b = Math.round(Math.max(0, h.getBoundingClientRect().bottom));
+    if (p.style.getPropertyValue("--nf-header-bottom") !== b + "px"){ /* NF-SMOOTH-V1: scoped to the panel and scrim, not :root */
+      p.style.setProperty("--nf-header-bottom", b + "px");
+      var sc = document.querySelector(".nf-srch-scrim"); if (sc) sc.style.setProperty("--nf-header-bottom", b + "px");
+    }
+  }
+  // While the panel is open, re-measure EVERY frame so it follows the header through
+  // sticky changes, auto-hide transitions and momentum scrolling without lag.
+  function loop(){
+    var p = panelEl();
+    if (p && p.classList.contains("is-open")){ sync(); raf = requestAnimationFrame(loop); }
+    else { raf = 0; sync(); }
+  }
+  function start(){ if (raf) cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); }
+  function isOpen(){ var p = panelEl(); return !!(p && p.classList.contains("is-open")); }
+  // rAF keeps it smooth; the 100ms interval is a safety net for when rAF is throttled.
+  /* NF-PERF-0911: measure only while the panel is open. Measuring on every scroll event forced a layout and rewrote a :root custom property, restyling the whole page mid scroll on low end devices. openSearch() sets the value itself before opening. */
+  function tick(){ if (!isOpen()){ if (iv){ clearInterval(iv); iv = 0; } return; } if (!raf) raf = requestAnimationFrame(function(){ raf = 0; sync(); }); } /* NF-SMOOTH-V1: one measure per event, no per-frame loop or 100ms poll while open */
+  function watch(){
+    var p = panelEl();
+    if (p && window.MutationObserver && !mo){
+      mo = new MutationObserver(tick);
+      mo.observe(p, {attributes:true, attributeFilter:["class","style"]});
+    }
+    var t = document.querySelector(".header__search-toggle");
+    if (t && !t.__nfAligned){ t.__nfAligned = 1; t.addEventListener("click", function(){ tick(); setTimeout(tick,60); setTimeout(tick,320); }); }
+  }
+  window.addEventListener("scroll", tick, {passive:true});
+  window.addEventListener("resize", tick);
+  window.addEventListener("orientationchange", tick);
+  document.addEventListener("visibilitychange", function(){ if (!document.hidden) tick(); });
+  document.addEventListener("transitionend", function(e){ if (e.target && e.target.closest && e.target.closest(".shopify-section--header,.shopify-section-group-header-group")) tick(); }, true);
+  document.addEventListener("DOMContentLoaded", function(){ watch(); tick(); });
+  window.addEventListener("load", function(){ watch(); tick(); });
+  // Close the search panel whenever a drawer/modal opens (cart drawer, sidebar, quick buy),
+  // otherwise the search bar is left stranded on top of them.
+  function closeSearch(){
+    var p = panelEl();
+    if (!p || !p.classList.contains("is-open")) return;
+    var c = document.querySelector(".header-search-panel__close");
+    if (c) c.click(); else p.classList.remove("is-open");
+  }
+  var NF_DRAWERS = "cart-drawer, header-sidebar, quick-buy-modal, dialog, .drawer, .modal";
+  if (window.MutationObserver){
+    new MutationObserver(function(recs){
+      for (var i = 0; i < recs.length; i++){
+        var t = recs[i].target;
+        if (t && t.nodeType === 1 && t.hasAttribute("open") && t.matches && t.matches(NF_DRAWERS)){ closeSearch(); break; }
+      }
+    }).observe(document.documentElement, {subtree:true, attributes:true, attributeFilter:["open"]});
+  }
+  watch(); tick();
+})();
+</script>
+
+{%- comment -%} NF-PILL-ALWAYS (2026-09-13): the nf-nl-tab-scroll script that hid the 10% pill on phone scroll was removed; the owner wants it always visible. {%- endcomment -%}
+
+<!-- nf-toolbar-autohide: on mobile collection/search pages the Filter/Sort bar
+     slides away while scrolling down and returns on scroll-up, so the 54px header
+     is the only thing permanently pinned. Added 2026-08-30. -->
+<script>
+(function(){
+  if (!window.matchMedia("(max-width: 999px)").matches) return;
+  var root = document.documentElement, bar = null, lastY = window.scrollY, ticking = false;
+  // re-query when the section re-renders after a filter or sort change
+  function el(){ if (!bar || !bar.isConnected) bar = document.querySelector(".collection-toolbar"); return bar; }
+  function busy(b){
+    if (b.querySelector("[aria-expanded='true']") || b.querySelector("details[open]")) return true;
+    var m = document.querySelectorAll("dialog[open], [aria-modal='true']");
+    for (var i = 0; i < m.length; i++) if (m[i].offsetParent !== null) return true;
+    return false;
+  }
+  function update(){
+    ticking = false;
+    var b = el(); if (!b) return;
+    var y = window.scrollY;
+    if (y > lastY + 6 && y > 200 && !root.classList.contains("nf-toolbar-off") && busy(b)) { lastY = y; return; } /* NF-SMOOTH-V1 */
+    if (y > lastY + 6 && y > 200) root.classList.add("nf-toolbar-off");
+    else if (y < lastY - 6) root.classList.remove("nf-toolbar-off");
+    lastY = y;
+  }
+  window.addEventListener("scroll", function(){
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, {passive:true});
+})();
+</script>
+{%- comment -%} NF-SEARCH-V3 (2026-09-12): the empty search panel (Popular right now and four category tiles), server rendered so it opens together with the panel with no network wait. Inert until assets/nf-search.js clones it. {%- endcomment -%}
+<template id="nf-srch-empty-tpl"><div class="nf-srch-r" data-nf-srch-state="empty" data-nf-srch-say="Popular right now and shop by category. Use the arrow keys to browse.">{%- render 'nf-search-discover', context: 'drop', eager: true -%}</div></template>
+{%- comment -%} NF-SEARCH-V2 (2026-09-12) Lamplight instant search: tiny deferred script; it loads nf-search.css and fetches
+    results only on hover, focus or typing. {%- endcomment -%}
+<script src="{{ 'nf-search.js' | asset_url }}" defer data-nf-srch-css="{{ 'nf-search.css' | asset_url }}"></script>
+  {%- render 'microdata-schema' -%}
+
+{%- comment -%} NF-TOTOP-V2 the original never added its is-on class, so the button could not appear {%- endcomment -%}
+<script>
+(function(){
+  if (window.__nfToTopV2) return; window.__nfToTopV2 = 1;
+  function init(){
+    var b = document.querySelector(".nf-totop");
+    if (!b) {
+      b = document.createElement("button");
+      b.type = "button"; b.className = "nf-totop"; b.setAttribute("aria-label", "Back to top");
+      b.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+      document.body.appendChild(b);
+    }
+    b.addEventListener("click", function(){
+      try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) { window.scrollTo(0, 0); }
+    });
+    var on = false, last = 0;
+    function upd(){
+      var y = window.scrollY || document.documentElement.scrollTop || 0;
+      var show = y > 600;
+      if (show !== on) { on = show; b.classList.toggle("is-on", on); }
+    }
+    // no requestAnimationFrame here on purpose: it is frozen in background tabs
+    window.addEventListener("scroll", function(){
+      var now = Date.now();
+      if (now - last > 90) { last = now; upd(); }
+    }, { passive: true });
+    window.addEventListener("resize", upd, { passive: true });
+    document.addEventListener("visibilitychange", upd);
+    upd();
+    setTimeout(upd, 800);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
+</script>
+  {%- comment -%} NF-HELP-V1 2026-09-21: our help button replaces the Shopify Inbox bubble {%- endcomment -%}
+  {{ 'nf-help.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'nf-rails.js' | asset_url }}" defer></script>
+  <script src="{{ 'nf-help.js' | asset_url }}" defer></script>
+  {%- comment -%} NF-BUNDLE-V1 (2026-09-24): Complete the room on product pages and the add to cart popup. {%- endcomment -%}
+  {{ 'nf-bundle.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'nf-bundle.js' | asset_url }}" defer></script>
+  {%- comment -%} NF-CARE-V1: publish the per product care rows so nf-pdp.js can use them.
+       Absent metafield means the JS falls back to the default reassurance rows. {%- endcomment -%}
+  {%- if template.name == 'product' and product.metafields.custom.pdp_care != blank -%}
+  <script>window.NF_CARE = {{ product.metafields.custom.pdp_care.value | json }};</script>
+  {%- endif -%}
+</body>
+</html>

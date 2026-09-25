@@ -1,0 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "custom_liquid_GR9NV8": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "name": "Utility Menu",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": false,
+        "liquid": "{%- comment -%} NF-TOPBAR-V1 (2026-09-11): secondary top bar, see snippets/nf-topbar.liquid {%- endcomment -%}\n{%- render 'nf-topbar' -%}",
+        "text_alignment": "center"
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "enable_sticky": true,
+        "hide_on_scroll": false,
+        "show_separation_border": true,
+        "reduce_padding": true,
+        "logo": "shopify://shop_images/e0cf0a7c-0740-403b-9bd3-70fc7e7f6dc9.png",
+        "logo_max_width": 190,
+        "logo_mobile_max_width": 135,
+        "menu": "main-menu",
+        "sidebar_menu": "main-menu",
+        "customer_account_menu": "customer-account-main-menu",
+        "menu_open_trigger": "hover",
+        "menu_text_font": "body",
+        "enable_search": true,
+        "sidebar_color_scheme": "scheme-2",
+        "sidebar_text_font": "heading",
+        "sidebar_show_dividers": true,
+        "sidebar_open_second_level_menus": false,
+        "layout": "logo_center_navigation_below",
+        "show_icons": true,
+        "show_country_selector": false,
+        "show_country_name": false,
+        "show_country_flag": true,
+        "show_locale_selector": false,
+        "transparent_header_text_color": "#ffffff"
+      },
+      "blocks": {
+        "mm-ceiling": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Ceiling Lights",
+            "images_position": "right"
+          }
+        },
+        "mm-wall": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Wall Lights",
+            "images_position": "right"
+          }
+        },
+        "mm-lamps": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Lamps",
+            "images_position": "right"
+          }
+        },
+        "mm-ambient": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Ambient Lighting",
+            "images_position": "right"
+          }
+        },
+        "mm-outdoor": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Outdoor Lighting",
+            "images_position": "right"
+          }
+        },
+        "mm-decor": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Decor",
+            "images_position": "right"
+          }
+        },
+        "mm-soft": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Soft Furnishings",
+            "images_position": "right"
+          }
+        },
+        "mm-fragrance": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Home Fragrance",
+            "images_position": "right"
+          }
+        },
+        "mm-shelves": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Shelves & Storage",
+            "images_position": "right"
+          }
+        },
+        "mm-stools": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Poufs & Floor Seating",
+            "images_position": "right"
+          }
+        },
+        "mm-sale": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Sale",
+            "images_position": "right"
+          }
+        },
+        "mm-guides": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Ideas & Guides",
+            "images_position": "right"
+          }
+        },
+        "mm-pro": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Professionals",
+            "images_position": "right"
+          }
+        },
+        "mm-grand": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Grand Collection",
+            "images_position": "right"
+          }
+        },
+        "mm-autumn": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Autumn at Home",
+            "images_position": "right"
+          }
+        }
+      },
+      "block_order": [
+        "mm-autumn",
+        "mm-sale",
+        "mm-grand",
+        "mm-ceiling",
+        "mm-wall",
+        "mm-lamps",
+        "mm-ambient",
+        "mm-outdoor",
+        "mm-decor",
+        "mm-soft",
+        "mm-fragrance",
+        "mm-shelves",
+        "mm-stools",
+        "mm-guides",
+        "mm-pro"
+      ]
+    }
+  },
+  "order": [
+    "custom_liquid_GR9NV8",
+    "header"
+  ]
+}

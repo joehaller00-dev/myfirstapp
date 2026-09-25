@@ -1,0 +1,44 @@
+{%- comment -%} NF-BULK-ORDER (2026-09-14): the bulk order rows, used by sections/nf-bulk-table.liquid (fetched by the order form and by the
+  table on each industry page). Param: items = the industry page's custom.bulk_products list (Liquid gives the first 50). {%- endcomment -%}
+{%- assign nfbo_items = items -%}
+<div class="nfbo-table" data-nfbo-table>
+  {%- if nfbo_items != blank -%}
+  <ul class="nfbo-rows" role="list">
+    {%- for p in nfbo_items -%}
+      {%- unless p.available -%}{%- continue -%}{%- endunless -%}
+      {%- assign v0 = p.selected_or_first_available_variant -%}
+      <li class="nfbo-row" data-nfbo-row data-product="{{ p.id }}" data-search="{{ p.title | downcase | escape }}">
+        <a class="nfbo-row__img" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
+          {%- if p.featured_image -%}<img src="{{ p.featured_image | image_url: width: 200 }}" alt="" width="88" height="88" loading="lazy" decoding="async">{%- endif -%}
+        </a>
+        <div class="nfbo-row__info">
+          <a class="nfbo-row__name" href="{{ p.url }}">{{ p.title | escape }}</a>
+          {%- if p.has_only_default_variant -%}
+            <input type="hidden" data-nfbo-variant value="{{ v0.id }}" data-price="{{ v0.price }}">
+          {%- else -%}
+            <label class="nfbo-row__opt">
+              <span class="nfbo-vh">Size or finish for {{ p.title | escape }}</span>
+              <select data-nfbo-variant>
+                {%- for v in p.variants -%}
+                  <option value="{{ v.id }}" data-price="{{ v.price }}"{% if v.id == v0.id %} selected{% endif %}{% unless v.available %} disabled{% endunless %}>{{ v.title | escape }}  ·  {{ v.price | money }}</option>
+                {%- endfor -%}
+              </select>
+            </label>
+            <button type="button" class="nfbo-more" data-nfbo-more><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M8 3v10"/></svg>Add another size or finish</button>
+          {%- endif -%}
+          <p class="nfbo-row__each"><span data-nfbo-price>{{ v0.price | money }}</span> each</p>
+        </div>
+        <div class="nfbo-row__price" data-nfbo-price>{{ v0.price | money }}</div>
+        <div class="nfbo-qty">
+          <button type="button" class="nfbo-qty__btn" data-nfbo-step="-1" aria-label="One less {{ p.title | escape }}"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10"/></svg></button>
+          <input class="nfbo-qty__in" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" value="0" aria-label="How many {{ p.title | escape }}" data-nfbo-qty>
+          <button type="button" class="nfbo-qty__btn" data-nfbo-step="1" aria-label="One more {{ p.title | escape }}"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M8 3v10"/></svg></button>
+        </div>
+        <div class="nfbo-row__total" data-nfbo-line></div>
+      </li>
+    {%- endfor -%}
+  </ul>
+  {%- else -%}
+    <p class="nfbo-empty">The product list for this industry is being prepared. For help with any piece, email <a href="mailto:info@norafurnish.com">info@norafurnish.com</a>.</p>
+  {%- endif -%}
+</div>

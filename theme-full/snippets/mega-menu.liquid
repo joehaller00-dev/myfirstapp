@@ -1,0 +1,174 @@
+{%- comment -%}
+MEGA MENU - generic renderer (Nora Furnish, type-led nav 2026-06)
+Renders each 2nd-level menu group as a column with its child links.
+2026-08-06: added a right-hand image column. One image per 2nd-level group,
+captioned with the group name. Images are matched on the group TITLE below --
+add a `when` line to give a new group its picture. A group with no match simply
+renders no image and the layout closes up.
+{%- endcomment -%}
+
+{%- assign link_title_lower = link.title | downcase | strip -%}
+{%- assign nf_cdn = 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/' -%}
+
+{%- capture nf_figures -%}
+  {%- for sub_link in link.links -%}
+    {%- assign gt = sub_link.title | downcase | strip -%}
+    {%- assign nf_img = '' -%}
+    {%- assign nf_pos = '' -%}
+    {%- assign nf_full = '' -%}
+    {%- case gt -%}
+      {%- comment -%} NF-GRAND-MENU (2026-09-21): Grand Collection rows use their own collection image {%- endcomment -%}
+      {%- when 'grand indoor lighting', 'grand outdoor lighting' -%}{%- if sub_link.object.image -%}{%- assign nf_full = sub_link.object.image -%}{%- assign nf_img = 'collection' -%}{%- endif -%}
+      {%- comment -%} NF-AUTUMN-MENU (2026-09-22): Autumn at Home rows use the collection image, falling back to the first product photo so a new seasonal collection needs no upload {%- endcomment -%}
+      {%- when 'fall decor' -%}{%- assign nf_img = 'S3356c70049124ae7954932f00009ed3ea.webp?v=1789952554' -%}
+      {%- when 'halloween decor' -%}{%- assign nf_img = 'nf-nav-halloween-decor.jpg?v=1790106987' -%}
+      {%- when 'halloween inflatables' -%}{%- assign nf_img = 'nf-nav-halloween-inflatables.jpg?v=1790106987' -%}
+      {%- when '__nf_unused__' -%}{%- if sub_link.object.image -%}{%- assign nf_full = sub_link.object.image -%}{%- assign nf_img = 'collection' -%}{%- else -%}{%- for nf_p in sub_link.object.products limit: 1 -%}{%- if nf_p.featured_image -%}{%- assign nf_full = nf_p.featured_image -%}{%- assign nf_img = 'collection' -%}{%- endif -%}{%- endfor -%}{%- endif -%}
+      {%- when 'chandeliers' -%}{%- assign nf_img = 'nav_chandeliers.webp?v=1785974481' -%}
+      {%- when 'pendants & mounts' -%}{%- assign nf_img = 'nav_pendants_mounts_hq.webp?v=1785976124' -%}
+      {%- when 'wall sconces' -%}{%- assign nf_img = 'nav_wall_sconces_hq.webp?v=1785976124' -%}
+      {%- when 'bath & vanity' -%}{%- assign nf_img = 'nav_bath_vanity.webp?v=1785974481' -%}
+      {%- when 'picture & reading' -%}{%- assign nf_img = 'nav_picture_reading.webp?v=1785974480' -%}
+      {%- when 'table lamps' -%}{%- assign nf_img = 'nav_table_lamps_hq.webp?v=1785976124' -%}
+      {%- when 'floor lamps' -%}{%- assign nf_img = 'nav_floor_lamps.webp?v=1785974481' -%}
+      {%- when 'ambient & novelty' -%}{%- assign nf_img = 'nav_ambient_novelty.webp?v=1785974481' -%}
+      {%- when 'ambient lighting' -%}{%- assign nf_img = 'nav_ambient_lighting.webp?v=1785974481' -%}
+      {%- when 'landscape lighting' -%}{%- assign nf_img = 'nav_landscape_lighting.webp?v=1785974481' -%}
+      {%- when 'outdoor lanterns' -%}{%- assign nf_img = 'nav_outdoor_lanterns.webp?v=1785979170' -%}
+      {%- when 'outdoor post lights' -%}{%- assign nf_img = 'nav_outdoor_post_lights.webp?v=1785979170' -%}
+      {%- when 'outdoor wall lighting' -%}{%- assign nf_img = 'nav_outdoor_wall_lighting.webp?v=1785979170' -%}
+      {%- when 'mirrors' -%}{%- assign nf_img = 'nav_mirrors.webp?v=1785979170' -%}
+      {%- when 'wall decor' -%}{%- assign nf_img = 'nav_wall_decor.webp?v=1785979170' -%}
+      {%- when 'accents' -%}{%- assign nf_img = 'nav_accents.webp?v=1785979170' -%}
+      {%- when 'soft furnishings' -%}{%- assign nf_img = 'nav_soft_furnishings.webp?v=1785979170' -%}
+      {%- when 'bath' -%}{%- assign nf_img = 'nav_bath.webp?v=1785979170' -%}
+      {%- when 'wall shelves' -%}{%- assign nf_img = 'nav_wall_shelves.webp?v=1785979170' -%}
+      {%- when 'storage' -%}{%- assign nf_img = 'nav_storage.webp?v=1785979170' -%}
+      {%- when 'poufs & floor cushions' -%}{%- assign nf_img = 'nav_poufs.webp?v=1785979170' -%}
+      {%- when 'home fragrance' -%}{%- assign nf_img = 'nav_home_fragrance.webp?v=1785979170' -%}
+      {%- comment -%} Sale menu (2026-09-10): OpenArt scenes from our own catalog, none used in a homepage hero {%- endcomment -%}
+      {%- when 'best sellers' -%}{%- assign nf_img = 'image_1787963560713_2129503f_1787963561576_2398c217.png?v=1' -%}
+      {%- when 'new arrivals' -%}{%- assign nf_img = 'image_1787961426994_015725e2_1787961427416_8adda2d4.png?v=1' -%}
+      {%- when 'clearance' -%}{%- comment -%} 2026-09-12 owner rejected the dusk paper lantern (image_1787959349000_216dae9f_1787959349130_84ea129f.png, blue window): warm lit curtain lights from the Clearance collection {%- endcomment -%}{%- assign nf_img = 'image_1787959243840_117cc68b_1787959244019_06a2704c.png?v=1' -%}
+      {%- comment -%} Ideas & Guides menu (2026-09-10): owner approved images from Files; the catalog group uses the catalog cover {%- endcomment -%}
+      {%- comment -%} NF-HELP-V1 (2026-09-12): the Blogs menu items were renamed The Journal; both titles keep the image, 3D card and description {%- endcomment -%}
+      {%- when 'blogs', 'blog', 'the journal', 'journal' -%}{%- assign nf_img = 'nf-blog-patio-string-lights.png?v=1' -%}
+      {%- when 'catalogs', 'catalog' -%}{%- assign nf_img = 'image_1787872171415_24be3636_1787872172132_984a4590.png?v=1' -%}{%- assign nf_pos = '45% 40%' -%}
+      {%- when 'lighting guides' -%}{%- assign nf_img = 'nf-blog-chandelier-over-dining-table.png?v=1' -%}
+    {%- endcase -%}
+    {%- comment -%} NF-GUIDES-3D (2026-09-11): the three Ideas & Guides children get a live 3D card instead of a photo. Styles: assets/nf-guides-menu.css {%- endcomment -%}
+    {%- assign nf_g3d = '' -%}
+    {%- if link_title_lower == 'ideas & guides' -%}
+      {%- case gt -%}
+        {%- when 'blogs', 'blog', 'the journal', 'journal' -%}{%- assign nf_g3d = 'blog' -%}
+        {%- when 'catalogs', 'catalog' -%}{%- assign nf_g3d = 'catalog' -%}
+        {%- when 'lighting guides' -%}{%- assign nf_g3d = 'guide' -%}
+      {%- endcase -%}
+    {%- endif -%}
+    {%- if nf_g3d != '' -%}
+      <a href="{{ sub_link.url }}" class="mega-menu__figure nf-g3d-fig">
+        <span class="nf-g3d nf-g3d--{{ nf_g3d }}" aria-hidden="true"><span class="nf-g3d__scene"><span class="nf-g3d__shadow"></span>
+        {%- case nf_g3d -%}
+          {%- when 'blog' -%}
+          <span class="nf-g3d__eyebrow">Latest stories</span>
+          <span class="nf-g3d__stack">
+            {%- for article in blogs.blog.articles limit: 3 -%}
+            <span class="nf-g3d__card nf-g3d__card--{{ forloop.index }}"><span class="nf-g3d__card-img">{%- if article.image -%}<img src="{{ article.image | image_url: width: 320 }}" alt="" width="320" height="320" loading="lazy" decoding="async">{%- endif -%}</span><span class="nf-g3d__card-title">{{ article.title | escape }}</span></span>
+            {%- endfor -%}
+          </span>
+          {%- when 'catalog' -%}
+          <span class="nf-g3d__eyebrow">The 2026 catalog</span>
+          <span class="nf-g3d__book">
+            <span class="nf-g3d__page nf-g3d__page--l"><img src="{{ nf_cdn }}image_1787872171415_24be3636_1787872172132_984a4590.png?v=1&width=400" alt="" width="400" height="533" loading="lazy" decoding="async"><span class="nf-g3d__mark"><span class="nf-g3d__mark-a">Nora Furnish</span><span class="nf-g3d__mark-b"><span>Catalog</span><span>2026</span></span></span></span>
+            <span class="nf-g3d__page nf-g3d__page--r"><span class="nf-g3d__pimg"><img src="{{ nf_cdn }}nav_pendants_mounts_hq.webp?v=1785976124&width=200" alt="" width="200" height="150" loading="lazy" decoding="async"></span><span class="nf-g3d__ptitle">Pendant lighting</span><span class="nf-g3d__lines"><i></i><i></i><i></i><i class="is-accent"></i></span></span>
+            <span class="nf-g3d__leaf"><span class="nf-g3d__leaf-f"><span class="nf-g3d__welcome">Welcome to Nora Furnish</span><span class="nf-g3d__lines"><i></i><i></i><i></i><i></i><i></i></span><span class="nf-g3d__cols"><span class="nf-g3d__lines"><i></i><i></i><i></i></span><span class="nf-g3d__lines"><i></i><i></i><i></i></span></span></span><span class="nf-g3d__leaf-b"><span class="nf-g3d__lines"><i></i><i></i><i></i><i></i></span></span></span>
+          </span>
+          {%- when 'guide' -%}
+          <span class="nf-g3d__eyebrow">Sizing guide</span>
+          <span class="nf-g3d__tab"><span class="nf-g3d__screen"><svg viewBox="0 0 128 180" xmlns="http://www.w3.org/2000/svg" focusable="false"><defs><radialGradient id="nfG3dGlow"><stop offset="0" stop-color="#f6c77f" stop-opacity=".9"/><stop offset="1" stop-color="#f6c77f" stop-opacity="0"/></radialGradient></defs><text class="nf-g3d-sv-h" x="10" y="17">How high to hang</text><path class="nf-g3d-sv-rule" d="M10 22.5H118"/><path class="nf-g3d-sv-line" d="M6 30H122M6 152H122"/><ellipse cx="90" cy="60" rx="32" ry="17" fill="url(#nfG3dGlow)" opacity=".55"/><ellipse cx="20" cy="80" rx="12" ry="17" fill="url(#nfG3dGlow)" opacity=".5"/><rect class="nf-g3d-sv-inkf" x="86.5" y="30" width="7" height="2" rx=".6"/><path class="nf-g3d-sv-ink" d="M90 31V46M90 46L72 52M90 46L108 52"/><ellipse class="nf-g3d-sv-ink" cx="90" cy="52" rx="18" ry="3.6"/><g class="nf-g3d-sv-bulb"><circle cx="73" cy="56" r="2.2"/><circle cx="81.5" cy="57" r="2.2"/><circle cx="90" cy="57.4" r="2.2"/><circle cx="98.5" cy="57" r="2.2"/><circle cx="107" cy="56" r="2.2"/></g><path class="nf-g3d-sv-wood" d="M62 111h56v3.4H62zM65.5 114.4h2.6V152h-2.6zM112 114.4h2.6V152H112z"/><path class="nf-g3d-sv-vase" d="M106.5 111v-5a2.5 2.5 0 0 1 5 0v5z"/><path class="nf-g3d-sv-ink" d="M109 103.5c-.6-3 1-5.5 3-6.5"/><rect class="nf-g3d-sv-inkf" x="14" y="76.5" width="2" height="7" rx=".6"/><rect class="nf-g3d-sv-inkf" x="16.5" y="73" width="7" height="14" rx="2"/><path class="nf-g3d-sv-g" d="M90 60V110.5M9 81V151M9 80h6"/><path class="nf-g3d-sv-a" pathLength="1" d="M90 60.5V110.5"/><path class="nf-g3d-sv-a" pathLength="1" d="M9 151V80.5"/><path class="nf-g3d-sv-hd" d="M87.8 63.7L90 60.3l2.2 3.4M87.8 107.3L90 110.7l2.2-3.4M6.8 83.7L9 80.3l2.2 3.4M6.8 147.8L9 151.2l2.2-3.4"/><rect class="nf-g3d-sv-pill" x="66" y="80" width="48" height="11" rx="5.5"/><text class="nf-g3d-sv-t" x="90" y="88">30 to 36 in</text><rect class="nf-g3d-sv-pill" x="11.5" y="113" width="46" height="11" rx="5.5"/><text class="nf-g3d-sv-t" x="34.5" y="121">60 to 66 in</text><text class="nf-g3d-sv-s" x="10" y="168">Dining table and wall sconce</text></svg></span></span>
+        {%- endcase -%}
+        </span></span>
+        <span class="mega-menu__figure-caption">{{ sub_link.title }}</span>
+      </a>
+    {%- elsif nf_img != '' -%}
+      <a href="{{ sub_link.url }}" class="mega-menu__figure">
+        {%- if nf_full != '' -%}<img src="{{ nf_full | image_url: width: 700 }}" srcset="{{ nf_full | image_url: width: 360 }} 360w, {{ nf_full | image_url: width: 480 }} 480w, {{ nf_full | image_url: width: 700 }} 700w" sizes="220px" alt="{{ sub_link.title | escape }}" width="350" height="420" loading="lazy" decoding="async">{%- else -%}{%- comment -%} NF-PERF3-0911: srcset so the browser picks 360/480w for these figures (shown at 215px or less) instead of always 700w. Same look, fewer bytes when a dropdown opens. {%- endcomment -%}<img src="{{ nf_cdn }}{{ nf_img }}&width=700" srcset="{{ nf_cdn }}{{ nf_img }}&width=360 360w, {{ nf_cdn }}{{ nf_img }}&width=480 480w, {{ nf_cdn }}{{ nf_img }}&width=700 700w" sizes="220px"{% if nf_pos != '' %} style="object-position: {{ nf_pos }};"{% endif %} alt="{{ sub_link.title | escape }}" width="350" height="420" loading="lazy" decoding="async">{%- endif -%}
+<span class="mega-menu__figure-caption">{{ sub_link.title }}</span>
+      </a>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- assign nf_has_figures = nf_figures | strip -%}
+
+<div class="mega-menu mega-menu--custom {% if block.settings.images_position == 'left' %}mega-menu--reverse{% endif %}{% if link_title_lower contains 'lighting' %} mega-menu--lighting{% endif %}{% if link_title_lower contains 'decor' %} mega-menu--decor{% endif %}{% if link_title_lower == 'sale' or link_title_lower == 'ideas & guides' or link_title_lower == 'grand collection' or link_title_lower == 'autumn at home' %} mega-menu--sale{% endif %}{% if link_title_lower == 'autumn at home' %} mega-menu--autumn{% endif %}{% if link_title_lower == 'ideas & guides' %} mega-menu--guides{% endif %}{% if link_title_lower == 'professionals' %} mega-menu--pro{% endif %}{% if nf_has_figures != '' %} mega-menu--has-figures{% endif %}" {{ block.shopify_attributes }}>
+
+<div class="mega-menu__layout">
+
+{%- if link_title_lower == 'professionals' -%}
+{%- comment -%} NF-PRO-MENU (2026-09-11): Professionals panel lives in snippets/nf-pro-menu.liquid {%- endcomment -%}
+{%- render 'nf-pro-menu', link: link -%}
+{%- elsif link_title_lower == 'sale' or link_title_lower == 'ideas & guides' or link_title_lower == 'grand collection' or link_title_lower == 'autumn at home' -%}
+{%- comment -%} Sale (and Ideas & Guides) is three broad collections, so it gets a panel of named rows instead of group columns {%- endcomment -%}
+<div class="nf-sale-panel">
+<p class="nf-sale-panel__eyebrow">{% if link_title_lower == 'sale' %}Shop the edit{% elsif link_title_lower == 'grand collection' %}Made to order, 3 to 4 weeks{% elsif link_title_lower == 'autumn at home' %}The First Days of Fall Sale{% else %}Explore and learn{% endif %}</p>
+{%- for sub_link in link.links -%}
+{%- assign gt = sub_link.title | downcase | strip -%}
+{%- assign nf_desc = '' -%}
+{%- case gt -%}
+{%- when 'best sellers' -%}{%- assign nf_desc = 'The pieces customers love most' -%}
+{%- when 'new arrivals' -%}{%- assign nf_desc = 'Fresh designs, just added' -%}
+{%- when 'clearance' -%}{%- assign nf_desc = 'Final markdowns while they last' -%}
+{%- when 'grand indoor lighting' -%}{%- assign nf_desc = 'Statement chandeliers for foyers, stairs and high ceilings' -%}
+{%- when 'grand outdoor lighting' -%}{%- assign nf_desc = 'Large post lights, bollards and scenic wall lights' -%}
+{%- when 'blogs', 'the journal', 'journal' -%}{%- assign nf_desc = 'Ideas, how tos and room by room advice' -%}
+{%- when 'catalogs', 'catalog' -%}{%- assign nf_desc = 'Flip through our 2026 lighting catalog' -%}
+{%- when 'lighting guides' -%}{%- assign nf_desc = 'Sizing, placement and brightness made simple' -%}
+{%- when 'fall decor' -%}{%- assign nf_desc = 'The autumn look, room by room' -%}
+{%- when 'halloween decor' -%}{%- assign nf_desc = 'Halloween, done tastefully' -%}
+{%- when 'halloween inflatables' -%}{%- assign nf_desc = 'Big lit pieces for the yard' -%}
+{%- endcase -%}
+<a href="{{ sub_link.url }}" class="nf-sale-panel__row{% if gt == 'clearance' %} is-clearance{% endif %}">
+<span class="nf-sale-panel__text"><span class="nf-sale-panel__title">{{ sub_link.title }}</span>{%- if nf_desc != '' -%}<span class="nf-sale-panel__desc">{{ nf_desc }}</span>{%- endif -%}</span>
+<span class="nf-sale-panel__arrow" aria-hidden="true">&rarr;</span>
+</a>
+{%- endfor -%}
+</div>
+{%- else -%}
+<div class="mega-menu__groups{% if link.links.size <= 1 %} mega-menu__groups--single{% endif %}">
+{%- for sub_link in link.links -%}
+<div class="mega-menu__group">
+{%- if sub_link.url != blank and sub_link.url != '' -%}
+<a href="{{ sub_link.url }}" class="mega-menu__group-title h6">{{ sub_link.title }}</a>
+{%- else -%}
+<span class="mega-menu__group-title h6">{{ sub_link.title }}</span>
+{%- endif -%}
+<ul class="mega-menu__group-links unstyled-list">
+{%- for child_link in sub_link.links -%}
+<li><a href="{{ child_link.url }}" class="mega-menu__group-link link-faded">{{ child_link.title }}</a></li>
+{%- endfor -%}
+</ul>
+</div>
+{%- endfor -%}
+</div>
+{%- endif -%}
+
+{%- if nf_has_figures != '' -%}
+<div class="mega-menu__figures">{{ nf_figures }}</div>
+{%- endif -%}
+
+</div>
+
+</div>
+
+{%- if link_title_lower == 'ideas & guides' -%}
+<style>
+/* NF-HUB-MENU (2026-09-10): the phone menu adds an automatic "All <group>" row to every group. Blog and Catalogs already list
+   their own "All Articles" and "All Catalogs" links, so only their automatic row is hidden. Lighting Guides keeps it (it opens the hub page). */
+.header-sidebar li:has(> .nf-all-link[href="/blogs/blog"]),
+.header-sidebar li:has(> .nf-all-link[href="/pages/catalog"]) { display: none !important; }
+</style>
+{%- endif -%}
+{%- if link_title_lower == 'ideas & guides' -%}
+<link rel="stylesheet" href="{{ 'nf-guides-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}

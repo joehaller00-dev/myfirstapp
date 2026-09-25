@@ -1,0 +1,63 @@
+{%- comment -%}
+  NF-FAQ-V2 (2026-09-11): dark "Still have a question?" band under the FAQ (templates/page.faq-v2.json).
+  Email only, never a phone number. Styles: assets/nf-faq.css.
+{%- endcomment -%}
+{{- 'nf-faq.css' | asset_url | stylesheet_tag -}}
+{%- assign nfh_email = section.settings.email | default: 'info@norafurnish.com' -%}
+<section class="nfq nfq-help nfq-on-dark" aria-labelledby="nfq-help-h-{{ section.id }}">
+  <div class="nfq-wrap nfq-help__grid">
+    <div class="nfq-help__copy">
+      {%- if section.settings.eyebrow != blank -%}<p class="nfq-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="nfq-h2 nfq-help__h" id="nfq-help-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<p class="nfq-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+      <a class="nfq-help__mail" href="mailto:{{ nfh_email | escape }}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 7 9 6.2L21 7"/></svg><span>{{ nfh_email | escape }}</span></a>
+      <div class="nfq-actions">
+        <a class="nfq-btn nfq-btn--gold" href="mailto:{{ nfh_email | escape }}">{{ section.settings.btn1_label | default: 'Email us' | escape }}<span class="nfq-arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="nfq-btn nfq-btn--outline" href="{{ section.settings.btn2_url | default: '/pages/contact' | escape }}">{{ section.settings.btn2_label | default: 'Visit the contact page' | escape }}</a>
+      </div>
+      {%- if section.settings.hours != blank -%}<p class="nfq-help__hours">{{ section.settings.hours | escape }}</p>{%- endif -%}
+    </div>
+    {%- if section.blocks.size > 0 -%}
+      <nav class="nfq-help__links" aria-label="{{ section.settings.links_label | default: 'Helpful pages' | escape }}">
+        <p class="nfq-help__lt">{{ section.settings.links_label | default: 'Helpful pages' | escape }}</p>
+        <ul role="list">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.label != blank -%}
+              <li {{ block.shopify_attributes }}><a class="nfq-help__a" href="{{ block.settings.url | escape }}"><span class="nfq-help__at">{{ block.settings.label | escape }}</span>{%- if block.settings.note != blank -%}<span class="nfq-help__an">{{ block.settings.note | escape }}</span>{%- endif -%}<span class="nfq-arrow" aria-hidden="true">&rarr;</span></a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF FAQ help band",
+  "class": "nfq-section nfq-section--help",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "We are here to help" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Still have a question?" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "email", "label": "Email", "default": "info@norafurnish.com" },
+    { "type": "text", "id": "btn1_label", "label": "Gold button label", "default": "Email us" },
+    { "type": "text", "id": "btn2_label", "label": "Outline button label", "default": "Visit the contact page" },
+    { "type": "text", "id": "btn2_url", "label": "Outline button link", "default": "/pages/contact" },
+    { "type": "text", "id": "hours", "label": "Hours line" },
+    { "type": "text", "id": "links_label", "label": "Links heading", "default": "Helpful pages" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "text", "id": "note", "label": "Short note" },
+        { "type": "text", "id": "url", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 8
+}
+{% endschema %}

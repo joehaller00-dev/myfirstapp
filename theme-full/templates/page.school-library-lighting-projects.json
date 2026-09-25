@@ -1,0 +1,335 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Schools and Libraries",
+        "eyebrow": "Schools, libraries and reading rooms",
+        "heading": "Calm, even light for learning and reading",
+        "text": "Classrooms, libraries and reading rooms need light that is easy on the eyes for hours at a time. Even overhead light, a lamp at every reading chair and warm light in quiet corners help people focus and stay.",
+        "image_file": "nf-ref-book-corner.png",
+        "image_alt": "Calm, even light for learning and reading",
+        "fallback_collection": "reading-floor-lamps",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=school-library-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Reading Floor Lamps",
+        "link_url": "/collections/reading-floor-lamps"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Even for focus, warm for reading",
+        "image_file": "nf-ref-focus-room.jpg",
+        "image_alt": "A quiet focus room under an even linear pendant",
+        "fallback_collection": "linear-suspension",
+        "text": "<p>Glare and flicker tire eyes quickly. A few simple layers keep a room comfortable from the first lesson to the last.</p>",
+        "bullets": "Even light overhead: Linear suspension and flush mount lights spread light across desks without hot spots.\nA lamp at every reading chair: Floor and table lamps put light on the page, not in anyone's eyes.\nNeutral color for study: Light around 4000K keeps text sharp in classrooms and study areas.\nWarm corners for reading: Softer 2700K light in reading nooks makes them feel inviting.\nWall lamps where space is tight: Reading wall lamps free up floor and desk space.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Classrooms\nLibraries\nReading rooms\nStudy areas\nHallways\nStaff rooms"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Reading Floor Lamps",
+        "link_url": "/collections/reading-floor-lamps"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Linear suspension",
+            "collection": "linear-suspension",
+            "text": "Long, even light over desks and study tables.",
+            "shop_label": "Shop linear suspension",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Flush mount",
+            "collection": "flush-mount-lighting",
+            "text": "Low profile light for hallways and lower ceilings.",
+            "shop_label": "Shop flush mount lights",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Reading floor lamps",
+            "collection": "reading-floor-lamps",
+            "text": "Light on the page beside every reading chair.",
+            "shop_label": "Shop reading floor lamps",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "Table and desk lamps",
+            "collection": "table-lamps",
+            "text": "Task light at every desk and study table.",
+            "shop_label": "Shop table and desk lamps",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Reading wall lamps",
+            "collection": "reading-wall-lamps",
+            "text": "Adjustable light that saves floor space.",
+            "shop_label": "Shop reading wall lamps",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-office-concepts-3.webp",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "image_file": "nf-pro3-office-concepts-1.png",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "image_file": "nf-pro3-office-concepts-2.webp",
+            "fallback_collection": "pendants"
+          }
+        }
+      },
+      "block_order": [
+        "c_maker_studio",
+        "c_linen_and_oak",
+        "c_alder_lobby"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Lighting a classroom, library or study space?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=school-library-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "What light color is best for studying?",
+            "a": "<p>Neutral white around 4000K keeps text crisp in classrooms and study areas. Warm white around 2700K suits reading nooks and lounges.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "How long does delivery take?",
+            "a": "<p>Shipping is free anywhere in the United States, with delivery in 6 to 9 business days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how school and library lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=school-library-lighting-projects",
+        "btn2_label": "Shop Reading Floor Lamps",
+        "btn2_url": "/collections/reading-floor-lamps",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Book Corner",
+            "image_file": "nf-ref-book-corner.png",
+            "alt": "Book Corner, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Focus Room",
+            "image_file": "nf-ref-focus-room.jpg",
+            "alt": "Focus Room, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Desk Light",
+            "image_file": "nf-ref-desk-light.png",
+            "alt": "Desk Light, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Reading Nook",
+            "image_file": "nf-blog-reading-nook-floor-lamp.png",
+            "alt": "Reading Nook, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Study Tables",
+            "image_file": "nf-ref-open-workspace.jpg",
+            "alt": "Study Tables, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Group Table",
+            "image_file": "nf-ref-meeting-table.jpg",
+            "alt": "Group Table, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Corridor",
+            "image_file": "nf-ref-corridor-ceiling.png",
+            "alt": "Corridor, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Reading Desk",
+            "image_file": "nf-pro3-office-concepts-1.png",
+            "alt": "Reading Desk, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band",
+    "faq"
+  ]
+}

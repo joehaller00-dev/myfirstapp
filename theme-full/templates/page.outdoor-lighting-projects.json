@@ -1,0 +1,297 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Outdoor",
+        "eyebrow": "Outdoor lighting projects",
+        "heading": "Outdoor lighting that makes evenings last longer",
+        "text": "Rooftop bars, courtyards, gardens, paths and facades all need light that is safe, weather ready and good looking. We help you plan it and supply every fixture.",
+        "image_file": "nf-pro-outdoor.jpg",
+        "image_alt": "Outdoor lighting that makes evenings last longer",
+        "fallback_collection": "outdoor-project-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=outdoor-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Outdoor Project Lighting",
+        "link_url": "/collections/outdoor-project-lighting"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Safe underfoot, beautiful all around",
+        "image_file": "nf-pro3-outdoor-approach-1.jpg",
+        "image_alt": "Garden path at dusk lit by mushroom path lights beside low shrubs",
+        "fallback_collection": "path-lights",
+        "text": "<p>Outdoor lighting has two jobs. It keeps people safe on steps and paths, and it makes the space feel magical after dark. Done well, one plan does both.</p>",
+        "bullets": "Light the way: Path and step lights mark edges and stairs without glare in anyone's eyes.\nWash the walls: Up and down wall lights add depth to a facade and light the door at the same time.\nKeep it low and warm: Low, warm light feels welcoming and keeps the night sky dark.\nLayer the seating areas: String lights and lanterns make terraces and courtyards feel like a room.\nChoose the right rating: Every outdoor fixture should be rated for where it goes, and every product page lists this for each piece.\nSolar where wiring is hard: Solar path and pillar lights reach far corners with no digging.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Rooftops and terraces\nCourtyards\nGardens and paths\nFacades and entrances\nDecks and steps\nDriveways and gates"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Outdoor Project Lighting",
+        "link_url": "/collections/outdoor-project-lighting"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Outdoor wall lights",
+            "collection": "outdoor-wall-lights",
+            "text": "Up and down and linear lights for facades and entrances.",
+            "shop_label": "Shop outdoor wall lights",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Path lights",
+            "collection": "path-lights",
+            "text": "Mark paths and borders with low, warm light.",
+            "shop_label": "Shop path lights",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Bollard lights",
+            "collection": "bollard-lights",
+            "text": "Sturdy markers for driveways, gardens and walkways.",
+            "shop_label": "Shop bollard lights",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "Pillar lights",
+            "collection": "pillar-lights",
+            "text": "Crown gate posts, walls and fence lines.",
+            "shop_label": "Shop pillar lights",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "String lights",
+            "collection": "outdoor-string-lights",
+            "text": "Turn a terrace or courtyard into an outdoor room.",
+            "shop_label": "Shop outdoor string lights",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_corner_bistro": {
+          "type": "concept",
+          "settings": {
+            "slug": "corner-bistro",
+            "number": "02",
+            "title": "Corner Bistro",
+            "category": "hospitality",
+            "space": "Neighborhood restaurant",
+            "summary": "A neighborhood bistro where the light is low, the tables glow and the bar is the brightest spot in the room.",
+            "image_file": "nf-pro3-outdoor-concepts-3.png",
+            "fallback_collection": "pendants"
+          }
+        },
+        "c_rooftop_at_nine": {
+          "type": "concept",
+          "settings": {
+            "slug": "rooftop-at-nine",
+            "number": "03",
+            "title": "Rooftop at Nine",
+            "category": "outdoor",
+            "space": "Rooftop terrace bar",
+            "summary": "A rooftop bar that stays glowing and welcoming long after sunset.",
+            "image_file": "nf-pro3-outdoor-concepts-1.png",
+            "fallback_collection": "outdoor-string-lights"
+          }
+        },
+        "c_garden_courtyard": {
+          "type": "concept",
+          "settings": {
+            "slug": "garden-courtyard",
+            "number": "07",
+            "title": "Garden Courtyard",
+            "category": "outdoor",
+            "space": "Walled garden courtyard",
+            "summary": "A walled courtyard garden with gentle paths of light and a glowing seating corner.",
+            "image_file": "nf-pro3-outdoor-concepts-2.webp",
+            "fallback_collection": "path-lights"
+          }
+        }
+      },
+      "block_order": [
+        "c_rooftop_at_nine",
+        "c_garden_courtyard",
+        "c_corner_bistro"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Lighting a terrace, garden or facade?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=outdoor-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how outdoor lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=outdoor-lighting-projects",
+        "btn2_label": "Shop Outdoor Project Lighting",
+        "btn2_url": "/collections/outdoor-project-lighting",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Front Porch",
+            "image_file": "nf-blog-front-porch-lanterns.png",
+            "alt": "Front Porch lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Entry Walls",
+            "image_file": "nf-ref-entry-walls.png",
+            "alt": "Entry Walls lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Facade Lines",
+            "image_file": "nf-ref-facade-lines.png",
+            "alt": "Facade Lines lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Garden Path",
+            "image_file": "nf-ref-garden-path.png",
+            "alt": "Garden Path lit in the evening, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Walkway",
+            "image_file": "nf-ref-walkway.png",
+            "alt": "Walkway lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Patio Lights",
+            "image_file": "nf-blog-patio-string-lights.png",
+            "alt": "Patio Lights lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Deck Steps",
+            "image_file": "nf-ref-deck-steps.png",
+            "alt": "Deck Steps lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Deck Lounge",
+            "image_file": "nf-ref-deck-lounge.png",
+            "alt": "Deck Lounge lit in the evening, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band"
+  ]
+}

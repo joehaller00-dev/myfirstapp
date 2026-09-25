@@ -1,0 +1,297 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Hospitality",
+        "eyebrow": "Hospitality lighting projects",
+        "heading": "Lighting that makes guests want to stay",
+        "text": "Hotels, guest houses, restaurants, cafes and bars live or die by how they feel after dark. We help you choose fixtures that set that mood, from the lobby chandelier to the lamp by the bed.",
+        "image_file": "nf-pro-hospitality.jpg",
+        "image_alt": "Lighting that makes guests want to stay",
+        "fallback_collection": "hospitality-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "\/pages\/bulk-order-form?industry=hospitality-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "\/pages\/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Hospitality Lighting",
+        "link_url": "\/collections\/hospitality-lighting"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Warm, layered and easy to live with",
+        "image_file": "nf-discover-reviews.jpg",
+        "image_alt": "Guest bedroom at night with a pleated table lamp glowing on the nightstand",
+        "fallback_collection": "reading-wall-lamps",
+        "text": "<p>Good hospitality lighting is never one big light. It is a few layers working together, each doing its own job, all in the same warm family of color.<\/p>",
+        "bullets": "Start with a welcome: A statement chandelier or a cluster of pendants gives the arrival a focal point and sets the tone for the whole property.\nKeep it warm: Light around 2700K to 3000K in lobbies, dining rooms and guest rooms makes skin, wood and fabric look their best.\nLight people, not just rooms: Sconces at eye level and lamps on tables make faces and conversations feel close and relaxed.\nPlan for every hour: Dimmers and separate circuits let breakfast feel bright and dinner feel intimate in the same space.\nRepeat the details: One finish carried from the entry to the corridors ties a large property together.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Lobbies and reception\nRestaurants and bars\nGuest rooms and suites\nCorridors and stairs\nTerraces and courtyards\nBreakfast rooms"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Hospitality Lighting",
+        "link_url": "\/collections\/hospitality-lighting"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Chandeliers",
+            "collection": "chandeliers",
+            "text": "The centerpiece for lobbies, dining rooms and tall entries.",
+            "shop_label": "Shop all chandeliers",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Pendants",
+            "collection": "pendants",
+            "text": "Rows over bars and tables, or a cluster above the reception desk.",
+            "shop_label": "Shop all pendants",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Wall sconces",
+            "collection": "wall-sconces",
+            "text": "Soft light for corridors, stairways and dining room walls.",
+            "shop_label": "Shop all wall sconces",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "Bedside lighting",
+            "collection": "reading-wall-lamps",
+            "text": "Reading lights that let each guest choose their own light.",
+            "shop_label": "Shop reading wall lamps",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Table lamps",
+            "collection": "table-lamps",
+            "text": "Pools of warm light on restaurant tables, desks and lounge corners.",
+            "shop_label": "Shop all table lamps",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-hosp-concepts-1.png",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_corner_bistro": {
+          "type": "concept",
+          "settings": {
+            "slug": "corner-bistro",
+            "number": "02",
+            "title": "Corner Bistro",
+            "category": "hospitality",
+            "space": "Neighborhood restaurant",
+            "summary": "A neighborhood bistro where the light is low, the tables glow and the bar is the brightest spot in the room.",
+            "image_file": "nf-pro3-hosp-concepts-2.webp",
+            "fallback_collection": "pendants"
+          }
+        },
+        "c_guest_suite": {
+          "type": "concept",
+          "settings": {
+            "slug": "guest-suite",
+            "number": "08",
+            "title": "Guest Suite",
+            "category": "hospitality",
+            "space": "Hotel guest suite",
+            "summary": "A hotel suite with light at every place a guest actually needs it.",
+            "image_file": "nf-pro3-hosp-concepts-3.webp",
+            "fallback_collection": "reading-wall-lamps"
+          }
+        }
+      },
+      "block_order": [
+        "c_alder_lobby",
+        "c_corner_bistro",
+        "c_guest_suite"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Planning a hotel, restaurant or cafe?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "\/pages\/bulk-order-form?industry=hospitality-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "\/pages\/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "\/pages\/project-portfolio"
+      }
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how hospitality lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "\/pages\/bulk-order-form?industry=hospitality-lighting-projects",
+        "btn2_label": "Shop Hospitality Lighting",
+        "btn2_url": "\/collections\/hospitality-lighting",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Hotel Lounge",
+            "image_file": "nf-pro3-hosp-ref-1.png",
+            "alt": "Hotel Lounge inspiration photo, lit in the evening"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Restaurant Dining",
+            "image_file": "nf-discover-portfolio.jpg",
+            "alt": "Restaurant Dining lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Cafe Counter",
+            "image_file": "nf-ref-cafe-counter.png",
+            "alt": "Cafe Counter lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Supper Club",
+            "image_file": "nf-pro3-fix-hosp-ref-4.png",
+            "alt": "Supper Club inspiration photo, lit in the evening"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Private Dining",
+            "image_file": "nf-ref-private-dining.webp",
+            "alt": "Private Dining lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Guest Suite",
+            "image_file": "nf-ref-guest-suite.png",
+            "alt": "Guest Suite lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Bedside Reading",
+            "image_file": "nf-ref-bedside.png",
+            "alt": "Bedside Reading lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Guest Corridor",
+            "image_file": "nf-ref-guest-corridor.png",
+            "alt": "Guest Corridor lit in the evening, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band"
+  ]
+}

@@ -1,0 +1,119 @@
+{%- comment -%}
+  nf-catalog-book : open book mockup of a digital catalog. Hovering with a mouse turns its real pages
+  (assets/nf-catalog.js, Book). The resting spread (cover and welcome) is rendered here, so it shows
+  without JavaScript and on touch screens, where a tap opens the catalog. The other pages are drawn by
+  the script from the trimmed catalog JSON printed below (every chapter title and opener, plus the first
+  spread of the chapters listed in "pick").
+  Params: cat (page metafield custom.catalog value), url (viewer page url), sizes (optional img sizes),
+          caption (true prints the hint under the book),
+          mode: 'stats' prints only "pages|fixtures|chapters" (promo band and catalogs page).
+  Page count matches the viewer: cover, welcome pair, contents pair, opener pair and a pair per spread
+  for every chapter, the closing page (when back_cover is set) and the back cover. Stats and counts.pages
+  report n_views, the pages as the viewer counts them: the cover, then one per spread (NF-CATALOG-PAGE-V2).
+  The two nfcat-book__blk blocks are the stacked page edges under each side (nf-catalog.js sizes them).
+  Needs assets/nf-catalog.css and assets/nf-catalog.js.
+{%- endcomment -%}
+{%- liquid
+  assign wl = cat.welcome
+  assign n_sp = 0
+  assign seen = '|'
+  assign n_fx = 0
+  for hp in wl.hotspots
+    assign key = '|' | append: hp.handle | append: '|'
+    unless seen contains key
+      assign seen = seen | append: hp.handle | append: '|'
+      assign n_fx = n_fx | plus: 1
+    endunless
+  endfor
+  for ch in cat.chapters
+    assign n_sp = n_sp | plus: ch.spreads.size
+    for sp in ch.spreads
+      for p in sp.products
+        assign key = '|' | append: p.handle | append: '|'
+        unless seen contains key
+          assign seen = seen | append: p.handle | append: '|'
+          assign n_fx = n_fx | plus: 1
+        endunless
+      endfor
+      for hp in sp.lifestyle.hotspots
+        assign key = '|' | append: hp.handle | append: '|'
+        unless seen contains key
+          assign seen = seen | append: hp.handle | append: '|'
+          assign n_fx = n_fx | plus: 1
+        endunless
+      endfor
+    endfor
+  endfor
+  assign n_pages = cat.chapters.size | plus: n_sp | times: 2 | plus: 4
+  if wl
+    assign n_pages = n_pages | plus: 2
+  endif
+  if cat.back_cover
+    assign n_pages = n_pages | plus: 1
+  endif
+  assign n_views = n_pages | divided_by: 2 | plus: 1
+-%}
+{%- if mode == 'stats' -%}
+{{- n_views }}|{{ n_fx }}|{{ cat.chapters.size -}}
+{%- else -%}
+{%- liquid
+  assign cv = cat.cover
+  assign cu = cv.image
+  assign sep = '?'
+  if cu contains '?'
+    assign sep = '&'
+  endif
+  assign fo = cv.focal | default: '50% 50%'
+  assign img_sizes = sizes | default: '(max-width: 899px) 45vw, 22vw'
+  assign pick = '|1|2|4|6|9|11|'
+-%}
+<div class="nfcat-bk" data-nfcat-book>
+  <a class="nfcat-book" href="{{ url }}" aria-label="Open the {{ cat.title | escape }}">
+    <span class="nfcat-book__gs" aria-hidden="true"></span>
+    <div class="nfcat-book__in" aria-hidden="true">
+      <div class="nfcat-book__blk nfcat-book__blk--l"><span class="nfcat-book__bd"></span><span class="nfcat-book__stk"></span></div>
+      <div class="nfcat-book__blk nfcat-book__blk--r"><span class="nfcat-book__bd"></span><span class="nfcat-book__stk"></span></div>
+      <div class="nfcat-book__pg nfcat-book__pg--l" data-book-l>
+        <div class="nfcat-leaf nfcat-leaf--cover">
+          {%- if cu != blank -%}
+            <img class="nfcat-ph" src="{{ cu }}{{ sep }}width=800" srcset="{{ cu }}{{ sep }}width=400 400w, {{ cu }}{{ sep }}width=600 600w, {{ cu }}{{ sep }}width=800 800w, {{ cu }}{{ sep }}width=1100 1100w" sizes="{{ img_sizes }}" style="object-position: {{ fo }}" alt="" loading="lazy" decoding="async" width="600" height="800" draggable="false">
+          {%- endif -%}
+          <div class="nfcat-cover__mark"><span class="nfcat-cover__name">Nora Furnish</span><span class="nfcat-cover__ed">Catalog<br>{{ cv.edition | default: '2026' }}</span></div>
+          <span class="nfcat-cover__site">norafurnish.com</span>
+        </div>
+        <span class="nfcat-book__cs"></span><span class="nfcat-book__sd"></span>
+      </div>
+      <div class="nfcat-book__pg nfcat-book__pg--r" data-book-r>
+        <div class="nfcat-leaf nfcat-leaf--welcome">
+          <div class="nfcat-in">
+            <p class="nfcat-label">Welcome</p>
+            <p class="nfcat-h">{{ wl.heading | escape }}</p>
+            {%- for para in wl.paragraphs limit: 2 -%}<p class="nfcat-p">{{ para | escape }}</p>{%- endfor -%}
+            {%- if wl.offers.size > 0 -%}
+              <dl class="nfcat-offers">
+                {%- for o in wl.offers limit: 4 -%}<div><dt>{{ o.label | escape }}</dt><dd>{{ o.detail | escape }}</dd></div>{%- endfor -%}
+              </dl>
+            {%- endif -%}
+          </div>
+          <div class="nfcat-foot nfcat-foot--r"><span>norafurnish.com</span><span>2</span></div>
+        </div>
+        <span class="nfcat-book__cs"></span><span class="nfcat-book__sd"></span>
+      </div>
+    </div>
+  </a>
+  {%- if caption -%}
+    <p class="nfcat-book__cap"><span class="nfcat-book__hint nfcat-book__hint--fine">Move toward an edge to turn the pages</span><span class="nfcat-book__hint nfcat-book__hint--touch">Tap the book to open the catalog</span></p>
+  {%- endif -%}
+  <script type="application/json" data-nfcat-book-data>{"title":{{ cat.title | json }},"counts":{"fixtures":{{ n_fx }},"pages":{{ n_views }}},"cover":{{ cv | json }},{% if wl %}"welcome":{"heading":{{ wl.heading | json }}},{% endif %}"back_cover":{{ cat.back_cover | json }},"chapters":[
+    {%- for ch in cat.chapters -%}
+      {%- assign idx = '|' | append: forloop.index | append: '|' -%}
+      {"title":{{ ch.title | json }},"collection":{{ ch.collection | json }},{% if pick contains idx %}"intro":{{ ch.intro | json }},{% endif %}"opener_image":{{ ch.opener_image | json }},"opener_alt":{{ ch.opener_alt | json }},"opener_focal":{{ ch.opener_focal | json }},"spreads":[
+        {%- for sp in ch.spreads -%}
+          {%- if forloop.first and pick contains idx -%}{"products":{{ sp.products | json }},"lifestyle":{"image":{{ sp.lifestyle.image | json }},"alt":{{ sp.lifestyle.alt | json }},"focal":{{ sp.lifestyle.focal | json }}}}{%- else -%}{}{%- endif -%}
+          {%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]}</script>
+</div>
+{%- endif -%}

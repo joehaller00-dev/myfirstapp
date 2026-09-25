@@ -1,0 +1,211 @@
+/* NF-PIECES-V2 (2026-09-11): homepage "Pieces Made for Every Home" showcase.
+   Loaded only by sections/nf-pieces-home.liquid. White or neutral grey ground only (no cream, ivory or beige). */
+.nfp {
+  --nfp-ink: #1c1c1c;
+  --nfp-ink-2: #5e5e5e;
+  --nfp-ink-3: #8d8d8d;
+  --nfp-line: #e6e6e6;
+  --nfp-sale: #e32c2b;
+  --nfp-star: #e0a100;
+  --nfp-head: var(--heading-font-family, "Roboto Serif", Georgia, serif);
+  --nfp-ui: var(--text-font-family, Montserrat, -apple-system, "Segoe UI", sans-serif);
+  --nfp-gap: 24px;
+  --nfp-pad: clamp(20px, 3.3vw, 48px);
+  --nfp-r: 18px;
+  --nfp-ease: cubic-bezier(.22, .61, .36, 1);
+  background: #ffffff;
+  color: var(--nfp-ink);
+  padding: clamp(56px, 6.2vw, 96px) 0 clamp(52px, 5.6vw, 84px);
+}
+.nfp--grey { background: #f5f5f5; }
+.nfp--rule { border-top: 1px solid var(--nfp-line); }
+.nfp *, .nfp *::before, .nfp *::after { box-sizing: border-box; }
+.nfp__wrap { max-width: 1680px; margin: 0 auto; padding: 0 var(--nfp-pad); }
+
+/* Header */
+.nfp__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(18px, 2.2vw, 30px); }
+.nfp__intro { max-width: 660px; }
+.nfp__eyebrow { margin: 0 0 12px; font: 500 11px/1.2 var(--nfp-ui); letter-spacing: .2em; text-transform: uppercase; color: var(--nfp-ink-2); }
+.nfp__title { margin: 0; font-family: var(--nfp-head); font-weight: 300; font-style: normal; font-size: clamp(30px, 3vw, 46px); line-height: 1.1; letter-spacing: .005em; text-transform: none; color: var(--nfp-ink); text-wrap: balance; }
+.nfp__sub { margin: 14px 0 0; font: 400 15px/1.6 var(--nfp-ui); letter-spacing: .01em; color: var(--nfp-ink-2); }
+.nfp__arrows { display: flex; gap: 10px; flex: none; }
+.nfp__arrow {
+  appearance: none; -webkit-appearance: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; padding: 0; border-radius: 50%; border: 1px solid #d4d4d4; background: #fff; color: var(--nfp-ink);
+  cursor: pointer; transition: background-color .35s ease, color .35s ease, border-color .35s ease, opacity .35s ease;
+}
+.nfp__arrow:hover:not(:disabled) { background: var(--nfp-ink); border-color: var(--nfp-ink); color: #fff; }
+.nfp__arrow:disabled { opacity: .32; cursor: default; }
+
+/* Tabs */
+.nfp__tabs-wrap { position: relative; margin-bottom: clamp(22px, 2.4vw, 34px); border-bottom: 1px solid var(--nfp-line); }
+.nfp__tabs { position: relative; display: flex; gap: clamp(22px, 2.6vw, 42px); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.nfp__tabs::-webkit-scrollbar { display: none; }
+.nfp__tab {
+  appearance: none; -webkit-appearance: none; flex: none; margin: 0; padding: 14px 0 16px; border: 0; background: none; cursor: pointer;
+  font: 500 12.5px/1.2 var(--nfp-ui); letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; color: #555; /* NF-PIECES-AA (2026-09-12): inactive tabs were #8d8d8d, 3.3:1 on white; #555 is 7.5:1. Active style unchanged. */
+  transition: color .35s ease;
+}
+.nfp__tab:hover, .nfp__tab[aria-selected="true"] { color: var(--nfp-ink); }
+.nfp:not(.nfp--js) .nfp__tab[aria-selected="true"] { box-shadow: inset 0 -2px 0 var(--nfp-ink); }
+.nfp__ink { position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--nfp-ink); pointer-events: none; }
+.nfp__ink.is-ready { transition: transform .45s var(--nfp-ease); } /* NF-SMOOTH-V1: no width transition */
+.nfp__ink { transform-origin: 0 0; }
+
+/* Panels and the gliding row */
+.nfp__panel { opacity: 0; transform: translate3d(0, 12px, 0); transition: opacity .5s ease, transform .6s var(--nfp-ease); }
+.nfp__panel.is-active { opacity: 1; transform: none; }
+.nfp__panel[hidden] { display: none; }
+.nfp__track {
+  display: flex; gap: var(--nfp-gap); overflow-x: auto; overflow-y: hidden; padding: 2px 0 8px;
+  scrollbar-width: none; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+}
+.nfp__track::-webkit-scrollbar { display: none; }
+.nfp__track > * { flex: 0 0 calc((100% - 3 * var(--nfp-gap)) / 4); min-width: 0; }
+
+/* Product tile */
+.nfp-card { display: flex; flex-direction: column; color: inherit; text-decoration: none; border-radius: var(--nfp-r); }
+.nfp-card__media {
+  position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; border-radius: var(--nfp-r); background: #f2f2f2; isolation: isolate;
+  transition: box-shadow .45s ease;
+}
+.nfp-card__media::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .04); pointer-events: none; }
+.nfp-card__img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.001); transition: transform .5s var(--nfp-ease), filter .45s ease; }
+.nfp-card__body { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 16px 4px 2px; }
+.nfp-card__title {
+  font-family: var(--nfp-head); font-weight: 400; font-size: 16px; line-height: 1.35; letter-spacing: 0; color: var(--nfp-ink);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.nfp-card__price { font: 500 14px/1.3 var(--nfp-ui); letter-spacing: .01em; color: var(--nfp-ink); }
+.nfp-card__from { font-weight: 400; color: var(--nfp-ink-2); }
+.nfp-card__price.is-sale .nfp-card__now { color: var(--nfp-sale); }
+.nfp-card__was { margin-left: 7px; font-weight: 400; color: var(--nfp-ink-3); }
+.nfp-card__rating { display: inline-flex; align-items: center; gap: 5px; font: 500 12.5px/1 var(--nfp-ui); color: var(--nfp-ink); }
+.nfp-card__rating svg { width: 13px; height: 13px; color: var(--nfp-star); }
+.nfp-card__rc { font-weight: 400; color: var(--nfp-ink-3); }
+
+/* Collection feature tile: big bright photo with a white label card, so the image is never darkened */
+.nfp-feature { position: relative; display: block; min-height: 360px; overflow: hidden; border-radius: var(--nfp-r); background: #ececec; color: var(--nfp-ink); text-decoration: none; isolation: isolate; }
+.nfp-feature__media { position: absolute; inset: 0; display: block; }
+.nfp-feature__img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.001); transition: transform .6s var(--nfp-ease), filter .45s ease; }
+.nfp-feature__label {
+  position: absolute; left: 14px; right: 14px; bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 14px 14px 14px 18px; border-radius: 14px; background: rgba(255, 255, 255, .94);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+}
+.nfp-feature__label--top { top: 14px; bottom: auto; }
+.nfp-feature__words { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.nfp-feature__kicker { font: 500 10.5px/1.2 var(--nfp-ui); letter-spacing: .18em; text-transform: uppercase; color: var(--nfp-ink-2); }
+.nfp-feature__name { font-family: var(--nfp-head); font-weight: 300; font-size: clamp(21px, 1.6vw, 26px); line-height: 1.15; color: var(--nfp-ink); }
+.nfp-feature__text { font: 400 13px/1.5 var(--nfp-ui); color: var(--nfp-ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.nfp-feature__go {
+  flex: none; display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid #cfcfcf; background: #fff; color: var(--nfp-ink); transition: background-color .4s ease, color .4s ease, border-color .4s ease;
+}
+.nfp-feature__go svg { width: 18px; height: 18px; transition: transform .45s var(--nfp-ease); }
+
+/* See all tile */
+.nfp-more {
+  align-self: flex-start; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  padding: 24px; border-radius: var(--nfp-r); background: #f3f3f3; color: var(--nfp-ink); text-align: center; text-decoration: none;
+}
+.nfp--grey .nfp-more { background: #ffffff; }
+.nfp-more__circle { display: flex; align-items: center; justify-content: center; width: 58px; height: 58px; border-radius: 50%; border: 1px solid #cfcfcf; background: #fff; transition: background-color .4s ease, color .4s ease, border-color .4s ease; }
+.nfp-more__circle svg { width: 20px; height: 20px; }
+.nfp-more__text { font-family: var(--nfp-head); font-weight: 300; font-size: 21px; line-height: 1.25; }
+.nfp-more__count { font: 500 10.5px/1.2 var(--nfp-ui); letter-spacing: .18em; text-transform: uppercase; color: var(--nfp-ink-3); }
+
+/* Progress rail */
+.nfp__rail { position: relative; height: 2px; margin-top: clamp(16px, 1.8vw, 26px); overflow: hidden; border-radius: 2px; background: var(--nfp-line); }
+.nfp__bar { position: absolute; left: 0; top: 0; bottom: 0; width: 25%; border-radius: 2px; background: var(--nfp-ink); will-change: transform; }
+
+/* Focus */
+.nfp__arrow:focus-visible, .nfp__tab:focus-visible, .nfp-card:focus-visible, .nfp-feature:focus-visible, .nfp-more:focus-visible { outline: 2px solid var(--nfp-ink); outline-offset: 3px; }
+
+/* Hover, only where a pointer can hover */
+@media (hover: hover) {
+  .nfp-card:hover .nfp-card__media { box-shadow: 0 16px 34px rgba(0, 0, 0, .10); }
+  .nfp-card:hover .nfp-card__img { transform: scale(1.045); }
+  .nfp-feature:hover .nfp-feature__img { transform: scale(1.04); }
+  .nfp-feature:hover .nfp-feature__go { background: var(--nfp-ink); border-color: var(--nfp-ink); color: #fff; }
+  .nfp-feature:hover .nfp-feature__go svg { transform: translateX(2px); }
+  .nfp-more:hover .nfp-more__circle { background: var(--nfp-ink); border-color: var(--nfp-ink); color: #fff; }
+}
+
+/* Tablet: three per view */
+@media (max-width: 1199px) {
+  .nfp__track > * { flex-basis: calc((100% - 2 * var(--nfp-gap)) / 3); }
+}
+
+/* Touch screens: snap while swiping */
+@media (hover: none) {
+  .nfp__track { scroll-snap-type: x mandatory; }
+  .nfp__track > * { scroll-snap-align: start; }
+}
+
+/* Phone: big swipeable tiles bleeding to the screen edge */
+@media (max-width: 699px) {
+  .nfp { --nfp-gap: 14px; --nfp-r: 16px; }
+  .nfp__arrows { display: none; }
+  .nfp__sub { font-size: 14.5px; }
+  .nfp__tabs-wrap { margin-left: calc(-1 * var(--nfp-pad)); margin-right: calc(-1 * var(--nfp-pad)); }
+  .nfp__tabs {
+    gap: 26px; padding: 0 var(--nfp-pad);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 30px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 30px), transparent 100%);
+  }
+  .nfp__track {
+    margin: 0 calc(-1 * var(--nfp-pad)); padding: 2px var(--nfp-pad) 8px; scroll-padding-inline: var(--nfp-pad);
+    scroll-snap-type: x mandatory;
+  }
+  .nfp__track > * { flex-basis: 78vw; scroll-snap-align: start; }
+  .nfp-feature { min-height: 0; }
+  .nfp-feature__label { left: 12px; right: 12px; bottom: 12px; padding: 12px 12px 12px 16px; }
+  .nfp-feature__label--top { top: 12px; bottom: auto; }
+  .nfp-feature__name { font-size: 23px; }
+}
+
+/* Reduced motion (the owner's Windows reports it): keep fades and shadows, drop zoom and slide */
+@media (prefers-reduced-motion: reduce) {
+  .nfp__panel { transform: none; transition: opacity .4s ease; }
+  .nfp-card__img, .nfp-feature__img { transition: filter .45s ease; }
+  .nfp-card:hover .nfp-card__img, .nfp-feature:hover .nfp-feature__img { transform: scale(1.001); filter: brightness(1.05) saturate(1.04); }
+  .nfp__ink.is-ready { transition: none; }
+  .nfp-feature__go svg { transition: none; }
+  .nfp-feature:hover .nfp-feature__go svg { transform: none; }
+}
+
+/* NF-PIECES-V3 (2026-09-11): the collection label card sits bottom left on every tab (the old per tab "top" option is
+   retired), and on phones the section is compact: small tab pills, 264px tiles, a smaller label and See all circle,
+   tighter spacing. Still one swipe row with snap. */
+.nfp-feature__label,.nfp-feature__label--top{top:auto;bottom:14px;left:14px;right:14px}
+@media (max-width:699px){
+  .nfp{padding:34px 0 30px}
+  .nfp__head{margin-bottom:14px}
+  .nfp__eyebrow{margin-bottom:8px;font-size:10.5px;letter-spacing:.18em}
+  .nfp__title{font-size:27px;line-height:1.12}
+  .nfp__sub{margin-top:8px;font-size:13.5px;line-height:1.5}
+  .nfp__tabs-wrap{margin-bottom:16px;border-bottom:0}
+  .nfp__tabs{gap:8px;padding-top:1px;padding-bottom:1px}
+  .nfp__tab{padding:8px 14px;border:1px solid #e0e0e0;border-radius:999px;background:#fff;font-size:10.5px;line-height:1.2;letter-spacing:.12em;color:#555;transition:color .3s ease,background-color .3s ease,border-color .3s ease}
+  .nfp__tab[aria-selected=true]{background:var(--nfp-ink);border-color:var(--nfp-ink);color:#fff}
+  .nfp:not(.nfp--js) .nfp__tab[aria-selected=true]{box-shadow:none}
+  .nfp__ink{display:none}
+  .nfp__track>*{flex-basis:min(68vw,264px)}
+  .nfp-feature__label,.nfp-feature__label--top{top:auto;left:10px;right:10px;bottom:10px;gap:10px;padding:10px 10px 10px 14px;border-radius:12px}
+  .nfp-feature__kicker{font-size:9.5px}
+  .nfp-feature__name{font-size:19px}
+  .nfp-feature__go{width:34px;height:34px}
+  .nfp-feature__go svg{width:15px;height:15px}
+  .nfp-card__body{padding-top:11px;gap:5px}
+  .nfp-card__title{font-size:14.5px}
+  .nfp-card__price{font-size:13px}
+  .nfp-more{padding:16px;gap:9px}
+  .nfp-more__circle{width:44px;height:44px}
+  .nfp-more__circle svg{width:17px;height:17px}
+  .nfp-more__text{font-size:17px}
+  .nfp__rail{margin-top:12px}
+}
+
+/* NF-PIECES-V4 (2026-09-12): neutral #f7f7f7 placeholder behind every image box, never a white square while a photo decodes */
+.nfp-card__media,.nfp-feature{background-color:#f7f7f7}

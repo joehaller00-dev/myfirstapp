@@ -1,0 +1,69 @@
+{%- comment -%}
+  nf-catalog-promo : homepage "New Catalog 2026" band. Left: eyebrow, heading, paragraph, facts counted
+  from the catalog (pages, fixtures, chapters, live prices) and a button. Middle: open book of the real
+  catalog that turns its pages under the cursor (snippets/nf-catalog-book.liquid, assets/nf-catalog.js).
+  Right: heading and link to the viewer. Stacks on mobile.
+  Reads the catalog from the chosen page's metafield custom.catalog (default page: lighting-catalog).
+{%- endcomment -%}
+{%- liquid
+  assign cat_page = section.settings.catalog_page
+  if cat_page == blank
+    assign cat_page = pages['lighting-catalog']
+  endif
+  assign cat = cat_page.metafields.custom.catalog.value
+  assign promo_text = section.settings.text
+  if promo_text == blank
+    assign promo_text = cat.promo_text
+  endif
+  assign eyebrow = section.settings.eyebrow | default: 'The Lighting Catalog'
+  assign left_heading = section.settings.left_heading | default: 'See Every Light Switched On'
+  assign cta_label = section.settings.cta_label | default: 'Open the Catalog'
+-%}
+{%- if cat != blank -%}
+{%- capture nf_stats -%}{%- render 'nf-catalog-book', cat: cat, mode: 'stats' -%}{%- endcapture -%}
+{%- assign st = nf_stats | strip | split: '|' -%}
+{%- comment -%} NF-SPEED-A-0916: far below the first homepage screen, so the stylesheet no longer holds up first paint; nf-catalog.js only runs once the section is near, after this has applied. {%- endcomment -%}{%- if request.page_type == 'index' -%}<link rel="stylesheet" href="{{ 'nf-catalog.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'nf-catalog.css' | asset_url | stylesheet_tag }}</noscript>{%- else -%}{{ 'nf-catalog.css' | asset_url | stylesheet_tag }}{%- endif -%}
+<div class="nfcat-promo" data-nfcat-promo style="--nfcat-promo-pad: {{ section.settings.pad_desktop }}px; --nfcat-promo-pad-m: {{ section.settings.pad_mobile }}px">
+  <div class="nfcat-promo__in">
+    <div class="nfcat-promo__text">
+      <p class="nfcat-promo__eyebrow nfcat-promo__rv" style="--d:0"><span class="nfcat-promo__tick" aria-hidden="true"></span>{{ eyebrow | escape }}</p>
+      <p class="nfcat-promo__lh nfcat-promo__rv" style="--d:1">{{ left_heading | escape }}</p>
+      {%- if promo_text != blank -%}<p class="nfcat-promo__p nfcat-promo__rv" style="--d:2">{{ promo_text | escape }}</p>{%- endif -%}
+      <dl class="nfcat-promo__facts nfcat-promo__rv" style="--d:3">
+        <div><dt><span data-count="{{ st[0] }}">{{ st[0] }}</span></dt><dd>Pages</dd></div>
+        <div><dt><span data-count="{{ st[1] }}">{{ st[1] }}</span></dt><dd>Fixtures</dd></div>
+        <div><dt><span data-count="{{ st[2] }}">{{ st[2] }}</span></dt><dd>Chapters</dd></div>
+        <div><dt><span class="nfcat-promo__live" aria-hidden="true"></span>Live</dt><dd>Prices</dd></div>
+      </dl>
+      <a class="nfcat-pill nfcat-pill--dark nfcat-promo__cta nfcat-promo__rv" style="--d:4" href="{{ cat_page.url }}">{{ cta_label | escape }}<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="nfcat-promo__book nfcat-promo__rv" style="--d:1">
+      {%- render 'nf-catalog-book', cat: cat, url: cat_page.url, sizes: '(max-width: 899px) 45vw, 20vw', caption: true -%}
+    </div>
+    <div class="nfcat-promo__side">
+      <h2 class="nfcat-promo__h nfcat-promo__rv" style="--d:2">{{ section.settings.heading | escape }}</h2>
+      <a class="nfcat-promo__link nfcat-promo__rv" style="--d:3" href="{{ cat_page.url }}">{{ section.settings.link_label | escape }}<span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</div>
+{%- comment -%} NF-SPEED-A-0916: on the homepage this script loads when the section comes near (window.nfLazyJs in layout/theme.liquid). {%- endcomment -%}{%- if request.page_type == 'index' and request.design_mode == false -%}<script>if(window.nfLazyJs){nfLazyJs("{{ 'nf-catalog.js' | asset_url }}","#shopify-section-{{ section.id }}");}else{document.write('<script src="{{ 'nf-catalog.js' | asset_url }}" defer><\/script>');}</script>{%- else -%}<script src="{{ 'nf-catalog.js' | asset_url }}" defer></script>{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF catalog promo",
+  "class": "nf-catalog-promo-section",
+  "settings": [
+    { "type": "page", "id": "catalog_page", "label": "Catalog page", "info": "Page whose metafield custom.catalog holds the catalog. Default: lighting-catalog." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Leave blank for: The Lighting Catalog" },
+    { "type": "text", "id": "left_heading", "label": "Left heading", "info": "Leave blank for: See Every Light Switched On" },
+    { "type": "textarea", "id": "text", "label": "Paragraph", "info": "Leave blank to use the catalog promo text." },
+    { "type": "text", "id": "cta_label", "label": "Button label", "info": "Leave blank for: Open the Catalog" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "New Catalog 2026" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Get the Digital Catalog" },
+    { "type": "range", "id": "pad_desktop", "label": "Padding desktop", "min": 0, "max": 140, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "pad_mobile", "label": "Padding mobile", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "presets": [{ "name": "NF catalog promo" }]
+}
+{% endschema %}

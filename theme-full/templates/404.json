@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "nf_hc_404": {
+      "type": "nf-hc-404",
+      "blocks": {
+        "tile_ceiling": {
+          "type": "tile",
+          "settings": {
+            "label": "Ceiling Lights",
+            "url": "shopify://collections/ceiling-light",
+            "image": "nf-ref-living-chandelier.png"
+          }
+        },
+        "tile_wall": {
+          "type": "tile",
+          "settings": {
+            "label": "Wall Lights",
+            "url": "shopify://collections/wall-lights",
+            "image": "nf-ref-bedroom-sconces.png"
+          }
+        },
+        "tile_lamps": {
+          "type": "tile",
+          "settings": {
+            "label": "Lamps",
+            "url": "shopify://collections/lamps",
+            "image": "nf-ref-bedside.png"
+          }
+        },
+        "tile_outdoor": {
+          "type": "tile",
+          "settings": {
+            "label": "Outdoor Lighting",
+            "url": "shopify://collections/outdoor-lighting",
+            "image": "nf-pieces-outdoor-porch.png"
+          }
+        }
+      },
+      "block_order": [
+        "tile_ceiling",
+        "tile_wall",
+        "tile_lamps",
+        "tile_outdoor"
+      ],
+      "settings": {
+        "image_off": "nf-about-room-dark.jpg",
+        "image_on": "nf-about-room-lit.jpg",
+        "pos_x": 60,
+        "pos_x_mobile": 58,
+        "eyebrow": "Page not found",
+        "heading": "Looks like this light is out.",
+        "hint": "Flip the switch",
+        "text": "The page you were looking for has moved or no longer exists. Search below, or start with one of our main collections.",
+        "search_placeholder": "Search lights and decor",
+        "collection": "best-sellers",
+        "bs_heading": "Best Sellers",
+        "auto_seconds": 4
+      }
+    },
+    "main": {
+      "type": "main-not-found",
+      "disabled": true,
+      "settings": {
+        "link": "shopify://collections/best-sellers"
+      }
+    }
+  },
+  "order": [
+    "nf_hc_404",
+    "main"
+  ]
+}

@@ -1,0 +1,42 @@
+{%- comment -%}
+  NF-MENUS-DEFER (2026-09-14): menu markup that used to be printed into every page, served on its own through the
+  Section Rendering API (/?section_id=nf-menus-deferred) and put back into place by assets/nf-menus.js.
+  1. The phone drawer's sub panels: snippets/nf-drawer-subpanels.liquid, the exact loops that were in
+     snippets/header-sidebar.liquid. The header section's drawer settings are repeated here because another section
+     cannot read them: sidebar menu = main-menu, dividers on, heading font (sections/header-group.json, 2026-09-14).
+     If those header settings change, change them here too.
+  2. The top bar dropdown panels: the same kind rules and snippets as snippets/nf-topbar.liquid.
+  Every piece sits in a <template>, so nothing in it renders or loads until nf-menus.js moves it into the page.
+  This section is not placed on any template.
+{%- endcomment -%}
+<div class="nf-menus-deferred" hidden>
+  <template data-nf-menus-drawer>
+    {%- render 'nf-drawer-subpanels', menu: linklists['main-menu'], show_dividers: true, text_font: 'heading' -%}
+  </template>
+  {%- assign nf_tb_menu = linklists['top-bar'] -%}
+  {%- for link in nf_tb_menu.links -%}
+    {%- assign nf_tb_t = link.title | downcase | strip -%}
+    {%- if link.links.size > 0 -%}
+      {%- if nf_tb_t == 'ideas & guides' -%}{%- assign nf_tb_kind = 'guides' -%}
+      {%- elsif nf_tb_t == 'professionals' -%}{%- assign nf_tb_kind = 'pro' -%}
+      {%- else -%}
+        {%- assign nf_tb_kind = 'compact' -%}
+        {%- for s in link.links -%}{%- if s.links.size > 0 -%}{%- assign nf_tb_kind = 'shopby' -%}{%- break -%}{%- endif -%}{%- endfor -%}
+      {%- endif -%}
+      <template data-nf-menus-tb="{{ forloop.index }}">
+        {%- if nf_tb_kind == 'guides' -%}
+          {%- render 'mega-menu', link: link -%}
+        {%- else -%}
+          {%- render 'nf-topbar-panel', link: link, kind: nf_tb_kind -%}
+        {%- endif -%}
+      </template>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "NF menus (deferred)",
+  "settings": []
+}
+{% endschema %}

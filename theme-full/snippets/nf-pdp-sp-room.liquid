@@ -1,0 +1,6 @@
+{%- comment -%} NF-PDP-V1 one room idea tile (our own photo, no name, no quote) for sections/nf-pdp-spaces.liquid {%- endcomment -%}
+<a class="nf-sp__tile nf-sp__tile--room" style="--ar: {{ r.w }} / {{ r.h }}" href="{{ r.l }}">
+  <img src="{{ r.i }}?width=480" srcset="{{ r.i }}?width=320 320w, {{ r.i }}?width=480 480w, {{ r.i }}?width=720 720w" sizes="(max-width: 699px) 70vw, 360px" width="{{ r.w }}" height="{{ r.h }}" loading="lazy" decoding="async" alt="Room idea for the {{ r.r | downcase }}">
+  <span class="nf-sp__tag nf-sp__tag--room">Room idea: {{ r.r }}</span>
+  <span class="nf-sp__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+</a>

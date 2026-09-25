@@ -1,0 +1,86 @@
+{%- comment -%}
+  NF-ABOUT-V1 (2026-09-11): "How your piece reaches you" for /pages/about-us. A deliberate dark evening band.
+  The steps hang like bulbs on a string light cord; assets/nf-about.js lights them one after another when the band
+  scrolls into view (all lit without JS or with reduced motion). The cord is an SVG that sags between the bulbs; it is
+  built for however many step blocks there are. Phones: a vertical cord with the bulbs on the left.
+  Step copy follows the shipping policy: 5 PM Central cutoff Monday to Friday, 1 to 2 business days handling,
+  5 to 7 business days in transit, 6 to 9 in total, free US shipping, tracking email on dispatch.
+{%- endcomment -%}
+{{- 'nf-about.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign s = section.settings
+  assign n = 0
+  for block in section.blocks
+    if block.type == 'step'
+      assign n = n | plus: 1
+    endif
+  endfor
+  assign seg = 1000.0
+  if n > 0
+    assign seg = 1000.0 | divided_by: n
+  endif
+-%}
+<section class="nfa nfa-steps nfa-on-dark" data-nfa-steps aria-labelledby="nfa-sh-{{ section.id }}">
+  <div class="nfa-wrap nfa-sec">
+    <div class="nfa-head">
+      <div class="nfa-head__main">
+        {%- if s.eyebrow != blank -%}<p class="nfa-eyebrow nfa-eyebrow--on-dark">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfa-h2" id="nfa-sh-{{ section.id }}">{{ s.heading | escape }}</h2>
+        {%- if s.text != blank -%}<p class="nfa-lead">{{ s.text | escape }}</p>{%- endif -%}
+      </div>
+    </div>
+    <div class="nfa-steps__rail">
+      {%- if n > 0 -%}
+        <svg class="nfa-cord" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,6{% for i in (1..n) %}{% assign x0 = i | minus: 1 | times: seg %}{% assign xc = seg | divided_by: 2 | plus: x0 | round: 1 %}{% assign x1 = i | times: seg | round: 1 %} Q{{ xc }},54 {{ x1 }},6{% endfor %}"/></svg>
+      {%- endif -%}
+      <ol class="nfa-steps__list" role="list" data-nfa-steps-list style="--nfa-n:{{ n | at_least: 1 }}">
+        {%- for block in section.blocks -%}
+          {%- if block.type != 'step' -%}{%- continue -%}{%- endif -%}
+          <li class="nfa-step" data-nfa-step {{ block.shopify_attributes }}>
+            <span class="nfa-bulb" aria-hidden="true">
+              <span class="nfa-bulb__glow"></span>
+              <svg viewBox="0 0 34 58" focusable="false"><rect class="nfa-bulb__cap" x="12" y="0" width="10" height="13" rx="2"/><path class="nfa-bulb__glass" d="M17 13c-8.3 0-14 6.6-14 14.6C3 37.4 9.4 44 17 44s14-6.6 14-16.4C31 19.6 25.3 13 17 13z"/><path class="nfa-bulb__fil" d="M12.5 29.5c1.5 3.2 2.9 3.2 4.5 0s3-3.2 4.5 0"/></svg>
+            </span>
+            <span class="nfa-step__n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+            <h3 class="nfa-step__t">{{ block.settings.title | escape }}</h3>
+            <p class="nfa-step__x">{{ block.settings.text | escape }}</p>
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+    <div class="nfa-steps__foot">
+      {%- if s.link1_label != blank -%}<a class="nfa-link" href="{{ s.link1_url }}">{{ s.link1_label | escape }}<span class="nfa-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+      {%- if s.link2_label != blank -%}<a class="nfa-link" href="{{ s.link2_url }}">{{ s.link2_label | escape }}<span class="nfa-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+      {%- if s.link3_label != blank -%}<a class="nfa-link" href="{{ s.link3_url }}">{{ s.link3_label | escape }}<span class="nfa-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF about delivery steps",
+  "class": "nfa-section nfa-section--steps",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From our list to your room" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How your piece reaches you" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "link1_label", "label": "Link 1 label" },
+    { "type": "text", "id": "link1_url", "label": "Link 1 URL" },
+    { "type": "text", "id": "link2_label", "label": "Link 2 label" },
+    { "type": "text", "id": "link2_url", "label": "Link 2 URL" },
+    { "type": "text", "id": "link3_label", "label": "Link 3 label" },
+    { "type": "text", "id": "link3_url", "label": "Link 3 URL" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 6
+}
+{% endschema %}

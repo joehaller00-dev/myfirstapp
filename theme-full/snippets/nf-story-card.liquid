@@ -1,0 +1,62 @@
+{%- comment -%}
+  NF-STORY-V1 (2026-09-11): one article card for sections/nf-story-hub.liquid (the /pages/our-story hub).
+  Params: article, ov (array of "handle = filename" lines, a better cover from Files), lbl_in, lbl_out, lbl_style,
+  logo_html, sizes, eager (true for the first row).
+  Category: Outdoor tag = outdoor; handle with ideas/layer/warm-white/artwork, or the 101 tag = style; else indoor.
+  Same rule as sections/nf-guides-page-stories.liquid so both grids agree.
+{%- endcomment -%}
+{%- liquid
+  comment
+    article.handle comes back as "blog/<handle>" on this store, so keep only the last part.
+  endcomment
+  assign a_h = article.handle | split: '/' | last
+  assign a_cat = 'indoor'
+  if article.tags contains 'Outdoor'
+    assign a_cat = 'outdoor'
+  elsif a_h contains 'ideas' or a_h contains 'layer' or a_h contains 'warm-white' or a_h contains 'artwork'
+    assign a_cat = 'style'
+  elsif article.tags contains '101'
+    assign a_cat = 'style'
+  endif
+  case a_cat
+    when 'outdoor'
+      assign a_lbl = lbl_out
+    when 'style'
+      assign a_lbl = lbl_style
+    else
+      assign a_lbl = lbl_in
+  endcase
+  assign a_img = article.image
+  for line in ov
+    assign parts = line | split: '='
+    if parts.size < 2
+      continue
+    endif
+    assign k = parts.first | strip
+    if k == a_h
+      assign f = parts.last | strip
+      assign cand = images[f]
+      if cand != blank and cand.width > 0
+        assign a_img = cand
+      endif
+      break
+    endif
+  endfor
+  assign a_loading = 'lazy'
+  if eager
+    assign a_loading = 'eager'
+  endif
+-%}
+<li class="nfs-card" data-cats="{{ a_cat }}">
+  <a class="nfs-card__a" href="{{ article.url }}">
+    <span class="nfs-card__media">
+      {%- if a_img != blank -%}
+        {{- a_img | image_url: width: 1100 | image_tag: class: 'nfs-card__img', loading: a_loading, widths: '420,640,860,1100', sizes: sizes, alt: '' -}}
+      {%- endif -%}
+      {{- logo_html -}}
+    </span>
+    <span class="nfs-card__eyebrow">{{ a_lbl | escape }}</span>
+    <h3 class="nfs-card__t">{{ article.title | escape }}</h3>
+    <time class="nfs-card__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %-d, %Y' }}</time>
+  </a>
+</li>

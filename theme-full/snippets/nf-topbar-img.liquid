@@ -1,0 +1,57 @@
+{%- comment -%}
+  NF-TOPBAR-V2 (2026-09-11): one picture for a top bar dropdown link (snippets/nf-topbar-panel.liquid).
+  file = a Shopify Files filename (Professionals photos), url = a /collections/ link, src = a CDN image URL without a query,
+  w = pixel width to request (about 2x the box).
+  Order: src, else the Files image, else a hand picked bright photo for a few collections (below), else the collection image,
+  else the collection's first product image (collection.featured_image), else a plain grey panel. Never a broken image.
+  Hand picked (owner 2026-09-11: dark thumbs were unreadable, pictures must be bright with the lights on):
+    home-fragrance        ceramic oil burner with a lit candle (the collection's first photo was nearly black)
+    ambient-lighting      glowing night light (it shared a photo with Outdoor Lighting)
+    best-sellers          brass branch chandelier, lit living room
+    best sellers indoor   linear wall lights lit beside a fireplace
+    best sellers outdoor  square post lights glowing at a gate at dusk
+    new-arrivals          lit globe wall sconce (Shop By featured tile; its first product photo was a flat grey wall)
+  BANNED, never use anywhere: Files BRANDED_1_CLEAN.png (gold NoraFurnish script on a stone wall, old render).
+{%- endcomment -%}
+{%- liquid
+  assign nfi = blank
+  assign nfi_src = src | default: ''
+  assign nfi_w = w | default: 300
+  if nfi_src == '' and file != blank
+    assign nfi = images[file]
+    if nfi == blank or nfi.width == blank or nfi.width == 0
+      assign nfi = blank
+    endif
+  endif
+  if nfi == blank and nfi_src == '' and url contains '/collections/'
+    assign nfi_h = url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+    case nfi_h
+      when 'home-fragrance'
+        assign nfi_src = 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/S93101952b65040898ceaeea0a4d77598f.webp'
+      when 'ambient-lighting'
+        assign nfi_src = 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/Sa2ac1ff421bc41a3b74a71874822eab2t.webp'
+      when 'best-sellers'
+        assign nfi_src = 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/contemporary-brass-branch-chandelier-living-room.jpg'
+      when 'best-sellers-indoor', 'indoor-best-sellers'
+        assign nfi_src = 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/modern-linear-wall-sconce-wood-accent-wall.webp'
+      when 'best-sellers-outdoor', 'outdoor-best-sellers'
+        assign nfi_src = 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/modern-outdoor-wall-pillar-lights-gate-entrance.jpg'
+      when 'new-arrivals'
+        assign nfi_src = 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/modern-globe-wall-sconce-black-frame-elegant-lighting-outdoor-entrance.jpg'
+    endcase
+    if nfi_src == ''
+      assign nfi_c = collections[nfi_h]
+      if nfi_c.featured_image
+        assign nfi = nfi_c.featured_image
+      endif
+    endif
+  endif
+-%}
+{%- if nfi_src != '' -%}
+  <img data-nfd-src="{{ nfi_src }}?width={{ nfi_w }}" alt="" width="{{ nfi_w }}" height="{{ nfi_w }}" loading="lazy" decoding="async">
+{%- elsif nfi != blank -%}
+  {%- assign nfi_hh = nfi_w | divided_by: nfi.aspect_ratio | round -%}
+  <img data-nfd-src="{{ nfi | image_url: width: nfi_w }}" alt="" width="{{ nfi_w }}" height="{{ nfi_hh }}" loading="lazy" decoding="async">
+{%- else -%}
+  <span class="nf-tbp-ph" aria-hidden="true"></span>
+{%- endif -%}

@@ -1,0 +1,17 @@
+{%- comment -%}NF-SEASONAL-V1 (2026-09-21): outputs 1 when a product is seasonal (fall, Halloween, Christmas).
+Used to keep Complete the Room and Complete the look to everyday pieces. Owner rule.{%- endcomment -%}
+{%- liquid
+  assign nf_st = p.title | downcase
+  assign nf_sy = p.type | downcase
+  assign nf_s = false
+  if p.tags contains 'seasonal-2026' or p.tags contains 'fall-decor' or p.tags contains 'hw-decor' or p.tags contains 'hw-inflatables'
+    assign nf_s = true
+  elsif nf_sy contains 'halloween' or nf_sy contains 'fall decor' or nf_sy contains 'christmas' or nf_sy contains 'seasonal'
+    assign nf_s = true
+  elsif nf_st contains 'christmas' or nf_st contains 'halloween' or nf_st contains 'pumpkin' or nf_st contains 'skeleton' or nf_st contains 'witch' or nf_st contains 'ghost' or nf_st contains 'wreath' or nf_st contains 'inflatable' or nf_st contains 'jack o'
+    assign nf_s = true
+  endif
+  if nf_s
+    echo '1'
+  endif
+-%}

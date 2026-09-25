@@ -1,0 +1,46 @@
+{%- comment -%}
+  NF-SEARCH-V2 (2026-09-12) honest "nothing found" state. Used in the Lamplight drop (context 'drop') and on
+  /search (context 'page') when there are no results or only loose semantic matches (see nf-search-strength).
+  Params: terms, suggestions (array of Shopify spelling suggestions, may be empty; on the page nf-search.js
+  fills [data-nf-srch-dym] from /search/suggest.json), context.
+{%- endcomment -%}
+{%- if context == 'page' -%}{{ 'nf-search.css' | asset_url | stylesheet_tag }}{%- endif -%}
+<div class="nf-srch-none nf-srch-none--{{ context }}"{% if raw != blank %} data-nf-srch-raw="{{ raw }}"{% endif %}>
+  <div class="nf-srch-none__band">
+    <span class="nf-srch-bulb" aria-hidden="true">
+      <svg viewBox="0 0 48 48" focusable="false"><path class="nf-srch-bulb__glass" d="M24 5c-7.7 0-13 5.9-13 12.9 0 4.6 2.3 7.9 4.7 10.4 1.6 1.7 2.6 3.4 2.9 5.7h10.8c.3-2.3 1.3-4 2.9-5.7 2.4-2.5 4.7-5.8 4.7-10.4C37 10.9 31.7 5 24 5z"/><path class="nf-srch-bulb__base" d="M18.8 37h10.4M19.6 40.5h8.8M21.5 44h5"/><path class="nf-srch-bulb__fil" d="M20.5 26.5c1-2.4 2-4.2 3.5-4.2s2.5 1.8 3.5 4.2M24 22.3V34"/></svg>
+    </span>
+    <div class="nf-srch-none__copy">
+      {%- if context == 'page' -%}<p class="nf-srch-eyebrow nf-srch-eyebrow--on">Search results</p>{%- endif -%}
+      {%- if context == 'page' -%}<h1 class="nf-srch-none__title">{%- else -%}<p class="nf-srch-none__title">{%- endif -%}
+        We couldn&rsquo;t find &ldquo;{{ terms | escape }}&rdquo;
+      {%- if context == 'page' -%}</h1>{%- else -%}</p>{%- endif -%}
+      <p class="nf-srch-none__text">Try one of these, or tell us what you have in mind and we&rsquo;ll find it for you.</p>
+      <div class="nf-srch-none__row nf-srch-none__dym" data-nf-srch-dym data-nf-srch-terms="{{ terms | escape }}"{% if suggestions.size == 0 %} hidden{% endif %}>
+        <span class="nf-srch-none__label">Did you mean</span>
+        {%- for s in suggestions limit: 3 -%}
+          <a class="nf-srch-chip nf-srch-chip--dark" href="{{ routes.search_url }}?q={{ s | url_encode }}" data-nf-srch-opt>{{ s | escape }}</a>
+        {%- endfor -%}
+      </div>
+      <div class="nf-srch-none__row" role="group" aria-label="Top categories">
+        <a class="nf-srch-chip nf-srch-chip--dark" href="{{ routes.root_url | append: '/collections/ceiling-light' | replace: '//', '/' }}" data-nf-srch-opt>Ceiling Lights</a>
+        <a class="nf-srch-chip nf-srch-chip--dark" href="{{ routes.root_url | append: '/collections/wall-lights' | replace: '//', '/' }}" data-nf-srch-opt>Wall Lights</a>
+        <a class="nf-srch-chip nf-srch-chip--dark" href="{{ routes.root_url | append: '/collections/lamps' | replace: '//', '/' }}" data-nf-srch-opt>Lamps</a>
+        <a class="nf-srch-chip nf-srch-chip--dark" href="{{ routes.root_url | append: '/collections/outdoor-lighting' | replace: '//', '/' }}" data-nf-srch-opt>Outdoor Lighting</a>
+        <a class="nf-srch-chip nf-srch-chip--dark" href="{{ routes.root_url | append: '/collections/decor' | replace: '//', '/' }}" data-nf-srch-opt>Decor</a>
+      </div>
+      <a class="nf-srch-ask" href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}" data-nf-srch-opt>
+        Ask us, we&rsquo;ll find it
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
+    </div>
+  </div>
+  {%- if context == 'page' -%}
+    <form class="nf-srch-again" action="{{ routes.search_url }}" method="get" role="search">
+      <label class="nf-srch-sr" for="nf-srch-again-q">Search the store</label>
+      <input id="nf-srch-again-q" class="nf-srch-again__input" type="search" name="q" value="{{ terms | escape }}" autocomplete="off" spellcheck="false" enterkeyhint="search">
+      <button class="nf-srch-again__btn" type="submit">Search again</button>
+    </form>
+    {%- render 'nf-search-discover', context: 'page' -%}
+  {%- endif -%}
+</div>

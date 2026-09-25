@@ -1,0 +1,25 @@
+{%- comment -%}
+  NF-HELP-V1 (2026-09-12): the one hook in layout/theme.liquid for pages that have no sections of their own.
+  slot 'before' (above content_for_layout) and slot 'after' (below it):
+    /apps/trackyourorder (Track123 app proxy page): delivery path above the widget, Help corner band below it.
+    Policy pages: the refund and shipping policies get "At a glance" cards and a "Still unsure? Ask us" band
+    (snippets/nf-hc-policy.liquid decides which policy).
+  Everything else: renders nothing.
+{%- endcomment -%}
+{%- liquid
+  assign nfl_p = request.path | downcase
+  assign nfl_track = false
+  if nfl_p contains '/apps/trackyourorder'
+    assign nfl_track = true
+  endif
+  assign nfl_policy = false
+  if request.page_type == 'policy' or nfl_p contains '/policies/'
+    assign nfl_policy = true
+  endif
+-%}
+{%- if slot == 'before' -%}
+  {%- if nfl_track -%}{%- render 'nf-hc-path' -%}{%- endif -%}
+{%- else -%}
+  {%- if nfl_track -%}{%- render 'nf-hc-corner', context: 'track' -%}{%- endif -%}
+  {%- if nfl_policy -%}{%- render 'nf-hc-policy' -%}{%- endif -%}
+{%- endif -%}

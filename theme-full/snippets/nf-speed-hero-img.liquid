@@ -1,0 +1,7 @@
+{%- comment -%} NF-SPEED-B-0916: collection hero image. Same-origin responsive srcset, eager + high priority, preload Link header (was a raw full-size cdn.shopify.com img that was the mobile LCP at 17s). Falls back to the old URL if the file lookup fails. {%- endcomment -%}
+{%- assign nf_hi = images[file] -%}
+{%- if nf_hi != blank -%}
+{{- nf_hi | image_url: width: 2000 | image_tag: widths: '600,800,1000,1200,1600,2000', sizes: '(max-width: 999px) 100vw, 66vw', loading: 'eager', fetchpriority: 'high', preload: true, alt: alt -}}
+{%- else -%}
+<img src="{{ fallback }}" alt="{{ alt | escape }}" loading="eager" fetchpriority="high">
+{%- endif -%}

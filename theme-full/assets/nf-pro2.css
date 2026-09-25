@@ -1,0 +1,209 @@
+/* NF-PRO-V2 (2026-09-11). Professionals and custom service pages, second pass after the owner's review:
+   tighter vertical rhythm, crisp uppercase serif section headings, one gold button family (after Ideas & Guides),
+   "What can be customized" icon cards, the dark "Application references" band with its light switch, and the
+   detailed quote sheet. Loaded by sections/nf-pro-hero.liquid (early, so there is no layout shift) and by the
+   nf-pro2-* sections. Palette: white, neutral grey #F7F7F7, charcoal #1C1C1C / #1A1714, gold #B38B5D as an accent
+   only. No cream fills, no decorative line before eyebrows. Selectors start with "html body" so they win over
+   nf-pro.css and nf-custom.css even when those stylesheets are linked again further down the page. */
+
+html body .nfp{--nfp-serif:var(--heading-font-family,"Poynter Oldstyle",Georgia,serif);--nfp-sans:var(--text-font-family,"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif);--nfp-ink:#1C1C1C;--nfp-ink2:#2B2520;--nfp-muted:#5E5A55;--nfp-line:#E6E6E6;--nfp-line2:#D4D4D4;--nfp-sand:#F7F7F7;--nfp-cream:#FFFFFF;--nfp-card:#FFFFFF;
+  --g:#B38B5D;--g-hi:#C9A36A;--g-txt:#8A6640;--dk:#1A1714;--dk2:#24201C;--on:#F3EBDD;--on2:rgba(243,235,221,.74);--e:cubic-bezier(.2,.8,.2,1);--t:.35s}
+
+/* ---------- Rhythm: about 68px between same colored sections at 1440, 44px on phones ---------- */
+html body .nfp.nfp-sec{padding-block:clamp(22px,2.4vw,34px)}
+html body .nfp.nfp-sec.nfp--sand,html body .nfp.nfp-sec.nfc--grey,html body .nfp.nfp-sec#how-it-works,html body .nfp.nfp-sec#evening,
+html body .nfp2.nfp2--grey,html body .nfp2.nfp2-refs{padding-block:clamp(34px,4vw,58px)}
+html body .nfp.nfp-hero{padding-block:clamp(18px,2.2vw,32px) clamp(26px,3vw,44px)}
+html body .nfp-head{margin-bottom:clamp(18px,2vw,28px);gap:12px 40px}
+html body .nfp-lead{margin-top:12px}
+html body .nfp-hero__text .nfp-lead{margin-top:16px}
+html body .nfp-actions{margin-top:24px}
+html body .nfp-facts{margin-top:22px}
+html body .nfp-steps__note{margin-top:18px}
+html body .nfp-split{gap:clamp(24px,4vw,64px)}
+html body .nfp-split__media{aspect-ratio:4/3;max-height:540px}
+html body .nfp-hero__media{aspect-ratio:4/3}
+html body .nfp-band{padding:clamp(28px,4vw,52px)}
+html body .nfp-faq summary{padding:18px 2px}
+html body .nfp-panel__intro{margin-bottom:16px}
+html body .nfp-tabs{margin-bottom:18px}
+
+/* ---------- Headings: crisp uppercase serif, like Dazuma ---------- */
+html body .nfp .nfp-h2,html body .nfp2-h2{font-family:var(--nfp-serif);font-weight:400;text-transform:uppercase;letter-spacing:.07em;font-size:clamp(21px,2.1vw,31px);line-height:1.18;color:var(--nfp-ink);margin:0}
+html body .nfp .nfp-h1{font-family:var(--nfp-serif);font-weight:400;letter-spacing:.005em}
+html body .nfp .nfp-h3,html body .nfp .nfp-h4,html body .nfp2-h4{font-family:var(--nfp-serif);font-weight:400}
+html body .nfp2-h4{font-size:17px;line-height:1.35;margin:0;color:inherit}
+html body .nfp .nfp-eyebrow,html body .nfp2-eyebrow{display:block;margin:0 0 10px;font:600 11.5px/1.3 var(--nfp-sans);letter-spacing:.2em;text-transform:uppercase;color:var(--g-txt)}
+html body .nfp .nfp-eyebrow::before,html body .nfp .nfp-eyebrow::after,html body .nfp2-eyebrow::before,html body .nfp2-eyebrow::after{content:none !important;display:none !important}
+html body .nfp-band .nfp-h2,html body .nfp#evening .nfp-h2{color:#F3F3F3}
+html body .nfp-success .nfp-h2{text-transform:none;letter-spacing:.01em}
+/* The shared section head: heading on the left, a short note on the right (Dazuma's layout) */
+.nfp2-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 48px;margin-bottom:clamp(18px,2vw,28px)}
+.nfp2-head__main{max-width:760px}
+.nfp2-head__note{margin:0;max-width:380px;font-size:14px;line-height:1.6;color:var(--nfp-muted);text-align:right}
+.nfp2-lead{margin:12px 0 0;max-width:62ch;color:var(--nfp-muted);font-size:16px;line-height:1.65}
+.nfp2-sr{position:absolute !important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.nfp2--grey{background:#F7F7F7}
+.nfp2--white{background:#fff}
+
+/* ---------- Buttons: gold solid, gold outline, charcoal line (Ideas & Guides family) ---------- */
+html body .nfp2-btn,html body .nfp .nfp-btn--gold,html body .nfp .nfp-btn--outline{--fill:var(--g-hi);position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:0 30px;border:1.5px solid transparent;border-radius:2px;background-color:transparent;background-image:linear-gradient(var(--fill),var(--fill));background-repeat:no-repeat;background-position:0 100%;background-size:0% 100%;font:600 12.5px/1.15 var(--nfp-sans);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;text-align:center;cursor:pointer;-webkit-appearance:none;appearance:none;transition:background-size .45s var(--e),transform var(--t) var(--e),box-shadow var(--t) var(--e),color var(--t) var(--e),border-color var(--t) var(--e)}
+html body .nfp2-btn:hover,html body .nfp .nfp-btn--gold:hover,html body .nfp .nfp-btn--outline:hover{transform:translateY(-2px);background-size:100% 100%;box-shadow:0 14px 26px -16px rgba(26,23,20,.6),0 2px 6px -2px rgba(26,23,20,.14)}
+html body .nfp2-btn:active,html body .nfp .nfp-btn--gold:active,html body .nfp .nfp-btn--outline:active{transform:none;box-shadow:none}
+html body .nfp2-btn:focus-visible,html body .nfp .nfp-btn--gold:focus-visible,html body .nfp .nfp-btn--outline:focus-visible{outline:2px solid var(--g-hi);outline-offset:3px}
+html body .nfp2-btn--gold,html body .nfp .nfp-btn--gold{background-color:var(--g);border-color:var(--g);color:var(--dk)}
+html body .nfp2-btn--gold:hover,html body .nfp .nfp-btn--gold:hover{border-color:var(--g-hi);color:var(--dk)}
+html body .nfp2-btn--outline,html body .nfp .nfp-btn--outline{--fill:var(--g);border-color:var(--g);color:var(--nfp-ink)}
+html body .nfp2-btn--outline:hover,html body .nfp .nfp-btn--outline:hover{color:var(--dk)}
+html body .nfp2-refs .nfp2-btn--outline,html body .nfp-band .nfp-btn--outline,html body .nfp#evening .nfp-btn--outline{color:var(--on)}
+html body .nfp2-refs .nfp2-btn--outline:hover{color:var(--dk)}
+html body .nfp2-btn--line{--fill:var(--nfp-ink);border-color:var(--nfp-ink);color:var(--nfp-ink)}
+html body .nfp2-btn--line:hover{color:#fff}
+html body .nfp2-btn--wide{min-width:min(100%,340px)}
+.nfp2-btn .nfp-arrow{transition:transform var(--t) var(--e)}
+.nfp2-btn:hover .nfp-arrow{transform:translateX(4px)}
+.nfp2-actions{display:flex;flex-wrap:wrap;gap:12px 14px;align-items:center}
+html body .nfp-hero .nfp-actions{gap:12px 14px}
+html body .nfp-hero .nfp-actions .nfp-link{flex-basis:100%;width:max-content;margin-top:2px}
+
+/* ---------- What can be customized ---------- */
+.nfp2-cust__grid{list-style:none;margin:0;padding:0;display:grid;gap:clamp(12px,1.3vw,18px);grid-template-columns:repeat(4,minmax(0,1fr))}
+.nfp2-cust__grid.nfp2-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.nfp2-cust__card{position:relative;display:flex;flex-direction:column;gap:8px;padding:24px 22px 24px;background:#fff;border:1px solid var(--nfp-line);border-radius:6px;overflow:hidden;transition:transform var(--t) var(--e),box-shadow var(--t) var(--e),border-color var(--t) var(--e)}
+.nfp2--white .nfp2-cust__card{background:#F7F7F7;border-color:#EDEDED}
+.nfp2-cust__card::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--g);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--e)}
+.nfp2-cust__card:hover{transform:translateY(-3px);box-shadow:0 18px 30px -22px rgba(26,23,20,.45);border-color:#DADADA}
+.nfp2-cust__card:hover::after{transform:scaleX(1)}
+.nfp2-cust__num{position:absolute;right:18px;top:16px;font:500 12px/1 var(--nfp-sans);letter-spacing:.14em;color:#B9B2AA}
+.nfp2-cust__icon{position:relative;display:grid;place-items:center;width:46px;height:46px;margin-bottom:8px;color:var(--g-txt)}
+.nfp2-cust__icon::before{content:"";position:absolute;inset:-6px;border-radius:50%;background:radial-gradient(closest-side,rgba(201,163,106,.42),rgba(201,163,106,0));opacity:0;transform:scale(.6);transition:opacity .5s var(--e),transform .5s var(--e)}
+.nfp2-cust__card:hover .nfp2-cust__icon::before{opacity:1;transform:scale(1)}
+.nfp2-cust__icon .nf2-ico{position:relative;width:34px;height:34px}
+.nfp2-cust__t{margin:0;font:400 17.5px/1.3 var(--nfp-serif);color:var(--nfp-ink)}
+.nfp2-cust__d{margin:0;font-size:14.2px;line-height:1.6;color:var(--nfp-muted)}
+.nfp2-cust__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;margin-top:clamp(18px,2vw,26px)}
+.nfp2-cust__foot p{margin:0;color:var(--nfp-muted);font-size:14.5px;max-width:62ch}
+
+/* ---------- Application references: dark band, lights come on ---------- */
+html body .nfp2-refs{background:var(--dk);color:var(--on)}
+.nfp2-refs .nfp2-h2{color:#F6F1E8}
+.nfp2-refs .nfp2-eyebrow{color:var(--g-hi)}
+.nfp2-refs .nfp2-head__note{color:var(--on2)}
+.nfp2-refs__side{display:flex;align-items:center;gap:20px;justify-content:flex-end;flex-wrap:wrap}
+.nfp2-refs__grid{list-style:none;margin:0;padding:0;display:grid;gap:clamp(10px,1.1vw,16px);grid-template-columns:repeat(4,minmax(0,1fr))}
+.nfp2-ref{min-width:0}
+.nfp2-ref__fig{margin:0}
+.nfp2-ref__img{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:4px;background:var(--dk2)}
+.nfp2-ref__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--e),filter .9s var(--e)}
+.nfp2-ref__img .nfp-fallback{min-height:0}
+.nfp2-ref__glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 60% at 50% 30%,rgba(255,214,150,.22),rgba(255,214,150,0) 70%);opacity:0;transition:opacity .9s var(--e);mix-blend-mode:screen}
+.nfp2-ref__label{display:flex;align-items:baseline;gap:10px;margin-top:10px;font:600 11.5px/1.35 var(--nfp-sans);letter-spacing:.18em;text-transform:uppercase;color:#EFE8DC}
+.nfp2-ref__n{font-weight:500;color:var(--g-hi);letter-spacing:.1em}
+.nfp2-ref__cta{position:absolute;left:12px;bottom:12px;z-index:2;display:inline-flex;align-items:center;min-height:34px;padding:0 14px;border-radius:2px;background:rgba(26,23,20,.72);color:#F6F1E8;font:600 10.5px/1 var(--nfp-sans);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;opacity:0;transform:translateY(6px);transition:opacity var(--t) var(--e),transform var(--t) var(--e),background-color var(--t) var(--e),color var(--t) var(--e);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.nfp2-ref:hover .nfp2-ref__cta,.nfp2-ref__cta:focus-visible{opacity:1;transform:none}
+.nfp2-ref__cta:hover{background:var(--g);color:var(--dk)}
+.nfp2-ref__cta:focus-visible{outline:2px solid var(--g-hi);outline-offset:2px}
+.nfp2-ref:hover .nfp2-ref__img img{transform:scale(1.04)}
+.nfp2-ref:hover .nfp2-ref__glow{opacity:1}
+/* armed by JS: images start "off" and switch on one after another */
+.nfp2-refs.is-armed .nfp2-ref__img img{transition:transform .8s var(--e),filter 1.1s var(--e) calc(var(--i,0) * 110ms)}
+.nfp2-refs.is-armed .nfp2-ref__glow{transition:opacity 1.1s var(--e) calc(var(--i,0) * 110ms)}
+.nfp2-refs.is-off .nfp2-ref__img img{filter:brightness(.34) saturate(.55) contrast(1.05)}
+.nfp2-refs.is-armed:not(.is-off) .nfp2-ref__glow{animation:nfp2Flick 1.4s var(--e) calc(var(--i,0) * 110ms) 1 both}
+@keyframes nfp2Flick{0%{opacity:0}18%{opacity:.9}28%{opacity:.35}42%{opacity:.8}100%{opacity:0}}
+.nfp2-refs.is-instant .nfp2-ref__img img,.nfp2-refs.is-instant .nfp2-ref__glow{transition:none !important;animation:none !important}
+.nfp2-refs__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;margin-top:clamp(22px,2.4vw,32px);padding-top:clamp(18px,2vw,26px);border-top:1px solid rgba(201,163,106,.28)}
+.nfp2-refs__foot p{margin:0;color:var(--on2);font-size:15px;max-width:58ch}
+/* the wall switch */
+.nfp2-switch{display:inline-flex;align-items:center;gap:10px;padding:4px 2px;border:0;background:none;color:var(--on2);font:600 11px/1 var(--nfp-sans);letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
+.nfp2-switch__plate{position:relative;width:30px;height:44px;border-radius:5px;background:linear-gradient(180deg,#F4EFE6,#DCD4C7);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18),0 6px 14px -6px rgba(0,0,0,.6)}
+.nfp2-switch__rocker{position:absolute;left:8px;right:8px;top:8px;bottom:8px;border-radius:3px;background:linear-gradient(180deg,#FFFFFF 0%,#E9E2D6 49%,#CFC6B8 51%,#F2ECE2 100%);box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .3s var(--e),background .3s var(--e)}
+.nfp2-switch[aria-checked="false"] .nfp2-switch__rocker{transform:scaleY(-1)}
+.nfp2-switch[aria-checked="true"] .nfp2-switch__plate{box-shadow:inset 0 0 0 1px rgba(0,0,0,.18),0 0 18px -2px rgba(201,163,106,.55),0 6px 14px -6px rgba(0,0,0,.6)}
+.nfp2-switch b{font-weight:600;color:var(--g-hi)}
+.nfp2-switch[aria-checked="true"] [data-off],.nfp2-switch[aria-checked="false"] [data-on]{display:none}
+.nfp2-switch:focus-visible{outline:2px solid var(--g-hi);outline-offset:4px}
+
+/* ---------- Quote sheet ---------- */
+.nfp2-quote__grid{grid-template-columns:minmax(0,7.4fr) minmax(0,3.6fr)}
+html body .nfp2-form{border-radius:6px;border-color:var(--nfp-line);padding:clamp(20px,2.8vw,40px);background:#fff}
+html body .nfp2-form .nfp2-fs{margin:0 0 26px;padding:0 0 24px;border:0;border-bottom:1px solid #EFEFEF}
+html body .nfp2-form .nfp2-fs:last-of-type{border-bottom:0;padding-bottom:0}
+html body .nfp2-form legend{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin-bottom:16px;font:400 15px/1.3 var(--nfp-serif);letter-spacing:.12em;text-transform:uppercase;color:var(--nfp-ink)}
+html body .nfp2-form legend small{flex-basis:auto;font:500 12px/1.3 var(--nfp-sans);letter-spacing:.02em;text-transform:none;color:var(--nfp-muted)}
+.nfp2-fs__n{display:inline-grid;place-items:center;min-width:30px;height:24px;padding:0 6px;border:1px solid var(--g);border-radius:2px;font:600 11px/1 var(--nfp-sans);letter-spacing:.08em;color:var(--g-txt)}
+html body .nfp2-form .nfp-input{border-radius:4px;border-color:#E0E0E0;min-height:48px}
+html body .nfp2-form .nfp-input:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(179,139,93,.2)}
+html body .nfp2-form textarea.nfp-input{min-height:112px}
+html body .nfp2-form select.nfp-input optgroup{font-style:normal;font-weight:600}
+.nfp2-tiles{grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:10px}
+html body .nfp2-tile{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;min-height:60px;padding:12px 14px;border-radius:4px;border:1.5px solid #E4E4E4;background:#fff}
+html body .nfp2-tile:has(input:checked){background:#FBF8F3;border-color:var(--g)}
+.nfp2-tile__ico{display:grid;place-items:center;width:30px;height:30px;color:var(--g-txt)}
+.nfp2-tile__ico .nf2-ico{width:24px;height:24px}
+.nfp2-tile__t{font-size:14px;line-height:1.3;font-weight:500;color:var(--nfp-ink)}
+.nfp2-tile--unsure{border-style:dashed}
+.nfp2-submit{flex-direction:column;align-items:stretch;gap:12px;margin-top:2px}
+.nfp2-submit .nfp2-btn{width:100%;min-height:56px;font-size:13px}
+.nfp2-submit .nfp-submit__note{text-align:center}
+.nfp2-aside .nfp-aside__box{border-radius:6px;border-color:var(--nfp-line);background:#fff}
+.nfp2--white .nfp2-aside .nfp-aside__box{background:#F7F7F7}
+.nfp2-aside .nfp-aside__box.nfp2-aside__dark{background:var(--dk);border-color:var(--dk);color:var(--on)}
+.nfp2-aside__dark p{margin:8px 0 12px;font-size:14.5px;color:var(--on2)}
+.nfp2-mail{display:inline-flex;gap:.45em;align-items:center;color:var(--g-hi);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(201,163,106,.45);padding-bottom:2px}
+.nfp2-mail:hover{border-color:var(--g-hi)}
+html body .nfp2-aside ol li::before{background:var(--dk);color:var(--on)}
+.nfp-field.nfp2-flash .nfp-input{animation:nfp2Flash 1.6s var(--e)}
+@keyframes nfp2Flash{0%,100%{box-shadow:0 0 0 0 rgba(179,139,93,0)}25%{box-shadow:0 0 0 5px rgba(179,139,93,.35);border-color:var(--g)}}
+
+/* ---------- Consistent cards across the older nf-pro sections ---------- */
+html body .nfp .nfp-card,html body .nfp .nfp-step,html body .nfp .nfp-row,html body .nfp .nfp-pcard{border-radius:6px}
+html body .nfp .nfp-media{border-radius:6px}
+html body .nfp .nfp-hero--banner .nfp-hero__stage{border-radius:8px}
+html body .nfp .nfp-concept__img,html body .nfp .nfp-concept__open{border-radius:6px}
+html body .nfp .nfp-card__icon{border-radius:6px;background:#f3f3f3}
+html body .nfp .nfp-pcard__title{font-family:var(--nfp-serif);font-weight:400}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1100px){
+  .nfp2-cust__grid,.nfp2-cust__grid.nfp2-cols-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nfp2-refs__grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .nfp2-quote__grid{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .nfp2-head__note{text-align:left;max-width:none}
+  .nfp2-refs__side{justify-content:space-between;width:100%}
+  .nfp2-refs__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nfp2-ref__cta{display:none}
+}
+@media (max-width:640px){
+  .nfp2-cust__grid,.nfp2-cust__grid.nfp2-cols-3{grid-template-columns:1fr}
+  .nfp2-cust__card{padding:18px 18px 20px;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:14px;row-gap:4px;align-items:start}
+  .nfp2-cust__icon{grid-row:1 / span 2;margin:0;width:40px;height:40px}
+  .nfp2-cust__icon .nf2-ico{width:30px;height:30px}
+  .nfp2-ref__label{font-size:10.5px;letter-spacing:.14em;gap:6px}
+  html body .nfp2-btn,html body .nfp .nfp-btn--gold,html body .nfp .nfp-btn--outline{width:100%}
+  html body .nfp-hero .nfp-actions .nfp-btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .nfp2-refs.is-armed .nfp2-ref__img img{transition:filter .32s ease 0s}
+  .nfp2-refs.is-armed:not(.is-off) .nfp2-ref__glow{animation:none}
+  .nfp2-cust__card,.nfp2-btn{transition-duration:.2s}
+}
+
+/* NF-POLISH-0912: tool pages (custom curtains, chandeliers, name signs) only. Their quote sheet is white after a white FAQ, so the grey band padding made 92px gaps before and after it. Top and bottom padding brought to the page rhythm: 72px desktop, 44px phone. */
+html body .nfp2.nfp2-quote:has(.nfc-form){padding-block:clamp(22px,2.64vw,38px)}
+
+/* NF-SWEEP-0912: card icon chip cream #f4f1ec to neutral #f3f3f3 */
+
+/* NF-PRO3 (2026-09-13). The owner said the all caps serif headings "don't go with our store". Big section headings now
+match the store's normal heading look (Poynter Oldstyle, light weight, no uppercase), like the homepage and product titles.
+The tiny letter spaced eyebrows stay. Rails step exactly one card per click or swipe; a newly opened tab fades in. */
+html body .nfp:not(#nfpro3) .nfp-h2,html body .nfp2-h2:not(#nfpro3){text-transform:none;letter-spacing:.004em;font-weight:360;font-size:clamp(25px,2.4vw,35px);line-height:1.18}
+html body .nfp2-form:not(#nfpro3) legend{text-transform:none;letter-spacing:.005em;font-size:18px;font-weight:400}
+html body .nfp-rail__track:not(#nfpro3){scroll-snap-type:x mandatory;scroll-behavior:auto}
+html body .nfp-rail__track:not(#nfpro3)>*{scroll-snap-align:start;scroll-snap-stop:always}
+html body .nfp .nfp-pcard__img{background:#EFEFEF}
+html body .nfp-panel:not([hidden]){animation:nfp3In .3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes nfp3In{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html body .nfp-panel:not([hidden]){animation:none}}

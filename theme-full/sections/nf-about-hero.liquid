@@ -1,0 +1,94 @@
+{%- comment -%}
+  NF-ABOUT-V1 (2026-09-11): "light switch" hero for /pages/about-us (templates/page.about-us.json).
+  The page opens in the same room with the lights off (blue hour). The visitor flips the wall switch, or the room glides
+  on as they scroll, and the matched lights on photo fades in over the lights off one while the headline is revealed.
+  Only opacity and transform change, driven by assets/nf-about.js in requestAnimationFrame.
+  No JS: the lit room and full copy show. prefers-reduced-motion: copy is shown from the start, no flicker, no scroll
+  scrubbing and no auto glow; the switch still works as a short crossfade.
+  Images: a matched pair from Files (same framing): image_off and image_on.
+{%- endcomment -%}
+{{- 'nf-about.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'nf-about.js' | asset_url }}" defer></script>
+{%- liquid
+  assign s = section.settings
+  assign i_off = blank
+  assign i_on = blank
+  if s.image_off != blank
+    assign i_off = images[s.image_off]
+  endif
+  if s.image_on != blank
+    assign i_on = images[s.image_on]
+  endif
+  assign i_sizes = '100vw'
+  assign i_widths = '750,1100,1500,1900,2400'
+-%}
+<section class="nfa nfa-hero" id="nfa-hero-{{ section.id }}" data-nfa-hero data-auto="{{ s.auto_seconds }}" aria-labelledby="nfa-hh-{{ section.id }}" style="--nfa-pos-x:{{ s.pos_x }}%;--nfa-pos-x-m:{{ s.pos_x_mobile }}%">
+  <div class="nfa-hero__room" aria-hidden="true">
+    {%- if i_off != blank and i_off.width > 0 -%}
+      {{- i_off | image_url: width: 2400 | image_tag: class: 'nfa-hero__img nfa-hero__off', loading: 'eager', fetchpriority: 'high', widths: i_widths, sizes: i_sizes, alt: '' -}}
+    {%- endif -%}
+    {%- if i_on != blank and i_on.width > 0 -%}
+      {{- i_on | image_url: width: 2400 | image_tag: class: 'nfa-hero__img nfa-hero__on', loading: 'eager', widths: i_widths, sizes: i_sizes, alt: '' -}}
+    {%- endif -%}
+    <span class="nfa-hero__glow"></span>
+    <span class="nfa-hero__shade"></span>
+  </div>
+  <div class="nfa-wrap nfa-hero__inner">
+    <div class="nfa-hero__copy">
+      {%- if s.eyebrow != blank -%}<p class="nfa-eyebrow nfa-eyebrow--on-dark">{{ s.eyebrow | escape }}</p>{%- endif -%}
+      <div class="nfa-switch-row">
+        <button type="button" class="nfa-switch" role="switch" aria-checked="false" aria-label="{{ s.switch_on_label | default: 'Turn on the lights' | escape }}" data-label-on="{{ s.switch_on_label | default: 'Turn on the lights' | escape }}" data-label-off="{{ s.switch_off_label | default: 'Turn off the lights' | escape }}" data-nfa-switch>
+          <span class="nfa-switch__plate">
+            <span class="nfa-switch__screw nfa-switch__screw--t"></span>
+            <span class="nfa-switch__paddle"><span class="nfa-switch__led"></span></span>
+            <span class="nfa-switch__screw nfa-switch__screw--b"></span>
+          </span>
+        </button>
+        <div class="nfa-switch-copy">
+          {%- if s.pre != blank -%}<p class="nfa-hero__pre">{{ s.pre | escape }}</p>{%- endif -%}
+          <span class="nfa-switch__hint" data-nfa-hint aria-hidden="true"><span class="nfa-switch__arrow">&larr;</span> {{ s.hint | default: 'Flip the switch' | escape }}</span>
+        </div>
+      </div>
+      <h1 class="nfa-hero__h1" id="nfa-hh-{{ section.id }}" data-nfa-reveal>{{ s.heading | escape }}</h1>
+      {%- if s.text != blank -%}<p class="nfa-hero__sub" data-nfa-reveal>{{ s.text | escape }}</p>{%- endif -%}
+      <div class="nfa-hero__actions" data-nfa-reveal>
+        {%- if s.btn1_label != blank -%}<a class="nfa-btn nfa-btn--light" href="{{ s.btn1_url }}">{{ s.btn1_label | escape }}<span class="nfa-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+        {%- if s.btn2_label != blank -%}<a class="nfa-btn nfa-btn--ghost" href="{{ s.btn2_url }}">{{ s.btn2_label | escape }}</a>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  (function (h) {
+    if (!h || !h.classList) return;
+    h.classList.add('is-js');
+    try { if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) h.classList.add('is-reduced'); } catch (e) {}
+    // Failsafe: if assets/nf-about.js never runs, show the lit room and the copy instead of a dark hero.
+    setTimeout(function () { if (!h.__nfa) h.classList.remove('is-js'); }, 5000);
+  })(document.getElementById('nfa-hero-{{ section.id }}'));
+</script>
+
+{% schema %}
+{
+  "name": "NF about switch hero",
+  "class": "nfa-section nfa-section--hero",
+  "settings": [
+    { "type": "text", "id": "image_off", "label": "Lights OFF image filename in Files" },
+    { "type": "text", "id": "image_on", "label": "Lights ON image filename in Files", "info": "Must be the same room and framing as the OFF image." },
+    { "type": "range", "id": "pos_x", "label": "Image focus, desktop (%)", "min": 0, "max": 100, "step": 1, "default": 50 },
+    { "type": "range", "id": "pos_x_mobile", "label": "Image focus, phones (%)", "min": 0, "max": 100, "step": 1, "default": 56 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "About Nora Furnish" },
+    { "type": "text", "id": "pre", "label": "Line shown in the dark", "default": "Every room feels different once the lights come on." },
+    { "type": "text", "id": "hint", "label": "Switch hint", "default": "Flip the switch" },
+    { "type": "text", "id": "switch_on_label", "label": "Switch label when off (screen readers)", "default": "Turn on the lights" },
+    { "type": "text", "id": "switch_off_label", "label": "Switch label when on (screen readers)", "default": "Turn off the lights" },
+    { "type": "text", "id": "heading", "label": "Heading revealed by the light", "default": "Light for the rooms you live in." },
+    { "type": "textarea", "id": "text", "label": "Text revealed by the light" },
+    { "type": "text", "id": "btn1_label", "label": "Button 1 label" },
+    { "type": "text", "id": "btn1_url", "label": "Button 1 URL" },
+    { "type": "text", "id": "btn2_label", "label": "Button 2 label" },
+    { "type": "text", "id": "btn2_url", "label": "Button 2 URL" },
+    { "type": "range", "id": "auto_seconds", "label": "Turn on by itself after (seconds, 0 = never)", "min": 0, "max": 20, "step": 1, "default": 7 }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,102 @@
+{%- comment -%}
+  NF-BULK-ORDER (2026-09-14, owner: an easy bulk order page under Professionals, like the old quote page but a big order
+  table of each industry's products). Step 1 picks an industry (the Professionals > Industries links of the top bar menu,
+  with the same photos as the header dropdown), step 2 loads that industry's table (sections/nf-bulk-table.liquid, which
+  explains where each product list lives), step 3 adds every row with a quantity to the cart at once.
+  Behaviour: assets/nf-bulk-order.js. Styles: assets/nf-bulk-order.css. Built for older buyers on purpose: large type,
+  big buttons, plain words, and quantities remembered if the page is left or refreshed.
+{%- endcomment -%}
+{{ 'nf-bulk-order.css' | asset_url | stylesheet_tag }}
+<div class="nfbo" data-nfbo>
+  <header class="nfbo__head">
+    <h1 class="nfbo__title">{{ section.settings.title | escape }}</h1>
+    <p class="nfbo__lead">{{ section.settings.lead | escape }}</p>
+    {%- capture nfbo_ck -%}<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8.2"/><path d="M6.4 10.3l2.4 2.4 4.8-5"/></svg>{%- endcapture -%}
+    <ul class="nfbo__perks" role="list">
+      <li>{{ nfbo_ck }}Buy 2 or more, save 10%</li>
+      <li>{{ nfbo_ck }}No minimum order</li>
+      <li>{{ nfbo_ck }}Free shipping on every US order</li>
+      <li>{{ nfbo_ck }}Usual delivery 6 to 9 business days</li>
+    </ul>
+    <p class="nfbo__note">Large orders may take a little longer to arrive. Email <a href="mailto:info@norafurnish.com">info@norafurnish.com</a> for a delivery estimate on your order.</p>
+  </header>
+
+  <section class="nfbo-step" aria-labelledby="nfbo-s1-{{ section.id }}">
+    <h2 class="nfbo-step__h" id="nfbo-s1-{{ section.id }}"><span class="nfbo-step__n">1</span>Choose your industry</h2>
+    <ul class="nfbo-tiles" role="list">
+      {%- for tl in linklists['top-bar'].links -%}
+        {%- assign tlt = tl.title | downcase -%}
+        {%- unless tlt contains 'professional' -%}{%- continue -%}{%- endunless -%}
+        {%- for g in tl.links -%}
+          {%- assign gt = g.title | downcase -%}
+          {%- unless gt contains 'industr' -%}{%- continue -%}{%- endunless -%}
+          {%- for c in g.links -%}
+            {%- unless c.url contains '/pages/' -%}{%- continue -%}{%- endunless -%}
+            {%- assign ch = c.url | split: '/pages/' | last | split: '?' | first | split: '#' | first -%}
+            {%- assign ct = c.title | downcase -%}
+            {%- if ct contains 'restaurant' or ct contains 'cafe' -%}{%- assign f = 'nf-ref-cafe-counter.png' -%}{%- assign d = 'Dining rooms, bars and patios' -%}
+            {%- elsif ct contains 'rental' -%}{%- assign f = 'nf-ref-guest-suite.png' -%}{%- assign d = 'Airbnb homes and rental units' -%}
+            {%- elsif ct contains 'salon' or ct contains 'spas' -%}{%- assign f = 'nf-ref-bath-vanity.png' -%}{%- assign d = 'Styling stations and treatment rooms' -%}
+            {%- elsif ct contains 'school' or ct contains 'librar' -%}{%- assign f = 'nf-ref-book-corner.png' -%}{%- assign d = 'Classrooms and reading rooms' -%}
+            {%- elsif ct contains 'gym' or ct contains 'studio' -%}{%- assign f = 'nf-ref-office-lounge.jpg' -%}{%- assign d = 'Training floors and yoga rooms' -%}
+            {%- elsif ct contains 'staging' or ct contains 'model home' -%}{%- assign f = 'nf-blog-layered-living-room.png' -%}{%- assign d = 'Show homes and listings' -%}
+            {%- elsif ct contains 'hospitality' or ct contains 'hotel' -%}{%- assign f = 'nf-pro-hospitality.jpg' -%}{%- assign d = 'Hotels, restaurants and bars' -%}
+            {%- elsif ct contains 'office' -%}{%- assign f = 'nf-pro-office.jpg' -%}{%- assign d = 'Workspaces and meeting rooms' -%}
+            {%- elsif ct contains 'retail' -%}{%- assign f = 'nf-pro-retail.jpg' -%}{%- assign d = 'Shops, showrooms and salons' -%}
+            {%- elsif ct contains 'outdoor' -%}{%- assign f = 'nf-pro-outdoor.jpg' -%}{%- assign d = 'Facades, patios and gardens' -%}
+            {%- elsif ct contains 'home' -%}{%- assign f = 'nf-pro-homes.jpg' -%}{%- assign d = 'Renovations and new builds' -%}
+            {%- else -%}{%- assign f = 'nf-pro-hub.jpg' -%}{%- assign d = '' -%}{%- endif -%}
+            <li>
+              <button type="button" class="nfbo-tile" data-nfbo-pick="{{ ch }}" data-name="{{ c.title | escape }}" aria-pressed="false">
+                <span class="nfbo-tile__img">{%- render 'nf-topbar-img', file: f, w: 640 -%}{%- comment -%} NF-IMG-SHARP-0916: tiles are ~275px wide, 480px was under 2x {%- endcomment -%}</span>
+                <span class="nfbo-tile__tx"><span class="nfbo-tile__t">{{ c.title | escape }}</span>{%- if d != '' -%}<span class="nfbo-tile__d">{{ d }}</span>{%- endif -%}</span>
+                <span class="nfbo-tile__ok" aria-hidden="true"><svg viewBox="0 0 16 16" focusable="false"><path d="M3.5 8.5l3 3 6-6.5"/></svg></span>
+              </button>
+            </li>
+          {%- endfor -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </ul>
+  </section>
+
+  <section class="nfbo-step" data-nfbo-step2 hidden aria-labelledby="nfbo-s2-{{ section.id }}">
+    <h2 class="nfbo-step__h" id="nfbo-s2-{{ section.id }}"><span class="nfbo-step__n">2</span>Enter how many you need</h2>
+    <div class="nfbo-tools">
+      <label class="nfbo-search">
+        <span class="nfbo-vh">Find a product in this list</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5 17 17"/></svg>
+        <input type="search" placeholder="Find a product in this list" autocomplete="off" data-nfbo-search>
+      </label>
+      <p class="nfbo-hint">Use the plus and minus buttons or type a number. Need two sizes or finishes of the same piece? Tap "Add another size or finish".</p>
+    </div>
+    <div class="nfbo-headrow" aria-hidden="true"><span></span><span>Product</span><span>Price each</span><span>How many</span><span class="nfbo-headrow__r">Total</span></div>
+    <div class="nfbo-slot" data-nfbo-slot aria-live="polite"></div>
+    <p class="nfbo-empty" data-nfbo-none hidden>No products match that search.</p>
+    <div class="nfbo-bar" data-nfbo-bar>
+      <div class="nfbo-bar__sum">
+        <span class="nfbo-bar__for"><span class="nfbo-step__n nfbo-step__n--sm">3</span><span>Your <span data-nfbo-for></span> order</span></span>
+        <span class="nfbo-bar__line"><span data-nfbo-count>0 items</span><span class="nfbo-bar__dot" aria-hidden="true">·</span><span data-nfbo-sub>$0.00</span></span>
+        <span class="nfbo-bar__save" data-nfbo-save hidden>10% off comes off automatically at checkout</span>
+      </div>
+      <div class="nfbo-bar__acts">
+        <button type="button" class="nfbo-clear" data-nfbo-clear>Clear all</button>
+        <button type="button" class="nfbo-add" data-nfbo-add disabled>Add all to cart</button>
+      </div>
+      <p class="nfbo-msg" data-nfbo-msg role="alert"></p>
+    </div>
+  </section>
+
+  <p class="nfbo-help">Need a hand, or more than 999 of one piece? Email <a href="mailto:info@norafurnish.com">info@norafurnish.com</a> and a real person will help.</p>
+</div>
+<script src="{{ 'nf-bulk-order.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "NF bulk order form",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Bulk Order Form" },
+    { "type": "textarea", "id": "lead", "label": "Intro", "default": "Order for a whole project in three easy steps. Choose your industry, enter how many of each piece you need, then add everything to your cart at once." }
+  ],
+  "presets": [{ "name": "NF bulk order form" }]
+}
+{% endschema %}

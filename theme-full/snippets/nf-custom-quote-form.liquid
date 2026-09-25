@@ -1,0 +1,105 @@
+{%- comment -%}
+  NF-CUSTOM3-V1 nf-custom-quote-form (2026-09-11). A copy of nf-pro-quote-form for the three custom services pages.
+  Native Shopify contact form. It emails the store contact address (info@norafurnish.com) with the subject
+  "NFPRO quote request: <service>", so it lands next to the other Professionals quotes.
+  The page tool (sections/nf-custom-tool.liquid + assets/nf-custom.js) writes every choice into the
+  "Design details" field [data-nfc-summary] as the customer works. assets/nf-pro.js runs the required checks
+  (form[data-nfp-form]) and fills the Page field.
+  Params: form_id, service, qty_label, qty_placeholder, summary_label, summary_help, message_placeholder, button_label
+{%- endcomment -%}
+{%- liquid
+  assign q_id = form_id | default: 'nfc-quote-form'
+  assign q_service = service | default: 'Custom piece'
+  assign q_btn = button_label | default: 'Request My Free Quote'
+  assign q_qty = qty_label | default: 'How many do you need?'
+-%}
+{%- form 'contact', id: q_id, class: 'nfp-form nfc-form', novalidate: 'novalidate', data-nfp-form: 'custom3', data-nfc-form: q_service -%}
+  {%- if form.posted_successfully? -%}
+    <div class="nfp-success" role="status">
+      <div class="nfp-success__icon">{% render 'nf-pro-icon', name: 'check' %}</div>
+      <h3 class="nfp-h2">Thank you, your request is in.</h3>
+      <p class="nfp-lead">A person on our team will read it closely and reply by email from info@norafurnish.com with the design, the price and the timeline for your piece.</p>
+      <ul class="nfp-success__steps">
+        <li>Questions first if we need a measurement or a photo</li>
+        <li>Nothing is made or charged until you approve</li>
+        <li>A photo of your finished piece before it ships</li>
+      </ul>
+      <div class="nfp-actions" style="justify-content:center">
+        <a class="nfp-btn nfp-btn--secondary" href="/pages/professionals">Back to Professionals</a>
+      </div>
+    </div>
+  {%- else -%}
+    {%- if form.errors -%}
+      <div class="nfp-alert" role="alert">Something needs another look before we can send this. {{ form.errors | default_errors }}</div>
+    {%- endif -%}
+
+    <input type="hidden" name="contact[subject]" value="NFPRO quote request: {{ q_service | escape }}">
+    <input type="hidden" name="contact[Form]" value="{{ q_service | escape }} quote">
+    <input type="hidden" name="contact[Tag]" value="nfpro quote">
+    <input type="hidden" name="contact[Service]" value="{{ q_service | escape }}" data-nfp-service>
+    <input type="hidden" name="contact[Page]" value="{{ canonical_url }}" data-nfp-pageurl>
+
+    <fieldset>
+      <legend>Your design <small>Filled in from the tool above</small></legend>
+      <div class="nfp-fields">
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-design">{{ summary_label | default: 'Design details' | escape }}<span class="nfp-opt">you can edit this</span></label>
+          <textarea class="nfp-input nfc-sumta" id="{{ q_id }}-design" name="contact[Design details]" rows="8" data-nfc-summary placeholder="Use the tool above and your choices appear here. You can also type them in yourself."></textarea>
+          {%- if summary_help != blank -%}<p class="nfp-help">{{ summary_help | escape }}</p>{%- endif -%}
+          <button type="button" class="nfp-link nfc-resync" data-nfc-resync hidden>Refresh from the tool</button>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>About you <small>Fields marked <span class="nfp-req">*</span> are required</small></legend>
+      <div class="nfp-fields">
+        <div class="nfp-field">
+          <label for="{{ q_id }}-name">Your name<span class="nfp-req" aria-hidden="true">*</span></label>
+          <input class="nfp-input" id="{{ q_id }}-name" type="text" name="contact[name]" autocomplete="name" required aria-describedby="{{ q_id }}-name-err" value="{{ form.name }}">
+          <p class="nfp-err" id="{{ q_id }}-name-err">Please enter your name.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-email">Email<span class="nfp-req" aria-hidden="true">*</span></label>
+          <input class="nfp-input" id="{{ q_id }}-email" type="email" name="contact[email]" autocomplete="email" inputmode="email" placeholder="you@example.com" required aria-describedby="{{ q_id }}-email-err" value="{{ form.email }}">
+          <p class="nfp-err" id="{{ q_id }}-email-err">Please enter a valid email address so we can reply.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-zip">ZIP code<span class="nfp-opt">optional</span></label>
+          <input class="nfp-input" id="{{ q_id }}-zip" type="text" name="contact[ZIP code]" autocomplete="postal-code" inputmode="numeric" maxlength="10" data-nfp-optional>
+          <p class="nfp-help">Helps us plan shipping for large pieces.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-qty">{{ q_qty | escape }}<span class="nfp-req" aria-hidden="true">*</span></label>
+          <input class="nfp-input" id="{{ q_id }}-qty" type="text" name="contact[Quantity needed]" placeholder="{{ qty_placeholder | default: 'For example 1, or not sure yet' | escape }}" required aria-describedby="{{ q_id }}-qty-err">
+          <p class="nfp-err" id="{{ q_id }}-qty-err">Please give a rough number. Not sure yet is a fine answer.</p>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Anything else</legend>
+      <div class="nfp-fields">
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-time">When do you need it?</label>
+          <select class="nfp-input" id="{{ q_id }}-time" name="contact[Timeline]">
+            <option value="">Choose one</option>
+            <option>As soon as possible</option>
+            <option>Within a month</option>
+            <option>In 1 to 3 months</option>
+            <option>No rush, just exploring</option>
+          </select>
+        </div>
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-msg">Message<span class="nfp-opt">optional</span></label>
+          <textarea class="nfp-input" id="{{ q_id }}-msg" name="contact[body]" rows="4" placeholder="{{ message_placeholder | default: 'Tell us about the room and anything we should know. Links to photos are welcome.' | escape }}">{{ form.body }}</textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="nfp-submit">
+      <button type="submit" class="nfp-btn nfp-btn--primary">{{ q_btn | escape }}</button>
+      <p class="nfp-submit__note">Free quote by email. Nothing is made or charged until you approve it.</p>
+    </div>
+  {%- endif -%}
+{%- endform -%}

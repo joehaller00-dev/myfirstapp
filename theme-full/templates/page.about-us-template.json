@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_EeBNAg": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_jGBACr": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>About Us<\/strong>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_3xQ8rm": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h5>Nora Furnish is a US based home store for modern lighting, decor and soft furnishings.<\/h5><p>We think furnishing a home should feel simple. Every piece in the store is chosen the way we would choose for our own homes: it has to look right, work hard and be easy to live with. We help homeowners and renters put together rooms that feel calm and personal.<\/p><p>Every order ships free within the United States and returns are easy for 30 days.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_jGBACr",
+        "richtext_3xQ8rm"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_X7nfkA": {
+      "type": "image-with-text",
+      "blocks": {
+        "richtext_TFY9Rj": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h4><strong><br\/>Our Contact Information:<\/strong><\/h4><p><strong>Store Email:<\/strong> <a href=\"mailto:info@norafurnish.com\" title=\"mailto:info@norafurnish.com\">info@norafurnish.com<\/a><br\/><\/p><p><br\/><strong>Customer Service Hours:<\/strong> Monday to Friday, 9:00 AM to 5:00 PM (CST)<\/p><p>We aim to respond to all email inquiries within 1 to 2 business days.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_TFY9Rj"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "image": "shopify:\/\/shop_images\/nf_nora_personal.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "md",
+        "remove_vertical_spacing": true
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    }
+  },
+  "order": [
+    "rich_text_EeBNAg",
+    "image_with_text_X7nfkA",
+    "main"
+  ]
+}

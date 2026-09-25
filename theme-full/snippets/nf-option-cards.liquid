@@ -1,0 +1,830 @@
+{%- comment -%}
+  NF-OPTCARDS-V1 option cards (2026-09-12): FINISH swatches, POWER type cards, GLASS or SHADE photo chips.
+  NF-OPTCARDS-V2 (2026-09-12, wider coverage): finish swatches also for plain colors, wood tones and mixed metals; power
+  cards for more wording with a small wattage or voltage note; shade chips for shared photos and values with a size or
+  pack count (shown as a subline).
+  Rendered by snippets/variant-picker.liquid (context main_product and quick_buy) for every option that did NOT become a
+  light card (NF-LIGHTCARDS-V1 runs first). Outputs NOTHING for any other option, and the native markup is used.
+  PRESENTATION ONLY. Every choice is the theme's own radio input (same name, value, form and data-option-position as the
+  native picker) plus a label, so the variant picker JS, NF-CHEAPEST-V2, ?variant= URLs, the variant image to top left
+  feature, quick view and the cart are untouched. No variant or option value is created or changed.
+  Styles: assets/nf-option-cards.css, loaded by sections/main-product.liquid and snippets/product-quick-buy.liquid only
+  when part 'detect' finds an option. Python mirror: scratchpad newbuild/cards2/mirror2.py (+ py_extra.py)
+
+  Rules (an option needs at least 2 values, no combined listing values; the first rule that matches wins)
+  * SHADE  name has "glass" or "shade" (not "shape"), or a Color/Colour/Style option whose every value says "glass";
+           every value (after its size or pack words are split off) made only of glass/shade words, at least one material
+           word (or "glass" in the name), and the product has at least one image
+  * POWER  name is Power Supply / Power / Plug Type / Switch Type / Installation / Type ... (or Voltage when every value
+           says AC or DC); every value made only of power words (plus wattage and voltage tokens) with a core power word
+  * FINISH name is Color / Colour / Finish / Main Color / Body Color / Lamp Color / Shade Color / Frame Color ...; no value
+           carries a light, size, pack, power, shape, style or pattern word or any digit; at least 2 values and at least
+           two thirds of the values name a color, wood or metal (the rest get a neutral named chip)
+
+  Parts
+  * 'detect'   product                          -> "1" when any option gets option cards
+  * 'classify' product, option [, nf_ungated]   -> "shade" | "power" | "finish" | nothing
+  * 'fin'      value                            -> swatch segments (max 3 shown; "a+b" blended, "_l/_d/_m" tone) @@ classes,
+                                                   or X when the value rules the option out
+  * 'pw'       value                            -> power key @@ line @@ note @@ display name
+  * 'shsplit'  value                            -> name @@ size or pack subline
+  * 'option'   product, option, form_id, nf_ovr, nf_iv, nf_opt_idx, nf_sel_value, hide_sold_out_variants
+{%- endcomment -%}
+{%- case part -%}
+  {%- when 'detect' -%}
+    {%- for nf_o in product.options_with_values -%}
+      {%- capture nf_lc -%}{%- render 'nf-light-cards', part: 'classify', option: nf_o -%}{%- endcapture -%}
+      {%- if nf_lc contains 'light' -%}{%- continue -%}{%- endif -%}
+      {%- capture nf_c -%}{%- render 'nf-option-cards', part: 'classify', product: product, option: nf_o -%}{%- endcapture -%}
+      {%- if nf_c != blank -%}1{%- break -%}{%- endif -%}
+    {%- endfor -%}
+
+  {%- when 'classify' -%}
+    {%- liquid
+      assign nf_n = option.name | strip | downcase
+      assign nf_key = '|' | append: nf_n | append: '|'
+      assign nf_type = ''
+      assign nf_go = false
+      assign nf_url = false
+      for nf_v in option.values
+        if nf_v.product_url != blank
+          assign nf_url = true
+          break
+        endif
+      endfor
+      if nf_url == false and option.values.size > 1
+        assign nf_go = true
+      endif
+
+      # 1 SHADE
+      assign nf_sh = false
+      if nf_go
+        unless nf_n contains 'shape'
+          if nf_n contains 'glass' or nf_n contains 'shade'
+            assign nf_sh = true
+          elsif nf_n == 'color' or nf_n == 'colour' or nf_n == 'style'
+            assign nf_sh = true
+            for nf_v in option.values
+              assign nf_vd = nf_v.name | downcase
+              unless nf_vd contains 'glass'
+                assign nf_sh = false
+                break
+              endunless
+            endfor
+          endif
+        endunless
+        if product.featured_image == blank
+          assign nf_sh = false
+        endif
+      endif
+      assign nf_mat = false
+      if nf_n contains 'glass'
+        assign nf_mat = true
+      endif
+    -%}
+    {%- if nf_sh -%}
+      {%- for nf_v in option.values -%}
+        {%- capture nf_ss -%}{%- render 'nf-option-cards', part: 'shsplit', value: nf_v.name -%}{%- endcapture -%}
+        {%- liquid
+          assign nf_sp = nf_ss | strip | split: '@@'
+          assign nf_s = nf_sp[0] | downcase | replace: '(', ' ' | replace: ')', ' ' | replace: '-', ' ' | replace: '/', ' ' | replace: ',', ' ' | replace: '|', ' ' | replace: '&', ' ' | replace: '+', ' ' | replace: '~', ' ' | replace: ':', ' ' | replace: ';', ' ' | replace: '.', ' ' | replace: '–', ' ' | replace: '—', ' ' | replace: '"', ' '
+          assign nf_ts = nf_s | split: ' '
+          if nf_ts.size == 0
+            assign nf_sh = false
+            break
+          endif
+          for nf_t in nf_ts
+            assign nf_tk = '|' | append: nf_t | append: '|'
+            unless '|glass|frosted|clear|amber|smoke|smoky|smoked|opal|milky|milk|ribbed|fluted|pleated|linen|paper|fabric|cognac|transparent|crystal|acrylic|rattan|seeded|alabaster|glossy|textured|ripple|bubble|cloth|plastic|ceramic|white|black|gray|grey|brown|coffee|yellow|green|blue|pink|red|rose|orange|purple|cream|beige|dark|light|color|colour|mixed|shade|lampshade|and|wine|' contains nf_tk
+              assign nf_sh = false
+              break
+            endunless
+            if '|glass|frosted|clear|amber|smoke|smoky|smoked|opal|milky|milk|ribbed|fluted|pleated|linen|paper|fabric|cognac|transparent|crystal|acrylic|rattan|seeded|alabaster|glossy|textured|ripple|bubble|cloth|plastic|ceramic|' contains nf_tk
+              assign nf_mat = true
+            endif
+          endfor
+          unless nf_sh
+            break
+          endunless
+        -%}
+      {%- endfor -%}
+      {%- if nf_sh and nf_mat -%}{%- assign nf_type = 'shade' -%}{%- endif -%}
+    {%- endif -%}
+
+    {%- comment -%} 2 POWER {%- endcomment -%}
+    {%- liquid
+      if nf_go and nf_type == ''
+        assign nf_pn = false
+        if '|power supply|power|power source|power type|power option|power options|power method|power mode|charging|plug type|installation|install type|installation type|mounting|type|switch type|power plug|charging method|power supply mode|power supply type|' contains nf_key
+          assign nf_pn = true
+        elsif nf_n == 'voltage'
+          assign nf_pn = true
+          for nf_v in option.values
+            assign nf_s = nf_v.name | downcase | replace: '(', ' ' | replace: ')', ' ' | replace: '-', ' ' | replace: '/', ' ' | replace: ',', ' ' | replace: '|', ' ' | replace: '&', ' ' | replace: '+', ' ' | replace: '~', ' ' | replace: ':', ' ' | replace: ';', ' ' | replace: '.', ' ' | replace: '–', ' ' | replace: '—', ' ' | replace: '"', ' '
+            assign nf_ts = nf_s | split: ' '
+            assign nf_acdc = false
+            for nf_t in nf_ts
+              assign nf_t2 = nf_t | slice: 0, 2
+              assign nf_r = nf_t | slice: 2, 40
+              assign nf_r0 = nf_r | slice: 0
+              assign nf_rnd = nf_r | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+              assign nf_rz = nf_r | slice: -1
+              if nf_t == 'ac' or nf_t == 'dc'
+                assign nf_acdc = true
+              elsif nf_t2 == 'ac' or nf_t2 == 'dc'
+                if nf_r0 != '' and '0123456789' contains nf_r0
+                  if nf_rnd == '' or nf_rnd == 'v' and nf_rz == 'v'
+                    assign nf_acdc = true
+                  endif
+                endif
+              endif
+            endfor
+            unless nf_acdc
+              assign nf_pn = false
+              break
+            endunless
+          endfor
+        endif
+        if nf_pn
+          assign nf_ok = true
+          for nf_v in option.values
+            assign nf_s = nf_v.name | downcase | replace: '(', ' ' | replace: ')', ' ' | replace: '-', ' ' | replace: '/', ' ' | replace: ',', ' ' | replace: '|', ' ' | replace: '&', ' ' | replace: '+', ' ' | replace: '~', ' ' | replace: ':', ' ' | replace: ';', ' ' | replace: '.', ' ' | replace: '–', ' ' | replace: '—', ' ' | replace: '"', ' '
+            assign nf_ts = nf_s | split: ' '
+            assign nf_core = false
+            for nf_t in nf_ts
+              assign nf_tnd = nf_t | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+              assign nf_tl = nf_t | size
+              assign nf_tz = nf_t | slice: -1
+              assign nf_t2 = nf_t | slice: 0, 2
+              assign nf_r = nf_t | slice: 2, 40
+              assign nf_r0 = nf_r | slice: 0
+              assign nf_rnd = nf_r | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+              assign nf_rz = nf_r | slice: -1
+              if nf_tl > 1 and nf_tnd == 'w' and nf_tz == 'w'
+                continue
+              endif
+              if nf_tl > 1 and nf_tnd == 'v' and nf_tz == 'v'
+                continue
+              endif
+              if nf_t2 == 'ac' or nf_t2 == 'dc'
+                if nf_r0 != '' and '0123456789' contains nf_r0
+                  if nf_rnd == '' or nf_rnd == 'v' and nf_rz == 'v'
+                    assign nf_core = true
+                    continue
+                  endif
+                endif
+              endif
+              assign nf_tk = '|' | append: nf_t | append: '|'
+              unless '|hardwired|hardwire|hard|wired|wire|plug|plugin|in|battery|batteries|powered|power|rechargeable|solar|usb|external|integrated|built|panel|cord|wall|outlet|with|and|operated|charging|charge|us|switch|concealed|inline|dimmer|dimmable|remote|control|cable|adapter|mains|ac|dc|model|mode|' contains nf_tk
+                assign nf_ok = false
+                break
+              endunless
+              if '|hardwired|hardwire|hard|plug|plugin|battery|batteries|rechargeable|solar|usb|wired|ac|dc|charging|mains|' contains nf_tk
+                assign nf_core = true
+              endif
+            endfor
+            if nf_ok == false or nf_core == false
+              assign nf_ok = false
+              break
+            endif
+          endfor
+          if nf_ok
+            assign nf_type = 'power'
+          endif
+        endif
+      endif
+    -%}
+
+    {%- comment -%} 3 FINISH {%- endcomment -%}
+    {%- if nf_go and nf_type == '' and '|color|colour|finish|body color|body colour|frame color|frame colour|base finish|metal finish|metal color|lamp body color|lampshade color|shade color|base color|arm color|fixture finish|hardware finish|main color|main colour|lamp color|lamp colour|lampshade colour|shade colour|frame finish|moon finish|wood tone|glass color|glass colour|ball color|flower color|color combo|body finish|lamp finish|' contains nf_key -%}
+      {%- assign nf_ok = true -%}
+      {%- assign nf_rec = 0 -%}
+      {%- for nf_v in option.values -%}
+        {%- capture nf_f -%}{%- render 'nf-option-cards', part: 'fin', value: nf_v.name -%}{%- endcapture -%}
+        {%- assign nf_f = nf_f | strip -%}
+        {%- if nf_f == 'X' -%}
+          {%- assign nf_ok = false -%}
+          {%- break -%}
+        {%- endif -%}
+        {%- assign nf_fs = nf_f | split: '@@' | first -%}
+        {%- if nf_fs != blank -%}{%- assign nf_rec = nf_rec | plus: 1 -%}{%- endif -%}
+      {%- endfor -%}
+      {%- liquid
+        assign nf_r3 = nf_rec | times: 3
+        assign nf_n2 = option.values.size | times: 2
+        if nf_ok and nf_rec >= 2 and nf_r3 >= nf_n2
+          assign nf_type = 'finish'
+        endif
+      -%}
+    {%- endif -%}
+    {{- nf_type -}}
+
+  {%- when 'fin' -%}
+    {%- liquid
+      assign nf_s = value | downcase | replace: '+', ' and ' | replace: '/', ' and ' | replace: '&', ' and ' | replace: ',', ' and '
+      assign nf_s = nf_s | replace: '(', ' ' | replace: ')', ' ' | replace: '-', ' ' | replace: '|', ' ' | replace: '~', ' ' | replace: ':', ' ' | replace: ';', ' ' | replace: '.', ' ' | replace: '–', ' ' | replace: '—', ' ' | replace: '"', ' '
+      assign nf_s = nf_s | split: ' ' | join: ' '
+      assign nf_s = ' ' | append: nf_s | append: ' '
+      assign nf_s = nf_s | replace: ' rose gold ', ' rosegold ' | replace: ' red copper ', ' redcopper ' | replace: ' gun metal ', ' gunmetal ' | replace: ' gun black ', ' gunmetal ' | replace: ' gun gray ', ' gunmetal ' | replace: ' gun grey ', ' gunmetal ' | replace: ' oil rubbed ', ' antique ' | replace: ' stainless steel ', ' steel ' | replace: ' wine red ', ' wine ' | replace: ' red wine ', ' wine ' | replace: ' milk white ', ' opal ' | replace: ' milky white ', ' opal ' | replace: ' navy blue ', ' navy ' | replace: ' sky blue ', ' sky ' | replace: ' lake blue ', ' azure ' | replace: ' off white ', ' cream ' | replace: ' two tone ', ' duo '
+      assign nf_ts = nf_s | split: ' '
+      assign nf_keys = '|black|white|gray|grey|gary|greyish|charcoal|slate|silver|silvery|sliver|aluminum|aluminium|steel|gold|golden|brass|chrome|nickel|bronze|copper|coppery|redcopper|rosegold|champagne|champange|gunmetal|titanium|pewter|tin|red|rouge|wine|winered|burgundy|maroon|green|olive|moss|avocado|sage|emerald|jade|mint|aquagreen|teal|blue|navy|darkblue|sky|skyblue|azure|cyan|denim|pink|rose|blush|powder|lotus|peach|apricot|coral|orange|orango|terracotta|rust|yellow|mustard|turmeric|beige|khaki|kaqi|camel|tan|taupe|mud|cream|ivory|lvory|creamy|brown|chestnut|coffee|espresso|chocolate|mocha|caramel|cognac|hazelnut|purple|purpur|violet|purplish|lavender|lilac|lilacpurple|mauve|wood|wooden|walnut|oak|natural|teak|bamboo|birch|maple|ash|rattan|log|clear|transparent|smoke|smoky|smoked|amber|frosted|opal|milky|marble|multicolor|multicolour|colorful|colourful|rainbow|mixedcolor|mixed|'
+      assign nf_metals = '|gold|brass|chrome|nickel|bronze|copper|redcopper|rosegold|champagne|gunmetal|pewter|silver|'
+      assign nf_segs = ''
+      assign nf_used = '|'
+      assign nf_mods = ''
+      assign nf_pend = ''
+      assign nf_adj = false
+      assign nf_bad = false
+      assign nf_last1 = false
+      assign nf_lastk = ''
+      for nf_t in nf_ts
+        if nf_t == ''
+          continue
+        endif
+        assign nf_tnd = nf_t | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+        assign nf_tl = nf_t | size
+        if nf_tnd != nf_t or nf_tl == 1
+          assign nf_bad = true
+          break
+        endif
+        assign nf_tk = '|' | append: nf_t | append: '|'
+        if nf_t == 'light' or nf_t == 'medium'
+          assign nf_nx = nf_ts[forloop.index] | default: ''
+          assign nf_nxk = '|' | append: nf_nx | append: '|'
+          if nf_keys contains nf_nxk
+            if nf_t == 'light'
+              assign nf_pend = 'l'
+            else
+              assign nf_pend = 'm'
+            endif
+            continue
+          endif
+          assign nf_bad = true
+          break
+        endif
+        if '|warm|cool|cold|neutral|daylight|kelvin|lumen|lumens|rgb|rgbw|rgbcw|rgbic|dimmable|dimming|dimmer|remote|rc|app|tricolor|switch|noswitch|plug|noplug|usb|solar|battery|rechargeable|pcs|pc|pack|packs|piece|pieces|set|sets|heads|head|layer|layers|tier|tiers|size|small|large|big|mini|long|short|tall|dia|inch|cm|mm|ft|style|type|design|model|kit|bulb|bulbs|led|cob|pcb|left|right|round|square|oval|rectangle|single|double|triple|version|new|no|without|option|pattern|print|printed|photo|check|striped|stripe|stripes|plaid|floral|lights|lamp|arm|glass|' contains nf_tk
+          assign nf_bad = true
+          break
+        endif
+        if nf_keys contains nf_tk
+          case nf_t
+            when 'gray', 'grey', 'gary', 'greyish'
+              assign nf_k = 'gray'
+            when 'charcoal', 'slate'
+              assign nf_k = 'charcoal'
+            when 'silver', 'silvery', 'sliver', 'aluminum', 'aluminium', 'steel'
+              assign nf_k = 'silver'
+            when 'gold', 'golden'
+              assign nf_k = 'gold'
+            when 'copper', 'coppery'
+              assign nf_k = 'copper'
+            when 'champagne', 'champange'
+              assign nf_k = 'champagne'
+            when 'gunmetal', 'titanium'
+              assign nf_k = 'gunmetal'
+            when 'pewter', 'tin'
+              assign nf_k = 'pewter'
+            when 'red', 'rouge'
+              assign nf_k = 'red'
+            when 'wine', 'winered', 'burgundy', 'maroon'
+              assign nf_k = 'wine'
+            when 'olive', 'moss', 'avocado'
+              assign nf_k = 'olive'
+            when 'emerald', 'jade'
+              assign nf_k = 'emerald'
+            when 'mint', 'aquagreen'
+              assign nf_k = 'mint'
+            when 'navy', 'darkblue'
+              assign nf_k = 'navy'
+            when 'sky', 'skyblue'
+              assign nf_k = 'sky'
+            when 'azure', 'cyan'
+              assign nf_k = 'azure'
+            when 'pink', 'rose', 'blush', 'powder', 'lotus'
+              assign nf_k = 'pink'
+            when 'peach', 'apricot'
+              assign nf_k = 'peach'
+            when 'orange', 'orango'
+              assign nf_k = 'orange'
+            when 'terracotta', 'rust'
+              assign nf_k = 'terracotta'
+            when 'mustard', 'turmeric'
+              assign nf_k = 'mustard'
+            when 'khaki', 'kaqi'
+              assign nf_k = 'khaki'
+            when 'camel', 'tan'
+              assign nf_k = 'camel'
+            when 'taupe', 'mud'
+              assign nf_k = 'taupe'
+            when 'cream', 'ivory', 'lvory', 'creamy'
+              assign nf_k = 'cream'
+            when 'brown', 'chestnut'
+              assign nf_k = 'brown'
+            when 'coffee', 'espresso', 'chocolate', 'mocha'
+              assign nf_k = 'coffee'
+            when 'caramel', 'cognac', 'hazelnut'
+              assign nf_k = 'caramel'
+            when 'purple', 'purpur', 'violet', 'purplish'
+              assign nf_k = 'purple'
+            when 'lavender', 'lilac', 'lilacpurple', 'mauve'
+              assign nf_k = 'lilac'
+            when 'wood', 'wooden'
+              assign nf_k = 'wood'
+            when 'oak', 'birch', 'maple', 'log'
+              assign nf_k = 'oak'
+            when 'natural', 'rattan'
+              assign nf_k = 'natural'
+            when 'clear', 'transparent'
+              assign nf_k = 'clear'
+            when 'smoke', 'smoky', 'smoked'
+              assign nf_k = 'smoke'
+            when 'opal', 'milky'
+              assign nf_k = 'opal'
+            when 'multicolor', 'multicolour', 'colorful', 'colourful', 'rainbow', 'mixedcolor', 'mixed'
+              assign nf_k = 'multi'
+            else
+              assign nf_k = nf_t
+          endcase
+          assign nf_kt = nf_k
+          if nf_pend != ''
+            assign nf_kt = nf_k | append: '_' | append: nf_pend
+          endif
+          assign nf_pend = ''
+          assign nf_kk = '|' | append: nf_k | append: '|'
+          unless nf_used contains nf_kk
+            assign nf_lkk = '|' | append: nf_lastk | append: '|'
+            assign nf_mk = false
+            if nf_metals contains nf_kk or nf_metals contains nf_lkk
+              assign nf_mk = true
+            endif
+            if nf_adj and nf_segs != '' and nf_last1 and nf_mk == false
+              assign nf_segs = nf_segs | append: '+' | append: nf_kt
+              assign nf_last1 = false
+            else
+              if nf_segs != ''
+                assign nf_segs = nf_segs | append: ' '
+              endif
+              assign nf_segs = nf_segs | append: nf_kt
+              assign nf_last1 = true
+              assign nf_lastk = nf_k
+            endif
+            assign nf_used = nf_used | append: nf_k | append: '|'
+          endunless
+          assign nf_adj = true
+          continue
+        endif
+        case nf_t
+          when 'pale', 'bright', 'soft'
+            assign nf_pend = 'l'
+            continue
+          when 'dusty'
+            assign nf_pend = 'm'
+            continue
+          when 'dark', 'deep'
+            assign nf_pend = 'd'
+            continue
+          when 'matte', 'matt'
+            unless nf_mods contains 'is-matte'
+              assign nf_mods = nf_mods | append: ' is-matte'
+            endunless
+            continue
+          when 'satin', 'brushed'
+            unless nf_mods contains 'is-brushed'
+              assign nf_mods = nf_mods | append: ' is-brushed'
+            endunless
+            continue
+          when 'antique', 'aged', 'ancient', 'vintage', 'retro', 'rustic'
+            unless nf_mods contains 'is-antique'
+              assign nf_mods = nf_mods | append: ' is-antique'
+            endunless
+            continue
+          when 'sand', 'sandy', 'textured', 'hammered'
+            unless nf_mods contains 'is-sand'
+              assign nf_mods = nf_mods | append: ' is-sand'
+            endunless
+            continue
+          when 'grain'
+            unless nf_mods contains 'is-grain'
+              assign nf_mods = nf_mods | append: ' is-grain'
+            endunless
+            continue
+          when 'polished', 'glossy', 'pearl', 'metallic', 'plated', 'duo'
+            continue
+        endcase
+        assign nf_adj = false
+      endfor
+    -%}
+    {%- if nf_bad -%}X{%- else -%}{{- nf_segs -}}@@{{- nf_mods | strip -}}{%- endif -%}
+
+  {%- when 'pw' -%}
+    {%- liquid
+      assign nf_d = value | downcase | replace: '-', ' ' | replace: '/', ' ' | replace: '&', ' ' | replace: ',', ' ' | replace: '+', ' '
+      assign nf_d = ' ' | append: nf_d | append: ' '
+      assign nf_s = value | downcase | replace: '(', ' ' | replace: ')', ' ' | replace: '-', ' ' | replace: '/', ' ' | replace: ',', ' ' | replace: '|', ' ' | replace: '&', ' ' | replace: '+', ' ' | replace: '~', ' ' | replace: ':', ' ' | replace: ';', ' ' | replace: '.', ' ' | replace: '–', ' ' | replace: '—', ' ' | replace: '"', ' '
+      assign nf_ts = nf_s | split: ' '
+      assign nf_kind = ''
+      assign nf_volts = ''
+      assign nf_watts = ''
+      assign nf_rest = ''
+      assign nf_restcore = false
+      assign nf_isac = false
+      assign nf_isdc = false
+      for nf_t in nf_ts
+        assign nf_tnd = nf_t | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+        assign nf_tl = nf_t | size
+        assign nf_tz = nf_t | slice: -1
+        assign nf_t2 = nf_t | slice: 0, 2
+        assign nf_r = nf_t | slice: 2, 40
+        assign nf_r0 = nf_r | slice: 0
+        assign nf_rnd = nf_r | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+        assign nf_rz = nf_r | slice: -1
+        assign nf_nt = ''
+        if nf_tl > 1 and nf_tnd == 'w' and nf_tz == 'w'
+          assign nf_nt = 'w'
+        elsif nf_tl > 1 and nf_tnd == 'v' and nf_tz == 'v'
+          assign nf_nt = 'v'
+        elsif nf_t2 == 'ac' or nf_t2 == 'dc'
+          if nf_r0 != '' and '0123456789' contains nf_r0
+            if nf_rnd == '' or nf_rnd == 'v' and nf_rz == 'v'
+              assign nf_nt = nf_t2
+            endif
+          endif
+        endif
+        if nf_t == 'ac' or nf_t == 'dc'
+          if nf_kind == ''
+            assign nf_kind = nf_t | upcase
+          endif
+        elsif nf_nt == 'ac' or nf_nt == 'dc'
+          if nf_kind == ''
+            assign nf_kind = nf_nt | upcase
+          endif
+          assign nf_num = nf_r | remove: 'v'
+          if nf_volts != ''
+            assign nf_volts = nf_volts | append: ' to '
+          endif
+          assign nf_volts = nf_volts | append: nf_num
+        elsif nf_nt == 'v'
+          assign nf_num = nf_t | remove: 'v'
+          if nf_volts != ''
+            assign nf_volts = nf_volts | append: ' to '
+          endif
+          assign nf_volts = nf_volts | append: nf_num
+        elsif nf_nt == 'w'
+          assign nf_num = nf_t | remove: 'w'
+          if nf_watts != ''
+            assign nf_watts = nf_watts | append: 'W or '
+          endif
+          assign nf_watts = nf_watts | append: nf_num
+        endif
+        if nf_t == 'ac' or nf_nt == 'ac'
+          assign nf_isac = true
+        endif
+        if nf_t == 'dc' or nf_nt == 'dc'
+          assign nf_isdc = true
+        endif
+        if nf_nt == ''
+          if nf_t == 'ac' or nf_t == 'dc' or nf_t == 'usb' or nf_t == 'us'
+            assign nf_tw = nf_t | upcase
+          else
+            assign nf_tw = nf_t
+          endif
+          assign nf_rest = nf_rest | append: ' ' | append: nf_tw
+          unless nf_t == 'ac' or nf_t == 'dc'
+            assign nf_restcore = true
+          endunless
+        endif
+      endfor
+
+      assign nf_note = ''
+      assign nf_pname = value | strip
+      if nf_volts != '' or nf_watts != ''
+        assign nf_vs = ''
+        if nf_volts != ''
+          assign nf_vs = nf_volts | append: 'V'
+        endif
+        if nf_restcore
+          assign nf_pname = nf_rest | strip
+          if nf_vs != '' and nf_kind != ''
+            assign nf_vs = nf_kind | append: ' ' | append: nf_vs
+          endif
+        else
+          assign nf_pname = nf_kind | append: ' power'
+        endif
+        assign nf_note = nf_vs
+        if nf_watts != ''
+          if nf_note != ''
+            assign nf_note = nf_note | append: ', '
+          endif
+          assign nf_note = nf_note | append: nf_watts | append: 'W'
+        endif
+      endif
+
+      assign nf_sfx = ''
+      if nf_d contains ' dimm'
+        assign nf_sfx = ', with a dimmer'
+      elsif nf_d contains ' concealed'
+        assign nf_sfx = ', with a concealed switch'
+      elsif nf_d contains ' switch'
+        assign nf_sfx = ', with its own switch'
+      elsif nf_d contains ' remote'
+        assign nf_sfx = ', with a remote'
+      endif
+
+      if nf_d contains ' hard' and nf_d contains 'solar'
+        assign nf_pk = 'hybrid'
+        assign nf_pl = 'Works hardwired or on solar power'
+        assign nf_ps = 'Works hardwired or on solar power'
+      elsif nf_d contains 'external' and nf_d contains 'solar'
+        assign nf_pk = 'solar'
+        assign nf_pl = 'Separate solar panel you can place in full sun'
+        assign nf_ps = 'Separate solar panel'
+      elsif nf_d contains 'solar'
+        assign nf_pk = 'solar'
+        assign nf_pl = 'Charges by day, lights up at dusk'
+        assign nf_ps = 'Charges by day, lights up at dusk'
+      elsif nf_d contains 'rechargeable' or nf_d contains 'charging' or nf_d contains ' charge'
+        assign nf_pk = 'recharge'
+        assign nf_pl = 'Charges by USB, no cord while in use'
+        assign nf_ps = 'Charges by USB'
+      elsif nf_d contains 'batter'
+        assign nf_pk = 'battery'
+        assign nf_pl = 'Runs on batteries, place it anywhere'
+        assign nf_ps = 'Runs on batteries'
+      elsif nf_d contains 'usb'
+        assign nf_pk = 'usb'
+        assign nf_pl = 'Powered from any USB port or adapter'
+        assign nf_ps = 'Powered by USB'
+      elsif nf_d contains 'plug'
+        assign nf_pk = 'plug'
+        assign nf_pl = 'No electrician needed, plugs into any outlet'
+        assign nf_ps = 'Plugs into any outlet'
+      elsif nf_d contains ' hard' or nf_d contains ' wired' or nf_d contains ' mains'
+        assign nf_pk = 'hardwired'
+        assign nf_pl = 'Wired to your home power for a clean, permanent install'
+        assign nf_ps = 'Wired to your home power'
+      elsif nf_isdc
+        assign nf_pk = 'dc'
+        assign nf_pl = 'Low voltage, runs on a DC power supply'
+        assign nf_ps = 'Low voltage DC power'
+      elsif nf_isac
+        assign nf_pk = 'hardwired'
+        assign nf_pl = 'Runs on standard AC mains power'
+        assign nf_ps = 'Runs on AC mains power'
+      else
+        assign nf_pk = 'hardwired'
+        assign nf_pl = 'Wired to your home power for a clean, permanent install'
+        assign nf_ps = 'Wired to your home power'
+      endif
+      if nf_sfx != '' and nf_pk != 'hybrid'
+        assign nf_pl = nf_ps | append: nf_sfx
+      endif
+    -%}
+    {{- nf_pk -}}@@{{- nf_pl -}}@@{{- nf_note -}}@@{{- nf_pname -}}
+
+  {%- when 'shsplit' -%}
+    {%- liquid
+      assign nf_ws = value | strip | split: ' '
+      assign nf_nm = ''
+      assign nf_sb = ''
+      assign nf_skip = false
+      for nf_w in nf_ws
+        if nf_w == ''
+          continue
+        endif
+        if nf_skip
+          assign nf_wc = nf_w | remove: '-' | remove: ','
+          assign nf_sb = nf_sb | append: ' ' | append: nf_wc
+          assign nf_skip = false
+          continue
+        endif
+        assign nf_wl = nf_w | downcase | remove: '-' | remove: ','
+        assign nf_wnd = nf_wl | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+        assign nf_size = false
+        if nf_wnd != nf_wl
+          assign nf_c0 = nf_wl | slice: 0
+          if nf_wl contains '"'
+            assign nf_size = true
+          elsif '0123456789' contains nf_c0
+            assign nf_lt = nf_wnd | remove: '.'
+            assign nf_ltk = '|' | append: nf_lt | append: '|'
+            if nf_lt != '' and '|pcs|pc|pack|packs|piece|pieces|set|sets|in|ft|cm|mm|inch|' contains nf_ltk
+              assign nf_size = true
+            elsif nf_lt == ''
+              assign nf_nx = nf_ws[forloop.index] | default: '' | downcase | remove: '-' | remove: ','
+              assign nf_nxk = '|' | append: nf_nx | append: '|'
+              if '|pcs|pc|pack|packs|piece|pieces|set|sets|' contains nf_nxk
+                assign nf_size = true
+                assign nf_skip = true
+              endif
+            endif
+          endif
+        endif
+        if nf_size
+          assign nf_wc = nf_w | remove: '-' | remove: ','
+          assign nf_sb = nf_sb | append: ' ' | append: nf_wc
+        else
+          assign nf_nm = nf_nm | append: ' ' | append: nf_w
+        endif
+      endfor
+    -%}
+    {{- nf_nm | strip -}}@@{{- nf_sb | strip -}}
+
+  {%- when 'option' -%}
+    {%- capture nf_type -%}{%- render 'nf-option-cards', part: 'classify', product: product, option: option -%}{%- endcapture -%}
+    {%- assign nf_type = nf_type | strip -%}
+    {%- if nf_type != blank -%}
+      {%- liquid
+        assign nf_param = form_id | append: '-option' | append: option.position
+        assign nf_pos = option.position | minus: 1
+        assign nf_on = option.name | downcase
+      -%}
+      {%- case nf_type -%}
+        {%- when 'finish' -%}
+          {%- assign nf_fw = false -%}
+          {%- if nf_on contains 'finish' or nf_on contains 'tone' -%}{%- assign nf_fw = true -%}{%- endif -%}
+          {%- comment -%} Legend "Finish" when the name says finish or tone, or when the values are a fixture palette: at least one metal or wood and otherwise only black, white, gray or charcoal. Anything else reads "Color". {%- endcomment -%}
+          {%- unless nf_fw -%}
+            {%- assign nf_mw = false -%}
+            {%- assign nf_other = false -%}
+            {%- for nf_v in option.values -%}
+              {%- capture nf_f -%}{%- render 'nf-option-cards', part: 'fin', value: nf_v.name -%}{%- endcapture -%}
+              {%- assign nf_fl = nf_f | strip | split: '@@' | first | replace: '+', ' ' | split: ' ' -%}
+              {%- for nf_x in nf_fl -%}
+                {%- assign nf_xk = nf_x | split: '_' | first -%}
+                {%- assign nf_xk = '|' | append: nf_xk | append: '|' -%}
+                {%- if '|gold|brass|chrome|nickel|bronze|copper|redcopper|rosegold|champagne|gunmetal|pewter|silver|wood|walnut|oak|natural|teak|bamboo|ash|' contains nf_xk -%}
+                  {%- assign nf_mw = true -%}
+                {%- elsif '|black|white|gray|charcoal|' contains nf_xk -%}
+                {%- else -%}
+                  {%- assign nf_other = true -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endfor -%}
+            {%- if nf_mw and nf_other == false -%}{%- assign nf_fw = true -%}{%- endif -%}
+          {%- endunless -%}
+          {%- liquid
+            if nf_fw
+              if nf_on contains 'shade'
+                assign nf_legend = 'Shade finish'
+              elsif nf_on contains 'frame'
+                assign nf_legend = 'Frame finish'
+              elsif nf_on contains 'base'
+                assign nf_legend = 'Base finish'
+              else
+                assign nf_legend = 'Finish'
+              endif
+            else
+              if nf_on contains 'shade'
+                assign nf_legend = 'Shade color'
+              elsif nf_on contains 'frame'
+                assign nf_legend = 'Frame color'
+              elsif nf_on contains 'base'
+                assign nf_legend = 'Base color'
+              elsif nf_on contains 'body'
+                assign nf_legend = 'Body color'
+              elsif nf_on contains 'glass'
+                assign nf_legend = 'Glass color'
+              else
+                assign nf_legend = 'Color'
+              endif
+            endif
+          -%}
+        {%- else -%}
+          {%- assign nf_legend = option.name -%}
+      {%- endcase -%}
+      <fieldset class="variant-picker__option v-stack gap-2 nf-oc-opt nf-oc-opt--{{ nf_type }}">
+        <div class="variant-picker__option-info h-stack justify-between gap-2">
+          <div class="h-stack gap-1">
+            <legend>{{ nf_legend | escape }}:</legend>
+            <span>{{ nf_sel_value }}</span>
+          </div>
+        </div>
+
+        <div class="nf-oc nf-oc--{{ nf_type }}">
+          {%- for option_value in option.values -%}
+            {%- comment -%} Selected and available state: identical to variant-picker.liquid (NF-CHEAPEST-V2) {%- endcomment -%}
+            {%- liquid
+              if nf_ovr
+                assign nf_ov_sel = false
+                if option_value.name == nf_sel_value
+                  assign nf_ov_sel = true
+                endif
+                assign nf_ov_av = false
+                for nf_av_v in product.variants
+                  if nf_av_v.available == false or nf_av_v.options[nf_opt_idx] != option_value.name
+                    continue
+                  endif
+                  assign nf_av_ok = true
+                  for nf_q in (0..nf_opt_idx)
+                    if nf_q == nf_opt_idx
+                      break
+                    endif
+                    if nf_av_v.options[nf_q] != nf_iv.options[nf_q]
+                      assign nf_av_ok = false
+                      break
+                    endif
+                  endfor
+                  if nf_av_ok
+                    assign nf_ov_av = true
+                    break
+                  endif
+                endfor
+              else
+                assign nf_ov_sel = option_value.selected
+                assign nf_ov_av = option_value.available
+              endif
+            -%}
+
+            {%- if hide_sold_out_variants and nf_ov_av == false and nf_ov_sel == false -%}
+              {%- continue -%}
+            {%- endif -%}
+
+            {%- assign nf_vn = option_value.name | strip -%}
+            {%- capture nf_id -%}{{ form_id }}-oc{{ option.position }}-{{ option_value.id }}{%- endcapture -%}
+            <input
+              class="sr-only"
+              type="radio"
+              name="{{ nf_param }}"
+              id="{{ nf_id }}"
+              value="{{ option_value.id }}"
+              form="{{ form_id }}"
+              data-option-position="{{ option.position }}"
+              {% if nf_ov_sel %}checked="checked"{% endif %}
+            >
+            <label for="{{ nf_id }}" data-value="{{ nf_vn | escape }}" title="{{ nf_vn | escape }}" class="nf-oc-item nf-oc-item--{{ nf_type }}{% if nf_ov_av == false %} is-disabled{% endif %}">
+              {%- case nf_type -%}
+                {%- when 'finish' -%}
+                  {%- capture nf_f -%}{%- render 'nf-option-cards', part: 'fin', value: option_value.name -%}{%- endcapture -%}
+                  {%- assign nf_fp = nf_f | strip | split: '@@' -%}
+                  {%- assign nf_sg = nf_fp[0] | split: ' ' -%}
+                  <span class="nf-oc-sw {{ nf_fp[1] }}{% if nf_sg.size > 1 %} is-duo{% endif %}{% if nf_sg.size > 2 %} is-trio{% endif %}" aria-hidden="true">
+                    {%- if nf_sg.size == 0 -%}<span class="nf-oc-m nf-oc-m--none"></span>{%- endif -%}
+                    {%- for nf_g in nf_sg limit: 3 -%}
+                      {%- assign nf_gp = nf_g | split: '+' -%}
+                      {%- assign nf_a = nf_gp[0] | split: '_' -%}
+                      <span class="nf-oc-m nf-oc-m--{{ nf_a[0] }}{% if nf_a[1] %} nf-oc-t--{{ nf_a[1] }}{% endif %}">
+                        {%- if nf_gp[1] -%}
+                          {%- assign nf_b = nf_gp[1] | split: '_' -%}
+                          <span class="nf-oc-m nf-oc-bl nf-oc-m--{{ nf_b[0] }}{% if nf_b[1] %} nf-oc-t--{{ nf_b[1] }}{% endif %}"></span>
+                        {%- endif -%}
+                      </span>
+                    {%- endfor -%}
+                  </span>
+                  <span class="nf-oc-name">{{ nf_vn | escape }}</span>
+
+                {%- when 'power' -%}
+                  {%- capture nf_p -%}{%- render 'nf-option-cards', part: 'pw', value: option_value.name -%}{%- endcapture -%}
+                  {%- assign nf_pp = nf_p | strip | split: '@@' -%}
+                  <span class="nf-oc-pw__head">
+                    <span class="nf-oc-pw__icon" aria-hidden="true">
+                      {%- case nf_pp[0] -%}
+                        {%- when 'plug' -%}<svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 2.5v4M12.5 2.5v4M5 6.5h10v3a5 5 0 0 1-10 0z"/><path d="M10 14.5v3"/></svg>
+                        {%- when 'battery' -%}<svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="8" rx="1.6"/><path d="M17.5 8.8v2.4M5.5 9v2M8.5 9v2"/></svg>
+                        {%- when 'recharge' -%}<svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="8" rx="1.6"/><path d="M17.5 8.8v2.4M9.8 7.4 7.8 10.3h2.9l-2 2.9"/></svg>
+                        {%- when 'usb' -%}<svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5v11.5M8.4 4.6 10 2.5l1.6 2.1M10 11.2 6.4 9.2V7.4M10 9.6l3.6-2V6"/><circle cx="6.4" cy="6.6" r=".9"/><rect x="12.8" y="4.4" width="1.6" height="1.6"/><circle cx="10" cy="15.6" r="1.7"/></svg>
+                        {%- when 'solar', 'hybrid' -%}<svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="3.2"/><path d="M10 2.5v1.8M10 15.7v1.8M2.5 10h1.8M15.7 10h1.8M4.7 4.7 6 6M14 14l1.3 1.3M4.7 15.3 6 14M14 6l1.3-1.3"/></svg>
+                        {%- when 'dc' -%}<svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="9" height="7" rx="1.4"/><path d="M12 10.5h2.5M14.5 8.5v4M17 9.5v2M6 10.5h3"/></svg>
+                        {%- else -%}<svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6.5" width="12" height="9.5" rx="1.6"/><path d="M8 6.5V3M12 6.5V3M7.5 11.2h5"/></svg>
+                      {%- endcase -%}
+                    </span>
+                    <span class="nf-oc-pw__name">{{ nf_pp[3] | default: nf_vn | escape }}</span>
+                  </span>
+                  <span class="nf-oc-pw__line">{{ nf_pp[1] }}</span>
+                  {%- if nf_pp[2] != blank -%}<span class="nf-oc-pw__note">{{ nf_pp[2] | escape }}</span>{%- endif -%}
+
+                {%- when 'shade' -%}
+                  {%- liquid
+                    assign nf_img = option_value.variant.featured_image
+                    if nf_img == blank
+                      for nf_var in product.variants
+                        if nf_var.options[nf_pos] == option_value.name and nf_var.featured_image
+                          assign nf_img = nf_var.featured_image
+                          break
+                        endif
+                      endfor
+                    endif
+                    if nf_img == blank
+                      assign nf_img = product.featured_image
+                    endif
+                  -%}
+                  {%- capture nf_ss -%}{%- render 'nf-option-cards', part: 'shsplit', value: option_value.name -%}{%- endcapture -%}
+                  {%- assign nf_sp = nf_ss | strip | split: '@@' -%}
+                  <span class="nf-oc-chip" aria-hidden="true">
+                    {%- if nf_img != blank -%}
+                      {{- nf_img | image_url: width: 160 | image_tag: width: 64, height: 64, loading: 'lazy', alt: '', sizes: '64px', widths: '80,128,160' -}}
+                    {%- endif -%}
+                  </span>
+                  <span class="nf-oc-name">{{ nf_sp[0] | default: nf_vn | escape }}</span>
+                  {%- if nf_sp[1] != blank -%}<span class="nf-oc-sub">{{ nf_sp[1] | escape }}</span>{%- endif -%}
+              {%- endcase -%}
+              {%- if nf_ov_av == false -%}
+                <span class="nf-oc-flag">
+                  {%- if option_value.variant == nil -%}{{ 'product.general.unavailable_button' | t }}{%- else -%}{{ 'product.general.sold_out_badge' | t }}{%- endif -%}
+                </span>
+              {%- endif -%}
+            </label>
+          {%- endfor -%}
+        </div>
+      </fieldset>
+    {%- endif -%}
+{%- endcase -%}

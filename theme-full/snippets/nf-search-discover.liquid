@@ -1,0 +1,46 @@
+{%- comment -%}
+  NF-SEARCH-V2 (2026-09-12) discover block: "Popular right now" chips taken from the real Best Sellers
+  collection (first 6 available) and four big, bright category tiles (the mega menu photos, all warm and
+  lights on). Used by the empty search box (context 'drop') and the nothing found page (context 'page').
+{%- endcomment -%}
+{%- comment -%} NF-SEARCH-V3: eager: true (the server rendered empty panel template in theme.liquid) loads the images as soon as the template is used; the images are also preloaded and decoded on idle by nf-search.js {%- endcomment -%}
+{%- assign bs = collections['best-sellers'] -%}
+{%- assign nfs_load = 'lazy' -%}{%- if eager -%}{%- assign nfs_load = 'eager' -%}{%- endif -%}
+<div class="nf-srch-discover nf-srch-discover--{{ context }}">
+  {%- if bs.products.size > 0 -%}
+    <div class="nf-srch-pop" role="group" aria-label="Popular right now">
+      <p class="nf-srch-eyebrow" aria-hidden="true">Popular right now</p>
+      <div class="nf-srch-pop__row">
+        {%- assign n = 0 -%}
+        {%- for p in bs.products -%}
+          {%- unless p.available -%}{%- continue -%}{%- endunless -%}
+          {%- assign n = n | plus: 1 -%}
+          {%- if n > 6 -%}{%- break -%}{%- endif -%}
+          {%- assign short = p.title | split: ',' | first | split: ' for ' | first | split: ' with ' | first | truncatewords: 5, '' | strip -%}
+          <a class="nf-srch-pop__chip" href="{{ p.url }}" data-nf-srch-opt title="{{ p.title | escape }}">
+            {%- if p.featured_image -%}
+              <span class="nf-srch-pop__thumb">{{ p.featured_image | image_url: width: 96 | image_tag: loading: nfs_load, width: 48, height: 48, alt: '' }}</span>
+            {%- endif -%}
+            <span class="nf-srch-pop__name">{{ short | escape }}</span>
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+  <div class="nf-srch-cats" role="group" aria-label="Shop by category">
+    <p class="nf-srch-eyebrow" aria-hidden="true">Shop by category</p>
+    <div class="nf-srch-tiles">
+      {%- assign cdn = '//cdn.shopify.com/s/files/1/0750/8380/8820/files/' -%}
+      {%- capture tiles -%}Chandeliers|chandeliers|nav_chandeliers.webp?v=1785974481~Wall Sconces|wall-sconces|nav_wall_sconces_hq.webp?v=1785976124~Table Lamps|table-lamps|nav_table_lamps_hq.webp?v=1785976124~Outdoor Lighting|outdoor-lighting|nav_outdoor_lanterns.webp?v=1785979170{%- endcapture -%}
+      {%- assign tiles = tiles | split: '~' -%}
+      {%- for t in tiles -%}
+        {%- assign parts = t | split: '|' -%}
+        {%- assign src = cdn | append: parts[2] -%}
+        <a class="nf-srch-tile" href="{{ routes.root_url | append: '/collections/' | append: parts[1] | replace: '//', '/' }}" data-nf-srch-opt>
+          <img class="nf-srch-tile__img" src="{{ src }}&amp;width=480" srcset="{{ src }}&amp;width=320 320w, {{ src }}&amp;width=480 480w, {{ src }}&amp;width=720 720w" sizes="(max-width: 699px) 45vw, 22vw" width="480" height="640" loading="{{ nfs_load }}" decoding="async" alt="">
+          <span class="nf-srch-tile__label">{{ parts[0] }}</span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

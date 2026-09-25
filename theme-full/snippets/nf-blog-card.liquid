@@ -1,0 +1,44 @@
+{%- comment -%}
+  NF blog card (nf-blog). Used by main-blog, nf-blog-more and blog-posts.
+  Params:
+  * article: the article to render
+  * blog: the blog (optional, falls back to /blogs/blog)
+  * sizes: sizes attribute for the image
+  * position: index in a list (first 3 load eagerly)
+  * heading_tag: h2 or h3 (default h3)
+  * class: extra class on the card
+  The Nora Furnish logo watermark is drawn by CSS (.nf-wm::after) from the --nf-wm variable, never baked into files.
+{%- endcomment -%}
+{%- liquid
+  assign nf_wm_img = images['e0cf0a7c-0740-403b-9bd3-70fc7e7f6dc9.png']
+  if nf_wm_img
+    assign nf_wm = nf_wm_img | image_url: width: 300
+  else
+    assign nf_wm = 'e0cf0a7c-0740-403b-9bd3-70fc7e7f6dc9.png' | file_img_url: '300x'
+  endif
+
+  assign nf_loading = 'lazy'
+  if position and position <= 3
+    assign nf_loading = 'eager'
+  endif
+
+  assign nf_blog_url = blog.url | default: '/blogs/blog'
+  assign nf_htag = heading_tag | default: 'h3'
+  assign nf_sizes = sizes | default: '(max-width: 699px) 92vw, (max-width: 999px) 46vw, 400px'
+-%}
+<article class="nf-bcard{% if class != blank %} {{ class }}{% endif %}">
+  <a href="{{ article.url }}" class="nf-bcard__media nf-wm" style="--nf-wm: url('{{ nf_wm }}');" tabindex="-1" aria-hidden="true">
+    {%- if article.image != blank -%}
+      {{- article.image | image_url: width: 1200 | image_tag: loading: nf_loading, sizes: nf_sizes, widths: '360,480,600,800,1000,1200', alt: article.image.alt, class: 'nf-bcard__img' -}}
+    {%- else -%}
+      {{- 'image' | placeholder_svg_tag: 'nf-bcard__img nf-bcard__img--ph' -}}
+    {%- endif -%}
+  </a>
+  <div class="nf-bcard__info">
+    {%- if article.tags.size > 0 -%}
+      <a class="nf-bcard__eyebrow" href="{{ nf_blog_url }}/tagged/{{ article.tags.first | handle }}">{{ article.tags.first }}</a>
+    {%- endif -%}
+    <{{ nf_htag }} class="nf-bcard__title"><a href="{{ article.url }}">{{ article.title }}</a></{{ nf_htag }}>
+    <time class="nf-bcard__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %-d, %Y' }}</time>
+  </div>
+</article>

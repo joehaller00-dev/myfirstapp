@@ -1,0 +1,529 @@
+{%- comment -%} NF-LIGHTCARDS-V3 (2026-09-12): light words rainbow, sunset (multicolor glow), heart, kit, dali, intelligence (dim glow) {%- endcomment -%}
+{%- comment -%}
+  NF-LIGHTCARDS-V1 light color cards (2026-09-12). Replaces the NF-MIY-V1 "Make it yours" pilot.
+  Rendered by snippets/variant-picker.liquid (context main_product and quick_buy) for every option; outputs NOTHING for an
+  option that is not a light color option, and variant-picker.liquid then renders the theme's native markup for it.
+  PRESENTATION ONLY. Every card is the theme's own radio input (same name, value, form and data-option-position as the
+  native picker) plus a label, so the theme's variant picker JS, NF-CHEAPEST-V2, ?variant= URLs, the variant image to top
+  left feature, quick view and the cart are untouched. No variant or option value is created or changed.
+  Styles: assets/nf-light-cards.css, loaded by sections/main-product.liquid and snippets/product-quick-buy.liquid only when
+  part 'detect' finds a light color option. Python mirror of 'classify' for audits: scratchpad newbuild/lightcards/classify.py
+
+  An option gets cards when
+  * its name is a light name (Light Color, Color Temperature, Emitting Color, Light Source, Light Mode, CCT, ...) and EVERY
+    value is light like, or
+  * its name is generic (Color, Option, Style, Type, Title, Specification, Model, Version) and every value is light like, no
+    colored light values, and at least one value carries a strong marker (kelvin, light, dimmable, remote, RGB, tri color)
+  Light like value: made only of light words (warm, white, cool, neutral, natural, daylight, yellow, kelvin, tri color,
+  3 colors, dimmable, remote, RGB, stepless, no bulb, colored light names), with at least one core light word, never a
+  colored light word next to a white tone. Anything else (finish words, packs, watts, volts, sizes, model codes) keeps the
+  whole option native. Combined listing values (product_url) always stay native.
+
+  NF-LIGHTCARDS-V2 wording (2026-09-12): also accepts "switch" (3 Color Switch), "single", "triac", "led" and the typo
+  "whtie"; in a generic option a white tone word (warm, cool, cold, neutral, daylight) also counts as a strong marker.
+
+  Parts
+  * 'detect'   product                    -> "1" when any option gets cards
+  * 'classify' option                     -> "light" or nothing
+  * 'clean'    value                      -> title@@range  ("Warm White (2700-3500K)" -> "Warm White@@2700 to 3500K")
+  * 'look'     value                      -> base@@badge@@title@@line
+  * 'option'   product, option, form_id, nf_ovr, nf_iv, nf_opt_idx, nf_sel_value, hide_sold_out_variants
+{%- endcomment -%}
+{%- case part -%}
+  {%- when 'detect' -%}
+    {%- for nf_o in product.options_with_values -%}
+      {%- capture nf_c -%}{%- render 'nf-light-cards', part: 'classify', option: nf_o -%}{%- endcapture -%}
+      {%- if nf_c contains 'light' -%}1{%- break -%}{%- endif -%}
+    {%- endfor -%}
+
+  {%- when 'classify' -%}
+    {%- liquid
+      assign nf_n = option.name | strip | downcase
+      assign nf_key = '|' | append: nf_n | append: '|'
+      assign nf_mode = ''
+      if '|light color|light colour|color temperature|colour temperature|emitting color|emitting colour|light source color|light source colour|light source|lighting color|lighting colour|light mode|light option|light|cct|kelvin|light temperature|' contains nf_key
+        assign nf_mode = 'name'
+      elsif '|color|colour|option|options|style|type|title|specification|model|version|light type|' contains nf_key
+        assign nf_mode = 'generic'
+      endif
+
+      assign nf_ok = false
+      if nf_mode != ''
+        assign nf_ok = true
+        assign nf_strong = false
+        assign nf_real = 0
+        for nf_v in option.values
+          if nf_v.product_url != blank
+            assign nf_ok = false
+            break
+          endif
+          assign nf_s = nf_v.name | downcase | replace: '(', ' ' | replace: ')', ' ' | replace: '-', ' ' | replace: '/', ' ' | replace: ',', ' ' | replace: '|', ' ' | replace: '&', ' ' | replace: '+', ' ' | replace: '~', ' ' | replace: ':', ' ' | replace: ';', ' ' | replace: '.', ' ' | replace: '–', ' ' | replace: '—', ' ' | replace: '"', ' '
+          assign nf_ts = nf_s | split: ' '
+          assign nf_core = false
+          assign nf_hue = false
+          assign nf_wf = false
+          assign nf_bulb = false
+          assign nf_neg = false
+          assign nf_vbad = false
+          for nf_t in nf_ts
+            if nf_t == ''
+              continue
+            endif
+            assign nf_tk = '|' | append: nf_t | append: '|'
+            assign nf_nd = nf_t | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+            assign nf_len = nf_t | size
+            if nf_nd == 'k' and nf_len == 5
+              assign nf_num = nf_t | slice: 0, 4 | plus: 0
+              if nf_num >= 1000
+                assign nf_core = true
+                assign nf_strong = true
+                continue
+              endif
+              assign nf_vbad = true
+              break
+            endif
+            if nf_nd == ''
+              assign nf_num = nf_t | plus: 0
+              if nf_len == 4 and nf_num >= 1800
+                assign nf_core = true
+                assign nf_strong = true
+                continue
+              endif
+              if nf_len <= 2
+                assign nf_nx = nf_ts[forloop.index] | default: ''
+                assign nf_nxk = '|' | append: nf_nx | append: '|'
+                if '|color|colors|colour|colours|step|steps|' contains nf_nxk
+                  continue
+                endif
+              endif
+              assign nf_vbad = true
+              break
+            endif
+            if '|3color|3colors|3colour|3colours|3changeable|3step|' contains nf_tk
+              assign nf_core = true
+              assign nf_strong = true
+              continue
+            endif
+            unless '|warm|white|cool|cold|neutral|natural|nature|daylight|day|light|lights|pure|yellow|golden|soft|bright|to|and|with|in|one|or|tri|tricolor|tricolour|three|color|colors|colour|colours|temperature|temperatures|step|steps|dimming|dimmable|dimmer|stepless|remote|control|rc|app|smart|rgb|rgbw|rgbic|multicolor|multicolour|multi|colorful|colourful|changing|changeable|changed|change|adjustable|switchable|no|not|bulb|bulbs|included|include|red|green|blue|pink|purple|orange|ice|amber|switch|single|triac|led|whtie|rainbow|sunset|heart|kit|dali|intelligence|intelligent|' contains nf_tk
+              assign nf_vbad = true
+              break
+            endunless
+            if '|whtie|warm|white|cool|cold|neutral|natural|nature|daylight|day|yellow|golden|tri|tricolor|tricolour|three|color|colors|colour|colours|temperature|temperatures|dimming|dimmable|dimmer|stepless|remote|rc|app|smart|rgb|rgbw|rgbic|multicolor|multicolour|multi|colorful|colourful|changing|changeable|changed|adjustable|switchable|bulb|bulbs|red|green|blue|pink|purple|orange|ice|amber|rainbow|sunset|dali|' contains nf_tk
+              assign nf_core = true
+            endif
+            if '|light|lights|tri|tricolor|tricolour|three|dimming|dimmable|dimmer|stepless|remote|rc|rgb|rgbw|rgbic|changeable|adjustable|switchable|daylight|' contains nf_tk
+              assign nf_strong = true
+            endif
+            if '|red|green|blue|pink|purple|orange|ice|amber|' contains nf_tk
+              assign nf_hue = true
+            endif
+            if '|warm|white|cool|cold|neutral|natural|nature|daylight|yellow|golden|whtie|' contains nf_tk
+              assign nf_wf = true
+            endif
+            if '|warm|cool|cold|neutral|daylight|' contains nf_tk
+              assign nf_strong = true
+            endif
+            if nf_t == 'bulb' or nf_t == 'bulbs'
+              assign nf_bulb = true
+            endif
+            if nf_t == 'no' or nf_t == 'not'
+              assign nf_neg = true
+            endif
+          endfor
+
+          if nf_vbad or nf_core == false
+            assign nf_ok = false
+            break
+          endif
+          if nf_hue and nf_wf
+            assign nf_ok = false
+            break
+          endif
+          if nf_hue and nf_mode == 'generic'
+            assign nf_ok = false
+            break
+          endif
+          unless nf_bulb and nf_neg
+            assign nf_real = nf_real | plus: 1
+          endunless
+        endfor
+        if nf_real == 0
+          assign nf_ok = false
+        endif
+        if nf_mode == 'generic' and nf_strong == false
+          assign nf_ok = false
+        endif
+      endif
+    -%}
+    {%- if nf_ok -%}light{%- endif -%}
+
+  {%- when 'clean' -%}
+    {%- liquid
+      # Presentation name for one value: "Warm White (2700-3500K)" -> title "Warm White", range "2700 to 3500K".
+      # Output title@@range (range may be empty). The option value itself is never changed.
+      assign nf_v = value | strip | replace: '|', ' '
+      assign nf_title = nf_v
+      assign nf_raw = ''
+      if nf_v contains '(' and nf_v contains ')'
+        assign nf_t1 = nf_v | split: '(' | first | strip
+        assign nf_in = nf_v | split: '(' | last | split: ')' | first | strip
+        if nf_t1 != blank and nf_in != blank
+          assign nf_title = nf_t1
+          assign nf_raw = nf_in
+        endif
+      else
+        # kelvin words at the end ("Natural White 4000K", "3 Color 3000K 4500K 6000K") or at the start ("3000K warm white")
+        assign nf_words = nf_v | split: ' '
+        if nf_words.size > 1
+          assign nf_kw = ''
+          assign nf_rest = ''
+          assign nf_tail = true
+          assign nf_rev = nf_words | reverse
+          for nf_w in nf_rev
+            assign nf_wd = nf_w | downcase
+            assign nf_c0 = nf_w | slice: 0
+            assign nf_cz = nf_wd | slice: -1
+            assign nf_isk = false
+            if nf_c0 != '' and '0123456789' contains nf_c0 and nf_cz == 'k'
+              assign nf_isk = true
+            endif
+            if nf_tail and nf_isk
+              assign nf_kw = nf_w | append: ' ' | append: nf_kw
+            elsif nf_tail and nf_wd == 'to' and nf_kw != ''
+              assign nf_kw = 'to ' | append: nf_kw
+            else
+              assign nf_tail = false
+              assign nf_rest = nf_w | append: ' ' | append: nf_rest
+            endif
+          endfor
+          assign nf_kw = nf_kw | strip
+          assign nf_rest = nf_rest | strip
+          if nf_kw != '' and nf_rest != ''
+            assign nf_title = nf_rest
+            assign nf_raw = nf_kw
+          elsif nf_kw == ''
+            # leading kelvin word
+            assign nf_w0 = nf_words | first
+            assign nf_w0d = nf_w0 | downcase
+            assign nf_c0 = nf_w0 | slice: 0
+            assign nf_cz = nf_w0d | slice: -1
+            if nf_c0 != '' and '0123456789' contains nf_c0 and nf_cz == 'k'
+              assign nf_title = nf_v | remove_first: nf_w0 | strip
+              assign nf_raw = nf_w0
+            endif
+          endif
+        endif
+      endif
+
+      assign nf_rng = ''
+      if nf_raw != blank
+        assign nf_r = nf_raw | replace: ' - ', '-' | replace: ' to ', '-' | replace: ' ~ ', '-' | replace: '~', '-' | replace: '–', '-' | replace: '—', '-' | replace: ', ', '/' | replace: ' ', '/'
+        assign nf_rd = nf_r | downcase
+        if nf_rd contains '0k' or nf_rd contains '5k'
+          assign nf_r = nf_r | replace: 'k', 'K'
+          if nf_r contains '/'
+            assign nf_ps = nf_r | split: '/'
+            for nf_x in nf_ps
+              assign nf_xs = nf_x | strip
+              if forloop.first
+                assign nf_rng = nf_xs
+              elsif forloop.last
+                assign nf_rng = nf_rng | append: ' and ' | append: nf_xs
+              else
+                assign nf_rng = nf_rng | append: ', ' | append: nf_xs
+              endif
+            endfor
+          elsif nf_r contains '-'
+            assign nf_a = nf_r | split: '-' | first | strip
+            assign nf_b = nf_r | split: '-' | last | strip
+            if nf_b contains 'K'
+              assign nf_a = nf_a | remove: 'K' | strip
+            endif
+            assign nf_rng = nf_a | append: ' to ' | append: nf_b
+          else
+            assign nf_rng = nf_r
+          endif
+        else
+          assign nf_c0 = nf_raw | slice: 0
+          if nf_c0 != '' and '0123456789' contains nf_c0
+            assign nf_rng = nf_raw | replace: ' - ', ' to ' | replace: '-', ' to '
+          else
+            assign nf_rng = nf_raw | replace: ' - ', ', ' | replace: '-', ' '
+          endif
+        endif
+      endif
+    -%}
+    {{- nf_title -}}@@{{- nf_rng -}}
+
+  {%- when 'look' -%}
+    {%- capture nf_cl -%}{%- render 'nf-light-cards', part: 'clean', value: value -%}{%- endcapture -%}
+    {%- liquid
+      assign nf_clp = nf_cl | strip | split: '@@'
+      assign nf_title = nf_clp | first | default: value
+      assign nf_rng = ''
+      if nf_clp.size > 1
+        assign nf_rng = nf_clp | last | strip
+      endif
+
+      assign nf_d = value | downcase | replace: '(', ' ' | replace: ')', ' ' | replace: '-', ' ' | replace: '/', ' ' | replace: ',', ' ' | replace: '&', ' ' | replace: '|', ' ' | replace: '+', ' '
+      assign nf_d = ' ' | append: nf_d | append: ' '
+      assign nf_dn = nf_d | replace: ' no remote', ' ' | replace: ' no rc ', ' ' | replace: ' not remote', ' '
+
+      assign nf_badge = ''
+      if nf_dn contains ' remote' or nf_dn contains ' rc '
+        assign nf_badge = 'remote'
+      elsif nf_dn contains ' app ' or nf_dn contains ' smart '
+        assign nf_badge = 'app'
+      endif
+
+      assign nf_base = 'plain'
+      assign nf_nobulb = false
+      if nf_d contains ' bulb'
+        if nf_d contains ' no ' or nf_d contains ' not '
+          assign nf_nobulb = true
+        endif
+      endif
+      assign nf_bicolor = false
+      if nf_d contains ' warm'
+        if nf_d contains ' cool' or nf_d contains ' cold'
+          assign nf_bicolor = true
+        endif
+      endif
+
+      if nf_nobulb
+        assign nf_base = 'nobulb'
+      elsif nf_d contains 'rgb' or nf_d contains 'multi' or nf_d contains 'colorful' or nf_d contains 'colourful' or nf_d contains 'color chang' or nf_d contains 'colour chang' or nf_d contains ' 4 colo' or nf_d contains ' 5 colo' or nf_d contains ' 6 colo' or nf_d contains ' 7 colo' or nf_d contains ' 8 colo' or nf_d contains ' 12 colo' or nf_d contains ' 16 colo' or nf_d contains 'rainbow' or nf_d contains 'sunset'
+        assign nf_base = 'rgb'
+      elsif nf_bicolor or nf_d contains ' 3 colo' or nf_d contains ' 3colo' or nf_d contains ' three' or nf_d contains 'tricolo' or nf_d contains ' tri colo' or nf_d contains 'changeable' or nf_d contains 'adjustable' or nf_d contains 'switchable' or nf_d contains ' 3 step' or nf_d contains ' 3step' or nf_d contains 'temperatures'
+        assign nf_base = 'tri'
+      elsif nf_d contains 'dimm' or nf_d contains 'stepless' or nf_d contains 'dali'
+        assign nf_base = 'dim'
+      elsif nf_d contains ' ice '
+        assign nf_base = 'hue-ice'
+      elsif nf_d contains ' red '
+        assign nf_base = 'hue-red'
+      elsif nf_d contains ' green '
+        assign nf_base = 'hue-green'
+      elsif nf_d contains ' blue '
+        assign nf_base = 'hue-blue'
+      elsif nf_d contains ' pink '
+        assign nf_base = 'hue-pink'
+      elsif nf_d contains ' purple '
+        assign nf_base = 'hue-purple'
+      elsif nf_d contains ' orange '
+        assign nf_base = 'hue-orange'
+      elsif nf_d contains ' amber '
+        assign nf_base = 'hue-amber'
+      elsif nf_d contains ' warm' or nf_d contains ' yellow' or nf_d contains ' golden'
+        assign nf_base = 'warm'
+      elsif nf_d contains ' neutral' or nf_d contains ' natural' or nf_d contains ' nature'
+        assign nf_base = 'neutral'
+      elsif nf_d contains ' cool' or nf_d contains ' cold' or nf_d contains 'daylight' or nf_d contains ' day '
+        assign nf_base = 'cool'
+      else
+        # first kelvin number decides: below 3500K warm, below 5000K neutral, otherwise cool
+        assign nf_kn = 0
+        assign nf_ws = nf_d | split: ' '
+        for nf_w in nf_ws
+          assign nf_wd = nf_w | remove: 'k'
+          assign nf_wnd = nf_wd | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+          assign nf_wl = nf_wd | size
+          if nf_wnd == '' and nf_wl == 4
+            assign nf_kn = nf_wd | plus: 0
+            break
+          endif
+        endfor
+        if nf_kn >= 1000 and nf_kn < 3500
+          assign nf_base = 'warm'
+        elsif nf_kn >= 3500 and nf_kn < 5000
+          assign nf_base = 'neutral'
+        elsif nf_kn >= 5000
+          assign nf_base = 'cool'
+        elsif nf_d contains ' white'
+          assign nf_base = 'cool'
+        endif
+      endif
+
+      if nf_base == 'plain' and nf_badge != ''
+        assign nf_base = 'dim'
+        assign nf_remote_only = true
+      else
+        assign nf_remote_only = false
+      endif
+
+      assign nf_short = ''
+      assign nf_line = ''
+      case nf_base
+        when 'nobulb'
+          assign nf_line = 'Sold without bulbs, add your own'
+          assign nf_short = 'add your own bulbs'
+        when 'rgb'
+          assign nf_line = 'Color changing light for a playful mood'
+          assign nf_short = 'color changing light'
+          if nf_badge == 'remote'
+            assign nf_line = 'Color changing light with a remote'
+            assign nf_short = 'color changing light with a remote'
+          elsif nf_badge == 'app'
+            assign nf_line = 'Color changing light with app control'
+            assign nf_short = 'color changing light with app control'
+          endif
+        when 'tri'
+          assign nf_line = 'Switches between warm, neutral and cool'
+          assign nf_short = 'switches between warm, neutral and cool'
+          if nf_badge == 'remote'
+            assign nf_line = 'Warm, neutral and cool, set with a remote'
+            assign nf_short = 'warm, neutral and cool, set with a remote'
+          elsif nf_badge == 'app'
+            assign nf_line = 'Warm, neutral and cool, set from your phone'
+            assign nf_short = 'warm, neutral and cool, set from your phone'
+          endif
+        when 'dim'
+          assign nf_line = 'Dimmable, set the brightness to suit the room'
+          assign nf_short = 'set the brightness to suit the room'
+          if nf_remote_only and nf_badge == 'remote'
+            assign nf_line = 'Remote control, adjust it from your seat'
+            assign nf_short = 'adjust it from your seat'
+          elsif nf_remote_only
+            assign nf_line = 'App control, adjust it from your phone'
+            assign nf_short = 'adjust it from your phone'
+          elsif nf_badge == 'remote'
+            assign nf_line = 'Dimmable with a remote, adjust it from your seat'
+            assign nf_short = 'dimmable with a remote'
+          elsif nf_badge == 'app'
+            assign nf_line = 'Dimmable, adjust it from your phone'
+            assign nf_short = 'dimmable from your phone'
+          endif
+        when 'warm'
+          assign nf_line = 'Warm white, cozy evening glow'
+          assign nf_short = 'cozy evening glow'
+        when 'neutral'
+          assign nf_line = 'Neutral white, clear and natural'
+          assign nf_short = 'clear and natural'
+        when 'cool'
+          assign nf_line = 'Cool white, crisp and bright for tasks'
+          assign nf_short = 'crisp and bright for tasks'
+        when 'plain'
+          assign nf_line = ''
+        else
+          assign nf_line = 'Colored glow for mood and accent'
+          assign nf_short = 'colored glow for mood and accent'
+      endcase
+
+      if nf_rng != ''
+        if nf_short != ''
+          assign nf_line = nf_rng | append: ', ' | append: nf_short
+        else
+          assign nf_line = nf_rng
+        endif
+      endif
+    -%}
+    {{- nf_base -}}@@{{- nf_badge -}}@@{{- nf_title -}}@@{{- nf_line -}}
+
+  {%- when 'option' -%}
+    {%- capture nf_cls -%}{%- render 'nf-light-cards', part: 'classify', option: option -%}{%- endcapture -%}
+    {%- if nf_cls contains 'light' -%}
+      {%- capture nf_sell -%}{%- render 'nf-light-cards', part: 'look', value: nf_sel_value -%}{%- endcapture -%}
+      {%- assign nf_sel_title = nf_sell | strip | split: '@@' -%}
+      {%- assign nf_sel_title = nf_sel_title[2] | default: nf_sel_value -%}
+      {%- assign nf_param = form_id | append: '-option' | append: option.position -%}
+      <fieldset class="variant-picker__option v-stack gap-2 nf-lc-opt">
+        <div class="variant-picker__option-info h-stack justify-between gap-2">
+          <div class="h-stack gap-1">
+            <legend>Light color:</legend>
+            <span>{{ nf_sel_title }}</span>
+          </div>
+        </div>
+
+        <div class="nf-lc">
+          <div class="nf-lc-grid">
+            {%- for option_value in option.values -%}
+              {%- comment -%} Selected and available state: identical to variant-picker.liquid (NF-CHEAPEST-V2) {%- endcomment -%}
+              {%- liquid
+                if nf_ovr
+                  assign nf_ov_sel = false
+                  if option_value.name == nf_sel_value
+                    assign nf_ov_sel = true
+                  endif
+                  assign nf_ov_av = false
+                  for nf_av_v in product.variants
+                    if nf_av_v.available == false or nf_av_v.options[nf_opt_idx] != option_value.name
+                      continue
+                    endif
+                    assign nf_av_ok = true
+                    for nf_q in (0..nf_opt_idx)
+                      if nf_q == nf_opt_idx
+                        break
+                      endif
+                      if nf_av_v.options[nf_q] != nf_iv.options[nf_q]
+                        assign nf_av_ok = false
+                        break
+                      endif
+                    endfor
+                    if nf_av_ok
+                      assign nf_ov_av = true
+                      break
+                    endif
+                  endfor
+                else
+                  assign nf_ov_sel = option_value.selected
+                  assign nf_ov_av = option_value.available
+                endif
+              -%}
+
+              {%- if hide_sold_out_variants and nf_ov_av == false and nf_ov_sel == false -%}
+                {%- continue -%}
+              {%- endif -%}
+
+              {%- capture nf_lk -%}{%- render 'nf-light-cards', part: 'look', value: option_value.name -%}{%- endcapture -%}
+              {%- liquid
+                assign nf_lp = nf_lk | strip | split: '@@'
+                assign nf_base = nf_lp[0]
+                assign nf_badge = nf_lp[1]
+                assign nf_title = nf_lp[2] | default: option_value.name
+                assign nf_line = nf_lp[3]
+                assign nf_vn = option_value.name | strip
+              -%}
+              {%- capture nf_id -%}{{ form_id }}-lc{{ option.position }}-{{ option_value.id }}{%- endcapture -%}
+              <input
+                class="sr-only"
+                type="radio"
+                name="{{ nf_param }}"
+                id="{{ nf_id }}"
+                value="{{ option_value.id }}"
+                form="{{ form_id }}"
+                data-option-position="{{ option.position }}"
+                {% if nf_ov_sel %}checked="checked"{% endif %}
+              >
+              <label for="{{ nf_id }}" data-value="{{ nf_vn | escape }}" class="nf-lc-card{% if nf_ov_av == false %} is-disabled{% endif %}">
+                <span class="nf-lc-scene nf-lc-scene--{{ nf_base }}" aria-hidden="true">
+                  <span class="nf-lc-scene__cord"></span>
+                  <span class="nf-lc-scene__beam"></span>
+                  <span class="nf-lc-scene__pool"></span>
+                  <span class="nf-lc-scene__shade"></span>
+                  {%- case nf_badge -%}
+                    {%- when 'remote' -%}
+                      <span class="nf-lc-scene__badge"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="5" y="1.5" width="6" height="13" rx="2"/><circle cx="8" cy="5" r="1.1"/><path d="M7 9h2M7 11.5h2"/></svg></span>
+                    {%- when 'app' -%}
+                      <span class="nf-lc-scene__badge"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="4.5" y="1.5" width="7" height="13" rx="1.6"/><path d="M7 12.3h2"/></svg></span>
+                    {%- else -%}
+                      {%- if nf_base == 'dim' -%}
+                        <span class="nf-lc-scene__badge"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="8" cy="8" r="2.6"/><path d="M8 1.8v1.4M8 12.8v1.4M1.8 8h1.4M12.8 8h1.4M3.6 3.6l1 1M11.4 11.4l1 1M3.6 12.4l1-1M11.4 4.6l1-1"/></svg></span>
+                      {%- endif -%}
+                  {%- endcase -%}
+                </span>
+                <span class="nf-lc-card__name">{{ nf_title | escape }}</span>
+                {%- if nf_line != blank -%}
+                  <span class="nf-lc-card__line">{{ nf_line | escape }}</span>
+                {%- endif -%}
+                {%- if nf_ov_av == false -%}
+                  <span class="nf-lc-card__flag">
+                    {%- if option_value.variant == nil -%}{{ 'product.general.unavailable_button' | t }}{%- else -%}{{ 'product.general.sold_out_badge' | t }}{%- endif -%}
+                  </span>
+                {%- endif -%}
+              </label>
+            {%- endfor -%}
+          </div>
+        </div>
+      </fieldset>
+    {%- endif -%}
+{%- endcase -%}

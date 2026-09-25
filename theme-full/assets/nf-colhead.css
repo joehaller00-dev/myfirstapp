@@ -1,0 +1,135 @@
+/* NF-COLHEAD-V1 (2026-09-12) Collection evening header band, filter "no matches" state, Show more pagination.
+   Loaded by sections/nf-collection-head.liquid on every collection template. Palette = Ideas & Guides:
+   ink #1A1714, charcoal #2B2520, gold #B38B5D / #C9A36A, on dark #F3EBDD. No cream fills, no eyebrow lines. */
+
+/* ---------- Band ----------
+   NF-COLHEAD-V2 (2026-09-12, owner: "make the image bigger, I can barely see the products"): taller band, the photo
+   takes about half the width with a short fade so the product reads, object-position favours the top where fixtures
+   hang, chips wrap instead of scrolling behind a fade, and phones show the photo above the text.
+   Nav parents + best-sellers never get the band (plain title instead, see sections/nf-collection-head.liquid). */
+.nf-ch{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:clamp(300px,24vw,360px);background:#1A1714;color:#F3EBDD;-webkit-font-smoothing:antialiased}
+.nf-ch *,.nf-ch *::before,.nf-ch *::after{box-sizing:border-box}
+.nf-ch__glow{position:absolute;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(640px 320px at 52% 50%,rgba(179,139,93,.18),transparent 70%),radial-gradient(520px 240px at -4% 120%,rgba(179,139,93,.12),transparent 70%)}
+.nf-ch__media{position:absolute;top:0;right:0;bottom:0;width:min(52%,820px);z-index:-2;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.6) 6%,#000 13%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.6) 6%,#000 13%)}
+.nf-ch__img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--nf-ch-pos,50% 32%);filter:brightness(var(--nf-ch-lift,1))}
+@media (prefers-reduced-motion:no-preference){
+  .nf-ch:not(.is-lit) .nf-ch__img{filter:brightness(.4) saturate(.72);animation:nf-ch-safe 1s ease-out 4s forwards}
+  .nf-ch.is-lit .nf-ch__img{transition:filter 1.1s cubic-bezier(.3,.55,.25,1)}
+}
+@keyframes nf-ch-safe{to{filter:brightness(var(--nf-ch-lift,1))}}
+.nf-ch__inner{position:relative;width:100%;padding-block:34px}
+.nf-ch__copy{display:flex;flex-direction:column;align-items:flex-start;max-width:min(620px,46%)}
+.nf-ch--noimg .nf-ch__copy{max-width:760px}
+.nf-ch .nf-ch__eyebrow{margin:0 0 10px;font:600 11.5px/1.3 var(--text-font-family,system-ui,sans-serif);letter-spacing:.2em;text-transform:uppercase;color:#C9A36A}
+.nf-ch .nf-ch__eyebrow::before,.nf-ch .nf-ch__eyebrow::after{content:none;display:none}
+.nf-ch .nf-ch__title{margin:0;font-family:var(--heading-font-family,"Poynter Oldstyle",Georgia,serif);font-weight:400;font-style:normal;font-size:clamp(36px,3.2vw,50px);line-height:1.06;letter-spacing:-.005em;text-transform:none;color:#fff}
+.nf-ch .nf-ch__line{margin:10px 0 0;max-width:100%;font:400 15px/1.5 var(--text-font-family,system-ui,sans-serif);color:rgba(243,235,221,.82);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* chips wrap onto a second line: never scrolled, faded or clipped */
+.nf-ch .nf-ch__chips{display:flex;flex-wrap:wrap;gap:8px;max-width:100%;margin:18px 0 0;padding:0;list-style:none;overflow:visible}
+.nf-ch__chips li{flex:0 0 auto;max-width:100%;margin:0;padding:0;list-style:none}
+.nf-ch__chips li::before,.nf-ch__chips li::marker{content:none}
+.nf-ch .nf-ch__chip{display:inline-flex;align-items:center;min-height:32px;padding:0 15px;border:1px solid rgba(201,163,106,.8);border-radius:999px;background-color:rgba(26,23,20,.35);background-image:linear-gradient(#C9A36A,#C9A36A);background-repeat:no-repeat;background-position:0 0;background-size:0% 100%;color:#F3EBDD;font:600 11px/1 var(--text-font-family,system-ui,sans-serif);letter-spacing:.13em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background-size .35s cubic-bezier(.2,.8,.2,1),color .35s cubic-bezier(.2,.8,.2,1),border-color .35s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+.nf-ch .nf-ch__chip:hover{background-size:100% 100%;border-color:#C9A36A;color:#1A1714;transform:translateY(-1px)}
+.nf-ch .nf-ch__chip:focus-visible{outline:2px solid #C9A36A;outline-offset:2px}
+/* phones: the photo sits above the text at full width, clear, fading only at its bottom edge into the band */
+@media (max-width:749px){
+  .nf-ch{flex-direction:column;align-items:stretch;min-height:0}
+  .nf-ch__media{position:relative;top:auto;right:auto;bottom:auto;flex:0 0 auto;width:100%;height:min(48vw,230px);min-height:0;-webkit-mask-image:linear-gradient(180deg,#000 64%,rgba(0,0,0,.55) 84%,transparent);mask-image:linear-gradient(180deg,#000 64%,rgba(0,0,0,.55) 84%,transparent)}
+  .nf-ch .nf-ch__inner{width:auto;max-width:100%;margin-top:-26px;padding-block:0 18px}
+  .nf-ch__chips li:nth-child(n+5){display:none}
+  .nf-ch--noimg .nf-ch__inner{margin-top:0;padding-top:18px}
+  .nf-ch__copy{max-width:100%}
+  .nf-ch .nf-ch__eyebrow{margin-bottom:6px;font-size:10.5px;letter-spacing:.18em}
+  .nf-ch .nf-ch__title{font-size:28px;line-height:1.08;text-shadow:0 1px 14px rgba(26,23,20,.7)}
+  .nf-ch .nf-ch__line{margin-top:6px;font-size:13.5px}
+  .nf-ch .nf-ch__chips{gap:7px;margin-top:12px}
+  .nf-ch .nf-ch__chip{min-height:30px;padding:0 12px;font-size:10px;letter-spacing:.1em;background-color:rgba(26,23,20,.62)}
+}
+
+/* ---------- Filter "no matches" state ---------- */
+.empty-state.nf-ch-empty-host{display:block;padding-block:0;text-align:center}
+.nf-ch-empty{display:flex;flex-direction:column;align-items:center;padding:clamp(36px,5vw,64px) 0 clamp(24px,3vw,40px)}
+.nf-ch-empty__bulb{display:block;width:52px;height:52px;color:#B38B5D;opacity:.45;transition:opacity .45s ease,filter .45s ease}
+.nf-ch-empty__halo{fill:#C9A36A;opacity:0;transition:opacity .45s ease}
+.nf-ch-empty.is-hot .nf-ch-empty__bulb,.nf-ch-empty:has(.nf-ch-empty__clear:hover) .nf-ch-empty__bulb{opacity:1;filter:drop-shadow(0 0 9px rgba(201,163,106,.9)) drop-shadow(0 0 22px rgba(201,163,106,.5))}
+.nf-ch-empty.is-hot .nf-ch-empty__halo,.nf-ch-empty:has(.nf-ch-empty__clear:hover) .nf-ch-empty__halo{opacity:.3}
+.nf-ch-empty .nf-ch-empty__title{margin:14px 0 6px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:clamp(24px,2.2vw,30px);line-height:1.2;letter-spacing:0;text-transform:none;color:#2B2520}
+.nf-ch-empty .nf-ch-empty__sub{margin:0 0 20px;font-size:15px;line-height:1.5;color:#655A50}
+.nf-ch-empty__chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 0 22px;padding:0;list-style:none}
+.nf-ch-empty__chips li{margin:0;list-style:none}
+.nf-ch-empty__chips li::before,.nf-ch-empty__chips li::marker{content:none}
+.nf-ch-fchip{display:inline-flex;align-items:center;gap:10px;min-height:38px;padding:0 8px 0 16px;border:1px solid #B38B5D;border-radius:999px;background:#fff;color:#2B2520;font:500 14px/1.2 var(--text-font-family,system-ui,sans-serif);text-decoration:none;transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .3s cubic-bezier(.2,.8,.2,1)}
+.nf-ch-fchip__x{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(179,139,93,.16);color:#8A6640;font-size:15px;line-height:1;transition:background-color .3s ease,color .3s ease}
+.nf-ch-fchip:hover{background:#2B2520;border-color:#2B2520;color:#fff;transform:translateY(-1px)}
+.nf-ch-fchip:hover .nf-ch-fchip__x{background:#C9A36A;color:#1A1714}
+.nf-ch-fchip:focus-visible,.nf-ch-empty__clear:focus-visible{outline:2px solid #B38B5D;outline-offset:3px}
+.nf-ch-empty__picks{width:100%;margin-top:clamp(40px,5vw,64px);text-align:left}
+.nf-ch-empty .nf-ch-empty__eyebrow{margin:0 0 6px;font:600 11.5px/1.3 var(--text-font-family,system-ui,sans-serif);letter-spacing:.2em;text-transform:uppercase;color:#8A6640}
+.nf-ch-empty .nf-ch-empty__h{margin:0 0 18px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:clamp(22px,2vw,28px);line-height:1.2;text-transform:none;color:#2B2520}
+.nf-ch-picks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.nf-ch-empty__picks.is-loading .nf-ch-picks{min-height:420px}
+@media (max-width:749px){
+  .nf-ch-picks{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .nf-ch-empty__picks.is-loading .nf-ch-picks{min-height:600px}
+  .nf-ch-fchip{font-size:13.5px}
+}
+
+/* ---------- Show more pagination ---------- */
+nav.pagination.nf-ch-pag-off{display:none!important}
+.nf-ch-more{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:380px;margin:clamp(36px,4vw,56px) auto 8px;text-align:center}
+.nf-ch-more .nf-ch-more__txt{margin:0;font:500 14px/1.4 var(--text-font-family,system-ui,sans-serif);letter-spacing:.02em;color:#655A50}
+.nf-ch-more__txt b{font-weight:700;color:#1A1714}
+.nf-ch-more__bar{width:100%;height:2px;border-radius:2px;background:#e4e4e4;overflow:hidden}
+.nf-ch-more__bar span{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#B38B5D,#C9A36A);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.nf-ch-more .nf-ch-more__btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;min-width:210px;margin-top:6px;padding:0 34px;border:1.5px solid #2B2520;border-radius:2px;background-color:transparent;background-image:linear-gradient(#2B2520,#2B2520);background-repeat:no-repeat;background-position:0 0;background-size:0% 100%;color:#2B2520;font:600 12px/1 var(--text-font-family,system-ui,sans-serif);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-size .35s cubic-bezier(.2,.8,.2,1),color .35s ease,transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+.nf-ch-more .nf-ch-more__btn:hover{background-size:100% 100%;color:#fff;transform:translateY(-2px);box-shadow:0 14px 26px -16px rgba(26,23,20,.6)}
+.nf-ch-more .nf-ch-more__btn[aria-busy="true"]{opacity:.6;pointer-events:none}
+.nf-ch-more .nf-ch-more__btn:focus-visible{outline:2px solid #B38B5D;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){
+  .nf-ch .nf-ch__chip,.nf-ch-fchip,.nf-ch-more .nf-ch-more__btn,.nf-ch-empty__bulb,.nf-ch-empty__halo{transition-duration:.15s}
+}
+/* NF-COLHEAD-V3 (2026-09-12): the nav parent hero title is the page h1 now; it keeps the hero type. Band photo can take a phone position from custom.nf_band_pos ("desktop | phone"). */
+.nf-subcategory-hero__h1{font:inherit;letter-spacing:inherit;color:inherit;text-transform:inherit;margin:0;padding:0}
+@media (max-width:749px){.nf-ch .nf-ch__img{object-position:var(--nf-ch-pos-m,var(--nf-ch-pos,50% 32%))}}
+/* NF-COLHEAD-V4 (2026-09-12): custom.nf_band_pos starting with "fit" shows the whole photo (tall products such as floor lamps) over a blurred copy of itself. */
+.nf-ch__media--fit{background:#1A1714;overflow:hidden}
+.nf-ch__media--fit::before{content:"";position:absolute;inset:-40px;background:var(--nf-ch-bg) center/cover no-repeat;filter:blur(28px) brightness(.5) saturate(1.05)}
+.nf-ch .nf-ch__media--fit .nf-ch__img{position:relative;object-fit:contain}
+@media (max-width:749px){.nf-ch .nf-ch__media--fit .nf-ch__img{height:80%;object-position:50% 0}}
+
+/* NF-COLTILES-V1 (2026-09-14): related collection photo tiles above the products (snippets/nf-collection-tiles.liquid).
+   Small rounded photos with a soft shadow, label under, Best Sellers first with a thin gold ring and star. The row
+   centres when it fits and scrolls sideways when it does not (phones, long rows). */
+.nf-ct{padding:22px 0 8px;background:#fff}
+.nf-ct__list{display:flex;gap:20px;margin:0;padding:6px max(16px,calc((100vw - 1400px) / 2)) 12px;list-style:none;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.nf-ct__list::-webkit-scrollbar{display:none}
+.nf-ct__list>:first-child{margin-left:auto}
+.nf-ct__list>:last-child{margin-right:auto}
+.nf-ct__it{flex:0 0 auto;scroll-snap-align:start}
+.nf-ct__a{display:flex;flex-direction:column;align-items:center;gap:10px;width:96px;color:#1c1c1c;text-decoration:none}
+.nf-ct__img{position:relative;display:block;width:88px;height:88px;border-radius:16px;overflow:hidden;background:#f2f0ec;box-shadow:0 1px 2px rgba(26,23,20,.06),0 10px 22px -14px rgba(26,23,20,.45);transition:box-shadow .35s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+.nf-ct__img img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.nf-ct__a:hover .nf-ct__img{transform:translateY(-2px);box-shadow:0 1px 2px rgba(26,23,20,.06),0 16px 26px -14px rgba(26,23,20,.5)}
+.nf-ct__a:hover .nf-ct__img img{transform:scale(1.07)}
+.nf-ct__a:focus-visible{outline:none}
+.nf-ct__a:focus-visible .nf-ct__img{box-shadow:0 0 0 2px #fff,0 0 0 4px #1c1c1c}
+.nf-ct__t{max-width:96px;font:500 12px/1.3 var(--text-font-family,Montserrat,sans-serif);letter-spacing:.02em;text-align:center;transition:color .2s ease}
+.nf-ct__a:hover .nf-ct__t{color:#8a6640}
+.nf-ct__it--bs .nf-ct__img{box-shadow:0 0 0 1.5px #b38b5d,0 10px 22px -14px rgba(26,23,20,.45)}
+.nf-ct__badge{position:absolute;left:6px;top:6px;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.nf-ct__badge svg{width:11px;height:11px;fill:#b38b5d}
+@media (max-width:749px){
+  .nf-ct{padding:16px 0 4px}
+  .nf-ct__list{gap:12px;padding-left:16px;padding-right:16px}
+  .nf-ct__a{width:78px;gap:8px}
+  .nf-ct__img{width:72px;height:72px;border-radius:14px}
+  .nf-ct__t{max-width:78px;font-size:11.5px}
+}
+@media (prefers-reduced-motion:reduce){.nf-ct__img,.nf-ct__img img{transition:none}}
+
+/* NF-SPEED-B-0916 REVERTED: content-visibility on later cards delayed their lazy images (grey tiles while scrolling). Kept as a comment only. */
+/* .shopify-section--main-collection .product-list>product-card:nth-child(n+9){content-visibility:auto;contain-intrinsic-size:auto 330px}
+@media screen and (min-width:700px){.shopify-section--main-collection .product-list>product-card:nth-child(n+9){contain-intrinsic-size:auto 470px}} */
+
+/* NF-CT-MOBILE-FIX-0921: a later inline centering rule let tiles shrink to 8px on phones; keep them full size and scrollable */
+@media (max-width:999px){.nf-ct .nf-ct__list{justify-content:flex-start !important;overflow-x:auto !important;padding-left:16px !important;padding-right:16px !important}.nf-ct .nf-ct__list > .nf-ct__it{flex:0 0 96px !important;width:96px !important}}

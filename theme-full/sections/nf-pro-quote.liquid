@@ -1,0 +1,70 @@
+{%- comment -%} nf-pro-quote (Professionals, 2026-09-11). Quote form (snippets/nf-pro-quote-form) with a "what happens next" panel. {%- endcomment -%}
+{{- 'nf-pro.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'nf-pro.js' | asset_url }}" defer></script>
+{%- liquid
+  assign s = section.settings
+  assign steps = s.steps | newline_to_br | split: '<br />'
+  assign inc = s.include | newline_to_br | split: '<br />'
+-%}
+<section class="nfp nfp--{{ s.bg }} nfp-sec" id="{{ s.anchor | default: 'quote' | handle }}">
+  <div class="nfp-wrap">
+    <div class="nfp-head">
+      <div class="nfp-head__main">
+        {%- if s.eyebrow != blank -%}<p class="nfp-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfp-h2">{{ s.heading | escape }}</h2>
+        {%- if s.text != blank -%}<p class="nfp-lead">{{ s.text | escape }}</p>{%- endif -%}
+      </div>
+    </div>
+    <div class="nfp-quote{% if s.variant == 'short' %} nfp-quote--short{% endif %}">
+      {%- render 'nf-pro-quote-form', variant: s.variant, form_id: s.form_id, form_label: s.form_label, service: s.service, button_label: s.button_label -%}
+      <aside class="nfp-aside" aria-label="How quotes work">
+        {%- if s.steps != blank -%}
+          <div class="nfp-aside__box">
+            <h3 class="nfp-h4">{{ s.steps_title | escape }}</h3>
+            <ol>
+              {%- for st in steps -%}
+                {%- assign stt = st | strip -%}
+                {%- if stt == blank -%}{%- continue -%}{%- endif -%}
+                {%- if stt contains ': ' -%}{%- assign sp = stt | split: ': ' -%}<li><strong>{{ sp[0] | escape }}</strong>{{ stt | remove_first: sp[0] | remove_first: ': ' | escape }}</li>{%- else -%}<li>{{ stt | escape }}</li>{%- endif -%}
+              {%- endfor -%}
+            </ol>
+          </div>
+        {%- endif -%}
+        {%- if s.include != blank -%}
+          <div class="nfp-aside__box nfp-aside__box--tint">
+            <h3 class="nfp-h4">{{ s.include_title | escape }}</h3>
+            <ul>{%- for i in inc -%}{%- assign it = i | strip -%}{%- if it != blank -%}<li>{{ it | escape }}</li>{%- endif -%}{%- endfor -%}</ul>
+          </div>
+        {%- endif -%}
+        <div class="nfp-aside__box">
+          <h3 class="nfp-h4">Prefer to write to us?</h3>
+          <p class="nfp-text" style="font-size:14.5px">Email is our only support line, and a real person answers it.</p>
+          <a class="nfp-link" href="mailto:info@norafurnish.com" style="margin-top:10px">info@norafurnish.com <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF Pro quote form",
+  "class": "nfp-shell",
+  "settings": [
+    { "type": "select", "id": "bg", "label": "Background", "default": "sand", "options": [ { "value": "cream", "label": "Cream" }, { "value": "sand", "label": "Sand" }, { "value": "white", "label": "White" } ] },
+    { "type": "text", "id": "anchor", "label": "Section anchor", "default": "quote" },
+    { "type": "select", "id": "variant", "label": "Form", "default": "full", "options": [ { "value": "full", "label": "Full custom quote" }, { "value": "short", "label": "Short project quote" } ] },
+    { "type": "text", "id": "form_id", "label": "Form id", "default": "nf-quote-form", "info": "The custom lighting page uses custom-quote-form" },
+    { "type": "text", "id": "form_label", "label": "Form name in the email", "default": "Custom quote" },
+    { "type": "text", "id": "service", "label": "Service in the email" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Get My Free Quote" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Request your free quote" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "steps_title", "label": "Steps title", "default": "What happens next" },
+    { "type": "textarea", "id": "steps", "label": "Steps", "info": "One per line, 'Title: text'" },
+    { "type": "text", "id": "include_title", "label": "List title", "default": "Helpful to include" },
+    { "type": "textarea", "id": "include", "label": "List", "info": "One per line" }
+  ]
+}
+{% endschema %}

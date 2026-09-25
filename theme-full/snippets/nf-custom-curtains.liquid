@@ -1,0 +1,131 @@
+{%- comment -%} NF-CUSTOM3-V1 curtain measuring helper (rendered by sections/nf-custom-tool). Logic: initCurtains in assets/nf-custom.js.
+Inputs sit outside the contact form, so they are never posted; the script writes a summary into the form instead. {%- endcomment -%}
+<div class="nfc-tool" data-nfc-curtains>
+  <div class="nfc-tool__a nfc-panel">
+    <h3 class="nfc-panel__t">1. Measure your window</h3>
+    <p class="nfc-panel__s">Use a steel tape and measure in inches, from the outside edges of the frame.</p>
+    <div class="nfc-fields nfc-fields--pair">
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-cw">Window width</label>
+        <div class="nfc-num" data-unit="in"><input id="nfc-cw" name="nfc-cw" type="number" inputmode="decimal" min="8" max="400" step="0.25" value="48" aria-describedby="nfc-cw-h"></div>
+        <p class="nfc-hint" id="nfc-cw-h">Outside edge to outside edge.</p>
+      </div>
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-ch">Window height</label>
+        <div class="nfc-num" data-unit="in"><input id="nfc-ch" name="nfc-ch" type="number" inputmode="decimal" min="8" max="240" step="0.25" value="60" aria-describedby="nfc-ch-h"></div>
+        <p class="nfc-hint" id="nfc-ch-h">Top of the frame down to the sill.</p>
+      </div>
+      <div class="nfc-field nfc-field--wide">
+        <label class="nfc-label" for="nfc-mount">Where the rod goes</label>
+        <select class="nfc-input" id="nfc-mount" name="nfc-mount">
+          <option value="4">4 in above the frame</option>
+          <option value="8" selected>8 in above the frame</option>
+          <option value="12">12 in above the frame</option>
+          <option value="ceiling">Just below the ceiling</option>
+        </select>
+        <p class="nfc-hint">Higher makes the window look taller.</p>
+      </div>
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-ext">Rod past each side</label>
+        <select class="nfc-input" id="nfc-ext" name="nfc-ext">
+          <option value="3">3 in</option>
+          <option value="6" selected>6 in</option>
+          <option value="10">10 in</option>
+        </select>
+        <p class="nfc-hint">Wider lets panels open clear of the glass.</p>
+      </div>
+      <div class="nfc-field" data-when="ceiling" hidden>
+        <label class="nfc-label" for="nfc-gap">Frame to ceiling</label>
+        <div class="nfc-num" data-unit="in"><input id="nfc-gap" name="nfc-gap" type="number" inputmode="decimal" min="2" max="120" step="0.25" value="18"></div>
+        <p class="nfc-hint">Top of the frame up to the ceiling.</p>
+      </div>
+      <div class="nfc-field" data-when="floor">
+        <label class="nfc-label" for="nfc-sf">Sill to floor</label>
+        <div class="nfc-num" data-unit="in"><input id="nfc-sf" name="nfc-sf" type="number" inputmode="decimal" min="0" max="120" step="0.25" value="30"></div>
+        <p class="nfc-hint">Needed for floor and puddle lengths.</p>
+      </div>
+    </div>
+
+    <fieldset class="nfc-group" style="margin-top:22px">
+      <legend>How long</legend>
+      <div class="nfc-choices nfc-choices--sm">
+        <label class="nfc-choice"><input type="radio" name="nfc-len" value="sill" data-label="Sill length, ends just above the sill"><b>Sill</b><small>Just above the sill</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-len" value="apron" data-label="Apron length, 4 in below the sill"><b>Apron</b><small>4 in below the sill</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-len" value="floor" data-label="Floor length, floats just above the floor" checked><b>Floor</b><small>Just above the floor</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-len" value="puddle" data-label="Puddle, about 6 in extra on the floor"><b>Puddle</b><small>6 in extra on the floor</small></label>
+      </div>
+    </fieldset>
+    <fieldset class="nfc-group">
+      <legend>Fullness</legend>
+      <div class="nfc-choices nfc-choices--sm">
+        <label class="nfc-choice"><input type="radio" name="nfc-full" value="1.5" data-label="1.5 times, tailored"><b>1.5x</b><small>Flat and tailored</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-full" value="2" data-label="2 times, full" checked><b>2x</b><small>Soft, even folds</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-full" value="2.5" data-label="2.5 times, extra full"><b>2.5x</b><small>Rich, deep folds</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-full" value="3" data-label="3 times, best for sheers"><b>3x</b><small>Best for sheers</small></label>
+      </div>
+    </fieldset>
+    <fieldset class="nfc-group">
+      <legend>Panels</legend>
+      <div class="nfc-seg">
+        <label class="nfc-choice"><input type="radio" name="nfc-panels" value="2" data-label="A pair" checked><b>A pair</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-panels" value="1" data-label="One panel"><b>One panel</b></label>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="nfc-tool__vis nfc-vis">
+    <div class="nfc-diagram">
+      <svg data-nfc-svg viewBox="0 0 600 470" role="img" aria-labelledby="nfc-c-title" preserveAspectRatio="xMidYMid meet"><title id="nfc-c-title">Your window, rod and curtain panels drawn to scale</title></svg>
+    </div>
+    <div class="nfc-results">
+      <dl>
+        <div><dt>Each panel</dt><dd><span data-out="pw">60 in</span><small data-out="pwnote">Flat width</small></dd></div>
+        <div><dt>Finished length</dt><dd><span data-out="len">97.5 in</span><small data-out="lennote">Top of the rod to the hem</small></dd></div>
+        <div><dt>Rod length</dt><dd><span data-out="rod">60 in</span><small data-out="rodnote"></small></dd></div>
+        <div><dt>Total fabric width</dt><dd><span data-out="total">120 in</span><small data-out="totalnote"></small></dd></div>
+      </dl>
+      <p class="nfc-warn" data-out-warn hidden></p>
+      <p class="nfc-note">Panel widths are flat fabric before pleating. We confirm the exact finished sizes for your top style in your quote.</p>
+      <p class="nfc-sr" aria-live="polite" data-out="sentence"></p>
+      <div class="nfc-cta">
+        <button type="button" class="nfc-btn" data-nfc-go>{{ cta | default: 'Add this to my quote' | escape }}</button>
+        <p class="nfc-cta__note">Your sizes and choices go straight into the form below.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nfc-tool__b nfc-panel">
+    <h3 class="nfc-panel__t">2. Choose fabric and style</h3>
+    <p class="nfc-panel__s">Pick the closest option. You can add more detail in the form.</p>
+    <fieldset class="nfc-group">
+      <legend>Fabric</legend>
+      <div class="nfc-choices">
+        <label class="nfc-choice"><input type="radio" name="nfc-fabric" value="blackout" data-label="Blackout"><span class="nfc-choice__sw" style="background:#3f454d"></span><b>Blackout</b><small>Blocks most light, good for bedrooms</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-fabric" value="sheer" data-label="Sheer"><span class="nfc-choice__sw" style="background:#fbfbfb"></span><b>Sheer</b><small>Soft daylight and some privacy</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-fabric" value="linen" data-label="Linen look" checked><span class="nfc-choice__sw" style="background:#a5a39e"></span><b>Linen look</b><small>Relaxed texture that filters light</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-fabric" value="velvet" data-label="Velvet"><span class="nfc-choice__sw" style="background:#34514a"></span><b>Velvet</b><small>Heavy, soft and warm</small></label>
+      </div>
+    </fieldset>
+    <fieldset class="nfc-group">
+      <legend>Top style</legend>
+      <div class="nfc-choices">
+        <label class="nfc-choice"><input type="radio" name="nfc-top" value="grommet" data-label="Grommet"><b>Grommet</b><small>Metal rings slide on the rod</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-top" value="rodpocket" data-label="Rod pocket"><b>Rod pocket</b><small>A sleeve slides over the rod</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-top" value="pinch" data-label="Pinch pleat" checked><b>Pinch pleat</b><small>Tailored pleats on rings</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-top" value="hooks" data-label="Hooks"><b>Hooks</b><small>For rings or a ceiling track</small></label>
+      </div>
+    </fieldset>
+    <fieldset class="nfc-group">
+      <legend>Lining</legend>
+      <div class="nfc-choices">
+        <label class="nfc-choice"><input type="radio" name="nfc-lining" value="none" data-label="No lining" checked><b>No lining</b><small>Lighter and airy</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-lining" value="standard" data-label="Standard lining"><b>Standard lining</b><small>More body, protects from sun</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-lining" value="blackout" data-label="Blackout lining"><b>Blackout lining</b><small>Darkens the room</small></label>
+      </div>
+    </fieldset>
+    <div class="nfc-field nfc-field--full">
+      <label class="nfc-label" for="nfc-color">Color or pattern you have in mind <span style="font-weight:400;color:#5b5b5b">(optional)</span></label>
+      <input class="nfc-input" id="nfc-color" name="nfc-color" type="text" maxlength="140" placeholder="For example warm white, charcoal or sage green">
+    </div>
+  </div>
+</div>

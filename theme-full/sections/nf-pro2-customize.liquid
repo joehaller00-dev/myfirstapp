@@ -1,0 +1,71 @@
+{%- comment -%}
+  NF-PRO-V2 nf-pro2-customize (2026-09-11). "What can be customized": eyebrow, uppercase serif heading, a right aligned
+  production note and a row of 6 to 8 thin line icon cards, each with a title and one specific sentence.
+  Shared by all 15 Professionals and custom service pages. Styles: assets/nf-pro2.css. Icons: snippets/nf-pro2-icon.
+{%- endcomment -%}
+{{- 'nf-pro.css' | asset_url | stylesheet_tag -}}
+{{- 'nf-pro2.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign s = section.settings
+  assign n = section.blocks.size
+  assign cols = 4
+  if n == 6 or n == 3 or n == 5
+    assign cols = 3
+  endif
+-%}
+<section class="nfp nfp2 nfp2-cust nfp2--{{ s.bg | default: 'grey' }} nfp-sec" id="{{ s.anchor | default: 'customize' | handle }}" aria-labelledby="{{ section.id }}-h">
+  <div class="nfp-wrap">
+    <div class="nfp2-head">
+      <div class="nfp2-head__main">
+        {%- if s.eyebrow != blank -%}<p class="nfp2-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfp2-h2" id="{{ section.id }}-h">{{ s.heading | escape }}</h2>
+      </div>
+      {%- if s.note != blank -%}<p class="nfp2-head__note">{{ s.note | escape }}</p>{%- endif -%}
+    </div>
+    <ul class="nfp2-cust__grid nfp2-cols-{{ cols }}" role="list">
+      {%- for block in section.blocks -%}
+        <li class="nfp2-cust__card" {{ block.shopify_attributes }}>
+          <span class="nfp2-cust__num" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+          <span class="nfp2-cust__icon">{%- render 'nf-pro2-icon', name: block.settings.icon -%}</span>
+          <h3 class="nfp2-cust__t">{{ block.settings.title | escape }}</h3>
+          {%- if block.settings.text != blank -%}<p class="nfp2-cust__d">{{ block.settings.text | escape }}</p>{%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if s.btn_label != blank or s.foot != blank -%}
+      <div class="nfp2-cust__foot">
+        {%- if s.foot != blank -%}<p>{{ s.foot | escape }}</p>{%- endif -%}
+        {%- if s.btn_label != blank -%}<a class="nfp2-btn nfp2-btn--line" href="{{ s.btn_url | default: '#quote' }}">{{ s.btn_label | escape }}</a>{%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF Pro customize cards",
+  "class": "nfp-shell",
+  "settings": [
+    { "type": "select", "id": "bg", "label": "Background", "default": "grey", "options": [ { "value": "grey", "label": "Light grey" }, { "value": "white", "label": "White" } ] },
+    { "type": "text", "id": "anchor", "label": "Anchor id", "default": "customize" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Made to your project" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What can be customized" },
+    { "type": "text", "id": "note", "label": "Right note", "default": "Production begins after dimensions, specifications and installation details are confirmed." },
+    { "type": "text", "id": "foot", "label": "Footer line" },
+    { "type": "text", "id": "btn_label", "label": "Button label" },
+    { "type": "text", "id": "btn_url", "label": "Button link", "default": "#quote" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon name", "info": "run, mount, updown, corner, finish, diffuser, output, cct, dimmer, power, ceiling, size, drop, chain, tiers, crystal, arms, stair, fabric, lining, header, pleat, length, rod, motor, blackout, font, palette, backing, neon, wallmount, hang, waterproof, cut, rgb, logo, label, box, clock, grid, zones, spec, sample, outdoor, path, sensor, solar, people, repeat, truck, mirror, guide, bulb" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "One specific sentence" }
+      ]
+    }
+  ],
+  "max_blocks": 8
+}
+{% endschema %}

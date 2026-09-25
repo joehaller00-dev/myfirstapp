@@ -1,0 +1,13 @@
+{%- comment -%} NF-CUSTOM3-V1 (2026-09-11). Put first on the custom services page templates (custom-curtains, custom-chandeliers,
+custom-name-signs). It only loads the styles, so the hero below already has the site fonts and palette on first paint. {%- endcomment -%}
+{{- 'nf-pro.css' | asset_url | stylesheet_tag -}}
+{{- 'nf-custom.css' | asset_url | stylesheet_tag -}}
+{% schema %}
+{
+  "name": "NF Custom styles",
+  "class": "nfc-shell",
+  "settings": [
+    { "type": "paragraph", "content": "Loads the custom services styles. Keep this section first on the page." }
+  ]
+}
+{% endschema %}

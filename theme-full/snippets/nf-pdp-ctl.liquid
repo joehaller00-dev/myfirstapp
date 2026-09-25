@@ -1,0 +1,18 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) D1 "Complete the look": 3 compact rows (thumb, title, price) under the custom version line.
+  Source: Shopify product recommendations, complementary intent first, related as the fallback, rendered by
+  sections/nf-pdp-recs.liquid (only available products; the current product is never returned). Other product types
+  are preferred so the rows complete the look instead of repeating it. Skeleton rows hold the space (no layout shift).
+  This block also loads assets/nf-pdp.css and assets/nf-pdp.js for every NF-PDP block on the page.
+{%- endcomment -%}
+{{ 'nf-pdp.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-pdp.js' | asset_url }}" defer></script>
+{%- capture nf_rooms -%}{%- for t in product.tags -%}{%- if t contains 'shop-room-' or t contains 'shop-area-' -%}{{ t }} {% endif -%}{%- endfor -%}{%- endcapture -%}
+<div class="nf-ctl" data-nf-ctl data-pid="{{ product.id }}" data-type="{{ product.type | escape }}" data-rooms="{{ nf_rooms | strip }}" data-base="{{ routes.product_recommendations_url }}">
+  <p class="nf-ctl__h">Complete the look</p>
+  <div class="nf-ctl__list" data-nf-ctl-list aria-busy="true">
+    {%- for i in (1..3) -%}
+      <div class="nf-ctl__row nf-ctl__row--sk" aria-hidden="true"><span class="nf-ctl__img"></span><span class="nf-ctl__meta"><span class="nf-ctl__sk"></span><span class="nf-ctl__sk nf-ctl__sk--s"></span></span></div>
+    {%- endfor -%}
+  </div>
+</div>

@@ -1,0 +1,460 @@
+{%- comment -%}
+  NF FOOTER (2026-09-10): newsletter signup on the left, menus on the right, logo moved to the bottom bar.
+  Styles live in assets/nf-footer.css. Backup of the previous version: scratchpad footer.liquid.bak.
+  The signup uses the same Shopify customer form as the popup, tagged "newsletter", so the welcome email fires.
+{%- endcomment -%}
+{%- comment -%} NF-SPEED-A-0916: on the homepage this section is far below the first screen, so its stylesheet no longer holds up first paint (loads at once, applied when it arrives). {%- endcomment -%}{%- if request.page_type == 'index' -%}<link rel="stylesheet" href="{{ 'nf-footer.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'nf-footer.css' | asset_url | stylesheet_tag }}</noscript>{%- else -%}{{ 'nf-footer.css' | asset_url | stylesheet_tag }}{%- endif -%}
+
+{%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+{%- assign nf_form_id = 'newsletter-form-' | append: section.id -%}
+{%- assign nf_has_nl = false -%}
+{%- assign nf_cols = 0 -%}
+{%- assign nf_logo_block = nil -%}
+
+{%- for block in section.blocks -%}
+  {%- if block.type == 'newsletter' -%}
+    {%- assign nf_has_nl = true -%}
+  {%- elsif block.type == 'image' -%}
+    {%- if nf_logo_block == nil and block.settings.image != blank -%}
+      {%- assign nf_logo_block = block -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign nf_cols = nf_cols | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- capture nf_social -%}
+  {%- if section.settings.show_social_media -%}
+    {%- render 'social-media', layout: 'list' -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+<div class="footer nf-footer color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+  {%- comment -%} NF-CHROME-V1: the footer lamp. Styles assets/nf-chrome.css; assets/nf-chrome.js switches it on when the footer scrolls into view. {%- endcomment -%}
+  <div class="nfc-lamp-wrap" aria-hidden="true"><span class="nfc-lamp"><span class="nfc-lamp__cord"></span><span class="nfc-lamp__shade"></span><span class="nfc-lamp__bulb"></span></span><span class="nfc-lamp__cone"></span></div>
+  <div class="nf-footer__inner">
+    {%- if section.blocks.size > 0 -%}
+      <div class="nf-footer__grid{% if nf_has_nl %} nf-footer__grid--nl{% endif %}" style="--nf-cols: {{ nf_cols | at_least: 1 }};">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              <div class="nf-footer__col nf-footer__col--app" {{ block.shopify_attributes }}>
+                {%- render block -%}
+              </div>
+
+            {%- when 'newsletter' -%}
+              {%- capture nf_btn_style -%}
+                {%- if block.settings.button_background != blank and block.settings.button_background.alpha != 0.0 -%}--nf-ft-btn-bg: {{ block.settings.button_background }};{%- endif -%}
+                {%- if block.settings.button_text_color != blank and block.settings.button_text_color.alpha != 0.0 -%}--nf-ft-btn-fg: {{ block.settings.button_text_color }};{%- endif -%}
+              {%- endcapture -%}
+              <div class="nf-footer__col nf-footer__col--newsletter" {{ block.shopify_attributes }}>
+                <div class="nf-footer-nl"{% if nf_btn_style != blank %} style="{{ nf_btn_style }}"{% endif %}>
+                  {%- if block.settings.title != blank -%}
+                    <h2 class="nf-footer-nl__title">{{ block.settings.title }}</h2>
+                  {%- endif -%}
+
+                  {%- if block.settings.content != blank -%}
+                    <div class="nf-footer-nl__text">{{ block.settings.content }}</div>
+                  {%- endif -%}
+
+                  {%- form 'customer', id: nf_form_id, class: 'nf-footer-nl__form' -%}
+                    {%- if form.posted_successfully? -%}
+                      <p class="nf-footer-nl__status nf-footer-nl__status--success" role="status" tabindex="-1">
+                        <svg class="nf-footer-nl__check" aria-hidden="true" focusable="false" viewBox="0 0 16 16" width="16" height="16"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>{{ block.settings.success_message | default: 'You’re in. Your 10% code is on its way to your inbox.' | escape }}</span>
+                      </p>
+                    {%- else -%}
+                      <input type="hidden" name="contact[tags]" value="newsletter">
+                      <div class="nf-footer-nl__row">
+                        <label for="{{ nf_form_id }}-email" class="sr-only">{{ 'general.newsletter.email' | t }}</label>
+                        <input
+                          id="{{ nf_form_id }}-email"
+                          class="nf-footer-nl__input"
+                          type="email"
+                          name="contact[email]"
+                          placeholder="{{ block.settings.placeholder | default: 'Enter your email' | escape }}"
+                          autocomplete="email"
+                          autocapitalize="off"
+                          spellcheck="false"
+                          enterkeyhint="send"
+                          required
+                          {% if form.errors %}aria-invalid="true" aria-describedby="{{ nf_form_id }}-error"{% endif %}
+                        >
+                        <button type="submit" class="nf-footer-nl__button">{{ block.settings.button_label | default: 'Sign up' | escape }}</button>
+                      </div>
+                      {%- if form.errors -%}
+                        <p id="{{ nf_form_id }}-error" class="nf-footer-nl__status nf-footer-nl__status--error" role="alert">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endform -%}
+
+                  {%- if nf_social != blank -%}
+                    <div class="nf-footer-nl__social">{{ nf_social }}</div>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            {%- when 'text' -%}
+              {%- if block.settings.title != blank or block.settings.content != blank -%}
+                <div class="nf-footer__col nf-footer__col--menu nf-footer__col--text" {{ block.shopify_attributes }}>
+                  <details class="nf-footer-accordion" open>
+                    <summary class="nf-footer-accordion__summary">
+                      <p class="h6 nf-footer-accordion__title">{{ block.settings.title }}</p>
+                      <span class="nf-footer-accordion__chevron" aria-hidden="true"></span>
+                    </summary>
+                    {%- if block.settings.content != blank -%}
+                      <div class="prose text-subdued nf-footer-accordion__body nf-footer__prose">
+                        {{- block.settings.content -}}
+                      </div>
+                    {%- endif -%}
+                  </details>
+                </div>
+              {%- endif -%}
+
+            {%- when 'links' -%}
+              {%- assign menu = block.settings.menu -%}
+              {%- if menu != blank and menu.links.size > 0 -%}
+                {%- assign menu_heading = block.settings.menu_title | default: menu.title -%}
+                <div class="nf-footer__col nf-footer__col--menu nf-footer__col--links" {{ block.shopify_attributes }}>
+                  <details class="nf-footer-accordion" open>
+                    <summary class="nf-footer-accordion__summary">
+                      {%- if block.settings.show_menu_title -%}
+                        <p class="h6 nf-footer-accordion__title">{{ menu_heading }}</p>
+                      {%- else -%}
+                        <span class="sr-only">{{ menu_heading }}</span>
+                      {%- endif -%}
+                      <span class="nf-footer-accordion__chevron" aria-hidden="true"></span>
+                    </summary>
+                    <ul class="v-stack gap-2.5 unstyled-list nf-footer-accordion__body" role="list">
+                      {%- for link in menu.links -%}
+                        <li>
+                          <a href="{{ link.url }}" class="link-faded">{{ link.title }}</a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </details>
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} BOTTOM BAR: logo + copyright (+ localization and payment icons when enabled) {%- endcomment -%}
+    <div class="nf-footer__bar">
+      {%- if nf_logo_block -%}
+        {%- assign nf_logo_link = nf_logo_block.settings.link | default: routes.root_url -%}
+        <a href="{{ nf_logo_link }}" class="nf-footer__logo" style="--nf-logo-w: {{ nf_logo_block.settings.image_width }}px;" {{ nf_logo_block.shopify_attributes }}>
+          {{- nf_logo_block.settings.image | image_url: width: 480 | image_tag: alt: shop.name, loading: 'lazy', sizes: '200px', widths: '240, 480', class: 'nf-footer__logo-img' -}}
+        </a>
+      {%- endif -%}
+
+      <p class="nf-footer__brandline">Lighting and decor, shipped free across the USA</p>
+
+      {%- unless nf_has_nl -%}
+        {%- if nf_social != blank -%}
+          <div class="nf-footer-nl__social nf-footer__bar-social">{{ nf_social }}</div>
+        {%- endif -%}
+      {%- endunless -%}
+
+      {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+        {%- assign show_country_selector = true -%}
+      {%- endif -%}
+
+      {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+        {%- assign show_locale_selector = true -%}
+      {%- endif -%}
+
+      {%- if show_country_selector or show_locale_selector -%}
+        <div class="localization-selectors">
+          {%- if show_country_selector -%}
+            {%- render 'localization-selector',
+              type: 'country',
+              placement: 'top-start',
+              show_country_name: section.settings.show_country_name,
+              show_country_flag: section.settings.show_country_flag
+            -%}
+          {%- endif -%}
+
+          {%- if show_locale_selector -%}
+            {%- render 'localization-selector', type: 'locale', placement: 'top-start' -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="payment-methods unstyled-list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{- type | payment_type_svg_tag -}}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <p class="nf-footer__copy">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.
+        {%- if section.settings.show_powered_by_shopify %} {{ powered_by_link }}{%- endif -%}
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('shopify-section-{{ section.id }}');
+      if (!root) { return; }
+      var mq = window.matchMedia('(max-width: 749px)');
+      var accordions = root.querySelectorAll('.nf-footer-accordion');
+
+      /* Mobile: menus start closed. Desktop: always open. Only re-sync when the breakpoint actually changes,
+         so a mobile address bar resize never snaps an open menu shut. */
+      function syncAccordions() {
+        for (var i = 0; i < accordions.length; i++) {
+          if (mq.matches) { accordions[i].removeAttribute('open'); } else { accordions[i].setAttribute('open', ''); }
+        }
+      }
+      syncAccordions();
+      if (mq.addEventListener) { mq.addEventListener('change', syncAccordions); } else if (mq.addListener) { mq.addListener(syncAccordions); }
+
+      root.addEventListener('click', function (event) {
+        var summary = event.target.closest ? event.target.closest('.nf-footer-accordion__summary') : null;
+        if (summary && !mq.matches) { event.preventDefault(); }
+      });
+
+      var formId = {{ nf_form_id | json }};
+      var form = document.getElementById(formId);
+      if (form) {
+        form.addEventListener('submit', function () {
+          /* Same cookie the popup sets when dismissed: someone who signs up here is not shown the auto popup. */
+          try { document.cookie = 'nf_nl_dismissed=1;path=/;max-age=2592000;SameSite=Lax'; } catch (err) {}
+        });
+      }
+
+      /* After a footer signup the page reloads on this form's anchor. Keep the confirmation here in the footer
+         instead of also opening the popup's own success screen on top of it. */
+      if (window.location.hash === '#' + formId) {
+        var calmPopup = function () {
+          var overlay = document.getElementById('nf-nl-overlay');
+          if (overlay) { overlay.classList.remove('open'); }
+          var tab = document.getElementById('nf-nl-tab');
+          if (tab) { tab.classList.add('visible'); }
+        };
+        calmPopup();
+        document.addEventListener('DOMContentLoaded', calmPopup);
+        window.addEventListener('load', calmPopup);
+        var status = root.querySelector('.nf-footer-nl__status');
+        if (status && status.focus) {
+          try { status.focus({ preventScroll: true }); } catch (err) {}
+        }
+      }
+    })();
+  </script>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "class": "shopify-section--footer",
+  "tag": "footer",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "checkbox",
+      "id": "separate_section_with_border",
+      "label": "t:global.section.separate_section_with_border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_media",
+      "label": "t:sections.footer.show_social_media",
+      "info": "t:sections.footer.show_social_media_info",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "t:sections.footer.show_payment_icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_powered_by_shopify",
+      "label": "t:sections.footer.show_powered_by_shopify",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:global.localization.country_region_selector_category",
+      "info": "t:global.localization.country_region_selector_category_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "t:global.localization.show_country_region_selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_name",
+      "label": "t:global.localization.show_country_name",
+      "default": true,
+      "visible_if": "{{ section.settings.show_country_selector }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_flag",
+      "label": "t:global.localization.show_country_flag",
+      "default": true,
+      "visible_if": "{{ section.settings.show_country_selector }}"
+    },
+    {
+      "type": "header",
+      "content": "t:global.localization.language_selector_category",
+      "info": "t:global.localization.language_selector_category_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "t:global.localization.show_locale_selector",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "image",
+      "name": "t:sections.footer.blocks.image.name",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "The logo shows centered in the footer bottom bar, above the copyright line."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:global.image.image",
+          "info": "t:sections.footer.blocks.image.image_size_recommendation"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 300,
+          "step": 10,
+          "unit": "px",
+          "label": "t:global.image.width",
+          "default": 150
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:global.text.link"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.footer.blocks.text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "t:global.text.heading",
+          "default": "About our store"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:global.text.content",
+          "default": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.</p>"
+        }
+      ]
+    },
+    {
+      "type": "links",
+      "name": "t:sections.footer.blocks.links.name",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "t:sections.footer.blocks.links.menu",
+          "info": "t:sections.footer.blocks.links.menu_info",
+          "default": "footer"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_menu_title",
+          "label": "t:sections.footer.blocks.links.show_menu_title",
+          "default": true
+        },
+        {
+          "type": "inline_richtext",
+          "id": "menu_title",
+          "label": "t:sections.footer.blocks.links.menu_title",
+          "info": "t:sections.footer.blocks.links.menu_title_info",
+          "visible_if": "{{ block.settings.show_menu_title }}"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "t:sections.footer.blocks.newsletter.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.footer.blocks.newsletter.newsletter_info"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "t:global.text.heading",
+          "default": "Join our newsletter"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:global.text.content",
+          "default": "<p>Sign up to our newsletter and receive 10% off your first order.</p>"
+        },
+        {
+          "type": "text",
+          "id": "placeholder",
+          "label": "Email field placeholder",
+          "default": "Enter your email"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Sign up"
+        },
+        {
+          "type": "text",
+          "id": "success_message",
+          "label": "Message after signing up",
+          "info": "Do not put the discount code here. The welcome email sends it.",
+          "default": "You’re in. Your 10% code is on its way to your inbox."
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "t:global.colors.button_background"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "t:global.colors.button_text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

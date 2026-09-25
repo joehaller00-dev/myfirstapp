@@ -1,0 +1,194 @@
+{%- comment -%}
+  This snippet structures the micro-data using JSON-LD specification. Starting from Prestige 10, we are using
+  the structured_data built-in filter to ensure that Shopify can keep it up to date without requiring theme upgrade. If
+  you believe some information for products are missing, please reach Shopify support directly, as it is no longer
+  managed at the theme level.
+{%- endcomment -%}
+
+{%- if request.page_type == 'product' -%}
+  {%- comment -%} NF-ACC-V1 (2026-09-13): a product with accessory variants (custom.accessory_variant_ids: bulb, cord, glass,
+    oil set) gets the same ProductGroup markup as Shopify's structured_data filter minus the accessory variants, so rich
+    results never quote the fixture at an accessory price. A ?variant= URL that names an accessory keeps Shopify's full
+    output, so Google can still verify that accessory's own offer. Every other product is unchanged. {%- endcomment -%}
+  {%- liquid
+    assign nf_accids = ''
+    if product.metafields.custom.accessory_variant_ids != blank
+      assign nf_accids = product.metafields.custom.accessory_variant_ids.value | map: 'id' | join: ',' | prepend: ',' | append: ','
+    endif
+    assign nf_ld_own = false
+    if nf_accids != ''
+      assign nf_ld_own = true
+      if product.selected_variant != blank
+        assign nf_akey = ',' | append: product.selected_variant.id | append: ','
+        if nf_accids contains nf_akey
+          assign nf_ld_own = false
+        endif
+      endif
+    endif
+  -%}
+  {%- if nf_ld_own -%}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@id": {{ product.url | append: '#product' | json }},
+      "@type": "ProductGroup",
+      "brand": {"@type": "Brand", "name": {{ product.vendor | json }}},
+      {%- if product.category != blank %}
+      "category": {{ product.category.name | json }},
+      {%- endif %}
+      "description": {{ product.description | strip_html | strip | json }},
+      "hasVariant": [
+        {%- assign nf_ld_sep = '' -%}
+        {%- for nf_ldv in product.variants -%}
+          {%- assign nf_akey = ',' | append: nf_ldv.id | append: ',' -%}
+          {%- if nf_accids contains nf_akey -%}{%- continue -%}{%- endif -%}
+          {%- assign nf_ld_img = nf_ldv.featured_image | default: product.featured_image -%}
+          {{ nf_ld_sep }}{
+            "@id": {{ nf_ldv.url | append: '#variant' | json }},
+            "@type": "Product",
+            {%- if nf_ld_img != blank %}
+            "image": {{ nf_ld_img | image_url: width: 1920 | prepend: 'https:' | json }},
+            {%- endif %}
+            "name": {{ product.title | append: ' - ' | append: nf_ldv.title | json }},
+            "offers": {
+              "@id": {{ nf_ldv.url | append: '#offer' | json }},
+              "@type": "Offer",
+              "availability": "http://schema.org/{% if nf_ldv.available %}InStock{% else %}OutOfStock{% endif %}",
+              "price": {{ nf_ldv.price | money_without_currency | remove: ',' | json }},
+              "priceCurrency": {{ cart.currency.iso_code | json }},
+              "url": {{ shop.url | append: nf_ldv.url | json }}
+            }
+            {%- if nf_ldv.sku != blank -%},
+            "sku": {{ nf_ldv.sku | json }}
+            {%- endif %}
+          }
+          {%- assign nf_ld_sep = ',' -%}
+        {%- endfor %}
+      ],
+      "name": {{ product.title | json }},
+      "productGroupID": {{ product.id | append: '' | json }},
+      "url": {{ shop.url | append: product.url | json }}
+    }
+  </script>
+  {%- else -%}
+  <script type="application/ld+json">
+    {{- product | structured_data -}}
+  </script>
+  {%- endif -%}
+{%- elsif request.page_type == 'article' -%}
+  <script type="application/ld+json">
+    {{- article | structured_data -}}
+  </script>
+{%- endif -%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": {{ 'general.home' | t | json }},
+        "item": "{{ shop.url }}"
+      }
+
+      {%- if request.page_type == 'product' -%}
+        {%- if collection -%}
+          ,{
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ collection.title | json }},
+            "item": "{{ shop.url }}{{ collection.url }}"
+          }, {
+            "@type": "ListItem",
+            "position": 3,
+            "name": {{ product.title | json }},
+            "item": "{{ shop.url }}{{ product.url }}"
+          }
+        {%- else -%}
+          ,{
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ product.title | json }},
+            "item": "{{ shop.url }}{{ product.url }}"
+          }
+        {%- endif -%}
+      {%- elsif request.page_type == 'collection' -%}
+          ,{
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ collection.title | json }},
+            "item": "{{ shop.url }}{{ collection.url }}"
+          }
+      {%- elsif request.page_type == 'blog' -%}
+          ,{
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ blog.title | json }},
+            "item": "{{ shop.url }}{{ blog.url }}"
+          }
+      {%- elsif request.page_type == 'article' -%}
+          ,{
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ blog.title | json }},
+            "item": "{{ shop.url }}{{ blog.url }}"
+          }, {
+            "@type": "ListItem",
+            "position": 3,
+            "name": {{ article.title | json }},
+            "item": "{{ shop.url }}{{ article.url }}"
+          }
+      {%- elsif request.page_type == 'page' -%}
+        ,{
+            "@type": "ListItem",
+            "position": 2,
+            "name": {{ page.title | json }},
+            "item": "{{ shop.url }}{{ page.url }}"
+          }
+      {%- endif -%}
+    ]
+  }
+</script>
+
+{%- if request.page_type == 'index' -%}
+  {%- assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' -%}
+
+  <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": {{ shop.name | json }},
+        "url": {{ shop.url | append: page.url | json }},
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {{ potential_action_target | json }},
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": {{ shop.name | json }},
+        {%- if shop.brand.logo -%}
+          "logo": {{ shop.brand.logo | image_url: width: shop.brand.logo.width | prepend: "https:" | json }},
+        {%- endif -%}
+        {%- if shop.brand.short_description -%}
+          "description": {{ shop.brand.short_description | json }},
+        {%- endif -%}
+        {%- if shop.brand.slogan -%}
+          "slogan": {{ shop.brand.slogan | json }},
+        {%- endif -%}
+        {%- if shop.brand.metafields.social_links.size > 0 -%}
+          "sameAs": [
+            {%- for social_link in shop.brand.metafields.social_links -%}
+              {{- social_link.last.value | json -}}{%- unless forloop.last -%},{%- endunless -%}
+            {%- endfor -%}
+          ],
+        {%- endif -%}
+        "url": {{ shop.url | append: page.url | json }}
+      }
+    ]
+  </script>
+{%- endif -%}

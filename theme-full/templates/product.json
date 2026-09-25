@@ -1,0 +1,281 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "text_RtYktp": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "variant_image_show_underline": false,
+            "size_chart_page": ""
+          }
+        },
+        "complementary_products": {
+          "type": "complementary_products",
+          "settings": {
+            "title": "Pairs well with",
+            "products_count": 2,
+            "show_below_gallery": true,
+            "stack_products": false,
+            "show_quick_buy": true
+          }
+        },
+        "heading_special": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "acc_dimensions": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "",
+            "title": "Dimensions",
+            "content": "",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "acc_materials": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "",
+            "title": "Materials",
+            "content": "",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "acc_care": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "",
+            "title": "Care Information",
+            "content": "",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "acc_additional": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "",
+            "title": "Additional Details",
+            "content": "",
+            "liquid": "",
+            "page": ""
+          }
+        },
+        "acc_shipping_returns": {
+          "type": "accordion",
+          "settings": {
+            "show_below_gallery": false,
+            "icon": "",
+            "title": "Shipping & Returns",
+            "content": "",
+            "liquid": "",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "separator",
+        "heading_special",
+        "text_RtYktp",
+        "acc_dimensions",
+        "acc_materials",
+        "acc_care",
+        "acc_additional",
+        "acc_shipping_returns",
+        "complementary_products"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "allow_transparent_header": false,
+        "transparent_header_use_primary_colors": false,
+        "container_size": "lg",
+        "product_info_size": 35,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": false,
+        "desktop_media_layout": "grid",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "dots",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "featured_collections_QcdbcQ": {
+      "type": "related-products",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 10,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 5,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "You May Also Like"
+      }
+    },
+    "text_with_icons_Wat3Cm": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_zUpXP3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "icon_width": 40,
+            "mobile_icon_width": 24,
+            "title": "<strong>Free shipping in the USA<\/strong>",
+            "content": "<p>Delivery times in our Shipping Policy<\/p>"
+          }
+        },
+        "item_j9qdGL": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-return",
+            "icon_width": 40,
+            "mobile_icon_width": 24,
+            "title": "<strong>Easy 30 day Returns<\/strong>",
+            "content": "<p>Quick and easy returns with no hassle.<\/p>"
+          }
+        },
+        "item_fMtzwz": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-award-gift",
+            "icon_width": 40,
+            "mobile_icon_width": 24,
+            "title": "<strong>Secure Payments<\/strong>",
+            "content": "<p>Encrypted and safe checkout<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_zUpXP3",
+        "item_j9qdGL",
+        "item_fMtzwz"
+      ],
+      "name": "t:sections.text_with_icons.presets.text_with_icons.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "stack_on_mobile": true,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    },
+    "image_with_text_overlay_7UiPzb": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_bestsellers": {
+          "type": "heading",
+          "settings": {
+            "text": "Best Sellers for a Reason",
+            "heading_tag": "h2"
+          }
+        },
+        "button_bestsellers": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "text": "Shop Best Sellers",
+            "url": "\/collections\/best-sellers",
+            "background": "#111111",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "heading_bestsellers",
+        "button_bestsellers"
+      ],
+      "custom_css": [],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "image_size": "lg",
+        "image": "",
+        "mobile_image": "",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": false,
+        "content_width": "md",
+        "mobile_text_position": "place-self-start text-start",
+        "desktop_text_position": "sm:place-self-start sm:text-start",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured_collections_QcdbcQ",
+    "image_with_text_overlay_7UiPzb",
+    "text_with_icons_Wat3Cm"
+  ]
+}

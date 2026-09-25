@@ -1,0 +1,327 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Homes",
+        "eyebrow": "Home lighting projects",
+        "heading": "Lighting a whole home, all in one go",
+        "text": "Building, renovating or furnishing several rooms at once? Send us the list and we will help you choose fixtures that work together, then order everything in one place.",
+        "image_file": "nf-pro-homes.jpg",
+        "image_alt": "Lighting a whole home, all in one go",
+        "fallback_collection": "home-project-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=home-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Home Project Lighting",
+        "link_url": "/collections/home-project-lighting"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "One home, one thread of light",
+        "image_file": "nf-pro3-home-approach-1b.png",
+        "image_alt": "Cozy living room corner at night with a glowing table lamp, a candle and books",
+        "fallback_collection": "pendants",
+        "text": "<p>The homes that feel best at night are the ones where every room was lit with the same care. We help you plan room by room while keeping the whole house in one family of finishes and color.</p>",
+        "bullets": "Plan three layers: Overhead light for the room, task light where you cook, read or get ready, and a lamp or sconce for evenings.\nStay warm: Light around 2700K to 3000K in living spaces and bedrooms keeps the whole home consistent and relaxing.\nSize it right: We help you choose chandelier and pendant sizes for each room, so nothing looks lost or crowded.\nRepeat a finish: Carry one metal or wood tone through the house for a calm, connected feel.\nThink about switches: Dimmers in living and dining rooms let one fixture suit dinner parties and quiet nights.",
+        "spaces_label": "Rooms we light",
+        "spaces": "Kitchens and islands\nDining rooms\nLiving rooms\nBedrooms\nBathrooms\nStairs and hallways\nEntries"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Home Project Lighting",
+        "link_url": "/collections/home-project-lighting"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Chandeliers",
+            "collection": "chandeliers",
+            "text": "For dining rooms, entries and bedrooms that deserve a centerpiece.",
+            "shop_label": "Shop all chandeliers",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Pendants",
+            "collection": "pendants",
+            "text": "Over islands, tables and bedside tables.",
+            "shop_label": "Shop all pendants",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Flush mount",
+            "collection": "flush-mount-lighting",
+            "text": "Clean ceiling light for hallways, bedrooms and closets.",
+            "shop_label": "Shop flush mount lights",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "Wall sconces",
+            "collection": "wall-sconces",
+            "text": "Soft light for stairs, beside beds and either side of a mirror.",
+            "shop_label": "Shop all wall sconces",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Vanity lights",
+            "collection": "vanity-lighting",
+            "text": "Even light for the bathroom mirror.",
+            "shop_label": "Shop vanity lights",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_family_kitchen": {
+          "type": "concept",
+          "settings": {
+            "slug": "family-kitchen",
+            "number": "06",
+            "title": "Family Kitchen",
+            "category": "homes",
+            "space": "Open plan family kitchen",
+            "summary": "A busy family kitchen with bright light for cooking and a softer glow for long dinners.",
+            "image_file": "nf-pro3-home-concepts-1.png",
+            "fallback_collection": "pendants"
+          }
+        },
+        "c_garden_courtyard": {
+          "type": "concept",
+          "settings": {
+            "slug": "garden-courtyard",
+            "number": "07",
+            "title": "Garden Courtyard",
+            "category": "outdoor",
+            "space": "Walled garden courtyard",
+            "summary": "A walled courtyard garden with gentle paths of light and a glowing seating corner.",
+            "image_file": "nf-pro3-home-concepts-3.webp",
+            "fallback_collection": "path-lights"
+          }
+        },
+        "c_guest_suite": {
+          "type": "concept",
+          "settings": {
+            "slug": "guest-suite",
+            "number": "08",
+            "title": "Guest Suite",
+            "category": "hospitality",
+            "space": "Hotel guest suite",
+            "summary": "A hotel suite with light at every place a guest actually needs it.",
+            "image_file": "nf-pro3-home-concepts-2.jpg",
+            "fallback_collection": "reading-wall-lamps"
+          }
+        }
+      },
+      "block_order": [
+        "c_family_kitchen",
+        "c_guest_suite",
+        "c_garden_courtyard"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Working through a whole house?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=home-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Can you help me choose sizes for each room?",
+            "a": "<p>Yes. Send the room sizes, ceiling heights and table or island lengths, and we will suggest sizes and hanging heights that fit. Our <a href=\"/pages/ideas-and-guides\">lighting guides</a> cover the basics too.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building. Larger quantities get bulk pricing.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q3"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how home lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=home-lighting-projects",
+        "btn2_label": "Shop Home Project Lighting",
+        "btn2_url": "/collections/home-project-lighting",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Dining Room",
+            "image_file": "nf-blog-chandelier-over-dining-table.png",
+            "alt": "Dining Room lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Living Room",
+            "image_file": "nf-blog-layered-living-room.png",
+            "alt": "Living Room lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Kitchen Pendants",
+            "image_file": "nf-ref-kitchen-pendants.png",
+            "alt": "Kitchen Pendants lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Entry Hall",
+            "image_file": "nf-story-cover-ceiling-light.jpg",
+            "alt": "Entry Hall lit in the evening, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Stairwell",
+            "image_file": "nf-pro3-home-ref-5.jpg",
+            "alt": "Stairwell inspiration photo, lit in the evening"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Bedroom",
+            "image_file": "nf-ref-bedroom-sconces.png",
+            "alt": "Bedroom lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Bath Vanity",
+            "image_file": "nf-ref-bath-vanity.png",
+            "alt": "Bath Vanity lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Reading Nook",
+            "image_file": "nf-blog-reading-nook-floor-lamp.png",
+            "alt": "Reading Nook lit in the evening, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band",
+    "faq"
+  ]
+}

@@ -1,0 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "nf-catalogs-list",
+      "blocks": {
+        "lighting_2026": {
+          "type": "catalog",
+          "settings": {
+            "catalog_page": "lighting-catalog",
+            "title": "2026 Lighting Catalog",
+            "link_label": "View the catalog"
+          }
+        }
+      },
+      "block_order": [
+        "lighting_2026"
+      ],
+      "settings": {
+        "heading": "2026 Nora Furnish Lighting Catalog",
+        "intro": "Browse the full collection page by page. Every page links to the products inside, with live prices."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

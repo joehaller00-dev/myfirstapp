@@ -1,0 +1,82 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "image_Y6Gnbb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/e0cf0a7c-0740-403b-9bd3-70fc7e7f6dc9.png",
+            "image_width": 170,
+            "link": ""
+          }
+        },
+        "links": {
+          "type": "links",
+          "settings": {
+            "menu": "footer",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "links_yc3i3c": {
+          "type": "links",
+          "settings": {
+            "menu": "info",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "text_xdMafP": {
+          "type": "text",
+          "settings": {
+            "title": "Contact Us",
+            "content": "<p><strong>Store Name:<\/strong> Nora Furnish<br\/><\/p><p><strong>Store Email:<\/strong> <a href=\"mailto:info@NoraFurnish.com\" title=\"mailto:info@NoraFurnish.com\">info@norafurnish.com<\/a><br\/><\/p><p><br\/><strong>Customer Service Hours:<\/strong> Monday to Friday, 9:00 AM to 5:00 PM (CST)<\/p><p>We aim to respond to all email inquiries within 1 to 2 business days.<\/p>"
+          }
+        },
+        "newsletter_nf": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Join our newsletter",
+            "content": "<p>Sign up to our newsletter and receive 10% off your first order.<\/p>",
+            "placeholder": "Enter your email",
+            "button_label": "Sign up",
+            "success_message": "You’re in. Your 10% code is on its way to your inbox."
+          }
+        }
+      },
+      "block_order": [
+        "newsletter_nf",
+        "links",
+        "links_yc3i3c",
+        "text_xdMafP",
+        "image_Y6Gnbb"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "show_social_media": true,
+        "show_payment_icons": false,
+        "show_powered_by_shopify": false,
+        "show_country_selector": false,
+        "show_country_name": false,
+        "show_country_flag": false,
+        "show_locale_selector": false
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

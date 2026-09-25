@@ -1,0 +1,96 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_EeBNAg": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_jGBACr": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>Frequently Asked Questions (FAQ)<\/strong>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_3xQ8rm": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Thank you for visiting <strong>Nora Furnish<\/strong>. Below you’ll find answers to common questions about ordering, shipping, returns, and more. If you need additional help, our support team is happy to assist.<\/p><h3>1. What are your delivery timeframes?<\/h3><p>Orders are processed and delivered according to the following schedule:<\/p><ul><li><strong>Order processing (handling):<\/strong> 1 to 2 business days<br\/><\/li><li><strong>Shipping (transit):<\/strong> 5 to 7 business days<br\/><\/li><li><strong>Total estimated delivery:<\/strong> 6 to 9 business days<br\/><\/li><\/ul><p>For complete shipping details, please review our <a href=\"https:\/\/norafurnish.com\/policies\/shipping-policy\" title=\"https:\/\/norafurnish.com\/policies\/shipping-policy\">Shipping Policy<\/a>.<\/p><h3>2. Is shipping free?<\/h3><p>Yes. We provide <strong>free shipping on all orders within the United States<\/strong>. Additional information is available in our <a href=\"https:\/\/norafurnish.com\/policies\/shipping-policy\" title=\"https:\/\/norafurnish.com\/policies\/shipping-policy\">Shipping Policy<\/a>.<\/p><h3>3. Where is Nora Furnish located?<\/h3><p>Nora Furnish is a U.S.-based online retailer offering thoughtfully curated, high-quality products. At this time, we ship exclusively within the United States.<\/p><h3>4. What happens if my item arrives damaged or defective?<\/h3><p>If you receive a faulty or damaged product, we will send a replacement at no additional charge. Please contact us and return the item within <strong>30 days<\/strong> of delivery. Full details are outlined in our <a href=\"https:\/\/norafurnish.com\/policies\/refund-policy\" title=\"https:\/\/norafurnish.com\/policies\/refund-policy\">Return Policy<\/a>.<\/p><h3>5. Can I cancel my order after submitting it?<\/h3><p>Yes. Orders may be canceled within <strong>24 hours<\/strong> of being placed. To request a cancellation, please contact our customer support team as soon as possible within that timeframe.<\/p><h3>6. How does your return process work?<\/h3><p>We aim to keep returns simple and stress-free. For eligibility requirements and step‑by‑step instructions, please refer to our <a href=\"https:\/\/norafurnish.com\/policies\/refund-policy\" title=\"https:\/\/norafurnish.com\/policies\/refund-policy\">Return Policy<\/a> page.<\/p><h3>7. When should I expect my refund?<\/h3><p>After we receive and inspect your returned item, your refund will be issued. Most refunds are reflected on the original payment method within <strong>7 business days<\/strong>, depending on your financial institution or payment provider. Please see our <a href=\"https:\/\/norafurnish.com\/policies\/refund-policy\" title=\"https:\/\/norafurnish.com\/policies\/refund-policy\">Refund Policy<\/a> for more information.<\/p><h3>8. Do your products include a warranty?<\/h3><p>Yes. All items purchased from Nora Furnish come with a <strong>30-day warranty<\/strong>. Additional warranty terms can be found in our <a href=\"https:\/\/norafurnish.com\/policies\/refund-policy\" title=\"https:\/\/norafurnish.com\/policies\/refund-policy\">Return Policy<\/a>.<\/p><h3>9. How do I get in touch with customer support?<\/h3><p>You can contact us through our website’s Contact Us page or by emailing <a href=\"mailto:info@norafurnish.com\" title=\"mailto:info@norafurnish.com\"><strong>info@norafurnish.com<\/strong><\/a><\/p><h3>10. Do you offer international shipping?<\/h3><p>Currently, we ship only within the United States.<\/p><h3>11. Are bulk purchases available?<\/h3><p>Yes, we accommodate bulk orders for businesses and organizations. Please reach out to our <a href=\"https:\/\/norafurnish.com\/pages\/contact\" title=\"https:\/\/norafurnish.com\/pages\/contact\">support team<\/a> for assistance and details.<\/p><h3>12. How do exchanges work?<\/h3><p>For information about product exchanges, including eligibility and procedures, please consult our <a href=\"https:\/\/norafurnish.com\/policies\/refund-policy\" title=\"https:\/\/norafurnish.com\/policies\/refund-policy\">Return Policy<\/a>.<\/p><h3>13. How can I track my purchase?<\/h3><p>Once your order has shipped, you can monitor its progress through the <a href=\"https:\/\/norafurnish.com\/apps\/trackyourorder\" title=\"https:\/\/norafurnish.com\/apps\/trackyourorder\">Track Order page<\/a> on our website.<\/p><h2>Contact Details<\/h2><p><strong>Business Name:<\/strong> Nora Furnish<br\/><strong><br\/>Email:<\/strong> <a href=\"mailto:info@norafurnish.com\" title=\"mailto:info@norafurnish.com\">info@norafurnish.com<\/a><br\/><strong><br\/>Customer Support Hours:<\/strong> Monday through Friday, 9:00 AM to 5:00 PM (CST)<\/p><p>We aim to respond to all inquiries within 1 to 2 business days.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_jGBACr",
+        "richtext_3xQ8rm"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "image_with_text_overlay_DYm7Nb": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "heading_NRa7KR": {
+          "type": "heading",
+          "settings": {
+            "text": "Comfort, Thoughtfully Designed",
+            "heading_tag": "h4"
+          }
+        },
+        "richtext_TU7XNJ": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p> Thoughtfully crafted pieces that bring warmth, depth, and character into your home.<br\/>Designed to make every space feel intentional and inviting.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_NRa7KR",
+        "richtext_TU7XNJ"
+      ],
+      "custom_css": [
+        "@media (min-width: 750px) {& {--content-over-media-height: clamp(15rem, 65vw, 25rem); }}"
+      ],
+      "name": "t:sections.image_with_text_overlay.presets.image_with_text_overlay.name",
+      "settings": {
+        "color_scheme": "",
+        "image_size": "xs",
+        "image": "shopify:\/\/shop_images\/banner_coold.jpg",
+        "allow_transparent_header": false,
+        "reveal_on_scroll": true,
+        "remove_vertical_spacing": true,
+        "content_width": "md",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    }
+  },
+  "order": [
+    "rich_text_EeBNAg",
+    "main",
+    "image_with_text_overlay_DYm7Nb"
+  ]
+}

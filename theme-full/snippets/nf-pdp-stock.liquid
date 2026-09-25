@@ -1,0 +1,13 @@
+{%- comment -%}
+  NF-PDP3-V2 (2026-09-25) green "In stock" line under the options (owner: like Baskoraa), plus the variant data the
+  product page scripts share (assets/nf-pdp3.js: stock line, Bundle & Save prices and per item option dropdowns).
+  "In stock" means the selected option can be ordered right now; otherwise it reads "Sold out".
+{%- endcomment -%}
+{%- assign nf_sv = product.selected_or_first_available_variant -%}
+<p class="nf-stock{% unless nf_sv.available %} is-out{% endunless %}" data-nf-stock>
+  <span class="nf-stock__dot" aria-hidden="true"></span>
+  <span data-nf-stock-t>{% if nf_sv.available %}In stock{% else %}Sold out{% endif %}</span>
+</p>
+<script type="application/json" data-nf3-variants>
+  [{%- for v in product.variants -%}{"id":{{ v.id }},"price":{{ v.price }},"a":{{ v.available | json }},"t":{{ v.title | json }},"img":{{ v.featured_media | default: product.featured_media | image_url: width: 160 | json }}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}]
+</script>

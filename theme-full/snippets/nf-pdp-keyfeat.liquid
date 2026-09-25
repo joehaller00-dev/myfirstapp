@@ -1,0 +1,11 @@
+{%- comment -%}
+  NF-PDP3-V1 (2026-09-25) "Key Features" accordion body: the product's highlights (custom.highlights, json array of
+  short strings) as a tick list, then the "Why this is special" text that used to sit open in the buy box.
+{%- endcomment -%}
+{%- assign nf_hl = product.metafields.custom.highlights.value -%}
+{%- if nf_hl != blank and nf_hl.size > 0 -%}
+  <ul class="nf-kf">
+    {%- for h in nf_hl limit: 5 -%}<li>{{ h | escape }}</li>{%- endfor -%}
+  </ul>
+{%- endif -%}
+{%- render 'nf-pdp-why', product: product -%}

@@ -1,0 +1,186 @@
+/* NF-DUSK-V1 (2026-09-12) homepage day to night slider. White ground, no cream, no eyebrow line. */
+.nfdk {
+  --dk-ink: #1c1c1c;
+  --dk-ink-2: #5e5e5e;
+  --dk-line: #e6e6e6;
+  --dk-head: var(--heading-font-family, "Roboto Serif", Georgia, serif);
+  --dk-ui: var(--text-font-family, Montserrat, -apple-system, "Segoe UI", sans-serif);
+  --dk-pad: clamp(20px, 3.3vw, 48px);
+  --dk-r: 18px;
+  --dk-ease: cubic-bezier(.22, .61, .36, 1);
+  --dk-pos: 16%;
+  --dk-opx: 55%;
+  position: relative;
+  padding: clamp(40px, 4.4vw, 64px) 0 clamp(40px, 4.4vw, 64px);
+  background: #fff;
+  color: var(--dk-ink);
+}
+.nfdk--rule { border-top: 1px solid var(--dk-line); }
+.nfdk__wrap { max-width: 1680px; margin: 0 auto; padding: 0 var(--dk-pad); }
+
+/* header */
+.nfdk__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(18px, 2vw, 28px); }
+.nfdk__intro { max-width: 680px; }
+.nfdk__eyebrow { margin: 0 0 12px; font: 500 11px/1.2 var(--dk-ui); letter-spacing: .2em; text-transform: uppercase; color: #9a7a45; }
+.nfdk__eyebrow::before { content: none !important; }
+.nfdk__title { margin: 0; font-family: var(--dk-head); font-weight: 300; font-style: normal; font-size: clamp(30px, 3vw, 46px); line-height: 1.1; letter-spacing: .005em; text-transform: none; color: var(--dk-ink); text-wrap: balance; }
+.nfdk__sub { margin: 12px 0 0; font: 400 15px/1.6 var(--dk-ui); letter-spacing: .01em; color: var(--dk-ink-2); }
+.nfdk__cta {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px;
+  border-radius: 999px; background: var(--dk-ink); color: #fff; text-decoration: none;
+  font: 500 12.5px/1 var(--dk-ui); letter-spacing: .14em; text-transform: uppercase;
+  transition: background .3s ease, transform .3s var(--dk-ease);
+}
+.nfdk__cta:hover { background: #000; }
+.nfdk__cta:hover svg { transform: translateX(3px); }
+.nfdk__cta svg { transition: transform .3s var(--dk-ease); }
+.nfdk__cta:focus-visible { outline: 3px solid #b8914f; outline-offset: 3px; }
+
+/* stage */
+.nfdk__stage {
+  position: relative; overflow: hidden; isolation: isolate; border-radius: var(--dk-r);
+  aspect-ratio: 16 / 9; background: #e9e9e9;
+  touch-action: pan-y; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
+  cursor: ew-resize;
+}
+@media (min-width: 1100px) { .nfdk__stage { aspect-ratio: 2 / 1; } }
+.nfdk__img {
+  position: absolute; inset: 0; display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 52%; pointer-events: none; -webkit-user-drag: none;
+}
+.nfdk__night {
+  position: absolute; inset: 0; z-index: 1;
+  clip-path: inset(0 calc(100% - var(--dk-pos)) 0 0);
+  -webkit-clip-path: inset(0 calc(100% - var(--dk-pos)) 0 0);
+}
+.nfdk.is-dragging .nfdk__night { will-change: clip-path; }
+
+/* handle */
+.nfdk__handle { position: absolute; top: 0; bottom: 0; left: var(--dk-pos); z-index: 4; width: 0; outline: none; }
+.nfdk__line {
+  position: absolute; top: 0; bottom: 0; left: -1px; width: 2px; background: rgba(255, 255, 255, .95);
+  box-shadow: 0 0 14px rgba(255, 196, 120, .75), 0 0 2px rgba(0, 0, 0, .25);
+}
+.nfdk__knob {
+  position: absolute; top: 50%; left: 0; width: 54px; height: 54px; transform: translate(-50%, -50%);
+  display: grid; place-items: center; border-radius: 50%; background: #fff; color: var(--dk-ink);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, .28), 0 0 0 6px rgba(255, 255, 255, .28);
+  transition: transform .25s var(--dk-ease), box-shadow .25s ease;
+}
+.nfdk__stage:hover .nfdk__knob, .nfdk.is-dragging .nfdk__knob { transform: translate(-50%, -50%) scale(1.06); }
+.nfdk__handle:focus-visible .nfdk__knob { box-shadow: 0 8px 26px rgba(0, 0, 0, .28), 0 0 0 4px #fff, 0 0 0 7px #b8914f; }
+.nfdk__label {
+  position: absolute; top: 50%; left: 40px; transform: translateY(-50%);
+  padding: 10px 16px; border-radius: 999px; white-space: nowrap; pointer-events: none;
+  background: rgba(28, 28, 28, .78); color: #fff; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  font: 500 11.5px/1 var(--dk-ui); letter-spacing: .14em; text-transform: uppercase;
+  transition: opacity .3s ease;
+}
+.nfdk--flip .nfdk__label { left: auto; right: 40px; }
+.nfdk.is-dragging .nfdk__label { opacity: .92; }
+
+/* hotspots (lit side only) */
+.nfdk__spot {
+  position: absolute; left: var(--x); top: var(--y); z-index: 3; width: 44px; height: 44px; margin: -22px 0 0 -22px;
+  display: grid; place-items: center; color: var(--dk-ink); text-decoration: none; cursor: pointer;
+  opacity: 0; transform: scale(.55); pointer-events: none;
+  transition: opacity .35s ease, transform .45s var(--dk-ease);
+}
+.nfdk__spot.is-lit { opacity: 1; transform: none; pointer-events: auto; }
+.nfdk__dot {
+  position: relative; width: 16px; height: 16px; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, .38), 0 3px 10px rgba(0, 0, 0, .35);
+}
+.nfdk__dot::after {
+  content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .85);
+  animation: nfdk-ring 2.2s ease-out infinite;
+}
+@keyframes nfdk-ring { 0% { transform: scale(.7); opacity: .9; } 80%, 100% { transform: scale(2.1); opacity: 0; } }
+.nfdk__card {
+  position: absolute; left: 34px; top: 50%; transform: translate(-6px, -50%); min-width: 190px; max-width: 250px;
+  display: grid; gap: 3px; padding: 11px 15px 12px; border-radius: 12px; background: #fff;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .22); opacity: 0; pointer-events: none;
+  transition: opacity .25s ease, transform .3s var(--dk-ease);
+}
+.nfdk__spot--left .nfdk__card { left: auto; right: 34px; transform: translate(6px, -50%); }
+.nfdk__spot--up .nfdk__card { top: auto; bottom: 30px; transform: translate(-6px, 0); }
+.nfdk__spot--up.nfdk__spot--left .nfdk__card { transform: translate(6px, 0); }
+.nfdk__spot:hover .nfdk__card, .nfdk__spot:focus-visible .nfdk__card { opacity: 1; transform: translate(0, -50%); }
+.nfdk__spot--up:hover .nfdk__card, .nfdk__spot--up:focus-visible .nfdk__card { transform: none; }
+.nfdk__spot:focus-visible { outline: none; }
+.nfdk__spot:focus-visible .nfdk__dot { box-shadow: 0 0 0 4px #fff, 0 0 0 7px #b8914f; }
+.nfdk__kind { font: 500 10.5px/1.2 var(--dk-ui); letter-spacing: .18em; text-transform: uppercase; color: #9a7a45; }
+.nfdk__name { font-family: var(--dk-head); font-weight: 400; font-size: 15px; line-height: 1.3; color: var(--dk-ink); }
+.nfdk__price { font: 500 13px/1.3 var(--dk-ui); color: var(--dk-ink); }
+
+/* reduced motion: plain toggle */
+.nfdk__toggle { display: none; }
+.nfdk--rm .nfdk__stage { cursor: default; }
+.nfdk--rm .nfdk__handle { display: none; }
+.nfdk--rm .nfdk__night { -webkit-clip-path: none; clip-path: none; opacity: 0; transition: opacity .32s ease; }
+.nfdk--rm.is-on .nfdk__night { opacity: 1; }
+.nfdk--rm .nfdk__dot::after { animation: none; opacity: 0; }
+.nfdk--rm .nfdk__spot, .nfdk--rm .nfdk__card { transition: opacity .2s ease; transform: none !important; }
+.nfdk--rm .nfdk__spot--up .nfdk__card { transform: none; }
+.nfdk--rm .nfdk__card { transform: translateY(-50%) !important; }
+.nfdk--rm .nfdk__spot--up .nfdk__card { transform: none !important; }
+.nfdk--rm .nfdk__toggle {
+  position: absolute; left: 16px; bottom: 16px; z-index: 5; display: inline-flex; align-items: center; gap: 12px;
+  min-height: 48px; padding: 0 20px 0 14px; border: 0; border-radius: 999px; cursor: pointer;
+  background: #fff; color: var(--dk-ink); box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
+  font: 500 12.5px/1 var(--dk-ui); letter-spacing: .12em; text-transform: uppercase;
+}
+.nfdk--rm .nfdk__toggle:focus-visible { outline: 3px solid #b8914f; outline-offset: 3px; }
+.nfdk__switch { position: relative; width: 40px; height: 24px; border-radius: 999px; background: #d4d4d4; transition: background .2s ease; }
+.nfdk__switch span { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); transition: transform .2s ease; }
+.nfdk.is-on .nfdk__switch { background: #b8914f; }
+.nfdk.is-on .nfdk__switch span { transform: translateX(16px); }
+@media (prefers-reduced-motion: reduce) {
+  .nfdk__dot::after { animation: none; opacity: 0; }
+  .nfdk__knob, .nfdk__cta svg { transition: none; }
+}
+
+/* phones and tablets */
+@media (max-width: 999px) {
+  .nfdk__spot .nfdk__card { display: none; }
+}
+@media (max-width: 749px) {
+  .nfdk { padding: 34px 0 36px; }
+  .nfdk__head { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
+  .nfdk__title { font-size: 27px; }
+  .nfdk__sub { font-size: 14px; margin-top: 10px; }
+  .nfdk__cta { min-height: 44px; padding: 0 20px; font-size: 11.5px; }
+  .nfdk__stage { aspect-ratio: 20 / 17; border-radius: 14px; }
+  .nfdk__img { object-position: var(--dk-opx) 50%; }
+  .nfdk__knob { width: 46px; height: 46px; }
+  .nfdk__label { left: 32px; padding: 8px 12px; font-size: 10px; letter-spacing: .12em; }
+  .nfdk--flip .nfdk__label { right: 32px; }
+  .nfdk--rm .nfdk__toggle { left: 12px; bottom: 12px; min-height: 44px; font-size: 11px; }
+}
+
+/* NF-MOBILE-V4 (2026-09-12): phones below 750px. No drag slider: one toggle button ("Turn the lights on" /
+   "Turn the lights off") crossfades day and night on opacity only in about 600ms (nf-dusk.js decodes both photos
+   first). Hotspots fade in once the room is lit. Desktop and tablets keep the slider. */
+@media (max-width: 749px) {
+  .nfdk--ph .nfdk__stage { cursor: default; }
+  .nfdk--ph .nfdk__night { -webkit-clip-path: none; clip-path: none; opacity: 0; transition: opacity .6s cubic-bezier(.4, 0, .2, 1); will-change: opacity; }
+  .nfdk--ph.is-on .nfdk__night { opacity: 1; }
+  .nfdk--ph .nfdk__spot { transition: opacity .3s ease; }
+  .nfdk--ph.is-on .nfdk__spot.is-lit { transition-delay: .38s; }
+  .nfdk--ph .nfdk__toggle {
+    left: 50%; bottom: 14px; transform: translateX(-50%); min-height: 46px; padding: 0 20px 0 12px; gap: 12px;
+    white-space: nowrap; background: rgba(255, 255, 255, .96); color: var(--dk-ink);
+    font: 500 11.5px/1 var(--dk-ui); letter-spacing: .12em; text-transform: uppercase;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .24); touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    transition: background-color .45s ease, color .45s ease, transform .2s var(--dk-ease);
+  }
+  .nfdk--ph .nfdk__toggle:active { transform: translateX(-50%) scale(.97); }
+  .nfdk--ph.is-on .nfdk__toggle { background: rgba(28, 28, 28, .9); color: #fff; }
+  .nfdk--ph .nfdk__switch { width: 38px; height: 22px; background: #cfcfcf; }
+  .nfdk--ph .nfdk__switch span { width: 16px; height: 16px; }
+  .nfdk--ph.is-on .nfdk__switch { background: #b8914f; }
+}
+@media (max-width: 749px) and (prefers-reduced-motion: reduce) {
+  .nfdk--ph .nfdk__night { transition-duration: .3s; }
+  .nfdk--ph .nfdk__toggle { transition: none; }
+}

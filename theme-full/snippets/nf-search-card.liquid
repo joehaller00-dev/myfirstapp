@@ -1,0 +1,34 @@
+{%- comment -%}
+  NF-SEARCH-V2 (2026-09-12) one product card in the Lamplight drop (photo, title, price, stars).
+  Used by sections/nf-search-suggest.liquid for predictive results and for the full search fallback. Param: product.
+{%- endcomment -%}
+{%- liquid
+  assign rating = product.metafields.reviews.rating.value.rating | default: 0 | plus: 0
+  assign rcount = product.metafields.reviews.rating_count.value | default: 0 | plus: 0
+-%}
+<li role="presentation" class="nf-srch-card">
+  <a href="{{ product.url }}" class="nf-srch-card__link" data-nf-srch-opt>
+    <span class="nf-srch-card__media">
+      {%- if product.featured_image -%}
+        {{- product.featured_image | image_url: width: 360 | image_tag: loading: 'lazy', widths: '180,270,360', sizes: '(max-width: 699px) 45vw, 180px', class: 'nf-srch-card__img', alt: '' -}}
+      {%- endif -%}
+    </span>
+    <span class="nf-srch-card__title">{{ product.title | escape }}</span>
+    <span class="nf-srch-card__meta">
+      <span class="nf-srch-card__price">
+        {%- if product.price_varies -%}From {% endif -%}
+        {%- if product.compare_at_price_min > product.price_min -%}
+          <span class="nf-srch-card__sale">{% render 'nf-acc-price', product: product %}</span> <s class="nf-srch-card__was">{{ product.compare_at_price_min | money }}</s>
+        {%- else -%}
+          {%- render 'nf-acc-price', product: product -%}
+        {%- endif -%}
+      </span>
+      {%- if rcount > 0 and rating > 0 -%}
+        <span class="nf-srch-card__stars" aria-label="Rated {{ rating | round: 1 }} out of 5, {{ rcount }} reviews">
+          <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 1.8l2.5 5.3 5.8.7-4.3 4 1.1 5.7L10 14.7l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7z" fill="currentColor"/></svg>
+          {{- rating | round: 1 -}}<span class="nf-srch-card__rc">({{ rcount }})</span>
+        </span>
+      {%- endif -%}
+    </span>
+  </a>
+</li>

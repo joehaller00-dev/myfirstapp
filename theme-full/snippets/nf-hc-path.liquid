@@ -1,0 +1,21 @@
+{%- comment -%}
+  NF-HELP-V1 (2026-09-12): decorative delivery path above the Track123 widget on /apps/trackyourorder (rendered by
+  snippets/nf-hc-layout.liquid). Four stops and a small warm light travelling along the line on a loop. Purely
+  decorative (aria-hidden); the Track123 widget below stays the real status. Reduced motion: no light, no loop.
+{%- endcomment -%}
+{{- 'nf-hc.css' | asset_url | stylesheet_tag -}}
+<div class="nfhc nfhc-path">
+  <div class="nfhc-path__in">
+    <div class="nfhc-path__track" aria-hidden="true">
+      <span class="nfhc-path__line"></span>
+      <span class="nfhc-path__runner"><span class="nfhc-path__light"></span></span>
+      <ol class="nfhc-path__stops">
+        <li class="nfhc-path__stop"><span class="nfhc-path__dot"></span><span class="nfhc-path__lbl">Ordered</span></li>
+        <li class="nfhc-path__stop"><span class="nfhc-path__dot"></span><span class="nfhc-path__lbl">Shipped</span></li>
+        <li class="nfhc-path__stop"><span class="nfhc-path__dot"></span><span class="nfhc-path__lbl">On its way</span></li>
+        <li class="nfhc-path__stop"><span class="nfhc-path__dot"></span><span class="nfhc-path__lbl">Home</span></li>
+      </ol>
+    </div>
+    <p class="nfhc-path__cap">Enter your order number and email below, or the tracking number from your shipping email, to see the latest status.</p>
+  </div>
+</div>

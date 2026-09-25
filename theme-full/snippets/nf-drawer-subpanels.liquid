@@ -1,0 +1,153 @@
+{%- comment -%}
+  NF-MENUS-DEFER (2026-09-14): the phone drawer's sub panels, moved unchanged out of snippets/header-sidebar.liquid so they
+  can be served by sections/nf-menus-deferred.liquid and injected after load by assets/nf-menus.js.
+  Params: menu (the sidebar menu), show_dividers, text_font ('heading' adds the h6 class, as the header setting did).
+{%- endcomment -%}
+{%- assign nf_tb_menu = linklists['top-bar'] -%}
+        {%- for link in menu.links -%}
+          {%- if link.links.size > 0 -%}
+            {%- assign outer_index = forloop.index -%}
+            <div id="header-panel-{{ outer_index }}" class="header-sidebar__sub-panel" hidden>
+              <button
+                type="button"
+                class="header-sidebar__back-button link-faded {% if show_dividers %}is-divided{% endif %} text-with-icon {% if text_font == 'heading' %}h6{% endif %} md:hidden"
+                data-action="close-panel"
+              >
+                {%- render 'icon' with 'chevron-left', width: 12, direction_aware: true -%}
+                {{- link.title -}}
+              </button>
+
+              <ul class="header-sidebar__linklist {% if show_dividers %}divide-y{% endif %} unstyled-list" role="list">
+                {%- for sub_link in link.links -%}
+                  <li>
+                    {%- if sub_link.links.size > 0 -%}
+                      <button
+                        type="button"
+                        class="header-sidebar__linklist-button {% if text_font == 'heading' %}h6{% endif %} nf-panel-btn"
+                        data-target="header-panel-{{ outer_index }}-{{ forloop.index }}"
+                        data-parent="header-panel-{{ outer_index }}"
+                      >
+                        {{- sub_link.title -}}
+                        {%- render 'icon' with 'chevron-right', width: 12, direction_aware: true -%}
+                      </button>
+                    {%- else -%}
+                      <a href="{{ sub_link.url }}" class="header-sidebar__linklist-button {% if text_font == 'heading' %}h6{% endif %}">
+                        {{- sub_link.title -}}
+                      </a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+
+            {%- comment -%}Level 3 panels - one per sub_link that has children{%- endcomment -%}
+            {%- for sub_link in link.links -%}
+              {%- if sub_link.links.size > 0 -%}
+                <div id="header-panel-{{ outer_index }}-{{ forloop.index }}" class="header-sidebar__sub-panel" hidden>
+                  <button
+                    type="button"
+                    class="header-sidebar__back-button link-faded {% if show_dividers %}is-divided{% endif %} text-with-icon {% if text_font == 'heading' %}h6{% endif %} md:hidden nf-back-btn"
+                    data-action="close-panel"
+                  >
+                    {%- render 'icon' with 'chevron-left', width: 12, direction_aware: true -%}
+                    {{- sub_link.title -}}
+                  </button>
+
+                  <ul class="header-sidebar__linklist {% if show_dividers %}divide-y{% endif %} unstyled-list" role="list">
+                    <li>
+                      <a href="{{ sub_link.url }}" class="header-sidebar__linklist-button {% if text_font == 'heading' %}h6{% endif %} nf-all-link">
+                        All {{ sub_link.title }}
+                      </a>
+                    </li>
+                    {%- for sub_sub_link in sub_link.links -%}
+                      <li>
+                        <a href="{{ sub_sub_link.url }}" class="header-sidebar__linklist-button {% if text_font == 'heading' %}h6{% endif %}">
+                          {{- sub_sub_link.title -}}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%} NF-TOPBAR-V1 (2026-09-11): panels for the top bar menu items listed in the main panel. Same markup as the panels above. {%- endcomment -%}
+        {%- comment -%} NF-TOPBAR-V2 (2026-09-11): every link below goes through snippets/nf-tb-url.liquid, so a collection that is not live yet or a page that does not exist is simply left out. {%- endcomment -%}
+        {%- for link in nf_tb_menu.links -%}
+          {%- if link.links.size > 0 -%}
+            {%- assign outer_index = 'tb' | append: forloop.index -%}
+            {%- assign nf_tb_t = link.title | downcase | strip -%}
+            <div id="header-panel-{{ outer_index }}" class="header-sidebar__sub-panel" hidden>
+              <button
+                type="button"
+                class="header-sidebar__back-button link-faded {% if show_dividers %}is-divided{% endif %} text-with-icon {% if text_font == 'heading' %}h6{% endif %} md:hidden"
+                data-action="close-panel"
+              >
+                {%- render 'icon' with 'chevron-left', width: 12, direction_aware: true -%}
+                {{- link.title -}}
+              </button>
+
+              <ul class="header-sidebar__linklist {% if show_dividers %}divide-y{% endif %} unstyled-list" role="list">
+                {%- for sub_link in link.links -%}
+                  {%- capture nf_su -%}{%- if sub_link.links.size > 0 -%}x{%- else -%}{%- render 'nf-tb-url', url: sub_link.url -%}{%- endif -%}{%- endcapture -%}
+                  {%- assign nf_su = nf_su | strip -%}
+                  {%- if nf_su == blank -%}{%- continue -%}{%- endif -%}
+                  <li>
+                    {%- if sub_link.links.size > 0 -%}
+                      <button
+                        type="button"
+                        class="header-sidebar__linklist-button {% if text_font == 'heading' %}h6{% endif %} nf-panel-btn"
+                        data-target="header-panel-{{ outer_index }}-{{ forloop.index }}"
+                        data-parent="header-panel-{{ outer_index }}"
+                      >
+                        {{- sub_link.title -}}
+                        {%- render 'icon' with 'chevron-right', width: 12, direction_aware: true -%}
+                      </button>
+                    {%- else -%}
+                      <a href="{{ nf_su }}" class="header-sidebar__linklist-button {% if text_font == 'heading' %}h6{% endif %}">
+                        {{- sub_link.title -}}
+                      </a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+
+            {%- for sub_link in link.links -%}
+              {%- if sub_link.links.size > 0 -%}
+                <div id="header-panel-{{ outer_index }}-{{ forloop.index }}" class="header-sidebar__sub-panel" hidden>
+                  <button
+                    type="button"
+                    class="header-sidebar__back-button link-faded {% if show_dividers %}is-divided{% endif %} text-with-icon {% if text_font == 'heading' %}h6{% endif %} md:hidden nf-back-btn"
+                    data-action="close-panel"
+                  >
+                    {%- render 'icon' with 'chevron-left', width: 12, direction_aware: true -%}
+                    {{- sub_link.title -}}
+                  </button>
+
+                  <ul class="header-sidebar__linklist {% if show_dividers %}divide-y{% endif %} unstyled-list" role="list">
+                    {%- unless nf_tb_t == 'shop by' -%}
+                    <li>
+                      <a href="{{ sub_link.url }}" class="header-sidebar__linklist-button {% if text_font == 'heading' %}h6{% endif %} nf-all-link">
+                        All {{ sub_link.title }}
+                      </a>
+                    </li>
+                    {%- endunless -%}
+                    {%- for sub_sub_link in sub_link.links -%}
+                      {%- capture nf_ssu -%}{%- render 'nf-tb-url', url: sub_sub_link.url -%}{%- endcapture -%}
+                      {%- assign nf_ssu = nf_ssu | strip -%}
+                      {%- if nf_ssu == blank -%}{%- continue -%}{%- endif -%}
+                      <li>
+                        <a href="{{ nf_ssu }}" class="header-sidebar__linklist-button {% if text_font == 'heading' %}h6{% endif %}">
+                          {{- sub_sub_link.title -}}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endfor -%}

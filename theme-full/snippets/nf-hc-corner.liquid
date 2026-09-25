@@ -1,0 +1,56 @@
+{%- comment -%}
+  NF-HELP-V1 (2026-09-12): the "Help corner" band, three big cards with gold outline buttons.
+  Rendered by sections/nf-hc-corner.liquid on /pages/contact (context 'contact') and by snippets/nf-hc-layout.liquid
+  under the tracking widget on /apps/trackyourorder (context 'track').
+  Facts come from the refund, shipping and contact policies: email only (info@norafurnish.com), Monday to Friday
+  9:00 AM to 5:00 PM (CST), replies within 1 to 2 business days, returns start by email within 30 days of delivery,
+  delivery in about 6 to 9 business days. Never a phone number.
+{%- endcomment -%}
+{%- liquid
+  assign nfc_ctx = context | default: 'contact'
+  if nfc_ctx == 'track'
+    assign nfc_track = '#track123-app'
+    assign nfc_ask = '/pages/contact#nfhc-form'
+  else
+    assign nfc_track = '/apps/trackyourorder'
+    assign nfc_ask = '#nfhc-form'
+  endif
+-%}
+{{- 'nf-hc.css' | asset_url | stylesheet_tag -}}
+<section class="nfhc nfhc-corner nfhc-on-dark" id="nfhc-corner" aria-labelledby="nfhc-corner-h">
+  <div class="nfhc-wrap">
+    <div class="nfhc-corner__head">
+      <div>
+        <p class="nfhc-eyebrow">Help corner</p>
+        <h2 class="nfhc-h2" id="nfhc-corner-h">How can we help?</h2>
+      </div>
+      <div class="nfhc-corner__promise">
+        <p class="nfhc-corner__pr"><strong>We reply within 1 to 2 business days.</strong></p>
+        <p class="nfhc-corner__hours">By email at <a href="mailto:info@norafurnish.com">info@norafurnish.com</a>, Monday to Friday, 9:00 AM to 5:00 PM (CST).</p>
+      </div>
+    </div>
+    <ul class="nfhc-corner__grid" role="list">
+      <li class="nfhc-card">
+        <svg class="nfhc-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 7.6 12 3.2l8.5 4.4v8.8L12 20.8l-8.5-4.4z"/><path d="m3.5 7.6 8.5 4.4 8.5-4.4M12 12v8.8"/><path d="m7.8 5.4 8.4 4.4"/></svg>
+        <h3 class="nfhc-card__t">Track my order</h3>
+        <p class="nfhc-card__x">Enter your order number and email to see where your parcel is. Orders usually arrive within 6 to 9 business days.</p>
+        <div class="nfhc-card__foot"><a class="nfhc-btn nfhc-btn--outline" href="{{ nfc_track }}">Track my order</a></div>
+      </li>
+      <li class="nfhc-card">
+        <svg class="nfhc-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 13.5 4.5 9 9 4.5"/><path d="M4.5 9H15a5 5 0 0 1 0 10h-4.5"/></svg>
+        <h3 class="nfhc-card__t">Start a return</h3>
+        <p class="nfhc-card__x">Email us your order number and the reason for the return, within 30 days of delivery. Please contact us before sending anything back.</p>
+        <div class="nfhc-card__foot">
+          <a class="nfhc-btn nfhc-btn--outline" href="mailto:info@norafurnish.com?subject=Return%20request&amp;body=Order%20number%3A%20%0AReason%20for%20the%20return%3A%20">Start a return</a>
+          <a class="nfhc-card__small" href="/policies/refund-policy">Return policy</a>
+        </div>
+      </li>
+      <li class="nfhc-card">
+        <svg class="nfhc-card__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.5 17.5h5M10.5 20.5h3"/><path d="M12 3a6 6 0 0 0-3.7 10.7c.8.7 1.2 1.5 1.2 2.3h5c0-.8.4-1.6 1.2-2.3A6 6 0 0 0 12 3z"/><path d="M10.6 8.2a1.6 1.6 0 1 1 2.2 1.5c-.5.2-.8.6-.8 1.1v.4"/><path d="M12 12.6h.01"/></svg>
+        <h3 class="nfhc-card__t">Ask a lighting question</h3>
+        <p class="nfhc-card__x">Not sure about size, brightness or installation? Tell us about your room and we will help you choose.</p>
+        <div class="nfhc-card__foot"><a class="nfhc-btn nfhc-btn--outline" href="{{ nfc_ask }}">Ask a lighting question</a></div>
+      </li>
+    </ul>
+  </div>
+</section>

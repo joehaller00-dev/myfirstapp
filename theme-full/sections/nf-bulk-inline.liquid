@@ -1,0 +1,59 @@
+{%- comment -%}
+  NF-BULK-ORDER inline (2026-09-14, owner: the bulk order table belongs under every industry). Sits right under the hero of
+  each industry page (id "bulk-order", the hero's "Start a bulk order" button jumps here). The rows come from
+  sections/nf-bulk-table.liquid for this page (custom.bulk_products) and load when the table nears the screen, so the page
+  itself stays light. Same behaviour and styles as the Bulk Order Form page: assets/nf-bulk-order.js / .css.
+{%- endcomment -%}
+{{ 'nf-bulk-order.css' | asset_url | stylesheet_tag }}
+{%- assign nfbo_name = section.settings.name | default: page.title -%}
+<div class="nfbo nfbo--inline" id="bulk-order" data-nfbo data-nfbo-inline="{{ page.handle }}" data-nfbo-name="{{ nfbo_name | escape }}">
+  <header class="nfbo__head">
+    <h2 class="nfbo__title">Bulk Order Form</h2>
+    <p class="nfbo__lead">Every piece picked for {{ nfbo_name | downcase | escape }} projects, in one list. Enter how many of each you need, then add everything to your cart at once.</p>
+    {%- capture nfbo_ck -%}<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8.2"/><path d="M6.4 10.3l2.4 2.4 4.8-5"/></svg>{%- endcapture -%}
+    <ul class="nfbo__perks" role="list">
+      <li>{{ nfbo_ck }}Buy 2 or more, save 10%</li>
+      <li>{{ nfbo_ck }}No minimum order</li>
+      <li>{{ nfbo_ck }}Free US shipping</li>
+      <li>{{ nfbo_ck }}Delivered in 6 to 9 business days</li>
+    </ul>
+  </header>
+  <section class="nfbo-step" data-nfbo-step2 aria-labelledby="nfbo-s2-{{ section.id }}">
+    <h3 class="nfbo-step__h" id="nfbo-s2-{{ section.id }}"><span class="nfbo-step__n">1</span>Enter how many you need</h3>
+    <div class="nfbo-tools">
+      <label class="nfbo-search">
+        <span class="nfbo-vh">Find a product in this list</span>
+        <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5 17 17"/></svg>
+        <input type="search" placeholder="Find a product in this list" autocomplete="off" data-nfbo-search>
+      </label>
+      <p class="nfbo-hint">Use the plus and minus buttons or type a number. Pick a size or finish in each row.</p>
+    </div>
+    <div class="nfbo-headrow" aria-hidden="true"><span></span><span>Product</span><span>Price each</span><span>How many</span><span class="nfbo-headrow__r">Total</span></div>
+    <div class="nfbo-slot" data-nfbo-slot aria-live="polite"><p class="nfbo-loading">Loading the product list…</p></div>
+    <p class="nfbo-empty" data-nfbo-none hidden>No products match that search.</p>
+    <div class="nfbo-bar" data-nfbo-bar>
+      <div class="nfbo-bar__sum">
+        <span class="nfbo-bar__for"><span class="nfbo-step__n nfbo-step__n--sm">2</span><span>Your <span data-nfbo-for>{{ nfbo_name | escape }}</span> order</span></span>
+        <span class="nfbo-bar__line"><span data-nfbo-count>0 items</span><span class="nfbo-bar__dot" aria-hidden="true">·</span><span data-nfbo-sub>$0.00</span></span>
+        <span class="nfbo-bar__save" data-nfbo-save hidden>10% off comes off automatically at checkout</span>
+      </div>
+      <div class="nfbo-bar__acts">
+        <button type="button" class="nfbo-clear" data-nfbo-clear>Clear all</button>
+        <button type="button" class="nfbo-add" data-nfbo-add disabled>Add all to cart</button>
+      </div>
+      <p class="nfbo-msg" data-nfbo-msg role="alert"></p>
+    </div>
+  </section>
+  <p class="nfbo-help">Need a hand, or more than 999 of one piece? Email <a href="mailto:info@norafurnish.com">info@norafurnish.com</a> and a real person will help.</p>
+</div>
+<script src="{{ 'nf-bulk-order.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "NF bulk order (industry)",
+  "settings": [
+    { "type": "text", "id": "name", "label": "Industry name", "info": "Shown in the intro and the order bar, for example Hospitality" }
+  ],
+  "presets": [{ "name": "NF bulk order (industry)" }]
+}
+{% endschema %}

@@ -1,0 +1,80 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) "The Nora Furnish Standard". TRUE claims only (owner guardrail): materials listed, exact
+  dimensions drawn, email support, free US shipping, 30 day returns, number of designs.
+  No inspections, factories, certifications or phone support. Images: nf-std-materials.png, nf-std-shipping.png, and since 2026-09-14 (owner: blurry and "super AI" images)
+  tall high resolution photos for cards 02 (nf-pro3-hub-who-1b), 03 (nf-pro3-office-approach-1), 05 (nf-pro3-hub-who-6b)
+  and 06 (nf-pro3-hub-custom-1b). Wide photos blurred in these tall cards, so keep portrait sources here.
+{%- endcomment -%}
+{%- comment -%} NF-PDP-V1: with "defer" on, only an empty shell is printed; nf-pdp.js fetches the full section from the
+  product.nf-pdp-below view when it comes near the viewport (keeps the first load light). {%- endcomment -%}
+{%- if section.settings.defer -%}
+{%- comment -%} NF-SPEED-B-0916: shell only, so its CSS loads without blocking render (the full section is fetched later) {%- endcomment -%}
+<link rel="stylesheet" href="{{ 'nf-pdp-below.css' | asset_url }}" media="print" onload="this.media='all'">
+<div class="nf-defer nf-defer--standard" data-nf-defer="nf_pdp_standard" aria-busy="true"></div>
+{%- else -%}
+{{ 'nf-pdp-below.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign cdn = '//cdn.shopify.com/s/files/1/0750/8380/8820/files/'
+  assign pc = shop.products_count | default: 1300
+  assign pc = pc | divided_by: 100 | times: 100
+  assign th = pc | divided_by: 1000
+  assign hu = pc | modulo: 1000 | divided_by: 100
+  if th > 0
+    assign pc_txt = th | append: ',' | append: hu | append: '00'
+  else
+    assign pc_txt = pc
+  endif
+-%}
+<section class="nf-std nf-lz" data-nf-std aria-labelledby="nf-std-h-{{ section.id }}">
+  <div class="nf-std__in">
+    <div class="nf-std__intro nf-rv">
+      <p class="nf-eyebrow">Our promise</p>
+      <h2 class="nf-h2" id="nf-std-h-{{ section.id }}">The Nora Furnish Standard</h2>
+      <p class="nf-std__lead">What comes with every piece we sell, written plainly so you know exactly what to expect.</p>
+      <div class="nf-rail-nav nf-rail-nav--std">
+        <button type="button" class="nf-rail-nav__b" data-nf-prev aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="nf-rail-nav__b" data-nf-next aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="nf-std__track" data-nf-track tabindex="0" aria-label="The Nora Furnish Standard">
+      <article class="nf-std__card">
+        <div class="nf-std__media"><img src="{{ cdn }}nf-std-materials.png?width=520" srcset="{{ cdn }}nf-std-materials.png?width=360 360w, {{ cdn }}nf-std-materials.png?width=520 520w, {{ cdn }}nf-std-materials.png?width=760 760w, {{ cdn }}nf-std-materials.png?width=880 880w" sizes="(max-width: 699px) 70vw, 280px" width="880" height="1168" loading="lazy" decoding="async" alt="Rattan, brass, linen, ribbed glass and stone under a warm lamp"></div>
+        <p class="nf-std__n">01</p><h3 class="nf-std__t">Real materials, listed plainly</h3>
+        <p class="nf-std__p">Every product names what it is made of, from the frame to the shade, in its Materials section.</p>
+      </article>
+      <article class="nf-std__card">
+        <div class="nf-std__media"><img src="{{ cdn }}nf-pro3-hub-who-1b.png?width=760" srcset="{{ cdn }}nf-pro3-hub-who-1b.png?width=360 360w, {{ cdn }}nf-pro3-hub-who-1b.png?width=520 520w, {{ cdn }}nf-pro3-hub-who-1b.png?width=760 760w, {{ cdn }}nf-pro3-hub-who-1b.png?width=1040 1040w" sizes="(max-width: 699px) 70vw, 280px" width="1792" height="2400" loading="lazy" decoding="async" alt="A table drawn to scale with its measurements under a warm desk lamp"></div>
+        <p class="nf-std__n">02</p><h3 class="nf-std__t">Exact dimensions, drawn</h3>
+        <p class="nf-std__p">Each size is drawn to shape on the product page, with the real measurements written on it.</p>
+      </article>
+      <article class="nf-std__card">
+        <div class="nf-std__media"><img src="{{ cdn }}nf-pro3-office-approach-1.webp?width=760" srcset="{{ cdn }}nf-pro3-office-approach-1.webp?width=360 360w, {{ cdn }}nf-pro3-office-approach-1.webp?width=520 520w, {{ cdn }}nf-pro3-office-approach-1.webp?width=760 760w, {{ cdn }}nf-pro3-office-approach-1.webp?width=1040 1040w" sizes="(max-width: 699px) 70vw, 280px" width="1493" height="2000" loading="lazy" decoding="async" alt="A lamplit home desk with a laptop open, ready to answer email"></div>
+        <p class="nf-std__n">03</p><h3 class="nf-std__t">Email support that answers</h3>
+        <p class="nf-std__p">Write to <a href="mailto:info@norafurnish.com">info@norafurnish.com</a> and a real person replies within 1 to 2 business days.</p>
+      </article>
+      <article class="nf-std__card">
+        <div class="nf-std__media"><img src="{{ cdn }}nf-std-shipping.png?width=520" srcset="{{ cdn }}nf-std-shipping.png?width=360 360w, {{ cdn }}nf-std-shipping.png?width=520 520w, {{ cdn }}nf-std-shipping.png?width=760 760w, {{ cdn }}nf-std-shipping.png?width=880 880w" sizes="(max-width: 699px) 70vw, 280px" width="880" height="1168" loading="lazy" decoding="async" alt="A parcel on a porch step under a glowing wall lantern"></div>
+        <p class="nf-std__n">04</p><h3 class="nf-std__t">Free shipping across the US</h3>
+        <p class="nf-std__p">No minimum order. Most orders arrive in 6 to 9 business days, with tracking from the day it ships.</p>
+      </article>
+      <article class="nf-std__card">
+        <div class="nf-std__media"><img src="{{ cdn }}nf-pro3-hub-who-6b.png?width=760" srcset="{{ cdn }}nf-pro3-hub-who-6b.png?width=360 360w, {{ cdn }}nf-pro3-hub-who-6b.png?width=520 520w, {{ cdn }}nf-pro3-hub-who-6b.png?width=760 760w, {{ cdn }}nf-pro3-hub-who-6b.png?width=1040 1040w" sizes="(max-width: 699px) 70vw, 280px" width="1792" height="2400" loading="lazy" decoding="async" alt="A table lamp glowing in a cozy living room at home"></div>
+        <p class="nf-std__n">05</p><h3 class="nf-std__t">30 days to decide</h3>
+        <p class="nf-std__p">Live with it at home. Unused items in their original packaging can go back within 30 days of delivery.</p>
+      </article>
+      <article class="nf-std__card">
+        <div class="nf-std__media"><img src="{{ cdn }}nf-pro3-hub-custom-1b.png?width=760" srcset="{{ cdn }}nf-pro3-hub-custom-1b.png?width=360 360w, {{ cdn }}nf-pro3-hub-custom-1b.png?width=520 520w, {{ cdn }}nf-pro3-hub-custom-1b.png?width=760 760w, {{ cdn }}nf-pro3-hub-custom-1b.png?width=1040 1040w" sizes="(max-width: 699px) 70vw, 280px" width="1856" height="2304" loading="lazy" decoding="async" alt="A row of different glass pendant lights glowing over a desk"></div>
+        <p class="nf-std__n">06</p><h3 class="nf-std__t">{{ pc_txt }}+ designs</h3>
+        <p class="nf-std__p">Lighting and decor for every room, porch and path, all in <a href="/collections">one directory</a>.</p>
+      </article>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "NF Standard",
+  "settings": [
+    { "type": "checkbox", "id": "defer", "label": "Load when scrolled near (faster first load)", "default": false }]
+}
+{% endschema %}

@@ -1,0 +1,574 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Neon Signs and Logo Lights",
+        "eyebrow": "Custom neon signs and logo lights",
+        "heading": "Your logo, in light",
+        "text": "An illuminated sign turns a wall into the most photographed spot in the room. Send us your logo, a word or a shape and we will quote a custom neon sign or logo light made to your size.",
+        "image_file": "nf-pro-neon-signs.jpg",
+        "image_alt": "Your logo, in light",
+        "fallback_collection": "led-wall-art",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn2_label": "Browse Project References",
+        "btn2_url": "#references",
+        "facts": "Reply within 2 business days\nMade and delivered in 4 to 7 weeks\nNo minimum order\nFree US shipping",
+        "link_label": "See LED wall art",
+        "link_url": "/collections/led-wall-art"
+      }
+    },
+    "uses": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "text",
+        "columns": "3",
+        "bg": "cream",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "Made for",
+        "heading": "Signs people remember"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "icon": "people",
+            "title": "Reception walls",
+            "text": "Greet visitors with your name in warm light."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "icon": "dining",
+            "title": "Cafes and bars",
+            "text": "A glowing word or shape that sets the mood and gets shared."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "icon": "shop",
+            "title": "Shops and salons",
+            "text": "Your brand where customers can see it from the street."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "icon": "spark",
+            "title": "Events and weddings",
+            "text": "Names, dates and phrases that become part of your decor afterwards."
+          }
+        },
+        "b5": {
+          "type": "card",
+          "settings": {
+            "icon": "office",
+            "title": "Offices and studios",
+            "text": "Your logo or your values on the wall where the team works."
+          }
+        },
+        "b6": {
+          "type": "card",
+          "settings": {
+            "icon": "home",
+            "title": "Rooms at home",
+            "text": "A word or a shape for a game room, a home bar or a reading nook."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ]
+    },
+    "send": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "What to send",
+        "heading": "What to send us",
+        "image_file": "nf-pro3-neon-send-1.webp",
+        "image_alt": "Gallery wall of framed prints above a console table with a lamp",
+        "fallback_collection": "led-wall-art",
+        "text": "<p>The clearer the artwork, the faster we can quote. A simple logo file or even a clear photo is a good start.</p>",
+        "bullets": "Your artwork: A logo file, a sketch or the exact words and font you like.\nSize: The width you want, or the wall it will hang on with rough measurements.\nColors: The light colors you want, and whether the backing should be clear, black or cut to shape.\nWhere it goes: Indoors or outdoors, on a wall or hanging, and how it will be powered."
+      }
+    },
+    "tailor": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "numbered",
+        "columns": "4",
+        "bg": "sand",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "What we can tailor",
+        "heading": "Made to your artwork"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Size",
+            "text": "From a small shelf sign to a statement piece for a large wall."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Colors",
+            "text": "One color or several, chosen to match your brand or your room."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Backing and shape",
+            "text": "Clear, black or cut to the outline of your design."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "Mounting and power",
+            "text": "Wall mounted or hanging, with a plug in power supply and dimming where possible."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "disabled": true
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Start from a product",
+        "text": "Real products from our range. Order them as they are, or ask us to tailor them."
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "LED wall art",
+            "collection": "led-wall-art",
+            "text": "Illuminated pieces from our range, ready to hang today.",
+            "shop_label": "Shop LED wall art",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Neon flex and strips",
+            "collection": "led-strip-lights",
+            "text": "Neon flex and LED strips for your own lines of light.",
+            "shop_label": "Shop LED strip lights",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2"
+      ]
+    },
+    "how": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "steps",
+        "columns": "3",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "How it works",
+        "heading": "Four simple steps, and you approve every one",
+        "note": "Free quote. No commitment until you approve."
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "meta": "A few minutes",
+            "title": "Tell us what you need",
+            "text": "Share a product link, a photo or a short description. Rough sizes and quantities are enough to start."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "meta": "Within 2 business days",
+            "title": "We reply with options",
+            "text": "We confirm what is possible and send pricing, options and timing in writing, or ask what we need to know."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "meta": "At your pace",
+            "title": "You approve, then pay",
+            "text": "Nothing is made until you are happy. When you approve, we send a secure Shopify invoice."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "meta": "4 to 7 weeks",
+            "title": "Made and delivered",
+            "text": "Your pieces are made to order and shipped free to your door anywhere in the United States."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Can you use our exact logo?",
+            "a": "<p>Yes. We work from your artwork. Very detailed logos are sometimes simplified so the lines read well in light, and your quote describes exactly how the sign will look before anything is made.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "How do I send my logo?",
+            "a": "<p>Paste a link to the file in your message, for example a shared drive link, or reply to our first email with the file attached. A clear photo works to start.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Can a sign be used outside?",
+            "a": "<p>Some can. Tell us where it will hang and we will confirm in your quote whether an outdoor version is possible.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. You can ask for a single custom piece or the lighting for a whole building. Larger lists simply get a quote that reflects the volume.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I return a custom or made to order piece?",
+            "a": "<p>Custom and made to order pieces are built for your order, so they cannot be returned for a change of mind. If anything arrives damaged or faulty, we replace it or refund it. Email photos to info@norafurnish.com as soon as you can and we will put it right.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ]
+    },
+    "quote": {
+      "type": "nf-pro-quote",
+      "settings": {
+        "bg": "sand",
+        "anchor": "quote",
+        "variant": "short",
+        "form_id": "nf-quote-form",
+        "button_label": "Get My Free Quote",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request, your links and your photos.\nWe confirm what is possible: You get options, pricing and timing in writing within 2 business days.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "Your logo or the exact words, with the font you like\nThe width you want, or the wall it will hang on\nThe light colors you want\nIndoors or outdoors, on a wall or hanging\nA link to your logo file in the message",
+        "heading": "Tell us about your sign",
+        "text": "Share what you know. A rough idea is enough to start.",
+        "form_label": "Neon sign or logo light quote",
+        "service": "Neon sign or logo light"
+      },
+      "disabled": true
+    },
+    "custom3_namesigns": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "rows",
+        "columns": "3",
+        "bg": "white",
+        "tight": true,
+        "center": false,
+        "tall": false,
+        "eyebrow": "For your home",
+        "heading": "Want a name or a word for your home?"
+      },
+      "blocks": {
+        "c3_namesigns": {
+          "type": "card",
+          "settings": {
+            "icon": "spark",
+            "title": "Custom Name Signs",
+            "text": "Type a name, pick a font and a color, and see it glow on a wall before you ask for a quote.",
+            "url": "/pages/custom-name-signs"
+          }
+        }
+      },
+      "block_order": [
+        "c3_namesigns"
+      ]
+    },
+    "customize_v2": {
+      "type": "nf-pro2-customize",
+      "settings": {
+        "bg": "grey",
+        "anchor": "customize",
+        "eyebrow": "Custom neon signs and logo lights",
+        "heading": "What can be customized",
+        "note": "Production begins after dimensions, specifications and installation details are confirmed."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "icon": "logo",
+            "title": "Your artwork",
+            "text": "Your logo or wording traced from a file, a sketch or a photo of your current sign."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "icon": "size",
+            "title": "Size",
+            "text": "Signs sized to your wall, counter or window, from small desk pieces to large feature walls."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "icon": "palette",
+            "title": "Colors",
+            "text": "Neon colors matched as closely as possible to your brand, including warm and cool whites."
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "icon": "backing",
+            "title": "Backing and shape",
+            "text": "Clear, black or colored acrylic, cut as a rectangle or to the outline of the design."
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "icon": "wallmount",
+            "title": "Mounting",
+            "text": "Wall standoffs, hanging chains or a window kit, depending on where the sign goes."
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "icon": "dimmer",
+            "title": "Power and dimming",
+            "text": "A plug in adapter with a dimmer, or a hardwired option for permanent installs."
+          }
+        },
+        "c7": {
+          "type": "card",
+          "settings": {
+            "icon": "waterproof",
+            "title": "Indoor or outdoor",
+            "text": "Outdoor rated signs for covered patios, terraces and storefronts."
+          }
+        },
+        "c8": {
+          "type": "card",
+          "settings": {
+            "icon": "repeat",
+            "title": "Several signs",
+            "text": "The same sign made more than once for several branches or events."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how neon signs can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Pick it in the quote form and we will price it for your space.",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn2_label": "See LED wall art",
+        "btn2_url": "/collections/led-wall-art",
+        "quote_links": true,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Reception Logo",
+            "image_file": "nf-ref-neon-reception.jpg",
+            "alt": "Reception Logo lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Cafe Wall",
+            "image_file": "nf-pro3-neon-ref-2.png",
+            "alt": "Cafe Wall inspiration photo, lit in the evening"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Back Bar",
+            "image_file": "nf-ref-neon-bar.jpg",
+            "alt": "Back Bar lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Shop Window",
+            "image_file": "nf-ref-neon-shop-window.jpg",
+            "alt": "Shop Window lit in the evening, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Salon Wall",
+            "image_file": "nf-ref-neon-salon.jpg",
+            "alt": "Salon Wall lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Wedding Backdrop",
+            "image_file": "nf-ref-neon-wedding.jpg",
+            "alt": "Wedding Backdrop lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Creative Studio",
+            "image_file": "nf-ref-neon-studio.jpg",
+            "alt": "Creative Studio lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Home Bar",
+            "image_file": "nf-pro3-neon-ref-8.png",
+            "alt": "Home Bar inspiration photo, lit in the evening"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    },
+    "quote_v2": {
+      "type": "nf-pro2-quote",
+      "settings": {
+        "anchor": "quote",
+        "heading": "Tell us about your sign",
+        "text": "Share what you know. A rough idea is enough to start.",
+        "form_id": "nf-quote-form",
+        "form_label": "Neon sign or logo light quote",
+        "service": "Neon sign or logo light",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request, your links and your photos.\nWe confirm what is possible: You get options, pricing and timing in writing within 2 business days.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "Your logo or the exact words, with the font you like\nThe width you want, or the wall it will hang on\nThe light colors you want\nIndoors or outdoors, on a wall or hanging\nA link to your logo file in the message",
+        "adjust": "shape|logo|Logo or artwork\nsize|size|Size\ncolors|palette|Colors\nbacking|backing|Backing and shape\nmounting|wallmount|Mounting\npower|dimmer|Power and dimming\nweather|waterproof|Indoor or outdoor\nrepeat|repeat|Several signs",
+        "refs": "Reception Logo\nCafe Wall\nBack Bar\nShop Window\nSalon Wall\nWedding Backdrop\nCreative Studio\nHome Bar",
+        "zone_placeholder": "For example reception wall, window or bar",
+        "tool": false,
+        "zip": false,
+        "button_label": "Get My Free Custom Quote",
+        "bg": "white"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "uses",
+    "customize_v2",
+    "references_v2",
+    "send",
+    "tailor",
+    "fixtures",
+    "how",
+    "custom3_namesigns",
+    "faq",
+    "quote",
+    "quote_v2"
+  ]
+}

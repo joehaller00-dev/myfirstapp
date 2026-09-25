@@ -1,0 +1,149 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) accordion content, easy to scan.
+  kind: materials | care | included
+  content: the metafield value (HTML or plain text)
+  - Content that is already structured (has <ul, <dl, <h5 or an nf-pdp class) is printed as written (Phase 2 content).
+  - Plain paragraphs are split into sentences and shown as short icon rows. "What's Included & How to Use" is grouped
+    under subheads (In the box / Light and power / Setup / Good to know) by keywords. Nothing is reworded.
+{%- endcomment -%}
+{%- liquid
+  assign nf_raw = alt | default: content | default: ''
+  assign nf_is_struct = false
+  if nf_raw contains '<ul' or nf_raw contains '<dl' or nf_raw contains '<h5' or nf_raw contains 'nf-pdp'
+    assign nf_is_struct = true
+  endif
+-%}
+{%- if nf_raw != blank -%}
+{%- if nf_is_struct -%}
+<div class="nf-pdp-acc nf-pdp-acc--{{ kind }} nf-pdp-acc--struct">{{ nf_raw }}</div>
+{%- else -%}
+{%- liquid
+  assign nf_t = nf_raw | replace: '</p>', ' ' | replace: '<br>', ' ' | replace: '<br/>', ' ' | replace: '<br />', ' ' | strip_html | strip_newlines
+  assign nf_t = nf_t | replace: 'U.S.', 'US' | replace: 'e.g.', 'for example' | replace: '  ', ' ' | strip
+  assign nf_t = nf_t | replace: '. ', '.~|' | replace: '! ', '!~|' | replace: '? ', '?~|' | replace: '; ', ';~|'
+  assign nf_parts = nf_t | split: '~|'
+  assign g_box = ''
+  assign g_lp = ''
+  assign g_set = ''
+  assign g_know = ''
+  assign g_all = ''
+  for s_raw in nf_parts
+    assign s = s_raw | strip
+    if s == blank
+      continue
+    endif
+    assign sl = s | downcase
+    assign first_ch = s | slice: 0 | upcase
+    assign s_tail = s | slice: 1, 2000
+    assign s = first_ch | append: s_tail
+    assign s_last = s | slice: -1
+    if s_last == ';'
+      assign s = s | remove_last: ';' | append: '.'
+    endif
+
+    comment
+      Short bold lead in: "Power: hardwired" -> <strong>Power</strong> hardwired ; "Made from X" -> <strong>Made from</strong> X
+    endcomment
+    assign lead = ''
+    assign rest = s
+    assign cparts = s | split: ': '
+    if cparts.size > 1
+      assign c0 = cparts[0]
+      if c0.size <= 26
+        assign lead = c0
+        assign rest = s | remove_first: c0 | remove_first: ': '
+      endif
+    endif
+    if lead == blank and kind == 'materials'
+      assign s12 = s | slice: 0, 10
+      if s12 == 'Made from '
+        assign lead = 'Made from'
+        assign rest = s | remove_first: 'Made from '
+      endif
+    endif
+
+    comment icon by keyword
+    endcomment
+    assign ic = 'dot'
+    if kind == 'care'
+      if sl contains 'water' or sl contains 'damp' or sl contains 'moist' or sl contains 'wet' or sl contains 'rain' or sl contains 'dry immediately' or sl contains 'dry the' or sl contains 'dry it'
+        assign ic = 'drop'
+      endif
+      assign s5 = sl | slice: 0, 5
+      if s5 == 'wipe ' or s5 == 'dust ' or s5 == 'clean'
+        assign ic = 'cloth'
+      endif
+      if sl contains 'sun' or sl contains 'heat' or sl contains 'fade'
+        assign ic = 'sun'
+      endif
+      if sl contains 'switch off' or sl contains 'turn off' or sl contains 'unplug' or sl contains 'cool before' or sl contains 'let the fixture cool'
+        assign ic = 'power'
+      endif
+    elsif kind == 'materials'
+      assign ic = 'layers'
+      if sl contains 'color' or sl contains 'colour' or sl contains 'finish' or sl contains 'option'
+        assign ic = 'palette'
+      endif
+      if sl contains 'variation' or sl contains 'normal' or sl contains 'may vary' or sl contains 'slight'
+        assign ic = 'info'
+      endif
+      if lead == 'Made from'
+        assign ic = 'layers'
+      endif
+    endif
+
+    capture li
+      if lead != blank
+        echo '<li class="nf-i nf-i--' | append: ic | append: '"><strong>' | append: lead | append: '</strong> ' | append: rest | append: '</li>'
+      else
+        echo '<li class="nf-i nf-i--' | append: ic | append: '">' | append: s | append: '</li>'
+      endif
+    endcapture
+
+    if kind == 'included'
+      assign grp = 'know'
+      assign s8 = sl | slice: 0, 8
+      if s8 == 'includes' or s8 == 'comes wi' or sl contains ' is included' or sl contains ' are included' or sl contains 'in the box' or sl contains 'the set includes' or sl contains 'package includes'
+        assign grp = 'box'
+      elsif sl contains 'install' or sl contains 'electrician' or sl contains ' mount' or sl contains 'assembl' or sl contains 'hardware' or sl contains 'instructions' or sl contains 'screw' or sl contains 'drill' or sl contains 'hang ' or sl contains 'stake'
+        assign grp = 'set'
+      elsif sl contains 'power' or sl contains 'plug' or sl contains 'hardwire' or sl contains 'usb' or sl contains 'batter' or sl contains 'solar' or sl contains 'recharg' or sl contains 'charg' or sl contains 'volt' or sl contains 'watt' or sl contains 'light source' or sl contains 'light color' or sl contains 'bulb' or sl contains ' led' or sl contains 'bright' or sl contains 'dimm' or sl contains 'remote' or sl contains 'switch' or sl contains 'kelvin' or sl contains 'warm white' or sl contains 'cool white' or sl contains 'lumen' or sl contains 'timer' or sl contains 'sensor'
+        assign grp = 'lp'
+      endif
+      if sl contains 'not included' and grp == 'box'
+        assign grp = 'know'
+      endif
+      if sl contains 'decorative accessories'
+        assign grp = 'know'
+      endif
+      case grp
+        when 'box'
+          assign li = li | replace: 'nf-i--dot', 'nf-i--box'
+          assign g_box = g_box | append: li
+        when 'lp'
+          assign li = li | replace: 'nf-i--dot', 'nf-i--bulb'
+          assign g_lp = g_lp | append: li
+        when 'set'
+          assign li = li | replace: 'nf-i--dot', 'nf-i--tool'
+          assign g_set = g_set | append: li
+        else
+          assign li = li | replace: 'nf-i--dot', 'nf-i--info'
+          assign g_know = g_know | append: li
+      endcase
+    else
+      assign g_all = g_all | append: li
+    endif
+  endfor
+-%}
+<div class="nf-pdp-acc nf-pdp-acc--{{ kind }}">
+  {%- if kind == 'included' -%}
+    {%- if g_box != blank -%}<div class="nf-pdp-grp"><p class="nf-pdp-sub">In the box</p><ul class="nf-pdp-ul">{{ g_box }}</ul></div>{%- endif -%}
+    {%- if g_lp != blank -%}<div class="nf-pdp-grp"><p class="nf-pdp-sub">Light and power</p><ul class="nf-pdp-ul">{{ g_lp }}</ul></div>{%- endif -%}
+    {%- if g_set != blank -%}<div class="nf-pdp-grp"><p class="nf-pdp-sub">Setup</p><ul class="nf-pdp-ul">{{ g_set }}</ul></div>{%- endif -%}
+    {%- if g_know != blank -%}<div class="nf-pdp-grp"><p class="nf-pdp-sub">Good to know</p><ul class="nf-pdp-ul">{{ g_know }}</ul></div>{%- endif -%}
+  {%- else -%}
+    <ul class="nf-pdp-ul">{{ g_all }}</ul>
+  {%- endif -%}
+</div>
+{%- endif -%}
+{%- endif -%}

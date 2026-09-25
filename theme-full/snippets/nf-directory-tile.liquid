@@ -1,0 +1,12 @@
+{%- comment -%}
+  NF-DIRECTORY-V1 (2026-09-11): one collection picture tile inside a department on the /collections directory.
+  c = collection, label = optional text (defaults to the collection title), ov = photo swaps (see nf-directory-img),
+  k = extra filter words. The count is collection.all_products_count (what shoppers can see).
+{%- endcomment -%}
+<li class="nfd-stile-li" data-nfd-item data-nfd-k="{{ label | default: c.title | downcase | escape }} {{ c.title | downcase | escape }} {{ c.handle | replace: '-', ' ' }} {{ k | downcase | escape }}">
+  <a class="nfd-stile" href="{{ c.url }}">
+    <span class="nfd-stile__img">{%- render 'nf-directory-img', c: c, ov: ov, w: 480, sizes: '(min-width: 1700px) 190px, (min-width: 1000px) 14vw, (min-width: 700px) 22vw, 46vw' -%}<span class="nfd-tile__glow" aria-hidden="true"></span></span>
+    <span class="nfd-stile__t">{{ label | default: c.title | escape }}</span>
+    <span class="nfd-stile__n">{{ c.all_products_count }} pieces</span>
+  </a>
+</li>

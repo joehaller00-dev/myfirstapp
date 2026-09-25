@@ -1,0 +1,327 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Offices",
+        "eyebrow": "Office lighting projects",
+        "heading": "Office lighting that helps people do their best work",
+        "text": "Offices, studios and coworking spaces need light that is clear at the desk, calm in meetings and warm where people take a break. We help you plan it and supply every piece.",
+        "image_file": "nf-pro-office.jpg",
+        "image_alt": "Office lighting that helps people do their best work",
+        "fallback_collection": "office-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=office-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Office Lighting",
+        "link_url": "/collections/office-lighting"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Clear where you work, warm where you meet",
+        "image_file": "nf-pro3-office-approach-1.webp",
+        "image_alt": "Desk under warm wall sconces and framed art in the late afternoon",
+        "fallback_collection": "linear-suspension",
+        "text": "<p>Most office lighting problems come from one flat light source doing every job. A few simple layers fix glare, dark corners and tired eyes.</p>",
+        "bullets": "Even light over desks: Linear suspension and slim flush fixtures spread light along rows of desks without harsh hot spots.\nNeutral color for focus: Light around 3500K to 4000K over work areas keeps screens and paper easy to read.\nSofter light for meetings: Warmer pendants over meeting tables make long conversations more comfortable.\nTask light at each seat: Desk lamps and monitor light bars let every person choose their own level.\nControls that match the day: Dimmable fixtures let you turn the room down for presentations or late work.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Open plan desks\nMeeting rooms\nPrivate offices\nReception\nBreak rooms and kitchens\nStudios and workshops"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Office Lighting",
+        "link_url": "/collections/office-lighting"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Linear suspension",
+            "collection": "linear-suspension",
+            "text": "Long, even light over desk rows and big tables.",
+            "shop_label": "Shop linear suspension",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Flush mount",
+            "collection": "flush-mount-lighting",
+            "text": "Low profile light for corridors, lower ceilings and reception.",
+            "shop_label": "Shop flush mount lights",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Pendants",
+            "collection": "pendants",
+            "text": "A warmer focal point over meeting tables and break areas.",
+            "shop_label": "Shop all pendants",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "Linear wall lights",
+            "collection": "linear-wall-sconces",
+            "text": "Clean lines of light along corridors and feature walls.",
+            "shop_label": "Shop linear wall sconces",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Desk and task lamps",
+            "collection": "table-lamps",
+            "text": "Task light at each seat, including monitor light bars.",
+            "shop_label": "Shop table and desk lamps",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-office-concepts-3.webp",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "image_file": "nf-pro3-office-concepts-1.png",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "image_file": "nf-pro3-office-concepts-2.webp",
+            "fallback_collection": "pendants"
+          }
+        }
+      },
+      "block_order": [
+        "c_maker_studio",
+        "c_linen_and_oak",
+        "c_alder_lobby"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Fitting out an office or studio?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=office-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Can you help us choose color temperatures?",
+            "a": "<p>Yes. Tell us how each area is used and we will suggest a color temperature for each one. Many of our fixtures are sold in more than one option.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building. Larger quantities get bulk pricing.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q3"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how office lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=office-lighting-projects",
+        "btn2_label": "Shop Office Lighting",
+        "btn2_url": "/collections/office-lighting",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Open Workspace",
+            "image_file": "nf-ref-open-workspace.jpg",
+            "alt": "Open Workspace lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Meeting Room",
+            "image_file": "nf-ref-meeting-table.jpg",
+            "alt": "Meeting Room lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Studio Table",
+            "image_file": "nf-pro3-office-ref-3.jpg",
+            "alt": "Studio Table inspiration photo, lit in the evening"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Breakout Lounge",
+            "image_file": "nf-ref-office-lounge.jpg",
+            "alt": "Breakout Lounge lit in the evening, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Focus Room",
+            "image_file": "nf-ref-focus-room.jpg",
+            "alt": "Focus Room lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Desk Task Light",
+            "image_file": "nf-ref-desk-light.png",
+            "alt": "Desk Task Light lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Corridor Ceiling",
+            "image_file": "nf-ref-corridor-ceiling.png",
+            "alt": "Corridor Ceiling lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Home Office",
+            "image_file": "nf-ref-home-office.png",
+            "alt": "Home Office lit in the evening, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band",
+    "faq"
+  ]
+}

@@ -1,0 +1,40 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  NORA FURNISH - VISUAL DIMENSION CHART
+  ----------------------------------------------------------------------------------------------------------------------
+
+  Emits the host element for the line-art size sketch / size table drawn at the top of the
+  "Dimensions" accordion on the product page.
+
+  It only passes DATA (the custom.dimensions text and the product's option values). All parsing and
+  drawing happens in assets/nf-dimension-chart.js, which renders NOTHING when the stored text cannot
+  be resolved into at least two unambiguous measurements. No measurement is ever invented or estimated.
+
+  Styles: assets/custom-nav.css, section "NF DIMENSION CHART".
+
+  ********************************************
+  Supported parameters
+  ********************************************
+
+  * product: the product to read dimensions from (required)
+{%- endcomment -%}
+
+{%- liquid
+  assign nf_dim_text = product.metafields.custom.dimensions.value
+  assign nf_dim_text = nf_dim_text | replace: '<br>', '. ' | replace: '<br/>', '. ' | replace: '<br />', '. '
+  assign nf_dim_text = nf_dim_text | replace: '</p>', '. ' | replace: '</li>', '. ' | replace: '</div>', '. '
+  assign nf_dim_text = nf_dim_text | strip_html | strip
+-%}
+
+{%- capture nf_dim_options -%}
+[{% for nf_opt in product.options_with_values %}{"name":{{ nf_opt.name | json }},"values":[{% for nf_val in nf_opt.values %}{{ nf_val.name | default: nf_val | json }}{% unless forloop.last %},{% endunless %}{% endfor %}]}{% unless forloop.last %},{% endunless %}{% endfor %}]
+{%- endcapture -%}
+
+{%- capture nf_dim_payload -%}
+{"text":{{ nf_dim_text | json }},"options":{{ nf_dim_options }},"chart":{{ product.metafields.custom.dim_chart.value | json }},"outline":{{ product.metafields.custom.dim_outline.value | json }}}
+{%- endcapture -%}
+
+{%- if nf_dim_text != blank or product.options_with_values.size > 0 -%}
+  <div class="nf-dc-host" data-nf-dims="{{ nf_dim_payload | escape }}"></div>
+  <script src="{{ 'nf-dimension-chart.js' | asset_url }}" defer></script>
+{%- endif -%}

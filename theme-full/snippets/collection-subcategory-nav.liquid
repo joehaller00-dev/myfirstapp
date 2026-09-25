@@ -1,0 +1,326 @@
+{% comment %} Hero collections - title moves into hero block {% endcomment %}
+{% if current == 'wall-lights' or current == 'lamps' or current == 'bedroom' or current == 'outdoor-lighting' or current == 'tables-storage' or current == 'seating' or current == 'bath-towels-bath-mats' or current == 'bath-accessories' or current == 'shower-bath-essentials' or current == 'bathroom-storage-organization' or current == 'baskets-bins' or current == 'curtains' or current == 'dining-tables' or current == 'bar-tables' or current == 'sideboards' or current == 'storage-shelves' or current == 'corner-shelf-units' or current == 'display-racks' or current == 'dining-chairs' or current == 'bar-counter-stools' or current == 'low-stools' or current == 'dining-benches' or current == 'swivel-dining-chairs' or current == 'backed-dining-benches' or current == 'kitchen-dining-seating' or current == 'living-room-seating' or current == 'wall-mirrors' or current == 'accents-objects' or current == 'all-home-office' or current == 'ceiling-light' %}
+<style>
+  .shopify-section--rich-text { display: none !important; }
+</style>
+{% endif %}
+
+{% comment %}
+  Nora Furnish - Collection Subcategory Navigation
+  5-card collections: image buttons with labels (max 5 tiles shown)
+  <5-card collections: single full-width placeholder image, no text
+{% endcomment %}
+
+{% assign current = collection.handle %}
+{%- comment -%} NF-SPEED-B-0916: hero imgs below go through snippets/nf-speed-hero-img (responsive + preload) {%- endcomment -%}
+{%- comment -%}
+  NF-COLHEAD-V3 (2026-09-12) owner: one title per collection page. Only the nav parent collections (no band) show these
+  heroes, and the hero title is now the page h1 (nf-collection-head then prints no plain title). Every other collection
+  gets the NF-COLHEAD band, which already carries the title and a photo, so nothing here renders for them. That also
+  retires the bathroom tiles, which pointed at deleted collections. Keep this list in sync with the plain_handles
+  setting of sections/nf-collection-head.liquid.
+{%- endcomment -%}
+{%- assign nf_hero_ok = ',best-sellers,ceiling-light,wall-lights,lamps,ambient-lighting,outdoor-lighting,outdoor-wall-lights,decor,soft-furnishings,storage-shelves,poufs-floor-cushions,home-fragrance,' -%}
+{%- assign nf_hero_key = ',' | append: current | append: ',' -%}
+{%- unless nf_hero_ok contains nf_hero_key -%}{%- assign current = '' -%}{%- endunless -%}
+
+{% comment %} --- LIGHTING --- {% endcomment %}
+{% if current == 'ceiling-light' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Set the mood from above.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_ceiling_lights.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_ceiling_lights.jpg?v=1780640732', alt: 'Ceiling Lights' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'best-sellers' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">The most ordered pieces this season.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf-hero-autumn-porch.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-hero-autumn-porch.jpg?v=1789841155', alt: 'Autumn evening porch lit by up and down wall sconces' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'home-fragrance' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Scent sets the tone.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'hero_home_fragrance.webp', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/hero_home_fragrance.webp?v=1785998533&width=2000', alt: 'Home Fragrance' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'decor' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">The finishing touches.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'hero_decor.webp', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/hero_decor.webp?v=1785998180&width=2000', alt: 'Decor' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'storage-shelves' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">A place for everything.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'hero_shelves_storage.webp', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/hero_shelves_storage.webp?v=1785997949&width=2000', alt: 'Shelves and Storage' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'poufs-floor-cushions' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Low, soft and easy to move.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'hero_poufs_floor_seating.webp', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/hero_poufs_floor_seating.webp?v=1785997950&width=2000', alt: 'Poufs and Floor Seating' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'ambient-lighting' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Soft light for quiet hours.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'hero_ambient_lighting.webp', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/hero_ambient_lighting.webp?v=1785997949&width=2000', alt: 'Ambient Lighting' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'wall-lights' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Accent every wall.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_wall_lights.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_wall_lights.jpg?v=1780640732', alt: 'Wall Lights' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'lamps' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Warm light, warm rooms.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_lamps.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_lamps.jpg?v=1780640732', alt: 'Lamps' -%}</span>
+  </div>
+{% endif %}
+
+{% comment %} --- OUTDOOR --- {% endcomment %}
+{% if current == 'outdoor-lighting' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Light the night outside.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_outdoor_lighting.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_outdoor_lighting.jpg?v=1780638810', alt: 'Outdoor Lighting' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'outdoor-furniture' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Made for the outdoors.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_outdoor_furniture.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_outdoor_furniture.jpg?v=1780638810', alt: 'Outdoor Furniture' -%}</span>
+  </div>
+{% endif %}
+
+{% comment %} --- LIVING ROOM --- {% endcomment %}
+{% if current == 'living-room-tables-storage' %}
+  <div class="nf-subcategory-nav">
+    <a href="/collections/tv-stands" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_tv_stands.jpg?v=1780637044" alt="TV Stands"></span>
+      <span class="nf-subcategory-btn__label">TV Stands</span>
+    </a>
+    <a href="/collections/coffee-tables" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_coffee_tables.jpg?v=1780637044" alt="Coffee Tables"></span>
+      <span class="nf-subcategory-btn__label">Coffee Tables</span>
+    </a>
+    <a href="/collections/end-tables" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_end_tables.jpg?v=1780637044" alt="End Tables"></span>
+      <span class="nf-subcategory-btn__label">End Tables</span>
+    </a>
+    <a href="/collections/side-tables" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_side_tables.jpg?v=1780637482" alt="Side Tables"></span>
+      <span class="nf-subcategory-btn__label">Side Tables</span>
+    </a>
+    <a href="/collections/storage-cabinets" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_storage_cabinets.jpg?v=1780635827" alt="Storage Cabinets"></span>
+      <span class="nf-subcategory-btn__label">Storage Cabinets</span>
+    </a>
+  </div>
+{% endif %}
+
+{% if current == 'kitchen-dining-seating' %}
+  <div class="nf-subcategory-nav">
+      <a href="/collections/dining-chairs" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_kd_dining_chairs_v2.jpg?v=1780644288" alt="Dining Chairs"></span>
+        <span class="nf-subcategory-btn__label">Dining Chairs</span>
+      </a>
+      <a href="/collections/bar-counter-stools" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_kd_bar_stools_v2.jpg?v=1780644287" alt="Bar and Counter Stools"></span>
+        <span class="nf-subcategory-btn__label">Bar &amp; Counter Stools</span>
+      </a>
+      <a href="/collections/low-stools" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_kd_low_stools.jpg?v=1780643222" alt="Low Stools"></span>
+        <span class="nf-subcategory-btn__label">Low Stools</span>
+      </a>
+      <a href="/collections/dining-benches" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_kd_dining_benches.jpg?v=1780643222" alt="Dining Benches"></span>
+        <span class="nf-subcategory-btn__label">Dining Benches</span>
+      </a>
+      <a href="/collections/swivel-dining-chairs" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_kd_swivel_chairs.jpg?v=1780643222" alt="Swivel Dining Chairs"></span>
+        <span class="nf-subcategory-btn__label">Swivel Dining Chairs</span>
+      </a>
+  </div>
+{% endif %}
+
+{% if current == 'living-room-seating' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Sink in and stay a while.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_lr_seating.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_lr_seating.jpg?v=1780638811', alt: 'Living Room Seating' -%}</span>
+  </div>
+{% endif %}
+
+{% comment %} --- BED & BATH --- {% endcomment %}
+
+{% comment %} bed-bath landing page: show Bedroom and Bath as 2 tiles {% endcomment %}
+{% if current == 'bed-bath' %}
+  <div class="nf-subcategory-nav">
+    <a href="/collections/bedroom" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"></span>
+      <span class="nf-subcategory-btn__label">Bedroom</span>
+    </a>
+    <a href="/collections/bathroom" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"></span>
+      <span class="nf-subcategory-btn__label">Bath</span>
+    </a>
+  </div>
+{% endif %}
+
+{% if current == 'bedroom' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Calm nights, better mornings.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_bedroom.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_bedroom.jpg?v=1780638810', alt: 'Bedroom' -%}</span>
+  </div>
+{% endif %}
+
+{% if current == 'bathroom' %}
+  <div class="nf-subcategory-nav">
+    <a href="/collections/bath-towels-bath-mats" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_bath_linens.jpg?v=1780611140" alt="Bath Towels and Bath Mats"></span>
+      <span class="nf-subcategory-btn__label">Bath Towels &amp; Bath Mats</span>
+    </a>
+    <a href="/collections/shower-bath-essentials" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_shower_bath_essentials.jpg?v=1780612520" alt="Shower and Bath Essentials"></span>
+      <span class="nf-subcategory-btn__label">Shower &amp; Bath Essentials</span>
+    </a>
+    <a href="/collections/bathroom-storage-organization" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_bathroom_storage.jpg?v=1780612520" alt="Bathroom Storage and Organization"></span>
+      <span class="nf-subcategory-btn__label">Bathroom Storage &amp; Organization</span>
+    </a>
+    <a href="/collections/baskets-bins" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_baskets_bins.jpg?v=1780639978" alt="Baskets and Bins"></span>
+      <span class="nf-subcategory-btn__label">Baskets &amp; Bins</span>
+    </a>
+    <a href="/collections/bath-accessories" class="nf-subcategory-btn">
+      <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_bath_accessories.jpg?v=1780612520" alt="Bath Accessories"></span>
+      <span class="nf-subcategory-btn__label">Bath Accessories</span>
+    </a>
+  </div>
+{% endif %}
+
+{% comment %} Hero entries for bath sub-subcollections {% endcomment %}
+{% if current == 'bath-towels-bath-mats' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Wrap yourself in comfort.</span>
+    </div>
+    <span class="nf-subcategory-hero__img"></span>
+  </div>
+{% endif %}
+
+{% if current == 'bath-accessories' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">The finishing touches.</span>
+    </div>
+    <span class="nf-subcategory-hero__img"></span>
+  </div>
+{% endif %}
+
+{% if current == 'shower-bath-essentials' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Everything for your daily ritual.</span>
+    </div>
+    <span class="nf-subcategory-hero__img"></span>
+  </div>
+{% endif %}
+
+{% if current == 'bathroom-storage-organization' or current == 'baskets-bins' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Keep it clean, keep it simple.</span>
+    </div>
+    <span class="nf-subcategory-hero__img"></span>
+  </div>
+{% endif %}
+
+{% if current == 'curtains' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Style meets function.</span>
+    </div>
+    <span class="nf-subcategory-hero__img"></span>
+  </div>
+{% endif %}
+
+{% comment %} --- KITCHEN & DINING --- {% endcomment %}
+{% if current == 'tables-storage' %}
+  <div class="nf-subcategory-nav">
+      <a href="/collections/dining-tables" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_dining_table.jpg?v=1780611140" alt="Dining Tables"></span>
+        <span class="nf-subcategory-btn__label">Dining Tables</span>
+      </a>
+      <a href="/collections/bar-tables" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_bar_tables.jpg?v=1780635827" alt="Bar Tables"></span>
+        <span class="nf-subcategory-btn__label">Bar Tables</span>
+      </a>
+      <a href="/collections/sideboards" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_sideboards.jpg?v=1780635827" alt="Sideboards"></span>
+        <span class="nf-subcategory-btn__label">Sideboards</span>
+      </a>
+      <a href="/collections/storage-shelves" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_storage_cabinets.jpg?v=1780635827" alt="Storage Shelves"></span>
+        <span class="nf-subcategory-btn__label">Storage Shelves</span>
+      </a>
+      <a href="/collections/corner-shelf-units" class="nf-subcategory-btn">
+        <span class="nf-subcategory-btn__img"><img src="https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_corner_shelves.jpg?v=1780638811" alt="Corner Shelf Units"></span>
+        <span class="nf-subcategory-btn__label">Corner Shelf Units</span>
+      </a>
+  </div>
+{% endif %}
+
+{% if current == 'seating' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Sink in and stay a while.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_lr_seating.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_lr_seating.jpg?v=1780638811', alt: 'Seating' -%}</span>
+  </div>
+{% endif %}
+
+{% comment %} --- DECOR --- {% endcomment %}
+{% if current == 'soft-furnishings' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Layers that make it home.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'hero_soft_furnishings.webp', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/hero_soft_furnishings.webp?v=1785998646&width=2000', alt: 'Soft Furnishings' -%}</span>
+  </div>
+{% endif %}
+
+
+
+{% if current == 'accents-objects' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">The details that finish a room.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_decor_accents.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_decor_accents.jpg?v=1780639245', alt: 'Accents and Objects' -%}</span>
+  </div>
+{% endif %}
+
+{% comment %} --- HOME OFFICE --- {% endcomment %}
+{% if current == 'all-home-office' %}
+  <div class="nf-subcategory-hero">
+    <div class="nf-subcategory-hero__title"><h1 class="nf-subcategory-hero__h1">{{ collection.title }}</h1><span class="nf-subcategory-hero__tagline">Work, made comfortable.</span>
+    </div>
+    <span class="nf-subcategory-hero__img">{%- render 'nf-speed-hero-img', file: 'nf_home_office_v2.jpg', fallback: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_home_office_v2.jpg?v=1780644473', alt: 'Home Office' -%}</span>
+  </div>
+{% endif %}

@@ -1,0 +1,100 @@
+{%- comment -%} NF blog listing (nf-blog). Styles: assets/nf-blog.css. Script: assets/nf-blog.js swaps the grid and pagination in place
+  for topic pills and page links (Section Rendering API); without JS they are plain links. {%- endcomment -%}
+{{ 'nf-blog.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-blog.js' | asset_url }}" defer></script>
+{%- liquid
+  assign nf_tag_order = '101|Buying Guides|How To|Indoor|Outdoor|Installation|Maintenance' | split: '|'
+  assign nf_cur = current_tags.first | handle
+-%}
+<div class="nf-blog" data-nf-blog data-section-id="{{ section.id }}" data-blog-url="{{ blog.url }}">
+  <div class="nf-blog__wrap">
+    <header class="nf-blog__head">
+      <h1 class="nf-blog__title">{{ section.settings.heading | default: blog.title }}</h1>
+      {%- if section.settings.intro != blank -%}
+        <p class="nf-blog__intro">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- comment -%} NF-HELP-V1 (2026-09-12): featured guide band, first page with no topic filter only. snippets/nf-hc-journal.liquid {%- endcomment -%}
+    {%- if nf_cur == blank and current_page == 1 and section.settings.featured != blank -%}
+      {%- render 'nf-hc-journal', blog: blog, handle: section.settings.featured -%}
+    {%- endif -%}
+
+    <nav class="nf-pills" aria-label="Blog topics" data-nf-pills>
+      <a href="{{ blog.url }}" class="nf-pill{% if nf_cur == blank %} is-active{% endif %}" data-nf-filter="" data-no-instant{% if nf_cur == blank %} aria-current="page"{% endif %}>All Posts</a>
+      {%- for t in nf_tag_order -%}
+        {%- assign t_handle = t | handle -%}
+        {%- if blog.all_tags contains t or nf_cur == t_handle -%}
+          <a href="{{ blog.url }}/tagged/{{ t_handle }}" class="nf-pill{% if nf_cur == t_handle %} is-active{% endif %}" data-nf-filter="{{ t_handle }}" data-no-instant{% if nf_cur == t_handle %} aria-current="page"{% endif %}>{{ t }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+
+    {%- paginate blog.articles by section.settings.posts_per_page -%}
+      <div class="nf-blog__results" data-nf-results data-nf-tag="{{ nf_cur }}" data-nf-count="{{ blog.articles.size }}" data-nf-title="{{ page_title | escape }}{% if paginate.current_page > 1 %} | Page {{ paginate.current_page }}{% endif %}" tabindex="-1">
+        {%- if blog.articles.size > 0 -%}
+          <div class="nf-bgrid">
+            {%- for article in blog.articles -%}
+              {%- render 'nf-blog-card',
+                article: article,
+                blog: blog,
+                sizes: '(max-width: 699px) 92vw, (max-width: 999px) 46vw, 400px',
+                position: forloop.index,
+                heading_tag: 'h2'
+              -%}
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <div class="nf-blog__pagination">
+              {%- render 'pagination', paginate: paginate -%}
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          <div class="nf-blog__empty">
+            <p>No posts in this topic yet.</p>
+            <a class="nf-pill is-active" href="{{ blog.url }}" data-no-instant>See all posts</a>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endpaginate -%}
+    <p class="nfb-sr" role="status" aria-live="polite" data-nf-status></p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "NF Blog",
+  "class": "shopify-section--nf-blog",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Blogs"
+    },
+    {
+      "type": "text",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Guides, ideas and straight answers for lighting every room of your home."
+    },
+    {
+      "type": "text",
+      "id": "featured",
+      "label": "Featured guide (article handle)",
+      "info": "Shown in a dark band above the topic pills. Leave empty to hide it."
+    },
+    {
+      "type": "range",
+      "id": "posts_per_page",
+      "label": "Posts per page",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

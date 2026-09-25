@@ -1,0 +1,47 @@
+{%- comment -%}
+  NF-HELP-V1 (2026-09-12): featured guide band at the top of the Journal (blog index), rendered by
+  sections/main-blog.liquid between the title and the topic pills, only on the first page with no topic filter.
+  handle = the article handle from the section setting "Featured guide". On this store article.handle returns
+  blog/<handle>, so the last segment is compared. Big photo left, gold "Read the guide" button right.
+{%- endcomment -%}
+{%- liquid
+  assign nfj = blank
+  assign nfj_want = handle | strip | split: '/' | last
+  for a in blog.articles
+    assign a_h = a.handle | split: '/' | last
+    if a_h == nfj_want
+      assign nfj = a
+      break
+    endif
+  endfor
+-%}
+{%- if nfj != blank -%}
+  {%- liquid
+    assign nfj_txt = nfj.excerpt | strip_html | strip
+    if nfj_txt == blank
+      assign nfj_txt = nfj.content | strip_html | strip
+    endif
+    assign nfj_txt = nfj_txt | remove: 'Who This Is For:' | strip | truncatewords: 30 | replace: '....', '...' | replace: '?...', '?' | replace: '!...', '!'
+    assign nfj_words = nfj.content | strip_html | split: ' ' | size
+    assign nfj_min = nfj_words | divided_by: 230
+    if nfj_min < 1
+      assign nfj_min = 1
+    endif
+    assign nfj_tag = nfj.tags.first | default: 'Guide'
+  -%}
+  {{- 'nf-hc.css' | asset_url | stylesheet_tag -}}
+  <section class="nfhc nfhc-journal nfhc-on-dark" aria-labelledby="nfhc-jt">
+    <a class="nfhc-journal__media" href="{{ nfj.url }}" tabindex="-1" aria-hidden="true">
+      {%- if nfj.image -%}
+        {{- nfj.image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600,900,1200,1600', sizes: '(max-width: 899px) 100vw, 700px', alt: '' -}}
+      {%- endif -%}
+    </a>
+    <div class="nfhc-journal__copy">
+      <p class="nfhc-eyebrow">Featured guide</p>
+      <h2 class="nfhc-journal__t" id="nfhc-jt"><a href="{{ nfj.url }}">{{ nfj.title | escape }}</a></h2>
+      {%- if nfj_txt != blank -%}<p class="nfhc-journal__x">{{ nfj_txt | escape }}</p>{%- endif -%}
+      <p class="nfhc-journal__meta">{{ nfj_tag | escape }} &middot; {{ nfj_min }} min read</p>
+      <a class="nfhc-btn nfhc-btn--gold" href="{{ nfj.url }}">Read the guide <span class="nfhc-arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+{%- endif -%}

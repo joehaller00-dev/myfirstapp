@@ -1,0 +1,21 @@
+{%- comment -%}
+  NF-COLHEAD-V1 (2026-09-12) best seller picks for the filter "no matches" state.
+  In NO template. assets/nf-colhead.js fetches it as
+  /collections/<handle>?section_id=nf-colhead-picks&sort_by=best-selling and moves the cards into the page.
+{%- endcomment -%}
+<div class="nf-ch-picks-src" data-handle="{{ collection.handle | escape }}">
+  {%- if collection -%}
+    {%- paginate collection.products by 8 -%}
+      {%- for product in collection.products limit: 4 -%}
+        {%- render 'product-card', product: product, reveal: false, position: forloop.index, stacked: true -%}
+      {%- endfor -%}
+    {%- endpaginate -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "NF colhead picks",
+  "settings": []
+}
+{% endschema %}

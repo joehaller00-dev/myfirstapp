@@ -1,0 +1,30 @@
+{%- comment -%} nf-pro-product-card (Professionals, 2026-09-11). Lean product card for rails and concept fixture lists. Params: product, sizes {%- endcomment -%}
+{%- liquid
+  assign npc_title = product.title | split: ',' | first | strip
+  assign npc_sizes = sizes | default: '(max-width: 640px) 68vw, 262px'
+-%}
+<a class="nfp-pcard" href="{{ product.url }}">
+  <span class="nfp-pcard__img">
+    {%- comment -%} NF-PRO3: rail cards show the product's lit evening photo when metafield nfpro.card_img holds one of its image ids {%- endcomment -%}
+{%- liquid
+assign npc_img = product.featured_image
+assign npc_want = product.metafields.nfpro.card_img.value | append: ''
+if npc_want != ''
+for npc_i in product.images
+assign npc_id = npc_i.id | append: ''
+if npc_id == npc_want
+assign npc_img = npc_i
+break
+endif
+endfor
+endif
+-%}
+{%- if npc_img != blank -%}
+      {{- npc_img | image_url: width: 600 | image_tag: loading: 'lazy', widths: '260,400,600', sizes: npc_sizes, alt: npc_title -}}
+    {%- endif -%}
+  </span>
+  <span class="nfp-pcard__body">
+    <span class="nfp-pcard__title">{{ npc_title | escape }}</span>
+    <span class="nfp-pcard__price">{% if product.price_varies %}From {% endif %}<b>{% render 'nf-acc-price', product: product %}</b></span>
+  </span>
+</a>

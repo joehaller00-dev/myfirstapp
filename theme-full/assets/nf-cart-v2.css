@@ -1,0 +1,349 @@
+/* NF-CART-V2 (2026-09-12)
+   Cart drawer "Complete the glow" (pairs well with cards, gold progress line, one quiet trust row),
+   the lamp empty state, the cart page "What happens next" band and note link, and the product sticky bar.
+   Markup: sections/cart-drawer.liquid, sections/main-cart.liquid, sections/main-product.liquid (sticky bar),
+   snippets/nf-cart-progress.liquid, sections/nf-cart-pairs.liquid. Behaviour: assets/nf-cart-v2.js.
+   Palette: white and neutral grey, charcoal #1c1c1c, gold as a small accent only. No cream fills. */
+
+:root {
+  --nf-cv2-ink: #1c1c1c;
+  --nf-cv2-sub: #6b6b6b;
+  --nf-cv2-line: #e5e5e5;
+  --nf-cv2-gold: #b38b5d;
+  --nf-cv2-gold-2: #c9a36a;
+  --nf-cv2-gold-text: #8a6640;
+  --nf-cv2-warm: #f6cf8a;
+}
+
+/* ---------- Neutral line item frames in the drawer (older rules used warm tints) ---------- */
+html body #cart-drawer .line-item__media { background: #f7f7f7 !important; border-color: #ececec !important; }
+html body #cart-drawer .line-item { border-bottom-color: #ececec !important; }
+html body #cart-drawer .cart-drawer__footer { border-top-color: #e5e5e5 !important; }
+
+/* ---------- Gold progress line (Buy 2+ items, save 10%) ---------- */
+.nf-cv2-progress { margin: 0 0 18px; width: 100%; }
+.nf-cv2-progress__text {
+  margin: 0 0 9px; font-size: 13px; line-height: 1.45; color: var(--nf-cv2-ink); text-align: center;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 8px;
+}
+.nf-cv2-progress__text strong { font-weight: 600; }
+.nf-cv2-progress.is-done .nf-cv2-progress__text strong { color: var(--nf-cv2-gold-text); }
+.nf-cv2-progress__save { color: var(--nf-cv2-sub); }
+.nf-cv2-progress__track { position: relative; height: 2px; background: #ebebeb; border-radius: 2px; overflow: hidden; }
+.nf-cv2-progress__fill {
+  position: absolute; inset: 0 auto 0 0; width: 50%; border-radius: 2px;
+  background: linear-gradient(90deg, var(--nf-cv2-gold), var(--nf-cv2-gold-2));
+}
+.nf-cv2-progress.is-done .nf-cv2-progress__fill { width: 100%; }
+.nf-cv2-progress.is-filling .nf-cv2-progress__fill { animation: nfCv2Fill 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes nfCv2Fill { from { width: 50%; } to { width: 100%; } }
+
+/* ---------- One quiet trust row ---------- */
+.nf-cv2-trust {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 16px;
+  width: 100%; margin: 12px 0 0; padding: 0; font-size: 12px; line-height: 1.4; color: var(--nf-cv2-sub); letter-spacing: 0.02em;
+}
+.nf-cv2-trust > span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.nf-cv2-trust svg { width: 14px; height: 14px; flex: none; }
+
+/* ---------- Pairs well with ---------- */
+.nf-cv2-pairs { margin-top: 20px; }
+.nf-cv2-pairs[hidden] { display: none !important; }
+.nf-cv2-pairs__title {
+  margin: 0 0 12px; font-family: var(--heading-font-family, serif); font-size: 17px; font-weight: 300;
+  line-height: 1.3; letter-spacing: 0.01em; color: var(--nf-cv2-ink);
+}
+.nf-cv2-pairs__list { display: grid; gap: 10px; }
+.nf-cv2-card {
+  display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; align-items: center; gap: 14px;
+  padding: 10px 12px 10px 10px; background: #fff; border: 1px solid var(--nf-cv2-line); border-radius: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.nf-cv2-card:hover { border-color: #d4d4d4; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05); }
+.nf-cv2-card__img { display: block; width: 72px; aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: #f7f7f7; }
+.nf-cv2-card__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.nf-cv2-card__info { display: grid; gap: 4px; min-width: 0; }
+.nf-cv2-card__title {
+  font-family: var(--heading-font-family, serif); font-size: 14px; line-height: 1.3; color: var(--nf-cv2-ink); text-decoration: none;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.nf-cv2-card__title:hover { text-decoration: underline; text-underline-offset: 3px; }
+.nf-cv2-card__price { font-size: 13px; color: var(--nf-cv2-sub); }
+.nf-cv2-card__form form { margin: 0; }
+.nf-cv2-card__add {
+  appearance: none; -webkit-appearance: none; cursor: pointer; margin: 0;
+  padding: 8px 16px; border: 1px solid var(--nf-cv2-ink); border-radius: 999px; background: #fff; color: var(--nf-cv2-ink);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.2;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.nf-cv2-card__add:hover, .nf-cv2-card__add:focus-visible { background: var(--nf-cv2-ink); color: #fff; }
+.nf-cv2-card__add[aria-busy="true"], .nf-cv2-card__add[disabled] { opacity: 0.55; }
+
+#cart-drawer .nf-cv2-pairs { padding-top: 4px; }
+
+/* Cart page: three across on desktop */
+.nf-cv2-cartpage .nf-cv2-progress { width: min(440px, 86vw); margin: 4px auto 0; }
+.nf-cv2-pairs--page { margin-top: 8px; }
+.nf-cv2-pairs--page .nf-cv2-pairs__title { font-size: 20px; }
+@media (min-width: 750px) {
+  .nf-cv2-pairs--page .nf-cv2-pairs__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .nf-cv2-pairs--page .nf-cv2-card { grid-template-columns: 64px minmax(0, 1fr); grid-template-rows: auto auto; }
+  .nf-cv2-pairs--page .nf-cv2-card__img { width: 64px; grid-row: 1 / span 2; }
+  .nf-cv2-pairs--page .nf-cv2-card__form, .nf-cv2-pairs--page .nf-cv2-card > .nf-cv2-card__add { justify-self: start; }
+}
+
+/* ---------- Empty cart drawer: the lamp and three tiles ---------- */
+#cart-drawer .nf-cv2-empty { display: grid; justify-items: center; width: 100%; padding: 4px 0; text-align: center; }
+.nf-cv2-lamp { display: block; width: 92px; height: 116px; margin: 0 auto 4px; overflow: visible; }
+.nf-cv2-lamp__line { fill: none; stroke: var(--nf-cv2-ink); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+.nf-cv2-lamp__shade { fill: #fff; stroke: var(--nf-cv2-ink); stroke-width: 1.3; stroke-linejoin: round; }
+.nf-cv2-lamp__glow { opacity: 0; transform-box: fill-box; transform-origin: 50% 20%; transform: scale(0.55); }
+.nf-cv2-lamp__bulb { fill: #fff; stroke: var(--nf-cv2-ink); stroke-width: 1.2; }
+#cart-drawer[open] .nf-cv2-lamp__glow, #cart-drawer.nf-cv2-lit .nf-cv2-lamp__glow { animation: nfCv2Glow 1.6s 0.35s ease-out forwards; }
+#cart-drawer[open] .nf-cv2-lamp__bulb, #cart-drawer.nf-cv2-lit .nf-cv2-lamp__bulb { animation: nfCv2Bulb 1.1s 0.35s ease-out forwards; }
+@keyframes nfCv2Glow { 0% { opacity: 0; transform: scale(0.55); } 55% { opacity: 1; } 100% { opacity: 0.95; transform: scale(1); } }
+@keyframes nfCv2Bulb { to { fill: var(--nf-cv2-warm); stroke: var(--nf-cv2-gold); } }
+.nf-cv2-empty__title {
+  margin: 2px 0 6px; font-family: var(--heading-font-family, serif); font-size: 24px; font-weight: 300; line-height: 1.25; color: var(--nf-cv2-ink);
+}
+.nf-cv2-empty__text { margin: 0 0 20px; max-width: 32ch; font-size: 14px; line-height: 1.55; color: #555; }
+.nf-cv2-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; }
+.nf-cv2-tile { display: grid; gap: 9px; color: var(--nf-cv2-ink); text-decoration: none; }
+.nf-cv2-tile__img { display: block; aspect-ratio: 3 / 4; border-radius: 10px; overflow: hidden; background: #f3f3f3; }
+.nf-cv2-tile__img img { display: block; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.06); transition: transform 0.5s ease, filter 0.5s ease; }
+.nf-cv2-tile:hover .nf-cv2-tile__img img, .nf-cv2-tile:focus-visible .nf-cv2-tile__img img { transform: scale(1.04); filter: brightness(1.14); }
+.nf-cv2-tile__label { font-family: var(--heading-font-family, serif); font-size: 14px; line-height: 1.25; text-align: center; }
+#cart-drawer .nf-cv2-empty .nf-cv2-trust { margin-top: 22px; }
+
+/* ---------- Cart page: note link and the "What happens next" band ---------- */
+.nf-cv2-note { align-self: start; }
+.nf-cv2-note > summary {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer; list-style: none;
+  font-size: 14px; color: var(--nf-cv2-ink); text-decoration: underline; text-decoration-color: #bdbdbd; text-underline-offset: 4px;
+}
+.nf-cv2-note > summary::-webkit-details-marker { display: none; }
+.nf-cv2-note > summary svg { width: 14px; height: 14px; flex: none; }
+.nf-cv2-note[open] > summary { margin-bottom: 10px; }
+.nf-cv2-note .cart-note label { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.nf-cv2-next { margin-top: 8px; padding: 26px 32px 28px; border-radius: 14px; background: var(--nf-cv2-ink); color: #fff; }
+.nf-cv2-next__heading { margin: 0 0 18px; font-family: var(--heading-font-family, serif); font-size: 20px; font-weight: 300; line-height: 1.3; color: #fff; }
+.nf-cv2-next__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
+.nf-cv2-next__item { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; align-items: start; }
+.nf-cv2-next__item svg { width: 28px; height: 28px; color: var(--nf-cv2-gold-2); }
+.nf-cv2-next__title { margin: 0 0 3px; font-family: var(--heading-font-family, serif); font-size: 16px; font-weight: 300; line-height: 1.3; color: #fff; }
+.nf-cv2-next__text { margin: 0; font-size: 13px; line-height: 1.5; color: rgba(255, 255, 255, 0.74); }
+.nf-cv2-next__text a { color: #fff; text-decoration: underline; text-decoration-color: var(--nf-cv2-gold-2); text-underline-offset: 3px; }
+.nf-cv2-next__text a:hover { color: var(--nf-cv2-gold-2); }
+@media (max-width: 749px) {
+  .nf-cv2-next { padding: 22px 20px; }
+  .nf-cv2-next__grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* ---------- Product sticky add to cart bar: white, hairline, options + rating ---------- */
+html body product-sticky-bar.product-sticky-bar {
+  background: #fff !important;
+  border-top: 1px solid var(--nf-cv2-line) !important;
+  border-bottom: 1px solid var(--nf-cv2-line) !important;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06) !important;
+}
+html body product-sticky-bar.product-sticky-bar [class*="sticky-bar"] { background: transparent !important; border-top: 0 !important; }
+html body product-sticky-bar .product-sticky-bar__info img { border-radius: 8px; background: #fff; }
+.nf-cv2-sticky__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; margin: 1px 0 2px; font-size: 12px; line-height: 1.4; color: var(--nf-cv2-sub); }
+.nf-cv2-sticky__meta:empty { display: none; }
+.nf-cv2-sticky__opts { max-width: 46ch; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.nf-cv2-sticky__stars { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.nf-cv2-stars { position: relative; display: inline-block; font-size: 11px; line-height: 1; letter-spacing: 1px; color: #dadada; }
+.nf-cv2-stars::before { content: "\2605\2605\2605\2605\2605"; }
+.nf-cv2-stars::after {
+  content: "\2605\2605\2605\2605\2605"; position: absolute; top: 0; left: 0; width: var(--nf-cv2-r, 100%);
+  overflow: hidden; white-space: nowrap; color: var(--nf-cv2-gold);
+}
+html.nf-cv2-glow product-sticky-bar .product-sticky-bar__info img { animation: nfCv2Thumb 1.8s ease-out 1; }
+@keyframes nfCv2Thumb {
+  0% { box-shadow: 0 0 0 0 rgba(201, 163, 106, 0); }
+  35% { box-shadow: 0 0 0 3px rgba(201, 163, 106, 0.35), 0 0 24px 8px rgba(246, 207, 138, 0.55); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 163, 106, 0); }
+}
+
+/* ---------- Reduced motion: final states, no animation ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .nf-cv2-lamp__glow { opacity: 0.95; transform: none; animation: none !important; }
+  .nf-cv2-lamp__bulb { fill: var(--nf-cv2-warm); stroke: var(--nf-cv2-gold); animation: none !important; }
+  .nf-cv2-progress.is-filling .nf-cv2-progress__fill { animation: none !important; }
+  html.nf-cv2-glow product-sticky-bar .product-sticky-bar__info img { animation: none !important; }
+  .nf-cv2-tile__img img, .nf-cv2-card { transition: none !important; }
+}
+
+/* NF-CART-OFFER (2026-09-12, owner: "with nothing in the cart, put a little thing that says two or more items, 10% off").
+   One small gold outline pill in the EMPTY drawer (and the empty cart page). Wording follows the real automatic discount
+   "Buy 2+ items, save 10%" (DiscountAutomaticNode/1616713646132, 10% off all items, no end date): if it changes, change
+   the pill in sections/cart-drawer.liquid and sections/main-cart.liquid the same day. Nothing else in the drawer changed. */
+.nf-cv2-offer{display:inline-flex;align-items:center;justify-content:center;gap:9px;max-width:100%;margin:-6px auto 20px;padding:8px 16px;border:1px solid rgba(179,139,93,.6);border-radius:20px;background:#fff;font-size:12.5px;line-height:1.35;font-weight:500;letter-spacing:.02em;color:var(--nf-cv2-gold-text);text-align:center;text-wrap:balance}
+.nf-cv2-offer__dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--nf-cv2-gold-2);box-shadow:0 0 0 3px rgba(201,163,106,.18)}
+
+/* NF-CART-V4 (2026-09-14, owner: sticky bar still too big, and needs its own quantity + variant + Buy Now, not
+   just Add to Cart). The old top-pinning script is removed (see main-product.liquid); this bar pins to the bottom
+   of the viewport at every width. It is now one single thin row: thumbnail, name + price, variant dropdown (if any),
+   quantity, Add to Cart, Buy Now. Everything below flattens buy-buttons.liquid's normal stacked layout
+   (quantity+ATC row, then Buy Now on its own row) into one horizontal row, using display:contents on the small
+   inner wrapper divs that carry no visual styling of their own, so nothing about their function changes. */
+html body product-sticky-bar.product-sticky-bar {
+  position: fixed !important;
+  top: auto !important;
+  inset-block-start: auto !important;
+  bottom: 0 !important;
+  inset-block-end: 0 !important;
+  padding: 9px 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+html body product-sticky-bar .product-sticky-bar__info img {
+  width: 44px !important;
+  height: 44px !important;
+}
+html body product-sticky-bar .product-sticky-bar__info .v-stack { gap: 2px !important; }
+html body product-sticky-bar .product-sticky-bar__info .h6 { font-size: 13.5px !important; }
+html body product-sticky-bar .product-sticky-bar__info {
+  min-width: 0; flex-shrink: 1; overflow: hidden;
+}
+html body product-sticky-bar .product-sticky-bar__info .h6 {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block;
+}
+
+/* NF-CART-V6 (2026-09-14, owner: bar shrank too far, quantity selector never actually got pill styling in the
+   sticky bar (it was only sized, never given the border/shape), the Buy Now wrapper wasn't clipping to match its
+   rounded corners, and the dropdown popup text was still wrapping onto 3 lines). Every control is now pinned to
+   the same 44px height and the same pill radius, explicitly: variant dropdown, quantity stepper, Add to Cart, and
+   Buy Now all match. The popup is wider and its text no longer wraps. */
+html body product-sticky-bar.product-sticky-bar { padding: 9px 28px !important; gap: 16px !important; }
+
+.product-sticky-bar__controls{display:flex;align-items:center;gap:8px;flex:1 1 auto;min-width:0;justify-content:flex-end}
+.nf-sb-variant{flex:0 0 auto;display:flex;align-items:center;min-width:0}
+.nf-sb-variant .variant-picker{margin:0;display:flex!important;flex-direction:row!important;align-items:center;gap:6px;flex-shrink:0}
+.nf-sb-variant .variant-picker__option{gap:0;flex-shrink:0}
+.nf-sb-variant .variant-picker__option-info{display:none}
+.nf-sb-variant .relative{height:44px;flex-shrink:0}
+.nf-sb-variant .select{
+  height:44px;min-height:44px;padding:0 16px;border-radius:999px;
+  border:1px solid #d8d8d8;background:#fff;font-size:13px;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:6px;transition:border-color .2s;
+  width:max-content;flex-shrink:0;
+}
+.nf-sb-variant .select:hover,.nf-sb-variant .select[aria-expanded="true"]{border-color:#1A1714}
+.nf-sb-variant .select svg{width:9px;height:9px;flex:none}
+/* NF-CART-V9 (2026-09-14, owner: none of the popover styling was changing anything on mobile). Root cause:
+   Prestige's x-popover detaches itself to be a direct child of <body> on mobile (it becomes a bottom sheet),
+   so ".nf-sb-variant .popover" stops matching it there — the ancestor is gone. ".popover--top-start" is the
+   fix: only the sticky bar's dropdown ever uses that placement modifier (variant-picker.liquid), so it still
+   uniquely identifies our popover whether it's nested under .nf-sb-variant (desktop) or sitting on <body>
+   (mobile sheet). Every popover rule below is duplicated onto that selector for that reason. */
+.nf-sb-variant .popover, .popover--top-start{border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.14);border:1px solid #ececec;min-width:0;width:max-content;max-width:min(320px,80vw)}
+.nf-sb-variant .popover__value-list, .popover--top-start .popover__value-list{padding:5px;max-height:60vh;overflow-y:auto}
+.nf-sb-variant .popover__value-option, .popover--top-start .popover__value-option{border-radius:8px;padding:11px 14px;white-space:nowrap;font-size:13px}
+.nf-sb-variant .popover__value-option span, .popover--top-start .popover__value-option span{white-space:nowrap}
+
+html body product-sticky-bar .nf-bb-stack{display:flex!important;flex-direction:row!important;align-items:center!important;gap:8px!important}
+html body product-sticky-bar .nf-qty-atc-row{display:contents}
+html body product-sticky-bar .nf-qty-inline{display:flex;align-items:center;flex-shrink:0}
+html body product-sticky-bar .nf-qty-inline .quantity-selector{
+  height:44px;min-height:44px;display:flex!important;align-items:center;justify-content:center;
+  border:1px solid #d8d8d8;border-radius:999px;background:#fff;overflow:hidden;
+}
+html body product-sticky-bar .nf-qty-inline .quantity-selector__button{
+  width:36px;height:44px;display:flex;align-items:center;justify-content:center;flex:none;
+  border:0!important;background:transparent;color:#1A1714;
+}
+html body product-sticky-bar .nf-qty-inline .quantity-selector__button:hover:not(:disabled){background:#f2f2f2}
+html body product-sticky-bar .nf-qty-inline .quantity-selector__input{
+  width:32px;height:44px;line-height:44px;padding:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;font-size:14px;border:0!important;background:transparent;
+}
+html body product-sticky-bar .nf-buybuttons{display:flex;align-items:center;flex-shrink:0}
+html body product-sticky-bar .button{
+  height:44px;padding:0 22px!important;line-height:44px!important;font-size:12.5px!important;
+  border-radius:999px!important;display:inline-flex;align-items:center;justify-content:center;
+  flex-shrink:0;white-space:nowrap;
+}
+html body product-sticky-bar .nf-buynow{
+  flex:0 0 auto;display:flex;align-items:center;height:44px;border-radius:999px;overflow:hidden;
+}
+html body product-sticky-bar .nf-buynow .shopify-payment-button{
+  height:44px;min-width:110px;--shopify-payment-button-border-radius:999px;
+}
+html body product-sticky-bar .nf-buynow .shopify-payment-button,
+html body product-sticky-bar .nf-buynow .shopify-payment-button__button,
+html body product-sticky-bar .nf-buynow .shopify-payment-button button,
+html body product-sticky-bar .nf-buynow iframe{
+  border-radius:999px!important;overflow:hidden!important;
+}
+html body product-sticky-bar .nf-buynow .shopify-payment-button__more-options{display:none}
+/* NF-CART-V7 (2026-09-14, owner: the dropdown list is too spaced out and it's hard to tell what the cursor
+   is over, and the collapsed pill's chevron runs into the variant text when the text is long. Also on mobile
+   the Buy Now / Apple Pay button was eating up to two thirds of the bar; mobile now shows only the variant
+   dropdown and Add to Cart, split evenly in half. */
+.nf-sb-variant .select{
+  padding: 0 30px 0 16px !important;
+  position: relative;
+  gap: 0 !important;
+}
+.nf-sb-variant .select svg{
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  width: 9px; height: 9px;
+}
+.nf-sb-variant .popover__value-list, .popover--top-start .popover__value-list{
+  display: flex; flex-direction: column; gap: 2px; padding: 6px;
+}
+.nf-sb-variant .popover__value-option, .popover--top-start .popover__value-option{
+  padding: 9px 12px; border-radius: 8px; font-size: 13px;
+  transition: background-color 0.12s ease;
+}
+
+/* NF-CART-V8 (2026-09-14, owner: the open popover had a lot of dead space on the right of short variant
+   names, wanted a warm tan hover instead of grey, and on mobile the option rows were too small and close
+   together to tap accurately). */
+.nf-sb-variant .popover__value-option:hover, .popover--top-start .popover__value-option:hover{ background: #f0ddba; }
+.nf-sb-variant .popover__value-option:has(input:checked), .popover--top-start .popover__value-option:has(input:checked){ background: #ead9ba; font-weight: 600; }
+
+/* NF-CART-V10 (2026-09-14): on phones the sticky bar shows ONE combined variant control (.nf-sb-combined,
+   rendered by variant-picker.liquid with combined_mobile_dropdown) next to Add to Cart, split evenly. It is hidden on
+   desktop, where the per-option dropdowns keep working as before. NF-STICKY-V4: the pill is ours, a real native select
+   sits invisibly over it so a tap opens the phone's own picker (the iOS menu). 16px on the select stops iOS zooming. */
+.nf-sb-combined{ display: none; }
+.nf-sb-combined .select{
+  height: 44px; min-height: 44px; padding: 0 30px 0 16px; border-radius: 999px;
+  border: 1px solid #d8d8d8; background: #fff; font-size: 13px; white-space: nowrap;
+  display: inline-flex; align-items: center; position: relative; width: max-content;
+}
+.nf-sb-combined .select svg{ position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 9px; height: 9px; pointer-events: none; }
+.nf-sb-combined .select [data-nf-combined-label]{
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; display: block; pointer-events: none;
+}
+.nf-sb-native{
+  position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0;
+  opacity: 0; font-size: 16px; -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer;
+}
+
+@media (max-width: 749px) {
+  html body product-sticky-bar.product-sticky-bar { padding: 8px 16px !important; gap: 8px !important; }
+  .product-sticky-bar__controls{ gap: 8px; width: 100%; }
+  html body product-sticky-bar .nf-qty-inline,
+  html body product-sticky-bar .nf-buynow { display: none !important; }
+  /* Keep .nf-sb-variant visible (it contains .nf-sb-combined; a hidden parent hides its children), hide only the
+     per-option rows inside it. */
+  html body product-sticky-bar .nf-sb-variant{ display: flex !important; flex: 1 1 50%; min-width: 0; }
+  html body product-sticky-bar .nf-sb-variant .variant-picker{ display: flex !important; width: 100%; min-width: 0; }
+  html body product-sticky-bar .nf-sb-variant .variant-picker__option{ display: none !important; }
+  html body product-sticky-bar .nf-sb-combined{ display: flex !important; width: 100%; min-width: 0; }
+  html body product-sticky-bar .nf-sb-combined .select{
+    width: 100%; min-width: 0; justify-content: flex-start; overflow: hidden;
+  }
+  html body product-sticky-bar .nf-bb-stack{ flex: 1 1 50%; min-width: 0; }
+  html body product-sticky-bar .nf-bb-stack:only-child{ flex: 1 1 100%; }
+  html body product-sticky-bar .nf-buybuttons{ width: 100%; }
+  /* Light gray like Dazuma's, not tan: the chat bubble on phones is tan and sits right beside it. */
+  html body product-sticky-bar .nf-buybuttons .button{
+    width: 100%; background-color: #ececec !important; border-color: #ececec !important; color: #1c1c1c !important;
+  }
+}

@@ -1,0 +1,83 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_with_text_X7nfkA": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_ga6tQb": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>Need Help? We're here for you.</strong>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_TFY9Rj": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h4><strong>Our Contact Information:</strong></h4><p><strong>Store Email:</strong> <a href=\"mailto:info@norafurnish.com\" title=\"mailto:info@norafurnish.com\">info@norafurnish.com</a></p><p><strong>Customer Service Hours:</strong> Monday to Friday, 9:00 AM to 5:00 PM (CST)</p><p>We aim to respond to all email inquiries within 1 to 2 business days.</p><h4><strong>Returns & Exchanges</strong></h4><p>Please contact us before sending any return or exchange shipment. Return and exchange details are listed in our <a href=\"https://norafurnish.com/policies/refund-policy\" title=\"Returns and Refunds Policy\">Returns & Refunds Policy</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ga6tQb",
+        "richtext_TFY9Rj"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/nf-newsletter-bedroom-lamps.png",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "md",
+        "remove_vertical_spacing": true
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "contact-form": {
+      "type": "contact",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "subheading": "",
+        "title": "Contact",
+        "content": ""
+      },
+      "disabled": true
+    },
+    "nf_hc_corner": {
+      "type": "nf-hc-corner",
+      "settings": {}
+    },
+    "nf_hc_form": {
+      "type": "nf-hc-form",
+      "settings": {
+        "eyebrow": "Email us",
+        "heading": "Send us a message"
+      }
+    }
+  },
+  "order": [
+    "image_with_text_X7nfkA",
+    "nf_hc_corner",
+    "nf_hc_form",
+    "main",
+    "contact-form"
+  ]
+}

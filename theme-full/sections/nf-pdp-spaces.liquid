@@ -1,0 +1,101 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) "Seen in Real Homes" (the owner's Luminous Spaces), under Reviews on every product page.
+  Data: shop metafield custom.nf_spaces (json) = { tiles:[{i,w,h,n,t,p,h,pt,pi,c}], rooms:[{i,w,h,r,l}] }.
+  HONESTY: every tile is a real review that is live in Judge.me; name and text exactly as Judge.me shows them, the photo
+  is the one attached to that same review in the source import, re-hosted on our CDN (nf-space-NN). Room tiles are our
+  own product lifestyle photos and carry NO names or quotes. Never add invented people or quotes here.
+  Order: this product's own photo reviews, then the same category (nav-* tag), then the rest. Reviews only (owner 2026-09-14): the room idea tiles were removed.
+{%- endcomment -%}
+{%- comment -%} NF-PDP-V1: with "defer" on, only an empty shell is printed; nf-pdp.js fetches the full section from the
+  product.nf-pdp-below view when it comes near the viewport (keeps the first load light). {%- endcomment -%}
+{%- if section.settings.defer -%}
+{%- comment -%} NF-SPEED-B-0916: shell only, so its CSS loads without blocking render (the full section is fetched later) {%- endcomment -%}
+<link rel="stylesheet" href="{{ 'nf-pdp-below.css' | asset_url }}" media="print" onload="this.media='all'">
+<div class="nf-defer nf-defer--spaces" data-nf-defer="nf_pdp_spaces" aria-busy="true"></div>
+{%- else -%}
+{{ 'nf-pdp-below.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign d = shop.metafields.custom.nf_spaces.value
+  assign tg = product.tags | join: ' '
+  assign cap = section.settings.max | default: 24
+  assign n = 0
+  assign outdoor = false
+  if tg contains 'nav-outdoor-lighting' or tg contains 'shop-outdoor'
+    assign outdoor = true
+  endif
+-%}
+{%- if d != blank -%}
+<section class="nf-sp nf-lz" data-nf-sp aria-labelledby="nf-sp-h-{{ section.id }}">
+  <div class="nf-sp__in">
+    <div class="nf-sp__head nf-rv">
+      <p class="nf-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="nf-h2" id="nf-sp-h-{{ section.id }}">{{ section.settings.heading }}</h2>
+      <p class="nf-sp__lead">{{ section.settings.lead | replace: ', plus room ideas from our own collection', '' }}</p>
+    </div>
+    <div class="nf-sp__rail">
+      <div class="nf-sp__track" data-nf-track tabindex="0" aria-label="Customer photos">
+        {%- capture own -%}
+          {%- for t in d.tiles -%}{%- if t.p == product.id and n < cap -%}{%- assign n = n | plus: 1 -%}{%- render 'nf-pdp-sp-tile', t: t -%}{%- endif -%}{%- endfor -%}
+        {%- endcapture -%}
+        {%- capture cat -%}
+          {%- for t in d.tiles -%}
+            {%- assign navtag = 'nav-' | append: t.c -%}
+            {%- if t.p != product.id and n < cap and t.c != blank -%}
+              {%- if tg contains navtag -%}{%- assign n = n | plus: 1 -%}{%- render 'nf-pdp-sp-tile', t: t -%}{%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- capture rest -%}
+          {%- for t in d.tiles -%}
+            {%- assign navtag = 'nav-' | append: t.c -%}
+            {%- unless tg contains navtag or t.p == product.id -%}
+              {%- if n < cap -%}{%- assign n = n | plus: 1 -%}{%- render 'nf-pdp-sp-tile', t: t -%}{%- endif -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {{ own }}{{ cat }}{{ rest }}
+      </div>
+      <div class="nf-rail-nav">
+        <button type="button" class="nf-rail-nav__b" data-nf-prev aria-label="Previous photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="nf-rail-nav__dots" data-nf-dots aria-hidden="true"></div>
+        <button type="button" class="nf-rail-nav__b" data-nf-next aria-label="Next photos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <dialog class="nf-sp__dlg" data-nf-dlg aria-label="Customer photo">
+    <div class="nf-sp__box">
+      <button type="button" class="nf-sp__x" data-nf-close aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="nf-sp__ph"><img data-nf-dimg alt="" decoding="async"></div>
+      <div class="nf-sp__txt">
+        <p class="nf-sp__who"><span class="nf-sp__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span data-nf-dname></span></p>
+        <blockquote class="nf-sp__q" data-nf-dtext></blockquote>
+        <div class="nf-sp__shop">
+          <p class="nf-eyebrow">Shop the look</p>
+          <a class="nf-sp__prod" data-nf-dhref href="#">
+            <img data-nf-dpi alt="" width="72" height="72" loading="lazy">
+            <span data-nf-dpt></span>
+          </a>
+          <a class="nf-btn nf-btn--dark" data-nf-dhref2 href="#">Shop now</a>
+        </div>
+        <div class="nf-sp__nav">
+          <button type="button" class="nf-rail-nav__b" data-nf-dprev aria-label="Previous review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="nf-rail-nav__b" data-nf-dnext aria-label="Next review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</section>
+{%- endif -%}
+{%- endif -%}
+{% schema %}
+{
+  "name": "NF Seen in real homes",
+  "settings": [
+    { "type": "checkbox", "id": "defer", "label": "Load when scrolled near (faster first load)", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From our customers" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Seen in Real Homes" },
+    { "type": "textarea", "id": "lead", "label": "Intro", "default": "Photos customers shared with their reviews. Tap a photo to read the review and shop the piece." },
+    { "type": "range", "id": "max", "label": "Tiles", "min": 8, "max": 30, "step": 1, "default": 24 }
+  ]
+}
+{% endschema %}

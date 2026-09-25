@@ -1,0 +1,191 @@
+{%- comment -%}
+  nf-guides-page-stories : "Stories and Projects" posts grid for the Ideas & Guides page. 2026-09-11.
+  Every article of the blog plus one "concept" block per Project Portfolio design concept, interleaved (a concept after
+  every N articles). Cards: large image with the Nora Furnish wordmark overlaid bottom left, a category eyebrow, an
+  uppercase serif title and a date; the whole card is one link.
+  Article categories come from their existing tags: Outdoor tag = Outdoor; handle with ideas/layer/warm-white/artwork or
+  the 101 tag = Style & Trends; everything else = Indoor. Concept cards are titled "Design Concept: <name>" (team concepts,
+  not client jobs, so never "Case Study") and link to /pages/<portfolio>#concept-<slug>, which opens that concept.
+  Filtering and "Load more" happen in place in assets/nf-guides-page.js; without JS every card shows.
+{%- endcomment -%}
+{{- 'nf-guides-page.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign s_blog = blogs[section.settings.blog_handle]
+  if s_blog == blank
+    assign s_blog = blogs['blog']
+  endif
+  assign s_logo = blank
+  if section.settings.logo_file != blank
+    assign s_logo = images[section.settings.logo_file]
+  endif
+  assign s_pf = pages[section.settings.portfolio_handle]
+  assign s_pf_url = '/pages/' | append: section.settings.portfolio_handle
+  assign s_every = section.settings.concept_every
+  assign s_prefix = section.settings.concept_prefix | default: 'Design Concept:'
+  assign s_lbl_in = section.settings.label_indoor | default: 'Indoor'
+  assign s_lbl_out = section.settings.label_outdoor | default: 'Outdoor'
+  assign s_lbl_style = section.settings.label_style | default: 'Style & Trends'
+  assign s_lbl_con = section.settings.label_concepts | default: 'Design Concepts'
+  assign s_sizes = '(max-width: 699px) 92vw, (max-width: 999px) 46vw, 440px'
+-%}
+{%- comment -%} NF-IMG-SHARP-0916: s_sizes 400px -> 440px, cards render ~433px wide so 2x screens picked a soft 800px file. {%- endcomment -%}
+{%- capture s_logo_html -%}
+  {%- if s_logo != blank and s_logo.width > 0 -%}<span class="nfg-post__logo" aria-hidden="true">{{ s_logo | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120,240', sizes: '110px', alt: '' }}</span>{%- endif -%}
+{%- endcapture -%}
+{%- capture s_concepts -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type != 'concept' or block.settings.slug == blank -%}{%- continue -%}{%- endif -%}
+    {%- liquid
+      assign c_img = blank
+      if block.settings.image_file != blank
+        assign c_img = images[block.settings.image_file]
+      endif
+      assign c_cat = block.settings.cat | default: 'indoor'
+      assign c_date = block.settings.date
+      if c_date == blank and s_pf != blank
+        assign c_date = s_pf.published_at
+      endif
+    -%}
+    <li class="nfg-post nfg-post--concept" data-cats="concepts {{ c_cat }}" {{ block.shopify_attributes }}>
+      <a class="nfg-post__a" href="{{ s_pf_url }}#concept-{{ block.settings.slug | handle }}">
+        <span class="nfg-post__media">
+          {%- if c_img != blank and c_img.width > 0 -%}
+            {{- c_img | image_url: width: 1000 | image_tag: class: 'nfg-post__img', loading: 'lazy', widths: '400,600,800,1000', sizes: s_sizes, alt: '' -}}
+          {%- endif -%}
+          <span class="nfg-post__badge">{{ s_lbl_con | escape }}</span>
+          {{- s_logo_html -}}
+        </span>
+        <span class="nfg-post__eyebrow">{% if c_cat == 'outdoor' %}{{ s_lbl_out | escape }}{% else %}{{ s_lbl_in | escape }}{% endif %}{% if block.settings.space != blank %} <span aria-hidden="true">&middot;</span> {{ block.settings.space | escape }}{% endif %}</span>
+        <h3 class="nfg-post__t">{{ s_prefix | escape }} {{ block.settings.title | escape }}</h3>
+        {%- if c_date != blank -%}<time class="nfg-post__date" datetime="{{ c_date | date: '%Y-%m-%d' }}">{{ c_date | date: '%b %d, %Y' }}</time>{%- endif -%}
+      </a>
+    </li>
+    <!--nfgsplit-->
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign s_concept_cards = s_concepts | split: '<!--nfgsplit-->' -%}
+{%- assign s_ci = 0 -%}
+{%- assign s_cn = s_concept_cards.size -%}
+{%- assign s_last = s_concept_cards | last | strip -%}
+{%- if s_last == blank and s_cn > 0 -%}{%- assign s_cn = s_cn | minus: 1 -%}{%- endif -%}
+
+<section class="nfg nfg-sec nfg-stories"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handle }}"{% endif %} aria-labelledby="nfg-st-h-{{ section.id }}" data-nfg-stories>
+  <div class="nfg-wrap">
+    <header class="nfg-head">
+      <div class="nfg-head__main">
+        {%- if section.settings.eyebrow != blank -%}<p class="nfg-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfg-h2" id="nfg-st-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<p class="nfg-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+      {%- if s_blog != blank -%}<a class="nfg-link" href="{{ s_blog.url }}">{{ section.settings.all_label | default: 'All articles' | escape }}<span class="nfg-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+    </header>
+
+    <div class="nfg-pills" role="group" aria-label="{{ section.settings.filter_label | default: 'Filter posts' | escape }}">
+      <button type="button" class="nfg-pill" data-nfg-filter="all" aria-pressed="true">{{ section.settings.label_all | default: 'All Posts' | escape }}</button>
+      <button type="button" class="nfg-pill" data-nfg-filter="indoor" aria-pressed="false">{{ s_lbl_in | escape }}</button>
+      <button type="button" class="nfg-pill" data-nfg-filter="outdoor" aria-pressed="false">{{ s_lbl_out | escape }}</button>
+      <button type="button" class="nfg-pill" data-nfg-filter="style" aria-pressed="false">{{ s_lbl_style | escape }}</button>
+      {%- if s_cn > 0 -%}<button type="button" class="nfg-pill" data-nfg-filter="concepts" aria-pressed="false">{{ s_lbl_con | escape }}</button>{%- endif -%}
+    </div>
+
+    <ul class="nfg-posts" role="list" id="nfg-posts-{{ section.id }}" data-nfg-posts data-first="{{ section.settings.first_count }}" data-step="{{ section.settings.step_count }}">
+      {%- if s_blog != blank -%}
+        {%- for article in s_blog.articles limit: 60 -%}
+          {%- liquid
+            assign a_h = article.handle
+            assign a_cat = 'indoor'
+            if article.tags contains 'Outdoor'
+              assign a_cat = 'outdoor'
+            elsif a_h contains 'ideas' or a_h contains 'layer' or a_h contains 'warm-white' or a_h contains 'artwork'
+              assign a_cat = 'style'
+            elsif article.tags contains '101'
+              assign a_cat = 'style'
+            endif
+            case a_cat
+              when 'outdoor'
+                assign a_lbl = s_lbl_out
+              when 'style'
+                assign a_lbl = s_lbl_style
+              else
+                assign a_lbl = s_lbl_in
+            endcase
+          -%}
+          <li class="nfg-post" data-cats="{{ a_cat }}">
+            <a class="nfg-post__a" href="{{ article.url }}">
+              <span class="nfg-post__media">
+                {%- if article.image != blank -%}
+                  {{- article.image | image_url: width: 1000 | image_tag: class: 'nfg-post__img', loading: 'lazy', widths: '400,600,800,1000', sizes: s_sizes, alt: '' -}}
+                {%- endif -%}
+                {{- s_logo_html -}}
+              </span>
+              <span class="nfg-post__eyebrow">{{ a_lbl | escape }}</span>
+              <h3 class="nfg-post__t">{{ article.title | escape }}</h3>
+              <time class="nfg-post__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+            </a>
+          </li>
+          {%- if s_every > 0 -%}
+            {%- assign a_m = forloop.index | modulo: s_every -%}
+            {%- if a_m == 0 and s_ci < s_cn -%}
+              {{- s_concept_cards[s_ci] -}}
+              {%- assign s_ci = s_ci | plus: 1 -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+      {%- if s_ci < s_cn -%}
+        {%- assign s_rem = s_cn | minus: s_ci -%}
+        {%- for c in s_concept_cards offset: s_ci limit: s_rem -%}{{- c -}}{%- endfor -%}
+      {%- endif -%}
+    </ul>
+
+    <div class="nfg-posts__foot">
+      <p class="nfg-posts__status" data-nfg-status aria-live="polite"></p>
+      <button type="button" class="nfg-btn nfg-btn--line" data-nfg-more aria-controls="nfg-posts-{{ section.id }}" hidden>{{ section.settings.more_label | default: 'Load more' | escape }}</button>
+    </div>
+    {%- if section.settings.note != blank -%}<p class="nfg-posts__note">{{ section.settings.note | escape }}</p>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF guides stories",
+  "class": "nfg-section nfg-section--stories",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor id", "default": "stories" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Stories and projects" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From our blogs and studio" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "all_label", "label": "All articles link label", "default": "All articles" },
+    { "type": "text", "id": "blog_handle", "label": "Blog handle", "default": "blog" },
+    { "type": "text", "id": "logo_file", "label": "Wordmark filename in Files", "info": "Shown in white on every card image." },
+    { "type": "text", "id": "portfolio_handle", "label": "Portfolio page handle", "default": "project-portfolio" },
+    { "type": "range", "id": "concept_every", "label": "Place a design concept after every N articles", "min": 1, "max": 6, "step": 1, "default": 2 },
+    { "type": "text", "id": "concept_prefix", "label": "Concept title prefix", "default": "Design Concept:" },
+    { "type": "range", "id": "first_count", "label": "Cards shown before Load more", "min": 3, "max": 24, "step": 3, "default": 9 },
+    { "type": "range", "id": "step_count", "label": "Cards added by Load more", "min": 3, "max": 12, "step": 3, "default": 6 },
+    { "type": "text", "id": "more_label", "label": "Load more label", "default": "Load more" },
+    { "type": "text", "id": "filter_label", "label": "Filter group label (screen readers)", "default": "Filter posts" },
+    { "type": "text", "id": "label_all", "label": "Pill: all", "default": "All Posts" },
+    { "type": "text", "id": "label_indoor", "label": "Pill: indoor", "default": "Indoor" },
+    { "type": "text", "id": "label_outdoor", "label": "Pill: outdoor", "default": "Outdoor" },
+    { "type": "text", "id": "label_style", "label": "Pill: style", "default": "Style & Trends" },
+    { "type": "text", "id": "label_concepts", "label": "Pill: concepts", "default": "Design Concepts" },
+    { "type": "textarea", "id": "note", "label": "Small note under the grid" }
+  ],
+  "blocks": [
+    {
+      "type": "concept",
+      "name": "Design concept",
+      "settings": [
+        { "type": "text", "id": "slug", "label": "Concept slug", "info": "Matches #concept-<slug> on the portfolio page, for example alder-lobby" },
+        { "type": "text", "id": "title", "label": "Concept name" },
+        { "type": "text", "id": "space", "label": "Kind of space", "info": "For example Boutique hotel lobby" },
+        { "type": "select", "id": "cat", "label": "Indoor or outdoor", "options": [ { "value": "indoor", "label": "Indoor" }, { "value": "outdoor", "label": "Outdoor" } ], "default": "indoor" },
+        { "type": "text", "id": "image_file", "label": "Image filename in Files" },
+        { "type": "text", "id": "date", "label": "Date (YYYY-MM-DD)", "info": "Leave blank to use the portfolio page date." }
+      ]
+    }
+  ],
+  "max_blocks": 16
+}
+{% endschema %}

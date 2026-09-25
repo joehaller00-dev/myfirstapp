@@ -1,0 +1,335 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Gyms and Studios",
+        "eyebrow": "Gyms, yoga and fitness studios",
+        "heading": "Energy for the workout, calm for the cool down",
+        "text": "Gyms, yoga rooms and fitness studios need bright, even light for training and a softer mood for stretching and recovery. Clean linear lines and ring pendants give the space a modern look members remember.",
+        "image_file": "nf-ref-office-lounge.jpg",
+        "image_alt": "Energy for the workout, calm for the cool down",
+        "fallback_collection": "linear-suspension",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=gym-studio-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Linear Suspension",
+        "link_url": "/collections/linear-suspension"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Bright to train, soft to recover",
+        "image_file": "nf-ref-corridor-ceiling.png",
+        "image_alt": "A corridor lit by a clean line of ceiling light",
+        "fallback_collection": "flush-mount-lighting",
+        "text": "<p>One room often hosts a hard class at noon and a quiet yoga session at night. Layered, dimmable light handles both.</p>",
+        "bullets": "Even light over the floor: Linear and ring pendants spread light across the room with no dark spots.\nCool light for training: Light around 4000K to 5000K keeps a workout area bright and alert.\nWarm, dim light for yoga: Dimmable fixtures and warm LED strips set a calm mood for slower classes.\nLines of light along walls: Linear wall lights and LED strips guide the eye and make the room feel larger.\nA calm scent in the lounge: Aroma diffusers finish changing rooms and recovery areas.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Training floors\nYoga and pilates rooms\nReception\nChanging rooms\nLounges\nCorridors"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Linear Suspension",
+        "link_url": "/collections/linear-suspension"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Linear suspension",
+            "collection": "linear-suspension",
+            "text": "Long lines of light over training floors.",
+            "shop_label": "Shop linear suspension",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Flush mount",
+            "collection": "flush-mount-lighting",
+            "text": "Low profile light for changing rooms and corridors.",
+            "shop_label": "Shop flush mount lights",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Linear wall lights",
+            "collection": "linear-wall-sconces",
+            "text": "Clean lines of light along studio walls.",
+            "shop_label": "Shop linear wall sconces",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "LED strip lights",
+            "collection": "led-strip-lights",
+            "text": "Soft lines of light for yoga rooms and coves.",
+            "shop_label": "Shop LED strip lights",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Aroma diffusers",
+            "collection": "aroma-diffusers",
+            "text": "A calm scent for lounges and changing rooms.",
+            "shop_label": "Shop aroma diffusers",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-office-concepts-3.webp",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "image_file": "nf-pro3-office-concepts-1.png",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "image_file": "nf-pro3-office-concepts-2.webp",
+            "fallback_collection": "pendants"
+          }
+        }
+      },
+      "block_order": [
+        "c_maker_studio",
+        "c_linen_and_oak",
+        "c_alder_lobby"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Opening or refreshing a gym or studio?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=gym-studio-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "What light works best for a yoga room?",
+            "a": "<p>Warm, dimmable light around 2700K suits slower classes. LED strips and dimmable pendants let one room change mood between sessions.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "How long does delivery take?",
+            "a": "<p>Shipping is free anywhere in the United States, with delivery in 6 to 9 business days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how gym and studio lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=gym-studio-lighting-projects",
+        "btn2_label": "Shop Linear Suspension",
+        "btn2_url": "/collections/linear-suspension",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Studio Lounge",
+            "image_file": "nf-ref-office-lounge.jpg",
+            "alt": "Studio Lounge, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Corridor Line",
+            "image_file": "nf-ref-corridor-ceiling.png",
+            "alt": "Corridor Line, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Open Floor",
+            "image_file": "nf-ref-open-workspace.jpg",
+            "alt": "Open Floor, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Quiet Room",
+            "image_file": "nf-ref-focus-room.jpg",
+            "alt": "Quiet Room, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Reception Run",
+            "image_file": "nf-ref-retail-run.jpg",
+            "alt": "Reception Run, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Studio Table",
+            "image_file": "nf-pro3-office-ref-3.jpg",
+            "alt": "Studio Table, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Facade Lines",
+            "image_file": "nf-ref-facade-lines.png",
+            "alt": "Facade Lines, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Evening Walkway",
+            "image_file": "nf-ref-walkway.png",
+            "alt": "Evening Walkway, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band",
+    "faq"
+  ]
+}

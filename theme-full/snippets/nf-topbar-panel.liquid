@@ -1,0 +1,250 @@
+{%- comment -%}
+  NF-TOPBAR-V2 (2026-09-11, rebuilt after the owner's review): dropdown panels of the top bar, rendered from
+  snippets/nf-topbar.liquid. Styles: assets/nf-topbar-panels.css. Shop By tabs: assets/nf-topbar.js.
+  Pictures: snippets/nf-topbar-img.liquid. Link filter: snippets/nf-tb-url.liquid (a link to a collection that does not
+  exist yet or has no products is left out, so every panel fills in by itself). Everything is driven by the "top-bar" menu.
+
+  kind 'compact' (Best Sellers): one big picture card per child. A child titled "Shop all ..." (or pointing at
+    /collections/best-sellers) becomes the quiet link under the cards.
+  kind 'shopby' (Shop By): every child that has children is one tab in the left rail (Shop by Room, Shop by Outdoor Area,
+    Shop by Style, Shop by Material, Shop by Category); its children are the picture tiles. All panes share one grid cell,
+    so the panel keeps the height of the tallest pane and never jumps. A child titled "Featured" is the tile on the right
+    (first link big, the rest listed under it).
+  kind 'pro' (Professionals): the first group (Industries) = rows with project photos (Files nf-pro-*.jpg) and a Shop link
+    to the matching child of the group titled "Project Collections"; a group with 'custom' in its title = Custom Lighting
+    rows; a group with 'service' in its title = Services rows; children without children join Services; then the free
+    quote card. Pure white, neutral grey tints, charcoal text, gold only as eyebrow text and hover underlines.
+
+  NF-TOPBAR-V3 (2026-09-11): the Professionals column that was titled Custom Lighting is now "Made to Order" (it also
+    holds Made to Measure Curtains); a group whose title contains 'custom' or 'made to' fills it. Shop By tiles ask for 400px
+    images (tiles are now about 139 to 172px) and the Category pane gets class nf-sb2__pane--cat for a brighter grade.
+    Shop by Category opens first because it is the first child of Shop By in the top-bar menu.
+{%- endcomment -%}
+{%- if kind == 'compact' -%}
+  {%- assign nft_all = '' -%}
+  {%- assign nft_all_t = '' -%}
+  {%- capture nft_cards -%}
+    {%- for c in link.links -%}
+      {%- capture cu -%}{%- render 'nf-tb-url', url: c.url -%}{%- endcapture -%}
+      {%- assign cu = cu | strip -%}
+      {%- if cu == blank -%}{%- continue -%}{%- endif -%}
+      {%- assign ct = c.title | downcase -%}
+      {%- if ct contains 'shop all' or ct contains 'all best' or cu == '/collections/best-sellers' -%}
+        {%- assign nft_all = cu -%}
+        {%- assign nft_all_t = c.title -%}
+        {%- continue -%}
+      {%- endif -%}
+      {%- if ct contains 'indoor' -%}{%- assign d = 'Our most loved chandeliers, lamps and sconces' -%}
+      {%- elsif ct contains 'outdoor' -%}{%- assign d = 'Our most loved porch, path and garden lights' -%}
+      {%- else -%}{%- assign d = '' -%}{%- endif -%}
+      <li>
+        <a class="nf-bs2__card" href="{{ cu }}">
+          <span class="nf-bs2__img">{%- render 'nf-topbar-img', url: cu, w: 560 -%}</span>
+          <span class="nf-bs2__t">{{ c.title | escape }} <i aria-hidden="true">&rarr;</i></span>
+          {%- if d != '' -%}<span class="nf-bs2__d">{{ d }}</span>{%- endif -%}
+        </a>
+      </li>
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- assign nft_n = nft_cards | split: 'nf-bs2__card' | size | minus: 1 -%}
+  {%- if nft_all == '' -%}
+    {%- assign nft_all = link.url -%}
+    {%- assign nft_all_t = 'Shop all best sellers' -%}
+  {%- endif -%}
+  <div class="nf-tbp nf-tbp--compact">
+    {%- if nft_n > 0 -%}<ul class="nf-bs2" role="list" style="--n: {{ nft_n }}">{{ nft_cards }}</ul>{%- endif -%}
+    <a class="nf-bs2__all" href="{{ nft_all }}"><span>{{ nft_all_t | escape }}</span><i aria-hidden="true">&rarr;</i></a>
+  </div>
+
+{%- elsif kind == 'shopby' -%}
+  {%- assign nft_k = 0 -%}
+  {%- assign nft_feat_i = 0 -%}
+  {%- assign nft_tabs = '' -%}
+  {%- assign nft_panes = '' -%}
+  {%- for g in link.links -%}
+    {%- assign gt = g.title | downcase -%}
+    {%- if gt contains 'featured' -%}{%- assign nft_feat_i = forloop.index0 | plus: 1 -%}{%- continue -%}{%- endif -%}
+    {%- if g.links.size == 0 -%}{%- continue -%}{%- endif -%}
+    {%- assign nft_cnt = 0 -%}
+    {%- capture nft_tiles -%}
+      {%- for c in g.links -%}
+        {%- capture cu -%}{%- render 'nf-tb-url', url: c.url -%}{%- endcapture -%}
+        {%- assign cu = cu | strip -%}
+        {%- if cu == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign nft_cnt = nft_cnt | plus: 1 -%}
+        <li><a class="nf-sb2__tile" href="{{ cu }}"><span class="nf-sb2__img">{%- render 'nf-topbar-img', url: cu, w: 400 -%}</span><span class="nf-sb2__lbl">{{ c.title | escape }}</span></a></li>
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if nft_cnt == 0 -%}{%- continue -%}{%- endif -%}
+    {%- assign nft_k = nft_k | plus: 1 -%}
+    {%- if gt contains 'room' -%}{%- assign d = 'Lighting and decor picked for every room of the home' -%}
+    {%- elsif gt contains 'outdoor' or gt contains 'area' -%}{%- assign d = 'Made for porches, patios, gardens and driveways' -%}
+    {%- elsif gt contains 'style' -%}{%- assign d = 'Start with the look you love' -%}
+    {%- elsif gt contains 'material' -%}{%- assign d = 'Shop by what each piece is made of' -%}
+    {%- elsif gt contains 'categor' -%}{%- assign d = 'Every department in one place' -%}
+    {%- else -%}{%- assign d = '' -%}{%- endif -%}
+    {%- capture nft_tab -%}<button type="button" class="nf-sb2__tab" role="tab" id="nf-sb2-t{{ forloop.index }}" aria-controls="nf-sb2-p{{ forloop.index }}" aria-selected="{% if nft_k == 1 %}true{% else %}false{% endif %}" tabindex="{% if nft_k == 1 %}0{% else %}-1{% endif %}" data-nf-sb2-tab><span class="nf-sb2__tab-t">{{ g.title | escape }}</span><span class="nf-sb2__tab-n">{{ nft_cnt }}</span><svg width="7" height="11" viewBox="0 0 7 11" aria-hidden="true" focusable="false"><path d="M1.2 1 5.8 5.5 1.2 10" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>{%- endcapture -%}
+    {%- capture nft_pane -%}<div class="nf-sb2__pane{% if gt contains 'categor' %} nf-sb2__pane--cat{% endif %}{% if nft_k == 1 %} is-active{% endif %}" role="tabpanel" id="nf-sb2-p{{ forloop.index }}" aria-labelledby="nf-sb2-t{{ forloop.index }}"{% if nft_k != 1 %} aria-hidden="true"{% endif %}><div class="nf-sb2__head"><p class="nf-sb2__title">{{ g.title | escape }}</p>{%- if d != '' -%}<p class="nf-sb2__desc">{{ d }}</p>{%- endif -%}</div><ul class="nf-sb2__grid" role="list">{{ nft_tiles }}</ul></div>{%- endcapture -%}
+    {%- assign nft_tabs = nft_tabs | append: nft_tab -%}
+    {%- assign nft_panes = nft_panes | append: nft_pane -%}
+  {%- endfor -%}
+  <div class="nf-tbp nf-tbp--shopby">
+    <div class="nf-sb2" data-nf-sb2>
+      <div class="nf-sb2__rail">
+        <p class="nf-eyebrow nf-sb2__rail-t">Browse the store</p>
+        <div class="nf-sb2__tabs" role="tablist" aria-orientation="vertical" aria-label="{{ link.title | escape }}">{{ nft_tabs }}</div>
+        {%- if link.url != blank and link.url != '#' -%}<a class="nf-sb2__rail-all" href="{{ link.url }}">All collections <i aria-hidden="true">&rarr;</i></a>{%- endif -%}
+      </div>
+      <div class="nf-sb2__panes">{{ nft_panes }}</div>
+      <div class="nf-sb2__aside">
+        {%- assign nft_first = true -%}
+        {%- if nft_feat_i > 0 -%}
+          {%- assign fi = nft_feat_i | minus: 1 -%}
+          {%- assign fg = link.links[fi] -%}
+          {%- for c in fg.links -%}
+            {%- capture cu -%}{%- render 'nf-tb-url', url: c.url -%}{%- endcapture -%}
+            {%- assign cu = cu | strip -%}
+            {%- if cu == blank -%}{%- continue -%}{%- endif -%}
+            {%- if nft_first -%}
+              <a class="nf-sb2__feat" href="{{ cu }}">
+                <span class="nf-sb2__feat-img">{%- render 'nf-topbar-img', url: cu, w: 600 -%}</span>
+                <span class="nf-sb2__feat-txt"><span class="nf-eyebrow">{{ fg.title | escape }}</span><span class="nf-sb2__feat-t">{{ c.title | escape }}</span><span class="nf-sb2__go">Shop now <i aria-hidden="true">&rarr;</i></span></span>
+              </a>
+              <ul class="nf-sb2__more" role="list">
+              {%- assign nft_first = false -%}
+            {%- else -%}
+              <li><a href="{{ cu }}"><span>{{ c.title | escape }}</span><i aria-hidden="true">&rarr;</i></a></li>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- unless nft_first -%}</ul>{%- endunless -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+{%- elsif kind == 'pro' -%}
+  {%- assign sh_hosp = '' -%}{%- assign sh_off = '' -%}{%- assign sh_ret = '' -%}{%- assign sh_home = '' -%}{%- assign sh_out = '' -%}
+  {%- for g in link.links -%}
+    {%- assign gt = g.title | downcase -%}
+    {%- if gt contains 'collection' -%}
+      {%- for c in g.links -%}
+        {%- capture cu -%}{%- render 'nf-tb-url', url: c.url -%}{%- endcapture -%}
+        {%- assign cu = cu | strip -%}
+        {%- assign ct = c.title | downcase -%}
+        {%- if ct contains 'hospitality' -%}{%- assign sh_hosp = cu -%}
+        {%- elsif ct contains 'office' -%}{%- assign sh_off = cu -%}
+        {%- elsif ct contains 'retail' -%}{%- assign sh_ret = cu -%}
+        {%- elsif ct contains 'outdoor' -%}{%- assign sh_out = cu -%}
+        {%- elsif ct contains 'home' -%}{%- assign sh_home = cu -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign col_ind = '' -%}
+  {%- assign col_cus = '' -%}
+  {%- assign svc_rows = '' -%}
+  {%- assign svc_head = '' -%}
+  {%- for g in link.links -%}
+    {%- assign gt = g.title | downcase -%}
+    {%- assign nft_is_cus = false -%}{%- if gt contains 'custom' or gt contains 'made to' -%}{%- assign nft_is_cus = true -%}{%- endif -%}
+    {%- if g.links.size == 0 -%}
+      {%- capture cu -%}{%- render 'nf-tb-url', url: g.url -%}{%- endcapture -%}
+      {%- assign cu = cu | strip -%}
+      {%- if cu == blank -%}{%- continue -%}{%- endif -%}
+      {%- capture nft_li -%}<li><a class="nf-pr2__row" href="{{ cu }}"><span class="nf-pr2__ic">{%- render 'nf-pro-icon', name: 'bulb' -%}</span><span class="nf-pr2__tx"><span class="nf-pr2__row-t">{{ g.title | escape }}</span></span></a></li>{%- endcapture -%}
+      {%- assign svc_rows = svc_rows | append: nft_li -%}
+    {%- elsif gt contains 'collection' -%}
+      {%- continue -%}
+    {%- elsif nft_is_cus and col_cus == '' -%}
+      {%- capture col_cus -%}
+        <div class="nf-pr2__col nf-pr2__col--custom">
+          <p class="nf-pr2__head"><a class="nf-eyebrow" href="{{ g.url }}">{{ g.title | escape }}</a></p>
+          <ul class="nf-pr2__rows" role="list">
+            {%- for c in g.links -%}
+              {%- capture cu -%}{%- render 'nf-tb-url', url: c.url -%}{%- endcapture -%}
+              {%- assign cu = cu | strip -%}
+              {%- if cu == blank -%}{%- continue -%}{%- endif -%}
+              {%- assign ct = c.title | downcase -%}
+              {%- if ct contains 'studio' -%}{%- assign ic = 'palette' -%}{%- assign d = 'Made to your size, finish and color' -%}
+              {%- elsif ct contains 'strip' -%}{%- assign ic = 'strip' -%}{%- assign d = 'Custom lengths for coves, shelves and bars' -%}
+              {%- elsif ct contains 'curtain' -%}{%- assign ic = 'ruler' -%}{%- assign d = 'Cut to your window, fabric and lining' -%}
+              {%- elsif ct contains 'chandelier' -%}{%- assign ic = 'shape' -%}{%- assign d = 'Scaled to your ceiling height and room' -%}
+              {%- elsif ct contains 'name' -%}{%- assign ic = 'spark' -%}{%- assign d = 'A name or phrase lit up for your wall' -%}
+              {%- elsif ct contains 'sign' or ct contains 'logo' -%}{%- assign ic = 'spark' -%}{%- assign d = 'Your logo or phrase in glowing neon' -%}
+              {%- elsif ct contains 'linear' -%}{%- assign ic = 'line' -%}{%- assign d = 'Continuous runs for offices and stores' -%}
+              {%- else -%}{%- assign ic = 'bulb' -%}{%- assign d = '' -%}{%- endif -%}
+              <li><a class="nf-pr2__row" href="{{ cu }}"><span class="nf-pr2__ic">{%- render 'nf-pro-icon', name: ic -%}</span><span class="nf-pr2__tx"><span class="nf-pr2__row-t">{{ c.title | escape }}</span>{%- if d != '' -%}<span class="nf-pr2__d">{{ d }}</span>{%- endif -%}</span></a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endcapture -%}
+    {%- elsif gt contains 'service' and svc_head == '' -%}
+      {%- capture svc_head -%}<p class="nf-pr2__head"><a class="nf-eyebrow" href="{{ g.url }}">{{ g.title | escape }}</a></p>{%- endcapture -%}
+      {%- for c in g.links -%}
+        {%- capture cu -%}{%- render 'nf-tb-url', url: c.url -%}{%- endcapture -%}
+        {%- assign cu = cu | strip -%}
+        {%- if cu == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign ct = c.title | downcase -%}
+        {%- if ct contains 'order form' -%}{%- assign d = 'Pick your industry, enter quantities, add it all to your cart' -%}{%- assign sv = '<rect x="3.5" y="3" width="13" height="14" rx="2"/><path d="M6.5 7h7M6.5 10h7M6.5 13h4"/>' -%}
+        {%- elsif ct contains 'hospitality room' -%}{%- assign d = '10 ready to order sets for lobbies, guest rooms, bars and cafes' -%}{%- assign sv = '<path d="M3 17h14M5 17V8l5-4 5 4v9"/><path d="M8.5 17v-4h3v4"/>' -%} {%- elsif ct contains 'room set' -%}{%- assign d = 'Matching lights for a whole room, 10% under the pieces' -%}{%- assign sv = '<rect x="3" y="4" width="6" height="6" rx="1"/><rect x="11" y="4" width="6" height="6" rx="1"/><rect x="3" y="12" width="6" height="5" rx="1"/><rect x="11" y="12" width="6" height="5" rx="1"/>' -%} {%- elsif ct contains 'bulk' -%}{%- assign d = 'Buy 2 or more, save 10%, and how project orders work' -%}{%- assign sv = '<path d="M3 7.5 10 4l7 3.5v8L10 19l-7-3.5z"/><path d="M3 7.5 10 11l7-3.5M10 11v8"/>' -%}
+        {%- elsif ct contains 'portfolio' -%}{%- assign d = 'Concept boards and finished spaces to start from' -%}{%- assign sv = '<rect x="3" y="4" width="14" height="12" rx="2"/><path d="m3.5 13.5 4-4 3 3 2-2 4 4"/><circle cx="13" cy="7.5" r="1.2"/>' -%}
+        {%- elsif ct contains 'quote' -%}{%- assign d = 'Bulk pricing on catalog pieces' -%}{%- assign sv = '<path d="M5 3h7l3 3v11H5z"/><path d="M12 3v3h3M7.5 10h5M7.5 13h5"/>' -%}
+        {%- else -%}{%- assign d = '' -%}{%- assign sv = '<circle cx="10" cy="10" r="7"/><path d="M8.5 7 11.5 10l-3 3"/>' -%}{%- endif -%}
+        {%- capture nft_li -%}<li><a class="nf-pr2__row" href="{{ cu }}"><span class="nf-pr2__ic"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{{ sv }}</svg></span><span class="nf-pr2__tx"><span class="nf-pr2__row-t">{{ c.title | escape }}</span>{%- if d != '' -%}<span class="nf-pr2__d">{{ d }}</span>{%- endif -%}</span></a></li>{%- endcapture -%}
+        {%- assign svc_rows = svc_rows | append: nft_li -%}
+      {%- endfor -%}
+    {%- elsif col_ind == '' -%}
+      {%- capture col_ind -%}
+        <div class="nf-pr2__col nf-pr2__col--ind">
+          <p class="nf-pr2__head"><a class="nf-eyebrow" href="{{ g.url }}">{{ g.title | escape }}</a></p>
+          <ul class="nf-pr2__ind" role="list">
+            {%- for c in g.links -%}
+              {%- capture cu -%}{%- render 'nf-tb-url', url: c.url -%}{%- endcapture -%}
+              {%- assign cu = cu | strip -%}
+              {%- if cu == blank -%}{%- continue -%}{%- endif -%}
+              {%- assign ct = c.title | downcase -%}
+              {%- if ct contains 'restaurant' or ct contains 'cafe' -%}{%- assign f = 'nf-ref-cafe-counter.png' -%}{%- assign d = 'Dining rooms, bars and patios' -%}{%- assign sh = '' -%}
+              {%- elsif ct contains 'rental' -%}{%- assign f = 'nf-ref-guest-suite.png' -%}{%- assign d = 'Airbnb homes and rental units' -%}{%- assign sh = '' -%}
+              {%- elsif ct contains 'salon' or ct contains 'spas' -%}{%- assign f = 'nf-ref-bath-vanity.png' -%}{%- assign d = 'Styling stations and treatment rooms' -%}{%- assign sh = '' -%}
+              {%- elsif ct contains 'school' or ct contains 'librar' -%}{%- assign f = 'nf-ref-book-corner.png' -%}{%- assign d = 'Classrooms and reading rooms' -%}{%- assign sh = '' -%}
+              {%- elsif ct contains 'gym' or ct contains 'studio' -%}{%- assign f = 'nf-ref-office-lounge.jpg' -%}{%- assign d = 'Training floors and yoga rooms' -%}{%- assign sh = '' -%}
+              {%- elsif ct contains 'staging' or ct contains 'model home' -%}{%- assign f = 'nf-blog-layered-living-room.png' -%}{%- assign d = 'Show homes and listings' -%}{%- assign sh = '' -%}
+              {%- elsif ct contains 'hospitality' or ct contains 'hotel' -%}{%- assign f = 'nf-pro-hospitality.jpg' -%}{%- assign d = 'Hotels, restaurants and bars' -%}{%- assign sh = sh_hosp -%}
+              {%- elsif ct contains 'office' -%}{%- assign f = 'nf-pro-office.jpg' -%}{%- assign d = 'Workspaces and meeting rooms' -%}{%- assign sh = sh_off -%}
+              {%- elsif ct contains 'retail' -%}{%- assign f = 'nf-pro-retail.jpg' -%}{%- assign d = 'Shops, showrooms and salons' -%}{%- assign sh = sh_ret -%}
+              {%- elsif ct contains 'outdoor' -%}{%- assign f = 'nf-pro-outdoor.jpg' -%}{%- assign d = 'Facades, patios and gardens' -%}{%- assign sh = sh_out -%}
+              {%- elsif ct contains 'home' -%}{%- assign f = 'nf-pro-homes.jpg' -%}{%- assign d = 'Renovations and new builds' -%}{%- assign sh = sh_home -%}
+              {%- else -%}{%- assign f = 'nf-pro-hub.jpg' -%}{%- assign d = '' -%}{%- assign sh = '' -%}{%- endif -%}
+              <li class="nf-pr2__ind-it">
+                <a class="nf-pr2__ind-main" href="{{ cu }}"><span class="nf-pr2__thumb">{%- render 'nf-topbar-img', file: f, w: 480 -%}</span><span class="nf-pr2__tx"><span class="nf-pr2__t">{{ c.title | escape }}</span>{%- if d != '' -%}<span class="nf-pr2__d">{{ d }}</span>{%- endif -%}</span></a>
+                {%- if sh != '' -%}<a class="nf-pr2__shop" href="{{ sh }}" aria-label="Shop {{ c.title | escape }} lighting">Shop</a>{%- endif -%} {%- comment -%} NF-ROOMSETS-IND (2026-09-25): each industry links to its own room sets collection, <industry>-room-sets {%- endcomment -%}{%- assign rs_h = c.title | handleize | append: '-room-sets' -%}{%- assign rs_c = collections[rs_h] -%}{%- if rs_c.products_count > 0 -%}<a class="nf-pr2__sets" href="{{ rs_c.url }}"><svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>{{ rs_c.products_count }} room sets</a>{%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endcapture -%}
+    {%- endif -%}
+  {%- endfor -%}
+  <div class="nf-tbp nf-tbp--pro">
+    <div class="nf-pr2">
+      {{ col_ind }}
+      {{ col_cus }}
+      {%- if svc_rows != '' -%}
+        <div class="nf-pr2__col nf-pr2__col--svc">
+          {%- if svc_head != '' -%}{{ svc_head }}{%- else -%}<p class="nf-pr2__head"><span class="nf-eyebrow">Services</span></p>{%- endif -%}
+          <ul class="nf-pr2__rows" role="list">{{ svc_rows }}</ul>
+        </div>
+      {%- endif -%}
+      <div class="nf-pr2__cta">
+        <span class="nf-pr2__cta-img">{%- render 'nf-topbar-img', file: 'nf-pro-hub.jpg', w: 600 -%}</span>
+        <div class="nf-pr2__cta-body">
+          <p class="nf-eyebrow">For designers, builders and venues</p>
+          <p class="nf-pr2__cta-t">Planning a project?</p>
+          <p class="nf-pr2__cta-d">Buying for a hotel, office or shop? Pick your industry and order everything in one list.</p>
+          <a class="nf-pr2__btn" href="/pages/bulk-order-form">Start a bulk order <i aria-hidden="true">&rarr;</i></a>
+          <a class="nf-pr2__cta-all" href="{{ link.url }}"><span>All professional services</span><i aria-hidden="true">&rarr;</i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

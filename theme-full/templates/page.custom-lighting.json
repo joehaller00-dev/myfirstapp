@@ -1,0 +1,656 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Custom Lighting Studio",
+        "eyebrow": "Custom Lighting Studio",
+        "heading": "Your space, your light, made to order",
+        "text": "Love a fixture but need it in another size, finish or light color? Or have something in mind you cannot find anywhere? Tell us and we will quote it for free. One piece is fine.",
+        "image_file": "nf-pro-custom-studio.jpg",
+        "image_alt": "Lighting finishes and fixtures laid out in the Nora Furnish studio",
+        "fallback_collection": "chandeliers",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#custom-quote-form",
+        "btn2_label": "Browse Project References",
+        "btn2_url": "#references",
+        "facts": "Reply within 2 business days\nMade and delivered in 4 to 7 weeks\nNo minimum order\nFree US shipping",
+        "link_label": "Start from a design concept",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "why": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": false,
+        "btn_style": "secondary",
+        "eyebrow": "Why customize",
+        "heading": "Most custom requests are about a better fit",
+        "image_file": "nf-pro3-clight-why-1b.png",
+        "image_alt": "Picture light glowing over a landscape painting on a deep green wall",
+        "fallback_collection": "pendants",
+        "text": "<p>Standard fixtures suit most rooms. Custom is for the times they almost do: a chandelier a little too wide for the table, a finish that clashes with your hardware, a pendant that needs a longer drop for a tall ceiling.</p>",
+        "bullets": "Fit the room: Adjust size, drop and mounting to your actual ceiling, table or wall.\nAgree the direction first: Send a product link, a photo or a rough idea and we come back with options.\nKnow every detail up front: Price, timing and scope are written in your quote before anything is made.",
+        "btn_label": "Tell us what you want to change",
+        "btn_url": "#custom-quote-form"
+      }
+    },
+    "change": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "numbered",
+        "columns": "3",
+        "bg": "sand",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "What you can change",
+        "heading": "Change one thing or several",
+        "text": "Most requests change one or two details. Not every option suits every design, and your quote says exactly what is possible."
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Finish and color",
+            "text": "Black, brass, bronze, nickel, white, wood tones or a color to match your space."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Size and proportion",
+            "text": "Diameter, length, height and number of lights, scaled to your room or table."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Light output and color temperature",
+            "text": "Warmer, brighter or a specific color temperature for the mood or the task."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "Dimming and controls",
+            "text": "Dimmable versions and control options that suit your switches and your project."
+          }
+        },
+        "b5": {
+          "type": "card",
+          "settings": {
+            "title": "Cord, drop and mounting",
+            "text": "Longer or shorter drops, rods or cords, and canopies for sloped or tall ceilings."
+          }
+        },
+        "b6": {
+          "type": "card",
+          "settings": {
+            "title": "Logos, signs and labels",
+            "text": "Logo lights and illuminated signs, plus clear item labels when an order has many pieces."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ],
+      "disabled": true
+    },
+    "directions": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "media",
+        "columns": "3",
+        "bg": "white",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "More ways to go custom",
+        "heading": "Three custom directions"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "LED Strip and Neon",
+            "text": "Glowing lines cut to your length for shelves, coves, bars and signs.",
+            "url": "/pages/custom-led-strip-neon",
+            "image_file": "nf-pro3-clight-directions-1.jpg",
+            "fallback_collection": "led-strip-lights",
+            "link_label": "Explore this direction"
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Neon Signs and Logo Lights",
+            "text": "Your logo, a word or a shape, made as an illuminated sign.",
+            "url": "/pages/custom-neon-signs",
+            "image_file": "nf-pro3-clight-directions-2.png",
+            "fallback_collection": "led-wall-art",
+            "link_label": "Explore this direction"
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Linear Lighting Systems",
+            "text": "Continuous lines of light for offices, shops and kitchens.",
+            "url": "/pages/linear-lighting-systems",
+            "image_file": "nf-pro3-clight-directions-3.jpg",
+            "fallback_collection": "linear-suspension",
+            "link_label": "Explore this direction"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "white",
+        "eyebrow": "Project portfolio",
+        "heading": "Start from a design concept",
+        "text": "Adapt a whole concept or just one fixture from it, in your own size and finish.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-clight-concepts-1.png",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_rooftop_at_nine": {
+          "type": "concept",
+          "settings": {
+            "slug": "rooftop-at-nine",
+            "number": "03",
+            "title": "Rooftop at Nine",
+            "category": "outdoor",
+            "space": "Rooftop terrace bar",
+            "summary": "A rooftop bar that stays glowing and welcoming long after sunset.",
+            "image_file": "nf-pro3-clight-concepts-3.jpg",
+            "fallback_collection": "outdoor-string-lights"
+          }
+        },
+        "c_family_kitchen": {
+          "type": "concept",
+          "settings": {
+            "slug": "family-kitchen",
+            "number": "06",
+            "title": "Family Kitchen",
+            "category": "homes",
+            "space": "Open plan family kitchen",
+            "summary": "A busy family kitchen with bright light for cooking and a softer glow for long dinners.",
+            "image_file": "nf-pro3-clight-concepts-2.png",
+            "fallback_collection": "pendants"
+          }
+        }
+      },
+      "block_order": [
+        "c_alder_lobby",
+        "c_family_kitchen",
+        "c_rooftop_at_nine"
+      ]
+    },
+    "how": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "steps",
+        "columns": "3",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "How it works",
+        "heading": "Four simple steps, and you approve every one",
+        "note": "Free quote. No commitment until you approve."
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "meta": "A few minutes",
+            "title": "Tell us what you need",
+            "text": "Share a product link, a photo or a short description. Rough sizes and quantities are enough to start."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "meta": "Within 2 business days",
+            "title": "We reply with options",
+            "text": "We confirm what is possible and send pricing, options and timing in writing, or ask what we need to know."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "meta": "At your pace",
+            "title": "You approve, then pay",
+            "text": "Nothing is made until you are happy. When you approve, we send a secure Shopify invoice."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "meta": "4 to 7 weeks",
+            "title": "Made and delivered",
+            "text": "Your pieces are made to order and shipped free to your door anywhere in the United States."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "white",
+        "heading": "Custom lighting questions",
+        "show_email": true,
+        "open_first": false,
+        "eyebrow": "Good to know",
+        "text": "The things people ask before they send a request."
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. You can ask for a single custom piece or the lighting for a whole building. Larger lists simply get a quote that reflects the volume.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "How much does custom lighting cost?",
+            "a": "<p>It depends on what changes. A new finish or color is usually the simplest change. A new size, a different light source or new mounting takes more work. You get an exact price in writing before anything is made, and the quote is free.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I customize something from a concept?",
+            "a": "<p>Yes. Open any concept and choose Customize this look. You can ask for the whole look or just one piece, in your own size and finish.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "What if I do not know the exact specs?",
+            "a": "<p>That is fine. Tell us the room, rough sizes, the ceiling or wall you are working with and the look you like. A photo or a link helps. We will suggest what fits and ask for anything we need.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "How long does it take?",
+            "a": "<p>We reply to every request within 2 business days. Once you approve the quote, production and delivery usually take 4 to 7 weeks. Your quote shows the timing for your exact order.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "q": "How do I pay?",
+            "a": "<p>Asking for a quote costs nothing. When you are happy with it, we send a secure Shopify invoice and you pay online. Your order goes into production after payment.</p>"
+          }
+        },
+        "q7": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I return a custom or made to order piece?",
+            "a": "<p>Custom and made to order pieces are built for your order, so they cannot be returned for a change of mind. If anything arrives damaged or faulty, we replace it or refund it. Email photos to info@norafurnish.com as soon as you can and we will put it right.</p>"
+          }
+        },
+        "q8": {
+          "type": "faq",
+          "settings": {
+            "q": "Are the portfolio projects real client jobs?",
+            "a": "<p>No. They are design concepts created by our team to show what our lighting can do in different spaces. Every fixture shown is a real product you can buy, order in quantity or customize.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8"
+      ]
+    },
+    "quote": {
+      "type": "nf-pro-quote",
+      "settings": {
+        "bg": "sand",
+        "anchor": "quote",
+        "variant": "full",
+        "form_id": "custom-quote-form",
+        "button_label": "Get My Free Quote",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request, your links and your photos.\nWe confirm what is possible: You get options, pricing and timing in writing within 2 business days.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "The product link or a photo of the look you like\nRough sizes: the room, the ceiling height, the table or the wall\nHow many pieces you need\nYour timeline and the type of space\nAny finish, color or mounting details you already know",
+        "form_label": "Custom lighting quote",
+        "service": "Custom lighting",
+        "eyebrow": "Get started",
+        "heading": "Request your custom quote",
+        "text": "Share what you know. A rough idea is enough, and we will ask for anything we need."
+      },
+      "disabled": true
+    },
+    "custom3_services": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "media",
+        "columns": "3",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "made-to-measure",
+        "eyebrow": "For your home",
+        "heading": "Made to Order",
+        "text": "Curtains cut to your window, chandeliers sized to your room or stairwell, and name signs in LED neon. Each page has a tool that does the math and fills in your quote."
+      },
+      "blocks": {
+        "c3_curtains": {
+          "type": "card",
+          "settings": {
+            "title": "Made to Measure Curtains",
+            "text": "Panels made to your window, in the fabric and top style you choose.",
+            "image_file": "nf-pro3-clight-svc-1.png",
+            "url": "/pages/custom-curtains",
+            "link_label": "Measure your window",
+            "fallback_collection": "curtains-drapes"
+          }
+        },
+        "c3_chandeliers": {
+          "type": "card",
+          "settings": {
+            "title": "Custom Size Chandeliers",
+            "text": "Sized to your room, table, foyer or stairwell, with a custom drop length.",
+            "image_file": "nf-pro3-clight-svc-2.webp",
+            "url": "/pages/custom-chandeliers",
+            "link_label": "Size your chandelier",
+            "fallback_collection": "chandeliers"
+          }
+        },
+        "c3_signs": {
+          "type": "card",
+          "settings": {
+            "title": "Custom Name Signs",
+            "text": "Your name, a word or your logo in LED neon, previewed live on a wall.",
+            "image_file": "nf-pro3-clight-svc-3.png",
+            "url": "/pages/custom-name-signs",
+            "link_label": "Design your sign",
+            "fallback_collection": "led-wall-art"
+          }
+        }
+      },
+      "block_order": [
+        "c3_curtains",
+        "c3_chandeliers",
+        "c3_signs"
+      ]
+    },
+    "customize_v2": {
+      "type": "nf-pro2-customize",
+      "settings": {
+        "bg": "grey",
+        "anchor": "customize",
+        "eyebrow": "Custom Lighting Studio",
+        "heading": "What can be customized",
+        "note": "Production begins after dimensions, specifications and installation details are confirmed."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "icon": "finish",
+            "title": "Finish and surface tone",
+            "text": "Black, brass, bronze, nickel, white and other finishes on most fixtures in our range."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "icon": "size",
+            "title": "Size and proportion",
+            "text": "Diameter, length, height and drop adjusted to your room, table or island."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "icon": "cct",
+            "title": "Light output and color",
+            "text": "Warmer, brighter or task specific light, with the color temperature chosen for the room."
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "icon": "dimmer",
+            "title": "Dimming and control",
+            "text": "Dimmable versions that match your dimmer switch or smart home system."
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "icon": "drop",
+            "title": "Cable, drop and mounting",
+            "text": "Suspension length, stem, canopy and mounting worked out for your ceiling."
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "icon": "diffuser",
+            "title": "Shades and glass",
+            "text": "Glass color, shade material and diffuser swapped where the design allows."
+          }
+        },
+        "c7": {
+          "type": "card",
+          "settings": {
+            "icon": "tiers",
+            "title": "Tiers and light count",
+            "text": "More or fewer arms, rings or tiers so the fixture fills the space properly."
+          }
+        },
+        "c8": {
+          "type": "card",
+          "settings": {
+            "icon": "logo",
+            "title": "Logos and shapes",
+            "text": "Illuminated logos, words and shapes made from your artwork."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how custom lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Pick it in the quote form and we will price it for your space.",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#custom-quote-form",
+        "btn2_label": "",
+        "btn2_url": "",
+        "quote_links": true,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Statement Pendant",
+            "image_file": "nf-hero-lava-pendant-living-room.png",
+            "alt": "Statement Pendant lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Living Room Chandelier",
+            "image_file": "nf-ref-living-chandelier.png",
+            "alt": "Living Room Chandelier lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Made to Length",
+            "image_file": "nf-story-cover-dimmable.jpg",
+            "alt": "Made to Length lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Mirror Light",
+            "image_file": "nf-pro3-clight-ref-4b.png",
+            "alt": "Mirror Light inspiration photo, lit in the evening"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Woven Pendant",
+            "image_file": "nf-pro3-clight-ref-5.png",
+            "alt": "Woven Pendant inspiration photo, lit in the evening"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Glass Globes",
+            "image_file": "nf-pro3-fix-clight-ref-6.webp",
+            "alt": "Glass Globes inspiration photo, lit in the evening"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Crystal Chandelier",
+            "image_file": "nf-pro3-fix-clight-ref-7.jpg",
+            "alt": "Crystal Chandelier inspiration photo, lit in the evening"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Kitchen Pendants",
+            "image_file": "nf-pro3-clight-ref-8.jpg",
+            "alt": "Kitchen Pendants inspiration photo, lit in the evening"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    },
+    "quote_v2": {
+      "type": "nf-pro2-quote",
+      "settings": {
+        "anchor": "quote",
+        "eyebrow": "Get started",
+        "heading": "Request your custom quote",
+        "text": "Share what you know. A rough idea is enough, and we will ask for anything we need.",
+        "form_id": "custom-quote-form",
+        "form_label": "Custom lighting quote",
+        "service": "Custom lighting",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request, your links and your photos.\nWe confirm what is possible: You get options, pricing and timing in writing within 2 business days.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "The product link or a photo of the look you like\nRough sizes: the room, the ceiling height, the table or the wall\nHow many pieces you need\nYour timeline and the type of space\nAny finish, color or mounting details you already know",
+        "adjust": "finish|finish|Finish and color\nsize|size|Size and dimensions\noutput|cct|Light output or temperature\ndimming|dimmer|Dimming and control\nmounting|drop|Cable, drop or mounting\nshades|diffuser|Shades and glass\ntiers|tiers|Tiers and light count\nshape|logo|Logos and shapes",
+        "refs": "Statement Pendant\nLiving Room Chandelier\nMade to Length\nMirror Light\nWoven Pendant\nLava Glass\nBranch Chandelier\nCafe Pendants",
+        "zone_placeholder": "For example dining table, foyer or bar",
+        "tool": false,
+        "zip": false,
+        "button_label": "Get My Free Custom Quote",
+        "bg": "grey"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "why",
+    "customize_v2",
+    "references_v2",
+    "change",
+    "directions",
+    "custom3_services",
+    "concepts",
+    "how",
+    "faq",
+    "quote",
+    "quote_v2"
+  ]
+}

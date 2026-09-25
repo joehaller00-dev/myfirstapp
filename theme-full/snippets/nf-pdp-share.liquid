@@ -1,0 +1,22 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) D4 Share under the accordions. Phones: the native share sheet. Elsewhere: a small row with
+  Copy link, Email, Facebook, Pinterest and X. No "Ask a question".
+{%- endcomment -%}
+{%- liquid
+  assign s_url = shop.url | append: product.url
+  assign s_img = product.featured_image | image_url: width: 1200
+-%}
+<div class="nf-share" data-nf-sharebox>
+  <button type="button" class="nf-share__btn" data-nf-share data-url="{{ s_url }}" data-title="{{ product.title | escape }}" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5l6 6-6 6"/><path d="M20 11H10a6 6 0 0 0-6 6v1"/></svg>
+    <span>Share</span>
+  </button>
+  <div class="nf-share__more" data-nf-more hidden>
+    <button type="button" class="nf-share__opt" data-nf-copy data-url="{{ s_url }}">Copy link</button>
+    <a class="nf-share__opt" href="mailto:?subject={{ product.title | url_encode }}&amp;body={{ s_url | url_encode }}">Email</a>
+    <a class="nf-share__opt" href="https://www.facebook.com/sharer/sharer.php?u={{ s_url | url_encode }}" target="_blank" rel="noopener">Facebook</a>
+    <a class="nf-share__opt" href="https://pinterest.com/pin/create/button/?url={{ s_url | url_encode }}&amp;media={{ 'https:' | append: s_img | url_encode }}&amp;description={{ product.title | url_encode }}" target="_blank" rel="noopener">Pinterest</a>
+    <a class="nf-share__opt" href="https://twitter.com/intent/tweet?url={{ s_url | url_encode }}&amp;text={{ product.title | url_encode }}" target="_blank" rel="noopener">X</a>
+  </div>
+  <span class="nf-share__toast" role="status" aria-live="polite" data-nf-toast></span>
+</div>

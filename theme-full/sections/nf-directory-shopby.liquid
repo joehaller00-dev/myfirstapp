@@ -1,0 +1,98 @@
+{%- comment -%}
+  NF-DIRECTORY-V1 (2026-09-11): "Shop your way" rows on the /collections directory (templates/list-collections.json):
+  Room, Outdoor Area, Style, Material and Project. One block per row, collection handles one per line or comma separated.
+  Each tile is the collection photo, big and bright (snippets/nf-directory-img.liquid). img_overrides swaps a dark one
+  ("handle=Files filename" or "handle=https CDN URL" per line); brighten lifts a dim one ("handle=115" per line, percent).
+  Rows with more than five tiles scroll sideways with arrow buttons; five or fewer fill the row.
+  A collection that does not exist or has no products on the storefront is skipped.
+{%- endcomment -%}
+{{- 'nf-directory.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign nfs_anchor = section.settings.anchor | default: 'shop-by'
+  assign nfs_ov = section.settings.img_overrides
+  assign nfs_bl = section.settings.brighten | newline_to_br | replace: '<br />', ',' | split: ','
+-%}
+<section class="nfd nfd-shopby" id="{{ nfs_anchor }}" data-nfd-sec aria-labelledby="nfd-sh-{{ section.id }}">
+  <div class="nfd-wrap">
+    <div class="nfd-head">
+      <div class="nfd-head__main">
+        {%- if section.settings.eyebrow != blank -%}<p class="nfd-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfd-h2" id="nfd-sh-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<p class="nfd-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+    </div>
+    {%- for block in section.blocks -%}
+      {%- assign hs = block.settings.handles | newline_to_br | replace: '<br />', ',' | split: ',' -%}
+      {%- assign n = 0 -%}
+      {%- capture tiles -%}
+        {%- for h_raw in hs -%}
+          {%- comment -%} assign inside a for writes a global; never reuse the loop variable name (leading spaces bug) {%- endcomment -%}
+          {%- assign h = h_raw | strip -%}
+          {%- if h == '' -%}{%- continue -%}{%- endif -%}
+          {%- assign c = collections[h] -%}
+          {%- if c.id == blank or c.all_products_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- assign bv = '' -%}
+          {%- for p in nfs_bl -%}
+            {%- assign pk = p | split: '=' | first | strip -%}
+            {%- if pk == h -%}{%- assign bv = p | split: '=' | last | strip | divided_by: 100.0 -%}{%- endif -%}
+          {%- endfor -%}
+          <li class="nfd-tile-li" data-nfd-item data-nfd-k="{{ c.title | downcase | escape }} {{ h | replace: '-', ' ' }} {{ block.settings.title | downcase | escape }}">
+            <a class="nfd-tile" href="{{ c.url }}">
+              <span class="nfd-tile__img"{% if bv != '' %} style="--b: {{ bv }}"{% endif %}>
+                {%- render 'nf-directory-img', c: c, ov: nfs_ov, w: 720, sizes: '(min-width: 1000px) 20vw, 46vw' -%}
+                <span class="nfd-tile__glow" aria-hidden="true"></span>
+              </span>
+              <span class="nfd-tile__txt"><span class="nfd-tile__t">{{ c.title | escape }}</span><span class="nfd-tile__n">{{ c.all_products_count }} pieces</span></span>
+            </a>
+          </li>
+          {%- assign n = n | plus: 1 -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if n > 0 -%}
+        <div class="nfd-row" id="{{ block.settings.anchor | default: block.settings.title | handleize }}" data-nfd-group {{ block.shopify_attributes }}>
+          <div class="nfd-row__head">
+            <div class="nfd-row__main">
+              <h3 class="nfd-h3">{{ block.settings.title | escape }}<span class="nfd-row__n">{{ n }}</span></h3>
+              {%- if block.settings.text != blank -%}<p class="nfd-row__p">{{ block.settings.text | escape }}</p>{%- endif -%}
+            </div>
+            {%- if n > 5 -%}
+              <div class="nfd-rail__nav">
+                <button type="button" class="nfd-arrow-btn" data-nfd-prev aria-label="Scroll {{ block.settings.title | escape }} back"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14.5 6-6 6 6 6"/></svg></button>
+                <button type="button" class="nfd-arrow-btn" data-nfd-next aria-label="Scroll {{ block.settings.title | escape }} forward"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9.5 6 6 6-6 6"/></svg></button>
+              </div>
+            {%- endif -%}
+          </div>
+          <ul class="nfd-rail{% if n <= 5 %} nfd-rail--fit{% endif %}" role="list" style="--n: {{ n }}" data-nfd-rail>{{ tiles }}</ul>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF directory shop by",
+  "class": "nfd-section nfd-section--shopby",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor id", "default": "shop-by" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop your way" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "textarea", "id": "img_overrides", "label": "Photo swaps", "info": "handle=Files filename or handle=https CDN URL, one per line" },
+    { "type": "textarea", "id": "brighten", "label": "Brighten photos", "info": "handle=115, one per line (percent)" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "anchor", "label": "Anchor id" },
+        { "type": "text", "id": "text", "label": "Short line" },
+        { "type": "textarea", "id": "handles", "label": "Collection handles", "info": "One per line or comma separated" }
+      ]
+    }
+  ],
+  "max_blocks": 8
+}
+{% endschema %}

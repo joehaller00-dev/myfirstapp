@@ -1,0 +1,200 @@
+/* NF-TOPBAR-V1 (2026-09-11): secondary top bar above the logo row.
+   Markup: snippets/nf-topbar.liquid. Behaviour: assets/nf-topbar.js. Dropdown panels: assets/nf-topbar-panels.css.
+   Side links keep the old utility bar type (Poynter Oldstyle 13px, 0.07em, #333, sliding underline).
+   NF-TOPBAR-V2 (2026-09-11, rebuilt after the owner's review): the centre items are Montserrat 500 at 13px, title case,
+   gently tracked, charcoal, each with a small grey line icon, on plain white. No sand band or any cream fill (owner:
+   "I do not like the slightly yellow background"). Montserrat is already loaded by the theme, and it is clearly different
+   from Dazuma's uppercase serif and from our Poynter Oldstyle main nav. Gold stays only as the thin hover underline.
+   Underlines use ::before only (hard rule: never ::after on nav items). */
+
+.nf-topbar {
+  --nf-tb-ink: #1c1c1c;
+  --nf-tb-soft: #333333;
+  --nf-tb-line: #ececec;
+  --nf-tb-gold: #a67c4f;
+  --nf-tb-icon: #707070;
+  --nf-tb-h: 36px;
+  position: relative;
+  z-index: 6; /* above the sticky header section (z-index 4) so an open panel is never covered */
+  font-family: "Poynter Oldstyle", Georgia, serif;
+  text-align: left;
+  background: #fff;
+}
+.nf-topbar ul { list-style: none; margin: 0; padding: 0; }
+
+.nf-topbar__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  column-gap: 24px;
+  min-height: var(--nf-tb-h);
+  border-bottom: 1px solid var(--nf-tb-line);
+}
+
+/* ---------- side links ---------- */
+.nf-topbar__side { display: flex; align-items: center; min-width: 0; }
+.nf-topbar__side--left { justify-content: flex-start; }
+.nf-topbar__side--right { justify-content: flex-end; }
+.nf-topbar__side li { display: flex; align-items: center; }
+.nf-topbar__side li + li { border-left: 1px solid #e5e5e5; }
+.nf-topbar .nf-topbar__link {
+  display: block;
+  padding: 0 13px;
+  font-family: "Poynter Oldstyle", Georgia, serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .07em;
+  line-height: 21px;
+  text-transform: capitalize;
+  color: var(--nf-tb-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+.nf-topbar__side--left li:first-child .nf-topbar__link { padding-left: 0; }
+.nf-topbar__side--right li:last-child .nf-topbar__link { padding-right: 0; }
+.nf-topbar .nf-topbar__link:hover,
+.nf-topbar .nf-topbar__link:focus-visible { color: var(--nf-tb-ink); }
+
+/* sliding underline, drawn with ::before on the text span */
+.nf-topbar__txt { position: relative; display: inline-block; }
+.nf-topbar__txt::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .25s ease;
+  pointer-events: none;
+}
+.nf-topbar__link:hover .nf-topbar__txt::before,
+.nf-topbar__link:focus-visible .nf-topbar__txt::before,
+.nf-topbar__trigger:hover .nf-topbar__txt::before,
+.nf-topbar__trigger:focus-visible .nf-topbar__txt::before,
+.nf-topbar__trigger[aria-expanded="true"] .nf-topbar__txt::before { transform: scaleX(1); }
+
+/* ---------- centre group: Montserrat, title case, plain white ---------- */
+.nf-topbar__center {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0 8px;
+  background: transparent;
+}
+.nf-topbar__list { display: flex; align-items: stretch; gap: 0 32px; }
+.nf-topbar__item { display: flex; align-items: stretch; }
+.nf-topbar .nf-topbar__trigger {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 0 1px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  font-family: "Montserrat", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .02em;
+  line-height: 1;
+  text-transform: none;
+  color: var(--nf-tb-ink);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.nf-topbar .nf-topbar__trigger .nf-topbar__txt::before { bottom: -6px; background: var(--nf-tb-gold); }
+.nf-topbar .nf-topbar__trigger:focus-visible { outline: 2px solid var(--nf-tb-ink); outline-offset: 4px; }
+.nf-topbar__ic {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -1px;
+  fill: none;
+  stroke: var(--nf-tb-icon);
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform .25s ease, stroke .25s ease;
+}
+.nf-topbar__trigger:hover .nf-topbar__ic,
+.nf-topbar__trigger[aria-expanded="true"] .nf-topbar__ic { transform: translateY(-1px); stroke: var(--nf-tb-ink); }
+.nf-topbar__chev { flex: none; width: 9px; height: 6px; opacity: .55; transition: transform .2s ease; }
+.nf-topbar__trigger[aria-expanded="true"] .nf-topbar__chev { transform: rotate(180deg); }
+
+/* ---------- panels ----------
+   Full viewport width like the main nav panels. --nf-tb-vw is the page width without the scrollbar (set by the JS). */
+.nf-topbar__panel {
+  position: absolute;
+  top: 100%;
+  left: calc(50% - var(--nf-tb-vw, 100vw) / 2);
+  width: var(--nf-tb-vw, 100vw);
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .18s ease, transform .18s ease;
+  pointer-events: none;
+  text-align: left;
+}
+.nf-topbar__panel.is-open { opacity: 1; transform: none; pointer-events: auto; }
+.nf-topbar__panel[hidden] { display: none !important; }
+/* a small dropdown (Best Sellers) hangs under its own item instead of spanning the page */
+.nf-topbar__item--compact { position: relative; }
+.nf-topbar__panel.nf-topbar__panel--compact { left: -24px; width: max-content; max-width: calc(var(--nf-tb-vw, 100vw) - 32px); }
+/* the reused .mega-menu (Ideas & Guides) is absolutely placed under the main nav by the theme; here it fills the panel */
+.nf-topbar__panel > .mega-menu {
+  position: relative !important;
+  inset: auto !important;
+  left: auto !important;
+  top: auto !important;
+  width: 100% !important;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  animation: none !important;
+  opacity: 1 !important;
+  background: #fff !important;
+  border-top: 1px solid var(--nf-tb-line) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-topbar__panel { transition: opacity .12s linear; transform: none; }
+  .nf-topbar__txt::before, .nf-topbar__chev, .nf-topbar__ic { transition: none; }
+}
+
+/* ---------- widths ---------- */
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .nf-topbar .nf-topbar__link--optional { display: none; }
+  .nf-topbar__center { padding: 0; }
+  .nf-topbar__ic { display: none; } /* the side links need the room at this width */
+  .nf-topbar__list { gap: 0 20px; }
+  .nf-topbar .nf-topbar__trigger { font-size: 12.5px; letter-spacing: .01em; gap: 6px; }
+  .nf-topbar .nf-topbar__link { padding: 0 10px; }
+}
+/* tablets: the drawer carries the dropdown items, the bar keeps only its small links */
+@media (max-width: 999px) {
+  .nf-topbar__center { display: none; }
+  .nf-topbar__row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+/* phones: no room, everything is in the drawer */
+@media (max-width: 699px) {
+  .nf-topbar { display: none; }
+}
+
+/* NF-TOPBAR-V3 (2026-09-11): the centre group (Best Sellers, Shop By, Ideas & Guides, Professionals) sits exactly on the
+   logo's centre line at every desktop width, whatever the widths of FAQ / Track Your Order and About Us / Our Story / Contact.
+   Strict 1fr auto 1fr grid: the two side tracks are always equal, each side list stays in its own track (a long one clips
+   there instead of pushing the centre) and the centre box is centred in the middle track. Measured 1000 to 1920: 0px. */
+@media (min-width:1000px){
+  .nf-topbar__row{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+  .nf-topbar__side--left{grid-column:1;justify-self:stretch}
+  .nf-topbar__center{grid-column:2;justify-self:center;margin-left:0;margin-right:0}
+  .nf-topbar__side--right{grid-column:3;justify-self:stretch}
+}

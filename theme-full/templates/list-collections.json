@@ -1,0 +1,391 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-directory-hero",
+      "blocks": {
+        "j0": {
+          "type": "jump",
+          "settings": {
+            "label": "Departments",
+            "url": "#departments"
+          }
+        },
+        "j1": {
+          "type": "jump",
+          "settings": {
+            "label": "Rooms",
+            "url": "#rooms"
+          }
+        },
+        "j2": {
+          "type": "jump",
+          "settings": {
+            "label": "Outdoor Areas",
+            "url": "#areas"
+          }
+        },
+        "j3": {
+          "type": "jump",
+          "settings": {
+            "label": "Styles",
+            "url": "#styles"
+          }
+        },
+        "j4": {
+          "type": "jump",
+          "settings": {
+            "label": "Materials",
+            "url": "#materials"
+          }
+        },
+        "j5": {
+          "type": "jump",
+          "settings": {
+            "label": "Projects",
+            "url": "#projects"
+          }
+        },
+        "j6": {
+          "type": "jump",
+          "settings": {
+            "label": "Featured",
+            "url": "#featured"
+          }
+        }
+      },
+      "block_order": [
+        "j0",
+        "j1",
+        "j2",
+        "j3",
+        "j4",
+        "j5",
+        "j6"
+      ],
+      "settings": {
+        "eyebrow": "Collection directory",
+        "heading": "Shop every collection",
+        "text": "Every department of lighting and decor in one place, each collection with its own picture, plus quick ways in by room, outdoor area, style and material.",
+        "placeholder": "Find a collection, for example chandeliers or wall sconces",
+        "status": "",
+        "img1": "nf-pieces-outdoor-porch.png",
+        "img2": "nf-hero-lava-pendant-living-room.png",
+        "img3": "nf-pieces-home-fragrance.png"
+      }
+    },
+    "departments": {
+      "type": "nf-directory-departments",
+      "blocks": {
+        "d_ceiling_light": {
+          "type": "department",
+          "settings": {
+            "collection": "ceiling-light",
+            "title": "",
+            "text": "Chandeliers, pendants and flush mounts that anchor a room.",
+            "image_file": "nf-blog-chandelier-over-dining-table.png",
+            "image_pos": "50% 40%",
+            "brighten": 100,
+            "groups": "Chandeliers@chandeliers=modern-chandeliers,staircase-chandeliers,ceiling-fans;Pendants and Mounts=pendants,semi-flush-mount-lighting,flush-mount-lighting,linear-suspension",
+            "keywords": "chandelier pendant flush mount ceiling fan overhead"
+          }
+        },
+        "d_wall_lights": {
+          "type": "department",
+          "settings": {
+            "collection": "wall-lights",
+            "title": "",
+            "text": "Sconces, vanity and picture lights for a warm layer at eye level.",
+            "image_file": "nav_wall_sconces_hq.webp",
+            "image_pos": "50% 30%",
+            "brighten": 100,
+            "groups": "Wall Sconces@wall-sconces=uplight-wall-sconces,down-light-wall-sconces,up-and-down-wall-sconces,diffused-light-wall-sconces,linear-wall-sconces,swing-arm-sconces;Bath and Vanity=vanity-lighting,mirror-lights;Picture and Reading=picture-lights,reading-wall-lamps,led-wall-art",
+            "keywords": "sconce vanity bathroom mirror picture reading wall lamp"
+          }
+        },
+        "d_lamps": {
+          "type": "department",
+          "settings": {
+            "collection": "lamps",
+            "title": "",
+            "text": "Table, floor and bedside lamps, plus a few with real personality.",
+            "image_file": "nav_table_lamps_hq.webp",
+            "image_pos": "50% 40%",
+            "brighten": 100,
+            "groups": "Table Lamps@table-lamps=bedside-lamps,rechargeable-lamps;Floor Lamps@floor-lamps=reading-floor-lamps,decorative-floor-lamps;Ambient and Novelty@ambient-novelty-lamps=sunset-lamps,mushroom-lamps",
+            "keywords": "lamp table floor bedside desk cordless rechargeable"
+          }
+        },
+        "d_ambient_lighting": {
+          "type": "department",
+          "settings": {
+            "collection": "ambient-lighting",
+            "title": "",
+            "text": "Strip, string and night lights for a soft glow wherever you need it.",
+            "image_file": "nav_ambient_novelty.webp",
+            "image_pos": "50% 35%",
+            "brighten": 100,
+            "groups": "=led-strip-lights,night-lights,fairy-string-lights",
+            "keywords": "ambient strip string fairy night light glow led"
+          }
+        },
+        "d_outdoor_lighting": {
+          "type": "department",
+          "settings": {
+            "collection": "outdoor-lighting",
+            "title": "",
+            "text": "Path, post, lantern and wall lights that guide the way after dark.",
+            "image_file": "nav_landscape_lighting.webp",
+            "image_pos": "50% 55%",
+            "brighten": 100,
+            "groups": "Landscape Lighting@landscape-lighting=path-lights,step-deck-lights,outdoor-spotlights,well-lights,flood-lights,outdoor-string-lights,outdoor-led-strip-lights,novelty-lights;Outdoor Wall Lights@outdoor-wall-lights=outdoor-wall-lighting,outdoor-wall-sconces,wall-washer-lights,motion-sensor-wall-lights,outdoor-solar-wall-lights,outdoor-up-down-wall-lights;Outdoor Lanterns@outdoor-lanterns=portable-lanterns,camping-lanterns;Post Lights@outdoor-post-lights=post-lights,pillar-lights,bollard-lights",
+            "keywords": "outdoor garden patio porch landscape solar exterior yard wall"
+          }
+        },
+        "d_decor": {
+          "type": "department",
+          "settings": {
+            "collection": "decor",
+            "title": "",
+            "text": "Mirrors, wall decor and accents that finish a room.",
+            "image_file": "nav_wall_decor.webp",
+            "image_pos": "50% 38%",
+            "brighten": 100,
+            "groups": "Mirrors=wall-mirrors,vanity-makeup-mirrors;Wall Decor@wall-decor=wall-clocks,photo-frames;Accents@accents-objects=candle-holders,decorative-objects,decorative-trays,vases,botanicals",
+            "keywords": "decor mirror wall art clock frame vase candle tray plant accent"
+          }
+        },
+        "d_soft_furnishings": {
+          "type": "department",
+          "settings": {
+            "collection": "soft-furnishings",
+            "title": "",
+            "text": "Curtains, pillows, throws and linens in easy, livable textures.",
+            "image_file": "nav_soft_furnishings.webp",
+            "image_pos": "50% 50%",
+            "brighten": 100,
+            "groups": "Living=curtains-drapes,throw-pillows,throw-blankets,table-linens;Bath=bath-mats-rugs,shower-curtains",
+            "keywords": "curtain drape pillow cushion throw blanket linen textile rug bath mat"
+          }
+        },
+        "d_home_fragrance": {
+          "type": "department",
+          "settings": {
+            "collection": "home-fragrance",
+            "title": "",
+            "text": "Diffusers and incense holders for a calm, welcoming home.",
+            "image_file": "nav_home_fragrance.webp",
+            "image_pos": "50% 50%",
+            "brighten": 100,
+            "groups": "=aroma-diffusers,incense-holders-burners",
+            "keywords": "fragrance diffuser humidifier incense scent aroma oil"
+          }
+        },
+        "d_storage_shelves": {
+          "type": "department",
+          "settings": {
+            "collection": "storage-shelves",
+            "title": "",
+            "text": "Floating shelves, racks and storage that keep things in their place.",
+            "image_file": "nav_wall_shelves.webp",
+            "image_pos": "50% 45%",
+            "brighten": 100,
+            "groups": "Wall Shelves@wall-shelves=floating-shelves,corner-shelves,display-racks;Storage@storage=shoe-storage,bookshelves",
+            "keywords": "shelf shelves storage rack bookcase shoe organizer"
+          }
+        },
+        "d_poufs_floor_cushions": {
+          "type": "department",
+          "settings": {
+            "collection": "poufs-floor-cushions",
+            "title": "",
+            "text": "Poufs, ottomans and floor cushions for extra seating anywhere.",
+            "image_file": "nf-pieces-poufs.png",
+            "image_pos": "50% 60%",
+            "brighten": 100,
+            "groups": "=poufs-ottomans,floor-cushions",
+            "keywords": "pouf ottoman floor cushion seat footstool"
+          }
+        }
+      },
+      "block_order": [
+        "d_ceiling_light",
+        "d_wall_lights",
+        "d_lamps",
+        "d_ambient_lighting",
+        "d_outdoor_lighting",
+        "d_decor",
+        "d_soft_furnishings",
+        "d_home_fragrance",
+        "d_storage_shelves",
+        "d_poufs_floor_cushions"
+      ],
+      "settings": {
+        "anchor": "departments",
+        "eyebrow": "Departments",
+        "heading": "Browse by department",
+        "text": "Every department and every collection inside it, with the number of pieces in each.",
+        "img_overrides": "ambient-novelty-lamps=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/S532693d1df00498d9f31db9ca437e4784.webp\nbedside-lamps=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787874571143_985a616d_1787874571202_bc34ba5e.png\nbookshelves=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787874919938_e727b07f_1787874920216_74c8cac7.png\nbotanicals=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787875238476_ba44c0f6_1787875238700_d8aa7af9.png\ncamping-lanterns=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1786139423492_ccf4349f_1786139423813_b5e49ebf.png\ncandle-holders=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787876201703_a3dd38e1_1787876201950_821e9c85.png\ndecorative-floor-lamps=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/walnut-floor-lamp-ambient-lighting.jpg\ndecorative-trays=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787879110367_7bceb9b3_1787879110463_1cf25855.png\nfloating-shelves=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787879431000_635948c9_1787879431102_aa360575.png\nflood-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787887238210_f667e2e3_1787887238404_518bed9c.png\nfloor-lamps=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/linear-floor-lamp-cozy-modern-living-room-warm-ambient-glow.jpg\nincense-holders-burners=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787890592612_40595863_1787890592766_eea38fb9.png\nlandscape-lighting=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/outdoor-ice-cube-lights-walkway.webp\nlinear-wall-sconces=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/S1c0f6c60390d49ec9e646376b1fc6aefI.webp\nmirror-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787961563672_56e99aca_1787961563718_8ee5584f.png\nmotion-sensor-wall-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/solar-light-outdoor-wall-stucco-mount.jpg\nmushroom-lamps=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/S27778fdd8cfa45ad8f90e5e4b5820fd4k.webp\nnovelty-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/solar-garden-stake-light-flame-shape-path.jpg\noutdoor-lanterns=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/led-solar-lanterns-outdoor-warm-illumination-cozy-patio-potted-plants.jpg\noutdoor-post-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/garden-pedestal-lights-modern-square-lantern-stone-pillar.jpg\noutdoor-solar-wall-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/LI000572_1.jpg\noutdoor-spotlights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/outdoor-led-spotlights-waterproof-led-garden-and-landscape-lighting.jpg\noutdoor-string-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/HA143421.jpg\noutdoor-up-down-wall-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/creative-up-and-down-lights-led-outdoor-wall-lights-wall-lamp-wall-sconce-lightingdazuma-293980.jpg\noutdoor-wall-lighting=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/solar-powered-motion-sensor-wall-light-solar-panel-led-closeup.jpg\noutdoor-wall-sconces=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/waterproof-led-exterior-wall-sconces-for-villa-outdoor-patio-balcony-167848.jpg\npendants=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/N_LI001746.jpg\nphoto-frames=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/S4e21506b9711467ba64c1bdb3582c82eC.webp\npicture-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/S14c14139c5a64c568a3bb5ee67cae681c.webp\npillar-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/home-pillar-light-modern-led-design-for-garden-driveway-and-patio-illumination.jpg\nportable-lanterns=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/S01ed74af6887403cb2e90c1bfcfae98eL.webp\npost-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/two-head-outdoor-post-light-garden-pathway-warm-glow-dusk.jpg\nrechargeable-lamps=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/Se410352baced438091e617d61f761dedH.webp\nshower-curtains=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/Sc551d0c27f584ee0b7c299f1fefbb1a2s.webp\nsunset-lamps=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/S7c7fd4399cf14b3ca612e29e800c1a0bS.webp\nvanity-makeup-mirrors=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/nf-8852479475764-1785535071353-0.jpg\nvases=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787879750702_44fc8184_1787879751344_46f8bc6f.png\nwall-clocks=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/Sa9611ec5fd5c4faba66c6a71525a9f5as.webp\nwell-lights=https:\/\/cdn.shopify.com\/s\/files\/1\/0750\/8380\/8820\/files\/image_1787958823276_72c494a8_1787958823514_93144ade.png"
+      }
+    },
+    "shopby": {
+      "type": "nf-directory-shopby",
+      "blocks": {
+        "r_rooms": {
+          "type": "row",
+          "settings": {
+            "title": "Shop by Room",
+            "anchor": "rooms",
+            "text": "Lighting and decor picked for each room of the house.",
+            "handles": "living-room, bedroom, kitchen-dining, bathroom, entryway-hallway, home-office, kids-nursery"
+          }
+        },
+        "r_areas": {
+          "type": "row",
+          "settings": {
+            "title": "Shop by Outdoor Area",
+            "anchor": "areas",
+            "text": "Lights for the front door, the patio, the garden path and the driveway.",
+            "handles": "porch-entry, patio-deck, garden-pathway, driveway-security"
+          }
+        },
+        "r_styles": {
+          "type": "row",
+          "settings": {
+            "title": "Shop by Style",
+            "anchor": "styles",
+            "text": "From clean modern lines to warm vintage and relaxed boho.",
+            "handles": "style-modern, style-minimalist, style-scandinavian-japandi, style-vintage-classic, style-industrial, style-farmhouse-rustic, style-mid-century, style-glam, style-boho"
+          }
+        },
+        "r_materials": {
+          "type": "row",
+          "settings": {
+            "title": "Shop by Material",
+            "anchor": "materials",
+            "text": "Metal, glass, wood, stone and more, sorted for you.",
+            "handles": "material-metal, material-glass, material-fabric-paper, material-wood, material-stone-ceramic, material-crystal, material-rattan-bamboo"
+          }
+        },
+        "r_projects": {
+          "type": "row",
+          "settings": {
+            "title": "Shop by Project",
+            "anchor": "projects",
+            "text": "Fixtures chosen for hotels, offices, shops, homes and outdoor spaces.",
+            "handles": "hospitality-lighting, office-lighting, retail-lighting, home-project-lighting, outdoor-project-lighting"
+          }
+        }
+      },
+      "block_order": [
+        "r_rooms",
+        "r_areas",
+        "r_styles",
+        "r_materials",
+        "r_projects"
+      ],
+      "settings": {
+        "anchor": "shop-by",
+        "eyebrow": "Shop by",
+        "heading": "Shop your way",
+        "text": "Start from the room you are furnishing, the outdoor space you are lighting, the look you love or the material you want.",
+        "img_overrides": "bedroom=nf-newsletter-bedroom-lamps.png\nmaterial-metal=nav_picture_reading.webp\nmaterial-wood=nav_accents.webp",
+        "brighten": "kids-nursery=115\ngarden-pathway=125\npatio-deck=112\nstyle-boho=120\nstyle-modern=110\nstyle-farmhouse-rustic=110\nmaterial-glass=110\nporch-entry=108\nstyle-industrial=108\nstyle-mid-century=108"
+      }
+    },
+    "featured": {
+      "type": "nf-directory-featured",
+      "blocks": {
+        "f_best_sellers": {
+          "type": "card",
+          "settings": {
+            "collection": "best-sellers",
+            "title": "All Best Sellers",
+            "text": "The pieces customers come back for most",
+            "image_file": "contemporary-brass-branch-chandelier-living-room.jpg",
+            "keywords": "best sellers popular top favorites"
+          }
+        },
+        "f_best_sellers_indoor": {
+          "type": "card",
+          "settings": {
+            "collection": "best-sellers-indoor",
+            "title": "Best Sellers Indoor",
+            "text": "Our most loved chandeliers, lamps and sconces",
+            "image_file": "nav_pendants_mounts_hq.webp",
+            "keywords": "best sellers popular indoor top"
+          }
+        },
+        "f_best_sellers_outdoor": {
+          "type": "card",
+          "settings": {
+            "collection": "best-sellers-outdoor",
+            "title": "Best Sellers Outdoor",
+            "text": "Our most loved porch, path and garden lights",
+            "image_file": "modern-outdoor-wall-pillar-lights-gate-entrance.jpg",
+            "keywords": "best sellers popular outdoor top"
+          }
+        },
+        "f_new_arrivals": {
+          "type": "card",
+          "settings": {
+            "collection": "new-arrivals",
+            "title": "New Arrivals",
+            "text": "The newest pieces in the store",
+            "image_file": "modern-globe-wall-sconce-black-frame-elegant-lighting-outdoor-entrance.jpg",
+            "keywords": "new latest just added"
+          }
+        },
+        "f_clearance": {
+          "type": "card",
+          "settings": {
+            "collection": "clearance",
+            "title": "Sale",
+            "text": "Marked down pieces while they last",
+            "image_file": "image_1787959243840_117cc68b_1787959244019_06a2704c.png",
+            "keywords": "sale clearance discount deals markdown"
+          }
+        },
+        "f_lighting_catalog_2026": {
+          "type": "card",
+          "settings": {
+            "collection": "lighting-catalog-2026",
+            "title": "The 2026 Lighting Catalog",
+            "text": "Every piece from our printed catalog in one place",
+            "image_file": "nf-blog-layered-living-room.png",
+            "keywords": "catalog 2026 book lookbook"
+          }
+        }
+      },
+      "block_order": [
+        "f_best_sellers",
+        "f_best_sellers_indoor",
+        "f_best_sellers_outdoor",
+        "f_new_arrivals",
+        "f_clearance",
+        "f_lighting_catalog_2026"
+      ],
+      "settings": {
+        "anchor": "featured",
+        "eyebrow": "Featured",
+        "heading": "Start with our favorites",
+        "text": "Best sellers for inside and out, the latest arrivals, pieces on sale and our 2026 catalog.",
+        "email": "info@norafurnish.com"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "departments",
+    "shopby",
+    "featured"
+  ]
+}

@@ -1,0 +1,10 @@
+{%- comment -%} NF-PDP-V1 one review photo tile for sections/nf-pdp-spaces.liquid (t = one tile of custom.nf_spaces) {%- endcomment -%}
+{%- assign t_alt = 'Customer photo of the ' | append: t.pt -%}
+{%- comment -%} NF-NAMES-ANON (2026-09-14, owner): a masked or missing reviewer name shows as Anonymous, never asterisks. {%- endcomment -%}
+{%- assign t_name = t.n -%}
+{%- if t_name == blank or t_name contains '*' or t_name == 'Verified Buyer' -%}{%- assign t_name = 'Anonymous' -%}{%- endif -%}
+<button type="button" class="nf-sp__tile" style="--ar: {{ t.w }} / {{ t.h }}" data-nf-tile data-img="{{ t.i }}" data-name="{% unless t_name == 'Anonymous' %}{{ t_name | escape }}{% endunless %}" data-text="{{ t.t | escape }}" data-href="/products/{{ t.h }}" data-pt="{{ t.pt | escape }}" data-pi="{{ t.pi }}" aria-label="Open the review from {% if t_name == 'Anonymous' %}a verified buyer{% else %}{{ t_name | escape }}{% endif %}">
+  <img src="{{ t.i }}?width=480" srcset="{{ t.i }}?width=320 320w, {{ t.i }}?width=480 480w, {{ t.i }}?width=720 720w" sizes="(max-width: 699px) 70vw, 360px" width="{{ t.w }}" height="{{ t.h }}" loading="lazy" decoding="async" alt="{{ t_alt | escape }}">
+  {%- if t_name == 'Anonymous' -%}<span class="nf-sp__tag nf-vbadge"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7.2"/><path d="M4.9 8.3l2.1 2.1 4.2-4.4"/></svg>Verified Buyer</span>{%- else -%}<span class="nf-sp__tag">{{ t_name | escape }}</span>{%- endif -%}
+  <span class="nf-sp__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+</button>

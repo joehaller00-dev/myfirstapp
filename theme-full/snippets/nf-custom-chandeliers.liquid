@@ -1,0 +1,145 @@
+{%- comment -%} NF-CUSTOM3-V2 chandelier sizing guide with a staircase mode (rendered by sections/nf-custom-tool).
+Opens on a two story foyer. Logic: initChand in assets/nf-custom.js, which draws the fixture to scale, fills the results,
+the "Yours" line under each rule and the tall space tip. Inputs sit outside the contact form; the script writes a summary into it. {%- endcomment -%}
+<div class="nfc-tool" data-nfc-chand>
+  <div class="nfc-tool__a nfc-panel">
+    <h3 class="nfc-panel__t">1. Tell us about the space</h3>
+    <p class="nfc-panel__s">Rough numbers are fine. Feet for rooms, inches for the table.</p>
+    <fieldset class="nfc-group">
+      <legend>Where will it hang?</legend>
+      <div class="nfc-choices nfc-choices--sm">
+        <label class="nfc-choice"><input type="radio" name="nfc-mode" value="foyer" data-label="Foyer" checked><b>Foyer</b><small>Entry or tall room</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-mode" value="stair" data-label="Staircase"><b>Staircase</b><small>Custom drop length</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-mode" value="table" data-label="Dining table"><b>Dining table</b><small>Over a table</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-mode" value="room" data-label="Room"><b>Room</b><small>Living room or bedroom</small></label>
+      </div>
+    </fieldset>
+
+    <div class="nfc-fields nfc-fields--pair" data-mode="room" hidden style="margin-top:4px">
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-rl">Room length</label>
+        <div class="nfc-num" data-unit="ft"><input id="nfc-rl" name="nfc-rl" type="number" inputmode="decimal" min="4" max="80" step="0.5" value="16"></div>
+      </div>
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-rw">Room width</label>
+        <div class="nfc-num" data-unit="ft"><input id="nfc-rw" name="nfc-rw" type="number" inputmode="decimal" min="4" max="80" step="0.5" value="14"></div>
+      </div>
+    </div>
+    <div class="nfc-fields nfc-fields--pair" data-mode="table" hidden style="margin-top:4px">
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-tw">Table width</label>
+        <div class="nfc-num" data-unit="in"><input id="nfc-tw" name="nfc-tw" type="number" inputmode="decimal" min="20" max="80" step="0.5" value="42"></div>
+        <p class="nfc-hint">The short side, or the diameter of a round table.</p>
+      </div>
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-tl">Table length</label>
+        <div class="nfc-num" data-unit="in"><input id="nfc-tl" name="nfc-tl" type="number" inputmode="decimal" min="24" max="240" step="0.5" value="72"></div>
+      </div>
+    </div>
+    <div class="nfc-fields nfc-fields--pair" data-mode="room table" hidden style="margin-top:14px">
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-ceil">Ceiling height</label>
+        <div class="nfc-num" data-unit="ft"><input id="nfc-ceil" name="nfc-ceil" type="number" inputmode="decimal" min="7" max="30" step="0.5" value="9"></div>
+      </div>
+    </div>
+
+    <div class="nfc-fields nfc-fields--pair" data-mode="foyer stair" style="margin-top:4px">
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-floors">Floors it spans</label>
+        <select class="nfc-input" id="nfc-floors" name="nfc-floors">
+          <option value="1">1 floor</option>
+          <option value="2" selected>2 floors</option>
+          <option value="3">3 floors</option>
+        </select>
+      </div>
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-fh">Height per floor</label>
+        <div class="nfc-num" data-unit="ft"><input id="nfc-fh" name="nfc-fh" type="number" inputmode="decimal" min="7" max="20" step="0.5" value="10"></div>
+        <p class="nfc-hint">Floor to floor, about 9 to 11 ft in most homes.</p>
+      </div>
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-fl" data-l-foyer="Entry length" data-l-stair="Opening length">Entry length</label>
+        <div class="nfc-num" data-unit="ft"><input id="nfc-fl" name="nfc-fl" type="number" inputmode="decimal" min="3" max="80" step="0.5" value="18"></div>
+      </div>
+      <div class="nfc-field">
+        <label class="nfc-label" for="nfc-fw" data-l-foyer="Entry width" data-l-stair="Opening width">Entry width</label>
+        <div class="nfc-num" data-unit="ft"><input id="nfc-fw" name="nfc-fw" type="number" inputmode="decimal" min="3" max="80" step="0.5" value="16"></div>
+      </div>
+      <div class="nfc-field nfc-field--full">
+        <label class="nfc-label" for="nfc-bottom">Where the bottom should be</label>
+        <select class="nfc-input" id="nfc-bottom" name="nfc-bottom">
+          <option value="min">At least 7 ft above the floor or stairs</option>
+          <option value="level" selected>Level with the upper floor</option>
+          <option value="custom">At a height I choose</option>
+        </select>
+      </div>
+      <div class="nfc-field" data-when="custombottom" hidden>
+        <label class="nfc-label" for="nfc-bft">Bottom above the floor</label>
+        <div class="nfc-num" data-unit="ft"><input id="nfc-bft" name="nfc-bft" type="number" inputmode="decimal" min="7" max="60" step="0.5" value="9"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nfc-tool__vis nfc-vis">
+    <div class="nfc-diagram">
+      <svg data-nfc-svg viewBox="0 0 600 640" role="img" aria-labelledby="nfc-h-title" preserveAspectRatio="xMidYMid meet"><title id="nfc-h-title">Side view of your space with the chandelier drawn to scale, its drop, its clearance and a 5 ft 9 in person for reference</title></svg>
+    </div>
+    <div class="nfc-results">
+      <dl>
+        <div><dt>Diameter</dt><dd><span data-out="dia">About 34 in</span><small data-out="dianote"></small></dd></div>
+        <div><dt>Fixture height</dt><dd><span data-out="h">50 to 60 in</span><small data-out="hnote"></small></dd></div>
+        <div><dt>Drop length</dt><dd><span data-out="drop">5 ft 5 in</span><small data-out="dropnote"></small></dd></div>
+        <div><dt>Bottom of fixture</dt><dd><span data-out="bottom">10 ft</span><small data-out="bottomnote"></small></dd></div>
+      </dl>
+      <p class="nfc-tip" data-out-tip hidden></p>
+      <p class="nfc-warn" data-out-warn hidden></p>
+      <div class="nfc-rules">
+        <h4 class="nfc-rules__t">How we size it</h4>
+        <ol class="nfc-rules__list">
+          <li data-rule="1"><b>Room or foyer width.</b> Add the length and width in feet. The total, in inches, is the diameter.<span class="nfc-rules__ex">For example, a 14 by 16 ft room gives 30, so choose about a 30 in chandelier.</span><span class="nfc-rules__yours" data-out="y1"></span></li>
+          <li data-rule="2"><b>Over a dining table.</b> Choose one half to two thirds of the table width.<span class="nfc-rules__ex">For example, a 42 in table suits 21 to 28 in.</span><span class="nfc-rules__yours" data-out="y2"></span></li>
+          <li data-rule="3"><b>Fixture height.</b> Allow about 2.5 to 3 in of fixture for every foot of ceiling.<span class="nfc-rules__ex">For example, a 20 ft foyer suits 50 to 60 in tall.</span><span class="nfc-rules__yours" data-out="y3"></span></li>
+        </ol>
+        <p class="nfc-rules__plus"><b>Going bigger.</b> High ceilings and open stairwells can carry a larger statement piece. In a two story foyer or stairwell, up to about 20% wider than rule 1 still looks in proportion, because it is seen from both floors. We check every size before we quote.</p>
+      </div>
+      <p class="nfc-sr" aria-live="polite" data-out="sentence"></p>
+      <div class="nfc-cta">
+        <button type="button" class="nfc-btn" data-nfc-go>{{ cta | default: 'Add this to my quote' | escape }}</button>
+        <p class="nfc-cta__note">Your sizes and choices go straight into the form below.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nfc-tool__b nfc-panel">
+    <h3 class="nfc-panel__t">2. Finish and style</h3>
+    <p class="nfc-panel__s">Pick what you like. Add a link to a chandelier you love in the form.</p>
+    <fieldset class="nfc-group">
+      <legend>Finish</legend>
+      <div class="nfc-choices nfc-choices--sm">
+        <label class="nfc-choice"><input type="radio" name="nfc-finish" value="gold" data-label="Gold" checked><span class="nfc-choice__sw" style="background:linear-gradient(135deg,#e6c67f,#b8893e)"></span><b>Gold</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-finish" value="brass" data-label="Brass"><span class="nfc-choice__sw" style="background:linear-gradient(135deg,#c9a062,#7f5a26)"></span><b>Brass</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-finish" value="chrome" data-label="Chrome"><span class="nfc-choice__sw" style="background:linear-gradient(135deg,#f4f6f8,#9aa3ad)"></span><b>Chrome</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-finish" value="black" data-label="Black"><span class="nfc-choice__sw" style="background:linear-gradient(135deg,#444,#111)"></span><b>Black</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-finish" value="unsure" data-label="Not sure yet"><span class="nfc-choice__sw" style="background:conic-gradient(#d8b46a 0 25%,#b9c1ca 0 50%,#222 0 75%,#a47a3a 0)"></span><b>Not sure</b></label>
+      </div>
+    </fieldset>
+    <fieldset class="nfc-group">
+      <legend>Tiers</legend>
+      <div class="nfc-seg">
+        <label class="nfc-choice"><input type="radio" name="nfc-tiers" value="1" data-label="1 tier"><b>1</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-tiers" value="2" data-label="2 tiers"><b>2</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-tiers" value="3" data-label="3 tiers" checked><b>3</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-tiers" value="4" data-label="4 or more tiers"><b>4 or more</b></label>
+      </div>
+    </fieldset>
+    <fieldset class="nfc-group">
+      <legend>Style</legend>
+      <div class="nfc-choices">
+        <label class="nfc-choice"><input type="radio" name="nfc-style" value="crystal" data-label="Crystal" checked><b>Crystal</b><small>Sparkle and cascades</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-style" value="candle" data-label="Candle style"><b>Candle style</b><small>Arms with candle bulbs</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-style" value="rings" data-label="Modern rings"><b>Modern rings</b><small>Glowing LED rings</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-style" value="unsure" data-label="Not sure yet"><b>Not sure yet</b><small>We will suggest options</small></label>
+      </div>
+    </fieldset>
+  </div>
+</div>

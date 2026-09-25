@@ -1,0 +1,282 @@
+/* NF collection story (sections/nf-collection-story.liquid), 2026-09-10. Everything is scoped under .nfcs. */
+.nfcs {
+  --nfcs-ink: #1c1c1c;
+  --nfcs-text: #45413d;
+  --nfcs-muted: #5c5047;
+  --nfcs-line: rgba(28, 28, 28, .12);
+  --nfcs-line-strong: rgba(28, 28, 28, .28);
+  --nfcs-clamp: 8.8em;
+  --nfcs-ease: cubic-bezier(.22, .61, .36, 1);
+  display: block;
+  color: var(--nfcs-text);
+  font-family: "Inter", var(--text-font-family, sans-serif);
+}
+.nfcs__inner {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  padding: 48px 0 16px;
+  border-top: 1px solid var(--nfcs-line);
+}
+.nfcs .nfcs__eyebrow {
+  margin: 0 0 10px;
+  font: 500 11.5px/1.4 "Inter", var(--text-font-family, sans-serif);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--nfcs-muted);
+}
+.nfcs .nfcs__title {
+  margin: 0 0 18px;
+  max-width: 22em;
+  font-family: var(--heading-font-family, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(26px, 2.1vw, 34px);
+  line-height: 1.18;
+  letter-spacing: .005em;
+  text-transform: none;
+  color: var(--nfcs-ink);
+  scroll-margin-top: calc(var(--sticky-area-height, 0px) + 24px);
+}
+
+/* Write up, collapsed to a few lines with a soft fade */
+.nfcs .nfcs__story {
+  position: relative;
+  max-width: 760px;
+  max-height: var(--nfcs-clamp);
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 1.75;
+  transition: max-height .5s var(--nfcs-ease);
+}
+.nfcs .nfcs__story::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4.2em;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 88%);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .35s ease;
+}
+.nfcs .nfcs__story.is-open { max-height: none; }
+.nfcs .nfcs__story.is-open::after,
+.nfcs .nfcs__story.is-short::after { opacity: 0; }
+.nfcs .nfcs__story.is-short { max-height: none; }
+.nfcs .nfcs__story > :first-child { margin-top: 0; }
+.nfcs .nfcs__story > :last-child { margin-bottom: 0; }
+.nfcs .nfcs__story p {
+  margin: 0 0 1em;
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--nfcs-text);
+}
+.nfcs .nfcs__story h3 {
+  margin: 1.5em 0 .5em;
+  font-family: var(--heading-font-family, Georgia, serif);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--nfcs-ink);
+}
+.nfcs .nfcs__story ul {
+  margin: 0 0 1.1em;
+  padding: 0;
+  list-style: none;
+}
+.nfcs .nfcs__story li {
+  position: relative;
+  margin: 0 0 .55em;
+  padding-left: 20px;
+}
+.nfcs .nfcs__story li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: .72em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--nfcs-ink);
+}
+.nfcs .nfcs__story strong { font-weight: 600; color: var(--nfcs-ink); }
+.nfcs .nfcs__story a {
+  color: var(--nfcs-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(28, 28, 28, .35);
+  transition: text-decoration-color .2s ease;
+}
+.nfcs .nfcs__story a:hover { text-decoration-color: currentColor; }
+
+/* View more / View less pill */
+.nfcs .nfcs__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 10px 18px 10px 20px;
+  border: 1px solid var(--nfcs-ink);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--nfcs-ink);
+  font: 500 11.5px/1 "Inter", var(--text-font-family, sans-serif);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+.nfcs .nfcs__more:hover { background: var(--nfcs-ink); color: #fff; }
+.nfcs .nfcs__more:active { transform: scale(.98); }
+.nfcs .nfcs__more[hidden] { display: none; }
+.nfcs .nfcs__chev { transition: transform .3s var(--nfcs-ease); }
+.nfcs .nfcs__more[aria-expanded="true"] .nfcs__chev { transform: rotate(180deg); }
+
+/* FAQ */
+.nfcs .nfcs__faq { margin-top: 44px; }
+.nfcs .nfcs__faq-title {
+  margin: 0 0 18px;
+  font-family: var(--heading-font-family, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(21px, 1.6vw, 26px);
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--nfcs-ink);
+}
+.nfcs .nfcs__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+@media (min-width: 700px) {
+  .nfcs .nfcs__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+}
+.nfcs .nfcs__card {
+  border: 1px solid var(--nfcs-line);
+  border-radius: 16px;
+  background: #fff;
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.nfcs .nfcs__card:hover {
+  border-color: var(--nfcs-line-strong);
+  box-shadow: 0 8px 22px rgba(28, 28, 28, .06);
+  transform: translateY(-1px);
+}
+.nfcs .nfcs__qh { margin: 0; font-size: inherit; line-height: inherit; font-weight: inherit; letter-spacing: 0; text-transform: none; }
+.nfcs .nfcs__q {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  margin: 0;
+  padding: 18px 18px 18px 22px;
+  border: 0;
+  background: none;
+  border-radius: 16px;
+  color: var(--nfcs-ink);
+  font: 600 15px/1.45 "Inter", var(--text-font-family, sans-serif);
+  letter-spacing: 0;
+  text-align: left;
+  text-transform: none;
+  cursor: pointer;
+}
+.nfcs .nfcs__q:focus-visible { outline: 2px solid var(--nfcs-ink); outline-offset: 2px; }
+.nfcs .nfcs__qtext { padding-top: 3px; }
+.nfcs .nfcs__icon {
+  position: relative;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--nfcs-line);
+  border-radius: 50%;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.nfcs .nfcs__q:hover .nfcs__icon { border-color: var(--nfcs-ink); }
+.nfcs .nfcs__icon::before,
+.nfcs .nfcs__icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 1.4px;
+  margin: -.7px 0 0 -5px;
+  border-radius: 1px;
+  background: var(--nfcs-ink);
+  transition: transform .3s var(--nfcs-ease);
+}
+.nfcs .nfcs__icon::after { transform: rotate(90deg) scaleX(0); }
+.nfcs .nfcs__q[aria-expanded="false"] .nfcs__icon::after { transform: rotate(90deg) scaleX(1); }
+.nfcs .nfcs__a {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition: grid-template-rows .34s var(--nfcs-ease), opacity .28s ease, visibility 0s linear 0s;
+}
+.nfcs .nfcs__a.is-hidden {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows .34s var(--nfcs-ease), opacity .2s ease, visibility 0s linear .34s;
+}
+.nfcs .nfcs__a-clip { min-height: 0; overflow: hidden; }
+.nfcs .nfcs__a p {
+  margin: 0;
+  padding: 0 22px 20px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--nfcs-text);
+}
+
+@media (max-width: 699px) {
+  .nfcs__inner { margin-top: 16px; padding-top: 36px; }
+  .nfcs .nfcs__title { font-size: 25px; }
+  .nfcs .nfcs__story { font-size: 15px; }
+  .nfcs .nfcs__faq { margin-top: 36px; }
+  .nfcs .nfcs__q { padding: 16px 14px 16px 18px; }
+  .nfcs .nfcs__a p { padding: 0 18px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nfcs .nfcs__story,
+  .nfcs .nfcs__story::after,
+  .nfcs .nfcs__more,
+  .nfcs .nfcs__chev,
+  .nfcs .nfcs__card,
+  .nfcs .nfcs__icon::before,
+  .nfcs .nfcs__icon::after,
+  .nfcs .nfcs__a,
+  .nfcs .nfcs__a.is-hidden { transition: none; }
+  .nfcs .nfcs__card:hover { transform: none; }
+}
+
+
+/* ===== NF-STORY-CENTER-V1 (owner, 2026-09-11) : the About block reads centered =====
+   Heading, eyebrow, story and the View more pill sit on the page's center line. Paragraphs are
+   centered; bulleted lists stay left aligned inside a centered block so each point still starts on
+   one edge and reads as a list. The FAQ title centers over its cards; the cards keep their own
+   left aligned text. */
+.nfcs .nfcs__inner { text-align: center; }
+.nfcs .nfcs__eyebrow { text-align: center; }
+.nfcs .nfcs__title { margin-left: auto; margin-right: auto; text-align: center; }
+.nfcs .nfcs__story { margin-left: auto; margin-right: auto; text-align: center; }
+.nfcs .nfcs__story h3 { text-align: center; }
+.nfcs .nfcs__story ul,
+.nfcs .nfcs__story ol {
+  display: table;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+.nfcs .nfcs__more { margin-left: auto; margin-right: auto; }
+.nfcs .nfcs__faq-title { text-align: center; }
+.nfcs .nfcs__grid { text-align: left; }
+/* ===== /NF-STORY-CENTER-V1 ===== */

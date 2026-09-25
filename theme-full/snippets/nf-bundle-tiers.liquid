@@ -1,0 +1,88 @@
+{%- comment -%}
+  NF-PDP3-V2 (2026-09-25) Bundle & Save cards under Add to Cart (owner: like Baskoraa, 1 item / 2 items POPULAR /
+  3+ items BEST VALUE, with an option dropdown per item on the 2 and 3+ cards).
+
+  The saving is the store's automatic discounts, taken off at checkout (no price change):
+    "Buy 2+ items, save 10%" and "Buy 3+ items, save 15%" (both on the Multi Item Discount Eligible collection,
+    which is every product whose type is not Room Set; Shopify gives the better of the two).
+    pct2 / pct3 must match those two discounts.
+  Room sets carry their own 10% and are excluded from both, so they never get the cards.
+  Savings are rounded DOWN to the cent, like Shopify's percentage discounts, so the promise is never above the result.
+  Behaviour lives in assets/nf-pdp3.js: picking a card sets the quantity (and the quantity box picks the card),
+  the dropdowns let each item be a different option, and Add to Cart then adds the mix in one go.
+{%- endcomment -%}
+{%- liquid
+  assign nf_bt_ok = true
+  if product.type == 'Room Set' or product.gift_card? or product.available == false
+    assign nf_bt_ok = false
+  endif
+  assign nf_bt_p2 = pct2 | default: 10
+  assign nf_bt_p3 = pct3 | default: nf_bt_p2
+  assign nf_bt_v = product.selected_or_first_available_variant
+-%}
+{%- if nf_bt_ok and nf_bt_v != nil -%}
+  {%- liquid
+    assign u = nf_bt_v.price
+    assign full2 = u | times: 2
+    assign save2 = full2 | times: nf_bt_p2 | divided_by: 100
+    assign now2 = full2 | minus: save2
+    assign full3 = u | times: 3
+    assign save3 = full3 | times: nf_bt_p3 | divided_by: 100
+    assign now3 = full3 | minus: save3
+    assign nf_bt_img = product.featured_media
+  -%}
+  <div class="nf-bt" data-nf-bt data-pct2="{{ nf_bt_p2 }}" data-pct3="{{ nf_bt_p3 }}">
+    <p class="nf-bt__h"><span>Bundle &amp; Save</span></p>
+    <div class="nf-bt__grid" role="radiogroup" aria-label="Bundle and save">
+      <div class="nf-bt__opt is-on" data-n="1" role="radio" aria-checked="true" tabindex="0">
+        <span class="nf-bt__top"><span class="nf-bt__radio" aria-hidden="true"></span></span>
+        <span class="nf-bt__stack nf-bt__stack--1" aria-hidden="true">
+          {%- if nf_bt_img != blank -%}{{ nf_bt_img | image_url: width: 200 | image_tag: loading: 'lazy', sizes: '64px', widths: '100,200', alt: '', class: 'nf-bt__img' }}{%- endif -%}
+        </span>
+        <span class="nf-bt__qty">1 Item</span>
+        <span class="nf-bt__deal nf-bt__deal--plain">Standard price</span>
+        <span class="nf-bt__save">&nbsp;</span>
+        <span class="nf-bt__now" data-now>{{ u | money }}</span>
+        <s class="nf-bt__was" data-was></s>
+      </div>
+
+      <div class="nf-bt__opt" data-n="2" role="radio" aria-checked="false" tabindex="-1">
+        <span class="nf-bt__tag">Popular</span>
+        <span class="nf-bt__top"><span class="nf-bt__radio" aria-hidden="true"></span></span>
+        <span class="nf-bt__stack nf-bt__stack--2" aria-hidden="true">
+          {%- if nf_bt_img != blank -%}
+            {%- for i in (1..2) -%}{{ nf_bt_img | image_url: width: 200 | image_tag: loading: 'lazy', sizes: '64px', widths: '100,200', alt: '', class: 'nf-bt__img' }}{%- endfor -%}
+          {%- endif -%}
+        </span>
+        <span class="nf-bt__qty">2 Items</span>
+        <span class="nf-bt__deal">Extra {{ nf_bt_p2 }}% off</span>
+        <span class="nf-bt__save" data-save>You save {{ save2 | money }}</span>
+        <span class="nf-bt__now" data-now>{{ now2 | money }}</span>
+        <s class="nf-bt__was" data-was>{{ full2 | money }}</s>
+        <span class="nf-bt__picks" data-picks></span>
+      </div>
+
+      <div class="nf-bt__opt" data-n="3" role="radio" aria-checked="false" tabindex="-1">
+        <span class="nf-bt__tag nf-bt__tag--best">Best value</span>
+        <span class="nf-bt__top"><span class="nf-bt__radio" aria-hidden="true"></span></span>
+        <span class="nf-bt__stack nf-bt__stack--3" aria-hidden="true">
+          {%- if nf_bt_img != blank -%}
+            {%- for i in (1..3) -%}{{ nf_bt_img | image_url: width: 200 | image_tag: loading: 'lazy', sizes: '64px', widths: '100,200', alt: '', class: 'nf-bt__img' }}{%- endfor -%}
+          {%- endif -%}
+        </span>
+        <span class="nf-bt__qty"><span data-qty-label>3+</span> Items</span>
+        <span class="nf-bt__deal">Extra {{ nf_bt_p3 }}% off</span>
+        <span class="nf-bt__save" data-save>You save {{ save3 | money }}</span>
+        <span class="nf-bt__now" data-now>{{ now3 | money }}</span>
+        <s class="nf-bt__was" data-was>{{ full3 | money }}</s>
+        <span class="nf-bt__step" data-step hidden>
+          <button type="button" class="nf-bt__stepbtn" data-step-dir="-1" aria-label="One fewer">&minus;</button>
+          <span class="nf-bt__stepval" data-step-val>3</span>
+          <button type="button" class="nf-bt__stepbtn" data-step-dir="1" aria-label="One more">+</button>
+        </span>
+        <span class="nf-bt__picks" data-picks></span>
+      </div>
+    </div>
+    <p class="nf-bt__note">Mix and match any pieces. The saving comes off automatically at checkout, no code needed.</p>
+  </div>
+{%- endif -%}

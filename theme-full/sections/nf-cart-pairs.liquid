@@ -1,0 +1,64 @@
+{%- comment -%}
+  NF-CART-V2 "Pairs well with" cards.
+  Never placed in a template: assets/nf-cart-v2.js fetches it through Shopify's product recommendations API
+  (/recommendations/products?product_id=X&intent=complementary|related&section_id=nf-cart-pairs) only when the
+  cart drawer opens, or when the cart page loads. Products already in the cart and unavailable products are skipped.
+  Single variant products add in one tap; products with options open the theme's own quick buy modal so the
+  shopper picks the option instead of getting a guessed one.
+{%- endcomment -%}
+{%- liquid
+  assign nf_in_cart = cart.items | map: 'product_id' | join: ','
+  assign nf_in_cart = ',' | append: nf_in_cart | append: ','
+  assign nf_shown = 0
+-%}
+<div class="nf-cv2-pairs__list">
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    {%- for product in recommendations.products -%}
+      {%- liquid
+        assign nf_needle = ',' | append: product.id | append: ','
+        if nf_in_cart contains nf_needle or product.available == false
+          continue
+        endif
+        if nf_shown >= 3
+          break
+        endif
+        assign nf_shown = nf_shown | plus: 1
+        assign nf_media = product.featured_media
+      -%}
+      <div class="nf-cv2-card">
+        <a href="{{ product.url }}" class="nf-cv2-card__img" tabindex="-1" aria-hidden="true">
+          {%- if nf_media -%}
+            {{- nf_media | image_url: width: 480 | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 45vw, 200px', widths: '200,300,400,480', alt: product.title -}}
+          {%- endif -%}
+        </a>
+        <div class="nf-cv2-card__info">
+          <a href="{{ product.url }}" class="nf-cv2-card__title">{{ product.title }}</a>
+          <span class="nf-cv2-card__price">{% if product.price_varies %}From {% endif %}{% render 'nf-acc-price', product: product %}</span>
+        </div>
+        {%- if product.variants.size == 1 -%}
+          <product-form class="nf-cv2-card__form">
+            {%- form 'product', product -%}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="on_success" value="force_open_drawer">
+              <button type="submit" class="nf-cv2-card__add" aria-label="Add {{ product.title | escape }} to cart">Add</button>
+            {%- endform -%}
+          </product-form>
+        {%- else -%}
+          {%- assign nf_modal_id = 'nf-cv2-qb-' | append: product.id -%}
+          <quick-buy-modal id="{{ nf_modal_id }}" handle="{{ product.handle }}?variant={{ product.selected_or_first_available_variant.id }}" class="quick-buy-modal modal modal--lg color-scheme color-scheme--dialog"></quick-buy-modal>
+          <button type="button" aria-controls="{{ nf_modal_id }}" class="nf-cv2-card__add" aria-label="Choose options for {{ product.title | escape }}">Add</button>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "NF cart pairs",
+  "tag": "div",
+  "class": "nf-cv2-pairs-section",
+  "settings": []
+}
+{% endschema %}

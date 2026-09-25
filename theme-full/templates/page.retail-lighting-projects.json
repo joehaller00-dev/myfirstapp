@@ -1,0 +1,327 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Retail",
+        "eyebrow": "Retail lighting projects",
+        "heading": "Retail lighting that sells the room and the product",
+        "text": "Shops, showrooms, salons and studios need light that makes products look true to life and makes people want to stay a little longer. We help you get both right.",
+        "image_file": "nf-pro-retail.jpg",
+        "image_alt": "Retail lighting that sells the room and the product",
+        "fallback_collection": "retail-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=retail-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Retail Lighting",
+        "link_url": "/collections/retail-lighting"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Show the product, then set the mood",
+        "image_file": "nf-pro3-retail-approach-1b.png",
+        "image_alt": "Nora Furnish lighting catalog open on a wooden table beside a brass table lamp",
+        "fallback_collection": "pendants",
+        "text": "<p>Shoppers decide fast. Good retail lighting guides the eye, shows color honestly and gives the space a personality people remember.</p>",
+        "bullets": "Accent what matters: Adjustable spotlights and picture lights pull attention to displays, shelves and new arrivals.\nHonest color: Fixtures with good color rendering help fabric, wood and skin tones look the way they will at home.\nA signature piece: One memorable pendant or illuminated sign gives photos and first visits something to remember.\nBrighter toward the back: A little more light at the back of the store draws people further in.\nFlattering mirrors: Even light around fitting room and salon mirrors avoids harsh shadows.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Boutiques\nShowrooms\nSalons and spas\nCafes inside shops\nWindow displays\nFitting rooms"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Retail Lighting",
+        "link_url": "/collections/retail-lighting"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Pendants",
+            "collection": "pendants",
+            "text": "Signature pieces over counters, tables and window displays.",
+            "shop_label": "Shop all pendants",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Picture and accent lights",
+            "collection": "picture-lights",
+            "text": "Picture lights and adjustable heads that highlight shelves and walls.",
+            "shop_label": "Shop picture lights",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "LED wall art",
+            "collection": "led-wall-art",
+            "text": "Illuminated art that doubles as a talking point.",
+            "shop_label": "Shop LED wall art",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "LED strip and neon",
+            "collection": "led-strip-lights",
+            "text": "Glowing lines under shelves, along counters and around signs.",
+            "shop_label": "Shop LED strip lights",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Linear lighting",
+            "collection": "linear-suspension",
+            "text": "Even light over long displays and cash desks.",
+            "shop_label": "Shop linear suspension",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_corner_bistro": {
+          "type": "concept",
+          "settings": {
+            "slug": "corner-bistro",
+            "number": "02",
+            "title": "Corner Bistro",
+            "category": "hospitality",
+            "space": "Neighborhood restaurant",
+            "summary": "A neighborhood bistro where the light is low, the tables glow and the bar is the brightest spot in the room.",
+            "image_file": "nf-pro3-retail-concepts-2.png",
+            "fallback_collection": "pendants"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "image_file": "nf-pro3-retail-concepts-3.webp",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "image_file": "nf-pro3-retail-concepts-1.webp",
+            "fallback_collection": "pendants"
+          }
+        }
+      },
+      "block_order": [
+        "c_linen_and_oak",
+        "c_corner_bistro",
+        "c_maker_studio"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Opening or refreshing a shop?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=retail-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Can you light a display without new wiring?",
+            "a": "<p>Often, yes. Many picture lights, LED strips and lamps plug in or run on batteries. Tell us about the power you have and we will suggest options that fit.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building. Larger quantities get bulk pricing.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q2",
+        "q3"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how retail lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=retail-lighting-projects",
+        "btn2_label": "Shop Retail Lighting",
+        "btn2_url": "/collections/retail-lighting",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Shop Counter",
+            "image_file": "nf-ref-shop-counter.jpg",
+            "alt": "Shop Counter lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Retail Run",
+            "image_file": "nf-ref-retail-run.jpg",
+            "alt": "Retail Run lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Window Display",
+            "image_file": "nf-ref-window-display.jpg",
+            "alt": "Window Display lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Cafe Counter",
+            "image_file": "nf-ref-cafe-counter-2.png",
+            "alt": "Cafe Counter lit in the evening, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Gallery Wall",
+            "image_file": "nf-pro3-fix-retail-ref-5.webp",
+            "alt": "Gallery Wall inspiration photo, lit in the evening"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Display Shelves",
+            "image_file": "nf-ref-display-shelves.png",
+            "alt": "Display Shelves lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Book Corner",
+            "image_file": "nf-ref-book-corner.png",
+            "alt": "Book Corner lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Gallery Lights",
+            "image_file": "nf-pro3-retail-ref-8.webp",
+            "alt": "Gallery Lights inspiration photo, lit in the evening"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band",
+    "faq"
+  ]
+}

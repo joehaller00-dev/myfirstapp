@@ -1,0 +1,420 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "icon_stroke_width": 1.5,
+    "section_vertical_spacing": "md",
+    "default_color_scheme": "scheme-1",
+    "product_rating_color": "#a67c4f",
+    "product_on_sale_accent": "#a65440",
+    "product_sold_out_badge_background": "#efefef",
+    "product_custom_badge_background": "#262019",
+    "success_color": "#307a07",
+    "warning_color": "#ed8a00",
+    "error_color": "#cb2b2b",
+    "heading_font": "roboto_serif_n3",
+    "heading_text_transform": "normal",
+    "heading_font_size_factor": 1.3,
+    "heading_letter_spacing": 16,
+    "text_font": "montserrat_n5",
+    "text_font_size_mobile": 16,
+    "text_font_size_desktop": 15,
+    "text_font_letter_spacing": 5,
+    "button_text_font": "heading",
+    "button_letter_spacing": 16,
+    "show_page_transition": true,
+    "show_button_transition": false,
+    "show_image_zoom_on_hover": true,
+    "stagger_products_apparition": true,
+    "color_swatch_config": "Almond White:#f0e9da\nAmber:#e69a2e\nApple Wood Color:#d2b48c\nApple Wood Color + White Door:linear-gradient(to right, rgb(210,180,140) 50%, rgb(243,239,230) 50%)\nArmy Green:#4b5320\nBeige:#e3d3b3\nBeige - Corduroy:#e3d3b3\nBeige + Pink:linear-gradient(to right, rgb(227,211,179) 50%, rgb(232,154,184) 50%)\nBeige + Red:linear-gradient(to right, rgb(227,211,179) 50%, rgb(217,45,32) 50%)\nBeige Gray Seat + Gold Base:linear-gradient(to right, rgb(202,191,166) 50%, rgb(212,175,55) 50%)\nBeige Gray Seat + Silver Base:linear-gradient(to right, rgb(202,191,166) 50%, rgb(192,196,200) 50%)\nBlack:#1c1c1c\nBlack & Red:linear-gradient(to right, rgb(28,28,28) 50%, rgb(217,45,32) 50%)\nBlack & White Stripes - Fabric:linear-gradient(to right, rgb(28,28,28) 50%, rgb(255,255,255) 50%)\nBlack + Beige:linear-gradient(to right, rgb(28,28,28) 50%, rgb(227,211,179) 50%)\nBlack + Black Frame:#1c1c1c\nBlack + Gold Frame:linear-gradient(to right, rgb(28,28,28) 50%, rgb(212,175,55) 50%)\nBlack + White:linear-gradient(to right, rgb(28,28,28) 50%, rgb(255,255,255) 50%)\nBlack + White Marble:linear-gradient(to right, rgb(28,28,28) 50%, rgb(240,238,233) 50%)\nBlack And White:linear-gradient(to right, rgb(28,28,28) 50%, rgb(255,255,255) 50%)\nBlack And White Checkered:linear-gradient(to right, rgb(28,28,28) 50%, rgb(255,255,255) 50%)\nBlack Base + Beige Shade:linear-gradient(to right, rgb(28,28,28) 50%, rgb(227,211,179) 50%)\nBlack Base + Dark Green Shade:linear-gradient(to right, rgb(28,28,28) 50%, rgb(43,93,52) 50%)\nBlack Frame + Marble Black:#2a2a2a\nBlack Frame + Marble White:linear-gradient(to right, rgb(28,28,28) 50%, rgb(240,238,233) 50%)\nBlack Frame + Original Wood Color:linear-gradient(to right, rgb(28,28,28) 50%, rgb(201,160,106) 50%)\nBlack Frame + Teak Color:linear-gradient(to right, rgb(28,28,28) 50%, rgb(181,121,63) 50%)\nBlack Marble:#2a2a2a\nBlack Seat + Gold Base:linear-gradient(to right, rgb(28,28,28) 50%, rgb(212,175,55) 50%)\nBlack Seat + Silver Base:linear-gradient(to right, rgb(28,28,28) 50%, rgb(192,196,200) 50%)\nBlack Walnut:#2e2018\nBlack Walnut Color:#2e2018\nBlue:#2563eb\nBlue - Tech Fabric:#2563eb\nBrick Red:#9c4a3c\nBright Orange:#ff7a18\nBronze:#8c7853\nBrown:#7b4a2b\nBrownish Red:#8a4b3a\nCamel Color:#c19a6b\nCaramel Color:#a9682f\nCherry Color:#7a3b2e\nCherry Wood Color:#7a3b2e\nClassic Black:#1c1c1c\nClear:#d9d9d9\nCoffee:#5a3c2e\nCoffee Brown:#6b4a36\nCoffee Color:#5a3c2e\nCopper:#b87333\nCream:#f3e9d2\nCream White:#f5efe2\nCyan:#22b8cf\nCyan Gray:#8aa6a3\nDark Blue:#1e3a8a\nDark Blue And White Checkered:linear-gradient(to right, rgb(30,58,138) 50%, rgb(255,255,255) 50%)\nDark Brown:#4b2e1e\nDark Forest Green:#244a34\nDark Gray:#4b4f52\nDark Gray Seat + Gold Base:linear-gradient(to right, rgb(75,79,82) 50%, rgb(212,175,55) 50%)\nDark Gray Seat + Silver Base:linear-gradient(to right, rgb(75,79,82) 50%, rgb(192,196,200) 50%)\nDark Green:#2b5d34\nDark Green - Corduroy:#2b5d34\nDark Orange:#d2691e\nDark Purple:#4a2c5a\nDark Red:#8b2e2e\nDark Sky Grey:#6b7378\nDark Sky Gray:#6b7378\nDark Walnut:#3f281a\nDeep Golden Brown:#6e4a23\nFlower:#cf8bbf\nGinger Yellow:#e0a93b\nGold:#d4af37\nGray:#9aa0a6\nGray - Tech Fabric:#9aa0a6\nGray + Black:linear-gradient(to right, rgb(154,160,166) 50%, rgb(28,28,28) 50%)\nGreen:#2f9e44\nGreen Seat + Gold Base:linear-gradient(to right, rgb(47,158,68) 50%, rgb(212,175,55) 50%)\nGreen Seat + Silver Base:linear-gradient(to right, rgb(47,158,68) 50%, rgb(192,196,200) 50%)\nGrey:#9aa0a6\nGreyish-Green:#8a9a82\nGrayish-Green:#8a9a82\nInk Black:#15171a\nInk White:#f4f4f0\nIvory White:#f5f0e1\nKhaki:#b5a16b\nKhaki Gray:#9a9279\nLight Blue:#7db5e6\nLight Brown:#a9784f\nLight Brown And White Checkered:linear-gradient(to right, rgb(169,120,79) 50%, rgb(255,255,255) 50%)\nLight Gray:#cfd2d6\nLight Green:#86c98e\nLight Green And White Checkered:linear-gradient(to right, rgb(134,201,142) 50%, rgb(255,255,255) 50%)\nLight Orange:#f4a460\nLight Purple:#b39ddb\nLight Walnut:#9c6b43\nLight Walnut + White Door:linear-gradient(to right, rgb(156,107,67) 50%, rgb(243,239,230) 50%)\nLight Walnut + White Marble:linear-gradient(to right, rgb(156,107,67) 50%, rgb(240,238,233) 50%)\nLight Walnut Color:#9c6b43\nLight Yellow:#f5e08a\nMarble White:#f0eee9\nMatcha Green:#8aa86b\nMilitary Green:#4b5320\nMilky Coffee Color:#b89a78\nMilky White:#f7f3ea\nModern Brown:#6b4a36\nNatural Wood Color:#c8a979\nNatural Wood Color & White:linear-gradient(to right, rgb(200,169,121) 50%, rgb(255,255,255) 50%)\nNavy Blue:#1f2d5a\nOak Color:#c9a26a\nOak Wood Color:#c9a26a\nOff White:#f3efe6\nOff-White:#f3efe6\nOff-White + Coffee Brown:linear-gradient(to right, rgb(243,239,230) 50%, rgb(107,74,54) 50%)\nOff-White + Gray:linear-gradient(to right, rgb(243,239,230) 50%, rgb(154,160,166) 50%)\nOlive Green:#6b7d3a\nOrange:#f2762e\nOrange - Tech Fabric:#f2762e\nOrange Brown:#a5562b\nOrange Seat + Gold Base:linear-gradient(to right, rgb(242,118,46) 50%, rgb(212,175,55) 50%)\nOrange Seat + Silver Base:linear-gradient(to right, rgb(242,118,46) 50%, rgb(192,196,200) 50%)\nOrange-Brown:#a5562b\nOrange-Red:#e8502e\nOriginal Bamboo Color:#d9b878\nOriginal Wood Color:#c9a06a\nOriginal Wood Color + White:linear-gradient(to right, rgb(201,160,106) 50%, rgb(255,255,255) 50%)\nPink:#e89ab8\nPink + Blue + Yellow:linear-gradient(to right, rgb(232,154,184) 33%, rgb(37,99,235) 33% 66%, rgb(242,194,0) 66%)\nPink + Green:linear-gradient(to right, rgb(232,154,184) 50%, rgb(47,158,68) 50%)\nPink + Green + White:linear-gradient(to right, rgb(232,154,184) 33%, rgb(47,158,68) 33% 66%, rgb(255,255,255) 66%)\nPink + Purple:linear-gradient(to right, rgb(232,154,184) 50%, rgb(126,87,194) 50%)\nPurple:#7e57c2\nRainbow Spot:linear-gradient(to right, rgb(232,80,46), rgb(242,194,0), rgb(47,158,68), rgb(37,99,235), rgb(126,87,194))\nRed:#d92d20\nRed + Beige:linear-gradient(to right, rgb(217,45,32) 50%, rgb(227,211,179) 50%)\nRed Oak Color:#b5793f\nRubberwood Color:#caa473\nSilver:#c0c4c8\nSmoke Gray:#7f8488\nStainless Steel Color:#c4c8cc\nTea Brown + Black Frame:linear-gradient(to right, rgb(138,90,59) 50%, rgb(28,28,28) 50%)\nTea Brown + Gold Frame:linear-gradient(to right, rgb(138,90,59) 50%, rgb(212,175,55) 50%)\nTea Color:#a9784f\nTeak:#b5793f\nTeak Color:#b5793f\nTerracotta Red:#c96a4a\nTerracotta Stripes - Cotton-Linen:#c96a4a\nTiffany Blue:#5fd0c5\nTransparent:#d9d9d9\nTurmeric:#d8a32b\nVintage Gold:#c4a14a\nWalnut:#5b3a24\nWalnut Brown:#5e3c26\nWalnut Brown & White:linear-gradient(to right, rgb(94,60,38) 50%, rgb(255,255,255) 50%)\nWalnut Color:#5b3a24\nWalnut Wood Color:#5b3a24\nWarm White:#f5eedf\nWarm Wood Color:#c39a6b\nWhite:#ffffff\nWhite & Orange Seat + Gold Legs:linear-gradient(to right, rgb(255,255,255) 50%, rgb(242,118,46) 50%)\nWhite & Pink:linear-gradient(to right, rgb(255,255,255) 50%, rgb(232,154,184) 50%)\nWhite + Black:linear-gradient(to right, rgb(255,255,255) 50%, rgb(28,28,28) 50%)\nWhite + Black Frame:linear-gradient(to right, rgb(255,255,255) 50%, rgb(28,28,28) 50%)\nWhite + Black Marble:linear-gradient(to right, rgb(255,255,255) 50%, rgb(42,42,42) 50%)\nWhite + Gold Frame:linear-gradient(to right, rgb(255,255,255) 50%, rgb(212,175,55) 50%)\nWhite + Gray:linear-gradient(to right, rgb(255,255,255) 50%, rgb(154,160,166) 50%)\nWhite + Green:linear-gradient(to right, rgb(255,255,255) 50%, rgb(47,158,68) 50%)\nWhite + Grey:linear-gradient(to right, rgb(255,255,255) 50%, rgb(154,160,166) 50%)\nWhite + Khaki + Brown:linear-gradient(to right, rgb(255,255,255) 33%, rgb(181,161,107) 33% 66%, rgb(123,74,43) 66%)\nWhite + Latte Brown:linear-gradient(to right, rgb(255,255,255) 50%, rgb(176,137,104) 50%)\nWhite + Maple Wood Color:linear-gradient(to right, rgb(255,255,255) 50%, rgb(216,180,131) 50%)\nWhite Base + Beige Shade:linear-gradient(to right, rgb(255,255,255) 50%, rgb(227,211,179) 50%)\nWhite Base + Wine Red Shade:linear-gradient(to right, rgb(255,255,255) 50%, rgb(123,45,58) 50%)\nWhite Frame + Blue:linear-gradient(to right, rgb(255,255,255) 50%, rgb(37,99,235) 50%)\nWhite Frame + Pink:linear-gradient(to right, rgb(255,255,255) 50%, rgb(232,154,184) 50%)\nWhite Frame + White:#ffffff\nWhite Frame + Yellow:linear-gradient(to right, rgb(255,255,255) 50%, rgb(242,194,0) 50%)\nWhite Marble:#f0eee9\nWhite Seat + Gold Legs:linear-gradient(to right, rgb(255,255,255) 50%, rgb(212,175,55) 50%)\nWhite Seat + White Legs:#ffffff\nWood:#c9a06a\nWood Color:#c9a06a\nWood Grain Color:#c9a06a\nYellow:#f2c200",
+    "product_image_aspect_ratio": "square",
+    "show_secondary_image": false,
+    "product_card_text_font": "heading",
+    "product_color_display": "swatch",
+    "show_product_rating": true,
+    "show_sold_out_badge": false,
+    "cart_icon": "shopping_bag_sharp",
+    "cart_empty_cart_link": "shopify://collections/best-sellers",
+    "cart_free_shipping_threshold": "0",
+    "social_facebook": "https://www.facebook.com/profile.php?id=61578464993386",
+    "social_instagram": "https://www.instagram.com/norafurnishllc/",
+    "social_tiktok": "https://www.tiktok.com/@norafurnish",
+    "favicon": "shopify://shop_images/CLEAN_FAVICON_5d2cf12a-af04-42d0-b484-32f64b64db3a.png",
+    "sections": {
+      "main-gift-card": {
+        "type": "main-gift-card",
+        "settings": {
+          "color_scheme": "",
+          "show_qr_code": true
+        }
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "15683396631634586217": {
+        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "disabled": false,
+        "settings": {
+          "greeting_message": "",
+          "show_featured_products": true,
+          "featured_products": [],
+          "background_color": "#fbf7f1",
+          "font_color": "#2b2520",
+          "agent_invert_activator_colors": true,
+          "button_color": "#b38b5d",
+          "button_icon": "chat_bubble",
+          "button_text": "chat_with_us",
+          "button_horizontal_position": "bottom_right",
+          "button_vertical_position": "higher",
+          "agent_inherit_fonts": true,
+          "agent_font": "system_ui_n4",
+          "agent_font_size": 14,
+          "agent_activator_font_size": 14,
+          "agent_border_radius": 18
+        }
+      }
+    },
+    "color_schemes": {
+      "scheme-1": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text_color": "#1c1c1c",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "circle_button_background": "#ffffff",
+          "circle_button_icon": "#1c1c1c"
+        }
+      },
+      "scheme-2": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text_color": "#1c1c1c",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "circle_button_background": "#ffffff",
+          "circle_button_icon": "#1c1c1c"
+        }
+      },
+      "scheme-3": {
+        "settings": {
+          "background": "#1c1c1c",
+          "background_gradient": "",
+          "text_color": "#ffffff",
+          "primary_button_background": "#ffffff",
+          "primary_button_text_color": "#1c1c1c",
+          "circle_button_background": "#ffffff",
+          "circle_button_icon": "#1c1c1c"
+        }
+      },
+      "scheme-4": {
+        "settings": {
+          "background": "rgba(0,0,0,0)",
+          "background_gradient": "",
+          "text_color": "#ffffff",
+          "primary_button_background": "#ffffff",
+          "primary_button_text_color": "#1c1c1c",
+          "circle_button_background": "#ffffff",
+          "circle_button_icon": "#1c1c1c"
+        }
+      },
+      "scheme-sunshine-yellow": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text_color": "#1c1c1c",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "circle_button_background": "#1c1c1c",
+          "circle_button_icon": "#ffffff"
+        }
+      },
+      "scheme-header-sunshine": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text_color": "#1c1c1c",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "circle_button_background": "#1c1c1c",
+          "circle_button_icon": "#ffffff"
+        }
+      },
+      "scheme-179a4da8-a523-4285-a92f-b378cc25c10c": {
+        "settings": {
+          "background": "#f7f7f7",
+          "background_gradient": "",
+          "text_color": "#1c1c1c",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "circle_button_background": "#ffffff",
+          "circle_button_icon": "#1c1c1c"
+        }
+      }
+    }
+  },
+  "presets": {
+    "Prestige": {
+      "section_vertical_spacing": "md",
+      "heading_font": "instrument_sans_n4",
+      "heading_letter_spacing": 18,
+      "text_font": "nunito_n4",
+      "text_font_size_desktop": 14,
+      "button_letter_spacing": 18,
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#efefef",
+            "text_color": "#1c1c1c",
+            "primary_button_background": "#1c1c1c",
+            "primary_button_text_color": "#ffffff",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#ffffff",
+            "text_color": "#1c1c1c",
+            "primary_button_background": "#1c1c1c",
+            "primary_button_text_color": "#ffffff",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#1c1c1c",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        }
+      },
+      "success_color": "#307a07",
+      "warning_color": "#ed8a00",
+      "error_color": "#cb2b2b",
+      "product_rating_color": "#1c1c1c",
+      "product_on_sale_accent": "#e32c2b",
+      "product_sold_out_badge_background": "#efefef",
+      "product_custom_badge_background": "#1c1c1c"
+    },
+    "Couture": {
+      "section_vertical_spacing": "md",
+      "heading_font": "jost_n4",
+      "heading_letter_spacing": 18,
+      "text_font": "poppins_n4",
+      "text_font_size_desktop": 14,
+      "button_letter_spacing": 18,
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#ffffff",
+            "text_color": "#5c5c5c",
+            "primary_button_background": "#5c5c5c",
+            "primary_button_text_color": "#ffffff",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#f3f3f3",
+            "text_color": "#5c5c5c",
+            "primary_button_background": "#5c5c5c",
+            "primary_button_text_color": "#ffffff",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#5c5c5c"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#1c1c1c",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        }
+      },
+      "success_color": "#307a07",
+      "warning_color": "#ed8a00",
+      "error_color": "#cb2b2b",
+      "product_rating_color": "#1c1c1c",
+      "product_on_sale_accent": "#e32c2b",
+      "product_sold_out_badge_background": "#efefef",
+      "product_custom_badge_background": "#1c1c1c"
+    },
+    "Vogue": {
+      "section_vertical_spacing": "xs",
+      "heading_font": "jost_n4",
+      "heading_letter_spacing": 18,
+      "text_font": "jost_n4",
+      "text_font_size_desktop": 14,
+      "button_letter_spacing": 18,
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#ffffff",
+            "text_color": "#303030",
+            "primary_button_background": "#f5db8b",
+            "primary_button_text_color": "#303030",
+            "circle_button_background": "#1c1c1c",
+            "circle_button_icon": "#f5db8b"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#ffffff",
+            "text_color": "#303030",
+            "primary_button_background": "#f5db8b",
+            "primary_button_text_color": "#303030",
+            "circle_button_background": "#1c1c1c",
+            "circle_button_icon": "#f5db8b"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#1c1c1c",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        }
+      },
+      "success_color": "#307a07",
+      "warning_color": "#ed8a00",
+      "error_color": "#cb2b2b",
+      "product_rating_color": "#1c1c1c",
+      "product_on_sale_accent": "#e32c2b",
+      "product_sold_out_badge_background": "#efefef",
+      "product_custom_badge_background": "#1c1c1c"
+    },
+    "Strass": {
+      "icon_stroke_width": 1,
+      "section_vertical_spacing": "xl",
+      "product_rating_color": "#1c1c1c",
+      "product_on_sale_accent": "#e32c2b",
+      "product_sold_out_badge_background": "#efefef",
+      "product_custom_badge_background": "#1c1c1c",
+      "success_color": "#307a07",
+      "warning_color": "#ed8a00",
+      "error_color": "#cb2b2b",
+      "heading_font": "red_rose_n4",
+      "heading_font_size_factor": 0.9,
+      "heading_letter_spacing": 5,
+      "text_font": "geist_n4",
+      "text_font_size_mobile": 13,
+      "text_font_size_desktop": 13,
+      "button_text_font": "heading",
+      "button_letter_spacing": 2,
+      "product_image_aspect_ratio": "portrait",
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background": "#fdfdfc",
+            "background_gradient": "",
+            "text_color": "#394943",
+            "primary_button_background": "#394943",
+            "primary_button_text_color": "#fdfdfc",
+            "circle_button_background": "#fdfdfc",
+            "circle_button_icon": "#394943"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background": "#ffffff",
+            "background_gradient": "",
+            "text_color": "#1c1c1c",
+            "primary_button_background": "#1c1c1c",
+            "primary_button_text_color": "#ffffff",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background": "#304038",
+            "background_gradient": "",
+            "text_color": "#fdfdfc",
+            "primary_button_background": "#fdfdfc",
+            "primary_button_text_color": "#394943",
+            "circle_button_background": "#fdfdfc",
+            "circle_button_icon": "#394943"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background": "rgba(0,0,0,0)",
+            "background_gradient": "",
+            "text_color": "#fdfdfc",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#1c1c1c",
+            "circle_button_background": "#ffffff",
+            "circle_button_icon": "#1c1c1c"
+          }
+        }
+      }
+    }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ".card {border-radius: 30px;}",
+      ".section-header {text-align: left; justify-self: start;}",
+      "@media screen and (min-width: 750px) {.footer__block.footer__block--image {padding-left: 60px; }}"
+    ]
+  }
+}

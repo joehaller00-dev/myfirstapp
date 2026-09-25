@@ -1,0 +1,58 @@
+{%- comment -%}
+  NF-SEARCH-V2 (2026-09-12) search results header: the term shown large, the count, and chips for the
+  categories the results on this page live in (tallied from each product's collections, top 6).
+  Params: terms, count, items (search.results for the current page).
+{%- endcomment -%}
+{{ 'nf-search.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign skip = '|best-sellers|lighting|indoor-lighting|string-lights|new-arrivals|clearance|sale|all|frontpage|'
+  assign seen = '|'
+  assign pool = ''
+  for it in items
+    if it.object_type != 'product'
+      continue
+    endif
+    for c in it.collections
+      assign k = '|' | append: c.handle | append: '|'
+      if skip contains k or c.handle contains '-picks' or c.handle contains 'material-' or c.handle contains 'lighting-catalog'
+        continue
+      endif
+      assign pool = pool | append: k
+      unless seen contains k
+        assign seen = seen | append: c.handle | append: '|'
+      endunless
+    endfor
+  endfor
+  assign pool = pool | append: '~'
+  assign ranked = ''
+  assign uniq = seen | split: '|'
+  for h in uniq
+    if h == blank
+      continue
+    endif
+    assign k = '|' | append: h | append: '|'
+    assign n = pool | split: k | size | minus: 1
+    assign score = n | plus: 1000
+    assign ranked = ranked | append: score | append: ':' | append: h | append: ','
+  endfor
+  assign ranked = ranked | split: ',' | sort | reverse
+-%}
+<div class="nf-srch-head">
+  <p class="nf-srch-eyebrow">Search results</p>
+  <h1 class="nf-srch-head__term">&ldquo;{{ terms | escape }}&rdquo;</h1>
+  <p class="nf-srch-head__count">{{ count }} {% if count == 1 %}result{% else %}results{% endif %}</p>
+  {%- if ranked.size > 0 -%}
+    <div class="nf-srch-head__chips" role="group" aria-label="Categories in these results">
+      <span class="nf-srch-head__label">Found in</span>
+      {%- assign shown = 0 -%}
+      {%- for r in ranked -%}
+        {%- assign h = r | split: ':' | last -%}
+        {%- assign c = collections[h] -%}
+        {%- if c == blank or c.title == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign shown = shown | plus: 1 -%}
+        {%- if shown > 6 -%}{%- break -%}{%- endif -%}
+        <a class="nf-srch-chip" href="{{ c.url }}">{{ c.title | escape }}</a>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>

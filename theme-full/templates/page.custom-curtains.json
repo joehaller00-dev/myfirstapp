@@ -1,0 +1,521 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "head": {
+      "type": "nf-custom-head",
+      "settings": {}
+    },
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "crumb_label": "Made to Measure Curtains",
+        "eyebrow": "Made to measure curtains",
+        "heading": "Curtains made for your window",
+        "text": "Tell us the size of your window and how you want the curtains to fall. We make the panels to your measurements, in the fabric and top style you choose.",
+        "image_file": "nf-custom-curtains.png",
+        "image_alt": "Living room at dusk with full, floor length curtains hung high on a black rod and lamps glowing warm",
+        "fallback_collection": "curtains-drapes",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn1_style": "gold",
+        "btn2_label": "Browse Project References",
+        "btn2_url": "#references",
+        "btn2_style": "outline",
+        "link_label": "Measure my window",
+        "link_url": "#design",
+        "facts": "Free quote by email\nMade to your measurements\nA photo before they ship"
+      }
+    },
+    "tool": {
+      "type": "nf-custom-tool",
+      "settings": {
+        "tool": "curtains",
+        "bg": "grey",
+        "anchor": "design",
+        "eyebrow": "Measuring helper",
+        "heading": "Find your panel size in a minute",
+        "text": "Enter your window size and choose how the curtains should hang. The drawing and the sizes update as you type.",
+        "cta_label": "Add this to my quote"
+      }
+    },
+    "terms": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "text",
+        "columns": "4",
+        "bg": "white",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "custom-terms",
+        "eyebrow": "Good to know",
+        "heading": "Clear terms, before you order",
+        "text": "",
+        "note": "",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "icon": "ruler",
+            "title": "Made to order",
+            "text": "Every curtain panel is made for your order, to your sizes and your choices."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "icon": "invoice",
+            "title": "Price and timeline in writing",
+            "text": "Your quote confirms the price and the timeline before anything is made. Nothing is charged until you approve it."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "icon": "spark",
+            "title": "A photo before it ships",
+            "text": "When your curtain panel is finished, we send you a photo of it before it leaves."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "icon": "box",
+            "title": "Final sale",
+            "text": "Custom pieces are final sale because they are made just for you. If one arrives damaged or has a defect, we replace it or refund it."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "how": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "steps",
+        "columns": "4",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "how-it-works",
+        "eyebrow": "How it works",
+        "heading": "Four simple steps, and you approve each one",
+        "text": "",
+        "note": "Nothing is made or charged until you approve your quote.",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Request a quote",
+            "text": "Send your details with the form on this page. The measuring helper fills in your sizes and choices for you.",
+            "meta": ""
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "We confirm design, price and timeline",
+            "text": "We check every detail with the maker and reply by email with the design, the price and the timeline in writing.",
+            "meta": ""
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "See it before it ships",
+            "text": "When your piece is finished, we send you a photo of it so you can see it before it leaves.",
+            "meta": ""
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "It ships to you",
+            "text": "Your piece is packed with care and shipped to your door.",
+            "meta": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "white",
+        "anchor": "faq",
+        "eyebrow": "",
+        "heading": "Common questions",
+        "text": "",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "How do I measure my window?",
+            "a": "<p>Measure the width of the frame from outside edge to outside edge, and the height from the top of the frame down to the sill. Use a steel tape and write the numbers down in inches. The helper above turns those two numbers into panel sizes.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "How much wider than the window should curtains be?",
+            "a": "<p>For a full look, the curtains together should be about twice as wide as the rod. Sheers look best closer to three times, and a flat, tailored look can be as little as one and a half times. The fullness setting does this math for you.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "How high should I hang the rod?",
+            "a": "<p>Four inches or more above the frame is standard. Hanging it higher, even just below the ceiling, makes the window look taller. Letting the rod run a few inches past each side lets the panels open clear of the glass.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "What if my measurements are off?",
+            "a": "<p>Please measure twice before you approve your quote, because each panel is made to the sizes you approve. If you are unsure, send a photo of the window with the tape measure in it and we will check your numbers with you.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "Will blackout curtains make the room fully dark?",
+            "a": "<p>Blackout fabric or a blackout lining blocks most light through the fabric. Some light can still come in around the edges, so hanging the rod higher and wider than the frame helps a bedroom get darker.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I return made to measure curtains?",
+            "a": "<p>Custom pieces are made for your order, so they are final sale and cannot be returned for a change of mind. If anything arrives damaged or has a defect, we replace it or refund it. Email photos to info@norafurnish.com as soon as you can and we will put it right.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ]
+    },
+    "quote": {
+      "type": "nf-custom-quote",
+      "settings": {
+        "bg": "grey",
+        "anchor": "quote",
+        "form_id": "nfc-quote-curtains",
+        "service": "Made to measure curtains",
+        "summary_label": "Your curtain design",
+        "summary_help": "This comes from the tool above. Change anything you like before you send it.",
+        "qty_label": "How many windows?",
+        "qty_placeholder": "For example 1, or 3 bedroom windows",
+        "message_placeholder": "Tell us about the room, the rod or track you have, and anything else. Links to photos of the window are welcome.",
+        "button_label": "Request My Free Quote",
+        "eyebrow": "Free quote",
+        "heading": "Request your curtain quote",
+        "text": "Your choices from the tool are already in the form. Add your details and we will reply by email.",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request and asks if a measurement looks off.\nWe confirm the details: You get the design, the price and the timeline in writing.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "A photo of the window with a tape measure in it\nThe rod or track you have now, if any\nThe room, and how dark you want it\nA link to a color or fabric you like"
+      },
+      "disabled": true
+    },
+    "more": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "media",
+        "columns": "3",
+        "bg": "white",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "more-custom",
+        "eyebrow": "More made for you",
+        "heading": "Other custom pieces",
+        "text": "",
+        "note": "",
+        "link_label": "All Professionals services",
+        "link_url": "/pages/professionals"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Custom Size Chandeliers",
+            "text": "Sized to your room, table, foyer or stairwell, with a custom drop length.",
+            "image_file": "nf-pro3-curtains-more-1.webp",
+            "url": "/pages/custom-chandeliers",
+            "link_label": "Size your chandelier",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Custom Name Signs",
+            "text": "Your name, a word or your logo in LED neon, previewed live on a wall.",
+            "image_file": "nf-pro3-curtains-more-2.png",
+            "url": "/pages/custom-name-signs",
+            "link_label": "Design your sign",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Custom Lighting Studio",
+            "text": "Change the finish, size, output or mounting of a light from our range.",
+            "image_file": "nf-pro3-curtains-more-3.webp",
+            "url": "/pages/custom-lighting",
+            "link_label": "Explore the studio",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "customize_v2": {
+      "type": "nf-pro2-customize",
+      "settings": {
+        "bg": "white",
+        "anchor": "customize",
+        "eyebrow": "Made to measure curtains",
+        "heading": "What can be customized",
+        "note": "Production begins after measurements, fabric and top style are confirmed."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "icon": "length",
+            "title": "Width and length",
+            "text": "Panels made to your measurements, from sill length to floor length or a soft puddle."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "icon": "fabric",
+            "title": "Fabric",
+            "text": "Linen, cotton blends, velvet, sheer voile and blackout weaves in a range of colors."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "icon": "lining",
+            "title": "Lining",
+            "text": "Unlined, lined or blackout lined for bedrooms, nurseries and media rooms."
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "icon": "header",
+            "title": "Top style",
+            "text": "Grommets, rod pocket, back tabs or pinch pleats, to suit your rod or track."
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "icon": "pleat",
+            "title": "Fullness",
+            "text": "Fabric fullness from a flat modern look to generous gathered folds."
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "icon": "repeat",
+            "title": "Matching panels",
+            "text": "Panels for every window in a room cut from the same fabric, so they hang alike."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how made to measure curtains can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Pick it in the quote form and we will price it for your space.",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn2_label": "",
+        "btn2_url": "",
+        "quote_links": true,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Living Room",
+            "image_file": "nf-ref-curtain-living.png",
+            "alt": "Living Room lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Blackout Bedroom",
+            "image_file": "nf-ref-curtain-blackout.webp",
+            "alt": "Blackout Bedroom lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Sheer Layers",
+            "image_file": "nf-ref-curtain-sheer.webp",
+            "alt": "Sheer Layers lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Nursery",
+            "image_file": "nf-ref-curtain-nursery.png",
+            "alt": "Nursery lit in the evening, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Home Office",
+            "image_file": "nf-ref-curtain-office.png",
+            "alt": "Home Office lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Linen Panels",
+            "image_file": "nf-ref-curtain-linen.webp",
+            "alt": "Linen Panels lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Floor to Ceiling",
+            "image_file": "nf-pro3-curtains-ref-7.png",
+            "alt": "Floor to Ceiling inspiration photo, lit in the evening"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Guest Room",
+            "image_file": "nf-ref-curtain-guest.png",
+            "alt": "Guest Room lit in the evening, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    },
+    "quote_v2": {
+      "type": "nf-pro2-quote",
+      "settings": {
+        "anchor": "quote",
+        "eyebrow": "Free quote",
+        "heading": "Request your curtain quote",
+        "text": "Your choices from the tool are already in the form. Add your details and we will reply by email.",
+        "form_id": "nfc-quote-curtains",
+        "service": "Made to measure curtains",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request and asks if a measurement looks off.\nWe confirm the details: You get the design, the price and the timeline in writing.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "A photo of the window with a tape measure in it\nThe rod or track you have now, if any\nThe room, and how dark you want it\nA link to a color or fabric you like",
+        "summary_label": "Your curtain design",
+        "summary_help": "This comes from the tool above. Change anything you like before you send it.",
+        "qty_label": "How many windows?",
+        "qty_placeholder": "For example 1, or 3 bedroom windows",
+        "msg_placeholder": "Tell us about the room, the rod or track you have, and anything else. Links to photos of the window are welcome.",
+        "adjust": "size|length|Width and length\nfabric|fabric|Fabric\nlining|lining|Lining or blackout\ntop|header|Top style\nfullness|pleat|Fullness\npairs|repeat|Matching panels for several windows",
+        "refs": "Living Room\nBlackout Bedroom\nSheer Layers\nNursery\nHome Office\nLinen Panels\nFloor to Ceiling\nGuest Room",
+        "zone_placeholder": "For example living room bay window",
+        "space_default": "Home",
+        "tool": true,
+        "zip": true,
+        "button_label": "Get My Free Custom Quote",
+        "bg": "grey"
+      }
+    }
+  },
+  "order": [
+    "head",
+    "hero",
+    "tool",
+    "customize_v2",
+    "references_v2",
+    "terms",
+    "how",
+    "faq",
+    "quote",
+    "quote_v2",
+    "more"
+  ]
+}

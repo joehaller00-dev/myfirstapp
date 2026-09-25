@@ -1,0 +1,85 @@
+{%- comment -%}
+  NF-DUSK-V1 (2026-09-12) "Room by room" band. Replaces "Build the Home You Love" (custom_liquid_GLefFE),
+  which repeated the category tabs and the main menu. Six big bright tiles linking to the Shop By room
+  and area collections; the photo warms and brightens on hover like a lamp turning up.
+  Image per tile: block image, else the cover of the article handle given, else the collection image.
+  Files: sections/nf-room-band.liquid, assets/nf-room-band.css
+  Rollback: templates/index.json -> disable nf_room_band, enable custom_liquid_GLefFE.
+{%- endcomment -%}
+{%- comment -%} NF-SPEED-A-0916: on the homepage this section is far below the first screen, so its stylesheet no longer holds up first paint (loads at once, applied when it arrives). {%- endcomment -%}{%- if request.page_type == 'index' -%}<link rel="stylesheet" href="{{ 'nf-room-band.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'nf-room-band.css' | asset_url | stylesheet_tag }}</noscript>{%- else -%}{{ 'nf-room-band.css' | asset_url | stylesheet_tag }}{%- endif -%}
+<section class="nfrb{% if section.settings.rule %} nfrb--rule{% endif %}" aria-labelledby="nfrb-t-{{ section.id }}">
+  <div class="nfrb__wrap">
+    <header class="nfrb__head">
+      <div class="nfrb__intro">
+        {%- if section.settings.eyebrow != blank -%}<p class="nfrb__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 class="nfrb__title" id="nfrb-t-{{ section.id }}">{{ section.settings.heading }}</h2>
+      </div>
+      {%- if section.settings.text != blank -%}<p class="nfrb__sub">{{ section.settings.text }}</p>{%- endif -%}
+    </header>
+    <ul class="nfrb__row" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign c = block.settings.collection
+          assign img = block.settings.image
+          if img == blank and block.settings.article != blank
+            assign a = articles[block.settings.article]
+            if a != blank and a.image != blank
+              assign img = a.image
+            endif
+          endif
+          if img == blank and c != blank and c.image != blank
+            assign img = c.image
+          endif
+          assign label = block.settings.label | default: c.title
+          assign lift = block.settings.lift | divided_by: 100.0 | plus: 1
+          assign href = c.url | default: '/collections/all'
+        -%}
+        <li class="nfrb__item" {{ block.shopify_attributes }}>
+          <a class="nfrb__tile" href="{{ href }}" style="--rb-lift: {{ lift }};">
+            <span class="nfrb__media">
+              {%- if img != blank -%}
+                {%- comment -%} NF-IMG-SHARP-0916: tall tiles crop the 4:3 photo (~1.5x the tile width of image is shown), so sizes/widths now match that crop at 2x (were 16vw / max 900, soft). {%- endcomment -%}{{- img | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '300,450,600,900,1200,1400', sizes: '(min-width: 1100px) 24vw, (min-width: 700px) 47vw, 66vw', class: 'nfrb__img', alt: '', style: block.settings.focus -}}
+              {%- endif -%}
+              <span class="nfrb__glow" aria-hidden="true"></span>
+            </span>
+            <span class="nfrb__label">
+              <span class="nfrb__name">{{ label }}</span>
+              {%- if c != blank and c.products_count > 0 -%}<span class="nfrb__count">{{ c.products_count }} pieces</span>{%- endif -%}
+              <span class="nfrb__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF Room by room",
+  "tag": "div",
+  "class": "shopify-section--nf-room-band",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by room" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Room by room" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Lighting and decor chosen for how each space is really used." },
+    { "type": "checkbox", "id": "rule", "label": "Hairline above section", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "room",
+      "name": "Room",
+      "limit": 8,
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "label", "label": "Label (defaults to collection title)" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "article", "label": "Or use an article cover (blog/article-handle)" },
+        { "type": "text", "id": "focus", "label": "Image focus CSS", "default": "object-position: 50% 50%" },
+        { "type": "range", "id": "lift", "label": "Brighten photo", "min": 0, "max": 30, "step": 1, "unit": "%", "default": 0 }
+      ]
+    }
+  ],
+  "presets": [ { "name": "NF Room by room" } ]
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "nf-catalog-page",
+      "settings": {
+        "catalog_page": "lighting-catalog",
+        "eyebrow": "Digital edition",
+        "title": "2026 Nora Furnish Lighting Catalog",
+        "line": "Chandeliers, pendants, sconces, lamps and outdoor lights, photographed in real rooms with the lights switched on. Every piece links to its product page at a live price.",
+        "button_label": "Open the catalog",
+        "chapters_label": "Browse the chapters",
+        "rail_eyebrow": "Inside the catalog",
+        "rail_heading": "Start with any room",
+        "rail_text": "Each chapter opens the catalog at its first page."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

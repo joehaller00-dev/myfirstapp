@@ -1,0 +1,44 @@
+{%- comment -%}
+  nf-pro-menu (Professionals mega menu panel, 2026-09-11). Rendered from snippets/mega-menu.liquid when the top level
+  menu item is "Professionals". Groups that have child links become columns. Leaf groups: a title containing
+  "portfolio" becomes the image tile on the right, any other leaf group becomes the bulk orders card.
+  Since NF-TOPBAR-V1 (2026-09-11) this panel opens from the top bar, not the main nav. Styles: assets/nf-pro-menu.css
+{%- endcomment -%}
+<div class="nf-pro-menu">
+  <div class="nf-pro-menu__main">
+    <div class="nf-pro-menu__cols">
+      {%- for sub_link in link.links -%}
+        {%- if sub_link.links.size > 0 -%}
+          <div class="nf-pro-menu__col">
+            <a href="{{ sub_link.url }}" class="mega-menu__group-title h6">{{ sub_link.title }}</a>
+            <ul class="mega-menu__group-links unstyled-list">
+              {%- for child_link in sub_link.links -%}<li><a href="{{ child_link.url }}" class="mega-menu__group-link link-faded">{{ child_link.title }}</a></li>{%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- for sub_link in link.links -%}
+      {%- assign npm_t = sub_link.title | downcase -%}
+      {%- unless sub_link.links.size > 0 or npm_t contains 'portfolio' -%}
+        <a class="nf-pro-menu__bulk" href="{{ sub_link.url }}">
+          <span class="nf-pro-menu__bulk-ic">{% render 'nf-pro-icon', name: 'layers' %}</span>
+          <span class="nf-pro-menu__bulk-t"><b>{{ sub_link.title }}</b><span>Many pieces or many rooms, with pricing for your quantities.</span></span>
+          <span class="nf-pro-menu__go">See bulk pricing <i aria-hidden="true">&rarr;</i></span>
+        </a>
+      {%- endunless -%}
+    {%- endfor -%}
+  </div>
+  {%- for sub_link in link.links -%}
+    {%- assign npm_t = sub_link.title | downcase -%}
+    {%- if sub_link.links.size == 0 and npm_t contains 'portfolio' -%}
+      <a class="nf-pro-menu__promo" href="{{ sub_link.url }}">
+        <span class="nf-pro-menu__promo-img">{%- render 'nf-pro-media', file: 'nf-pro-concept-01.jpg', alt: '', fallback: 'hospitality-lighting', sizes: '300px' -%}</span>
+        <span class="nf-pro-menu__promo-txt"><span class="nf-pro-menu__eyebrow">Design concepts</span><span class="nf-pro-menu__promo-t">{{ sub_link.title }}</span><span class="nf-pro-menu__go">See all eight <i aria-hidden="true">&rarr;</i></span></span>
+      </a>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+<link rel="stylesheet" href="{{ 'nf-pro-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'nf-pro-menu.css' | asset_url }}"></noscript>
+{%- comment -%} NF-TOPBAR-V1 (2026-09-11): the rule that hid Professionals from the main nav below 1680px is gone; Professionals now opens from the top bar (snippets/nf-topbar.liquid) and the phone drawer {%- endcomment -%}

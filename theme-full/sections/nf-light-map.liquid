@@ -1,0 +1,15 @@
+{%- comment -%}
+  NF-FILTERS-V2 helper (2026-09-12). Not placed in any template. custom-nav.js NF-FILTERS-V2 requests it as
+  ?section_id=nf-light-map on a collection URL (with the shopper's other active filters) and reads each
+  product's Light Color option values, so the grouped Light Color filter can show an exact product count
+  per light group (Warm White, Neutral White, Cool White, 3 Color Adjustable, RGB, Dimmable, Other).
+{%- endcomment -%}
+{%- if collection -%}
+{%- paginate collection.products by 250 -%}
+<script type="application/json" data-nf-lm>{"pages":{{ paginate.pages | json }},"p":[
+{%- for product in collection.products -%}
+[{%- assign nf_first = true -%}{%- for option in product.options_with_values -%}{%- assign nf_on = option.name | downcase | strip -%}{%- if nf_on == 'light color' or nf_on == 'light colour' -%}{%- for value in option.values -%}{%- unless nf_first -%},{%- endunless -%}{{ value | json }}{%- assign nf_first = false -%}{%- endfor -%}{%- endif -%}{%- endfor -%}]{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]}</script>
+{%- endpaginate -%}
+{%- endif -%}

@@ -1,0 +1,218 @@
+{%- comment -%}
+  NF-PIECES-V2 (2026-09-11) Homepage "Pieces Made for Every Home" showcase.
+  One tab per collection. Each tab is a gliding row: a large bright collection feature tile, product tiles, then a See all tile.
+  Styles: assets/nf-pieces-home.css. Script: assets/nf-pieces-home.js (arrow glides go through NF-SMOOTH-ARROWS in custom-nav.js).
+  Replaced section featured_collections_x7UQLX in templates/index.json. sections/featured-collections.liquid is untouched for rollback.
+  NF-PIECES-V3 (2026-09-11): the collection label card sits bottom left on every tab (owner: same spot everywhere; the per
+  tab label_position setting is kept in the schema but no longer read) and the section is compact on phones (CSS block NF-PIECES-V3).
+{%- endcomment -%}
+{{ 'nf-pieces-home.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-pieces-home.js' | asset_url }}" defer></script>
+
+{%- if section.blocks.size > 0 -%}
+  {%- liquid
+    assign nfp_seen = ','
+    assign nfp_sizes = '(min-width: 1700px) 400px, (min-width: 1200px) 24vw, (min-width: 700px) 31vw, 68vw'
+  -%}
+  <div class="nfp nfp--{{ section.settings.background | default: 'white' }}{% if section.settings.border_top %} nfp--rule{% endif %}" data-nfp id="nfp-{{ section.id }}">
+    <div class="nfp__wrap">
+      <div class="nfp__head">
+        <div class="nfp__intro">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="nfp__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+          {%- endif -%}
+          <h2 class="nfp__title">{{ section.settings.heading | escape }}</h2>
+          {%- if section.settings.subheading != blank -%}
+            <p class="nfp__sub">{{ section.settings.subheading | escape }}</p>
+          {%- endif -%}
+        </div>
+        <div class="nfp__arrows">
+          <button type="button" class="nfp__arrow" data-nfp-prev aria-label="Previous pieces" disabled>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="nfp__arrow" data-nfp-next aria-label="Next pieces">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      {%- if section.blocks.size > 1 -%}
+        <div class="nfp__tabs-wrap">
+          <div class="nfp__tabs" role="tablist" aria-label="{{ section.settings.eyebrow | default: 'Categories' | escape }}">
+            {%- for block in section.blocks -%}
+              {%- assign nfp_label = block.settings.title | default: block.settings.collection.title | default: 'Collection' -%}
+              <button type="button" class="nfp__tab" role="tab" id="nfp-tab-{{ block.id }}" aria-controls="nfp-panel-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">{{ nfp_label | escape }}</button>
+            {%- endfor -%}
+            <span class="nfp__ink" aria-hidden="true"></span>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="nfp__panels">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign c = block.settings.collection
+            assign nfp_label = block.settings.title | default: c.title | default: 'Collection'
+            assign nfp_limit = block.settings.products_count | default: 8
+            assign nfp_src = block.settings.products
+            if nfp_src == blank or nfp_src.size == 0
+              assign nfp_src = c.products
+            endif
+            assign nfp_url = c.url | default: routes.all_products_collection_url
+            assign nfp_total = c.products_count | default: 0
+            assign nfp_img = block.settings.image
+            if nfp_img == blank
+              assign nfp_img = c.products.first.featured_image
+            endif
+            assign nfp_pos = ''
+            if block.settings.image_position != blank
+              assign nfp_pos = 'object-position: ' | append: block.settings.image_position
+            endif
+            assign nfp_count = 0
+          -%}
+          <div class="nfp__panel{% if forloop.first %} is-active{% endif %}" role="tabpanel" id="nfp-panel-{{ block.id }}" aria-labelledby="nfp-tab-{{ block.id }}"{% unless forloop.first %} hidden{% endunless %} {{ block.shopify_attributes }}>
+            {%- comment -%} NF-SPEED-A-0916: hidden tabs are wrapped in an inert template (about 600 fewer elements while the page loads); assets/nf-pieces-home.js fills a tab in on hover, touch, focus or select. Not in the theme editor. {%- endcomment -%}
+            {%- unless forloop.first or request.design_mode -%}<template data-nfp-lazy>{%- endunless -%}
+            <div class="nfp__track" data-nfp-track>
+              <a class="nfp-feature" href="{{ nfp_url }}" aria-label="Shop all {{ nfp_label | escape }}">
+                <span class="nfp-feature__media">
+                  {%- if nfp_img != blank -%}
+                    {%- comment -%} NF-PIECES-V4: the tile is portrait (about 0.74 wide per 1 tall) and the photo is cropped with object-fit cover, so a wide photo renders wider than the tile. Scale sizes by that factor or 2x screens get an upscaled, soft image. {%- endcomment -%}
+                    {%- liquid
+                      assign nfp_f = nfp_img.aspect_ratio | divided_by: 0.74 | round: 2
+                      if nfp_f < 1
+                        assign nfp_f = 1
+                      endif
+                      assign nfp_fs = nfp_f | append: ''
+                      assign nfp_fsizes = '(min-width: 1700px) calc(400px * F), (min-width: 1200px) calc(24vw * F), (min-width: 700px) calc(31vw * F), calc(68vw * F)' | replace: 'F', nfp_fs
+                    -%}
+                    {%- if nfp_pos != blank -%}
+                      {{- nfp_img | image_url: width: 2200 | image_tag: loading: 'lazy', widths: '400, 560, 720, 900, 1200, 1500, 1800, 2200', sizes: nfp_fsizes, class: 'nfp-feature__img', alt: nfp_label, style: nfp_pos -}}
+                    {%- else -%}
+                      {{- nfp_img | image_url: width: 2200 | image_tag: loading: 'lazy', widths: '400, 560, 720, 900, 1200, 1500, 1800, 2200', sizes: nfp_fsizes, class: 'nfp-feature__img', alt: nfp_label -}}
+                    {%- endif -%}
+                  {%- endif -%}
+                </span>
+                <span class="nfp-feature__label">
+                  <span class="nfp-feature__words">
+                    {%- if nfp_total > 0 -%}<span class="nfp-feature__kicker">{{ nfp_total }} pieces</span>{%- endif -%}
+                    <span class="nfp-feature__name">{{ nfp_label | escape }}</span>
+                    {%- if block.settings.text != blank -%}<span class="nfp-feature__text">{{ block.settings.text | escape }}</span>{%- endif -%}
+                  </span>
+                  <span class="nfp-feature__go"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15m-5.5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </span>
+              </a>
+
+              {%- for product in nfp_src -%}
+                {%- if nfp_count >= nfp_limit -%}{%- break -%}{%- endif -%}
+                {%- assign nfp_key = ',' | append: product.id | append: ',' -%}
+                {%- if nfp_seen contains nfp_key or product.featured_image == blank or product.available == false -%}{%- continue -%}{%- endif -%}
+                {%- liquid
+                  assign nfp_seen = nfp_seen | append: product.id | append: ','
+                  assign nfp_count = nfp_count | plus: 1
+                  assign nfp_alt = product.featured_image.alt | default: product.title
+                  assign nfp_sale = false
+                  if product.compare_at_price > product.price
+                    assign nfp_sale = true
+                  endif
+                  assign nfp_rc = product.metafields.reviews.rating_count.value | default: 0
+                  # NF-PIECES-V4: a landscape photo in the 1:1 card is cropped by object-fit cover and renders wider than the card, so scale sizes by its aspect ratio
+                  assign nfp_csizes = nfp_sizes
+                  assign nfp_ca = product.featured_image.aspect_ratio | round: 2
+                  if nfp_ca > 1.05
+                    assign nfp_cas = nfp_ca | append: ''
+                    assign nfp_csizes = '(min-width: 1700px) calc(400px * F), (min-width: 1200px) calc(24vw * F), (min-width: 700px) calc(31vw * F), calc(68vw * F)' | replace: 'F', nfp_cas
+                  endif
+                -%}
+                <a class="nfp-card" href="{{ product.url }}">
+                  <span class="nfp-card__media">
+                    {{- product.featured_image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '300, 400, 500, 640, 800, 900, 1100, 1400, 1800', sizes: nfp_csizes, class: 'nfp-card__img', alt: nfp_alt -}}
+                  </span>
+                  <span class="nfp-card__body">
+                    <span class="nfp-card__title">{{ product.title | escape }}</span>
+                    <span class="nfp-card__price{% if nfp_sale %} is-sale{% endif %}">
+                      {%- if product.price_varies -%}<span class="nfp-card__from">From </span>{%- endif -%}
+                      <span class="nfp-card__now">{% render 'nf-acc-price', product: product %}</span>
+                      {%- if nfp_sale -%}<s class="nfp-card__was">{{ product.compare_at_price | money }}</s>{%- endif -%}
+                    </span>
+                    {%- if nfp_rc > 0 -%}
+                      <span class="nfp-card__rating"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 1.8l2.5 5.3 5.8.7-4.3 4 1.1 5.7L10 14.7l-5.1 2.8 1.1-5.7-4.3-4 5.8-.7z" fill="currentColor"/></svg>{{ product.metafields.reviews.rating.value.rating | round: 1 }}<span class="nfp-card__rc">({{ nfp_rc }})</span></span>
+                    {%- endif -%}
+                  </span>
+                </a>
+              {%- endfor -%}
+
+              <a class="nfp-more" href="{{ nfp_url }}">
+                <span class="nfp-more__circle"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15m-5.5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="nfp-more__text">See all {{ nfp_label | escape }}</span>
+                {%- if nfp_total > 0 -%}<span class="nfp-more__count">{{ nfp_total }} pieces</span>{%- endif -%}
+              </a>
+            </div>
+            <div class="nfp__rail" aria-hidden="true"><span class="nfp__bar"></span></div>
+            {%- unless forloop.first or request.design_mode -%}</template>{%- endunless -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF Pieces showcase",
+  "class": "shopify-section--nf-pieces",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "max_blocks": 10,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by category" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pieces Made for Every Home" },
+    { "type": "text", "id": "subheading", "label": "Subheading" },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "grey", "label": "Soft grey" }
+      ],
+      "default": "white"
+    },
+    { "type": "checkbox", "id": "border_top", "label": "Hairline above the section", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection tab",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "title", "label": "Tab label", "info": "Leave empty to use the collection title." },
+        { "type": "image_picker", "id": "image", "label": "Feature image", "info": "Bright photo with the lights on. Portrait 3:4 fits best." },
+        { "type": "text", "id": "image_position", "label": "Feature image focus", "info": "CSS object position, for example: center 40%" },
+        {
+          "type": "select",
+          "id": "label_position",
+          "label": "Feature label position",
+          "info": "Not used since NF-PIECES-V3: the label always sits bottom left.",
+          "options": [
+            { "value": "bottom", "label": "Bottom" },
+            { "value": "top", "label": "Top" }
+          ],
+          "default": "bottom"
+        },
+        { "type": "text", "id": "text", "label": "Feature line" },
+        { "type": "product_list", "id": "products", "label": "Hand picked products", "limit": 12, "info": "Leave empty to follow the collection order." },
+        { "type": "range", "id": "products_count", "label": "Products to show", "min": 4, "max": 12, "step": 1, "default": 8 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "NF Pieces showcase",
+      "blocks": [{ "type": "collection" }]
+    }
+  ]
+}
+{% endschema %}

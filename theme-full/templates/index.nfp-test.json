@@ -1,0 +1,177 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "nf_pieces_home": {
+      "type": "nf-pieces-home",
+      "blocks": {
+        "nfp_best": {
+          "type": "collection",
+          "settings": {
+            "collection": "best-sellers",
+            "title": "Best Sellers",
+            "image": "shopify://shop_images/nf-hero-lava-pendant-living-room.png",
+            "image_position": "56% center",
+            "label_position": "bottom",
+            "text": "",
+            "products_count": 8
+          }
+        },
+        "nfp_ceiling": {
+          "type": "collection",
+          "settings": {
+            "collection": "ceiling-light",
+            "title": "Ceiling Lights",
+            "image": "shopify://shop_images/nav_pendants_mounts_hq.webp",
+            "image_position": "",
+            "label_position": "bottom",
+            "text": "",
+            "products_count": 8
+          }
+        },
+        "nfp_outdoor": {
+          "type": "collection",
+          "settings": {
+            "collection": "outdoor-lighting",
+            "title": "Outdoor Lighting",
+            "image": "shopify://shop_images/nf-pieces-outdoor-porch.png",
+            "image_position": "",
+            "label_position": "bottom",
+            "text": "",
+            "products_count": 8,
+            "products": [
+              "globe-up-and-down-wall-sconce-black-cast-aluminum-outdoor-light",
+              "motion-sensor-solar-wall-light-coffee-outdoor-wall-lamp",
+              "antique-european-wall-lantern-black-aluminum-outdoor-sconce",
+              "round-up-and-down-wall-light-black-aluminum-outdoor-sconce",
+              "creative-up-and-down-wall-sconce-black-aluminum-outdoor-light",
+              "mountain-scenery-solar-wall-light-stainless-steel-porch-sconce",
+              "dusk-to-dawn-motion-solar-light-copper-outdoor-wall-sconce",
+              "classic-rectangle-wall-sconce-black-marble-look-outdoor-light",
+              "curved-up-and-down-wall-light-black-aluminum-outdoor-sconce",
+              "sand-gray-up-and-down-sconce-cast-aluminum-outdoor-wall-light"
+            ]
+          }
+        },
+        "nfp_decor": {
+          "type": "collection",
+          "settings": {
+            "collection": "decor",
+            "title": "Decor",
+            "image": "shopify://shop_images/nav_wall_decor.webp",
+            "image_position": "",
+            "label_position": "bottom",
+            "text": "",
+            "products_count": 8,
+            "products": [
+              "vintage-solid-wood-wall-mirror-with-shelf-and-candlestick",
+              "hand-woven-macrame-round-wall-mirror",
+              "gothic-arch-wall-mirror-set",
+              "hollow-leaf-wall-mirror-set-of-3",
+              "round-wooden-candle-and-coffee-tray",
+              "deep-shadow-box-display-frame",
+              "three-tier-wooden-serving-tray-stand",
+              "round-mirror-candle-plates-set-of-10",
+              "vintage-solid-wood-wall-mirror"
+            ]
+          }
+        },
+        "nfp_soft": {
+          "type": "collection",
+          "settings": {
+            "collection": "soft-furnishings",
+            "title": "Soft Furnishings",
+            "image": "shopify://shop_images/nav_soft_furnishings.webp",
+            "image_position": "",
+            "label_position": "bottom",
+            "text": "",
+            "products_count": 8,
+            "products": [
+              "wide-wale-corduroy-cushion-cover",
+              "double-sided-waffle-knit-cushion-cover",
+              "boho-chenille-line-cushion-cover",
+              "plush-diamond-tufted-cushion-cover",
+              "wide-jute-burlap-table-runner-roll",
+              "ice-silk-cooling-summer-blanket",
+              "natural-jute-burlap-table-runner",
+              "leaf-print-shower-curtain-liner"
+            ]
+          }
+        },
+        "nfp_fragrance": {
+          "type": "collection",
+          "settings": {
+            "collection": "home-fragrance",
+            "title": "Home Fragrance",
+            "image": "shopify://shop_images/nf-pieces-home-fragrance.png",
+            "image_position": "",
+            "label_position": "top",
+            "text": "",
+            "products_count": 8,
+            "products": [
+              "celadon-lotus-hand-backflow-incense-burner",
+              "flame-aroma-diffuser-humidifier-with-essential-oil",
+              "ceramic-tealight-essential-oil-burner",
+              "resin-head-censer-incense-stick-holder",
+              "wooden-palo-santo-and-sage-holder",
+              "mini-size-wood-grain-aroma-diffuser-usb-essential-oil-humidifier",
+              "white-ceramic-essential-oil-burner-hollow-cutwork",
+              "resin-mountain-backflow-incense-holder",
+              "transparent-glass-aromatherapy-diffuser-bottle-130-200ml"
+            ]
+          }
+        },
+        "nfp_poufs": {
+          "type": "collection",
+          "settings": {
+            "collection": "poufs-floor-cushions",
+            "title": "Poufs & Floor Cushions",
+            "image": "shopify://shop_images/nf-pieces-poufs.png",
+            "image_position": "",
+            "label_position": "top",
+            "text": "",
+            "products_count": 8,
+            "products": [
+              "velvet-tatami-floor-cushion-cover",
+              "pu-leather-unstuffed-storage-pouf",
+              "boho-printed-fillable-storage-pouf",
+              "round-teddy-velvet-storage-ottoman",
+              "tree-stump-folding-storage-ottoman",
+              "embroidered-moroccan-leather-pouf-cover",
+              "lamb-wool-round-footstool",
+              "quarter-round-chenille-floor-cushion-with-insert",
+              "folding-faux-leather-storage-bench",
+              "tufted-meditation-floor-cushion"
+            ]
+          }
+        }
+      },
+      "block_order": [
+        "nfp_best",
+        "nfp_ceiling",
+        "nfp_outdoor",
+        "nfp_decor",
+        "nfp_soft",
+        "nfp_fragrance",
+        "nfp_poufs"
+      ],
+      "settings": {
+        "eyebrow": "Shop by category",
+        "heading": "Pieces Made for Every Home",
+        "subheading": "Carry the season’s warmth into every room, before it slips away.",
+        "background": "white",
+        "border_top": false
+      }
+    }
+  },
+  "order": [
+    "nf_pieces_home"
+  ]
+}

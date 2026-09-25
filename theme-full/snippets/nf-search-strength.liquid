@@ -1,0 +1,132 @@
+{%- comment -%}
+  NF-SEARCH-V2 (2026-09-12, forgiving v2) relevance check and ranking.
+  Prints "weak" or "strong:" followed by the item indexes (0 based, comma separated), best match first.
+  Shopify's search is semantic and returns loose matches for anything, even a made up word ("zzqxvbnm"
+  returned 267 products). The set is WEAK only when not one item mentions ANY query word.
+  Forgiving by design:
+    - any word counts (multi word queries never need every word), short words (under 3 letters) and stop words are ignored
+    - each word also matches by stem: plural s, es, ies (lamps, boxes, batteries)
+    - words of 5+ letters also match by their first half or last half (min 4 letters), so a one letter typo
+      on either side still matches (chandlier, cahndelier)
+    - extra: optional words to accept too (the drop passes Shopify's corrected queries)
+  Ranking: 2 points per word found in the title, 1 point per word found in type, vendor, tags or option values;
+  ties keep Shopify's order. A description match only rescues the set from WEAK, it does not rank.
+  Params: items (search results or products), terms (string), extra (string, may be blank).
+{%- endcomment -%}
+{%- liquid
+  assign nfs_stop = '|the|and|for|with|your|from|that|this|into|are|was|you|our|all|any|set|new|best|buy|shop|cheap|sale|size|inch|inches|pcs|piece|pieces|'
+  assign nfs_raw = terms | append: ' ' | append: extra | downcase | replace: '-', ' ' | replace: ',', ' ' | replace: '.', ' ' | replace: '"', ' ' | replace: "'", ' ' | replace: '/', ' ' | replace: '&', ' ' | replace: '+', ' ' | replace: '(', ' ' | replace: ')', ' '
+  assign nfs_words = nfs_raw | split: ' '
+  assign nfs_seen = '|'
+  assign nfs_groups = ''
+  for w in nfs_words
+    assign wl = w | size
+    if wl < 3
+      continue
+    endif
+    assign wkey = '|' | append: w | append: '|'
+    if nfs_stop contains wkey or nfs_seen contains wkey
+      continue
+    endif
+    assign nfs_seen = nfs_seen | append: w | append: '|'
+    assign ks = w
+    assign l1 = w | slice: -1, 1
+    assign l2 = w | slice: -2, 2
+    assign l3 = w | slice: -3, 3
+    if wl > 4 and l3 == 'ies'
+      assign cut = wl | minus: 3
+      assign st = w | slice: 0, cut | append: 'y'
+      assign ks = ks | append: '/' | append: st
+    elsif wl > 4 and l2 == 'es'
+      assign cut = wl | minus: 2
+      assign st = w | slice: 0, cut
+      assign ks = ks | append: '/' | append: st
+    endif
+    if wl > 3 and l1 == 's' and l2 != 'ss'
+      assign cut = wl | minus: 1
+      assign st = w | slice: 0, cut
+      assign ks = ks | append: '/' | append: st
+    endif
+    if wl > 4
+      assign half = wl | divided_by: 2.0 | ceil
+      if half < 4
+        assign half = 4
+      endif
+      assign pre = w | slice: 0, half
+      assign sstart = wl | minus: half
+      assign suf = w | slice: sstart, half
+      assign ks = ks | append: '/' | append: pre | append: '/' | append: suf
+    endif
+    assign nfs_groups = nfs_groups | append: ks | append: '~'
+  endfor
+  assign nfs_groups = nfs_groups | split: '~'
+  assign nfs_strong = false
+  if nfs_groups.size == 0
+    assign nfs_strong = true
+  endif
+  assign nfs_rank = ''
+  for item in items
+    assign idx = forloop.index0 | plus: 1000
+    assign t_title = item.title | downcase
+    assign t_rest = ''
+    if item.object_type == 'product' or item.variants
+      assign tg = item.tags | join: ' '
+      assign t_rest = item.type | append: ' ' | append: item.vendor | append: ' ' | append: tg
+      for o in item.options_with_values
+        assign ov = o.values | join: ' '
+        assign t_rest = t_rest | append: ' ' | append: ov
+      endfor
+      assign t_rest = t_rest | downcase
+    endif
+    assign score = 0
+    for g in nfs_groups
+      assign gks = g | split: '/'
+      assign hit = 0
+      for k in gks
+        if t_title contains k
+          assign hit = 2
+          break
+        elsif t_rest contains k
+          assign hit = 1
+        endif
+      endfor
+      assign score = score | plus: hit
+    endfor
+    if score > 0
+      assign nfs_strong = true
+    endif
+    assign inv = 900 | minus: score
+    assign nfs_rank = nfs_rank | append: inv | append: '-' | append: idx | append: ','
+  endfor
+  unless nfs_strong
+    for item in items limit: 24
+      assign txt = item.description | default: item.content | strip_html | downcase
+      for g in nfs_groups
+        assign gks = g | split: '/'
+        for k in gks
+          if txt contains k
+            assign nfs_strong = true
+            break
+          endif
+        endfor
+        if nfs_strong
+          break
+        endif
+      endfor
+      if nfs_strong
+        break
+      endif
+    endfor
+  endunless
+  if nfs_strong
+    assign nfs_sorted = nfs_rank | split: ',' | sort
+    assign nfs_out = ''
+    for r in nfs_sorted
+      assign ri = r | split: '-' | last | plus: 0 | minus: 1000
+      assign nfs_out = nfs_out | append: ri | append: ','
+    endfor
+    echo 'strong:' | append: nfs_out
+  else
+    echo 'weak'
+  endif
+-%}

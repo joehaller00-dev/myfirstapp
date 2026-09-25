@@ -1,0 +1,1316 @@
+/* ==========================================================================
+   NORA FURNISH — "WARM ATELIER" REDESIGN LAYER
+   Draft theme only. Loads after every other stylesheet and re-skins the
+   whole store: type, color, shape language, chrome.
+   Palette: bone #F6F2EA · card #FCFAF5 · ink #262019 · brass #A67C4F ·
+            terracotta #A65440 · border #E4DBC9 · deep espresso #231D16
+   Type:    Fraunces (display) · Inter (text/UI)
+   ========================================================================== */
+
+:root {
+  --nf-bone: #F6F2EA;
+  --nf-card: #FCFAF5;
+  --nf-ink: #262019;
+  --nf-ink-soft: #55493C;
+  --nf-brass: #A67C4F;
+  --nf-brass-deep: #8A6540;
+  --nf-terracotta: #A65440;
+  --nf-border: #E4DBC9;
+  --nf-border-soft: #ECE5D6;
+  --nf-espresso: #231D16;
+  --nf-espresso-2: #2C251C;
+
+  /* Re-point the theme's own token system */
+  --heading-font-family: "Fraunces", "Roboto Serif", Georgia, serif;
+  --heading-font-weight: 360;
+  --heading-font-style: normal;
+  --heading-letter-spacing: 0.005em;
+  --text-font-family: "Inter", "Montserrat", -apple-system, sans-serif;
+  --text-font-weight: 420;
+  --text-letter-spacing: 0.008em;
+  --button-font: 500 0.72rem/1.5 "Inter", sans-serif;
+  --button-letter-spacing: 0.16em;
+  --button-border-radius: 0.6rem;
+  --input-border-radius: 0.55rem;
+  --shadow-sm: 0 2px 10px rgb(38 32 25 / 0.05);
+  --shadow: 0 8px 26px rgb(38 32 25 / 0.07);
+  --shadow-md: 0 14px 44px rgb(38 32 25 / 0.09);
+}
+
+/* ------------------------------------------------------------------ */
+/* 1. GLOBAL GROUND                                                    */
+/* ------------------------------------------------------------------ */
+
+body {
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(166, 124, 79, 0.25); }
+
+:is(h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5) {
+  font-family: var(--heading-font-family) !important;
+  font-weight: 380;
+  font-variation-settings: "opsz" 60;
+  letter-spacing: 0.005em !important;
+}
+
+h1, .h1 { font-weight: 340; }
+
+a { text-underline-offset: 3px; }
+
+:focus-visible { outline: 2px solid var(--nf-brass) !important; outline-offset: 2px; }
+
+/* ------------------------------------------------------------------ */
+/* 2. BUTTONS                                                          */
+/* ------------------------------------------------------------------ */
+
+.button, button.button, a.button {
+  border-radius: 0.6rem !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif !important;
+  font-weight: 500 !important;
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease, transform .2s ease, box-shadow .25s ease !important;
+}
+
+.button--solid:hover, .button:not(.button--outline):hover {
+  background-color: var(--nf-brass) !important;
+  border-color: var(--nf-brass) !important;
+  color: #FFFDF8 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgb(138 101 64 / 0.28);
+}
+
+.button--outline {
+  border-width: 1px !important;
+}
+.button--outline:hover {
+  background: var(--nf-ink) !important;
+  color: var(--nf-bone) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. PRODUCT CARDS — gallery objects                                  */
+/* ------------------------------------------------------------------ */
+
+.product-card {
+  background: var(--nf-card);
+  border: 1px solid var(--nf-border-soft);
+  border-radius: 16px;
+  padding: 10px 10px 16px;
+  transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--nf-border);
+}
+
+.product-card__media {
+  border-radius: 10px !important;
+  background: #F1ECE1;
+}
+
+.product-card__media img { border-radius: 10px !important; }
+
+.product-card .product-title,
+.product-card__title,
+.product-card a.bold, .product-card .h6, .product-card .h5 {
+  font-family: var(--heading-font-family) !important;
+  font-weight: 420 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.35;
+}
+
+.product-card .price-list, .product-card [class*="price"] {
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.product-card s, .product-card del, s.price, .price--compare {
+  opacity: 0.55;
+}
+
+.product-card .color-swatch, .color-swatch {
+  border-radius: 50% !important;
+  box-shadow: inset 0 0 0 1px rgb(38 32 25 / 0.12);
+}
+.color-swatch--selected, .color-swatch[aria-checked="true"], .color-swatch.is-selected {
+  outline: 2px solid var(--nf-brass) !important;
+  outline-offset: 2px;
+}
+
+.rating__stars, [class*="rating"] { color: var(--nf-brass); }
+
+/* ------------------------------------------------------------------ */
+/* 4. SECTION HEADERS                                                  */
+/* ------------------------------------------------------------------ */
+
+.section-header h2, .section-header .h2 {
+  letter-spacing: 0.005em !important;
+  font-weight: 360;
+}
+
+.section-header .heading + p,
+.section-header p {
+  color: var(--nf-ink-soft);
+  font-size: 0.9rem;
+}
+
+.section-header .subheading, .subheading, .text-subdued.subheading {
+  color: var(--nf-brass) !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. HEADER, UTILITY BAR, NAV                                         */
+/* ------------------------------------------------------------------ */
+
+#nora-announcement-bar {
+  background-color: var(--nf-espresso) !important;
+  color: #EFE7D8 !important;
+  font-family: "Inter", sans-serif;
+  font-size: 11.5px !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase;
+  font-weight: 500 !important;
+  padding: 11px 16px !important;
+}
+#nora-announcement-bar a { color: #D8B98B !important; font-weight: 600 !important; }
+
+.top-utility-bar {
+  background: var(--nf-bone) !important;
+  color: var(--nf-ink) !important;
+  border-bottom: 1px solid var(--nf-border-soft) !important;
+}
+.top-utility-bar a {
+  font-family: "Inter", sans-serif !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  color: var(--nf-ink-soft) !important;
+}
+.top-utility-bar a:hover { color: var(--nf-brass-deep) !important; }
+.top-utility-bar a::after, .top-utility-bar a::before { background: var(--nf-brass) !important; }
+
+header[id$="__header"], .header, .header__wrapper {
+  background: var(--nf-bone) !important;
+}
+header[id$="__header"] { border-bottom: 1px solid var(--nf-border-soft); }
+
+.header__linklist-link, .header nav a[data-title], nav.header__linklist a {
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 520 !important;
+  letter-spacing: 0.13em !important;
+  text-transform: uppercase !important;
+  color: var(--nf-ink) !important;
+}
+[data-title]::before {
+  background: var(--nf-brass) !important;
+  height: 1.5px !important;
+}
+
+.mega-menu, .header__dropdown {
+  background: var(--nf-card) !important;
+  border-top: 1px solid var(--nf-border-soft) !important;
+  box-shadow: 0 30px 60px rgb(38 32 25 / 0.12) !important;
+}
+.mega-menu__title, .mega-menu .h6 {
+  font-family: "Fraunces", serif !important;
+  font-size: 1.02rem !important;
+  font-weight: 480 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+  color: var(--nf-ink) !important;
+}
+.mega-menu__group-links a, .mega-menu a {
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.01em !important;
+  color: var(--nf-ink-soft) !important;
+}
+.mega-menu__group-links a:hover, .mega-menu a:hover { color: var(--nf-brass-deep) !important; }
+.mega-menu__figures img { border-radius: 12px !important; }
+.mega-menu__figures figcaption { font-family: "Fraunces", serif !important; }
+
+.info-bar {
+  background: transparent !important;
+  border-top-color: var(--nf-border-soft) !important;
+  border-bottom-color: var(--nf-border-soft) !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 11px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+  color: var(--nf-ink-soft) !important;
+  font-weight: 500 !important;
+}
+.info-bar div { border-right-color: var(--nf-border) !important; }
+
+.mobile-collection-pills { background: var(--nf-bone) !important; }
+.pill-btn {
+  background: var(--nf-card) !important;
+  border: 1px solid var(--nf-border) !important;
+  color: var(--nf-ink) !important;
+  border-radius: 999px !important;
+}
+.pill-btn:hover { background: var(--nf-border-soft) !important; }
+
+.header-search-panel, .header-search-panel__form, .header-search-panel__input {
+  background: var(--nf-card) !important;
+}
+.header-search-panel__input, .header-search-panel__input::placeholder {
+  font-family: "Fraunces", Georgia, serif !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 6. HERO + BANNERS                                                   */
+/* ------------------------------------------------------------------ */
+
+#shopify-section-template--sections-index .content-over-media,
+.shopify-section--image-with-text-overlay .content-over-media {
+  border-radius: 20px;
+  overflow: hidden;
+}
+.shopify-section--image-with-text-overlay .section-spacing {
+  padding-inline: clamp(14px, 2.2vw, 36px);
+}
+.content-over-media > img, .content-over-media > picture img { border-radius: 20px; }
+
+.content-over-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(200deg, rgb(35 29 22 / 0) 55%, rgb(35 29 22 / 0.38) 100%);
+  z-index: 0;
+}
+.content-over-media > * { z-index: 1; }
+
+.content-over-media h1, .content-over-media .h1,
+.content-over-media h2, .content-over-media .h2 {
+  font-family: "Fraunces", serif !important;
+  font-weight: 320 !important;
+  font-variation-settings: "opsz" 110;
+  letter-spacing: 0 !important;
+  text-shadow: 0 2px 26px rgb(30 24 18 / 0.35);
+}
+.content-over-media p {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  font-size: 0.72rem !important;
+  font-weight: 600;
+}
+
+.nf-hero-wrap { border-radius: 20px; overflow: hidden; margin-inline: clamp(14px, 2.2vw, 36px); width: auto !important; }
+.nf-hero-heading { font-family: "Fraunces", serif !important; font-weight: 340 !important; }
+.nf-hero-eyebrow { letter-spacing: 0.22em !important; font-weight: 600 !important; }
+.nf-hero-btn {
+  background: #FFFDF8 !important; color: var(--nf-ink) !important;
+  border-radius: 0.6rem; font-weight: 600 !important;
+  transition: background .25s ease, color .25s ease;
+}
+.nf-hero-btn:hover { background: var(--nf-brass) !important; color: #FFFDF8 !important; }
+
+.mcgee-cat-section { background: transparent !important; }
+.mcgee-cat-section h3 {
+  font-family: "Fraunces", serif !important;
+  letter-spacing: 0.01em !important;
+  font-weight: 380 !important;
+}
+.mcgee-cat-img {
+  border-radius: 14px;
+  background-color: #EFE9DC !important;
+  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .3s ease;
+}
+.mcgee-cat-item:hover .mcgee-cat-img { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.mcgee-cat-label {
+  color: var(--nf-ink) !important;
+  font-size: 1rem !important;
+}
+
+.collection-card img, .collection-card__image { border-radius: 16px !important; }
+.collection-card__content .h3 { font-weight: 380; }
+
+/* ------------------------------------------------------------------ */
+/* 7. TRUST ICONS STRIP                                                */
+/* ------------------------------------------------------------------ */
+
+.text-with-icons {
+  background: var(--nf-card);
+  border: 1px solid var(--nf-border-soft);
+  border-radius: 18px;
+  padding: clamp(26px, 3vw, 40px) clamp(18px, 3vw, 40px) !important;
+}
+.text-with-icons svg { color: var(--nf-brass); }
+.text-with-icons .h6 {
+  font-family: "Fraunces", serif !important;
+  font-size: 1.02rem !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+}
+.text-with-icons .prose { color: var(--nf-ink-soft) !important; }
+
+/* ------------------------------------------------------------------ */
+/* 8. PRODUCT PAGE                                                     */
+/* ------------------------------------------------------------------ */
+
+.product-gallery__media, .product-gallery__media img { border-radius: 12px !important; }
+
+@media (min-width: 1000px) {
+  .product-info {
+    background: var(--nf-card);
+    border: 1px solid var(--nf-border-soft);
+    border-radius: 18px;
+    padding: 30px 30px 34px !important;
+  }
+}
+
+.product-info .product-title, .product-info h1, .product-info h3 {
+  font-weight: 360 !important;
+  letter-spacing: 0.005em !important;
+}
+
+.block-swatch {
+  border-radius: 0.55rem !important;
+  border-color: var(--nf-border) !important;
+  transition: border-color .2s ease, background .2s ease;
+}
+.block-swatch:hover { border-color: var(--nf-brass) !important; }
+.block-swatch.is-selected, .block-swatch[aria-checked="true"] {
+  border-color: var(--nf-ink) !important;
+  background: var(--nf-bone) !important;
+}
+
+.quantity-selector { border-radius: 0.55rem !important; border-color: var(--nf-border) !important; }
+
+.accordion { border-color: var(--nf-border) !important; }
+.accordion__toggle {
+  font-family: "Fraunces", serif !important;
+  font-size: 0.98rem !important;
+  letter-spacing: 0.01em !important;
+}
+.accordion svg, .accordion__toggle svg { color: var(--nf-brass); }
+.accordion .prose, .accordion__content { color: var(--nf-ink-soft); }
+
+.product-info h4 {
+  font-weight: 440 !important;
+  letter-spacing: 0.01em !important;
+}
+
+.product-card-horizontal { border-radius: 14px; background: var(--nf-card); }
+.product-card-horizontal img { border-radius: 10px !important; }
+
+.nf-buy2-hint {
+  background: #F3EDDE !important;
+  border-color: #E3D8BF !important;
+  color: var(--nf-ink) !important;
+  border-radius: 10px !important;
+}
+.nf-buy2-hint--ok { background: #EBF0E3 !important; border-color: #CCD8BC !important; color: #3D5232 !important; }
+
+.product-sticky-form, [class*="sticky-bar"] {
+  background: #FCFAF5 !important;
+  border-top: 1px solid var(--nf-border-soft) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 9. BEST SELLERS BANNER (product page)                               */
+/* ------------------------------------------------------------------ */
+
+.shopify-section--main-product ~ .shopify-section--image-with-text-overlay .content-over-media {
+  background-color: var(--nf-espresso) !important;
+  border-radius: 20px !important;
+}
+.shopify-section--main-product ~ .shopify-section--image-with-text-overlay a.button,
+.shopify-section--main-product ~ .shopify-section--image-with-text-overlay .button {
+  background: #F4EDDE !important;
+  color: var(--nf-espresso) !important;
+  border-radius: 0.55rem !important;
+}
+.shopify-section--main-product ~ .shopify-section--image-with-text-overlay a.button:hover {
+  background: var(--nf-brass) !important;
+  color: #FFFDF8 !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 10. COLLECTION PAGES                                                */
+/* ------------------------------------------------------------------ */
+
+.collection-banner img { border-radius: 0 0 20px 20px; }
+.collection-toolbar {
+  background: var(--nf-bone) !important;
+  border-color: var(--nf-border-soft) !important;
+}
+.collection-toolbar button, .collection-toolbar a {
+  font-family: "Inter", sans-serif !important;
+  letter-spacing: 0.08em;
+}
+
+.subcat-nav a, .collection-subcategory-nav a {
+  border-radius: 999px !important;
+  border-color: var(--nf-border) !important;
+  font-family: "Inter", sans-serif !important;
+}
+.subcat-nav a:hover { border-color: var(--nf-brass) !important; color: var(--nf-brass-deep) !important; }
+
+.facets, .facets__panel { background: var(--nf-card) !important; }
+
+/* ------------------------------------------------------------------ */
+/* 11. FOOTER — deep espresso close                                    */
+/* ------------------------------------------------------------------ */
+
+.shopify-section--footer .footer,
+.shopify-section--footer footer,
+footer.footer {
+  background: var(--nf-espresso) !important;
+  color: #EDE4D3 !important;
+}
+.shopify-section--footer .footer * { border-color: rgb(237 228 211 / 0.14) !important; }
+.shopify-section--footer .footer a { color: #CDC2AC !important; }
+.shopify-section--footer .footer a:hover { color: #E4C89A !important; }
+.shopify-section--footer .footer .h6, .shopify-section--footer .footer h2 {
+  color: #F4EDDE !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+}
+.shopify-section--footer .footer input {
+  background: rgb(255 253 248 / 0.07) !important;
+  border: 1px solid rgb(237 228 211 / 0.22) !important;
+  color: #F4EDDE !important;
+  border-radius: 0.55rem !important;
+}
+.shopify-section--footer .footer .button {
+  background: #E4C89A !important;
+  color: var(--nf-espresso) !important;
+}
+.shopify-section--footer .footer .button:hover { background: var(--nf-brass) !important; color: #FFFDF8 !important; }
+.shopify-section--footer .footer img[src*="wordmark"], .footer__block--image img { filter: invert(0.92) sepia(0.08); }
+
+/* ------------------------------------------------------------------ */
+/* 12. CART DRAWER                                                     */
+/* ------------------------------------------------------------------ */
+
+#cart-drawer { background: var(--nf-card) !important; }
+#cart-drawer .line-item__media {
+  background: #F1ECE1 !important;
+  border-color: var(--nf-border-soft) !important;
+  border-radius: 12px !important;
+}
+#cart-drawer .line-item { border-bottom-color: var(--nf-border-soft) !important; }
+#cart-drawer .cart-drawer__footer { border-top-color: var(--nf-border) !important; }
+#cart-drawer .cart-drawer__footer .button, #cart-drawer .button-group .button {
+  background: var(--nf-ink) !important;
+  border-color: var(--nf-ink) !important;
+  border-radius: 0.6rem !important;
+}
+#cart-drawer .cart-drawer__footer .button:hover, #cart-drawer .button-group .button:hover {
+  background: var(--nf-brass) !important;
+  border-color: var(--nf-brass) !important;
+}
+#cart-drawer .nf-cart-trust__item span { color: var(--nf-ink-soft) !important; }
+#cart-drawer .nf-cart-empty__btn { background: var(--nf-ink) !important; border-radius: 0.6rem; }
+#cart-drawer .nf-cart-empty__btn:hover { background: var(--nf-brass) !important; }
+
+/* ------------------------------------------------------------------ */
+/* 13. CURTAIN + LOADING BAR                                           */
+/* ------------------------------------------------------------------ */
+
+#nf-curtain { background: var(--nf-bone) !important; }
+.loading-bar { background: var(--nf-brass) !important; }
+
+/* ------------------------------------------------------------------ */
+/* 14. FORMS, MISC                                                     */
+/* ------------------------------------------------------------------ */
+
+input, textarea, select {
+  border-color: var(--nf-border) !important;
+}
+input:focus, textarea:focus, select:focus { border-color: var(--nf-brass) !important; }
+
+.badge, [class*="badge"] { border-radius: 999px !important; letter-spacing: 0.08em; }
+
+.color-scheme--dialog, dialog, .popover {
+  --background: 252 250 245;
+  --background-without-opacity: 252 250 245;
+}
+
+.circle-button, [class*="circle-button"] {
+  box-shadow: var(--shadow-sm);
+}
+
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-thumb { background: #D6CBB6; border-radius: 8px; border: 3px solid var(--nf-bone); }
+::-webkit-scrollbar-track { background: var(--nf-bone); }
+
+
+/* ================= ITERATION 2 ================= */
+
+.content-over-media p.h1, .content-over-media .h1, .content-over-media h1 {
+  text-transform: none !important;
+  font-weight: 330 !important;
+  font-size: clamp(2.4rem, 4.6vw, 4.1rem) !important;
+  line-height: 1.06 !important;
+  letter-spacing: 0 !important;
+  max-width: 14ch;
+}
+.content-over-media p:not(.h1):not(.h2):not(.h3) {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.26em !important;
+  font-weight: 600 !important;
+}
+[id$="__image_with_text_overlay_TebrQa"] .content-over-media {
+  margin: clamp(12px, 1.8vw, 26px) clamp(14px, 2.2vw, 36px) 0;
+}
+
+.featured-collections-navigation > button {
+  font-family: "Fraunces", serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+}
+.featured-collections-navigation > button::after { background: var(--nf-brass) !important; }
+
+/* tel-hide removed: theme template rule handles non-index pages */
+
+
+/* ================= ITERATION 3 ================= */
+
+/* Nav: unified Fraunces title case, brass underline */
+.header__primary-nav-item > a, .header__primary-nav-item a, .header__primary-nav-item a.block {
+  font-family: "Fraunces", serif !important;
+  font-size: 15.5px !important;
+  font-weight: 430 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  color: var(--nf-ink) !important;
+}
+
+/* Hero eyebrow: force small */
+[id$="__image_with_text_overlay_TebrQa"] .content-over-media p:not(.h1):not(.h2) {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.26em !important;
+}
+
+
+/* ================= ITERATION 4 ================= */
+.header .header__primary-nav-item a, .header__primary-nav-item a[data-title], nav .header__primary-nav-item a {
+  font-family: "Fraunces", serif !important;
+  font-size: 15.5px !important;
+  font-weight: 430 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  color: var(--nf-ink) !important;
+}
+
+
+/* ================= ITERATION 5 ================= */
+#shopify-section-template--21472858046516__image_with_text_overlay_TebrQa .content-over-media p:not(.h1):not(.h2) {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.26em !important;
+  font-weight: 600 !important;
+}
+.header nav .header__primary-nav-item a, header .header__primary-nav-item a[data-title] {
+  font-family: "Fraunces", serif !important;
+  font-size: 15.5px !important;
+  font-weight: 430 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  color: var(--nf-ink) !important;
+}
+
+
+/* ================= ITERATION 6 (Joe feedback) ================= */
+
+/* 2. Trust icons: no box — clean open strip */
+.text-with-icons {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: clamp(18px, 2.5vw, 34px) 0 !important;
+}
+
+/* 3. Info bar: blend with header ground, no color band */
+.info-bar { background: var(--nf-bone) !important; }
+.shopify-section:has(.info-bar) [class*="color-scheme"] { background: var(--nf-bone) !important; }
+
+/* 4. Hero: remove bottom gradient (caused banding lines) */
+.content-over-media::after { content: none !important; }
+
+/* 5. Mega menu hierarchy like the old site: big serif group titles, serif sub-links */
+.mega-menu__title, .mega-menu .h6 {
+  font-family: "Fraunces", serif !important;
+  font-size: 1.2rem !important;
+  font-weight: 480 !important;
+  letter-spacing: 0.015em !important;
+  text-transform: none !important;
+  color: var(--nf-ink) !important;
+  margin-bottom: 0.35rem;
+}
+.mega-menu__group-links a, .mega-menu a {
+  font-family: "Fraunces", Georgia, serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+  line-height: 2 !important;
+  color: var(--nf-ink-soft) !important;
+}
+.mega-menu__group-links a:hover, .mega-menu a:hover { color: var(--nf-brass-deep) !important; }
+
+/* 6. Sticky add-to-cart: glued to very top of viewport (never mid-screen) */
+.product-sticky-bar {
+  top: 0 !important;
+  inset-block-start: 0 !important;
+  bottom: auto !important;
+  inset-block-end: auto !important;
+  border-bottom: 1px solid var(--nf-border-soft) !important;
+  box-shadow: 0 8px 30px rgb(38 32 25 / 0.10);
+}
+
+
+/* footer richtext (contact block) readable on espresso */
+.shopify-section--footer .footer p,
+.shopify-section--footer .footer strong,
+.shopify-section--footer .footer b,
+.shopify-section--footer .footer .prose,
+.shopify-section--footer .footer li {
+  color: #EDE4D3 !important;
+}
+.shopify-section--footer .footer strong, .shopify-section--footer .footer b { color: #F4EDDE !important; }
+
+
+/* Best Sellers banner (product page): left scrim for text legibility */
+.shopify-section--main-product ~ .shopify-section--image-with-text-overlay .content-over-media::after {
+  content: "" !important;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, rgb(35 29 22 / 0.58) 0%, rgb(35 29 22 / 0.22) 45%, rgb(35 29 22 / 0) 70%);
+  z-index: 0;
+}
+
+
+/* ================= ITERATION 7: ALL-WHITE GROUND (Joe: no coffee color) ================= */
+/* Keep: Fraunces/Inter, brass accents, terracotta sale, rounded cards. Drop: cream/bone/espresso surfaces. */
+
+:root {
+  --nf-bone: #ffffff;
+  --nf-card: #ffffff;
+  --nf-ink: #1c1c1c;
+  --nf-ink-soft: #5f5c58;
+  --nf-espresso: #1c1c1c;
+  --nf-espresso-2: #262626;
+  --nf-border: #E4E2DE;
+  --nf-border-soft: #EEECE8;
+}
+
+/* neutralize hard-coded warm surfaces */
+.product-card__media, .product-card__media img { background: #f6f6f5 !important; }
+.mcgee-cat-img { background-color: #f2f2f0 !important; }
+#cart-drawer .line-item__media { background: #f6f6f5 !important; }
+.nf-buy2-hint { background: #f7f7f6 !important; border-color: #e6e4e0 !important; }
+.product-sticky-bar { background: #ffffff !important; }
+#nf-curtain { background: #ffffff !important; }
+::-webkit-scrollbar-thumb { background: #d6d4d0; border: 3px solid #ffffff; }
+::-webkit-scrollbar-track { background: #ffffff; }
+
+/* product card: white on white needs a touch more definition */
+.product-card { border-color: #ECEAE6; }
+.product-card:hover { border-color: #DDDBD6; }
+
+/* buy column card on white */
+@media (min-width: 1000px) {
+  .product-info { background: #ffffff; border-color: #ECEAE6; }
+}
+
+/* FOOTER: white, editorial */
+.shopify-section--footer .footer,
+.shopify-section--footer footer,
+footer.footer {
+  background: #ffffff !important;
+  color: #1c1c1c !important;
+  border-top: 1px solid #E9E7E3 !important;
+}
+.shopify-section--footer .footer * { border-color: #E9E7E3 !important; }
+.shopify-section--footer .footer a { color: #5f5c58 !important; }
+.shopify-section--footer .footer a:hover { color: var(--nf-brass-deep) !important; }
+.shopify-section--footer .footer .h6, .shopify-section--footer .footer h2 {
+  color: #1c1c1c !important;
+}
+.shopify-section--footer .footer p,
+.shopify-section--footer .footer strong,
+.shopify-section--footer .footer b,
+.shopify-section--footer .footer .prose,
+.shopify-section--footer .footer li { color: #3d3b38 !important; }
+.shopify-section--footer .footer strong, .shopify-section--footer .footer b { color: #1c1c1c !important; }
+.shopify-section--footer .footer input {
+  background: #ffffff !important;
+  border: 1px solid #DDDBD6 !important;
+  color: #1c1c1c !important;
+}
+.shopify-section--footer .footer .button { background: #1c1c1c !important; color: #ffffff !important; }
+.shopify-section--footer .footer .button:hover { background: var(--nf-brass) !important; color: #ffffff !important; }
+.shopify-section--footer .footer img[src*="wordmark"], .footer__block--image img { filter: none !important; }
+
+/* announcement bar: charcoal, brass link stays */
+#nora-announcement-bar { background-color: #1c1c1c !important; color: #f5f5f5 !important; }
+#nora-announcement-bar a { color: #D8B98B !important; }
+
+/* header/nav/info-bar/search on white */
+header[id$="__header"], .header, .header__wrapper { background: #ffffff !important; }
+.top-utility-bar { background: #ffffff !important; }
+.info-bar { background: #ffffff !important; }
+.shopify-section:has(.info-bar) [class*="color-scheme"] { background: #ffffff !important; }
+.header-search-panel, .header-search-panel__form, .header-search-panel__input { background: #ffffff !important; }
+.mega-menu, .header__dropdown { background: #ffffff !important; }
+
+/* trust strip + dialogs */
+.color-scheme--dialog, dialog, .popover { --background: 255 255 255; --background-without-opacity: 255 255 255; }
+
+
+/* ================= ITERATION 8: NAV BACK TO POYNTER (refined) ================= */
+.header nav .header__primary-nav-item a,
+header .header__primary-nav-item a[data-title],
+.header .header__primary-nav-item a,
+.header__primary-nav-item a {
+  font-family: "Poynter Oldstyle", Georgia, serif !important;
+  font-size: 15.5px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.055em !important;
+  text-transform: capitalize !important;
+  color: var(--nf-ink) !important;
+}
+
+/* mega menu: Poynter hierarchy, bigger group titles */
+.mega-menu__title, .mega-menu .h6 {
+  font-family: "Poynter Oldstyle", Georgia, serif !important;
+  font-size: 1.28rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: none !important;
+  color: var(--nf-ink) !important;
+}
+.mega-menu__group-links a, .mega-menu a {
+  font-family: "Poynter Oldstyle", Georgia, serif !important;
+  font-size: 1.06rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.015em !important;
+  line-height: 2.05 !important;
+  color: var(--nf-ink-soft) !important;
+}
+.mega-menu__group-links a:hover, .mega-menu a:hover { color: var(--nf-brass-deep) !important; }
+.mega-menu__figures figcaption { font-family: "Poynter Oldstyle", Georgia, serif !important; }
+
+/* search input back to Poynter */
+.header-search-panel__input, .header-search-panel__input::placeholder {
+  font-family: "Poynter Oldstyle", Georgia, serif !important;
+}
+
+/* picks carousel tabs back to Poynter */
+.featured-collections-navigation > button {
+  font-family: "Poynter Oldstyle", Georgia, serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.035em !important;
+}
+
+/* mobile sidebar menu: same Poynter, slightly more air */
+.header-sidebar__linklist-button {
+  font-family: "Poynter Oldstyle", Georgia, serif !important;
+  font-size: 16px !important;
+  letter-spacing: 0.04em !important;
+}
+
+
+/* mobile: mosaic big tile keeps hero height */
+@media (max-width: 899px) {
+  .nf-mosaic__grid a.nf-mosaic__big { min-height: 340px !important; }
+  .header-sidebar__linklist-button { font-size: 16px !important; }
+}
+
+
+/* ================= MOSAIC XL: near full-bleed (Joe) ================= */
+.nf-mosaic {
+  max-width: none !important;
+  padding: 28px clamp(12px, 1.4vw, 24px) 48px !important;
+}
+.nf-mosaic__head { padding: 0 6px; }
+.nf-mosaic__head h2 { font-size: clamp(28px, 2.8vw, 40px) !important; }
+.nf-mosaic__grid {
+  grid-auto-rows: minmax(330px, 42vh) !important;
+  gap: 16px !important;
+}
+.nf-mosaic__label { font-size: clamp(20px, 1.7vw, 26px) !important; bottom: 22px !important; }
+.nf-mosaic__big-content h3 { font-size: clamp(30px, 3vw, 46px) !important; }
+.nf-mosaic__big-content p { font-size: 14px !important; }
+.nf-mosaic__big-content { padding-bottom: 44px !important; }
+@media (max-width: 899px) {
+  .nf-mosaic { padding: 10px 10px 28px !important; }
+  .nf-mosaic__grid { grid-auto-rows: auto !important; gap: 10px !important; }
+  .nf-mosaic__grid a { min-height: 190px !important; }
+  .nf-mosaic__grid a.nf-mosaic__big { min-height: 380px !important; }
+  .nf-mosaic__label { font-size: 17px !important; }
+}
+
+
+/* ================= NEW ARRIVALS XL: near full-bleed (Joe) ================= */
+.nf-newin { padding: 60px 0 10px !important; }
+.nf-newin__grid {
+  max-width: none !important;
+  padding: 0 clamp(12px, 1.4vw, 24px) !important;
+  grid-template-columns: minmax(0, 620px) minmax(0, 1fr) !important;
+  gap: clamp(28px, 3vw, 56px) !important;
+}
+.nf-newin__title { font-size: clamp(44px, 4.6vw, 70px) !important; }
+.nf-newin__copy { font-size: 15px !important; max-width: 48ch !important; }
+.nf-toggle-btn { padding: 12px 24px !important; font-size: 11px !important; }
+.nf-newin__cats { gap: 10px !important; }
+.nf-cat { min-height: 92px !important; font-size: 10.5px !important; padding: 16px 8px 14px !important; }
+.nf-cat svg { width: 27px !important; height: 27px !important; }
+.nf-btn-solid { padding: 17px 30px !important; font-size: 11px !important; }
+.nf-btn-text { font-size: 16px !important; }
+.nf-newin__media { aspect-ratio: 4/3 !important; max-height: 660px !important; }
+.nf-newin__rowwrap {
+  max-width: none !important;
+  padding: 26px clamp(12px, 1.4vw, 24px) 26px !important;
+}
+.nf-newin__row { gap: 18px !important; }
+.nf-np__title { font-size: 15px !important; }
+.nf-np__price { font-size: 13.5px !important; }
+@media (max-width: 899px) {
+  .nf-newin { padding: 36px 0 6px !important; }
+  .nf-newin__grid { padding: 0 16px !important; grid-template-columns: 1fr !important; gap: 20px !important; }
+  .nf-newin__title { font-size: clamp(34px, 9vw, 44px) !important; }
+  .nf-cat { min-height: 76px !important; }
+  .nf-newin__media { aspect-ratio: 16/10 !important; max-height: none !important; }
+  .nf-newin__rowwrap { padding: 20px 0 14px 16px !important; }
+}
+
+
+/* ================= NEW ARRIVALS: centered Dazuma card (Joe) ================= */
+.nf-newin { max-width: 1300px !important; margin: 34px auto 6px !important; padding: 44px 44px 30px !important; border: 1px solid #ECEAE6; border-radius: 8px; background: #fff; }
+.nf-newin__grid { max-width: none !important; padding: 0 !important; grid-template-columns: minmax(0, 470px) minmax(0, 1fr) !important; gap: clamp(24px, 3vw, 48px) !important; }
+.nf-newin__title { font-size: clamp(34px, 3.4vw, 54px) !important; }
+.nf-newin__copy { font-size: 14px !important; }
+.nf-toggle-btn { padding: 11px 22px !important; font-size: 10.5px !important; }
+.nf-cat { min-height: 84px !important; font-size: 9.5px !important; }
+.nf-cat svg { width: 25px !important; height: 25px !important; }
+.nf-btn-solid { padding: 15px 26px !important; font-size: 10.5px !important; }
+.nf-btn-text { font-size: 15px !important; }
+.nf-newin__media { aspect-ratio: 4/3 !important; max-height: 520px !important; border-radius: 6px !important; }
+.nf-newin__rowwrap { max-width: none !important; padding: 26px 0 0 !important; }
+.nf-newin__row { gap: 14px !important; }
+@media (max-width: 899px) {
+  .nf-newin { margin: 16px 12px 4px !important; padding: 26px 16px 18px !important; }
+  .nf-newin__grid { padding: 0 !important; grid-template-columns: 1fr !important; }
+  .nf-newin__rowwrap { padding: 18px 0 8px !important; }
+}
+
+
+/* ================= NEW ARRIVALS: Dazuma size v2 — bigger card ================= */
+.nf-newin { max-width: min(1460px, 95vw) !important; padding: 54px 54px 36px !important; }
+.nf-newin__grid { grid-template-columns: minmax(0, 530px) minmax(0, 1fr) !important; gap: clamp(30px, 3.4vw, 60px) !important; }
+.nf-newin__title { font-size: clamp(40px, 3.9vw, 64px) !important; }
+.nf-newin__copy { font-size: 15px !important; }
+.nf-toggle-btn { padding: 12px 24px !important; font-size: 11px !important; }
+.nf-cat { min-height: 92px !important; font-size: 10px !important; }
+.nf-cat svg { width: 27px !important; height: 27px !important; }
+.nf-btn-solid { padding: 16px 28px !important; font-size: 11px !important; }
+.nf-newin__media { max-height: 600px !important; }
+.nf-newin__rowwrap { padding: 30px 0 0 !important; }
+.nf-newin__row { gap: 16px !important; }
+.nf-np__title { font-size: 15px !important; }
+@media (max-width: 899px) {
+  .nf-newin { max-width: none !important; margin: 16px 10px 4px !important; padding: 26px 16px 18px !important; }
+}
+
+
+/* ================= collection-list SHOP NOW: plain link, no hover bubble (Joe) ================= */
+[id*="__collection_list"] a.button:hover,
+.shopify-section--collection-list a.button:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: var(--nf-brass-deep) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+[id*="__collection_list"] a.button,
+.shopify-section--collection-list a.button {
+  border-radius: 0 !important;
+}
+
+
+/* ================= MOSAIC MOBILE SWIPE: big card top, 4 tiles swipe row (Joe) ================= */
+.nf-mosaic__tiles{display:contents}
+@media(max-width:899px){
+.nf-mosaic__grid{display:block !important}
+.nf-mosaic__grid a.nf-mosaic__big{min-height:400px !important;display:block;margin-bottom:10px}
+.nf-mosaic__tiles{display:flex !important;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:6px;scrollbar-width:none}
+.nf-mosaic__tiles::-webkit-scrollbar{display:none}
+.nf-mosaic__tiles a{flex:0 0 74% !important;min-height:350px !important;scroll-snap-align:start}
+}
+
+/* ================= NEWIN MOBILE DAZUMA: no hero image, 4 chips across, stacked CTAs (Joe) ================= */
+@media (max-width:899px){
+.nf-newin__media{display:none !important}
+.nf-newin__grid{grid-template-columns:1fr !important;gap:8px !important}
+.nf-newin__cats{display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:8px !important}
+.nf-newin__cats[hidden]{display:none !important}
+.nf-cat{min-height:78px !important;padding:10px 3px 8px !important;font-size:8.5px !important;letter-spacing:.04em !important;overflow:hidden}
+.nf-cat svg{width:22px !important;height:22px !important}
+.nf-newin__ctas{display:flex !important;flex-direction:column;align-items:stretch;gap:10px;width:100%}
+.nf-btn-solid{display:block !important;width:100% !important;text-align:center !important;padding:16px 20px !important}
+.nf-btn-text{display:block !important;text-align:center !important;margin:2px auto 0 !important}
+}
+
+/* ================= MOSAIC DAZUMA SIZE: centered contained block, big tile = half width (Joe) ================= */
+.nf-mosaic{max-width:1260px !important;padding:26px 24px 40px !important;margin:0 auto !important}
+.nf-mosaic__grid{grid-template-columns:2fr 1fr 1fr !important;grid-auto-rows:minmax(280px,305px) !important;gap:10px !important}
+.nf-mosaic__head h2{font-size:clamp(22px,2vw,30px) !important}
+.nf-mosaic__label{font-size:clamp(16px,1.3vw,20px) !important;bottom:16px !important}
+.nf-mosaic__big-content h3{font-size:clamp(24px,2.3vw,34px) !important}
+.nf-mosaic__big-content p{font-size:12.5px !important}
+.nf-mosaic__big-content{padding-bottom:32px !important}
+@media(max-width:899px){
+.nf-mosaic{padding:10px 12px 26px !important}
+}
+
+/* ================= NEWIN OUTLINE: no section separator lines, stronger card border (Joe) ================= */
+.shopify-section:has(.nf-newin){border:0 !important}
+.shopify-section:has(.nf-newin) > div, .shopify-section:has(.nf-newin) [class*="color-scheme"]{border-top:0 !important;border-bottom:0 !important}
+.nf-newin{border:2px solid #97938D !important}
+
+/* mosaic head links hidden (Joe) */
+.nf-mosaic__head a{display:none !important}
+
+
+/* mosaic separator lines removed (Joe) */
+.shopify-section:has(.nf-mosaic){border:0 !important}
+.shopify-section:has(.nf-mosaic) > div{border-top:0 !important;border-bottom:0 !important}
+[id$="__custom_liquid_pPnBYa"]{border:0 !important}
+[id$="__custom_liquid_pPnBYa"] > div{border-top:0 !important}
+
+/* ================= MOSAIC SIZE v3: a bit bigger than Dazuma (Joe) ================= */
+.nf-mosaic{max-width:1520px !important;padding:28px 28px 44px !important}
+.nf-mosaic__grid{grid-auto-rows:minmax(330px,360px) !important;gap:12px !important}
+.nf-mosaic__head h2{font-size:clamp(24px,2.2vw,33px) !important}
+.nf-mosaic__label{font-size:clamp(17px,1.4vw,22px) !important;bottom:18px !important}
+.nf-mosaic__big-content h3{font-size:clamp(26px,2.5vw,38px) !important}
+.nf-mosaic__big-content p{font-size:13px !important}
+@media(max-width:899px){
+.nf-mosaic{padding:10px 12px 26px !important}
+}
+
+/* collection-list slightly smaller v2 (Joe) */
+[id$="__collection_list_VG7twh"] .content-over-media{aspect-ratio:4/5 !important}
+
+/* ================= SIZES v4 (Joe): collection-list 1200px, mosaics bigger ================= */
+[id$="__collection_list_VG7twh"] .collection-list{max-width:1200px !important;margin-inline:auto !important}
+.nf-mosaic{max-width:1680px !important}
+.nf-mosaic__grid{grid-auto-rows:minmax(360px,400px) !important}
+@media(max-width:899px){
+[id$="__collection_list_VG7twh"] .collection-list{max-width:none !important}
+}
+
+/* ================= SIZES v5 (Joe): collection-list near full viewport height, mosaics +50px ================= */
+[id$="__collection_list_VG7twh"] .collection-list{max-width:1440px !important}
+[id$="__collection_list_VG7twh"] .content-over-media{aspect-ratio:auto !important;height:min(80vh,1000px) !important}
+[id$="__collection_list_VG7twh"] .content-over-media img{height:100% !important;width:100% !important;object-fit:cover !important}
+.nf-mosaic{max-width:1730px !important}
+.nf-mosaic__grid{grid-auto-rows:minmax(410px,450px) !important}
+@media(max-width:899px){
+[id$="__collection_list_VG7twh"] .content-over-media{height:auto !important;aspect-ratio:4/5 !important}
+}
+
+/* SIZES v6 (Joe): pair cards wider */
+[id$="__collection_list_VG7twh"] .collection-list{max-width:1640px !important}
+
+
+/* SIZES v7 (Joe): pair section slightly bigger */
+[id$="__collection_list_VG7twh"] .collection-list{width:min(96%,1500px) !important;max-width:1500px !important;margin-inline:auto !important}
+[id$="__collection_list_VG7twh"] .content-over-media{height:min(86vh,1120px) !important}
+@media(max-width:899px){
+[id$="__collection_list_VG7twh"] .collection-list{width:auto !important;max-width:none !important}
+[id$="__collection_list_VG7twh"] .content-over-media{height:auto !important;aspect-ratio:4/5 !important}
+}
+
+/* ================= BEST SELLERS BANNER HEADING (Joe: bad font) ================= */
+#shopify-section-template--21472858374196__image_with_text_overlay_7UiPzb .content-over-media h2,
+#shopify-section-template--21472858374196__image_with_text_overlay_7UiPzb .content-over-media .h2 {
+  font-family: "Fraunces", Georgia, serif !important;
+  text-transform: none !important;
+  font-weight: 340 !important;
+  font-size: clamp(30px, 3vw, 46px) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.15 !important;
+  max-width: 16ch;
+  text-shadow: 0 2px 24px rgb(20 16 12 / 0.45);
+}
+#shopify-section-template--21472858374196__image_with_text_overlay_7UiPzb .content-over-media .button {
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+}
+
+/* ================= ANNOUNCEMENT BAR MOBILE: smaller, never clipped (Joe) ================= */
+@media (max-width: 767px){
+#nora-announcement-bar {
+  font-size: 10px !important;
+  letter-spacing: 0.05em !important;
+  padding: 9px 10px !important;
+  line-height: 1.35 !important;
+  text-align: center !important;
+}
+#nora-announcement-bar .nora-anno-slide {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  max-width: 100% !important;
+}
+#nora-announcement-bar a { white-space: normal !important; }
+}
+@media (max-width: 380px){
+#nora-announcement-bar { font-size: 10px !important; letter-spacing: 0.03em !important; padding: 8px 8px !important; }
+}
+
+/* ================= BEST SELLERS BANNER SIZE + CROP (Joe: bigger, show the lights) ================= */
+#shopify-section-template--21472858374196__image_with_text_overlay_7UiPzb .content-over-media {
+  min-height: 700px !important;
+}
+#shopify-section-template--21472858374196__image_with_text_overlay_7UiPzb .content-over-media img,
+#shopify-section-template--21472858374196__image_with_text_overlay_7UiPzb .content-over-media picture img {
+  object-fit: cover !important;
+  object-position: 50% 42% !important;
+}
+@media (max-width: 899px){
+#shopify-section-template--21472858374196__image_with_text_overlay_7UiPzb .content-over-media { min-height: 460px !important; }
+#shopify-section-template--21472858374196__image_with_text_overlay_7UiPzb .content-over-media img { object-position: 50% 42% !important; }
+}
+
+/* GLefFE separator removed (Joe) */
+[id$="__custom_liquid_GLefFE"]{border:0 !important}
+[id$="__custom_liquid_GLefFE"] > div{border-top:0 !important;border-bottom:0 !important}
+
+/* ================= NAV CHROMEBOOK FIT: keep the top nav on ONE row (Joe) ================= */
+@media (min-width:1000px) and (max-width:1440px){
+  .header__primary-nav, .header__primary-nav.header__primary-nav--center, nav.header__primary-nav--center{ column-gap:15px !important; row-gap:0 !important; }
+  .header nav .header__primary-nav-item a,
+  header .header__primary-nav-item a[data-title],
+  .header .header__primary-nav-item a,
+  .header__primary-nav-item a{ font-size:14.2px !important; letter-spacing:0.035em !important; white-space:nowrap !important; }
+  .header{ padding-left:28px !important; padding-right:28px !important; }
+  .mega-menu__title, .mega-menu .h6{ font-size:1.12rem !important; }
+  .mega-menu__group-links a, .mega-menu a{ font-size:0.97rem !important; line-height:1.85 !important; }
+  .mega-menu__figures img{ width:clamp(96px,8vw,140px) !important; }
+}
+@media (min-width:1000px) and (max-width:1300px){
+  .header__primary-nav, .header__primary-nav.header__primary-nav--center, nav.header__primary-nav--center{ column-gap:10px !important; }
+  .header nav .header__primary-nav-item a,
+  header .header__primary-nav-item a[data-title],
+  .header .header__primary-nav-item a,
+  .header__primary-nav-item a{ font-size:13.2px !important; letter-spacing:0.02em !important; }
+  .header{ padding-left:18px !important; padding-right:18px !important; }
+  .mega-menu__title, .mega-menu .h6{ font-size:1.05rem !important; }
+  .mega-menu__group-links a, .mega-menu a{ font-size:0.93rem !important; line-height:1.8 !important; }
+}
+
+/* ================= DESIGN SWEEP FIXES - 2026-08-30 ================= */
+
+/* 1. "Get 10% Off" tab was sitting on top of real content. On mobile it was
+      pinned bottom-LEFT, which is exactly where every label and title starts,
+      so it covered the variant label on product pages and the bottom-left card
+      on collection pages. Move it to the right gutter, shrink it, and let it
+      slide away while the page is being scrolled down. */
+@media (max-width: 749px) {
+  #nf-nl-tab.nf-nl-tab {
+    left: auto !important;
+    right: 12px !important;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 9px 13px !important;
+    transition: transform .28s ease, opacity .28s ease !important;
+  }
+  #nf-nl-tab.nf-nl-tab span { font-size: 10px !important; letter-spacing: 0.06em !important; }
+  #nf-nl-tab.nf-nl-tab.nf-nl-away {
+    transform: translateY(150%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+/* Desktop: the vertical tab was pinned at top:50%, straight through the hero
+   headline band. Drop it to the lower-left corner. */
+@media (min-width: 750px) {
+  #nf-nl-tab.nf-nl-tab { top: auto !important; bottom: 28px !important; transform: none !important; }
+}
+
+/* 2. Mobile product page had no title hierarchy: the h1 rendered at 16px,
+      the same size as the copy beneath it. */
+@media (max-width: 999px) {
+  .product-info h1.product-title,
+  .product-info h1,
+  .product-info .product-title.h3 {
+    font-size: 25px !important;
+    line-height: 1.2 !important;
+  }
+}
+
+/* 3. ADD TO CART, the primary CTA, was rendering at 11.52px. */
+.product-info .button.w-full,
+.product-form__buttons .button,
+buy-buttons .button {
+  font-size: 13px !important;
+  letter-spacing: 0.13em !important;
+}
+
+/* 4. Product-card rows were ragged: titles ran 1-3 lines, so the price landed
+      at a different height in every card of the same row. Two-line lock. */
+.product-card .product-title {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  min-height: 2.7em;
+}
+
+/* 5. The card price rendered at rgba(28,28,28,0.65) via .text-subdued, making
+      the number that drives the decision the faintest text on the card. */
+.product-card sale-price,
+.product-card .price-list sale-price.text-subdued {
+  color: #1c1c1c !important;
+  opacity: 1 !important;
+  font-weight: 560 !important;
+}
+.product-card compare-at-price { color: rgba(28,28,28,0.5) !important; }
+
+/* 6. White and very light swatches were a white circle on a white card. */
+.product-card .color-swatch, .color-swatch {
+  box-shadow: inset 0 0 0 1px rgb(28 28 28 / 0.30) !important;
+}
+
+/* 7. Homepage hero: the white eyebrow and headline washed out over the bright
+      window on the right. Left-weighted scrim, the same device already used on
+      the Best Sellers banner, restores contrast without dimming the photo.
+      The global BOTTOM gradient stays off - that one caused banding. */
+[id$="__image_with_text_overlay_TebrQa"] .content-over-media::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  background: linear-gradient(90deg, rgb(26 22 18 / 0.48) 0%, rgb(26 22 18 / 0.28) 32%, rgb(26 22 18 / 0.05) 58%, rgb(26 22 18 / 0) 72%) !important;
+}
+[id$="__image_with_text_overlay_TebrQa"] .content-over-media > * { position: relative; z-index: 1; }
+[id$="__image_with_text_overlay_TebrQa"] .content-over-media p:not(.h1) {
+  text-shadow: 0 1px 4px rgb(0 0 0 / 0.55) !important;
+}
+
+
+/* ================= DESIGN SWEEP ROUND 2 - 2026-08-30 ================= */
+
+/* 8. Mosaic big tile: its scrim only starts fading at 45% and reaches 0.52 at
+      the very bottom, but the heading sits well above that, over the brightest
+      part of the photo. "The Indoor Collection" was barely legible. Deepen and
+      raise the fade on the big tile only - the small tiles carry a single word
+      at the very bottom, where the existing scrim is enough. */
+.nf-mosaic__grid a.nf-mosaic__big::after {
+  background: linear-gradient(185deg, rgb(20 17 14 / 0) 20%, rgb(20 17 14 / 0.30) 50%, rgb(20 17 14 / 0.74) 100%) !important;
+}
+
+/* 9. Second hero (.nf-hero-wrap): .nf-hero-overlay was fully transparent - an
+      empty element doing nothing - and the eyebrow had no text-shadow, so white
+      copy sat on a bare photo dimmed only 8% by the inline gradient. */
+.nf-hero-wrap .nf-hero-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none;
+  background: linear-gradient(95deg, rgb(24 20 16 / 0.46) 0%, rgb(24 20 16 / 0.24) 38%, rgb(24 20 16 / 0.02) 66%) !important;
+}
+.nf-hero-wrap .nf-hero-content { position: relative; z-index: 1; }
+.nf-hero-eyebrow { text-shadow: 0 1px 4px rgb(0 0 0 / 0.5) !important; }
+.nf-hero-heading { text-shadow: 0 2px 18px rgb(0 0 0 / 0.4) !important; }
+
+/* 10. Mobile tap targets under the 44px minimum. Extends the existing
+       nora-mobile-tap-targets block in theme.liquid, which covered swatches,
+       the quantity selector and the gallery zoom but not these. */
+@media (max-width: 749px) {
+  /* header cart: the <li> is 54x44 but the <a> inside it was only 22x22 */
+  .header__cart-link > a {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  /* product-card quick-add "+": keep the 32px circle, widen the hit area to 44 */
+  .product-card__quick-add-button { position: absolute; }
+  .product-card__quick-add-button::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+  }
+  /* footer disclosure rows were 26px */
+  .nf-footer-accordion__summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  /* footer link lists sat at ~19px rows */
+  .footer a.link-faded, .nf-footer-accordion a.link-faded {
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+  }
+}
+
+/* 11. Every button with no explicit override rendered at 11.52px
+       (--button-font: 500 0.72rem), including real CTAs like "View all",
+       "Continue shopping" and the 404 "Back to shopping". Lift the default;
+       buttons with their own size rule are unaffected. */
+:root { --button-font: 500 0.78rem/1.5 "Inter", sans-serif; }
+
+
+/* 13. Mobile collection pages pinned ~200px of an 812px screen (25%): the 54px
+       header plus the 48px Filter/Sort toolbar, which sticks at top:54. The
+       toolbar now slides away while scrolling down and returns on scroll-up, so
+       the header is the only thing permanently pinned. Desktop is untouched -
+       it has its own auto-hide nav rule above 1000px.
+       Opacity is faded as well as translating, because the toolbar sits at
+       z-index 2 and must not peek out from behind the header. Sticky elements
+       keep their flow position, so nothing reflows and the grid never jumps. */
+@media (max-width: 999px) {
+  .collection-toolbar {
+    transition: transform .28s ease, opacity .2s ease !important;
+    will-change: transform;
+  }
+  html.nf-toolbar-off .collection-toolbar {
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+@media (max-width: 999px) and (prefers-reduced-motion: reduce) {
+  .collection-toolbar { transition: none !important; }
+}
+
+
+/* 14. The stray blue X in the search bar. It is not in the markup at all - the
+       form holds only the icon, the input and the theme's own close button.
+       It is Chrome's native ::-webkit-search-cancel-button on
+       input[type="search"], which survives the input's appearance:none and sat
+       next to the real close button doing nothing useful. */
+.header-search-panel__input::-webkit-search-cancel-button,
+.header-search-panel__input::-webkit-search-decoration,
+.header-search-panel__input::-webkit-search-results-button,
+.header-search-panel__input::-webkit-search-results-decoration {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  display: none !important;
+}

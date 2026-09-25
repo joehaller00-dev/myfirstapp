@@ -1,0 +1,140 @@
+/* NF-DRAWER-V2 (2026-09-12): phone drawer redesign, paired with assets/nf-drawer-v2.js.
+   Loaded with media="screen and (max-width: 999px)"; every rule is scoped to #sidebar-menu.nfd2,
+   which the script adds, so without the script the old drawer shows unchanged. */
+#sidebar-menu.nfd2 {
+  --nfd-ink: #1c1c1c; --nfd-soft: #5c5c5c; --nfd-line: #ececec; --nfd-tint: #f5f5f5;
+  --nfd-gold: #a67c4f; --nfd-sale: #e32c2b;
+  --nfd-head: var(--heading-font-family, "Roboto Serif", Georgia, serif);
+  --nfd-ui: Montserrat, var(--text-font-family, system-ui), sans-serif;
+}
+#sidebar-menu.nfd2 .nfd-img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s ease; }
+#sidebar-menu.nfd2 .nfd-img.is-in { opacity: 1; }
+
+/* quick tiles */
+#sidebar-menu.nfd2 .nfd-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 2px 0 14px; }
+#sidebar-menu.nfd2 .nfd-tile {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 86px; padding: 11px 12px;
+  border: 0; border-radius: 14px; overflow: hidden; background: var(--nfd-tint); color: #fff; text-align: left; text-decoration: none;
+  font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; transform: translateZ(0);
+  transition: transform .18s ease;
+}
+#sidebar-menu.nfd2 .nfd-tile:active { transform: scale(.975); }
+#sidebar-menu.nfd2 .nfd-tile .nfd-img { position: absolute; inset: 0; }
+#sidebar-menu.nfd2 .nfd-tile::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.58) 100%);
+}
+#sidebar-menu.nfd2 .nfd-tile__t, #sidebar-menu.nfd2 .nfd-tile__s { position: relative; z-index: 1; }
+#sidebar-menu.nfd2 .nfd-tile__t { font: 400 17px/1.15 var(--nfd-head); letter-spacing: .01em; text-shadow: 0 1px 8px rgba(0,0,0,.3); }
+#sidebar-menu.nfd2 .nfd-tile__s { margin-top: 3px; font: 500 10.5px/1.2 var(--nfd-ui); letter-spacing: .02em; opacity: .92; }
+#sidebar-menu.nfd2 .nfd-tile--sale { background: var(--nfd-sale); }
+#sidebar-menu.nfd2 .nfd-tile--sale::after { background: radial-gradient(120% 90% at 100% 0%, rgba(255,255,255,.18), rgba(255,255,255,0) 60%); }
+#sidebar-menu.nfd2 .nfd-tile--sale .nfd-tile__t { font-size: 21px; text-shadow: none; }
+#sidebar-menu.nfd2 .nfd-tile:focus-visible { outline: 2px solid var(--nfd-ink); outline-offset: 2px; }
+
+/* top level rows */
+#sidebar-menu.nfd2 .header-sidebar__linklist.nfd-main { border: 0; }
+#sidebar-menu.nfd2 .nfd-main > li { border-color: var(--nfd-line) !important; }
+#sidebar-menu.nfd2 .header-sidebar__linklist-button.nfd-row {
+  display: flex !important; align-items: center; justify-content: flex-start; gap: 14px; width: 100%;
+  min-height: 64px; padding-block: 8px !important; color: var(--nfd-ink) !important;
+  font-family: var(--nfd-head) !important; font-size: 18px !important; font-weight: 400 !important;
+  letter-spacing: .005em !important; text-transform: none !important; line-height: 1.2 !important; text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+#sidebar-menu.nfd2 .nfd-row > svg, #sidebar-menu.nfd2 .nfd-row > .icon { margin-inline-start: auto; flex: none; opacity: .55; }
+#sidebar-menu.nfd2 .nfd-thumb {
+  flex: none; width: 48px; height: 48px; border-radius: 12px; overflow: hidden; background: var(--nfd-tint);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.04);
+}
+#sidebar-menu.nfd2 .nfd-row:active .nfd-thumb { transform: scale(.96); }
+#sidebar-menu.nfd2 .nfd-thumb, #sidebar-menu.nfd2 .nfd-grid__img { transition: transform .18s ease; }
+#sidebar-menu.nfd2 .nfd-main > li.nfd-first-tb { border-top: 0 !important; }
+#sidebar-menu.nfd2 .nfd-main > li.nfd-first-tb::before {
+  content: "More to explore"; display: block; padding: 26px 0 6px;
+  font: 600 11px/1 var(--nfd-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--nfd-gold);
+}
+#sidebar-menu.nfd2 .nfd-main > li.nf-tb-drawer-item .nfd-row { min-height: 58px; font-size: 16.5px !important; }
+#sidebar-menu.nfd2 .nfd-main > li.nf-tb-drawer-item .nfd-thumb { width: 42px; height: 42px; border-radius: 50%; }
+
+/* Sale in red everywhere on phones */
+#sidebar-menu.nfd2 .nfd-sale, #sidebar-menu.nfd2 .nfd-row.nfd-sale, #sidebar-menu.nfd2 .header-sidebar__back-button.nfd-sale { color: var(--nfd-sale) !important; }
+#sidebar-menu.nfd2 .nfd-row.nfd-sale .nfd-thumb { box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--nfd-sale); }
+#sidebar-menu .header-sidebar__linklist-button[href$="/collections/sale"],
+.mobile-collection-pills .pill-btn[href$="/collections/sale"] { color: #e32c2b !important; }
+.mobile-collection-pills .pill-btn[href$="/collections/sale"] { border-color: #e32c2b !important; }
+
+/* info links */
+#sidebar-menu.nfd2 .nfd-util {
+  display: grid !important; grid-template-columns: 1fr 1fr; column-gap: 14px; margin-top: 8px; padding-top: 0 !important;
+}
+#sidebar-menu.nfd2 .nfd-util::before {
+  content: "Help & info"; grid-column: 1 / -1; padding: 24px 0 8px;
+  font: 600 11px/1 var(--nfd-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--nfd-gold);
+}
+#sidebar-menu.nfd2 .nfd-util .header-sidebar__utility-link {
+  display: flex !important; align-items: center; min-height: 44px; padding: 0 !important; border-bottom: 1px solid var(--nfd-line);
+  font-family: var(--nfd-ui) !important; font-size: 13.5px !important; font-weight: 500 !important; letter-spacing: .01em !important;
+  color: var(--nfd-ink) !important; text-transform: none !important; text-decoration: none;
+}
+
+/* sub panels: back link, hero, rows, photo grid */
+#sidebar-menu.nfd2 .header-sidebar__back-button {
+  font-family: var(--nfd-ui) !important; font-size: 12px !important; font-weight: 600 !important; letter-spacing: .12em !important;
+  text-transform: uppercase !important; color: var(--nfd-soft) !important; opacity: 1 !important;
+  min-height: 48px; border-bottom: 0 !important; -webkit-tap-highlight-color: transparent;
+}
+#sidebar-menu.nfd2 .nfd-hero {
+  position: relative; display: block; aspect-ratio: 16 / 10; margin: 2px 0 12px; border-radius: 16px; overflow: hidden;
+  background: var(--nfd-tint); color: #fff; text-decoration: none; transform: translateZ(0);
+}
+#sidebar-menu.nfd2 .nfd-hero .nfd-img { position: absolute; inset: 0; }
+#sidebar-menu.nfd2 .nfd-hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 38%, rgba(0,0,0,.62) 100%);
+}
+#sidebar-menu.nfd2 .nfd-hero__txt {
+  position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 1;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 10px;
+}
+#sidebar-menu.nfd2 .nfd-hero__t { font: 400 25px/1.1 var(--nfd-head); letter-spacing: .005em; text-shadow: 0 1px 10px rgba(0,0,0,.35); }
+#sidebar-menu.nfd2 .nfd-hero__cta {
+  flex: none; padding: 8px 13px; border-radius: 999px; background: #fff; color: var(--nfd-ink);
+  font: 600 11px/1 var(--nfd-ui); letter-spacing: .1em; text-transform: uppercase;
+}
+#sidebar-menu.nfd2 .nfd-hero--sale .nfd-hero__cta { background: var(--nfd-sale); color: #fff; }
+#sidebar-menu.nfd2 .nfd-hero--sale .nfd-hero__t { color: #fff; }
+#sidebar-menu.nfd2 .header-sidebar__sub-panel .header-sidebar__linklist { border: 0; }
+#sidebar-menu.nfd2 .header-sidebar__sub-panel .header-sidebar__linklist > li { border-color: var(--nfd-line) !important; }
+#sidebar-menu.nfd2 .header-sidebar__sub-panel .nfd-row { min-height: 54px; font-size: 16.5px !important; }
+#sidebar-menu.nfd2 .header-sidebar__sub-panel .nfd-thumbs .nfd-row { min-height: 62px; font-size: 17px !important; }
+#sidebar-menu.nfd2 .nfd-hide { display: none !important; }
+#sidebar-menu.nfd2 .header-sidebar__linklist.nfd-grid {
+  display: grid !important; grid-template-columns: 1fr 1fr; gap: 14px 10px; padding-bottom: 8px;
+}
+#sidebar-menu.nfd2 .nfd-grid > li { border: 0 !important; margin: 0 !important; padding: 0 !important; }
+#sidebar-menu.nfd2 .nfd-grid .nfd-row {
+  flex-direction: column; align-items: stretch; gap: 7px; min-height: 0; padding: 0 !important;
+  font-family: var(--nfd-ui) !important; font-size: 13px !important; font-weight: 500 !important; line-height: 1.25 !important;
+}
+#sidebar-menu.nfd2 .nfd-grid .nfd-row > svg, #sidebar-menu.nfd2 .nfd-grid .nfd-row > .icon { display: none; }
+#sidebar-menu.nfd2 .nfd-grid__img { display: block; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: var(--nfd-tint); }
+#sidebar-menu.nfd2 .nfd-grid .nfd-row:active .nfd-grid__img { transform: scale(.97); }
+
+/* panel motion: slide in from the right, transform only */
+#sidebar-menu.nfd2 .header-sidebar__sub-panel:not([hidden]) { animation: nfd-in .38s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes nfd-in { from { translate: 36px 0; } to { translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) {
+  #sidebar-menu.nfd2 .header-sidebar__sub-panel:not([hidden]) { animation: none; }
+  #sidebar-menu.nfd2 .nfd-img, #sidebar-menu.nfd2 .nfd-tile, #sidebar-menu.nfd2 .nfd-thumb { transition: none; }
+}
+
+/* NF-SALE-TILE-V1 (2026-09-13, owner: "the Sale tile is literally just red"): a real warm photo (glowing brass post lantern
+   among autumn leaves, from the Sale collection, Shopify File nf-sale-tile-lantern-v2.jpg) with a crisp red Sale chip in CSS.
+   Other three tiles unchanged. */
+#sidebar-menu.nfd2 .nfd-tile--sale{background:#2b2520}
+#sidebar-menu.nfd2 .nfd-tile--sale .nfd-img{object-fit:cover;object-position:55% 40%}
+#sidebar-menu.nfd2 .nfd-tile--sale:after{background:linear-gradient(180deg,rgba(0,0,0,0) 18%,rgba(0,0,0,.62) 100%)}
+#sidebar-menu.nfd2 .nfd-tile--sale .nfd-tile__t{align-self:flex-start;padding:4px 10px 5px;border-radius:6px;background:var(--nfd-sale);color:#fff;font-size:17px;line-height:1.1;text-shadow:none;box-shadow:0 4px 14px rgba(0,0,0,.28)}
+#sidebar-menu.nfd2 .nfd-tile--sale .nfd-tile__s{margin-top:6px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+/* /NF-SALE-TILE-V1 */

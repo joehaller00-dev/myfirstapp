@@ -1,0 +1,124 @@
+{%- comment -%}
+  NF-ABOUT-V1 (2026-09-11): "What Nora Furnish is about" for /pages/about-us.
+  Top: a short statement and text, an optional wide photo and three pillar blocks. Then a neutral grey strip of
+  promise blocks (shipping, delivery time, returns, checkout, email support), each linking to its policy.
+  "[count]" in a pillar is replaced by the live product count rounded DOWN to the hundred (collections.all), so the
+  number is always true; if the store ever has fewer than 100 products the pillar's fallback text is used.
+  Copy facts come from the store's own policies. No founder, year, team, showroom or location claims on purpose.
+{%- endcomment -%}
+{{- 'nf-about.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign s = section.settings
+  assign v_img = blank
+  if s.image_file != blank
+    assign v_img = images[s.image_file]
+  endif
+  assign pc = collections['all'].all_products_count | default: 0
+  assign pc_r = pc | divided_by: 100 | times: 100
+  assign pc_k = pc_r | divided_by: 1000
+  assign pc_rest = pc_r | modulo: 1000
+  if pc_k > 0
+    assign pc_rest_s = pc_rest | prepend: '00' | slice: -3, 3
+    assign pc_str = pc_k | append: ',' | append: pc_rest_s
+  else
+    assign pc_str = pc_r | append: ''
+  endif
+-%}
+<section class="nfa nfa-values" aria-labelledby="nfa-vh-{{ section.id }}">
+  <div class="nfa-wrap nfa-sec">
+    <div class="nfa-values__top">
+      <div>
+        {%- if s.eyebrow != blank -%}<p class="nfa-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfa-statement" id="nfa-vh-{{ section.id }}">{{ s.statement | escape }}</h2>
+      </div>
+      {%- if s.text != blank -%}<div class="nfa-body">{{ s.text }}</div>{%- endif -%}
+    </div>
+    {%- if v_img != blank and v_img.width > 0 -%}
+      <figure class="nfa-values__media">
+        {{- v_img | image_url: width: 2000 | image_tag: loading: 'lazy', widths: '700,1000,1400,2000', sizes: '(max-width: 1360px) 92vw, 1220px', alt: s.image_alt -}}
+      </figure>
+    {%- endif -%}
+    <ul class="nfa-pillars" role="list">
+      {%- for block in section.blocks -%}
+        {%- if block.type != 'pillar' -%}{%- continue -%}{%- endif -%}
+        {%- liquid
+          assign b_text = block.settings.text
+          if b_text contains '[count]'
+            if pc_r >= 100
+              assign b_text = b_text | replace: '[count]', pc_str
+            else
+              assign b_text = block.settings.text_fallback
+            endif
+          endif
+        -%}
+        <li class="nfa-pillar" {{ block.shopify_attributes }}>
+          {%- render 'nf-about-icon', name: block.settings.icon -%}
+          <h3 class="nfa-pillar__t">{{ block.settings.title | escape }}</h3>
+          <p class="nfa-pillar__x">{{ b_text | escape }}</p>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+
+  <div class="nfa-promise">
+    <div class="nfa-wrap nfa-promise__in">
+      <div class="nfa-head">
+        <div class="nfa-head__main">
+          {%- if s.promise_eyebrow != blank -%}<p class="nfa-eyebrow">{{ s.promise_eyebrow | escape }}</p>{%- endif -%}
+          {%- if s.promise_heading != blank -%}<h2 class="nfa-h2">{{ s.promise_heading | escape }}</h2>{%- endif -%}
+        </div>
+      </div>
+      <ul class="nfa-promise__grid" role="list">
+        {%- for block in section.blocks -%}
+          {%- if block.type != 'promise' -%}{%- continue -%}{%- endif -%}
+          <li class="nfa-promise__item" {{ block.shopify_attributes }}>
+            {%- render 'nf-about-icon', name: block.settings.icon -%}
+            <h3 class="nfa-promise__t">{{ block.settings.title | escape }}</h3>
+            <p class="nfa-promise__x">{{ block.settings.text | escape }}</p>
+            {%- if block.settings.link_label != blank -%}<a class="nfa-link" href="{{ block.settings.url }}">{{ block.settings.link_label | escape }}<span class="nfa-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF about values",
+  "class": "nfa-section nfa-section--values",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What we are about" },
+    { "type": "textarea", "id": "statement", "label": "Statement" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "image_file", "label": "Wide photo filename in Files" },
+    { "type": "text", "id": "image_alt", "label": "Wide photo alt text" },
+    { "type": "text", "id": "promise_eyebrow", "label": "Promise strip eyebrow", "default": "Every order" },
+    { "type": "text", "id": "promise_heading", "label": "Promise strip heading" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "options": [ { "value": "bulb", "label": "Bulb" }, { "value": "home", "label": "Home" }, { "value": "list", "label": "List" } ], "default": "bulb" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text", "info": "[count] becomes the live product count, rounded down to the hundred." },
+        { "type": "textarea", "id": "text_fallback", "label": "Text if the count is under 100" }
+      ]
+    },
+    {
+      "type": "promise",
+      "name": "Promise",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "options": [ { "value": "truck", "label": "Truck" }, { "value": "clock", "label": "Clock" }, { "value": "return", "label": "Return" }, { "value": "lock", "label": "Lock" }, { "value": "mail", "label": "Mail" } ], "default": "truck" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "link_label", "label": "Link label" },
+        { "type": "text", "id": "url", "label": "Link URL" }
+      ]
+    }
+  ],
+  "max_blocks": 12
+}
+{% endschema %}

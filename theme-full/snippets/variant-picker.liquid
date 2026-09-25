@@ -1,0 +1,411 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  VARIANT PICKER
+  ----------------------------------------------------------------------------------------------------------------------
+
+  Render the variant picker option selectors.
+
+  ********************************************
+  Supported variables
+  ********************************************
+
+  * product: the product for which to render the selector (required)
+  * form_id: the ID of the form to which the variant picker belongs (required)
+  * context: the context of the variant picker. Can be "main_product", "featured_product" or "quick_buy" (required)
+  * hide_sold_out_variants: if set to true, the sold out or unavailable variants are hidden
+  * selector_style: the selector style to use for the main selectors
+  * swatch_selector_style: the selector style to use for the dedicated swatch selectors
+  * variant_image_options: a list of option names for which to use the variant image selector mode
+  * variant_image_underline: when true, the active image will be underline instead of being bordered
+  * size_chart_page: the page to use for the size chart
+  * hide_single_value_options: NF-STICKY-V2 (2026-09-14): when true, an option with only one possible value is
+    skipped entirely (nothing to actually pick, so showing an interactive dropdown for it is just confusing). Only
+    passed as true from the sticky bar, so every other picker on the site is unchanged.
+  * popover_placement: NF-STICKY-V2 (2026-09-14): the dropdown style's popover position modifier, defaults to
+    "bottom-start". The sticky bar sits at the very bottom of the screen, so it passes "top-start" instead, or the
+    dropdown list would open downward off the bottom of the screen and never be visible.
+  * combined_mobile_dropdown: NF-STICKY-V3 (2026-09-14): when true, also renders one extra dropdown listing every
+    variant by its full title (e.g. "24" / White / 1 Pc"), for mobile where several stacked per-option dropdowns
+    didn't fit next to Add to Cart. Only passed true from the sticky bar; CSS shows it only under 750px and hides
+    the normal per-option pickers there instead. See assets/nf-cart-v2.js for the click handling.
+{%- endcomment -%}
+
+{%- liquid
+  assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ','
+  assign size_label_list = 'general.label.size' | t | replace: ', ', ',' | downcase | split: ','
+  assign variant_image_options = variant_image_options | replace: ', ', ',' | downcase | split: ','
+
+  if context == 'main_product'
+    assign is_main_product = true
+  endif
+
+  # NF-CHEAPEST-V2: main-product may pick a different initial variant (the cheapest available one on a bare product URL).
+  # When it does, the selected and available states below are computed for that variant instead of Shopify's own.
+  assign nf_iv = nf_initial_variant | default: product.selected_or_first_available_variant
+  assign nf_ovr = false
+  if nf_iv != nil and nf_iv.id != product.selected_or_first_available_variant.id
+    assign nf_ovr = true
+  endif
+
+  # NF-LIGHTCARDS-V1: light color options render as light cards (snippets/nf-light-cards.liquid) on the product page and in quick view
+  assign nf_lc = false
+  if context == 'main_product' or context == 'quick_buy'
+    assign nf_lc = true
+  endif
+-%}
+
+{%- unless product.has_only_default_variant -%}
+  <variant-picker
+    class="variant-picker v-stack gap-4"
+    section-id="{{ section.id }}"
+    form-id="{{ form_id }}"
+    context="{{ context }}"
+    handle="{{ product.handle }}"
+    {% if context == 'main_product' %}
+      update-url
+    {% endif %}
+  >
+    {%- comment -%}
+      The variant data is outputted as a JSON, which allows the theme to emit an event with the data when the variant changes. This must not be removed.
+    {%- endcomment -%}
+    <script data-variant type="application/json">
+      {{- nf_iv | json -}}
+    </script>
+
+    {%- for option in product.options_with_values -%}
+      {%- if hide_single_value_options and option.values.size <= 1 -%}
+        {%- continue -%}
+      {%- endif -%}
+
+      {% liquid
+        assign option_downcase = option.name | downcase
+        assign nf_opt_idx = option.position | minus: 1
+        assign nf_sel_value = option.selected_value
+        if nf_ovr
+          assign nf_sel_value = nf_iv.options[nf_opt_idx]
+        endif
+        assign resolved_option_selector_style = selector_style
+
+        assign swatch_count = option.values | map: 'swatch' | compact | size
+
+        if swatch_count > 0 and swatch_selector_style != 'none'
+          # Use the swatch selector type only if we have at least one swatch and a supported swatch selector type
+          assign resolved_option_selector_style = swatch_selector_style
+        endif
+
+        # Implementation note: if the option value has no native swatch, BUT that the option name matches a hardcoded list of color names,
+        # we fallback to the legacy config-based system. This allows to keep compatibility with stores that were using the config-based, and
+        # allow those merchants to upgrade to the new system at their own pace.
+        if swatch_count == 0 and color_label_list contains option_downcase and swatch_selector_style != 'none'
+          assign resolved_option_selector_style = swatch_selector_style
+        endif
+
+        if variant_image_options contains option_downcase
+          assign resolved_option_selector_style = 'variant_image'
+        endif
+      %}
+
+      {%- comment -%} NF-LIGHTCARDS-V1: a light color option becomes light cards; any other option gets an empty result and falls through to the native markup {%- endcomment -%}
+      {%- if nf_lc -%}
+        {%- capture nf_lc_fs -%}{%- render 'nf-light-cards', part: 'option', product: product, option: option, form_id: form_id, nf_ovr: nf_ovr, nf_iv: nf_iv, nf_opt_idx: nf_opt_idx, nf_sel_value: nf_sel_value, hide_sold_out_variants: hide_sold_out_variants -%}{%- endcapture -%}
+        {%- if nf_lc_fs != blank -%}
+          {{- nf_lc_fs -}}
+          {%- continue -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- comment -%} NF-OPTCARDS-V1: finish swatches, power cards, glass or shade chips (snippets/nf-option-cards.liquid); an empty result falls through to the native markup {%- endcomment -%}
+      {%- if nf_lc -%}
+        {%- capture nf_oc_fs -%}{%- render 'nf-option-cards', part: 'option', product: product, option: option, form_id: form_id, nf_ovr: nf_ovr, nf_iv: nf_iv, nf_opt_idx: nf_opt_idx, nf_sel_value: nf_sel_value, hide_sold_out_variants: hide_sold_out_variants -%}{%- endcapture -%}
+        {%- if nf_oc_fs != blank -%}
+          {{- nf_oc_fs -}}
+          {%- continue -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      <fieldset class="variant-picker__option v-stack gap-2">
+        <div class="variant-picker__option-info h-stack justify-between gap-2">
+          <div class="h-stack gap-1">
+            <legend>{{ option.name }}:</legend>
+
+            {%- comment -%} NF-OPTPILL-V1 (2026-09-17): text options also show the picked value next to the label, like Dazuma. {%- endcomment -%}
+            {%- if resolved_option_selector_style == 'swatch' or resolved_option_selector_style == 'swatch_underline' or resolved_option_selector_style == 'variant_image' or resolved_option_selector_style == 'block' -%}
+              <span>{{ nf_sel_value }}</span>
+            {%- endif -%}
+          </div>
+
+          {%- if size_chart_page != blank and size_label_list contains option_downcase -%}
+            {%- capture id -%}size-chart-{{ option.position }}-{{ form_id }}{%- endcapture -%}
+
+            <button type="button" class="link" aria-controls="{{ id | escape }}" aria-expanded="false">
+              {{- 'product.general.size_chart' | t -}}
+            </button>
+
+            <x-modal id="{{ id | escape }}" class="modal modal--lg color-scheme color-scheme--dialog">
+              <span class="h5" slot="header">{{ size_chart_page.title }}</span>
+
+              <div class="prose">
+                {{- size_chart_page.content -}}
+              </div>
+            </x-modal>
+          {%- endif -%}
+        </div>
+
+        {%- assign name = 'option' | append: option.position -%}
+
+        {%- if resolved_option_selector_style == 'dropdown' -%}
+          <div class="relative">
+            {%- capture popover_id -%}popover-variant-dropdown-{{ section.id }}-{{ product.id }}-{{ option.position }}{%- endcapture -%}
+
+            <button type="button" class="select" aria-controls="{{ popover_id }}" aria-expanded="false">
+              <span id="{{ popover_id }}-selected-value">{{- nf_sel_value -}}</span>
+              {%- render 'icon' with 'dropdown-chevron' -%}
+            </button>
+
+            <x-popover id="{{ popover_id }}" class="popover popover--{{ popover_placement | default: 'bottom-start' }} color-scheme color-scheme--dialog" close-on-listbox-change>
+              <p class="h5" slot="header">{{ option.name }}</p>
+
+              <div class="popover__value-list">
+                {%- assign param_name = form_id | append: '-option' | append: option.position -%}
+
+                {%- for option_value in option.values -%}
+                  {%- liquid
+                    if nf_ovr
+                      assign nf_ov_sel = false
+                      if option_value.name == nf_sel_value
+                        assign nf_ov_sel = true
+                      endif
+                      assign nf_ov_av = false
+                      for nf_av_v in product.variants
+                        if nf_av_v.available == false or nf_av_v.options[nf_opt_idx] != option_value.name
+                          continue
+                        endif
+                        assign nf_av_ok = true
+                        for nf_q in (0..nf_opt_idx)
+                          if nf_q == nf_opt_idx
+                            break
+                          endif
+                          if nf_av_v.options[nf_q] != nf_iv.options[nf_q]
+                            assign nf_av_ok = false
+                            break
+                          endif
+                        endfor
+                        if nf_av_ok
+                          assign nf_ov_av = true
+                          break
+                        endif
+                      endfor
+                    else
+                      assign nf_ov_sel = option_value.selected
+                      assign nf_ov_av = option_value.available
+                    endif
+                  -%}
+                  {%- capture option_markup -%}
+                    <span>{{- option_value -}}</span>
+
+                    {%- if nf_ov_av == false -%}
+                      <span>
+                        {%- if option_value.variant == nil -%}
+                          {{- 'product.general.unavailable_button' | t -}}
+                        {%- else -%}
+                          {{- 'product.general.sold_out_badge' | t -}}
+                        {%- endif -%}
+                      </span>
+                    {%- endif -%}
+                  {%- endcapture -%}
+
+                  {%- if hide_sold_out_variants == false or nf_ov_av or nf_ov_sel -%}
+                    {%- if is_main_product and option_value.product_url != blank -%}
+                      <div class="popover__value-option">
+                        {%- if nf_ov_sel -%}
+                          <input
+                            class="sr-only"
+                            type="radio"
+                            id="{{ param_name }}-{{ option_value.id }}"
+                            form="{{ form_id }}"
+                            name="{{ param_name }}"
+                            data-option-position="{{ option.position }}"
+                            value="{{ option_value.id }}"
+                            checked
+                          >
+                        {%- endif -%}
+
+                        <a href="{{ option_value.variant.url | default: option_value.product_url }}" class="h-stack justify-between gap-2">
+                          {{- option_markup -}}
+                        </a>
+                      </div>
+                    {%- else -%}
+                      <label class="popover__value-option h-stack justify-between gap-2" for="{{ param_name }}-{{ option_value.id }}">
+                        <input
+                          class="sr-only"
+                          form="{{ form_id }}"
+                          type="radio"
+                          id="{{ param_name }}-{{ option_value.id }}"
+                          name="{{ param_name }}"
+                          {% if option_value.product_url != blank %}
+                            data-product-url="{{ option_value.product_url | escape }}"
+                          {% endif %}
+                          data-option-position="{{ option.position }}"
+                          value="{{ option_value.id }}"
+                          {% if nf_ov_sel %}
+                            checked
+                          {% endif %}
+                        >
+                        {{- option_markup -}}
+                      </label>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </x-popover>
+          </div>
+        {%- else -%}
+          {%- liquid
+            case resolved_option_selector_style
+              when 'swatch', 'swatch_underline', 'variant_image', 'block', 'block_swatch'
+                assign list_classes = 'h-stack gap-2.5 wrap'
+
+              when 'underline'
+                assign list_classes = 'h-stack gap-4 wrap'
+
+              else
+                assign list_classes = ''
+            endcase
+          -%}
+
+          {%- comment -%} NF-OPTGRID-V1 (2026-09-17, owner: "why are there gaps? make this better looking and more Nora Furnish looking"): a plain text option with 4 or more values renders as an even grid. The column width comes from the longest value, worked out here so nothing moves after the page loads. Styles in assets/custom-nav.css. {%- endcomment -%}
+          {%- liquid
+            assign nf_og_class = ''
+            assign nf_og_style = ''
+            if resolved_option_selector_style == 'block'
+              assign nf_og_max = 0
+              for nf_og_v in option.values
+                assign nf_og_len = nf_og_v.name | size
+                if nf_og_len > nf_og_max
+                  assign nf_og_max = nf_og_len
+                endif
+              endfor
+              assign nf_og_min = nf_og_max | times: 6.6 | plus: 26 | round
+              if nf_og_min < 96
+                assign nf_og_min = 96
+              endif
+              if nf_og_min > 260
+                assign nf_og_min = 260
+              endif
+              assign nf_og_class = ' nf-optgrid'
+              assign nf_og_style = ' style="--nf-optmin:' | append: nf_og_min | append: 'px"'
+            endif
+          -%}
+          <div class="variant-picker__option-values {{ list_classes }}{{ nf_og_class }}"{{ nf_og_style }}>
+            {% liquid
+              assign name = form_id | append: '-option' | append: option.position
+
+              for option_value in option.values
+                if nf_ovr
+                  assign nf_ov_sel = false
+                  if option_value.name == nf_sel_value
+                    assign nf_ov_sel = true
+                  endif
+                  assign nf_ov_av = false
+                  for nf_av_v in product.variants
+                    if nf_av_v.available == false or nf_av_v.options[nf_opt_idx] != option_value.name
+                      continue
+                    endif
+                    assign nf_av_ok = true
+                    for nf_q in (0..nf_opt_idx)
+                      if nf_q == nf_opt_idx
+                        break
+                      endif
+                      if nf_av_v.options[nf_q] != nf_iv.options[nf_q]
+                        assign nf_av_ok = false
+                        break
+                      endif
+                    endfor
+                    if nf_av_ok
+                      assign nf_ov_av = true
+                      break
+                    endif
+                  endfor
+                else
+                  assign nf_ov_sel = option_value.selected
+                  assign nf_ov_av = option_value.available
+                endif
+                case resolved_option_selector_style
+                  when 'variant_image'
+                    if variant_image_underline
+                      render 'option-value', type: 'thumbnail', underline: true, form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, nf_ovr: nf_ovr, nf_sel: nf_ov_sel, nf_avail: nf_ov_av
+                    else
+                      render 'option-value', type: 'thumbnail', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, nf_ovr: nf_ovr, nf_sel: nf_ov_sel, nf_avail: nf_ov_av
+                    endif
+                  when 'swatch'
+                    render 'option-value', type: 'swatch', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, nf_ovr: nf_ovr, nf_sel: nf_ov_sel, nf_avail: nf_ov_av
+                  when 'swatch_underline'
+                    render 'option-value', type: 'swatch_underline', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, nf_ovr: nf_ovr, nf_sel: nf_ov_sel, nf_avail: nf_ov_av
+                  when 'block'
+                    render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, nf_ovr: nf_ovr, nf_sel: nf_ov_sel, nf_avail: nf_ov_av
+                  when 'block_swatch'
+                    render 'option-value', type: 'block', form: form_id, option_value: option_value, param_name: name, option_position: option.position, show_swatch: true, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, nf_ovr: nf_ovr, nf_sel: nf_ov_sel, nf_avail: nf_ov_av
+                  when 'underline'
+                    render 'option-value', type: 'underline', form: form_id, option_value: option_value, param_name: name, option_position: option.position, hide_if_disabled: hide_sold_out_variants, reload_page_for_combined_products: is_main_product, id_prefix: forloop.index, nf_ovr: nf_ovr, nf_sel: nf_ov_sel, nf_avail: nf_ov_av
+                endcase
+              endfor
+            %}
+          </div>
+        {%- endif -%}
+      </fieldset>
+    {%- endfor -%}
+
+    {%- if combined_mobile_dropdown -%}
+      {%- comment -%} NF-STICKY-V4 (2026-09-14): one combined NATIVE select listing every variant by its full title, so a
+        phone opens its own system picker (the iOS menu), like Dazuma. The select has no name and no form attribute,
+        so it never submits anything itself: nf-cart-v2.js reads the picked option's data-value-ids, checks the
+        matching per-option radios above (still the source of truth) and dispatches change on them, so the normal
+        variant logic runs unchanged. The visible pill is the label span; the select sits invisibly on top of it at
+        16px so iOS never zooms the page on tap. CSS shows this only under 750px. {%- endcomment -%}
+      <div class="nf-sb-combined" data-form-id="{{ form_id }}">
+        <div class="select nf-sb-native-wrap">
+          <span data-nf-combined-label>{{ nf_iv.title }}</span>
+          {%- render 'icon' with 'dropdown-chevron' -%}
+          <select class="nf-sb-native" aria-label="{{ 'product.general.variant' | t | escape }}">
+            {%- for v in product.variants -%}
+              {%- liquid
+                assign nf_vid_list = ''
+                for opt in product.options_with_values
+                  assign nf_idx = forloop.index0
+                  assign nf_target = v.options[nf_idx]
+                  assign nf_this_id = ''
+                  for ov in opt.values
+                    if ov.name == nf_target
+                      assign nf_this_id = ov.id
+                      break
+                    endif
+                  endfor
+                  if forloop.first
+                    assign nf_vid_list = nf_this_id
+                  else
+                    assign nf_vid_list = nf_vid_list | append: ',' | append: nf_this_id
+                  endif
+                endfor
+              -%}
+              <option value="{{ v.id }}" data-value-ids="{{ nf_vid_list }}"{% if v.id == nf_iv.id %} selected{% endif %}{% unless v.available %} disabled{% endunless %}>{{ v.title | escape }}{% unless v.available %} ({{ 'product.general.sold_out_badge' | t }}){% endunless %}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- unless request.design_mode -%}
+      <noscript>
+        {%- assign input_label = 'product.general.variant' | t -%}
+
+        {%- capture select_options -%}
+          {%- for variant in product.variants -%}
+            <option {% if variant.id == nf_iv.id %}selected="selected"{% endif %} {% unless variant.available %}disabled="disabled"{% endunless %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+          {%- endfor -%}
+        {%- endcapture -%}
+
+        {%- render 'select', label: input_label, form: form_id, name: 'id', options: select_options -%}
+      </noscript>
+    {%- endunless -%}
+  </variant-picker>
+{%- endunless -%}

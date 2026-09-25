@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_EeBNAg": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_jGBACr": {
+          "type": "heading",
+          "settings": {
+            "text": "<strong>Our Story</strong>",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_3xQ8rm": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h5>Nora Furnish started with a simple belief. A home should feel like the people who live in it.</h5><p>The rooms we spend our days in shape how we feel. A well chosen lamp, a table with honest proportions, a shelf that finally gives everything a place. Small pieces, chosen with care, add up to a home that feels calm and put together.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_jGBACr",
+        "richtext_3xQ8rm"
+      ],
+      "name": "t:sections.rich_text.presets.rich_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false
+      }
+    },
+    "image_with_text_X7nfkA": {
+      "type": "image-with-text",
+      "blocks": {
+        "richtext_TFY9Rj": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h4><strong>Why we do this</strong></h4><p>We spend our days hunting for furniture, lighting, and decor that feel natural and easy to live with. We skip the short lived trends and look for pieces that work hard, look right, and hold up.</p><p>The test is simple. If we would not put it in our own home, it does not go in the store.</p><h4><strong>Get in touch</strong></h4><p><strong>Email:</strong> <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a></p><p><strong>Customer Service Hours:</strong> Monday to Friday, 9:00 AM to 5:00 PM (CST)</p><p>We answer most emails within 1 to 2 business days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "richtext_TFY9Rj"
+      ],
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "separate_section_with_border": true,
+        "image": "shopify://shop_images/nf_nora_personal.jpg",
+        "reveal_on_scroll": true,
+        "image_position": "start",
+        "content_width": "md",
+        "remove_vertical_spacing": true
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "show_title": true,
+        "page_width": "xs"
+      }
+    }
+  },
+  "order": [
+    "rich_text_EeBNAg",
+    "image_with_text_X7nfkA",
+    "main"
+  ]
+}

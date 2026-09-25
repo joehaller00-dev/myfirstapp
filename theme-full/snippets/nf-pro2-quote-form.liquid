@@ -1,0 +1,219 @@
+{%- comment -%}
+  NF-PRO-V2 nf-pro2-quote-form (2026-09-11). The detailed quote sheet shared by all 15 Professionals and custom
+  service pages, modelled on Dazuma's quote form: Contact information, Reference and direction, What would you like to
+  adjust (tailored per page), Project details. Native Shopify contact form, emails info@norafurnish.com with the
+  subject "NFPRO quote request: <service>". Shopify forms cannot take files, so there is a link field for drawings.
+  assets/nf-pro.js runs the required checks and URL prefill (?product= ?concept= ?service=);
+  assets/nf-pro2.js tidies the email on submit (one "What to adjust" line, empty fields dropped) and handles ?ref=.
+  On tool pages (tool: true) the "Design details" box is filled live by assets/nf-custom.js ([data-nfc-summary]).
+  Params: form_id, service, form_label, adjust (lines "key|icon|Label"), refs (lines of reference labels),
+  zone_placeholder, space_default, qty_label, qty_placeholder, msg_placeholder, button_label, tool,
+  summary_label, summary_help, zip
+{%- endcomment -%}
+{%- liquid
+  assign q_id = form_id | default: 'nf-quote-form'
+  assign q_service = service | default: 'Custom request'
+  assign q_label = form_label | default: q_service
+  assign q_btn = button_label | default: 'Get My Free Custom Quote'
+  assign q_qty = qty_label | default: 'Quantity needed'
+  assign q_adjust = adjust | newline_to_br | split: '<br />'
+  assign q_refs = refs | newline_to_br | split: '<br />'
+  assign q_class = 'nfp-form nfp2-form'
+  if tool
+    assign q_class = 'nfp-form nfp2-form nfc-form'
+  endif
+-%}
+{%- form 'contact', id: q_id, class: q_class, novalidate: 'novalidate', data-nfp-form: 'v2', data-nfc-form: q_service, data-nfp2-form: '' -%}
+  {%- if form.posted_successfully? -%}
+    <div class="nfp-success" role="status">
+      <div class="nfp-success__icon">{% render 'nf-pro-icon', name: 'check' %}</div>
+      <h3 class="nfp-h2">Thank you, your request is in.</h3>
+      <p class="nfp-lead">A person on our team will read it closely and reply by email from info@norafurnish.com with options, pricing and timing in writing.</p>
+      <ul class="nfp-success__steps">
+        <li>Questions first if we need a measurement, a drawing or a photo</li>
+        <li>Nothing is made or charged until you approve</li>
+        <li>You can reply to our email with more files at any time</li>
+      </ul>
+      <div class="nfp-actions" style="justify-content:center">
+        <a class="nfp2-btn nfp2-btn--line" href="/pages/professionals">Back to Professionals</a>
+      </div>
+    </div>
+  {%- else -%}
+    {%- if form.errors -%}
+      <div class="nfp-alert" role="alert">Something needs another look before we can send this. {{ form.errors | default_errors }}</div>
+    {%- endif -%}
+
+    <input type="hidden" name="contact[subject]" value="NFPRO quote request: {{ q_service | escape }}">
+    <input type="hidden" name="contact[Form]" value="{{ q_label | escape }}">
+    <input type="hidden" name="contact[Tag]" value="nfpro quote">
+    <input type="hidden" name="contact[Service]" value="{{ q_service | escape }}" data-nfp-service>
+    <input type="hidden" name="contact[Page]" value="{{ canonical_url }}" data-nfp-pageurl>
+    <input type="hidden" name="contact[Product asked about]" value="" data-nfp-product data-nfp-optional>
+
+    <div class="nfp-context" data-nfp-context aria-live="polite"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="46" height="46" hidden><span data-nfp-context-text></span></div>
+
+    {%- if tool -%}
+    <fieldset class="nfp2-fs">
+      <legend><span class="nfp2-fs__n">01</span>Your design <small>Filled in from the tool above</small></legend>
+      <div class="nfp-fields">
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-design">{{ summary_label | default: 'Design details' | escape }}<span class="nfp-opt">you can edit this</span></label>
+          <textarea class="nfp-input nfc-sumta" id="{{ q_id }}-design" name="contact[Design details]" rows="7" data-nfc-summary placeholder="Use the tool above and your choices appear here. You can also type them in yourself."></textarea>
+          {%- if summary_help != blank -%}<p class="nfp-help">{{ summary_help | escape }}</p>{%- endif -%}
+          <button type="button" class="nfp-link nfc-resync" data-nfc-resync hidden>Refresh from the tool</button>
+        </div>
+      </div>
+    </fieldset>
+    {%- endif -%}
+
+    <fieldset class="nfp2-fs">
+      <legend><span class="nfp2-fs__n">{% if tool %}02{% else %}01{% endif %}</span>Contact information <small>Fields marked <span class="nfp-req">*</span> are required</small></legend>
+      <div class="nfp-fields">
+        <div class="nfp-field">
+          <label for="{{ q_id }}-name">Name<span class="nfp-req" aria-hidden="true">*</span></label>
+          <input class="nfp-input" id="{{ q_id }}-name" type="text" name="contact[name]" autocomplete="name" placeholder="Your full name" required aria-describedby="{{ q_id }}-name-err" value="{{ form.name }}">
+          <p class="nfp-err" id="{{ q_id }}-name-err">Please enter your name.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-email">Email<span class="nfp-req" aria-hidden="true">*</span></label>
+          <input class="nfp-input" id="{{ q_id }}-email" type="email" name="contact[email]" autocomplete="email" inputmode="email" placeholder="you@example.com" required aria-describedby="{{ q_id }}-email-err" value="{{ form.email }}">
+          <p class="nfp-err" id="{{ q_id }}-email-err">Please enter a valid email address so we can reply.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-phone">Phone<span class="nfp-opt">optional</span></label>
+          <input class="nfp-input" id="{{ q_id }}-phone" type="tel" name="contact[Phone]" autocomplete="tel" inputmode="tel" placeholder="Only if a delivery needs it">
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-company">Company or project name<span class="nfp-opt">optional</span></label>
+          <input class="nfp-input" id="{{ q_id }}-company" type="text" name="contact[Company or project]" autocomplete="organization" placeholder="Optional">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="nfp2-fs">
+      <legend><span class="nfp2-fs__n">{% if tool %}03{% else %}02{% endif %}</span>Reference and direction <small>Leave blank if you are starting from an idea</small></legend>
+      <div class="nfp-fields">
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-ref">Reference product or page link<span class="nfp-opt">optional</span></label>
+          <input class="nfp-input" id="{{ q_id }}-ref" type="text" inputmode="url" name="contact[Reference link]" placeholder="Paste a link to one of our products, a page or an inspiration photo" data-nfp-ref>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-seen">Seen in a project?<span class="nfp-opt">optional</span></label>
+          <select class="nfp-input" id="{{ q_id }}-seen" name="contact[Seen in a project]" data-nfp-concept data-nfp2-seen>
+            <option value="">Select a reference</option>
+            {%- assign has_refs = false -%}
+            {%- for r in q_refs -%}{%- assign rt = r | strip -%}{%- if rt != blank -%}{%- assign has_refs = true -%}{%- endif -%}{%- endfor -%}
+            {%- if has_refs -%}
+              <optgroup label="Application references on this page">
+                {%- for r in q_refs -%}{%- assign rt = r | strip -%}{%- if rt != blank -%}<option value="Reference: {{ rt | escape }}" data-ref="{{ rt | handleize }}">{{ rt | escape }}</option>{%- endif -%}{%- endfor -%}
+              </optgroup>
+            {%- endif -%}
+            <optgroup label="Design concepts by our team">
+              <option value="Concept: The Alder Lobby" data-slug="alder-lobby">The Alder Lobby</option>
+              <option value="Concept: Corner Bistro" data-slug="corner-bistro">Corner Bistro</option>
+              <option value="Concept: Rooftop at Nine" data-slug="rooftop-at-nine">Rooftop at Nine</option>
+              <option value="Concept: Maker Studio" data-slug="maker-studio">Maker Studio</option>
+              <option value="Concept: Linen and Oak" data-slug="linen-and-oak">Linen and Oak</option>
+              <option value="Concept: Family Kitchen" data-slug="family-kitchen">Family Kitchen</option>
+              <option value="Concept: Garden Courtyard" data-slug="garden-courtyard">Garden Courtyard</option>
+              <option value="Concept: Guest Suite" data-slug="guest-suite">Guest Suite</option>
+            </optgroup>
+            <option value="Not from a project">Not from a project</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-zone">Zone or area<span class="nfp-opt">optional</span></label>
+          <input class="nfp-input" id="{{ q_id }}-zone" type="text" name="contact[Zone or area]" placeholder="{{ zone_placeholder | default: 'For example dining room, lobby or bar' | escape }}">
+        </div>
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-files">Link to drawings or photos<span class="nfp-opt">Google Drive, Dropbox or iCloud</span></label>
+          <input class="nfp-input" id="{{ q_id }}-files" type="text" inputmode="url" name="contact[Drawings or photos link]" placeholder="Paste a share link to plans, sketches or photos of the space">
+          <p class="nfp-help">Our form cannot take file uploads. Share a link here, or reply to our email with attachments.</p>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="nfp2-fs">
+      <legend><span class="nfp2-fs__n">{% if tool %}04{% else %}03{% endif %}</span>What would you like to adjust? <small>Choose any that apply</small></legend>
+      <input type="hidden" name="contact[What to adjust]" value="" data-nfp-changes>
+      <div class="nfp-tiles nfp2-tiles">
+        {%- for t in q_adjust -%}
+          {%- assign tt = t | strip -%}
+          {%- if tt == blank -%}{%- continue -%}{%- endif -%}
+          {%- assign tp = tt | split: '|' -%}
+          {%- assign t_key = tp[0] | strip -%}
+          {%- assign t_icon = tp[1] | strip -%}
+          {%- assign t_label = tp[2] | default: tp[1] | strip -%}
+          <label class="nfp-tile nfp2-tile">
+            <input type="checkbox" name="contact[Adjust: {{ t_label | escape }}]" value="Yes" data-nfp-tile="{{ t_key | escape }}" data-label="{{ t_label | escape }}">
+            <span class="nfp2-tile__ico">{%- render 'nf-pro2-icon', name: t_icon -%}</span>
+            <span class="nfp2-tile__t">{{ t_label | escape }}</span>
+            <span class="nfp-tile__box">{% render 'nf-pro-icon', name: 'check' %}</span>
+          </label>
+        {%- endfor -%}
+        <label class="nfp-tile nfp2-tile nfp2-tile--unsure">
+          <input type="checkbox" name="contact[Adjust: Not sure yet, need guidance]" value="Yes" data-nfp-tile="unsure" data-label="Not sure yet, need guidance">
+          <span class="nfp2-tile__ico">{%- render 'nf-pro2-icon', name: 'guide' -%}</span>
+          <span class="nfp2-tile__t">Not sure yet, need guidance</span>
+          <span class="nfp-tile__box">{% render 'nf-pro-icon', name: 'check' %}</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset class="nfp2-fs">
+      <legend><span class="nfp2-fs__n">{% if tool %}05{% else %}04{% endif %}</span>Project details</legend>
+      <div class="nfp-fields">
+        <div class="nfp-field">
+          <label for="{{ q_id }}-qty">{{ q_qty | escape }}<span class="nfp-req" aria-hidden="true">*</span></label>
+          <input class="nfp-input" id="{{ q_id }}-qty" type="text" name="contact[Quantity needed]" placeholder="{{ qty_placeholder | default: 'For example 1, 6, 10 to 15, or not sure yet' | escape }}" required aria-describedby="{{ q_id }}-qty-err">
+          <p class="nfp-err" id="{{ q_id }}-qty-err">Please give a rough quantity. Not sure yet is a fine answer.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-time">Timeline</label>
+          <select class="nfp-input" id="{{ q_id }}-time" name="contact[Timeline]">
+            <option value="">Choose a timeline</option>
+            <option>Less than 1 month</option>
+            <option>1 to 3 months</option>
+            <option>3 to 6 months</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-space">Space type</label>
+          <select class="nfp-input" id="{{ q_id }}-space" name="contact[Space type]" data-nfp-space>
+            <option value="">Choose a space</option>
+            {%- assign spaces = 'Home|Rental property or several units|Hotel or guest house|Restaurant, cafe or bar|Office or workspace|Shop or showroom|Salon, spa or studio|Outdoor or garden|Event or venue|Other' | split: '|' -%}
+            {%- for sp in spaces -%}<option{% if sp == space_default %} selected{% endif %}>{{ sp }}</option>{%- endfor -%}
+          </select>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-budget">Budget range</label>
+          <select class="nfp-input" id="{{ q_id }}-budget" name="contact[Budget range]">
+            <option value="">Choose a range</option>
+            <option>Under $500</option>
+            <option>$500 to $2,000</option>
+            <option>$2,000 to $5,000</option>
+            <option>$5,000 or more</option>
+            <option>Need guidance</option>
+          </select>
+        </div>
+        {%- if zip -%}
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-zip">ZIP code<span class="nfp-opt">optional, helps us plan shipping for large pieces</span></label>
+          <input class="nfp-input" id="{{ q_id }}-zip" type="text" name="contact[ZIP code]" autocomplete="postal-code" inputmode="numeric" maxlength="10">
+        </div>
+        {%- endif -%}
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-msg">Tell us what you are trying to achieve</label>
+          <textarea class="nfp-input" id="{{ q_id }}-msg" name="contact[body]" rows="4" placeholder="{{ msg_placeholder | default: 'The space, the look you want, approximate sizes and anything about the installation.' | escape }}">{{ form.body }}</textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="nfp-submit nfp2-submit">
+      <button type="submit" class="nfp2-btn nfp2-btn--gold nfp2-btn--wide">{{ q_btn | escape }}</button>
+      <p class="nfp-submit__note">Free quote by email. Nothing is made or charged until you approve it.</p>
+    </div>
+  {%- endif -%}
+{%- endform -%}

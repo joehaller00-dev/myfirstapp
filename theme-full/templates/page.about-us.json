@@ -1,0 +1,325 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-about-hero",
+      "settings": {
+        "image_off": "nf-about-room-dark.jpg",
+        "image_on": "nf-about-room-lit.jpg",
+        "pos_x": 50,
+        "pos_x_mobile": 58,
+        "eyebrow": "About Nora Furnish",
+        "pre": "Every room feels different once the lights come on.",
+        "hint": "Flip the switch",
+        "switch_on_label": "Turn on the lights",
+        "switch_off_label": "Turn off the lights",
+        "heading": "Light for the rooms you live in.",
+        "text": "Nora Furnish is an online lighting and home decor store. We choose ceiling lights, wall lights, lamps and outdoor lighting, with a small range of decor alongside, and ship every order free within the United States.",
+        "btn1_label": "Shop best sellers",
+        "btn1_url": "/collections/best-sellers",
+        "btn2_label": "Read our stories",
+        "btn2_url": "/pages/our-story",
+        "auto_seconds": 7
+      }
+    },
+    "values": {
+      "type": "nf-about-values",
+      "blocks": {
+        "p1": {
+          "type": "pillar",
+          "settings": {
+            "icon": "bulb",
+            "title": "Lighting first",
+            "text": "Ceiling lights, wall lights, lamps, ambient and outdoor lighting make up most of the shop, with mirrors, shelving, soft furnishings and home fragrance alongside. More than [count] pieces are in the shop today.",
+            "text_fallback": "Ceiling lights, wall lights, lamps, ambient and outdoor lighting make up most of the shop, with mirrors, shelving, soft furnishings and home fragrance alongside."
+          }
+        },
+        "p2": {
+          "type": "pillar",
+          "settings": {
+            "icon": "home",
+            "title": "Chosen for real homes",
+            "text": "We look for pieces that suit ordinary rooms, whether you own your home or rent it, and we group them by room and by project so you can find what fits your space.",
+            "text_fallback": ""
+          }
+        },
+        "p3": {
+          "type": "pillar",
+          "settings": {
+            "icon": "list",
+            "title": "Listings that answer questions",
+            "text": "Our listings set out the measurements in inches, the materials, how to care for the piece and what comes in the box, so you know what you are buying before it arrives.",
+            "text_fallback": ""
+          }
+        },
+        "s1": {
+          "type": "promise",
+          "settings": {
+            "icon": "truck",
+            "title": "Free shipping in the US",
+            "text": "Standard shipping is free on every order delivered in the United States, with no minimum.",
+            "link_label": "Shipping policy",
+            "url": "/policies/shipping-policy"
+          }
+        },
+        "s2": {
+          "type": "promise",
+          "settings": {
+            "icon": "clock",
+            "title": "6 to 9 business days",
+            "text": "Orders take 1 to 2 business days to prepare and 5 to 7 in transit, so most arrive within 6 to 9 business days.",
+            "link_label": "Track your order",
+            "url": "/apps/trackyourorder"
+          }
+        },
+        "s3": {
+          "type": "promise",
+          "settings": {
+            "icon": "return",
+            "title": "Easy 30 day returns",
+            "text": "Ask for a return within 30 days of delivery. If an item arrives damaged, faulty or wrong, returning it costs you nothing.",
+            "link_label": "Refund policy",
+            "url": "/policies/refund-policy"
+          }
+        },
+        "s4": {
+          "type": "promise",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure checkout",
+            "text": "You pay through Shopify's encrypted checkout, so your card details stay protected.",
+            "link_label": "",
+            "url": ""
+          }
+        },
+        "s5": {
+          "type": "promise",
+          "settings": {
+            "icon": "mail",
+            "title": "Email support",
+            "text": "Write to info@norafurnish.com, Monday to Friday, 9 AM to 5 PM Central. We reply within one to two business days.",
+            "link_label": "Contact us",
+            "url": "/pages/contact"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5"
+      ],
+      "settings": {
+        "eyebrow": "What we are about",
+        "statement": "A home should feel like the people who live in it.",
+        "text": "<p>The rooms we spend our days in shape how we feel, and light does more of that work than anything else. A lamp in the right corner or a pendant at the right height can make an ordinary room feel calm and finished.</p><p>So we built a shop around lighting first, and around the questions people ask before they buy: how big it is, what it is made of, how to care for it and what comes in the box.</p>",
+        "image_file": "nf-discover-catalog.jpg",
+        "image_alt": "A dining room at night lit by a slim linear pendant, with candles, bread and a bowl of oranges on the table",
+        "promise_eyebrow": "Every order",
+        "promise_heading": "What comes with every order"
+      }
+    },
+    "steps": {
+      "type": "nf-about-steps",
+      "blocks": {
+        "t1": {
+          "type": "step",
+          "settings": {
+            "title": "You place your order",
+            "text": "Orders placed by 5 PM Central, Monday to Friday, start processing the same business day. Later orders start the next business day."
+          }
+        },
+        "t2": {
+          "type": "step",
+          "settings": {
+            "title": "We prepare it",
+            "text": "Your piece is packed and handed to the carrier within 1 to 2 business days."
+          }
+        },
+        "t3": {
+          "type": "step",
+          "settings": {
+            "title": "It ships free",
+            "text": "USPS, UPS or FedEx carry it to you in about 5 to 7 business days. We email your tracking number as soon as it leaves."
+          }
+        },
+        "t4": {
+          "type": "step",
+          "settings": {
+            "title": "It reaches your room",
+            "text": "Most orders arrive within 6 to 9 business days in total. Something not right? Email us within 30 days of delivery."
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "eyebrow": "From our shop to your room",
+        "heading": "How your piece reaches you",
+        "text": "Free shipping on every US order, with a tracking number from the moment it leaves.",
+        "link1_label": "Track your order",
+        "link1_url": "/apps/trackyourorder",
+        "link2_label": "Shipping policy",
+        "link2_url": "/policies/shipping-policy",
+        "link3_label": "Returns",
+        "link3_url": "/policies/refund-policy"
+      }
+    },
+    "reviews": {
+      "type": "nf-about-reviews",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "quote": "This lamp is fantastic! Much brighter and more flexible than i expected. The build quality is solid and it was incredibly easy to install. The perfect bedside reading light.",
+            "name": "Anonymous",
+            "product": "flexible-gooseneck-led-reading-wall-light",
+            "rating": 5
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "quote": "Really nice light. Needed some adjustments before mounting it, which i was expecting. Gives a good cozy light in my corridor, and it is super easy to mount it.",
+            "name": "Anonymous",
+            "product": "nordic-wood-round-hallway-ceiling-light",
+            "rating": 5
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "quote": "My house is decorated in log style, and this lamp is simply a lamp chosen by heaven! the wooden elements perfectly echo the furniture at home",
+            "name": "Anonymous",
+            "product": "low-profile-modern-ceiling-light",
+            "rating": 5
+          }
+        },
+        "r4": {
+          "type": "review",
+          "settings": {
+            "quote": "The quality is very good, it came with light bulbs and complete with screws and ceiling mount. Made of real travertine, you can buy it knowing it's made of stone and is heavy.",
+            "name": "Anonymous",
+            "product": "japanese-stone-wood-surface-downlight",
+            "rating": 5
+          }
+        },
+        "r5": {
+          "type": "review",
+          "settings": {
+            "quote": "I purchased this solar lamp for outdoor use and I must say that I am very satisfied. It really emits a lot of light and illuminates the entire area well.",
+            "name": "Anonymous",
+            "product": "solar-outdoor-light-6000mah-all-night-3-modes",
+            "rating": 5
+          }
+        },
+        "r6": {
+          "type": "review",
+          "settings": {
+            "quote": "Very nice lights, I'm very happy with them, they look great, I have dimmer bulbs in them, very nice.",
+            "name": "Anonymous",
+            "product": "vintage-stained-glass-chandelier-for-bedside-and-dining",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "settings": {
+        "eyebrow": "Reviews",
+        "heading": "What people say about the pieces we carry",
+        "text": "A few words from reviews of lighting in our range, quoted exactly as they were written.",
+        "show_summary": true,
+        "summary_prefix": "out of 5 from",
+        "summary_suffix": "reviews",
+        "on_label": "on",
+        "note": "",
+        "more_label": "Read more reviews",
+        "more_url": "/pages/ideas-and-guides#reviews"
+      }
+    },
+    "links": {
+      "type": "nf-about-links",
+      "blocks": {
+        "l1": {
+          "type": "tile",
+          "settings": {
+            "title": "Our Story",
+            "text": "Guides, ideas and design concepts from our team, all in one place.",
+            "url": "/pages/our-story",
+            "image_file": "nf-discover-our-story.jpg"
+          }
+        },
+        "l2": {
+          "type": "tile",
+          "settings": {
+            "title": "Ideas & Guides",
+            "text": "Buying guides, the lighting catalog, reviews and help.",
+            "url": "/pages/ideas-and-guides",
+            "image_file": "nf-discover-guides.jpg"
+          }
+        },
+        "l3": {
+          "type": "tile",
+          "settings": {
+            "title": "Professionals",
+            "text": "Custom lighting and project orders for designers and businesses.",
+            "url": "/pages/professionals",
+            "image_file": "nf-discover-portfolio.jpg"
+          }
+        },
+        "l4": {
+          "type": "tile",
+          "settings": {
+            "title": "Contact",
+            "text": "A question about a piece or an order? Send us a note.",
+            "url": "/pages/contact",
+            "image_file": "nf-discover-reviews.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ],
+      "settings": {
+        "eyebrow": "Keep exploring",
+        "heading": "More from Nora Furnish",
+        "contact_heading": "Questions before you order?",
+        "contact_text": "Email us Monday to Friday, 9 AM to 5 PM Central. We reply within one to two business days.",
+        "email": "info@norafurnish.com"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "values",
+    "steps",
+    "reviews",
+    "links"
+  ]
+}

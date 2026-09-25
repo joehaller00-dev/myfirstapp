@@ -1,0 +1,73 @@
+{%- comment -%} nf-pro-split (Professionals, 2026-09-11). Text beside an image, with tick list and space chips. Lines written "Bold part: rest" get a bold lead. {%- endcomment -%}
+{{- 'nf-pro.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign s = section.settings
+  assign ticks = s.bullets | newline_to_br | split: '<br />'
+  assign chips = s.spaces | newline_to_br | split: '<br />'
+-%}
+<section class="nfp nfp--{{ s.bg }} nfp-sec"{% if s.anchor != blank %} id="{{ s.anchor | handle }}"{% endif %}>
+  <div class="nfp-wrap">
+    <div class="nfp-split{% if s.flip %} nfp-split--flip{% endif %}">
+      <div class="nfp-split__text">
+        {%- if s.eyebrow != blank -%}<p class="nfp-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfp-h2">{{ s.heading | escape }}</h2>
+        {%- if s.text != blank -%}<div class="nfp-lead">{{ s.text }}</div>{%- endif -%}
+        {%- if s.bullets != blank -%}
+          <ul class="nfp-ticks">
+            {%- for t in ticks -%}
+              {%- assign tt = t | strip -%}
+              {%- if tt == blank -%}{%- continue -%}{%- endif -%}
+              {%- if tt contains ': ' -%}
+                {%- assign tp = tt | split: ': ' -%}
+                <li><strong>{{ tp[0] | escape }}.</strong> {{ tt | remove_first: tp[0] | remove_first: ': ' | escape }}</li>
+              {%- else -%}
+                <li>{{ tt | escape }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if s.spaces != blank -%}
+          {%- if s.spaces_label != blank -%}<p class="nfp-eyebrow" style="margin:30px 0 0">{{ s.spaces_label | escape }}</p>{%- endif -%}
+          <ul class="nfp-spaces" role="list">
+            {%- for c in chips -%}{%- assign ct = c | strip -%}{%- if ct != blank -%}<li>{{ ct | escape }}</li>{%- endif -%}{%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if s.btn_label != blank or s.link_label != blank -%}
+          <div class="nfp-actions">
+            {%- if s.btn_label != blank -%}<a class="nfp-btn nfp-btn--{{ s.btn_style }}" href="{{ s.btn_url }}">{{ s.btn_label | escape }}{% if s.btn_style == 'browse' %} <span class="nfp-arrow" aria-hidden="true">&rarr;</span>{% endif %}</a>{%- endif -%}
+            {%- if s.link_label != blank -%}<a class="nfp-link" href="{{ s.link_url }}">{{ s.link_label | escape }} <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="nfp-media nfp-split__media">
+        {%- render 'nf-pro-media', file: s.image_file, alt: s.image_alt, fallback: s.fallback_collection, sizes: '(max-width: 899px) 100vw, 50vw', label: s.heading -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF Pro split",
+  "class": "nfp-shell",
+  "settings": [
+    { "type": "select", "id": "bg", "label": "Background", "default": "cream", "options": [ { "value": "cream", "label": "Cream" }, { "value": "sand", "label": "Sand" }, { "value": "white", "label": "White" } ] },
+    { "type": "checkbox", "id": "flip", "label": "Image on the left", "default": false },
+    { "type": "text", "id": "anchor", "label": "Anchor id" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "textarea", "id": "bullets", "label": "Tick list", "info": "One per line. Write 'Lead: rest' for a bold lead." },
+    { "type": "text", "id": "spaces_label", "label": "Chips label" },
+    { "type": "textarea", "id": "spaces", "label": "Chips", "info": "One per line" },
+    { "type": "text", "id": "image_file", "label": "Image file name in Files" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" },
+    { "type": "text", "id": "fallback_collection", "label": "Fallback collection handle" },
+    { "type": "text", "id": "btn_label", "label": "Button label" },
+    { "type": "text", "id": "btn_url", "label": "Button link" },
+    { "type": "select", "id": "btn_style", "label": "Button style", "default": "secondary", "options": [ { "value": "primary", "label": "Primary" }, { "value": "secondary", "label": "Secondary" }, { "value": "browse", "label": "Browse" } ] },
+    { "type": "text", "id": "link_label", "label": "Quiet link label" },
+    { "type": "text", "id": "link_url", "label": "Quiet link" }
+  ]
+}
+{% endschema %}

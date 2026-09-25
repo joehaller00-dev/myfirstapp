@@ -1,0 +1,85 @@
+{%- comment -%}
+  NF-HELP-V1 (2026-09-12): contact form with topic chips for /pages/contact (replaces the stock "contact" section, which
+  stays in the template disabled for rollback). The chosen topic is sent as contact[Topic] so messages arrive sorted;
+  picking a chip fills the message box with a short starter sentence (assets/nf-hc.js). ?topic=returns deep links.
+  Promise: "We reply within 1 to 2 business days." (from the contact policy). Email only, no phone field.
+{%- endcomment -%}
+{{- 'nf-hc.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'nf-hc.js' | asset_url }}" defer></script>
+{%- liquid
+  assign t_keys = 'sizing|installation|my-order|returns|trade' | split: '|'
+  assign t_labels = 'Sizing|Installation|My order|Returns|Trade and projects' | split: '|'
+  assign t_starters = 'Hi, I would like help choosing the right size. The room is about ___ by ___ feet and the ceiling is ___ feet high.|Hi, I have a question about installing a light. The product is ___ and my question is ___|Hi, my order number is ___ and my question is ___|Hi, I would like to start a return. My order number is ___ and the reason for the return is ___|Hi, I am working on a project (home, hospitality, office or retail) and would like to ask about ___' | split: '|'
+-%}
+<div class="nfhc nfhc-form" id="nfhc-form">
+  <div class="nfhc-form__in">
+    <div class="nfhc-form__head">
+      <p class="nfhc-eyebrow">{{ section.settings.eyebrow | default: 'Email us' | escape }}</p>
+      <h2 class="nfhc-h2">{{ section.settings.heading | default: 'Send us a message' | escape }}</h2>
+      <p class="nfhc-form__promise">We reply within 1 to 2 business days.</p>
+      <p class="nfhc-form__hours">Monday to Friday, 9:00 AM to 5:00 PM (CST). Our reply comes by email to the address you enter below.</p>
+    </div>
+
+    {%- form 'contact', id: 'nfhc-contact-form', class: 'nfhc-form__form', data-nfhc-form: '' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="nfhc-banner nfhc-banner--ok" role="status" tabindex="-1">
+          <p><strong>Thank you, your message has reached us.</strong></p>
+          <p>We reply within 1 to 2 business days, by email.</p>
+        </div>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <div class="nfhc-banner nfhc-banner--err" role="alert">
+          <p>{{ form.errors.translated_fields[form.errors.first] | capitalize }} {{ form.errors.messages[form.errors.first] }}</p>
+        </div>
+      {%- endif -%}
+
+      <fieldset class="nfhc-chips">
+        <legend class="nfhc-chips__lg">What is it about?</legend>
+        <div class="nfhc-chips__row">
+          {%- for k in t_keys -%}
+            {%- assign i = forloop.index0 -%}
+            <label class="nfhc-chip">
+              <input type="radio" name="contact[Topic]" value="{{ t_labels[i] }}" data-nfhc-chip data-key="{{ k }}" data-starter="{{ t_starters[i] | escape }}">
+              <span>{{ t_labels[i] }}</span>
+            </label>
+          {%- endfor -%}
+        </div>
+      </fieldset>
+
+      <div class="nfhc-fields">
+        <div class="nfhc-fields__row">
+          <div class="nfhc-field">
+            <label for="nfhc-name">Name</label>
+            <input class="nfhc-input" id="nfhc-name" type="text" name="contact[name]" value="{{ form.name | default: customer.name | escape }}" autocomplete="name" required>
+          </div>
+          <div class="nfhc-field">
+            <label for="nfhc-email">Email</label>
+            <input class="nfhc-input" id="nfhc-email" type="email" name="contact[email]" value="{{ form.email | default: customer.email | escape }}" autocomplete="email" autocapitalize="off" spellcheck="false" required>
+          </div>
+        </div>
+        <div class="nfhc-field">
+          <label for="nfhc-order">Order number <small>(if you have one)</small></label>
+          <input class="nfhc-input" id="nfhc-order" type="text" name="contact[Order number]" inputmode="text" autocomplete="off">
+        </div>
+        <div class="nfhc-field">
+          <label for="nfhc-body">Message</label>
+          <textarea class="nfhc-input" id="nfhc-body" name="contact[body]" rows="6" required>{{ form.body | escape }}</textarea>
+        </div>
+      </div>
+      <button type="submit" class="nfhc-btn nfhc-btn--dark nfhc-form__submit">Send message</button>
+      <p class="nfhc-form__note">Please add photos of any damage when we reply, so we can help faster.</p>
+    {%- endform -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "NF contact form",
+  "class": "nfhc-section nfhc-section--form",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Email us" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Send us a message" }
+  ]
+}
+{% endschema %}

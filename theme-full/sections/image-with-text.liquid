@@ -1,0 +1,519 @@
+{%- if section.settings.image != blank or section.blocks.size > 0 -%}
+  {%- comment -%}
+    ------------------------------------------------------------------------------------------------------------------------
+    CSS
+    ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  <style>
+    #shopify-section-{{ section.id }} {
+      --image-with-text-content-max-width: {% if section.settings.content_width == 'sm' %}430px{% elsif section.settings.content_width == 'md' %}780px{% else %}100%{% endif %};
+    }
+
+    {%- assign story_ids = 'image_with_text_LCVJey,image_with_text_KNeYWk,image_with_text_FP8c8y' | split: ',' -%}
+    {%- if story_ids contains section.id -%}
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden;
+      }
+
+      #shopify-section-{{ section.id }} > div {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      /* Full-bleed stacked layout */
+      #shopify-section-{{ section.id }} image-with-text {
+        display: block !important;
+        position: relative;
+        padding: 0 !important;
+      }
+
+      /* Image: full width, portrait crop */
+      #shopify-section-{{ section.id }} image-with-text picture,
+      #shopify-section-{{ section.id }} image-with-text picture img {
+        display: block !important;
+        width: 100% !important;
+        height: 64vw !important;
+        object-fit: cover !important;
+        object-position: center 30% !important;
+        transform: scale(1.05);
+        opacity: 0;
+        transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    opacity 0.7s ease;
+      }
+
+      #shopify-section-{{ section.id }}.iwt-visible image-with-text picture img {
+        transform: scale(1.0) !important;
+        opacity: 1 !important;
+      }
+
+      /* Gold top bar on image */
+      #shopify-section-{{ section.id }} image-with-text picture::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #c9a96e 30%, #c9a96e 70%, transparent);
+        z-index: 2;
+      }
+
+      /* Text card: overlaps image bottom, slides up on scroll */
+      #shopify-section-{{ section.id }} image-with-text .prose {
+        position: relative !important;
+        background: #fff !important;
+        margin: -22px 16px 0 !important;
+        padding: 20px 20px 24px !important;
+        border-radius: 2px !important;
+        text-align: left !important;
+        box-shadow: 0 -1px 0 0 #e8e2d8, 0 2px 20px rgba(0,0,0,0.06) !important;
+        transform: translateY(24px);
+        opacity: 0;
+        transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.18s,
+                    opacity 0.6s ease 0.18s;
+        z-index: 1;
+      }
+
+      #shopify-section-{{ section.id }}.iwt-visible image-with-text .prose {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+      }
+
+      /* Gold accent line above heading */
+      #shopify-section-{{ section.id }} image-with-text .prose::before {
+        content: '';
+        display: block;
+        width: 36px;
+        height: 1px;
+        background: #c9a96e;
+        margin-bottom: 12px;
+      }
+
+      /* Heading */
+      #shopify-section-{{ section.id }} image-with-text .prose .h1,
+      #shopify-section-{{ section.id }} image-with-text .prose p.h1 {
+        font-size: 22px !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.01em !important;
+        line-height: 1.25 !important;
+        margin: 0 0 10px !important;
+        color: #111 !important;
+      }
+
+      /* Remove bold from strong inside heading */
+      #shopify-section-{{ section.id }} image-with-text .prose .h1 strong,
+      #shopify-section-{{ section.id }} image-with-text .prose p.h1 strong {
+        font-weight: 400 !important;
+      }
+
+      /* Body text */
+      #shopify-section-{{ section.id }} image-with-text .prose div,
+      #shopify-section-{{ section.id }} image-with-text .prose div p,
+      #shopify-section-{{ section.id }} image-with-text .prose div h5 {
+        font-size: 12px !important;
+        line-height: 1.65 !important;
+        color: #666 !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.02em !important;
+        margin: 0 !important;
+      }
+
+      /* Link / CTA */
+      #shopify-section-{{ section.id }} image-with-text .prose a.link {
+        display: inline-block !important;
+        margin-top: 14px !important;
+        font-size: 10px !important;
+        letter-spacing: 0.18em !important;
+        color: #111 !important;
+        text-transform: uppercase !important;
+        border-bottom: 1px solid #c9a96e !important;
+        padding-bottom: 2px !important;
+        text-decoration: none !important;
+      }
+    }
+    {%- endif -%}
+  </style>
+
+  {%- comment -%}
+    ------------------------------------------------------------------------------------------------------------------------
+    LIQUID
+    ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  {%- assign color_scheme_hash = section.settings.color_scheme.settings.background_gradient | default: section.settings.color_scheme.settings.background | md5 -%}
+
+  <div class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--bg-{{ color_scheme_hash }} {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+    <image-with-text class="image-with-text {% if section.settings.image_position == 'end' %}image-with-text--reverse{% endif %}">
+      {%- if section.settings.image != blank -%}
+        <picture>
+          {%- assign sizes = '(max-width: 699px) 100vw, 50vw' -%}
+
+          {%- if section.settings.mobile_image != blank -%}
+            <source
+              media="(max-width: 699px)"
+              srcset="{{ section.settings.mobile_image | image_url: width: 400 }} 400w, {{ section.settings.mobile_image | image_url: width: 600 }} 600w, {{ section.settings.mobile_image | image_url: width: 800 }} 800w, {{ section.settings.mobile_image | image_url: width: 1000 }} 1000w"
+              width="{{ section.settings.mobile_image.width }}"
+              height="{{ section.settings.mobile_image.height }}"
+            >
+          {%- endif -%}
+
+          {{-
+            section.settings.image
+            | image_url: width: section.settings.image.width
+            | image_tag:
+              sizes: sizes,
+              widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200',
+              reveal-on-scroll: section.settings.reveal_on_scroll
+          -}}
+        </picture>
+      {%- else -%}
+        {{- 'image' | placeholder_svg_tag: 'placeholder' -}}
+      {%- endif -%}
+
+      <div class="prose text-center sm:text-start">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'subheading' -%}
+              {%- if block.settings.text != blank -%}
+                <p class="h6" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+              {%- endif -%}
+
+            {%- when 'heading' -%}
+              {%- if block.settings.text != blank -%}
+                <p class="{{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+              {%- endif -%}
+
+            {%- when 'richtext' -%}
+              {%- if block.settings.content != blank -%}
+                <div {{ block.shopify_attributes }}>
+                  {{- block.settings.content -}}
+                </div>
+              {%- endif -%}
+
+            {%- when 'page' -%}
+              {%- if block.settings.page.content != blank -%}
+                <div {{ block.shopify_attributes }}>
+                  {{- block.settings.page.content -}}
+                </div>
+              {%- endif -%}
+
+            {%- when 'liquid' -%}
+              {%- if block.settings.liquid != blank -%}
+                <div {{ block.shopify_attributes }}>
+                  {{- block.settings.liquid -}}
+                </div>
+              {%- endif -%}
+
+            {%- when 'link' -%}
+              <a
+                {% if block.settings.url %}
+                  href="{{ block.settings.url }}"
+                {% endif %}
+                class="link"
+                {{ block.shopify_attributes }}
+              >
+                {{- block.settings.text | escape -}}
+              </a>
+
+            {%- when 'button' -%}
+              {%- if block.settings.text != blank -%}
+                {% render 'button',
+                  content: block.settings.text,
+                  href: block.settings.url,
+                  style: block.settings.style,
+                  background: block.settings.background,
+                  text_color: block.settings.text_color,
+                  block: block
+                %}
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </image-with-text>
+  </div>
+
+  {%- assign story_ids = 'image_with_text_LCVJey,image_with_text_KNeYWk,image_with_text_FP8c8y' | split: ',' -%}
+  {%- if story_ids contains section.id -%}
+  <script>
+  (function() {
+    var el = document.getElementById('shopify-section-{{ section.id }}');
+    if (!el || window.innerWidth > 699) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('iwt-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(el);
+  })();
+  </script>
+  {%- endif -%}
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.image_with_text.name",
+  "class": "shopify-section--image-with-text",
+  "tag": "section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "separate_section_with_border",
+      "label": "t:global.section.separate_section_with_border",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:global.image.image",
+      "info": "t:sections.image_with_text.image_size_recommendation"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:global.image.mobile_image",
+      "info": "t:sections.image_with_text.mobile_image_size_recommendation"
+    },
+    {
+      "type": "checkbox",
+      "id": "reveal_on_scroll",
+      "label": "t:global.animation.reveal_image_on_scroll",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "t:sections.image_with_text.image_position",
+      "options": [
+        {
+          "value": "start",
+          "label": "t:global.position.left"
+        },
+        {
+          "value": "end",
+          "label": "t:global.position.right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "t:global.sizes.content_width",
+      "options": [
+        {
+          "value": "sm",
+          "label": "t:global.sizes.small"
+        },
+        {
+          "value": "md",
+          "label": "t:global.sizes.medium"
+        },
+        {
+          "value": "lg",
+          "label": "t:global.sizes.large"
+        }
+      ],
+      "default": "sm"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_vertical_spacing",
+      "label": "t:global.spacing.remove_vertical_spacing",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "subheading",
+      "name": "t:sections.image_with_text.blocks.subheading.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:global.text.text",
+          "default": "Subheading"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "t:sections.image_with_text.blocks.heading.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:global.text.text",
+          "default": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "t:global.text.style",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h1"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "name": "t:sections.image_with_text.blocks.paragraph.name",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:global.text.content",
+          "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "t:sections.image_with_text.blocks.page.name",
+      "settings": [
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page"
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "t:sections.image_with_text.blocks.liquid.name",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "t:global.code.liquid",
+          "default": "<p>Write custom Liquid code to include widget or dynamic code.</p>"
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "t:sections.image_with_text.blocks.link.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:global.text.text",
+          "default": "Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:global.text.link"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "t:sections.image_with_text.blocks.button.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "t:global.text.style",
+          "options": [
+            {
+              "value": "outline",
+              "label": "t:global.text.button_style_options.outline"
+            },
+            {
+              "value": "solid",
+              "label": "t:global.text.button_style_options.solid"
+            }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:global.text.text",
+          "default": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:global.text.link"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "t:global.colors.background"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "t:global.text.text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image_with_text.presets.image_with_text.name",
+      "category": "t:global.categories.media",
+      "blocks": [
+        {
+          "type": "subheading",
+          "settings": {
+            "text": "Subheading"
+          }
+        },
+        {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text"
+          }
+        },
+        {
+          "type": "richtext"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

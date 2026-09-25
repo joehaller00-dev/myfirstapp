@@ -1,0 +1,103 @@
+{%- comment -%}
+  NF-ABOUT-V1 (2026-09-11): review highlights for /pages/about-us.
+  The summary (average and count) is read LIVE from the Judge.me shop metafields judgeme.all_reviews_rating and
+  judgeme.all_reviews_count, so it never goes stale; it hides itself if those are missing.
+  Quote blocks are copied word for word from real Judge.me reviews (REVIEWS_REBUILD_v3.csv rows noted in the template),
+  with the reviewer's genuine masked name ("R***s"). Never invent or "unmask" a name, never mix a quote and a name
+  from different rows. The product link is live, so a deleted product simply drops its link.
+{%- endcomment -%}
+{{- 'nf-about.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign s = section.settings
+  assign jm_c = shop.metafields.judgeme.all_reviews_count.value | plus: 0
+  assign jm_r = shop.metafields.judgeme.all_reviews_rating.value | plus: 0
+  assign jm_r1 = jm_r | round: 1
+  assign jm_pct = jm_r | divided_by: 5.0 | times: 100 | round: 1
+  assign jm_k = jm_c | divided_by: 1000
+  assign jm_rest = jm_c | modulo: 1000
+  if jm_k > 0
+    assign jm_rest_s = jm_rest | prepend: '00' | slice: -3, 3
+    assign jm_c_str = jm_k | append: ',' | append: jm_rest_s
+  else
+    assign jm_c_str = jm_c | append: ''
+  endif
+-%}
+{%- capture star -%}<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg>{%- endcapture -%}
+<section class="nfa nfa-reviews" aria-labelledby="nfa-rh-{{ section.id }}">
+  <div class="nfa-wrap nfa-sec">
+    <div class="nfa-head">
+      <div class="nfa-head__main">
+        {%- if s.eyebrow != blank -%}<p class="nfa-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfa-h2" id="nfa-rh-{{ section.id }}">{{ s.heading | escape }}</h2>
+        {%- if s.text != blank -%}<p class="nfa-lead">{{ s.text | escape }}</p>{%- endif -%}
+      </div>
+      {%- if s.show_summary and jm_c > 0 and jm_r > 0 -%}
+        <div class="nfa-rv-sum">
+          <span class="nfa-rv-sum__n">{{ jm_r1 }}</span>
+          <span>
+            <span class="nfa-stars nfa-stars--sum" role="img" aria-label="{{ jm_r1 }} out of 5 stars">
+              <span class="nfa-stars__bg">{% for i in (1..5) %}{{ star }}{% endfor %}</span>
+              <span class="nfa-stars__fg" style="width:{{ jm_pct }}%">{% for i in (1..5) %}{{ star }}{% endfor %}</span>
+            </span>
+            <span class="nfa-rv-sum__x">{{ s.summary_prefix | default: 'out of 5 from' | escape }} {{ jm_c_str }} {{ s.summary_suffix | default: 'reviews' | escape }}</span>
+          </span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <ul class="nfa-rv-grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- if block.type != 'review' or block.settings.quote == blank -%}{%- continue -%}{%- endif -%}
+        {%- assign r = block.settings.rating | default: 5 -%}
+        {%- assign rp = block.settings.product -%}
+        <li {{ block.shopify_attributes }}>
+          <figure class="nfa-rv">
+            <span class="nfa-stars" role="img" aria-label="Rated {{ r }} out of 5">{% for i in (1..r) %}{{ star }}{% endfor %}</span>
+            <blockquote class="nfa-rv__q">{{ block.settings.quote | escape }}</blockquote>
+            <figcaption class="nfa-rv__who">
+              {%- if block.settings.name == blank or block.settings.name == 'Anonymous' -%}<span class="nf-vbadge"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="7.2"/><path d="M4.9 8.3l2.1 2.1 4.2-4.4"/></svg>Verified Buyer</span>{%- else -%}<span class="nfa-rv__name">{{ block.settings.name | escape }}</span>{%- endif -%}
+              {%- if rp != blank and rp.url != blank -%}{{ s.on_label | default: 'on' | escape }} <a class="nfa-rv__prod" href="{{ rp.url }}">{{ rp.title | escape }}</a>{%- endif -%}
+            </figcaption>
+          </figure>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    <div class="nfa-rv-foot">
+      {%- if s.note != blank -%}<p class="nfa-rv-note">{{ s.note | escape }}</p>{%- endif -%}
+      {%- if s.more_label != blank -%}<a class="nfa-btn nfa-btn--line" href="{{ s.more_url }}">{{ s.more_label | escape }}<span class="nfa-arrow" aria-hidden="true">&rarr;</span></a>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF about reviews",
+  "class": "nfa-section nfa-section--reviews",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reviews" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "checkbox", "id": "show_summary", "label": "Show the live Judge.me average and count", "default": true },
+    { "type": "text", "id": "summary_prefix", "label": "Summary text before the count", "default": "out of 5 from" },
+    { "type": "text", "id": "summary_suffix", "label": "Summary text after the count", "default": "reviews" },
+    { "type": "text", "id": "on_label", "label": "Word before the product name", "default": "on" },
+    { "type": "textarea", "id": "note", "label": "Small note" },
+    { "type": "text", "id": "more_label", "label": "Button label" },
+    { "type": "text", "id": "more_url", "label": "Button URL" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote, word for word" },
+        { "type": "text", "id": "name", "label": "Reviewer name exactly as shown by Judge.me (masked)" },
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 }
+      ]
+    }
+  ],
+  "max_blocks": 9
+}
+{% endschema %}

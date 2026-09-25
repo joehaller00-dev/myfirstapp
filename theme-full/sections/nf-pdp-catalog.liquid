@@ -1,0 +1,43 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) Catalog block under "Complete the Room": links /pages/catalog (the 2026 lighting catalog),
+  styled after NF-CATALOG-PAGE-V2 (closed book with the real cover photo and the NORA FURNISH 2026 band).
+{%- endcomment -%}
+{%- comment -%} NF-PDP-V1: with "defer" on, only an empty shell is printed; nf-pdp.js fetches the full section from the
+  product.nf-pdp-below view when it comes near the viewport (keeps the first load light). {%- endcomment -%}
+{%- if section.settings.defer -%}
+{%- comment -%} NF-SPEED-B-0916: shell only, so its CSS loads without blocking render (the full section is fetched later) {%- endcomment -%}
+<link rel="stylesheet" href="{{ 'nf-pdp-below.css' | asset_url }}" media="print" onload="this.media='all'">
+<div class="nf-defer nf-defer--catalog" data-nf-defer="nf_pdp_catalog" aria-busy="true"></div>
+{%- else -%}
+{{ 'nf-pdp-below.css' | asset_url | stylesheet_tag }}
+{%- assign cover = '//cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787872171415_24be3636_1787872172132_984a4590.png' -%}
+<section class="nf-cat nf-lz" aria-labelledby="nf-cat-h-{{ section.id }}">
+  <div class="nf-cat__in">
+    <a class="nf-cat__book nf-rv" href="/pages/catalog" aria-label="Explore the 2026 Nora Furnish Lighting Catalog" tabindex="-1">
+      <span class="nf-cat__pages" aria-hidden="true"></span>
+      <span class="nf-cat__cover">
+        <img src="{{ cover }}?width=520" srcset="{{ cover }}?width=360 360w, {{ cover }}?width=520 520w, {{ cover }}?width=760 760w" sizes="(max-width: 699px) 46vw, 260px" width="900" height="1200" loading="lazy" decoding="async" alt="">
+        <span class="nf-cat__veil"></span>
+        <span class="nf-cat__brand">Nora Furnish</span>
+        <span class="nf-cat__yr">2026</span>
+      </span>
+    </a>
+    <div class="nf-cat__copy nf-rv">
+      <p class="nf-eyebrow">The 2026 catalog</p>
+      <h2 class="nf-h2" id="nf-cat-h-{{ section.id }}">Browse the Nora Furnish Lighting Catalog</h2>
+      <p class="nf-cat__p">Chandeliers, pendants, sconces, lamps and outdoor lights, photographed in real rooms with the lights switched on. Every piece links to its product page at a live price.</p>
+      <div class="nf-cat__acts">
+        <a class="nf-btn nf-btn--gold" href="/pages/catalog">Explore the catalog <span aria-hidden="true">&rarr;</span></a>
+        <a class="nf-btn nf-btn--outline" href="/pages/lighting-catalog">Open the digital edition</a>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "NF Catalog block",
+  "settings": [
+    { "type": "checkbox", "id": "defer", "label": "Load when scrolled near (faster first load)", "default": false }]
+}
+{% endschema %}

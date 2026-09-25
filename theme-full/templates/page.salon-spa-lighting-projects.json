@@ -1,0 +1,335 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Salons and Spas",
+        "eyebrow": "Salon and spa lighting",
+        "heading": "Flattering light for every chair and treatment room",
+        "text": "Salons, spas and beauty studios live on how clients look in the mirror. Clear, even light at each station and soft, warm light in treatment rooms make every appointment feel like a treat.",
+        "image_file": "nf-ref-bath-vanity.png",
+        "image_alt": "Flattering light for every chair and treatment room",
+        "fallback_collection": "vanity-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=salon-spa-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Vanity Lights",
+        "link_url": "/collections/vanity-lighting"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Clear at the mirror, calm everywhere else",
+        "image_file": "nf-ref-display-shelves.png",
+        "image_alt": "Product shelves lit with warm accent light",
+        "fallback_collection": "mirror-lights",
+        "text": "<p>A salon needs two moods at once: honest light for the work and a relaxed glow for the client.</p>",
+        "bullets": "Even light at each station: Mirror and vanity lights light the face from the front, without harsh shadows.\nNeutral color for color work: Light around 4000K shows hair color and makeup true to life.\nWarm light in treatment rooms: Soft wall light and lamps at 2700K help clients relax.\nA welcoming front desk: A pendant or two over reception sets the tone as clients walk in.\nLit retail shelves: Accent light on product shelves helps the products sell themselves.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Styling stations\nTreatment rooms\nReception\nNail and makeup bars\nRetail shelves\nWaiting areas"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Vanity Lights",
+        "link_url": "/collections/vanity-lighting"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Mirror lights",
+            "collection": "mirror-lights",
+            "text": "Front light for every mirror and station.",
+            "shop_label": "Shop mirror lights",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Vanity lights",
+            "collection": "vanity-lighting",
+            "text": "Bright bars over mirrors and sinks.",
+            "shop_label": "Shop vanity lights",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Wall sconces",
+            "collection": "wall-sconces",
+            "text": "Soft, warm light for treatment rooms.",
+            "shop_label": "Shop wall sconces",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "Pendants",
+            "collection": "pendants",
+            "text": "A focal point over reception and the front desk.",
+            "shop_label": "Shop all pendants",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Aroma diffusers",
+            "collection": "aroma-diffusers",
+            "text": "A calm scent to finish the room.",
+            "shop_label": "Shop aroma diffusers",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-office-concepts-3.webp",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "image_file": "nf-pro3-office-concepts-1.png",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "image_file": "nf-pro3-office-concepts-2.webp",
+            "fallback_collection": "pendants"
+          }
+        }
+      },
+      "block_order": [
+        "c_maker_studio",
+        "c_linen_and_oak",
+        "c_alder_lobby"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Opening or refreshing a salon or spa?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=salon-spa-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Which light color is best for hair and makeup?",
+            "a": "<p>Neutral white around 4000K shows color most accurately at styling and makeup stations. Warmer light suits treatment rooms and waiting areas.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "How long does delivery take?",
+            "a": "<p>Shipping is free anywhere in the United States, with delivery in 6 to 9 business days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how salon and spa lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=salon-spa-lighting-projects",
+        "btn2_label": "Shop Vanity Lights",
+        "btn2_url": "/collections/vanity-lighting",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Vanity Mirror",
+            "image_file": "nf-ref-bath-vanity.png",
+            "alt": "Vanity Mirror, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Bright Bath",
+            "image_file": "nf-ref-family-bath.png",
+            "alt": "Bright Bath, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Product Shelves",
+            "image_file": "nf-ref-display-shelves.png",
+            "alt": "Product Shelves, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Front Counter",
+            "image_file": "nf-ref-shop-counter.jpg",
+            "alt": "Front Counter, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Window Glow",
+            "image_file": "nf-ref-window-display.jpg",
+            "alt": "Window Glow, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Boutique Corner",
+            "image_file": "nf-pro3-retail-concepts-2.png",
+            "alt": "Boutique Corner, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Studio Shelf",
+            "image_file": "nf-pro3-retail-ref-8.webp",
+            "alt": "Studio Shelf, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Retail Run",
+            "image_file": "nf-ref-retail-run.jpg",
+            "alt": "Retail Run, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band",
+    "faq"
+  ]
+}

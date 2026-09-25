@@ -1,0 +1,213 @@
+{%- comment -%}
+  NF-SEARCH-V2 (2026-09-12) "Lamplight" instant search results. Never placed in a template: assets/nf-search.js
+  fetches it through the Section Rendering API.
+    typed: /search/suggest?q=..&resources[type]=product,collection,article,query&resources[limit]=6
+           &resources[limit_scope]=each&section_id=nf-search-suggest
+    empty: /search?section_id=nf-search-suggest   (predictive_search not performed: popular chips + category tiles)
+  Output root is .nf-srch-r with data-nf-srch-state = results | none | empty and data-nf-srch-say for the live region.
+{%- endcomment -%}
+{%- if predictive_search.performed -%}
+  {%- liquid
+    assign ps = predictive_search.resources
+    assign terms = predictive_search.terms
+    assign terms_dc = terms | downcase | strip
+    assign nfs_extra = ''
+    for qy in ps.queries
+      assign nfs_extra = nfs_extra | append: ' ' | append: qy.text
+    endfor
+    assign nfs_skip = '|lighting|indoor-lighting|string-lights|frontpage|all|'
+    assign cols = ''
+    assign col_count = 0
+    for c in ps.collections
+      assign ck = '|' | append: c.handle | append: '|'
+      if nfs_skip contains ck or c.handle contains '-picks'
+        continue
+      endif
+      assign col_count = col_count | plus: 1
+      if col_count > 3
+        break
+      endif
+    endfor
+    if col_count > 3
+      assign col_count = 3
+    endif
+    assign art_count = ps.articles.size
+    if art_count > 2
+      assign art_count = 2
+    endif
+  -%}
+  {%- capture nfs_strength -%}{%- render 'nf-search-strength', items: ps.products, terms: terms, extra: nfs_extra -%}{%- endcapture -%}
+  {%- liquid
+    assign strong = false
+    if col_count > 0 or art_count > 0
+      assign strong = true
+    endif
+    if ps.products.size > 0 and nfs_strength contains 'strong'
+      assign strong = true
+    endif
+    if ps.products.size == 0
+      assign prod_ok = false
+    elsif nfs_strength contains 'strong'
+      assign prod_ok = true
+    else
+      assign prod_ok = false
+    endif
+  -%}
+  {%- if strong -%}
+    {%- liquid
+      assign pcount = 0
+      if prod_ok
+        assign pcount = ps.products.size
+      endif
+      capture say
+        echo pcount | append: ' products'
+        if col_count > 0
+          echo ', ' | append: col_count | append: ' categories'
+        endif
+        if art_count > 0
+          echo ', ' | append: art_count | append: ' guides'
+        endif
+        echo ' for ' | append: terms | append: '. Use the arrow keys to browse.'
+      endcapture
+    -%}
+    <div class="nf-srch-r" data-nf-srch-state="results" data-nf-srch-say="{{ say | escape }}">
+      {%- assign sug_shown = 0 -%}
+      {%- capture sug_html -%}
+        {%- for qy in ps.queries -%}
+          {%- assign qd = qy.text | downcase | strip -%}
+          {%- if qd != terms_dc and sug_shown < 3 -%}
+            {%- assign sug_shown = sug_shown | plus: 1 -%}
+            <a class="nf-srch-sug" href="{{ qy.url }}" data-nf-srch-opt>{{ qy.styled_text }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if sug_shown > 0 -%}
+        <div class="nf-srch-sugs" role="group" aria-label="Suggestions">
+          <span class="nf-srch-eyebrow" aria-hidden="true">Try</span>{{ sug_html }}
+        </div>
+      {%- endif -%}
+
+      <div class="nf-srch-grid{% unless prod_ok %} nf-srch-grid--noprod{% endunless %}">
+        {%- if prod_ok -%}
+          <div class="nf-srch-products" role="group" aria-label="Products">
+            <p class="nf-srch-eyebrow" aria-hidden="true">Products</p>
+            <ul class="nf-srch-cards" role="presentation">
+              {%- assign nfs_order = nfs_strength | split: ':' | last | split: ',' -%}
+              {%- for oi in nfs_order limit: 6 -%}
+                {%- assign oi_n = oi | plus: 0 -%}
+                {%- assign product = ps.products[oi_n] -%}
+                {%- if product == blank -%}{%- continue -%}{%- endif -%}
+                {%- render 'nf-search-card', product: product -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        {%- if col_count > 0 or art_count > 0 -%}
+          <div class="nf-srch-side">
+            {%- if col_count > 0 -%}
+              <div class="nf-srch-cols" role="group" aria-label="Categories">
+                <p class="nf-srch-eyebrow" aria-hidden="true">Categories</p>
+                <div class="nf-srch-chips">
+                  {%- assign shown = 0 -%}
+                  {%- for c in ps.collections -%}
+                    {%- assign ck = '|' | append: c.handle | append: '|' -%}
+                    {%- if nfs_skip contains ck or c.handle contains '-picks' -%}{%- continue -%}{%- endif -%}
+                    {%- assign shown = shown | plus: 1 -%}
+                    {%- if shown > 3 -%}{%- break -%}{%- endif -%}
+                    <a class="nf-srch-chip" href="{{ c.url }}" data-nf-srch-opt>{{ c.title | escape }}</a>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if art_count > 0 -%}
+              <div class="nf-srch-arts" role="group" aria-label="From our Blogs">
+                <p class="nf-srch-eyebrow" aria-hidden="true">From our Blogs</p>
+                {%- for article in ps.articles limit: 2 -%}
+                  <a class="nf-srch-art" href="{{ article.url }}" data-nf-srch-opt>
+                    {%- if article.image -%}
+                      <span class="nf-srch-art__media">{{ article.image | image_url: width: 180 | image_tag: loading: 'lazy', widths: '90,180', sizes: '90px', alt: '' }}</span>
+                    {%- endif -%}
+                    <span class="nf-srch-art__body">
+                      <span class="nf-srch-art__title">{{ article.title | escape }}</span>
+                      <span class="nf-srch-art__more">Read the guide</span>
+                    </span>
+                  </a>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="nf-srch-foot">
+        <a class="nf-srch-all" href="{{ routes.search_url }}?q={{ terms | url_encode }}&amp;options%5Bprefix%5D=last" data-nf-srch-opt data-nf-srch-all>
+          See all results for &ldquo;{{ terms | escape }}&rdquo;
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </a>
+      </div>
+    </div>
+  {%- else -%}
+    {%- liquid
+      assign sug_list = ''
+      for qy in ps.queries
+        assign qd = qy.text | downcase | strip
+        if qd != terms_dc
+          assign sug_list = sug_list | append: qy.text | append: '~'
+        endif
+      endfor
+      assign sug_arr = sug_list | split: '~'
+    -%}
+    <div class="nf-srch-r" data-nf-srch-state="none" data-nf-srch-say="{{ 'We could not find ' | append: terms | append: '. Try one of the suggestions below, or ask us and we will find it.' | escape }}">
+      {%- render 'nf-search-none', terms: terms, suggestions: sug_arr, context: 'drop' -%}
+    </div>
+  {%- endif -%}
+{%- elsif search.performed -%}
+  {%- comment -%} NF-SEARCH-V2 fallback: nf-search.js asks /search?q=..&type=product&section_id=nf-search-suggest when predictive
+      search found nothing relevant (typos like cahndelier). Full search is more forgiving; show its closest matches. {%- endcomment -%}
+  {%- liquid
+    assign sp = search.results | where: 'object_type', 'product'
+    assign terms = search.terms
+    assign nfs_no_sugs = '' | split: ','
+  -%}
+  {%- capture nfs_strength -%}{%- render 'nf-search-strength', items: sp, terms: terms, extra: '' -%}{%- endcapture -%}
+  {%- if sp.size > 0 and nfs_strength contains 'strong:' -%}
+    {%- assign nfs_order = nfs_strength | split: ':' | last | split: ',' -%}
+    <div class="nf-srch-r" data-nf-srch-state="results" data-nf-srch-say="{{ 'Closest matches for ' | append: terms | append: '. Use the arrow keys to browse.' | escape }}">
+      <div class="nf-srch-grid nf-srch-grid--noprod">
+        <div class="nf-srch-products" role="group" aria-label="Closest matches">
+          <p class="nf-srch-eyebrow" aria-hidden="true">Closest matches</p>
+          <ul class="nf-srch-cards" role="presentation">
+            {%- for oi in nfs_order limit: 6 -%}
+              {%- assign oi_n = oi | plus: 0 -%}
+              {%- assign product = sp[oi_n] -%}
+              {%- if product == blank -%}{%- continue -%}{%- endif -%}
+              {%- render 'nf-search-card', product: product -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+      <div class="nf-srch-foot">
+        <a class="nf-srch-all" href="{{ routes.search_url }}?q={{ terms | url_encode }}&amp;options%5Bprefix%5D=last" data-nf-srch-opt data-nf-srch-all>
+          See all results for &ldquo;{{ terms | escape }}&rdquo;
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </a>
+      </div>
+    </div>
+  {%- else -%}
+    <div class="nf-srch-r" data-nf-srch-state="none" data-nf-srch-say="{{ 'We could not find ' | append: terms | append: '. Try one of the suggestions below, or ask us and we will find it.' | escape }}">
+      {%- render 'nf-search-none', terms: terms, suggestions: nfs_no_sugs, context: 'drop' -%}
+    </div>
+  {%- endif -%}
+{%- else -%}
+  <div class="nf-srch-r" data-nf-srch-state="empty" data-nf-srch-say="Popular right now and shop by category. Use the arrow keys to browse.">
+    {%- render 'nf-search-discover', context: 'drop' -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF search suggest",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,562 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "head": {
+      "type": "nf-custom-head",
+      "settings": {}
+    },
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "crumb_label": "Custom Size Chandeliers",
+        "eyebrow": "Custom size chandeliers",
+        "heading": "A chandelier sized to your space",
+        "text": "From a dining room to a two story stairwell, we make chandeliers to the diameter, height and drop length your space needs, in the finish you choose.",
+        "image_file": "nf-custom-chandelier-grand-foyer.jpg",
+        "image_alt": "Large crystal and brass chandelier glowing in a bright two story foyer with a curved staircase at evening",
+        "fallback_collection": "chandeliers",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn1_style": "gold",
+        "btn2_label": "Browse Project References",
+        "btn2_url": "#references",
+        "btn2_style": "outline",
+        "link_label": "Size my chandelier",
+        "link_url": "#design",
+        "facts": "Free quote by email\nCustom drop lengths for stairwells\nA photo before it ships"
+      }
+    },
+    "tool": {
+      "type": "nf-custom-tool",
+      "settings": {
+        "tool": "chandeliers",
+        "bg": "grey",
+        "anchor": "design",
+        "eyebrow": "Sizing guide",
+        "heading": "Find the right size in a minute",
+        "text": "Choose where it will hang and enter a few measurements. The drawing shows the diameter, the height and the drop to scale, with a person for reference.",
+        "cta_label": "Add this to my quote"
+      }
+    },
+    "evening": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "white",
+        "flip": false,
+        "anchor": "evening",
+        "eyebrow": "Tall spaces",
+        "heading": "Big rooms and stairwells, done properly",
+        "text": "<p>A chandelier that is too small gets lost in a tall space, and one that hangs too low gets in the way. We size yours to the room, then set the drop so it sits exactly where it looks best.</p>",
+        "bullets": "Staircase chandeliers: Tall cascades with a custom drop, so the bottom lines up with a landing or a window.\nFoyer chandeliers: Large pieces that fill a double height entry without crowding it.\nDining and living rooms: The right diameter for your table or room, hung at a comfortable height.\nFinishes: Gold, brass, chrome or black, with one tier or several.",
+        "spaces_label": "",
+        "spaces": "",
+        "image_file": "nf-custom-chandelier-staircase.png",
+        "image_alt": "Crystal and brass chandelier glowing on a long chain drop in a two story stairwell at evening",
+        "fallback_collection": "chandeliers",
+        "btn_label": "Browse Project References",
+        "btn_url": "#references",
+        "btn_style": "secondary",
+        "link_label": "Shop chandeliers",
+        "link_url": "/collections/chandeliers"
+      }
+    },
+    "terms": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "text",
+        "columns": "4",
+        "bg": "white",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "custom-terms",
+        "eyebrow": "Good to know",
+        "heading": "Clear terms, before you order",
+        "text": "",
+        "note": "",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "icon": "ruler",
+            "title": "Made to order",
+            "text": "Every chandelier is made for your order, to your sizes and your choices."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "icon": "invoice",
+            "title": "Price and timeline in writing",
+            "text": "Your quote confirms the price and the timeline before anything is made. Nothing is charged until you approve it."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "icon": "spark",
+            "title": "A photo before it ships",
+            "text": "When your chandelier is finished, we send you a photo of it before it leaves."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "icon": "box",
+            "title": "Final sale",
+            "text": "Custom pieces are final sale because they are made just for you. If one arrives damaged or has a defect, we replace it or refund it."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "how": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "steps",
+        "columns": "4",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "how-it-works",
+        "eyebrow": "How it works",
+        "heading": "Four simple steps, and you approve each one",
+        "text": "",
+        "note": "Nothing is made or charged until you approve your quote.",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Request a quote",
+            "text": "Send your details with the form on this page. The sizing guide fills in your sizes and choices for you.",
+            "meta": ""
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "We confirm design, price and timeline",
+            "text": "We check every detail with the maker and reply by email with the design, the price and the timeline in writing.",
+            "meta": ""
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "See it before it ships",
+            "text": "When your piece is finished, we send you a photo of it so you can see it before it leaves.",
+            "meta": ""
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "It ships to you",
+            "text": "Your piece is packed with care and shipped to your door.",
+            "meta": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "white",
+        "anchor": "faq",
+        "eyebrow": "",
+        "heading": "Common questions",
+        "text": "",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "How big should a chandelier be for my room?",
+            "a": "<p>Add the length and width of the room in feet. The total, read in inches, is a good diameter. A 14 by 12 foot room suits a chandelier about 26 inches across.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "How big should a chandelier be over a dining table?",
+            "a": "<p>Choose a diameter between one half and two thirds of the table width, so no one bumps it when they stand up. Hang the bottom about 30 to 36 inches above the tabletop with an 8 foot ceiling, and about 3 inches higher for each extra foot.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "What is a drop length?",
+            "a": "<p>The drop is the chain or cord between the ceiling and the top of the fixture. On a staircase or in a tall foyer, a custom drop puts the chandelier exactly where you want it, for example level with the upstairs landing or centered in a tall window.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "How low can a chandelier hang in a foyer or over stairs?",
+            "a": "<p>Keep the bottom at least 7 feet above the floor or the stair beneath it. In a two story foyer, many people line it up with the upper floor so it reads well from both levels.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "Can my ceiling hold a large chandelier?",
+            "a": "<p>Large fixtures need a ceiling box rated for their weight, and heavy pieces often need extra bracing. We share the fixture weight in your quote so your electrician can plan the install. Please have a licensed electrician install any hardwired light.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I return a custom size chandelier?",
+            "a": "<p>Custom pieces are made for your order, so they are final sale and cannot be returned for a change of mind. If anything arrives damaged or has a defect, we replace it or refund it. Email photos to info@norafurnish.com as soon as you can and we will put it right.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ]
+    },
+    "quote": {
+      "type": "nf-custom-quote",
+      "settings": {
+        "bg": "grey",
+        "anchor": "quote",
+        "form_id": "nfc-quote-chandeliers",
+        "service": "Custom size chandelier",
+        "summary_label": "Your chandelier sizes",
+        "summary_help": "This comes from the tool above. Change anything you like before you send it.",
+        "qty_label": "How many chandeliers?",
+        "qty_placeholder": "For example 1, or 2 over a long table",
+        "message_placeholder": "Tell us about the room, the ceiling and the look you like. Links to photos of the space or of a chandelier you love are welcome.",
+        "button_label": "Request My Free Quote",
+        "eyebrow": "Free quote",
+        "heading": "Request your chandelier quote",
+        "text": "Your choices from the tool are already in the form. Add your details and we will reply by email.",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request and asks if a measurement looks off.\nWe confirm the details: You get the design, the price and the timeline in writing.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "A photo of the space, taken from the floor looking up\nThe ceiling height, and the landing heights for stairs\nA link to a chandelier you like\nWhat the ceiling is made of, if you know"
+      },
+      "disabled": true
+    },
+    "more": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "media",
+        "columns": "3",
+        "bg": "white",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "more-custom",
+        "eyebrow": "More made for you",
+        "heading": "Other custom pieces",
+        "text": "",
+        "note": "",
+        "link_label": "All Professionals services",
+        "link_url": "/pages/professionals"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Made to Measure Curtains",
+            "text": "Panels made to your window, in the fabric and top style you choose.",
+            "image_file": "nf-pro3-chand-more-1.png",
+            "url": "/pages/custom-curtains",
+            "link_label": "Measure your window",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Custom Name Signs",
+            "text": "Your name, a word or your logo in LED neon, previewed live on a wall.",
+            "image_file": "nf-pro3-chand-more-2.png",
+            "url": "/pages/custom-name-signs",
+            "link_label": "Design your sign",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Custom Lighting Studio",
+            "text": "Change the finish, size, output or mounting of a light from our range.",
+            "image_file": "nf-pro3-chand-more-3.jpg",
+            "url": "/pages/custom-lighting",
+            "link_label": "Explore the studio",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "customize_v2": {
+      "type": "nf-pro2-customize",
+      "settings": {
+        "bg": "white",
+        "anchor": "customize",
+        "eyebrow": "Custom size chandeliers",
+        "heading": "What can be customized",
+        "note": "Production begins after the size, finish and ceiling details are confirmed."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "icon": "size",
+            "title": "Diameter and height",
+            "text": "Sized to your room, table or stairwell using the guide above, not the nearest stock size."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "icon": "tiers",
+            "title": "Tiers and arms",
+            "text": "More or fewer tiers, rings or arms to fill a tall foyer or keep a dining room light."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "icon": "chain",
+            "title": "Chain and drop",
+            "text": "Chain or cable length set so the bottom sits at the right height for your ceiling."
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "icon": "finish",
+            "title": "Finish",
+            "text": "Brass, gold, black, chrome or bronze frames to match your hardware."
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "icon": "crystal",
+            "title": "Crystal and glass",
+            "text": "Clear crystal, smoked or amber glass, or fabric shades, depending on the design."
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "icon": "cct",
+            "title": "Bulbs and light color",
+            "text": "Warm or neutral light, candle bulbs or built in LED, with dimmable options."
+          }
+        },
+        "c7": {
+          "type": "card",
+          "settings": {
+            "icon": "ceiling",
+            "title": "Canopy and ceiling",
+            "text": "Canopies and mounting for flat, sloped or very high ceilings."
+          }
+        },
+        "c8": {
+          "type": "card",
+          "settings": {
+            "icon": "stair",
+            "title": "Stairwell and foyer",
+            "text": "Long drop and cascading designs for two story entries and open staircases."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how custom chandeliers can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Pick it in the quote form and we will price it for your space.",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn2_label": "Shop chandeliers",
+        "btn2_url": "/collections/chandeliers",
+        "quote_links": true,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Staircase",
+            "image_file": "nf-ref-staircase-chandelier.png",
+            "alt": "Staircase lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Foyer",
+            "image_file": "nf-ref-foyer-chandelier.png",
+            "alt": "Foyer lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Dining Table",
+            "image_file": "nf-pro3-chand-ref-3.png",
+            "alt": "Dining Table inspiration photo, lit in the evening"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Branch Chandelier",
+            "image_file": "nf-pro3-fix-chand-ref-4.jpg",
+            "alt": "Branch Chandelier inspiration photo, lit in the evening"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Ring Dining",
+            "image_file": "nf-ref-ring-dining.png",
+            "alt": "Ring Dining lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Stair Cluster",
+            "image_file": "nf-discover-custom.jpg",
+            "alt": "Stair Cluster lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Brass Living Room",
+            "image_file": "nf-ref-brass-chandelier.png",
+            "alt": "Brass Living Room lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Cage Chandelier",
+            "image_file": "nf-ref-cage-chandelier.png",
+            "alt": "Cage Chandelier lit in the evening, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    },
+    "quote_v2": {
+      "type": "nf-pro2-quote",
+      "settings": {
+        "anchor": "quote",
+        "eyebrow": "Free quote",
+        "heading": "Request your chandelier quote",
+        "text": "Your choices from the tool are already in the form. Add your details and we will reply by email.",
+        "form_id": "nfc-quote-chandeliers",
+        "service": "Custom size chandelier",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request and asks if a measurement looks off.\nWe confirm the details: You get the design, the price and the timeline in writing.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "A photo of the space, taken from the floor looking up\nThe ceiling height, and the landing heights for stairs\nA link to a chandelier you like\nWhat the ceiling is made of, if you know",
+        "summary_label": "Your chandelier sizes",
+        "summary_help": "This comes from the tool above. Change anything you like before you send it.",
+        "qty_label": "How many chandeliers?",
+        "qty_placeholder": "For example 1, or 2 over a long table",
+        "msg_placeholder": "Tell us about the room, the ceiling and the look you like. Links to photos of the space or of a chandelier you love are welcome.",
+        "adjust": "size|size|Diameter and height\ntiers|tiers|Tiers and arms\ndrop|chain|Chain and drop\nfinish|finish|Finish\nglass|crystal|Crystal and glass\ncct|cct|Bulbs and light color\nceiling|ceiling|Canopy and ceiling",
+        "refs": "Staircase\nFoyer\nDining Table\nLiving Room\nRing Dining\nStair Cluster\nBrass Living Room\nCage Chandelier",
+        "zone_placeholder": "For example two story foyer or dining table",
+        "space_default": "Home",
+        "tool": true,
+        "zip": true,
+        "button_label": "Get My Free Custom Quote",
+        "bg": "grey"
+      }
+    }
+  },
+  "order": [
+    "head",
+    "hero",
+    "tool",
+    "evening",
+    "customize_v2",
+    "references_v2",
+    "terms",
+    "how",
+    "faq",
+    "quote",
+    "quote_v2",
+    "more"
+  ]
+}

@@ -1,0 +1,103 @@
+{%- comment -%}
+  NF collection story (2026-09-10). Sits below the product grid on every collection template.
+  Content comes from collection metafields (loaded with SP\newbuild\collections\load_snippet.js):
+    custom.nf_headline  single_line_text_field   catchy headline (falls back to the collection title)
+    custom.nf_story     multi_line_text_field    HTML write up (p, h3, ul, li, strong, a)
+    custom.nf_faq       json                     [{"q": "...", "a": "..."}]
+  Renders nothing when nf_story is empty. It is its own section, so the main collection section
+  re-render on filter or sort changes never touches it. Styles: assets/nf-collection-story.css,
+  behavior: assets/nf-collection-story.js (custom element nf-collection-story).
+{%- endcomment -%}
+{%- liquid
+  assign nfcs_story = collection.metafields.custom.nf_story.value
+  assign nfcs_head = collection.metafields.custom.nf_headline.value | default: collection.title
+  assign nfcs_faq = collection.metafields.custom.nf_faq.value
+  assign nfcs_faq_count = 0
+  for f in nfcs_faq
+    if f.q != blank and f.a != blank
+      assign nfcs_faq_count = nfcs_faq_count | plus: 1
+    endif
+  endfor
+  assign nfcs_open = section.settings.faq_open
+-%}
+{%- if nfcs_story != blank -%}
+  {{ 'nf-collection-story.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'nf-collection-story.js' | asset_url }}" defer></script>
+  <noscript><style>.nfcs .nfcs__story{max-height:none}.nfcs .nfcs__story::after,.nfcs .nfcs__more{display:none}</style></noscript>
+
+  <div class="container">
+    <nf-collection-story class="nfcs" id="nfcs-{{ section.id }}">
+      <div class="nfcs__inner">
+        <p class="nfcs__eyebrow">About {{ collection.title | escape }}</p>
+        <h2 class="nfcs__title" id="nfcs-title-{{ section.id }}">{{ nfcs_head | escape }}</h2>
+
+        <div class="nfcs__story" id="nfcs-story-{{ section.id }}" data-nfcs-story>
+          {{- nfcs_story -}}
+        </div>
+        <button type="button" class="nfcs__more" data-nfcs-toggle aria-expanded="false" aria-controls="nfcs-story-{{ section.id }}">
+          <span data-nfcs-label>View more</span>
+          <svg class="nfcs__chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        {%- if nfcs_faq_count > 0 -%}
+          <div class="nfcs__faq">
+            <h2 class="nfcs__faq-title">Common Questions About {{ collection.title | escape }}</h2>
+            <div class="nfcs__grid">
+              {%- for f in nfcs_faq -%}
+                {%- if f.q != blank and f.a != blank -%}
+                  {%- capture qid -%}nfcs-q-{{ section.id }}-{{ forloop.index }}{%- endcapture -%}
+                  {%- capture aid -%}nfcs-a-{{ section.id }}-{{ forloop.index }}{%- endcapture -%}
+                  <div class="nfcs__card{% unless nfcs_open %} is-closed{% endunless %}">
+                    <h3 class="nfcs__qh">
+                      <button type="button" class="nfcs__q" id="{{ qid }}" data-nfcs-q aria-expanded="{% if nfcs_open %}true{% else %}false{% endif %}" aria-controls="{{ aid }}">
+                        <span class="nfcs__qtext">{{ f.q | escape }}</span>
+                        <span class="nfcs__icon" aria-hidden="true"></span>
+                      </button>
+                    </h3>
+                    <div class="nfcs__a{% unless nfcs_open %} is-hidden{% endunless %}" id="{{ aid }}" role="region" aria-labelledby="{{ qid }}">
+                      <div class="nfcs__a-clip"><p>{{ f.a | escape }}</p></div>
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+          <script type="application/ld+json">
+            {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+              {%- assign nfcs_first = true -%}
+              {%- for f in nfcs_faq -%}
+                {%- if f.q != blank and f.a != blank -%}
+                  {%- unless nfcs_first -%},{%- endunless -%}
+                  {"@type":"Question","name":{{ f.q | strip | json }},"acceptedAnswer":{"@type":"Answer","text":{{ f.a | strip | json }}}}
+                  {%- assign nfcs_first = false -%}
+                {%- endif -%}
+              {%- endfor -%}
+            ]}
+          </script>
+        {%- endif -%}
+      </div>
+    </nf-collection-story>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF collection story",
+  "class": "nf-collection-story-section",
+  "tag": "section",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Content comes from the collection metafields custom.nf_headline, custom.nf_story and custom.nf_faq. Nothing shows on a collection whose nf_story is empty."
+    },
+    {
+      "type": "checkbox",
+      "id": "faq_open",
+      "label": "Show FAQ answers by default",
+      "default": true
+    }
+  ],
+  "presets": [{ "name": "NF collection story" }]
+}
+{% endschema %}

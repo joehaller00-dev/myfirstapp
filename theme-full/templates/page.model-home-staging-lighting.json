@@ -1,0 +1,335 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Model Homes and Staging",
+        "eyebrow": "Model homes and property staging",
+        "heading": "Light that helps a home sell itself",
+        "text": "Builders, stagers and property managers use light to make a first visit feel like coming home. A statement chandelier, warm lamps and a lit front door photograph beautifully and make every room look finished.",
+        "image_file": "nf-blog-layered-living-room.png",
+        "image_alt": "Light that helps a home sell itself",
+        "fallback_collection": "home-project-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=model-home-staging-lighting",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Chandeliers",
+        "link_url": "/collections/chandeliers"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Finished in every room, from the curb to the kitchen",
+        "image_file": "nf-blog-chandelier-over-dining-table.png",
+        "image_alt": "A chandelier over a dining table set for dinner",
+        "fallback_collection": "chandeliers",
+        "text": "<p>Buyers decide in the first few minutes. Lighting every room on purpose makes the whole home read as move in ready.</p>",
+        "bullets": "A statement piece in the main rooms: A chandelier over the dining table or entry gives photos a focal point.\nLamps for warmth: Floor and table lamps add the layered glow that ceiling lights alone miss.\nBright kitchens and baths: Pendants over the island and vanity lights over mirrors make the busiest rooms feel new.\nA welcoming front door: Outdoor wall lights and lanterns make evening showings and listing photos shine.\nOne look across the whole home: Matching finishes from room to room keep the staging consistent.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Entryways\nLiving rooms\nDining rooms\nKitchens\nBathrooms\nPorches and front doors"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Chandeliers",
+        "link_url": "/collections/chandeliers"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Chandeliers",
+            "collection": "chandeliers",
+            "text": "A focal point for dining rooms and entries.",
+            "shop_label": "Shop chandeliers",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Pendants",
+            "collection": "pendants",
+            "text": "Warm light over kitchen islands.",
+            "shop_label": "Shop all pendants",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Floor lamps",
+            "collection": "floor-lamps",
+            "text": "Layered light for living rooms and bedrooms.",
+            "shop_label": "Shop floor lamps",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "Vanity lights",
+            "collection": "vanity-lighting",
+            "text": "A bright, fresh look for every bathroom.",
+            "shop_label": "Shop vanity lights",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Outdoor lanterns",
+            "collection": "outdoor-lanterns",
+            "text": "A lit front door for evening showings.",
+            "shop_label": "Shop outdoor lanterns",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-office-concepts-3.webp",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "image_file": "nf-pro3-office-concepts-1.png",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "image_file": "nf-pro3-office-concepts-2.webp",
+            "fallback_collection": "pendants"
+          }
+        }
+      },
+      "block_order": [
+        "c_maker_studio",
+        "c_linen_and_oak",
+        "c_alder_lobby"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Staging one home or a whole development?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=model-home-staging-lighting",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Can the same look be repeated across several homes?",
+            "a": "<p>Yes. Every piece is a regular catalog product, so the same fixtures can be ordered for as many homes as needed, and 2 or more items get 10% off.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "How long does delivery take?",
+            "a": "<p>Shipping is free anywhere in the United States, with delivery in 6 to 9 business days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how model home and staging lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form?industry=model-home-staging-lighting",
+        "btn2_label": "Shop Chandeliers",
+        "btn2_url": "/collections/chandeliers",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Layered Living Room",
+            "image_file": "nf-blog-layered-living-room.png",
+            "alt": "Layered Living Room, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Dining Chandelier",
+            "image_file": "nf-blog-chandelier-over-dining-table.png",
+            "alt": "Dining Chandelier, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Kitchen Island",
+            "image_file": "nf-ref-kitchen-pendants.png",
+            "alt": "Kitchen Island, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Bedroom Sconces",
+            "image_file": "nf-ref-bedroom-sconces.png",
+            "alt": "Bedroom Sconces, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Bath Vanity",
+            "image_file": "nf-ref-bath-vanity.png",
+            "alt": "Bath Vanity, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Front Porch",
+            "image_file": "nf-blog-front-porch-lanterns.png",
+            "alt": "Front Porch, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Entry Walls",
+            "image_file": "nf-ref-entry-walls.png",
+            "alt": "Entry Walls, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Ceiling Glow",
+            "image_file": "nf-story-cover-ceiling-light.jpg",
+            "alt": "Ceiling Glow, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band",
+    "faq"
+  ]
+}

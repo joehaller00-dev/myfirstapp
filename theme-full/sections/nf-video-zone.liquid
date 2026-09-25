@@ -1,0 +1,196 @@
+{%- comment -%} NF-VIDEOZONE-V1 homepage video wall, mixed aspect ratios {%- endcomment -%}
+{%- assign nf_vz_rt = shop.metafields.custom.nf_reviews_rating.value -%}
+{%- assign nf_vz_rc = shop.metafields.custom.nf_reviews_count.value -%}
+{%- if nf_vz_rt == blank -%}{%- assign nf_vz_rt = 4.68 -%}{%- endif -%}
+{%- if nf_vz_rc == blank -%}{%- assign nf_vz_rc = 800 -%}{%- endif -%}
+{%- assign nf_vz_pct = nf_vz_rt | times: 20.0 -%}
+<style>
+html body section.nf-vz.nf-vz{background:#1c1c1c;padding:64px 0 72px}
+.nf-vz{--nf-vz-gold:#d9b77e;--nf-vz-line:#2e2a26;color:#f2efea;font-family:Montserrat,system-ui,sans-serif}
+.nf-vz *,.nf-vz *::before,.nf-vz *::after{box-sizing:border-box}
+.nf-vz__head{max-width:760px;margin:0 auto 34px;padding:0 20px;text-align:center}
+.nf-vz__title{margin:0 0 12px;font-family:"Roboto Serif",Georgia,serif;font-weight:300;font-size:clamp(27px,3.1vw,40px);line-height:1.2;letter-spacing:.5px;color:#fff}
+.nf-vz__sub{margin:0;font-size:14.5px;line-height:1.65;color:#bdb6ae}
+.nf-vz__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1240px;margin:0 auto;padding:0 28px;list-style:none}
+.nf-vz__tile{margin:0;min-width:0}
+.nf-vz__frame{position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#111;isolation:isolate}
+.nf-vz__frame::before{content:"";position:absolute;inset:-12%;z-index:0;background-image:var(--nf-vz-poster);background-size:cover;background-position:center;filter:blur(30px) saturate(1.35) brightness(.72);opacity:0}
+.nf-vz__frame[data-fit="contain"]::before{opacity:1}
+.nf-vz__v{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover;background:transparent}
+.nf-vz__frame[data-fit="contain"] .nf-vz__v{object-fit:contain}
+.nf-vz__tap{position:absolute;inset:0;z-index:3;width:100%;height:100%;border:0;padding:0;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nf-vz__tap:focus-visible{outline:2px solid var(--nf-vz-gold);outline-offset:-4px}
+.nf-vz__sound{position:absolute;z-index:5;top:10px;right:10px;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:rgba(18,18,18,.55);backdrop-filter:blur(6px);color:#fff;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.nf-vz__sound:hover{background:rgba(18,18,18,.8);transform:scale(1.06)}
+.nf-vz__sound svg{width:16px;height:16px;pointer-events:none}
+.nf-vz__sound .nf-vz-on{display:none}
+.nf-vz__tile.is-live .nf-vz__sound .nf-vz-on{display:block}
+.nf-vz__tile.is-live .nf-vz__sound .nf-vz-off{display:none}
+.nf-vz__rating{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin:40px auto 0;padding:22px 20px 0;max-width:1240px;border-top:1px solid var(--nf-vz-line);text-align:center}
+.nf-vz__stars{position:relative;display:inline-block;line-height:0;white-space:nowrap}
+.nf-vz__stars svg{width:19px;height:19px;margin:0 1px}
+.nf-vz__stars-base{color:#4a443d}
+.nf-vz__stars-fill{position:absolute;left:0;top:0;overflow:hidden;color:var(--nf-vz-gold)}
+.nf-vz__score{font-family:"Roboto Serif",Georgia,serif;font-size:21px;font-weight:300;color:#fff}
+.nf-vz__count{font-size:13.5px;color:#bdb6ae}
+@media (max-width:1100px){.nf-vz__grid{grid-template-columns:repeat(2,1fr);gap:16px;max-width:720px;padding:0 20px}}
+@media (max-width:719px){
+html body section.nf-vz.nf-vz{padding:48px 0 54px}
+.nf-vz__head{margin-bottom:24px}
+.nf-vz__grid{display:flex;grid-template-columns:none;max-width:none;gap:12px;padding:0 16px 6px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.nf-vz__grid::-webkit-scrollbar{display:none}
+.nf-vz__tile{flex:0 0 68vw;max-width:300px;scroll-snap-align:center}
+.nf-vz__rating{margin-top:28px;gap:9px}
+}
+@media (prefers-reduced-motion:reduce){.nf-vz__sound{transition:none}}
+.nf-vz__fs{position:absolute;z-index:5;top:10px;right:52px;width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:rgba(18,18,18,.55);backdrop-filter:blur(6px);color:#fff;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.nf-vz__fs:hover{background:rgba(18,18,18,.8);transform:scale(1.06)}
+.nf-vz__fs svg{width:15px;height:15px;pointer-events:none}
+.nf-vz__play{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;display:none;place-items:center;border-radius:50%;background:rgba(18,18,18,.5);backdrop-filter:blur(6px);color:#fff;pointer-events:none}
+.nf-vz__play svg{width:22px;height:22px;margin-left:3px}
+.nf-vz__tile.is-paused .nf-vz__play{display:grid}
+.nf-vz__v:fullscreen{object-fit:contain;background:#000}
+.nf-vz__v:-webkit-full-screen{object-fit:contain;background:#000}
+</style>
+
+<section class="nf-vz" aria-labelledby="nf-vz-title">
+  <div class="nf-vz__head">
+    <h2 class="nf-vz__title" id="nf-vz-title">See It Switched On</h2>
+    <p class="nf-vz__sub">Our lights, filmed in real rooms and gardens. Tap any clip for sound.</p>
+  </div>
+
+  <ul class="nf-vz__grid">
+    {%- assign nf_vz_n = "Wave Arc Up and Down Wall Light|Linear LED Outdoor Wall Light|Chain Fringe LED Chandelier|Slim Linear Wall Light" | split: "|" -%}
+    {%- assign nf_vz_f = "nf-ugc-wave-arc.mp4|nf-ugc-linear-wall-light.mp4|nf-ugc-chandelier.mp4|nf-ugc-gate-light.mp4" | split: "|" -%}
+    {%- assign nf_vz_p = "nf-ugc-wave-arc-poster-wm2.jpg|nf-ugc-linear-poster-wm2.jpg|nf-ugc-chandelier-poster-wm2.jpg|nf-ugc-gate-poster-wm2.jpg" | split: "|" -%}
+    {%- assign nf_vz_fit = "cover|cover|cover|contain" | split: "|" -%}
+    {%- for nf_vz_i in (0..3) -%}
+      {%- assign nf_vz_poster = nf_vz_p[nf_vz_i] | file_url -%}
+      <li class="nf-vz__tile">
+        <div class="nf-vz__frame" data-fit="{{ nf_vz_fit[nf_vz_i] }}" style="--nf-vz-poster:url({{ nf_vz_poster }})">
+          <video class="nf-vz__v" poster="{{ nf_vz_poster }}" data-src="{{ nf_vz_f[nf_vz_i] | file_url }}"
+                 preload="none" muted loop playsinline webkit-playsinline disablepictureinpicture
+                 aria-label="{{ nf_vz_n[nf_vz_i] }} shown switched on"></video>
+          <button type="button" class="nf-vz__tap" aria-label="Turn sound on"></button>
+          <button type="button" class="nf-vz__sound" aria-label="Toggle sound">
+            <svg class="nf-vz-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+            <svg class="nf-vz-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg>
+          </button>
+          <button type="button" class="nf-vz__fs" aria-label="Play full screen" title="Full screen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>
+          </button>
+          <span class="nf-vz__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg></span>
+        </div>
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  <div class="nf-vz__rating">
+    <span class="nf-vz__stars" role="img" aria-label="{{ nf_vz_rt }} out of 5 stars">
+      <span class="nf-vz__stars-base">
+        {%- for nf_vz_s in (1..5) -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.8.8-5 4.7 1.3 6.7L12 17.3 5.9 20.5l1.3-6.7-5-4.7 6.8-.8z"/></svg>{%- endfor -%}
+      </span>
+      <span class="nf-vz__stars-fill" style="width:{{ nf_vz_pct }}%">
+        {%- for nf_vz_s in (1..5) -%}<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.8.8-5 4.7 1.3 6.7L12 17.3 5.9 20.5l1.3-6.7-5-4.7 6.8-.8z"/></svg>{%- endfor -%}
+      </span>
+    </span>
+    <span class="nf-vz__score">{{ nf_vz_rt }} out of 5</span>
+    <span class="nf-vz__count">from {{ nf_vz_rc }} reviews</span>
+  </div>
+</section>
+
+<script>
+(function(){
+  if (window.__nfVzV1) return; window.__nfVzV1 = 1;
+  var sec = document.querySelector(".nf-vz"); if (!sec) return;
+  var tiles = [].slice.call(sec.querySelectorAll(".nf-vz__tile"));
+  var fsActive = false;
+  function vid(t){ return t.querySelector(".nf-vz__v"); }
+  function inFs(){ return fsActive || !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  function load(t){
+    var v = vid(t);
+    if (v && !v.dataset.loaded) { v.dataset.loaded = "1"; v.preload = "metadata"; v.src = v.dataset.src; }
+  }
+  function sync(t){
+    var v = vid(t);
+    t.classList.toggle("is-paused", v.paused);
+    t.classList.toggle("is-live", !v.muted);
+    var tap = t.querySelector(".nf-vz__tap");
+    if (tap) tap.setAttribute("aria-label", v.paused ? "Play video" : "Pause video");
+    var s = t.querySelector(".nf-vz__sound");
+    if (s) s.setAttribute("aria-label", v.muted ? "Turn sound on" : "Turn sound off");
+  }
+  function muteOthers(t){ tiles.forEach(function(o){ if (o !== t) { vid(o).muted = true; sync(o); } }); }
+  function start(t, withSound){
+    var v = vid(t); load(t);
+    if (withSound) { muteOthers(t); v.muted = false; v.volume = 1; }
+    var p = v.play();
+    if (p && p.catch) p.catch(function(){ v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function(){}); sync(t); });
+    sync(t);
+  }
+  function stop(t){ vid(t).pause(); sync(t); }
+  function exitCleanup(){
+    fsActive = false;
+    tiles.forEach(function(t){ var fv = vid(t); fv.controls = false; fv.style.objectFit = ""; sync(t); });
+  }
+  tiles.forEach(function(t){
+    var v = vid(t);
+    v.addEventListener("play", function(){ sync(t); });
+    v.addEventListener("pause", function(){ sync(t); });
+    v.addEventListener("webkitbeginfullscreen", function(){ fsActive = true; });
+    v.addEventListener("webkitendfullscreen", function(){ exitCleanup(); });
+    t.querySelector(".nf-vz__tap").addEventListener("click", function(){
+      if (vid(t).paused) { start(t, true); } else { stop(t); }
+    });
+    t.querySelector(".nf-vz__sound").addEventListener("click", function(e){
+      e.stopPropagation();
+      var w = vid(t);
+      if (w.muted) { muteOthers(t); load(t); w.muted = false; w.volume = 1; if (w.paused) start(t, false); }
+      else { w.muted = true; }
+      sync(t);
+    });
+    var fsb = t.querySelector(".nf-vz__fs");
+    if (fsb) fsb.addEventListener("click", function(e){
+      e.stopPropagation();
+      var w = vid(t);
+      w.controls = true;
+      w.style.objectFit = "contain";
+      load(t);
+      fsActive = true;
+      var req = w.requestFullscreen || w.webkitRequestFullscreen || w.msRequestFullscreen || w.webkitEnterFullscreen;
+      if (!req) { w.controls = false; w.style.objectFit = ""; fsActive = false; return; }
+      try {
+        var pr = req.call(w);
+        if (pr && pr.catch) pr.catch(function(){ w.controls = false; w.style.objectFit = ""; fsActive = false; sync(t); });
+      } catch (err) { w.controls = false; w.style.objectFit = ""; fsActive = false; sync(t); }
+    });
+    sync(t);
+  });
+  ["fullscreenchange","webkitfullscreenchange"].forEach(function(evt){
+    document.addEventListener(evt, function(){
+      if (document.fullscreenElement || document.webkitFullscreenElement) { fsActive = true; }
+      else { exitCleanup(); }
+    });
+  });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(es){
+      if (inFs()) return;
+      es.forEach(function(en){ if (!en.isIntersecting && !vid(en.target).paused) stop(en.target); });
+    }, { threshold: 0.2 });
+    tiles.forEach(function(t){ io.observe(t); });
+  }
+  document.addEventListener("visibilitychange", function(){
+    if (document.hidden && !inFs()) tiles.forEach(function(t){ if (!vid(t).paused) stop(t); });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Video Zone",
+  "tag": "section",
+  "class": "shopify-section--nf-video-zone",
+  "settings": [],
+  "presets": [{ "name": "Video Zone" }]
+}
+{% endschema %}

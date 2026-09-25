@@ -1,0 +1,326 @@
+{%- comment -%}
+  NF-COLHEAD-V1 (2026-09-12) Slim charcoal "evening" header band for every collection page.
+  - Eyebrow: collection.all_products_count = storefront visible products (active + published), ignores active filters.
+  - One line: first sentence of the collection description (HTML stripped), else the story headline
+    metafield custom.nf_headline, hidden when both are empty.
+  - Image: section override, else collection.image, else the first product image. Banned files are skipped.
+    It starts dim and warms to full brightness (inline script below); dark photos get a brightness lift.
+    Reduced motion shows it at full brightness straight away.
+  - Chips: sub collections from the main-menu then top-bar menu trees. Parent level = children then
+    grandchildren; group level = children then siblings; leaf = its group then siblings. Max 6, never self.
+  - assets/nf-colhead.css + nf-colhead.js also drive the filter empty state and Show more pagination.
+{%- endcomment -%}
+{%- comment -%}
+  NF-COLHEAD-V2 (2026-09-12) owner: no band on the main nav collections or the main Best Sellers. Handles listed in the
+  "plain_handles" setting get the plain title the page had before the band (same markup as the disabled rich_text_EpHjwg
+  block, as an h1), and still load nf-colhead.css/js so the filter empty state and Show more keep working.
+{%- endcomment -%}
+{%- comment -%}
+  NF-COLHEAD-V3 (2026-09-12) owner fixes:
+  - Plain branch prints no title when the collection already has its hero (snippets/collection-subcategory-nav, whose
+    title is the h1). Only a nav parent without a hero (outdoor-wall-lights) keeps the plain h1.
+  - Chips never link to a nav parent unless the label is that parent ("Pendants & Mounts" once went to Ceiling Lights).
+    A group heading that points at its parent is sent to its first child collection instead, else dropped.
+  - Band photo position: collection metafield custom.nf_band_pos ("50% 40%", optional "desktop | phone") beats the
+    image focal point, so the fixture stays whole in the wide crop at both widths.
+{%- endcomment -%}
+{%- if collection -%}
+{%- assign nf_plain_list = section.settings.plain_handles | default: '' | remove: ' ' | prepend: ',' | append: ',' -%}
+{%- assign nf_plain_key = ',' | append: collection.handle | append: ',' -%}
+{%- if nf_plain_list contains nf_plain_key -%}
+{{ 'nf-colhead.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-colhead.js' | asset_url }}" defer></script>
+{%- capture nf_hero_probe -%}{%- render 'collection-subcategory-nav' -%}{%- endcapture -%}
+{%- unless nf_hero_probe contains 'nf-subcategory-hero__h1' -%}
+<div class="color-scheme color-scheme--scheme-2 color-scheme--bg-54922f2e920ba8346f6dc0fba343d673 section-spacing nf-ch-plain" data-nf-colhead="plain">
+  <div class="container container--sm">
+    <div class="prose text-start"><h1 class="h1">{{ collection.title | escape }}</h1></div>
+  </div>
+</div>
+{%- render 'nf-collection-tiles' -%}
+{%- endunless -%}
+{%- else -%}
+{%- liquid
+  assign h = collection.handle
+  assign cnt = collection.all_products_count
+
+  assign line = ''
+  if section.settings.show_line
+    assign line = collection.description | strip_html | replace: '&nbsp;', ' ' | strip_newlines | strip
+    if line == blank and collection.metafields.custom.nf_headline != blank
+      assign line = collection.metafields.custom.nf_headline.value | strip_html | strip_newlines | strip
+    endif
+    if line != blank
+      assign first_sentence = line | split: '. ' | first
+      if first_sentence.size < line.size
+        assign line = first_sentence | append: '.'
+      endif
+      assign line = line | truncate: 160
+    endif
+  endif
+
+  assign img = section.settings.image
+  if img == blank
+    assign img = collection.image
+  endif
+  if img != blank
+    assign probe = img | image_url: width: 100
+    if probe contains 'BRANDED_1_CLEAN' or probe contains 'nf-custom-chandelier-foyer'
+      assign img = blank
+    endif
+  endif
+  if img == blank
+    for p in collection.products limit: 6
+      if p.featured_image != blank
+        assign probe = p.featured_image | image_url: width: 100
+        comment
+          V2: also skip RGB colour changing lamp photos in the fallback, they read blue (owner 2026-09-12)
+        endcomment
+        assign probe_l = probe | downcase
+        unless probe contains 'BRANDED_1_CLEAN' or probe contains 'nf-custom-chandelier-foyer' or probe_l contains 'rgb'
+          assign img = p.featured_image
+          break
+        endunless
+      endif
+    endfor
+  endif
+
+  assign picks = ''
+  assign par = ''
+  assign found = false
+  if section.settings.show_chips
+    assign menu_handles = 'main-menu,top-bar' | split: ','
+    for mh in menu_handles
+      if found
+        break
+      endif
+      for l1 in linklists[mh].links
+        assign h1 = ''
+        if l1.url contains '/collections/'
+          assign h1 = l1.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+        endif
+        if h1 == h
+          for l2 in l1.links
+            assign picks = picks | append: l2.title | append: '||' | append: l2.url | append: '##'
+          endfor
+          for l2 in l1.links
+            for l3 in l2.links
+              assign picks = picks | append: l3.title | append: '||' | append: l3.url | append: '##'
+            endfor
+          endfor
+          if l1.links.size == 0
+            for s in linklists[mh].links
+              assign picks = picks | append: s.title | append: '||' | append: s.url | append: '##'
+            endfor
+          endif
+          assign found = true
+          break
+        endif
+        for l2 in l1.links
+          assign h2 = ''
+          if l2.url contains '/collections/'
+            assign h2 = l2.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+          endif
+          if h2 == h
+            for l3 in l2.links
+              assign picks = picks | append: l3.title | append: '||' | append: l3.url | append: '##'
+            endfor
+            for s in l1.links
+              assign hs = s.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+              if hs == h1 and s.links.size > 0
+                for s3 in s.links
+                  assign picks = picks | append: s3.title | append: '||' | append: s3.url | append: '##'
+                endfor
+              else
+                assign picks = picks | append: s.title | append: '||' | append: s.url | append: '##'
+              endif
+            endfor
+            assign par = l1.title | append: '||' | append: l1.url | append: '##'
+            assign found = true
+            break
+          endif
+          for l3 in l2.links
+            assign h3 = ''
+            if l3.url contains '/collections/'
+              assign h3 = l3.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+            endif
+            if h3 == h
+              if h2 == h1
+                assign picks = picks | append: l1.title | append: '||' | append: l2.url | append: '##'
+              else
+                assign picks = picks | append: l2.title | append: '||' | append: l2.url | append: '##'
+              endif
+              for s in l2.links
+                assign picks = picks | append: s.title | append: '||' | append: s.url | append: '##'
+              endfor
+              assign par = l1.title | append: '||' | append: l1.url | append: '##'
+              assign found = true
+              break
+            endif
+          endfor
+          if found
+            break
+          endif
+        endfor
+        if found
+          break
+        endif
+      endfor
+    endfor
+    if found
+      assign picks = picks | append: '@@FILL##' | append: par
+      for t in linklists['main-menu'].links
+        assign picks = picks | append: t.title | append: '||' | append: t.url | append: '##'
+      endfor
+    endif
+  endif
+
+  assign nav_par = '|'
+  assign nav_ok = '|'
+  assign pmap = '~~'
+  if section.settings.show_chips
+    for mh in menu_handles
+      for l1 in linklists[mh].links
+        unless l1.url contains '/collections/'
+          continue
+        endunless
+        assign p1 = l1.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+        assign t1 = l1.title | downcase | strip
+        assign nav_par = nav_par | append: p1 | append: '|'
+        assign nav_ok = nav_ok | append: p1 | append: ':' | append: t1 | append: '|'
+        for l2 in l1.links
+          assign p2 = l2.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+          if p2 == p1 and l2.links.size > 0
+            for l3 in l2.links
+              if l3.url contains '/collections/'
+                assign t2 = l2.title | downcase | strip
+                assign pmap = pmap | append: t2 | append: '=>' | append: l3.url | append: '~~'
+                break
+              endif
+            endfor
+          endif
+        endfor
+      endfor
+    endfor
+  endif
+
+  assign seen = '|' | append: h | append: '|'
+  assign n_chips = 0
+  assign filling = false
+-%}
+{%- capture chips_html -%}
+  {%- assign items = picks | split: '##' -%}
+  {%- for it in items -%}
+    {%- if it == '@@FILL' -%}{%- assign filling = true -%}{%- continue -%}{%- endif -%}
+    {%- if filling and n_chips >= 4 -%}{%- break -%}{%- endif -%}
+    {%- assign parts = it | split: '||' -%}
+    {%- assign u = parts[1] | default: '' -%}
+    {%- unless u contains '/collections/' -%}{%- continue -%}{%- endunless -%}
+    {%- assign ch = u | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first -%}
+    {%- assign key = '|' | append: ch | append: '|' -%}
+    {%- assign pk2 = ',' | append: ch | append: ',' -%}
+    {%- if nav_par contains key or nf_plain_list contains pk2 -%}
+      {%- assign lab = parts[0] | downcase | strip -%}
+      {%- assign ct = collections[ch].title | downcase | strip -%}
+      {%- assign okk = '|' | append: ch | append: ':' | append: lab | append: '|' -%}
+      {%- unless lab == ct or nav_ok contains okk -%}
+        {%- assign pm_key = '~~' | append: lab | append: '=>' -%}
+        {%- unless pmap contains pm_key -%}{%- continue -%}{%- endunless -%}
+        {%- assign u = pmap | split: pm_key | last | split: '~~' | first -%}
+        {%- assign ch = u | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first -%}
+        {%- assign key = '|' | append: ch | append: '|' -%}
+      {%- endunless -%}
+    {%- endif -%}
+    {%- if ch == blank or seen contains key -%}{%- continue -%}{%- endif -%}
+    {%- assign seen = seen | append: ch | append: '|' -%}
+    <li><a class="nf-ch__chip" href="{{ u }}">{{ parts[0] | escape }}</a></li>
+    {%- assign n_chips = n_chips | plus: 1 -%}
+    {%- if n_chips >= 6 -%}{%- break -%}{%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{{ 'nf-colhead.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-colhead.js' | asset_url }}" defer></script>
+<noscript><style>.nf-ch .nf-ch__img{filter:none!important;animation:none!important}</style></noscript>
+<div class="nf-ch{% if img == blank %} nf-ch--noimg{% endif %}" data-nf-colhead="v1" data-handle="{{ h | escape }}" data-title="{{ collection.title | escape }}" data-count="{{ cnt }}">
+  <div class="nf-ch__glow" aria-hidden="true"></div>
+  {%- if img != blank -%}
+    {%- assign fp = img.presentation.focal_point | default: '' | append: '' -%}
+    {%- assign fpm = '' -%}
+    {%- assign bpos = collection.metafields.custom.nf_band_pos.value | default: '' | append: '' | strip -%}
+    {%- comment -%}NF-COLHEAD-V4 (2026-09-12): a value starting with "fit" (e.g. "fit" or "fit 50% 50%") shows the whole photo over a blurred copy of itself, for tall products such as floor lamps that a wide crop cuts.{%- endcomment -%}
+    {%- assign nf_fit = false -%}
+    {%- if bpos contains 'fit' -%}{%- assign nf_fit = true -%}{%- assign bpos = bpos | remove: 'fit' | strip -%}{%- endif -%}
+    {%- if bpos != blank -%}
+      {%- assign bparts = bpos | split: '|' -%}
+      {%- assign fp = bparts[0] | strip -%}
+      {%- if bparts.size > 1 -%}{%- assign fpm = bparts[1] | strip -%}{%- endif -%}
+    {%- endif -%}
+    <div class="nf-ch__media{% if nf_fit %} nf-ch__media--fit{% endif %}" aria-hidden="true"{% if fp != blank or nf_fit %} style="{% if fp != blank %}--nf-ch-pos:{{ fp | escape }};{% endif %}{% if fpm != blank %}--nf-ch-pos-m:{{ fpm | escape }};{% endif %}{% if nf_fit %}--nf-ch-bg:url({{ img | image_url: width: 480 }});{% endif %}"{% endif %}>
+      {{- img | image_url: width: 1400 | image_tag: widths: '360, 540, 720, 960, 1200, 1400', sizes: '(min-width: 750px) min(48vw, 760px), 58vw', loading: 'eager', fetchpriority: 'high', class: 'nf-ch__img', alt: '' -}}
+    </div>
+  {%- endif -%}
+  <div class="container nf-ch__inner">
+    <div class="nf-ch__copy">
+      <p class="nf-ch__eyebrow">{{ cnt }} {% if cnt == 1 %}product{% else %}products{% endif %}</p>
+      <h1 class="nf-ch__title">{{ collection.title | escape }}</h1>
+      {%- if line != blank -%}
+        <p class="nf-ch__line">{{ line | escape }}</p>
+      {%- endif -%}
+      {%- if n_chips > 0 -%}
+        <ul class="nf-ch__chips" aria-label="Browse related collections">{{ chips_html }}</ul>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+<script>
+(function(){var r=document.currentScript&&document.currentScript.previousElementSibling;if(!r||!r.classList.contains('nf-ch'))return;var im=r.querySelector('.nf-ch__img'),done=0;
+function lit(){if(done)return;done=1;try{var c=document.createElement('canvas');c.width=c.height=16;var x=c.getContext('2d');x.drawImage(im,0,0,16,16);var d=x.getImageData(0,0,16,16).data,s=0;for(var i=0;i<d.length;i+=4)s+=.2126*d[i]+.7152*d[i+1]+.0722*d[i+2];var L=s/(d.length/4)/255,k=L<.2?1.5:L<.3?1.34:L<.4?1.18:1;r.setAttribute('data-lum',L.toFixed(2));if(k>1){r.style.setProperty('--nf-ch-lift',k);r.classList.add('nf-ch--dark')}}catch(e){}setTimeout(function(){r.classList.add('is-lit')},40)}
+if(!im){r.classList.add('is-lit');return}if(im.complete&&im.naturalWidth)lit();else{im.addEventListener('load',lit);im.addEventListener('error',lit)}setTimeout(lit,2500)})();
+</script>
+{%- comment -%} NF-COLTILES-V1: related collection photo tiles under the band {%- endcomment -%}
+{%- render 'nf-collection-tiles' -%}
+{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF collection header",
+  "tag": "section",
+  "class": "nf-ch-section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "plain_handles",
+      "label": "Collections with a plain title (no band)",
+      "info": "Comma separated handles. Owner rule 2026-09-12: the 11 main nav collections and the main Best Sellers.",
+      "default": "best-sellers,ceiling-light,wall-lights,lamps,ambient-lighting,outdoor-lighting,outdoor-wall-lights,decor,soft-furnishings,storage-shelves,poufs-floor-cushions,home-fragrance"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image override",
+      "info": "Leave empty to use the collection image, then the first product image."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line",
+      "label": "Show one line from the description",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_chips",
+      "label": "Show sub collection chips from the menus",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "NF collection header"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["collection"]
+  }
+}
+{% endschema %}

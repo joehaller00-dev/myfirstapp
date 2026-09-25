@@ -1,0 +1,558 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "head": {
+      "type": "nf-custom-head",
+      "settings": {}
+    },
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "crumb_label": "Custom Name Signs",
+        "eyebrow": "Custom name signs",
+        "heading": "Your name, in warm neon light",
+        "text": "Type a name, a word or a short phrase and watch it glow. Pick the font, the color, the size and the backing, then send it to us for a free quote. Logos are welcome too.",
+        "image_file": "nf-custom-name-sign-bedroom.png",
+        "image_alt": "Pink LED neon name sign reading Ella on clear acrylic above a bed in a cozy bedroom at night",
+        "fallback_collection": "led-wall-art",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn1_style": "gold",
+        "btn2_label": "Browse Project References",
+        "btn2_url": "#references",
+        "btn2_style": "outline",
+        "link_label": "Design my sign",
+        "link_url": "#design",
+        "facts": "Free quote by email\nUS plug and dimmer included\nA photo before it ships"
+      }
+    },
+    "tool": {
+      "type": "nf-custom-tool",
+      "settings": {
+        "tool": "signs",
+        "bg": "grey",
+        "anchor": "design",
+        "eyebrow": "Live preview",
+        "heading": "Design your sign",
+        "text": "Everything you change shows up on the wall right away. When it looks right, add it to your quote.",
+        "cta_label": "Add this to my quote"
+      }
+    },
+    "evening": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "white",
+        "flip": true,
+        "anchor": "evening",
+        "eyebrow": "Names, words and logos",
+        "heading": "For a bedroom, a wedding or a shop wall",
+        "text": "<p>A name over a bed, a date for a wedding, a word for a home bar or your logo behind the counter. Every sign is made to order in LED neon.</p>",
+        "bullets": "Names: For a bedroom, a nursery or a gift.\nWords and phrases: For a home bar, a studio or an event.\nLogos: For a cafe, a salon or a reception wall.\nIndoor or outdoor: Tell us where it goes and we quote the right build.",
+        "spaces_label": "",
+        "spaces": "",
+        "image_file": "nf-custom-name-sign-cafe.png",
+        "image_alt": "Warm white LED neon sign reading good coffee on a green tiled cafe wall at evening",
+        "fallback_collection": "led-wall-art",
+        "btn_label": "Business signs and logo lights",
+        "btn_url": "/pages/custom-neon-signs",
+        "btn_style": "secondary",
+        "link_label": "",
+        "link_url": ""
+      }
+    },
+    "terms": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "text",
+        "columns": "4",
+        "bg": "white",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "custom-terms",
+        "eyebrow": "Good to know",
+        "heading": "Clear terms, before you order",
+        "text": "",
+        "note": "",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "icon": "ruler",
+            "title": "Made to order",
+            "text": "Every sign is made for your order, to your sizes and your choices."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "icon": "invoice",
+            "title": "Price and timeline in writing",
+            "text": "Your quote confirms the price and the timeline before anything is made. Nothing is charged until you approve it."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "icon": "spark",
+            "title": "A photo before it ships",
+            "text": "When your sign is finished, we send you a photo of it before it leaves."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "icon": "box",
+            "title": "Final sale",
+            "text": "Custom pieces are final sale because they are made just for you. If one arrives damaged or has a defect, we replace it or refund it."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "how": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "steps",
+        "columns": "4",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "how-it-works",
+        "eyebrow": "How it works",
+        "heading": "Four simple steps, and you approve each one",
+        "text": "",
+        "note": "Nothing is made or charged until you approve your quote.",
+        "link_label": "",
+        "link_url": ""
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Request a quote",
+            "text": "Send your details with the form on this page. The preview fills in your sizes and choices for you.",
+            "meta": ""
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "We confirm design, price and timeline",
+            "text": "We check every detail with the maker and reply by email with the design, the price and the timeline in writing.",
+            "meta": ""
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "See it before it ships",
+            "text": "When your piece is finished, we send you a photo of it so you can see it before it leaves.",
+            "meta": ""
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "It ships to you",
+            "text": "Your piece is packed with care and shipped to your door.",
+            "meta": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "white",
+        "anchor": "faq",
+        "eyebrow": "",
+        "heading": "Common questions",
+        "text": "",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "How does the sign plug in?",
+            "a": "<p>Every sign comes with a US plug in adapter and a dimmer, so you can set the brightness. The mounting hardware is included, and your quote confirms the details for your sign.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Can you make my logo?",
+            "a": "<p>Yes. Send a clear logo file or a link to one. Very fine details are sometimes simplified so the lines read well in light, and we send you the design to approve before anything is made.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Will my sign look exactly like the preview?",
+            "a": "<p>The preview is a close guide to the lettering, the color and the size. Real LED neon is bent from flexible tube, so letters join into smooth lines and some shapes are adjusted slightly. You approve the final design first.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "Is it real glass neon?",
+            "a": "<p>No. Our signs use LED neon, which gives the same glow as classic neon but runs cool, uses little power and is far less fragile than glass.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "Can a sign go outside?",
+            "a": "<p>Yes, choose Outdoor in the preview. We quote a version built for the weather and confirm in your quote what suits your spot.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I return a custom name sign?",
+            "a": "<p>Custom pieces are made for your order, so they are final sale and cannot be returned for a change of mind. If anything arrives damaged or has a defect, we replace it or refund it. Email photos to info@norafurnish.com as soon as you can and we will put it right.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ]
+    },
+    "quote": {
+      "type": "nf-custom-quote",
+      "settings": {
+        "bg": "grey",
+        "anchor": "quote",
+        "form_id": "nfc-quote-signs",
+        "service": "Custom name sign",
+        "summary_label": "Your sign design",
+        "summary_help": "This comes from the tool above. Change anything you like before you send it.",
+        "qty_label": "How many signs?",
+        "qty_placeholder": "For example 1, or 2 for a wedding",
+        "message_placeholder": "Tell us where the sign will hang and anything else we should know. Links to your logo file or to photos of the wall are welcome.",
+        "button_label": "Request My Free Quote",
+        "eyebrow": "Free quote",
+        "heading": "Request your sign quote",
+        "text": "Your choices from the tool are already in the form. Add your details and we will reply by email.",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request and asks if a measurement looks off.\nWe confirm the details: You get the design, the price and the timeline in writing.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "The exact words, with capitals where you want them\nA link to your logo file, or attach it when you reply to our email\nA photo of the wall it will hang on\nThe date you need it for, if it is for an event"
+      },
+      "disabled": true
+    },
+    "more": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "media",
+        "columns": "4",
+        "bg": "white",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "more-custom",
+        "eyebrow": "More made for you",
+        "heading": "Other custom pieces",
+        "text": "",
+        "note": "",
+        "link_label": "All Professionals services",
+        "link_url": "/pages/professionals"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Neon Signs and Logo Lights",
+            "text": "Logo signs for cafes, shops, offices and events.",
+            "image_file": "nf-pro3-names-more-1.png",
+            "url": "/pages/custom-neon-signs",
+            "link_label": "See business signs",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Made to Measure Curtains",
+            "text": "Panels made to your window, in the fabric and top style you choose.",
+            "image_file": "nf-pro3-fix-names-more-2.png",
+            "url": "/pages/custom-curtains",
+            "link_label": "Measure your window",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Custom Size Chandeliers",
+            "text": "Sized to your room, table, foyer or stairwell, with a custom drop length.",
+            "image_file": "nf-pro3-names-more-3.jpg",
+            "url": "/pages/custom-chandeliers",
+            "link_label": "Size your chandelier",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "Custom Lighting Studio",
+            "text": "Change the finish, size, output or mounting of a light from our range.",
+            "image_file": "nf-pro3-names-more-4.jpg",
+            "url": "/pages/custom-lighting",
+            "link_label": "Explore the studio",
+            "meta": "",
+            "icon": "none",
+            "fallback_collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "customize_v2": {
+      "type": "nf-pro2-customize",
+      "settings": {
+        "bg": "white",
+        "anchor": "customize",
+        "eyebrow": "Custom name signs",
+        "heading": "What can be customized",
+        "note": "Production begins after the wording, size, colors and mounting are confirmed."
+      },
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "icon": "font",
+            "title": "Wording and font",
+            "text": "Any name or short phrase in one of the lettering styles in the designer above."
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "icon": "palette",
+            "title": "Neon color",
+            "text": "Warm white, cool white, pink, blue and more, previewed live in the designer."
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "icon": "size",
+            "title": "Size",
+            "text": "From small nursery signs to large wedding backdrops, sized to the wall."
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "icon": "backing",
+            "title": "Backing",
+            "text": "Clear acrylic, black acrylic or cut to the shape of the letters."
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "icon": "wallmount",
+            "title": "Mounting",
+            "text": "Wall standoffs, hanging chains or a stand for tables and events."
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "icon": "dimmer",
+            "title": "Dimmer and power",
+            "text": "Plugs in with a dimmer so the glow can stay soft at night."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how name signs can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Pick it in the quote form and we will price it for your space.",
+        "btn1_label": "Start a Custom Request",
+        "btn1_url": "#quote",
+        "btn2_label": "",
+        "btn2_url": "",
+        "quote_links": true,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Bedroom",
+            "image_file": "nf-ref-name-bedroom.png",
+            "alt": "Bedroom lit in the evening, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Nursery",
+            "image_file": "nf-ref-name-nursery.jpg",
+            "alt": "Nursery lit in the evening, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Wedding",
+            "image_file": "nf-pro3-names-ref-3.png",
+            "alt": "Wedding inspiration photo, lit in the evening"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Game Room",
+            "image_file": "nf-ref-name-game-room.jpg",
+            "alt": "Game Room lit in the evening, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Teen Room",
+            "image_file": "nf-ref-name-teen-room.jpg",
+            "alt": "Teen Room lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Dining Wall",
+            "image_file": "nf-ref-name-dining.jpg",
+            "alt": "Dining Wall lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Cafe Counter",
+            "image_file": "nf-ref-cafe-neon.png",
+            "alt": "Cafe Counter lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Creative Corner",
+            "image_file": "nf-pro3-names-ref-8.png",
+            "alt": "Creative Corner inspiration photo, lit in the evening"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    },
+    "quote_v2": {
+      "type": "nf-pro2-quote",
+      "settings": {
+        "anchor": "quote",
+        "eyebrow": "Free quote",
+        "heading": "Request your sign quote",
+        "text": "Your choices from the tool are already in the form. Add your details and we will reply by email.",
+        "form_id": "nfc-quote-signs",
+        "service": "Custom name sign",
+        "steps_title": "What happens next",
+        "steps": "We read every detail: A person on our team reviews your request and asks if a measurement looks off.\nWe confirm the details: You get the design, the price and the timeline in writing.\nYou decide: Approve the quote and pay through a secure Shopify invoice, or ask for changes. There is no commitment until you approve.",
+        "include_title": "Helpful to include",
+        "include": "The exact words, with capitals where you want them\nA link to your logo file, or attach it when you reply to our email\nA photo of the wall it will hang on\nThe date you need it for, if it is for an event",
+        "summary_label": "Your sign design",
+        "summary_help": "This comes from the tool above. Change anything you like before you send it.",
+        "qty_label": "How many signs?",
+        "qty_placeholder": "For example 1, or 2 for a wedding",
+        "msg_placeholder": "Tell us where the sign will hang and anything else we should know. Links to your logo file or to photos of the wall are welcome.",
+        "adjust": "words|font|Wording and font\ncolor|palette|Neon color\nsize|size|Size\nbacking|backing|Backing\nmounting|wallmount|Mounting\npower|dimmer|Dimmer and power",
+        "refs": "Bedroom\nNursery\nWedding\nGame Room\nTeen Room\nDining Wall\nCafe Counter\nCreative Corner",
+        "zone_placeholder": "For example nursery wall or wedding backdrop",
+        "space_default": "Home",
+        "tool": true,
+        "zip": true,
+        "button_label": "Get My Free Custom Quote",
+        "bg": "grey"
+      }
+    }
+  },
+  "order": [
+    "head",
+    "hero",
+    "tool",
+    "evening",
+    "customize_v2",
+    "references_v2",
+    "terms",
+    "how",
+    "faq",
+    "quote",
+    "quote_v2",
+    "more"
+  ]
+}

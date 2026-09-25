@@ -1,0 +1,1041 @@
+{%- if section.settings.image != blank or section.blocks.size > 0 -%}
+  {%- comment -%}
+    ------------------------------------------------------------------------------------------------------------------------
+    CSS
+    ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  <style>
+    #shopify-section-{{ section.id }} {
+      {%- if section.settings.overlay_color != 'rgba(0,0,0,0)' -%}
+        --content-over-media-overlay: {{ section.settings.overlay_color.rgb }} / {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+      {%- endif -%}
+
+      --content-over-media-content-max-width: var(--container-{{ section.settings.content_width }}-max-width);
+
+      --text-color: 255 255 255;
+      --heading-color: 255 255 255;
+      --button-background: 255 255 255;
+      --button-text-color: 17 17 17;
+      --border-color: 255 255 255;
+
+      --hero-h-size: 68px;
+      --hero-h-weight: 700;
+      --hero-h-mb: 18px;
+      --hero-p-size: 20px;
+      --hero-p-mb: 18px;
+    }
+
+        /* Tight letter-spacing for heading on product best-sellers banner */
+    #shopify-section-{{ section.id }} .content-over-media p {
+      letter-spacing: 0.75px !important;
+    }
+
+    /* Desktop: xs height for products/FAQ, big hero for home page */
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} .content-over-media {
+        --content-over-media-height: clamp(15rem, 65vw, 25rem) !important;
+      }
+    }
+
+    {%- if section.id contains 'image_with_text_overlay_TebrQa' -%}
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} .content-over-media {
+        --content-over-media-height: clamp(60rem, 100vh, 85rem) !important;
+      }
+    }
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} .content .prose .h1,
+      #shopify-section-{{ section.id }} .content .prose h1 {
+        white-space: nowrap !important;
+      }
+    }
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} .content-over-media {
+        --content-over-media-height: clamp(38rem, 130vw, 55rem) !important;
+      }
+      #shopify-section-{{ section.id }} {
+        --hero-h-size: clamp(16px, 5.5vw, 22px);
+      }
+      /* Mobile: McGee & Co style - left aligned, upper left */
+      #shopify-section-{{ section.id }} .content {
+        padding-top: 35px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        width: 100% !important;
+        place-self: start center !important;
+        justify-self: center !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+      /* Constrain heading width on mobile to force 2-line wrap */
+      #shopify-section-{{ section.id }} .content .prose .h1,
+      #shopify-section-{{ section.id }} .content .prose .h2,
+      #shopify-section-{{ section.id }} .content .prose .h3,
+      #shopify-section-{{ section.id }} .content .prose h1,
+      #shopify-section-{{ section.id }} .content .prose h2,
+      #shopify-section-{{ section.id }} .content .prose h3 {
+        max-width: 100% !important;
+        text-align: center !important;
+        font-weight: 900 !important;
+        text-shadow: none !important;
+        font-size: clamp(20px, 5.5vw, 30px) !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      /* Subtitle - small and light */
+      #shopify-section-{{ section.id }} .content .prose > div:first-child {
+        text-align: center !important;
+        margin-top: 0 !important;
+        margin-left: -10px !important;
+        font-size: 13px !important;
+        font-weight: 300 !important;
+        white-space: nowrap !important;
+      }
+      /* Button - left aligned, compact */
+      #shopify-section-{{ section.id }} .button,
+      #shopify-section-{{ section.id }} .button--solid {
+        padding-left: 28px !important;
+        padding-right: 28px !important;
+        align-self: center !important;
+        position: relative !important;
+        z-index: 2 !important;
+      }
+    }
+    /* Full-cover clickable overlay */
+    #shopify-section-{{ section.id }} .content-over-media {
+      position: relative !important;
+    }
+    #shopify-section-{{ section.id }} .hero-cover-link {
+      position: absolute !important;
+      inset: 0 !important;
+      z-index: 1 !important;
+      display: block !important;
+    grid-area: auto !important;
+    max-width: none !important;
+    width: auto !important;
+    height: auto !important;
+    }
+    #shopify-section-{{ section.id }} .content {
+      position: relative !important;
+      z-index: 2 !important;
+      pointer-events: none !important;
+    }
+    #shopify-section-{{ section.id }} .content .button,
+    #shopify-section-{{ section.id }} .content a {
+      pointer-events: auto !important;
+    }
+    /* Hero content positioning and text size customization */
+    #shopify-section-{{ section.id }} .content {
+      padding-top: 150px !important;
+      padding-left: 45px !important;
+    }
+    /* "New Arrivals" subtitle - left aligned, tight to heading */
+    {%- if section.id contains 'image_with_text_overlay_TebrQa' -%}
+    #shopify-section-{{ section.id }} .content .prose > div:first-child p {
+      text-align: left !important;
+      margin-bottom: 4px !important;
+    }
+    {%- endif -%}
+    
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} .content {
+        padding-top: 35px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+    }
+        #shopify-section-{{ section.id }} .content .prose > div:first-child {
+          font-size: 55px !important;
+            line-height: 1.1 !important;
+            margin-top: 8px !important;
+            }
+    {%- endif -%}
+
+    /* Mobile sizing (non-hero sections) */
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} {
+        --hero-h-size: clamp(16px, 5.5vw, 22px);
+        --hero-h-mb: 10px;
+        --hero-h-ml: 15px;
+        --hero-p-ml: -10px;
+        --hero-p-size: 26px;
+        --hero-p-mb: 4px;
+      }
+    }
+
+    {%- if section.id contains 'image_with_text_overlay_rxf9er' or section.id contains 'image_with_text_overlay_DYm7Nb' or section.id contains 'image_with_text_overlay_7UiPzb' -%}
+    /* Desktop: object-fit cover */
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} .content-over-media img {
+        object-fit: cover !important;
+        object-position: center 72% !important;
+      }
+      /* Hide gold line on desktop */
+      #shopify-section-{{ section.id }} .rxf9er-gold-line {
+        display: none !important;
+      }
+      /* NF: readability scrim + text-shadow for overlay text */
+      #shopify-section-{{ section.id }} .content-over-media { position: relative; }
+      #shopify-section-{{ section.id }} .content-over-media::after {
+        content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+        border-radius: inherit;
+        background: linear-gradient(90deg, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.30) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0) 78%);
+      }
+      #shopify-section-{{ section.id }} .content { z-index: 1; }
+      #shopify-section-{{ section.id }} .content .prose,
+      #shopify-section-{{ section.id }} .content .prose * {
+        text-shadow: 0 1px 14px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.45);
+      }
+    }
+
+    /* Mobile: Option B — bottom-left, portrait, clean editorial */
+    @media screen and (max-width: 699px) {
+      /* Portrait image */
+      #shopify-section-{{ section.id }} .content-over-media {
+        aspect-ratio: 3 / 4 !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+      }
+      #shopify-section-{{ section.id }} .content-over-media img {
+        object-fit: cover !important;
+        object-position: center center !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+      /* Text block: bottom-left, padded */
+      #shopify-section-{{ section.id }} .content-over-media .content {
+        padding: 0 0 24px 22px !important;
+        max-width: 82% !important;
+        place-self: end start !important;
+      }
+      /* Left-align everything */
+      #shopify-section-{{ section.id }} .content-over-media .prose,
+      #shopify-section-{{ section.id }} .content-over-media .prose * {
+        text-align: left !important;
+      }
+      /* Gold accent line injected via liquid */
+      #shopify-section-{{ section.id }} .rxf9er-gold-line {
+        display: block !important;
+        width: 42px !important;
+        height: 1px !important;
+        background-color: #b69456 !important;
+        margin-bottom: 10px !important;
+      }
+      /* Heading: bold, strong multi-layer shadow */
+      #shopify-section-{{ section.id }} .content-over-media .prose .h4 {
+        font-size: 20px !important;
+        font-weight: 300 !important;
+        line-height: 1.1 !important;
+        letter-spacing: 0 !important;
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        text-shadow:
+          0 1px 2px rgba(0,0,0,1),
+          0 2px 6px rgba(0,0,0,0.9),
+          0 4px 14px rgba(0,0,0,0.75),
+          0 8px 24px rgba(0,0,0,0.5) !important;
+        margin: 0 0 8px 0 !important;
+      }
+      /* Body text: small, airy, strong shadow */
+      #shopify-section-{{ section.id }} .content-over-media .prose div,
+      #shopify-section-{{ section.id }} .content-over-media .prose div > p {
+        font-size: 10px !important;
+        line-height: 1.55 !important;
+        font-weight: 400 !important;
+        letter-spacing: 0 !important;
+        color: rgba(235,230,220,0.95) !important;
+        -webkit-text-fill-color: rgba(235,230,220,0.95) !important;
+        text-shadow:
+          0 1px 2px rgba(0,0,0,0.95),
+          0 2px 8px rgba(0,0,0,0.8),
+          0 4px 16px rgba(0,0,0,0.6) !important;
+        margin: 0 !important;
+      }
+    }
+    {%- endif -%}
+
+    /* NF-CHROME-V1: Best Sellers banner under products. Heading and button share one left edge (theme.liquid
+       nora-bestsellers-banner centred the button) and sit mid height on the photo's left side, not in its top corner. */
+    {%- if section.id contains 'image_with_text_overlay_7UiPzb' -%}
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} .content-over-media .content {
+        place-self: center start !important;
+        padding: 0 0 0 clamp(40px, 5vw, 72px) !important;
+      }
+      #shopify-section-{{ section.id }} .content-over-media .prose {
+        align-items: flex-start !important;
+        gap: 22px !important;
+      }
+      #shopify-section-{{ section.id }} .content-over-media .prose .button {
+        align-self: flex-start !important;
+        margin: 0 !important;
+      }
+    }
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} .content-over-media .prose .button {
+        align-self: flex-start !important;
+      }
+    }
+    /* NF-MOBILE-V4 (2026-09-12): phones. The photo runs nearly edge to edge (12px side gaps) at 4:5 so it reads,
+       a bottom scrim for the text, a 28px heading and a normal size button in the site's button style. */
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} { padding-left: 0 !important; padding-right: 0 !important; }
+      #shopify-section-{{ section.id }} > .section-spacing { padding-left: 12px !important; padding-right: 12px !important; }
+      #shopify-section-{{ section.id }} > .section-spacing .content-over-media {
+        aspect-ratio: 4 / 5 !important; width: 100% !important; height: auto !important; min-height: 0 !important; max-height: none !important;
+        border-radius: 14px !important; position: relative !important; overflow: hidden !important;
+      }
+      #shopify-section-{{ section.id }} > .section-spacing .content-over-media::after {
+        content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; border-radius: inherit;
+        background: linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,.28) 66%, rgba(0,0,0,.62) 100%);
+      }
+      #shopify-section-{{ section.id }} > .section-spacing .content-over-media .content {
+        position: relative !important; z-index: 1 !important; place-self: end start !important;
+        padding: 0 22px 24px !important; max-width: 100% !important;
+      }
+      #shopify-section-{{ section.id }} > .section-spacing .content-over-media .prose { gap: 14px !important; }
+      #shopify-section-{{ section.id }} > .section-spacing .content-over-media .prose .h2,
+      #shopify-section-{{ section.id }} > .section-spacing .content-over-media .prose h2 {
+        font-size: 28px !important; line-height: 1.15 !important; letter-spacing: 0 !important; margin: 0 !important;
+        text-wrap: balance; text-shadow: 0 1px 12px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.35) !important;
+      }
+      #shopify-section-{{ section.id }} > .section-spacing .content-over-media .prose .button {
+        align-self: flex-start !important; width: auto !important; max-width: 100% !important; white-space: nowrap !important;
+        font-size: 13px !important; line-height: 1.6 !important; letter-spacing: .13em !important; font-weight: 500 !important;
+        padding: 10.4px 28px !important; min-height: 0 !important; margin: 2px 0 0 !important; text-shadow: none !important;
+      }
+    }
+    {%- endif -%}
+
+    /* Kill any opacity dimming in this section */
+    #shopify-section-{{ section.id }} [reveal-on-scroll="true"],
+    #shopify-section-{{ section.id }} .content-over-media {
+      opacity: 1 !important;
+    }
+
+    #shopify-section-{{ section.id }} .prose figcaption,
+    #shopify-section-{{ section.id }} .link-faded,
+    #shopify-section-{{ section.id }} p,
+    #shopify-section-{{ section.id }} h1,
+    #shopify-section-{{ section.id }} h2,
+    #shopify-section-{{ section.id }} h3,
+    #shopify-section-{{ section.id }} span,
+    #shopify-section-{{ section.id }} div:not(.button) {
+      color: rgb(255 255 255) !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+
+    /* Button - refined premium */
+    #shopify-section-{{ section.id }} .button,
+    #shopify-section-{{ section.id }} .button--solid {
+      background-color: #ffffff !important;
+      background-image: none !important;
+      color: #1c1c1c !important;
+      -webkit-text-fill-color: #1c1c1c !important;
+      border-color: #ffffff !important;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+      padding: 19px 34px !important;
+      min-height: 0 !important;
+      display: inline-block !important;
+      margin: 0 0 !important;
+      opacity: 1 !important;
+    }
+    #shopify-section-{{ section.id }} .button *,
+    #shopify-section-{{ section.id }} .button--solid * {
+      color: #1c1c1c !important;
+      -webkit-text-fill-color: #1c1c1c !important;
+    }
+    #shopify-section-{{ section.id }} .button:hover,
+    #shopify-section-{{ section.id }} .button--solid:hover {
+      background-color: #ffffff !important;
+      background-image: none !important;
+      opacity: 0.88;
+    }
+
+    /* Tight row gap so button hugs the text above */
+    #shopify-section-{{ section.id }} .content-over-media {
+      --content-over-media-gap: 0.5rem !important;
+      --content-over-media-row-gap: 0.5rem !important;
+    }
+    #shopify-section-{{ section.id }} .content-over-media .prose {
+      gap: 0.4rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+    }
+    #shopify-section-{{ section.id }} .content-over-media .prose > * + * {
+      margin-top: 0 !important;
+    }
+
+    /* Mobile button */
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} .button,
+      #shopify-section-{{ section.id }} .button--solid {
+        font-size: 14px !important;
+        padding: 13px 30px !important;
+        letter-spacing: 0 !important;
+      }
+    }
+
+    /* Inner p of richtext inherits from wrapper inline style */
+    #shopify-section-{{ section.id }} .content-over-media .content .prose > div > p {
+      font-size: inherit !important;
+      color: inherit !important;
+      -webkit-text-fill-color: inherit !important;
+      line-height: inherit !important;
+      text-shadow: inherit !important;
+      opacity: 1 !important;
+      margin: 0 !important;
+    }
+  
+    /* === NF MOBILE HERO OVERRIDES (TebrQa) === */
+    {%- if section.id contains 'image_with_text_overlay_TebrQa' -%}
+    @media screen and (max-width: 699px) {
+      #shopify-section-{{ section.id }} {
+        --hero-h-size: 30px !important;
+        --hero-h-weight: 600 !important;
+        --hero-h-mb: 16px !important;
+        --hero-h-ml: 0 !important;
+        --hero-p-size: 13px !important;
+        --hero-p-mb: 8px !important;
+        --hero-p-ml: 0 !important;
+        --hero-h-shadow: none !important;
+        --hero-p-shadow: none !important;
+      }
+      #shopify-section-{{ section.id }} .content-over-media {
+        --content-over-media-height: 480px !important;
+      }
+      #shopify-section-{{ section.id }} .content {
+        place-self: start start !important;
+        align-items: flex-start !important;
+        justify-self: start !important;
+        text-align: left !important;
+        padding-top: 44px !important;
+        padding-left: 22px !important;
+        padding-right: 22px !important;
+        width: auto !important;
+        max-width: 92% !important;
+      }
+      #shopify-section-{{ section.id }} .content .prose {
+        align-items: flex-start !important;
+        text-align: left !important;
+      }
+      #shopify-section-{{ section.id }} .content .prose .h1,
+      #shopify-section-{{ section.id }} .content .prose h1 {
+        max-width: 100% !important;
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        font-weight: 600 !important;
+      }
+      #shopify-section-{{ section.id }} .content .prose > div:first-child {
+        text-align: left !important;
+        margin-left: 0 !important;
+        white-space: normal !important;
+      }
+      #shopify-section-{{ section.id }} .content .button,
+      #shopify-section-{{ section.id }} .content .button--solid {
+        font-size: 10px !important;
+        padding: 9px 16px !important;
+        letter-spacing: 0.08em !important;
+        align-self: flex-start !important;
+        margin-left: 0 !important;
+      }
+    }
+    {%- endif -%}
+  
+{%- if section.id contains 'image_with_text_overlay_TebrQa' -%}
+/* NF-AUTUMNHERO-V3 centred type straight on the image, no panel */
+#shopify-section-{{ section.id }}{ --nf-hero-ink:#ffffff; --hero-h-shadow:0 2px 18px rgba(0,0,0,.45); --hero-p-shadow:0 1px 10px rgba(0,0,0,.45); }
+#shopify-section-{{ section.id }} .content{
+  place-self:center !important; justify-self:center !important; align-self:center !important;
+  align-items:center !important; text-align:center !important; width:auto !important;
+  max-width:min(900px, calc(100% - 48px)) !important;
+  padding:0 !important;
+  background:none !important; border:0 !important; box-shadow:none !important;
+  -webkit-backdrop-filter:none !important; backdrop-filter:none !important;
+}
+#shopify-section-{{ section.id }} .content .prose{ text-align:center !important; align-items:center !important; }
+#shopify-section-{{ section.id }} .content .prose > *{ margin-left:auto !important; margin-right:auto !important; }
+#shopify-section-{{ section.id }} .content a.button,
+#shopify-section-{{ section.id }} .content .button{ align-self:center !important; margin-left:auto !important; margin-right:auto !important; }
+#shopify-section-{{ section.id }} .content .prose .h1,
+#shopify-section-{{ section.id }} .content .prose h1,
+#shopify-section-{{ section.id }} .content .prose h2{
+  white-space:normal !important; color:#ffffff !important; -webkit-text-fill-color:#ffffff !important;
+  text-transform:uppercase !important; letter-spacing:.012em !important;
+  font-size:clamp(26px, 3.5vw, 50px) !important; line-height:1.14 !important; font-weight:400 !important;
+  margin:0 0 14px !important; text-align:center !important; align-self:center !important;
+}
+#shopify-section-{{ section.id }} .content .prose > div:first-child p{
+  text-align:center !important; margin:0 0 14px !important; align-self:center !important;
+  color:rgba(255,255,255,.92) !important; -webkit-text-fill-color:rgba(255,255,255,.92) !important;
+  font-size:14px !important; letter-spacing:.01em !important; text-transform:none !important; font-weight:400 !important;
+}
+#shopify-section-{{ section.id }} .content .prose p{ color:rgba(255,255,255,.92) !important; -webkit-text-fill-color:rgba(255,255,255,.92) !important; }
+#shopify-section-{{ section.id }} .content a.button,
+#shopify-section-{{ section.id }} .content .button,
+#shopify-section-{{ section.id }} .content .button--solid{
+  background:#ffffff !important; background-color:#ffffff !important; border-color:#ffffff !important;
+  border-radius:999px !important; padding:17px 36px !important; margin-top:8px !important;
+  font-size:12.5px !important; letter-spacing:.1em !important; text-transform:uppercase !important;
+}
+#shopify-section-{{ section.id }} .content .button,
+#shopify-section-{{ section.id }} .content .button *,
+#shopify-section-{{ section.id }} .content .button--solid,
+#shopify-section-{{ section.id }} .content .button--solid *{ color:#1c1c1c !important; -webkit-text-fill-color:#1c1c1c !important; }
+#shopify-section-{{ section.id }} .content .button:hover,
+#shopify-section-{{ section.id }} .content .button--solid:hover{ background:#f2efea !important; background-color:#f2efea !important; border-color:#f2efea !important; }
+@media screen and (max-width: 699px){
+#shopify-section-{{ section.id }} .content{
+  place-self:center !important; justify-self:center !important; align-items:center !important;
+  text-align:center !important; max-width:calc(100% - 36px) !important; padding:0 !important;
+}
+#shopify-section-{{ section.id }} .content .prose .h1,#shopify-section-{{ section.id }} .content .prose > div:first-child p{ text-align:center !important; align-self:center !important; margin-left:0 !important; }
+}
+{%- endif -%}
+</style>
+
+  {%- comment -%}
+    ------------------------------------------------------------------------------------------------------------------------
+    LIQUID
+    ------------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+
+  <div
+    class="{% unless section.settings.remove_vertical_spacing %}section-spacing{% endunless %} color-scheme color-scheme--{{ section.settings.color_scheme.id }} color-scheme--with-image-overlay"
+    {% if section.settings.allow_transparent_header %}
+      allow-transparent-header
+    {% endif %}
+  >
+    <image-with-text-overlay class="content-over-media content-over-media--{{ section.settings.image_size }}" reveal-on-scroll="{{ section.settings.reveal_on_scroll }}">
+      {%- if section.settings.image != blank -%}
+        {%- comment -%}NF-PERF2-0911: the homepage hero (TebrQa) is the LCP image, so it loads eager with fetchpriority high.
+          Any other use of this section that is not the first section on its template (e.g. the Best Sellers banner on
+          product pages) lazy loads, so it no longer competes with that page's own LCP image.{%- endcomment -%}
+        {%- liquid
+          assign nf_perf2_loading = 'eager'
+          assign nf_perf2_priority = 'auto'
+          if section.id contains 'image_with_text_overlay_TebrQa'
+            assign nf_perf2_priority = 'high'
+          elsif section.index > 1
+            assign nf_perf2_loading = 'lazy'
+          endif
+        -%}
+        <picture>
+          {%- comment -%} NF-SPEED-0913 (round 2): phones up to 499px get a portrait crop of exactly the strip they see (custom-nav.css puts
+            the hero at object-position 62% 55% on mobile), cut on Shopify's CDN, so they download ~92KB instead of the 149KB landscape
+            file and the picture looks the same. crop_left = 0.62 x (width - crop width) keeps the visible region identical on every
+            phone width. Only for landscape hero photos; anything else falls through to the sources below. {%- endcomment -%}
+          {%- if section.id contains 'image_with_text_overlay_TebrQa' and section.settings.image.aspect_ratio > 1.2 -%}
+            {%- liquid
+              assign nfh = section.settings.image
+              assign nfh_h = nfh.height
+              assign nfh_cw = nfh_h | times: 0.952 | round
+              assign nfh_cl = nfh.width | minus: nfh_cw | times: 0.04 | round
+            -%}
+            <source
+              media="(max-width: 499px)"
+              srcset="{{ nfh | image_url: width: 360, crop: 'region', crop_left: nfh_cl, crop_top: 0, crop_width: nfh_cw, crop_height: nfh_h }} 360w, {{ nfh | image_url: width: 450, crop: 'region', crop_left: nfh_cl, crop_top: 0, crop_width: nfh_cw, crop_height: nfh_h }} 450w, {{ nfh | image_url: width: 550, crop: 'region', crop_left: nfh_cl, crop_top: 0, crop_width: nfh_cw, crop_height: nfh_h }} 550w"
+              sizes="460px"
+              width="550"
+              height="578"
+            >
+          {%- endif -%}
+          {%- if section.id == 'image_with_text_overlay_rxf9er' -%}
+            <source
+              media="(max-width: 699px)"
+              srcset="{{ 'comfort_mobile_portrait.jpg' | asset_url }}"
+              width="900"
+              height="1200"
+            >
+          {%- elsif section.settings.mobile_image != blank -%}
+            <source
+              media="(max-width: 699px)"
+              srcset="{{ section.settings.mobile_image | image_url: width: 400 }} 400w, {{ section.settings.mobile_image | image_url: width: 600 }} 600w, {{ section.settings.mobile_image | image_url: width: 800 }} 800w, {{ section.settings.mobile_image | image_url: width: 1000 }} 1000w"
+              sizes="100vw"
+              width="{{ section.settings.mobile_image.width }}"
+              height="{{ section.settings.mobile_image.height }}"
+            >
+          {%- endif -%}
+
+          {{-
+            section.settings.image
+            | image_url: width: section.settings.image.width
+            | image_tag: sizes: '100vw', widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', loading: nf_perf2_loading, fetchpriority: nf_perf2_priority
+          -}}
+        </picture>
+      {%- else -%}
+        {{- 'lifestyle-1' | placeholder_svg_tag: 'placeholder' | replace: '<svg', '<svg preserveAspectRatio="xMinYMin slice"' -}}
+      {%- endif -%}
+
+      {%- if section.id contains 'image_with_text_overlay_TebrQa' -%}
+        {%- assign hero_btn_url = '' -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'button' and block.settings.url != blank -%}
+            {%- assign hero_btn_url = block.settings.url -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if hero_btn_url != blank -%}
+          <a class="hero-cover-link" href="{{ hero_btn_url }}" aria-label="Shop Best Sellers"></a>
+        {%- endif -%}
+      {%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="content {{ section.settings.mobile_text_position }} {{ section.settings.desktop_text_position }}">
+          <div class="prose">
+            {%- if section.id == 'image_with_text_overlay_rxf9er' -%}
+              <div class="rxf9er-gold-line"></div>
+            {%- endif -%}
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'subheading' -%}
+                  {%- if block.settings.text != blank -%}
+                    <p class="h6" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+                  {%- endif -%}
+
+                {%- when 'heading' -%}
+                  {%- if block.settings.text != blank -%}
+                    {%- if section.id contains 'image_with_text_overlay_TebrQa' -%}
+                      <p class="{{ block.settings.heading_tag }}" style="font-size:var(--hero-h-size, 58px) !important;  line-height:1.15 !important; font-weight:var(--hero-h-weight, 400) !important; letter-spacing:0 !important; color:var(--nf-hero-ink,#ffffff) !important; -webkit-text-fill-color:var(--nf-hero-ink,#ffffff) !important; opacity:1 !important; text-shadow:var(--hero-h-shadow, 0 1px 3px rgba(0,0,0,0.6), 0 2px 12px rgba(0,0,0,0.5)) !important; margin-top:0 !important; margin-bottom:var(--hero-h-mb, 18px) !important; margin-right:0 !important; margin-left:var(--hero-h-ml, 0px) !important;" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+                    {%- else -%}
+                      <p class="{{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+                    {%- endif -%}
+                  {%- endif -%}
+
+                {%- when 'richtext' -%}
+                  {%- if block.settings.content != blank -%}
+                    {%- if section.id contains 'image_with_text_overlay_TebrQa' -%}
+                      <div style="font-size:var(--hero-p-size, 17px) !important; line-height:1.2 !important; font-weight:400 !important; letter-spacing:0 !important; color:var(--nf-hero-ink,#ffffff) !important; -webkit-text-fill-color:var(--nf-hero-ink,#ffffff) !important; opacity:1 !important; text-shadow:var(--hero-p-shadow, 0 1px 3px rgba(0,0,0,0.5)) !important; margin-top:0 !important; margin-bottom:var(--hero-p-mb, 18px) !important; margin-right:0 !important; margin-left:var(--hero-p-ml, 0px) !important;" {{ block.shopify_attributes }}>
+                        {{- block.settings.content -}}
+                      </div>
+                    {%- else -%}
+                      <div {{ block.shopify_attributes }}>
+                        {{- block.settings.content -}}
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+
+                {%- when 'liquid' -%}
+                  {%- if block.settings.liquid != blank -%}
+                    <div {{ block.shopify_attributes }}>
+                      {{- block.settings.liquid -}}
+                    </div>
+                  {%- endif -%}
+
+                {%- when 'button' -%}
+                  {%- if block.settings.text != blank -%}
+                    {%- render 'button',
+                      content: block.settings.text,
+                      href: block.settings.url,
+                      style: block.settings.style,
+                      background: block.settings.background,
+                      text_color: block.settings.text_color,
+                      block: block
+                    -%}
+                  {%- endif -%}
+
+                {%- when 'link' -%}
+                  {%- if block.settings.text != blank -%}
+                    <div {{ block.shopify_attributes }}>
+                      <a href="{{ block.settings.url }}">{{ block.settings.text }}</a>
+                    </div>
+                  {%- endif -%}
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </image-with-text-overlay>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.image_with_text_overlay.name",
+  "class": "shopify-section--image-with-text-overlay",
+  "tag": "section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-4"
+    },
+    {
+      "type": "select",
+      "id": "image_size",
+      "label": "t:global.image.size",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:global.sizes.original_image_ratio"
+        },
+        {
+          "value": "xs",
+          "label": "t:global.sizes.x_small"
+        },
+        {
+          "value": "sm",
+          "label": "t:global.sizes.small"
+        },
+        {
+          "value": "md",
+          "label": "t:global.sizes.medium"
+        },
+        {
+          "value": "lg",
+          "label": "t:global.sizes.large"
+        },
+        {
+          "value": "fill",
+          "label": "t:global.sizes.fit_screen"
+        }
+      ],
+      "info": "t:global.image.ratio_avoid_cropping_info",
+      "default": "auto"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:global.image.image",
+      "info": "t:sections.image_with_text_overlay.image_size_recommendation"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:global.image.mobile_image",
+      "info": "t:sections.image_with_text_overlay.mobile_image_size_recommendation"
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_transparent_header",
+      "label": "t:global.section.allow_transparent_header",
+      "info": "t:global.section.allow_transparent_header_info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "reveal_on_scroll",
+      "label": "t:global.animation.reveal_image_on_scroll",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_vertical_spacing",
+      "label": "t:global.spacing.remove_vertical_spacing",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "t:global.sizes.content_width",
+      "options": [
+        {
+          "value": "xxs",
+          "label": "t:global.sizes.xx_small"
+        },
+        {
+          "value": "xs",
+          "label": "t:global.sizes.x_small"
+        },
+        {
+          "value": "sm",
+          "label": "t:global.sizes.small"
+        },
+        {
+          "value": "md",
+          "label": "t:global.sizes.medium"
+        },
+        {
+          "value": "lg",
+          "label": "t:global.sizes.large"
+        },
+        {
+          "value": "xl",
+          "label": "t:global.sizes.x_large"
+        }
+      ],
+      "default": "md"
+    },
+    {
+      "type": "select",
+      "id": "mobile_text_position",
+      "label": "t:global.position.mobile_content_position",
+      "options": [
+        {
+          "value": "place-self-start text-start",
+          "label": "t:global.position.top_left"
+        },
+        {
+          "value": "place-self-start-center text-center",
+          "label": "t:global.position.top_center"
+        },
+        {
+          "value": "place-self-start-end text-end",
+          "label": "t:global.position.top_right"
+        },
+        {
+          "value": "place-self-center-start text-start",
+          "label": "t:global.position.middle_left"
+        },
+        {
+          "value": "place-self-center text-center",
+          "label": "t:global.position.middle_center"
+        },
+        {
+          "value": "place-self-center-end text-end",
+          "label": "t:global.position.middle_right"
+        },
+        {
+          "value": "place-self-end-start text-start",
+          "label": "t:global.position.bottom_left"
+        },
+        {
+          "value": "place-self-end-center text-center",
+          "label": "t:global.position.bottom_center"
+        },
+        {
+          "value": "place-self-end text-end",
+          "label": "t:global.position.bottom_right"
+        }
+      ],
+      "default": "place-self-center text-center"
+    },
+    {
+      "type": "select",
+      "id": "desktop_text_position",
+      "label": "t:global.position.desktop_content_position",
+      "options": [
+        {
+          "value": "sm:place-self-start sm:text-start",
+          "label": "t:global.position.top_left"
+        },
+        {
+          "value": "sm:place-self-start-center sm:text-center",
+          "label": "t:global.position.top_center"
+        },
+        {
+          "value": "sm:place-self-start-end sm:text-end",
+          "label": "t:global.position.top_right"
+        },
+        {
+          "value": "sm:place-self-center-start sm:text-start",
+          "label": "t:global.position.middle_left"
+        },
+        {
+          "value": "sm:place-self-center sm:text-center",
+          "label": "t:global.position.middle_center"
+        },
+        {
+          "value": "sm:place-self-center-end sm:text-end",
+          "label": "t:global.position.middle_right"
+        },
+        {
+          "value": "sm:place-self-end-start sm:text-start",
+          "label": "t:global.position.bottom_left"
+        },
+        {
+          "value": "sm:place-self-end-center sm:text-center",
+          "label": "t:global.position.bottom_center"
+        },
+        {
+          "value": "sm:place-self-end sm:text-end",
+          "label": "t:global.position.bottom_right"
+        }
+      ],
+      "default": "sm:place-self-center sm:text-center"
+    },
+    {
+      "type": "header",
+      "content": "t:global.colors.category"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:global.colors.overlay_color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "t:global.colors.overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "subheading",
+      "name": "t:sections.image_with_text_overlay.blocks.subheading.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:global.text.text",
+          "default": "Subheading"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "t:sections.image_with_text_overlay.blocks.heading.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:global.text.text",
+          "default": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "t:global.text.style",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h4"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "name": "t:sections.image_with_text_overlay.blocks.paragraph.name",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:global.text.content",
+          "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "t:sections.image_with_text_overlay.blocks.liquid.name",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "t:global.code.liquid",
+          "default": "<p>Use this text to output some custom Liquid code to include widget or dynamic code.</p>"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "t:sections.image_with_text_overlay.blocks.button.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "t:global.text.style",
+          "options": [
+            {
+              "value": "outline",
+              "label": "t:global.text.button_style_options.outline"
+            },
+            {
+              "value": "solid",
+              "label": "t:global.text.button_style_options.solid"
+            }
+          ],
+          "default": "solid"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:global.text.text",
+          "default": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:global.text.link"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "t:global.colors.background"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "t:global.colors.text"
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "t:sections.image_with_text_overlay.blocks.link.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:global.text.text",
+          "default": "Link text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:global.text.link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image_with_text_overlay.presets.image_with_text_overlay.name",
+      "category": "t:global.categories.banners",
+      "blocks": [
+        {
+          "type": "heading",
+          "settings": {
+            "text": "Image with text overlay"
+          }
+        },
+        {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

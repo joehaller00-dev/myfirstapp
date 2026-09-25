@@ -1,0 +1,335 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Restaurants and Cafes",
+        "eyebrow": "Restaurant and cafe lighting",
+        "heading": "Light that makes people stay for one more round",
+        "text": "Restaurants, cafes and bars sell a feeling as much as the food. Warm pendants over tables, a bright counter and soft wall light turn a room into a place people come back to.",
+        "image_file": "nf-pro-hospitality.jpg",
+        "image_alt": "Light that makes people stay for one more round",
+        "fallback_collection": "hospitality-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "\/pages\/bulk-order-form?industry=restaurant-cafe-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "\/pages\/bulk-project-orders",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "Shop Pendant Lights",
+        "link_url": "\/collections\/pendants"
+      }
+    },
+    "approach": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "cream",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "Design approach",
+        "heading": "Bright where you serve, warm where you sit",
+        "image_file": "nf-discover-portfolio.jpg",
+        "image_alt": "Neighborhood bistro at dusk glowing with glass globe pendant lights",
+        "fallback_collection": "pendants",
+        "text": "<p>The best dining rooms use a few layers of light instead of one bright ceiling. Each layer has one simple job.<\/p>",
+        "bullets": "Pendants over every table: A low, warm pendant over each table makes it feel like its own space.\nA bright counter: Linear pendants over the bar or pass keep the working area clear and easy to read.\nWall light for warmth: Sconces between tables soften faces and fill the dark corners.\nWarm color everywhere: Light around 2700K keeps food and people looking their best.\nDimming through the day: Dimmable fixtures take the room from a bright lunch to a quiet dinner.",
+        "spaces_label": "Spaces we light",
+        "spaces": "Dining rooms\nBars and counters\nCafe seating\nPrivate dining\nPatios and terraces\nEntrances and host stands"
+      }
+    },
+    "fixtures": {
+      "type": "nf-pro-products",
+      "settings": {
+        "bg": "sand",
+        "heading": "Recommended fixture types",
+        "text": "Real fixtures from our range that suit this kind of space. Every one is available in quantity with bulk pricing.",
+        "link_label": "Shop Pendant Lights",
+        "link_url": "\/collections\/pendants"
+      },
+      "blocks": {
+        "r1": {
+          "type": "rail",
+          "settings": {
+            "label": "Pendants",
+            "collection": "pendants",
+            "text": "A warm glow over every table.",
+            "shop_label": "Shop all pendants",
+            "limit": 12
+          }
+        },
+        "r2": {
+          "type": "rail",
+          "settings": {
+            "label": "Linear suspension",
+            "collection": "linear-suspension",
+            "text": "Even light along bars, counters and long tables.",
+            "shop_label": "Shop linear suspension",
+            "limit": 12
+          }
+        },
+        "r3": {
+          "type": "rail",
+          "settings": {
+            "label": "Chandeliers",
+            "collection": "chandeliers",
+            "text": "A centerpiece for the main room or private dining.",
+            "shop_label": "Shop chandeliers",
+            "limit": 12
+          }
+        },
+        "r4": {
+          "type": "rail",
+          "settings": {
+            "label": "Wall sconces",
+            "collection": "wall-sconces",
+            "text": "Soft light between tables and along walls.",
+            "shop_label": "Shop wall sconces",
+            "limit": 12
+          }
+        },
+        "r5": {
+          "type": "rail",
+          "settings": {
+            "label": "Outdoor string lights",
+            "collection": "outdoor-string-lights",
+            "text": "Patio and terrace seating that stays open after dark.",
+            "shop_label": "Shop outdoor string lights",
+            "limit": 12
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "eyebrow": "Design concepts",
+        "heading": "See it come together",
+        "text": "Concept spaces designed by our team with the same fixtures. Borrow the whole look or a single piece.",
+        "note": "These are design concepts created by our team, not client projects."
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-office-concepts-3.webp",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "image_file": "nf-pro3-office-concepts-1.png",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "image_file": "nf-pro3-office-concepts-2.webp",
+            "fallback_collection": "pendants"
+          }
+        }
+      },
+      "block_order": [
+        "c_maker_studio",
+        "c_linen_and_oak",
+        "c_alder_lobby"
+      ]
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Planning a project",
+        "heading": "Opening or refreshing a restaurant or cafe?",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "\/pages\/bulk-order-form?industry=restaurant-cafe-lighting-projects",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "\/pages\/bulk-project-orders",
+        "link_label": "Project Portfolio",
+        "link_url": "\/pages\/project-portfolio"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "What color temperature works best for dining?",
+            "a": "<p>Warm white around 2700K suits most dining rooms and bars. Light color options are listed on each product page, so a whole room can match.<\/p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.<\/p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Can pendants hang at different heights?",
+            "a": "<p>Many pendants come with an adjustable cord or rod. The hanging length is listed in the Dimensions section of each product.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how restaurant and cafe lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "\/pages\/bulk-order-form?industry=restaurant-cafe-lighting-projects",
+        "btn2_label": "Shop Pendant Lights",
+        "btn2_url": "\/collections\/pendants",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Cafe Counter",
+            "image_file": "nf-ref-cafe-counter.png",
+            "alt": "Cafe Counter, inspiration image"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Counter Seating",
+            "image_file": "nf-ref-cafe-counter-2.png",
+            "alt": "Counter Seating, inspiration image"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Private Dining",
+            "image_file": "nf-ref-private-dining.webp",
+            "alt": "Private Dining, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Cafe Pendants",
+            "image_file": "nf-ref-cafe-pendants.webp",
+            "alt": "Cafe Pendants, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Dining Room",
+            "image_file": "nf-blog-chandelier-over-dining-table.png",
+            "alt": "Dining Room, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Kitchen Pass",
+            "image_file": "nf-ref-kitchen-pendants.png",
+            "alt": "Kitchen Pass, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Patio Strings",
+            "image_file": "nf-ref-patio-strings.png",
+            "alt": "Patio Strings, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Patio Evening",
+            "image_file": "nf-blog-patio-string-lights.png",
+            "alt": "Patio Evening, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "references_v2",
+    "approach",
+    "fixtures",
+    "concepts",
+    "band",
+    "faq"
+  ]
+}

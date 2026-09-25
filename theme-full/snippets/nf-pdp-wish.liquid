@@ -1,0 +1,16 @@
+{%- comment -%}
+  NF-PDP3-V2 (2026-09-25) "Add to Wishlist" under Bundle & Save (owner: like Baskoraa). The store has no wishlist app,
+  so the list is kept in this browser (localStorage, assets/nf-pdp3.js) and opened from the "View wishlist" link.
+{%- endcomment -%}
+<div class="nf-wl" data-nf-wl
+  data-handle="{{ product.handle | escape }}"
+  data-title="{{ product.title | escape }}"
+  data-url="{{ product.url }}"
+  data-img="{{ product.featured_media | image_url: width: 300 }}"
+  data-price="{{ product.price | money }}">
+  <button type="button" class="nf-wl__btn" data-nf-wl-btn aria-pressed="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.3C1.6 7.8 3.8 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.4 0 5.6 3.3 4.4 6.7-1.7 4.7-9.2 9.3-9.2 9.3z"/></svg>
+    <span data-nf-wl-label>Add to Wishlist</span>
+  </button>
+  <button type="button" class="nf-wl__view" data-nf-wl-view hidden>View wishlist (<span data-nf-wl-count>0</span>)</button>
+</div>

@@ -1,0 +1,100 @@
+/* NF-DUSK-V1 (2026-09-12) "Room by room" band. White ground, no cream, no eyebrow line. */
+.nfrb {
+  --rb-ink: #1c1c1c;
+  --rb-ink-2: #5e5e5e;
+  --rb-line: #e6e6e6;
+  --rb-head: var(--heading-font-family, "Roboto Serif", Georgia, serif);
+  --rb-ui: var(--text-font-family, Montserrat, -apple-system, "Segoe UI", sans-serif);
+  --rb-pad: clamp(20px, 3.3vw, 48px);
+  --rb-gap: clamp(12px, 1.1vw, 18px);
+  --rb-r: 18px;
+  --rb-ease: cubic-bezier(.22, .61, .36, 1);
+  padding: clamp(36px, 3.8vw, 56px) 0 clamp(38px, 4vw, 58px);
+  background: #fff;
+  color: var(--rb-ink);
+}
+.nfrb--rule { border-top: 1px solid var(--rb-line); }
+.nfrb__wrap { max-width: 1680px; margin: 0 auto; padding: 0 var(--rb-pad); }
+.nfrb__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(18px, 1.8vw, 26px); }
+.nfrb__eyebrow { margin: 0 0 12px; font: 500 11px/1.2 var(--rb-ui); letter-spacing: .2em; text-transform: uppercase; color: #9a7a45; }
+.nfrb__eyebrow::before { content: none !important; }
+.nfrb__title { margin: 0; font-family: var(--rb-head); font-weight: 300; font-style: normal; font-size: clamp(30px, 3vw, 46px); line-height: 1.1; letter-spacing: .005em; text-transform: none; color: var(--rb-ink); }
+.nfrb__sub { margin: 0; max-width: 380px; font: 400 15px/1.6 var(--rb-ui); letter-spacing: .01em; color: var(--rb-ink-2); text-align: right; }
+
+.nfrb__row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--rb-gap); }
+.nfrb__item { margin: 0; min-width: 0; }
+.nfrb__tile { position: relative; display: block; color: inherit; text-decoration: none; border-radius: var(--rb-r); outline: none; }
+.nfrb__media {
+  position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--rb-r);
+  background: #ececec; isolation: isolate;
+}
+.nfrb__img {
+  position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(var(--rb-lift, 1)); transform: scale(1.001);
+  transition: transform .6s var(--rb-ease), filter .5s ease;
+}
+.nfrb__glow {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; mix-blend-mode: screen;
+  background: radial-gradient(120% 80% at 50% 30%, rgba(255, 200, 130, .42) 0%, rgba(255, 186, 110, .16) 38%, rgba(255, 186, 110, 0) 70%);
+  transition: opacity .5s ease;
+}
+.nfrb__tile:hover .nfrb__img, .nfrb__tile:focus-visible .nfrb__img { transform: scale(1.045); filter: brightness(calc(var(--rb-lift, 1) * 1.13)) saturate(1.08); }
+.nfrb__tile:hover .nfrb__glow, .nfrb__tile:focus-visible .nfrb__glow { opacity: 1; }
+.nfrb__tile:focus-visible .nfrb__media { box-shadow: 0 0 0 3px #fff, 0 0 0 6px #b8914f; }
+
+.nfrb__label {
+  position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 2;
+  display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; column-gap: 10px; align-items: center;
+  padding: 11px 12px 11px 14px; border-radius: 12px; background: #fff; box-shadow: 0 6px 20px rgba(0, 0, 0, .12);
+}
+.nfrb__name { grid-column: 1; font-family: var(--rb-head); font-weight: 400; font-size: 16px; line-height: 1.25; color: var(--rb-ink); }
+.nfrb__count { grid-column: 1; font: 500 11.5px/1.3 var(--rb-ui); letter-spacing: .04em; color: var(--rb-ink-2); }
+.nfrb__go {
+  grid-column: 2; grid-row: 1 / span 2; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid #d4d4d4; color: var(--rb-ink); transition: background .3s ease, color .3s ease, border-color .3s ease;
+}
+.nfrb__tile:hover .nfrb__go, .nfrb__tile:focus-visible .nfrb__go { background: var(--rb-ink); border-color: var(--rb-ink); color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nfrb__img { transition: filter .3s ease; }
+  .nfrb__tile:hover .nfrb__img, .nfrb__tile:focus-visible .nfrb__img { transform: scale(1.001); }
+}
+
+@media (max-width: 1099px) {
+  .nfrb__row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .nfrb__media { aspect-ratio: 5 / 4; }
+}
+@media (max-width: 749px) {
+  .nfrb { padding: 32px 0 34px; }
+  .nfrb__head { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 16px; }
+  .nfrb__title { font-size: 27px; }
+  .nfrb__sub { text-align: left; font-size: 14px; }
+  .nfrb__wrap { padding: 0; }
+  .nfrb__head { padding: 0 20px; }
+  .nfrb__row {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(44vw, 200px);
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 20px;
+    padding: 2px 20px 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .nfrb__row::-webkit-scrollbar { display: none; }
+  .nfrb__item { scroll-snap-align: start; }
+  .nfrb__media { aspect-ratio: 4 / 5; border-radius: 14px; }
+  .nfrb__label { left: 7px; right: 7px; bottom: 7px; padding: 8px 8px 8px 10px; border-radius: 10px; column-gap: 6px; }
+  .nfrb__name { font-size: 14px; }
+  .nfrb__count { font-size: 10.5px; }
+  .nfrb__go { width: 26px; height: 26px; }
+}
+
+/* NF-RB-V2 (2026-09-12): the subtitle sat right aligned beside the heading and left "really used." alone on a second
+   line. It now sits left aligned directly under the heading, one line on desktop, two balanced lines on phones. */
+.nfrb__head{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:10px}
+.nfrb__sub{max-width:44rem;text-align:left;text-wrap:balance}
+@media (max-width:699px){.nfrb__head{gap:8px}.nfrb__sub{max-width:34ch}}
+
+/* NF-MOBILE-V4 (2026-09-12): phones only. More air under Room by room, and the Lighting Catalog band below it
+   starts on a hairline with a light neutral grey ground so the two bands read as separate. */
+@media (max-width: 749px) {
+  .nfrb { padding-bottom: 46px; }
+  .shopify-section:has(.nfrb) + .nf-catalog-promo-section { border-top: 1px solid #e3e3e3; background: #f5f5f5; }
+  .shopify-section:has(.nfrb) + .nf-catalog-promo-section .nfcat-promo { background: transparent; }
+}

@@ -1,0 +1,74 @@
+{%- comment -%}
+  NF-ABOUT-V1 (2026-09-11): "Keep exploring" tiles (Our Story, Professionals, Ideas & Guides, Contact) and the email
+  line for /pages/about-us. Neutral grey ground. Contact is email only; never add a phone number here.
+{%- endcomment -%}
+{{- 'nf-about.css' | asset_url | stylesheet_tag -}}
+{%- assign s = section.settings -%}
+<section class="nfa nfa-links" aria-labelledby="nfa-lh-{{ section.id }}">
+  <div class="nfa-wrap nfa-sec">
+    <div class="nfa-head">
+      <div class="nfa-head__main">
+        {%- if s.eyebrow != blank -%}<p class="nfa-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfa-h2" id="nfa-lh-{{ section.id }}">{{ s.heading | escape }}</h2>
+      </div>
+    </div>
+    <ul class="nfa-tiles" role="list">
+      {%- for block in section.blocks -%}
+        {%- if block.type != 'tile' -%}{%- continue -%}{%- endif -%}
+        {%- liquid
+          assign t_img = blank
+          if block.settings.image_file != blank
+            assign t_img = images[block.settings.image_file]
+          endif
+        -%}
+        <li {{ block.shopify_attributes }}>
+          <a class="nfa-tile__a" href="{{ block.settings.url }}">
+            <span class="nfa-tile__media">
+              {%- if t_img != blank and t_img.width > 0 -%}
+                {%- comment -%} NF-IMG-SHARP-0916: the tile crops a 4:3 photo into a taller box (~470px of image at 300px wide), so sizes/widths now cover that crop at 2x; was 300px / max 900 (soft on retina). {%- endcomment -%}{{- t_img | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '360,540,720,900,1200,1400', sizes: '(max-width: 899px) 72vw, 470px', alt: '' -}}
+              {%- endif -%}
+            </span>
+            <h3 class="nfa-tile__t">{{ block.settings.title | escape }}<span class="nfa-arrow" aria-hidden="true">&rarr;</span></h3>
+            {%- if block.settings.text != blank -%}<p class="nfa-tile__x">{{ block.settings.text | escape }}</p>{%- endif -%}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if s.email != blank -%}
+      <div class="nfa-contact">
+        <div>
+          {%- if s.contact_heading != blank -%}<h2 class="nfa-contact__h">{{ s.contact_heading | escape }}</h2>{%- endif -%}
+          {%- if s.contact_text != blank -%}<p class="nfa-contact__x">{{ s.contact_text | escape }}</p>{%- endif -%}
+        </div>
+        <a class="nfa-mail" href="mailto:{{ s.email | escape }}">{{ s.email | escape }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF about links",
+  "class": "nfa-section nfa-section--links",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Keep exploring" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "contact_heading", "label": "Contact heading" },
+    { "type": "textarea", "id": "contact_text", "label": "Contact text" },
+    { "type": "text", "id": "email", "label": "Support email", "default": "info@norafurnish.com" }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "url", "label": "URL" },
+        { "type": "text", "id": "image_file", "label": "Image filename in Files" }
+      ]
+    }
+  ],
+  "max_blocks": 8
+}
+{% endschema %}

@@ -1,0 +1,561 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-guides-page-hero",
+      "blocks": {
+        "jump_discover": {
+          "type": "jump",
+          "settings": {
+            "label": "Discover",
+            "url": "#discover"
+          }
+        },
+        "jump_reviews": {
+          "type": "jump",
+          "settings": {
+            "label": "Customer reviews",
+            "url": "#reviews"
+          }
+        },
+        "jump_stories": {
+          "type": "jump",
+          "settings": {
+            "label": "Stories and projects",
+            "url": "#stories"
+          }
+        },
+        "jump_catalog": {
+          "type": "jump",
+          "settings": {
+            "label": "2026 catalog",
+            "url": "#catalog"
+          }
+        },
+        "jump_guides": {
+          "type": "jump",
+          "settings": {
+            "label": "Lighting guides",
+            "url": "#guides"
+          }
+        }
+      },
+      "block_order": [
+        "jump_discover",
+        "jump_reviews",
+        "jump_stories",
+        "jump_catalog",
+        "jump_guides"
+      ],
+      "settings": {
+        "image_file": "nf-discover-hero.jpg",
+        "eyebrow": "Nora Furnish Resource Center",
+        "heading": "",
+        "text": "Guides for every room, photos from real homes, design concepts from our team and the 2026 catalog, all gathered in one place.",
+        "btn1_label": "Explore the stories",
+        "btn1_url": "#stories",
+        "btn2_label": "Open the 2026 catalog",
+        "btn2_url": "/pages/lighting-catalog",
+        "link_label": "See customer photos",
+        "link_url": "#reviews",
+        "jump_label": "On this page"
+      }
+    },
+    "discover": {
+      "type": "nf-guides-page-discover",
+      "blocks": {
+        "tile_story": {
+          "type": "tile",
+          "settings": {
+            "image_file": "nf-discover-our-story.jpg",
+            "eyebrow": "Who we are",
+            "title": "Our Story",
+            "text": "A small team with a soft spot for warm light and well made pieces, and the shop we built around them.",
+            "btn_label": "Read our story",
+            "url": "/pages/our-story"
+          }
+        },
+        "tile_catalog": {
+          "type": "tile",
+          "settings": {
+            "image_file": "nf-discover-catalog.jpg",
+            "eyebrow": "Digital catalog",
+            "title": "The 2026 Lighting Catalog",
+            "text": "Flip through our lighting room by room, with every piece linked and priced live.",
+            "btn_label": "Open the catalog",
+            "url": "/pages/lighting-catalog"
+          }
+        },
+        "tile_portfolio": {
+          "type": "tile",
+          "settings": {
+            "image_file": "nf-discover-portfolio.jpg",
+            "eyebrow": "Design concepts",
+            "title": "Project Portfolio",
+            "text": "Eight spaces our team lit from floor to ceiling, from a hotel lobby to a garden courtyard.",
+            "btn_label": "View the portfolio",
+            "url": "/pages/project-portfolio"
+          }
+        },
+        "tile_reviews": {
+          "type": "tile",
+          "settings": {
+            "image_file": "nf-discover-reviews.jpg",
+            "eyebrow": "In real homes",
+            "title": "Customer Reviews",
+            "text": "Photos and words from customers who brought our pieces home.",
+            "btn_label": "Read the reviews",
+            "url": "#reviews"
+          }
+        },
+        "tile_guides": {
+          "type": "tile",
+          "settings": {
+            "image_file": "nf-discover-guides.jpg",
+            "eyebrow": "How to",
+            "title": "Lighting Guides",
+            "text": "Straight answers on sizing, spacing, brightness and color temperature.",
+            "btn_label": "Read the guides",
+            "url": "/blogs/blog"
+          }
+        }
+      },
+      "block_order": [
+        "tile_story",
+        "tile_catalog",
+        "tile_portfolio",
+        "tile_reviews",
+        "tile_guides"
+      ],
+      "settings": {
+        "anchor": "discover",
+        "eyebrow": "Discover Nora Furnish",
+        "heading": "Explore our world",
+        "text": "Where our pieces come from, where they end up and how to choose the right one. Pick a door and step inside."
+      }
+    },
+    "reviews": {
+      "type": "nf-guides-page-reviews",
+      "blocks": {
+        "review_01": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-01.webp",
+            "alt": "Customer photo of the Japanese Modern Wabi Sabi Bedside Lamp",
+            "product": "japanese-modern-wabi-sabi-bedside-lamp",
+            "quote": "Wonderful chandelier, much more beautiful in person! The travertine makes the piece sophisticated and elegant without being over the top. Impeccable finish, cozy lighting, and great quality. Completely transformed the room.",
+            "name": "Anonymous",
+            "date": "2026-05-11"
+          }
+        },
+        "review_02": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-02.webp",
+            "alt": "Customer photo of the Luxury Metal and Glass Pendant Chandelier",
+            "product": "modern-luxury-metal-and-glass-led-pendant-chandelier",
+            "quote": "A very good item, it looks spectacular in the room.",
+            "name": "Anonymous",
+            "date": "2026-06-01"
+          }
+        },
+        "review_03": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-05.webp",
+            "alt": "Customer photo of the Solar Disk Pathway Lights",
+            "product": "solar-disk-pathway-lights",
+            "quote": "Great quality and still going strong after several heavy downpours",
+            "name": "Anonymous",
+            "date": "2025-10-23"
+          }
+        },
+        "review_04": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-03.webp",
+            "alt": "Customer photo of the Magnetic Rechargeable Black Gold Wall Lamp",
+            "product": "magnetic-rechargeable-black-gold-wall-lamp",
+            "quote": "Excellent light. The bronze/brass colour looks expensive. The 3 different shades of light and the low to high brightness are a very nice touch. These look great in my kitchen.",
+            "name": "Anonymous",
+            "date": "2026-01-10"
+          }
+        },
+        "review_05": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-10.webp",
+            "alt": "Customer photo of the Khaki Chunky Knitted Blanket with Tassels",
+            "product": "khaki-gift-knitted-blanket-with-tassels-chunky-vintage-luxury",
+            "quote": "Beautiful piece, of great quality. I was surprised! I recommend it.",
+            "name": "Anonymous",
+            "date": "2025-10-24"
+          }
+        },
+        "review_06": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-18.webp",
+            "alt": "Customer photo of the Nordic Retractable Swing Wall Lamp",
+            "product": "nordic-modern-retractable-and-rotatable-swing-wall-lamp",
+            "quote": "Wonderful product, of excellent quality and with appropriate aesthetics.",
+            "name": "Anonymous",
+            "date": "2026-08-20"
+          }
+        },
+        "review_07": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-19.webp",
+            "alt": "Customer photo of the Round Wooden Candle and Coffee Tray",
+            "product": "round-wooden-candle-and-coffee-tray",
+            "quote": "The size and color are perfect just what is described, perfect for any table decoration as you can see in the pictures, i love a very good quality and here you have one!",
+            "name": "Anonymous",
+            "date": "2025-10-17"
+          }
+        },
+        "review_08": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-11.webp",
+            "alt": "Customer photo of the Modern Lava Ripple LED Chandelier",
+            "product": "modern-lava-ripple-led-chandelier",
+            "quote": "Height adjustment works great for my low ceiling. the soft glow makes the space super cozy.",
+            "name": "Anonymous",
+            "date": "2026-06-15"
+          }
+        },
+        "review_09": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-15.webp",
+            "alt": "Customer photo of the Solar Landscape Pathway Lights, Set of 2",
+            "product": "solar-pathway-landscape-lights-waterproof-2-pack",
+            "quote": "They are beautiful, they work perfectly, I have bought several.",
+            "name": "Anonymous",
+            "date": "2026-04-20"
+          }
+        },
+        "review_10": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-09.webp",
+            "alt": "Customer photo of the Wood Grain Touch Bedside Night Lamp",
+            "product": "wood-grain-touch-bedside-night-lamp",
+            "quote": "Very beautiful minimalist lamp. It has three colors and creates a dimmed effect.",
+            "name": "Anonymous",
+            "date": "2025-11-15"
+          }
+        },
+        "review_11": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-13.webp",
+            "alt": "Customer photo of the Rattan Hot Air Balloon Wall Hanging Decor",
+            "product": "rattan-hot-air-balloon-wall-hanging-decor",
+            "quote": "The product is perfect!! Im so in love just like the photo",
+            "name": "Anonymous",
+            "date": "2026-02-22"
+          }
+        },
+        "review_12": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-06.webp",
+            "alt": "Customer photo of the Stone and Wood LED Pendant Chandelier",
+            "product": "cream-style-stone-and-wood-led-pendant-chandelier",
+            "quote": "Absolutely perfect, bought 6 for bedroom and bathroom. Fully satisfied",
+            "name": "Anonymous",
+            "date": "2025-10-12"
+          }
+        },
+        "review_13": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-07.webp",
+            "alt": "Customer photo of the Modern Line LED Wall Lamp",
+            "product": "modern-led-wall-lamp-home-line-decoration-wall-lamp-living-room",
+            "quote": "Good quality of design and construction. Happy with the purchase.",
+            "name": "Anonymous",
+            "date": "2025-12-14"
+          }
+        },
+        "review_14": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-17.webp",
+            "alt": "Customer photo of the Marble Stone Vanity Tray",
+            "product": "marble-stone-vanity-tray",
+            "quote": "This is a beautiful piece for our kitchen. It's very sturdy, heavy duty, dries quickly and overall perfect size. Absolutely love this!",
+            "name": "Anonymous",
+            "date": "2025-11-13"
+          }
+        },
+        "review_15": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-14.webp",
+            "alt": "Customer photo of the Rechargeable 3 Color Mushroom Lamp",
+            "product": "rechargeable-mushroom-table-lamp-3-color-dimming",
+            "quote": "Very cool minimalist, and you can choose between 3 different light tones, cold, neutral or warm.",
+            "name": "Anonymous",
+            "date": "2025-11-26"
+          }
+        },
+        "review_16": {
+          "type": "review",
+          "settings": {
+            "image_file": "nf-review-zone-12.webp",
+            "alt": "Customer photo of the Travertine Stone Vanity Light",
+            "product": "travertine-stone-vanity-light",
+            "quote": "A great lamp, good quality. The light it emits is very pleasant.",
+            "name": "Anonymous",
+            "date": "2026-01-21"
+          }
+        }
+      },
+      "block_order": [
+        "review_01",
+        "review_02",
+        "review_03",
+        "review_04",
+        "review_05",
+        "review_06",
+        "review_07",
+        "review_08",
+        "review_09",
+        "review_10",
+        "review_11",
+        "review_12",
+        "review_13",
+        "review_14",
+        "review_15",
+        "review_16"
+      ],
+      "settings": {
+        "anchor": "reviews",
+        "eyebrow": "Customer reviews",
+        "heading": "Real rooms, five stars",
+        "text": "Photos and words from customers who brought our pieces home. Every card is one real review, shown just as it was written.",
+        "summary": "Five star reviews with customer photos",
+        "mobile_count": 6,
+        "more_label": "Show more reviews",
+        "cta_label": "Shop our best sellers",
+        "cta_url": "/collections/best-sellers"
+      }
+    },
+    "stories": {
+      "type": "nf-guides-page-stories",
+      "blocks": {
+        "concept_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "title": "The Alder Lobby",
+            "space": "Boutique hotel lobby",
+            "cat": "indoor",
+            "image_file": "nf-pro-concept-01.jpg",
+            "date": ""
+          }
+        },
+        "concept_corner_bistro": {
+          "type": "concept",
+          "settings": {
+            "slug": "corner-bistro",
+            "title": "Corner Bistro",
+            "space": "Neighborhood restaurant",
+            "cat": "indoor",
+            "image_file": "nf-pro-concept-02.jpg",
+            "date": ""
+          }
+        },
+        "concept_rooftop_at_nine": {
+          "type": "concept",
+          "settings": {
+            "slug": "rooftop-at-nine",
+            "title": "Rooftop at Nine",
+            "space": "Rooftop terrace bar",
+            "cat": "outdoor",
+            "image_file": "nf-pro-concept-03.jpg",
+            "date": ""
+          }
+        },
+        "concept_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "title": "Maker Studio",
+            "space": "Creative studio office",
+            "cat": "indoor",
+            "image_file": "nf-pro-concept-04.jpg",
+            "date": ""
+          }
+        },
+        "concept_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "title": "Linen and Oak",
+            "space": "Home goods boutique",
+            "cat": "indoor",
+            "image_file": "nf-pro-concept-05.jpg",
+            "date": ""
+          }
+        },
+        "concept_family_kitchen": {
+          "type": "concept",
+          "settings": {
+            "slug": "family-kitchen",
+            "title": "Family Kitchen",
+            "space": "Open plan family kitchen",
+            "cat": "indoor",
+            "image_file": "nf-pro-concept-06.jpg",
+            "date": ""
+          }
+        },
+        "concept_garden_courtyard": {
+          "type": "concept",
+          "settings": {
+            "slug": "garden-courtyard",
+            "title": "Garden Courtyard",
+            "space": "Walled garden courtyard",
+            "cat": "outdoor",
+            "image_file": "nf-pro-concept-07.jpg",
+            "date": ""
+          }
+        },
+        "concept_guest_suite": {
+          "type": "concept",
+          "settings": {
+            "slug": "guest-suite",
+            "title": "Guest Suite",
+            "space": "Hotel guest suite",
+            "cat": "indoor",
+            "image_file": "nf-pro-concept-08.jpg",
+            "date": ""
+          }
+        }
+      },
+      "block_order": [
+        "concept_alder_lobby",
+        "concept_corner_bistro",
+        "concept_rooftop_at_nine",
+        "concept_maker_studio",
+        "concept_linen_and_oak",
+        "concept_family_kitchen",
+        "concept_garden_courtyard",
+        "concept_guest_suite"
+      ],
+      "settings": {
+        "anchor": "stories",
+        "eyebrow": "Stories and projects",
+        "heading": "From our blogs and studio",
+        "text": "Room by room guides, outdoor ideas and design concepts from our team. Filter by what you are working on.",
+        "all_label": "All articles",
+        "blog_handle": "blog",
+        "logo_file": "e0cf0a7c-0740-403b-9bd3-70fc7e7f6dc9.png",
+        "portfolio_handle": "project-portfolio",
+        "concept_every": 2,
+        "concept_prefix": "Design Concept:",
+        "first_count": 9,
+        "step_count": 6,
+        "more_label": "Load more",
+        "filter_label": "Filter posts",
+        "label_all": "All Posts",
+        "label_indoor": "Indoor",
+        "label_outdoor": "Outdoor",
+        "label_style": "Style & Trends",
+        "label_concepts": "Design Concepts",
+        "note": "Design concepts are spaces imagined and lit by our team to show what our lighting can do. They are not client projects."
+      }
+    },
+    "library": {
+      "type": "nf-guides-page-library",
+      "blocks": {
+        "guide_chandelier": {
+          "type": "guide",
+          "settings": {
+            "handle": "chandelier-size-guide",
+            "label": ""
+          }
+        },
+        "guide_sconce": {
+          "type": "guide",
+          "settings": {
+            "handle": "wall-sconce-height-and-spacing-guide",
+            "label": ""
+          }
+        },
+        "guide_vanity": {
+          "type": "guide",
+          "settings": {
+            "handle": "bathroom-vanity-lighting-guide",
+            "label": ""
+          }
+        },
+        "guide_path": {
+          "type": "guide",
+          "settings": {
+            "handle": "path-light-spacing-guide",
+            "label": ""
+          }
+        },
+        "guide_kelvin": {
+          "type": "guide",
+          "settings": {
+            "handle": "warm-white-vs-cool-white-color-temperature",
+            "label": ""
+          }
+        },
+        "guide_lumens": {
+          "type": "guide",
+          "settings": {
+            "handle": "lumens-watts-and-brightness-explained",
+            "label": ""
+          }
+        }
+      },
+      "block_order": [
+        "guide_chandelier",
+        "guide_sconce",
+        "guide_vanity",
+        "guide_path",
+        "guide_kelvin",
+        "guide_lumens"
+      ],
+      "settings": {
+        "anchor": "guides",
+        "aria_label": "Catalog and lighting guides",
+        "blog_handle": "blog",
+        "catalog_page": "lighting-catalog",
+        "catalog_eyebrow": "Digital catalog",
+        "catalog_text": "Flip through our lighting room by room. Every page links to the pieces inside, with live prices.",
+        "catalog_button": "Open the catalog",
+        "catalogs_label": "Browse by chapter",
+        "catalogs_url": "/pages/catalog",
+        "guides_eyebrow": "Quick answers",
+        "guides_heading": "Lighting guides",
+        "guides_text": "Sizing, spacing, brightness and color temperature, answered in plain words.",
+        "topics_label": "Browse by topic",
+        "topics": "Buying Guides, How To, Installation, Maintenance, Indoor, Outdoor, 101",
+        "articles_label": "All articles",
+        "help_text": "<p>Can't find an answer? Email us at <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a> and we'll help you choose.</p>"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "discover",
+    "reviews",
+    "stories",
+    "library"
+  ]
+}

@@ -1,0 +1,380 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_label": "Project Portfolio",
+        "crumb_parent": true,
+        "eyebrow": "Project portfolio",
+        "heading": "Design concepts for real spaces",
+        "text": "Eight lighting concepts for hotels, restaurants, offices, shops, homes and outdoor spaces. Every fixture in them is a real product you can buy, order in quantity.",
+        "image_file": "nf-ref-foyer-chandelier.png",
+        "image_alt": "Warm entry hall in the evening with a black candle style ring chandelier over a round table",
+        "fallback_collection": "hospitality-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "\/pages\/bulk-order-form",
+        "btn1_style": "gold",
+        "btn2_label": "See real project examples",
+        "btn2_url": "#references",
+        "btn2_style": "outline",
+        "link_label": "Browse the concepts",
+        "link_url": "#concepts",
+        "facts": ""
+      }
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "story": "<p>The Alder Lobby imagines a small hotel where guests arrive late, tired and ready to be looked after. Instead of one bright ceiling light, the room is built from layers: a sculptural chandelier over the seating, soft light along the walls and lamps glowing at the reception desk.<\/p><p>Wood, linen and aged brass set the palette, and every fixture sits in the same warm color so the space feels calm at any hour. It shows how a few well chosen pieces can make a large, tall room feel close and personal.<\/p>",
+            "notes": "A sculptural chandelier anchors the tall seating area\nWall lights at eye level guide guests toward the elevators\nLamps on the reception desk make check in feel personal\nPicture lights draw attention to local artwork\nEverything at 2700K and on dimmers for day and night",
+            "products": [
+              "modern-luxury-metal-and-glass-led-pendant-chandelier",
+              "japanese-xuan-paper-floor-lamp",
+              "modern-lava-ripple-led-chandelier",
+              "cream-style-stone-and-wood-led-pendant-chandelier"
+            ],
+            "shop_collection": "hospitality-lighting",
+            "image_file": "nf-pro-concept-01.jpg",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_corner_bistro": {
+          "type": "concept",
+          "settings": {
+            "slug": "corner-bistro",
+            "number": "02",
+            "title": "Corner Bistro",
+            "category": "hospitality",
+            "space": "Neighborhood restaurant",
+            "summary": "A neighborhood bistro where the light is low, the tables glow and the bar is the brightest spot in the room.",
+            "story": "<p>Corner Bistro is a concept for a small restaurant with a long bar and a row of booths. Clear glass pendants hang in a line over the bar, while cordless lamps on each table give every booth its own pool of light.<\/p><p>Rope and iron fixtures bring warmth and texture without feeling fussy. The plan keeps the ceiling fairly dark so the tables and faces become the focus, which is what makes an evening out feel special.<\/p>",
+            "notes": "Glass pendants in a row define the bar\nCordless table lamps mean no cables across the floor\nIndustrial wall sconces warm the brick walls\nPendant heights keep sight lines clear across the room\nWarm 2700K light throughout, dimmed for dinner service",
+            "products": [
+              "vintage-stained-glass-chandelier-for-bedside-and-dining",
+              "cordless-rechargeable-led-atmosphere-table-lamp",
+              "antique-glass-iron-retro-industrial-pendant-ceiling-lights-dining-room-hanging-island-lamp",
+              "industrial-e27-vintage-hemp-rope-pendant-lights-attic"
+            ],
+            "shop_collection": "hospitality-lighting",
+            "image_file": "nf-pro-concept-02.jpg",
+            "fallback_collection": "pendants"
+          }
+        },
+        "c_rooftop_at_nine": {
+          "type": "concept",
+          "settings": {
+            "slug": "rooftop-at-nine",
+            "number": "03",
+            "title": "Rooftop at Nine",
+            "category": "outdoor",
+            "space": "Rooftop terrace bar",
+            "summary": "A rooftop bar that stays glowing and welcoming long after sunset.",
+            "story": "<p>Rooftop at Nine imagines a terrace bar where the view is the star and the lighting frames it. String lights zigzag overhead, woven lanterns hang above the seating and standing lanterns mark the corners.<\/p><p>Step lights keep the stairs safe, and up and down wall lights give the walls depth without spilling glare into the sky. The result feels like an outdoor living room at night.<\/p>",
+            "notes": "String lights overhead create a ceiling without closing in the sky\nHanging rattan lanterns bring warmth to each seating group\nStanding lanterns define the corners of the terrace\nStep lights mark every change in level\nWall lights wash up and down to keep glare low",
+            "products": [
+              "st38-connectable-patio-string-lights",
+              "black-square-cube-outdoor-post-led-pier-mount-light",
+              "10m-fairy-string-lights-100-led",
+              "lantern-shaped-waterproof-rattan-modern-outdoor-wall-lamp-chandelier"
+            ],
+            "shop_collection": "outdoor-project-lighting",
+            "image_file": "nf-pro-concept-03.jpg",
+            "fallback_collection": "outdoor-string-lights"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "story": "<p>Maker Studio is a concept for a small creative team that designs, builds and meets in one open room. Long linear pendants run over the work tables, giving clean, even light without glare on screens.<\/p><p>Architect lamps at each desk let people add light where they need it, and slim wall lights mark the meeting corner. The mix keeps the room practical by day and relaxed when the team gathers at the end of the week.<\/p>",
+            "notes": "Linear pendants follow the length of the work tables\nNeutral 4000K light over the desks for focus\nAdjustable desk lamps for close work\nSlim linear wall lights define the meeting corner\nDimmable fixtures for presentations and late evenings",
+            "products": [
+              "modern-luxury-arc-floor-lamp",
+              "6-pcs-47-inches-rectangle-aluminum-long-linear-led-modern-office-pendant-lights",
+              "long-lines-led-dimmable-chandelier-dining-room-light-fixtures",
+              "architect-gooseneck-desk-lamp"
+            ],
+            "shop_collection": "office-lighting",
+            "image_file": "nf-pro-concept-04.jpg",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "story": "<p>Linen and Oak imagines a boutique selling bedding, ceramics and small furniture. Instead of bright rows of ceiling lights, the shop uses a woven pendant over the main table, adjustable spotlights on the shelves and picture lights over framed prints.<\/p><p>Soft, warm light makes linen and wood look true to life, while the spotlights keep new arrivals easy to find. It shows how retail lighting can sell a feeling as well as a product.<\/p>",
+            "notes": "A signature woven pendant over the main display table\nAdjustable spotlights highlight the shelves\nLinear picture lights over framed art and mirrors\nRing pendants add rhythm near the window\nWarm light that keeps fabric and wood colors natural",
+            "products": [
+              "cream-style-stone-and-wood-led-pendant-chandelier",
+              "macaron-trichromatic-glass-lamp",
+              "round-ring-hanging-profile-light-suspended-office-led-pendant-light-for-gyms",
+              "ceiling-light-with-adjustable-spotlights"
+            ],
+            "shop_collection": "retail-lighting",
+            "image_file": "nf-pro-concept-05.jpg",
+            "fallback_collection": "pendants"
+          }
+        },
+        "c_family_kitchen": {
+          "type": "concept",
+          "settings": {
+            "slug": "family-kitchen",
+            "number": "06",
+            "title": "Family Kitchen",
+            "category": "homes",
+            "space": "Open plan family kitchen",
+            "summary": "A busy family kitchen with bright light for cooking and a softer glow for long dinners.",
+            "story": "<p>Family Kitchen is a concept for the room where everything happens: breakfast, homework, cooking and friends dropping by. Two tone glass pendants hang over the island, and a low profile ceiling light covers the whole room evenly.<\/p><p>A travertine pendant marks the dining table, and a cordless picture light warms the open shelves. With a dimmer on each group, the kitchen can shift from work mode to dinner mode in seconds.<\/p>",
+            "notes": "Pendants over the island, sized to its length\nA low profile ceiling light for even everyday light\nA separate pendant defines the dining table\nA cordless picture light warms the shelves with no wiring\nEach group on its own dimmer",
+            "products": [
+              "mini-crystal-pendant-light-creative-art-island-fixture",
+              "long-lines-led-dimmable-chandelier-dining-room-light-fixtures",
+              "two-tone-glass-pendant-light",
+              "low-profile-modern-ceiling-light"
+            ],
+            "shop_collection": "home-project-lighting",
+            "image_file": "nf-pro-concept-06.jpg",
+            "fallback_collection": "pendants"
+          }
+        },
+        "c_garden_courtyard": {
+          "type": "concept",
+          "settings": {
+            "slug": "garden-courtyard",
+            "number": "07",
+            "title": "Garden Courtyard",
+            "category": "outdoor",
+            "space": "Walled garden courtyard",
+            "summary": "A walled courtyard garden with gentle paths of light and a glowing seating corner.",
+            "story": "<p>Garden Courtyard imagines a small city garden used from spring into late fall. Solar path lights line the gravel paths, a lawn bollard marks the gate and globe lights crown the pillars by the entrance.<\/p><p>Solar string lights hang over the seating corner and a small spotlight lights up the tree in the middle. Nothing is harsh or bright, just enough light to walk, sit and enjoy the garden after dark.<\/p>",
+            "notes": "Solar path lights need no wiring across the garden\nA bollard marks the gate and the start of the path\nGlobe pillar lights frame the entrance\nString lights make the seating corner feel like a room\nA single spotlight on the tree adds depth",
+            "products": [
+              "outdoor-led-waterproof-modern-wall-sconce",
+              "led-landscape-lawn-bollard-light",
+              "stainless-steel-solar-path-light",
+              "round-glass-e27-waterproof-outdoor-post-light"
+            ],
+            "shop_collection": "outdoor-project-lighting",
+            "image_file": "nf-pro-concept-07.jpg",
+            "fallback_collection": "path-lights"
+          }
+        },
+        "c_guest_suite": {
+          "type": "concept",
+          "settings": {
+            "slug": "guest-suite",
+            "number": "08",
+            "title": "Guest Suite",
+            "category": "hospitality",
+            "space": "Hotel guest suite",
+            "summary": "A hotel suite with light at every place a guest actually needs it.",
+            "story": "<p>Guest Suite is a concept for a hotel room designed around how people really use it. Arc wall lights beside the bed let each guest read without waking the other, and a fabric wall lamp softens the headboard wall.<\/p><p>A glass table lamp sits on the desk, a swing arm light frames the bathroom mirror and a slim ceiling light fills the room when bags are being unpacked. It is simple, practical and restful.<\/p>",
+            "notes": "Separate reading lights on each side of the bed\nA soft wall lamp for the headboard wall\nA desk lamp for work and a warm glow in the evening\nEven light at the mirror for getting ready\nOne overhead light for arriving and packing",
+            "products": [
+              "curved-arc-led-bedside-wall-light",
+              "luxury-diamond-crystal-bedside-table-lamp",
+              "modern-fabric-wall-lamps-retro-bedside-wall-lamp-living-room-wall",
+              "macaron-trichromatic-glass-lamp"
+            ],
+            "shop_collection": "hospitality-lighting",
+            "image_file": "nf-pro-concept-08.jpg",
+            "fallback_collection": "reading-wall-lamps"
+          }
+        }
+      },
+      "block_order": [
+        "c_alder_lobby",
+        "c_corner_bistro",
+        "c_rooftop_at_nine",
+        "c_maker_studio",
+        "c_linen_and_oak",
+        "c_family_kitchen",
+        "c_garden_courtyard",
+        "c_guest_suite"
+      ],
+      "settings": {
+        "mode": "portfolio",
+        "filter": "all",
+        "limit": 3,
+        "bg": "cream",
+        "anchor": "concepts",
+        "eyebrow": "The concepts",
+        "heading": "Eight spaces, eight ways to use light",
+        "text": "Filter by project type, open a concept for the story and the fixtures, then ask us to adapt it to your space.",
+        "note": "These are concept projects created by our team to show what our lighting can do. They are not client projects."
+      }
+    },
+    "band": {
+      "type": "nf-pro-band",
+      "settings": {
+        "bg": "cream",
+        "eyebrow": "Seen a look you like?",
+        "heading": "Bring the same look to your space",
+        "text": "Send the room list, a plan or a few photos and get fixture suggestions with bulk pricing for your quantities.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "\/pages\/bulk-order-form",
+        "btn2_label": "Explore Professionals",
+        "btn2_url": "\/pages\/professionals"
+      }
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Are the portfolio projects real client jobs?",
+            "a": "<p>No. They are design concepts created by our team to show what our lighting can do in different spaces. Every fixture shown is a real product you can buy, order in quantity.<\/p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building. Larger quantities get bulk pricing.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q3"
+      ],
+      "settings": {
+        "bg": "sand",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      }
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Cabin Porch",
+            "image_file": "nf-pro3-portfolio-ref-1.webp",
+            "alt": "Cabin Porch inspiration photo, lit in the evening"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Island Pendants",
+            "image_file": "nf-pro3-portfolio-ref-2.webp",
+            "alt": "Island Pendants inspiration photo, lit in the evening"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Bedside Pair",
+            "image_file": "nf-pro3-portfolio-ref-3b.png",
+            "alt": "Bedside Pair inspiration photo, lit in the evening"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Lantern Entry",
+            "image_file": "nf-pro3-portfolio-ref-4.jpg",
+            "alt": "Lantern Entry inspiration photo, lit in the evening"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Hallway Sconces",
+            "image_file": "nf-pro3-portfolio-ref-5b.png",
+            "alt": "Hallway Sconces inspiration photo, lit in the evening"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Reading Corner",
+            "image_file": "nf-pro3-portfolio-ref-6.png",
+            "alt": "Reading Corner inspiration photo, lit in the evening"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Entry Path",
+            "image_file": "nf-pro3-portfolio-ref-7.jpg",
+            "alt": "Entry Path inspiration photo, lit in the evening"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Garden Walk",
+            "image_file": "nf-pro3-portfolio-ref-8.jpg",
+            "alt": "Garden Walk inspiration photo, lit in the evening"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ],
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how our lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "How bulk pricing works",
+        "btn1_url": "\/pages\/bulk-project-orders",
+        "btn2_label": "",
+        "btn2_url": "",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "concepts",
+    "references_v2",
+    "band",
+    "faq"
+  ]
+}

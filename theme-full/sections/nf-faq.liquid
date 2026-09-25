@@ -1,0 +1,269 @@
+{%- comment -%}
+  NF-FAQ-V2 (2026-09-11): the FAQ page, rebuilt. Template templates/page.faq-v2.json (page templateSuffix faq-v2).
+  The old templates/page.faq-template.json is untouched: set the page templateSuffix back to faq-template to roll back.
+  Dark hero with a live search box and topic pills, a sticky topic rail, smooth accordions with deep links
+  (#question-handle, plus a copy link button) and FAQPage JSON-LD built from the same blocks.
+  Blocks: a "topic" block starts a group; every "question" block after it belongs to that group.
+  Answers must match the Shipping, Refund and Terms policies word for word in substance. Email only, never a phone.
+  Styles: assets/nf-faq.css. Behaviour: assets/nf-faq.js.
+{%- endcomment -%}
+{{- 'nf-faq.css' | asset_url | stylesheet_tag -}}
+<script src="{{ 'nf-faq.js' | asset_url }}" defer></script>
+{%- liquid
+  assign nfq_img = blank
+  if section.settings.image_file != blank
+    assign nfq_img = images[section.settings.image_file]
+    if nfq_img.width == blank or nfq_img.width == 0
+      assign nfq_img = blank
+    endif
+  endif
+  assign nfq_total = 0
+  assign nfq_topics = 0
+  assign nfq_counts = ''
+  assign nfq_run = 0
+  for block in section.blocks
+    if block.type == 'topic'
+      if nfq_topics > 0
+        assign nfq_counts = nfq_counts | append: nfq_run | append: ','
+      endif
+      assign nfq_topics = nfq_topics | plus: 1
+      assign nfq_run = 0
+    elsif block.type == 'question'
+      assign nfq_total = nfq_total | plus: 1
+      assign nfq_run = nfq_run | plus: 1
+    endif
+  endfor
+  assign nfq_counts = nfq_counts | append: nfq_run
+  assign nfq_count_arr = nfq_counts | split: ','
+
+  assign nfq_paynames = ''
+  for t in shop.enabled_payment_types
+    case t
+      when 'visa'
+        assign pn = 'Visa'
+      when 'master'
+        assign pn = 'Mastercard'
+      when 'american_express'
+        assign pn = 'American Express'
+      when 'discover'
+        assign pn = 'Discover'
+      when 'diners_club'
+        assign pn = 'Diners Club'
+      when 'jcb'
+        assign pn = 'JCB'
+      when 'paypal'
+        assign pn = 'PayPal'
+      when 'apple_pay'
+        assign pn = 'Apple Pay'
+      when 'google_pay'
+        assign pn = 'Google Pay'
+      when 'shopify_pay'
+        assign pn = 'Shop Pay'
+      when 'venmo'
+        assign pn = 'Venmo'
+      when 'meta_pay', 'facebook_pay'
+        assign pn = 'Meta Pay'
+      when 'amazon', 'amazon_pay'
+        assign pn = 'Amazon Pay'
+      else
+        assign pn = t | replace: '_', ' ' | capitalize
+    endcase
+    if nfq_paynames == ''
+      assign nfq_paynames = pn
+    else
+      assign nfq_paynames = nfq_paynames | append: ', ' | append: pn
+    endif
+  endfor
+-%}
+{%- capture nfq_ico_search -%}<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>{%- endcapture -%}
+<div class="nfq" data-nfq>
+  <section class="nfq-hero nfq-on-dark" aria-labelledby="nfq-h1-{{ section.id }}">
+    <div class="nfq-wrap nfq-hero__grid">
+      <div class="nfq-hero__copy">
+        {%- if section.settings.eyebrow != blank -%}<p class="nfq-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h1 class="nfq-h1" id="nfq-h1-{{ section.id }}">{{ section.settings.heading | default: page.title | escape }}</h1>
+        {%- if section.settings.text != blank -%}<p class="nfq-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+        <form class="nfq-search" role="search" action="#" data-nfq-form>
+          <label class="nfq-vh" for="nfq-q-{{ section.id }}">Search the questions</label>
+          <span class="nfq-search__icon">{{ nfq_ico_search }}</span>
+          <input id="nfq-q-{{ section.id }}" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="{{ section.settings.placeholder | escape }}" data-nfq-input>
+          <button type="button" class="nfq-search__clear" data-nfq-clear hidden aria-label="Clear search"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </form>
+        <p class="nfq-status" data-nfq-status aria-live="polite">{{ nfq_total }} answers in {{ nfq_topics }} topics</p>
+        <nav class="nfq-pills" aria-label="Question topics">
+          <ul role="list">
+            {%- assign ti = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'topic' -%}
+                {%- assign tid = block.settings.anchor | default: block.settings.title | handleize -%}
+                <li><a class="nfq-pill" href="#{{ tid }}" data-nfq-pill="{{ tid }}">{{ block.settings.title | escape }}<span class="nfq-pill__n">{{ nfq_count_arr[ti] }}</span></a></li>
+                {%- assign ti = ti | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </nav>
+      </div>
+      <div class="nfq-hero__media">
+        <div class="nfq-hero__frame">
+          {%- if nfq_img != blank -%}
+            {{- nfq_img | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '480,720,960,1200,1400', sizes: '(min-width: 1000px) 40vw, 92vw', alt: '', class: 'nfq-hero__img' -}}
+          {%- endif -%}
+          <ul class="nfq-facts" role="list">
+            {%- for i in (1..4) -%}
+              {%- assign fk = 'fact' | append: i -%}
+              {%- if section.settings[fk] != blank -%}<li class="nfq-fact"><span class="nfq-fact__dot" aria-hidden="true"></span>{{ section.settings[fk] | escape }}</li>{%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nfq-body" aria-label="Frequently asked questions">
+    <div class="nfq-wrap nfq-body__grid">
+      <aside class="nfq-side" aria-label="Topics">
+        <p class="nfq-side__label">Topics</p>
+        <ul class="nfq-side__list" role="list">
+          {%- assign ti = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'topic' -%}
+              {%- assign tid = block.settings.anchor | default: block.settings.title | handleize -%}
+              <li><a class="nfq-side__a" href="#{{ tid }}" data-nfq-side="{{ tid }}"><span>{{ block.settings.title | escape }}</span><em>{{ nfq_count_arr[ti] }}</em></a></li>
+              {%- assign ti = ti | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+        <div class="nfq-side__help">
+          <p class="nfq-side__ht">Can't find your answer?</p>
+          <p>Email <a href="mailto:{{ section.settings.email | escape }}">{{ section.settings.email | escape }}</a>. We reply within 1 to 2 business days.</p>
+        </div>
+      </aside>
+
+      <div class="nfq-main">
+        {%- assign ti = -1 -%}
+        {%- assign nfq_open = false -%}
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'topic' -%}
+              {%- if nfq_open -%}</div></section>{%- endif -%}
+              {%- assign ti = ti | plus: 1 -%}
+              {%- assign tid = block.settings.anchor | default: block.settings.title | handleize -%}
+              <section class="nfq-topic" id="{{ tid }}" data-nfq-topic aria-labelledby="{{ tid }}-h" {{ block.shopify_attributes }}>
+                <header class="nfq-topic__head">
+                  <span class="nfq-topic__icon" aria-hidden="true">
+                    {%- case block.settings.icon -%}
+                      {%- when 'truck' -%}<svg viewBox="0 0 24 24" focusable="false"><path d="M2.5 6.5h11v9.5h-11z"/><path d="M13.5 10h4.2l3.3 3.4V16h-7.5"/><circle cx="6.5" cy="17.6" r="1.7"/><circle cx="17" cy="17.6" r="1.7"/></svg>
+                      {%- when 'return' -%}<svg viewBox="0 0 24 24" focusable="false"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+                      {%- when 'lamp' -%}<svg viewBox="0 0 24 24" focusable="false"><path d="M8.5 3h7l3.5 8.5H5z"/><path d="M12 11.5V19"/><path d="M8 21h8"/></svg>
+                      {%- when 'custom' -%}<svg viewBox="0 0 24 24" focusable="false"><path d="M15 3.5 20.5 9 9.5 20H4v-5.5z"/><path d="m12.5 6 5.5 5.5"/></svg>
+                      {%- when 'card' -%}<svg viewBox="0 0 24 24" focusable="false"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 9.8h19"/><path d="M6.5 15h4"/></svg>
+                      {%- else -%}<svg viewBox="0 0 24 24" focusable="false"><path d="M5.5 8h13l-1.2 12.5H6.7z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+                    {%- endcase -%}
+                  </span>
+                  <h2 class="nfq-h2" id="{{ tid }}-h">{{ block.settings.title | escape }}</h2>
+                  <span class="nfq-topic__n">{{ nfq_count_arr[ti] }} answers</span>
+                </header>
+                <div class="nfq-list">
+              {%- assign nfq_open = true -%}
+            {%- when 'question' -%}
+              {%- if block.settings.question != blank -%}
+                {%- assign qid = block.settings.anchor | default: block.settings.question | handleize -%}
+                <div class="nfq-item" id="{{ qid }}" data-nfq-item data-nfq-keys="{{ block.settings.keywords | escape }}" {{ block.shopify_attributes }}>
+                  <h3 class="nfq-q">
+                    <button type="button" class="nfq-q__btn" id="{{ qid }}-b" aria-expanded="false" aria-controls="{{ qid }}-a">
+                      <span class="nfq-q__t">{{ block.settings.question | escape }}</span>
+                      <span class="nfq-q__icon" aria-hidden="true"></span>
+                    </button>
+                  </h3>
+                  <div class="nfq-a" id="{{ qid }}-a" role="region" aria-labelledby="{{ qid }}-b">
+                    <div class="nfq-a__in">
+                      <div class="nfq-a__body">{{ block.settings.answer }}</div>
+                      {%- if block.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+                        <ul class="nfq-pay" role="list" aria-label="Accepted payment methods">
+                          {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag: class: 'nfq-pay__icon' }}</li>{%- endfor -%}
+                        </ul>
+                        <p class="nfq-pay__names">{{ nfq_paynames }}</p>
+                      {%- endif -%}
+                      <p class="nfq-a__foot"><button type="button" class="nfq-copy" data-nfq-copy><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg><span>Copy link to this answer</span></button></p>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+        {%- if nfq_open -%}</div></section>{%- endif -%}
+
+        <div class="nfq-empty" data-nfq-empty hidden>
+          <p class="nfq-empty__t">No answers match &ldquo;<span data-nfq-term></span>&rdquo;</p>
+          <p>Try a shorter word such as returns, tracking or shipping, or ask us directly.</p>
+          <p class="nfq-empty__actions"><a class="nfq-btn nfq-btn--line" href="mailto:{{ section.settings.email | escape }}">Email {{ section.settings.email | escape }}</a><button type="button" class="nfq-link" data-nfq-reset>Show all questions</button></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- assign nfq_first = true -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'question' and block.settings.question != blank -%}
+        {%- assign nfq_a = block.settings.answer | replace: '</p>', ' </p>' | replace: '</li>', ' </li>' | strip_html | strip_newlines | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | strip -%}
+        {%- if block.settings.show_payment_icons and nfq_paynames != '' -%}
+          {%- assign nfq_a = nfq_a | append: ' Accepted methods: ' | append: nfq_paynames | append: '.' -%}
+        {%- endif -%}
+        {%- unless nfq_first -%},{%- endunless -%}
+        {%- assign nfq_first = false -%}
+        {"@type": "Question", "name": {{ block.settings.question | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ nfq_a | json }}}}
+      {%- endif -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "NF FAQ",
+  "class": "nfq-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Help center" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave blank to use the page title." },
+    { "type": "textarea", "id": "text", "label": "Intro text" },
+    { "type": "text", "id": "placeholder", "label": "Search placeholder", "default": "Search questions, for example returns or tracking" },
+    { "type": "text", "id": "image_file", "label": "Hero image filename in Files" },
+    { "type": "text", "id": "fact1", "label": "Fact 1" },
+    { "type": "text", "id": "fact2", "label": "Fact 2" },
+    { "type": "text", "id": "fact3", "label": "Fact 3" },
+    { "type": "text", "id": "fact4", "label": "Fact 4" },
+    { "type": "text", "id": "email", "label": "Support email", "default": "info@norafurnish.com" }
+  ],
+  "blocks": [
+    {
+      "type": "topic",
+      "name": "Topic",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "anchor", "label": "Anchor id", "info": "Used for #links. Leave blank to build it from the title." },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "bag", "options": [
+          { "value": "bag", "label": "Bag" }, { "value": "truck", "label": "Truck" }, { "value": "return", "label": "Return" },
+          { "value": "lamp", "label": "Lamp" }, { "value": "custom", "label": "Custom" }, { "value": "card", "label": "Card" }
+        ] }
+      ]
+    },
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" },
+        { "type": "text", "id": "keywords", "label": "Extra search words", "info": "Hidden words that should also find this answer." },
+        { "type": "text", "id": "anchor", "label": "Anchor id", "info": "Leave blank to build it from the question." },
+        { "type": "checkbox", "id": "show_payment_icons", "label": "Show accepted payment icons", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 50
+}
+{% endschema %}

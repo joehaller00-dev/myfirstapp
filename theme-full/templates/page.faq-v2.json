@@ -1,0 +1,472 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "faq": {
+      "type": "nf-faq",
+      "blocks": {
+        "topic_orders": {
+          "type": "topic",
+          "settings": {
+            "title": "Orders",
+            "anchor": "orders",
+            "icon": "bag"
+          }
+        },
+        "q_orders_1": {
+          "type": "question",
+          "settings": {
+            "question": "Can I cancel my order?",
+            "answer": "<p>Yes. Orders can be canceled within <strong>24 hours</strong> of being placed. Email <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a> with your order number as soon as possible within that window to request the cancellation.</p>",
+            "keywords": "cancel cancellation stop change order mistake",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_orders_2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I track my order?",
+            "answer": "<p>As soon as your order ships you receive a confirmation email with a shipment notification, your tracking number and instructions for following the delivery. You can check its progress at any time on our <a href=\"/apps/trackyourorder\">Track Your Order</a> page.</p>",
+            "keywords": "tracking track where is my order shipped status number",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_orders_3": {
+          "type": "question",
+          "settings": {
+            "question": "What is the daily order cutoff?",
+            "answer": "<p>The cutoff is <strong>5:00 PM (CST), Monday through Friday</strong>. Orders placed after that time begin processing on the next business day, which can add one business day to your delivery estimate.</p>",
+            "keywords": "cutoff deadline time same day processing weekend",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_orders_4": {
+          "type": "question",
+          "settings": {
+            "question": "How do I contact customer support?",
+            "answer": "<p>Email us at <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a> or use the form on our <a href=\"/pages/contact\">Contact</a> page. Our team works Monday through Friday, 9:00 AM to 5:00 PM (CST), and we aim to reply to every message within 1 to 2 business days.</p>",
+            "keywords": "contact support help email customer service hours reach talk",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_orders_5": {
+          "type": "question",
+          "settings": {
+            "question": "Where is Nora Furnish based?",
+            "answer": "<p>Nora Furnish is a U.S. based online retailer. All prices and transactions are in U.S. dollars (USD), and we currently ship only within the United States.</p>",
+            "keywords": "location located based usa united states company",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "topic_shipping": {
+          "type": "topic",
+          "settings": {
+            "title": "Shipping and Delivery",
+            "anchor": "shipping",
+            "icon": "truck"
+          }
+        },
+        "q_shipping_1": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Most orders arrive within <strong>6 to 9 business days</strong> of the order date.</p><ul><li><strong>Processing:</strong> 1 to 2 business days while your order is prepared, packed and handed to the carrier.</li><li><strong>Transit:</strong> 5 to 7 business days, depending on your destination and the carrier.</li></ul><p>Business days do not include weekends or holidays. Full details are in our <a href=\"/policies/shipping-policy\">Shipping Policy</a>.</p>",
+            "keywords": "delivery time how long shipping time arrive days handling transit",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_shipping_2": {
+          "type": "question",
+          "settings": {
+            "question": "Is shipping free?",
+            "answer": "<p>Yes. Standard shipping is free on every order delivered within the United States, with no minimum purchase and no extra shipping charges at checkout.</p>",
+            "keywords": "free shipping cost fee charge price minimum",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_shipping_3": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship outside the United States?",
+            "answer": "<p>Not at the moment. We currently ship only to addresses within the United States.</p>",
+            "keywords": "international worldwide canada overseas abroad ship outside",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_shipping_4": {
+          "type": "question",
+          "settings": {
+            "question": "Which carriers deliver my order?",
+            "answer": "<p>We ship with <strong>USPS, UPS and FedEx</strong>. The carrier depends on your location and what is available for your delivery.</p>",
+            "keywords": "carrier usps ups fedex courier post",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_shipping_5": {
+          "type": "question",
+          "settings": {
+            "question": "What if my package is late, lost or stops updating?",
+            "answer": "<p>Email <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a> with your order number as soon as you notice. We work directly with the carrier to resolve delays, lost packages and tracking problems, and to make sure your package reaches you safely.</p>",
+            "keywords": "late delayed lost missing stolen tracking not updating problem",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "topic_returns": {
+          "type": "topic",
+          "settings": {
+            "title": "Returns and Refunds",
+            "anchor": "returns",
+            "icon": "return"
+          }
+        },
+        "q_returns_1": {
+          "type": "question",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>You can request a return within <strong>30 days</strong> of the date your order is delivered. Items must be unused, in their original condition and in the original packaging. Read the full <a href=\"/policies/refund-policy\">Refund Policy</a>.</p>",
+            "keywords": "return policy 30 days send back eligible",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_returns_2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I start a return?",
+            "answer": "<ul><li><strong>Email us first.</strong> Send your order number and the reason for the return to <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a>. Please contact us before sending anything back.</li><li><strong>Pack it up.</strong> Repack the item securely in its original packaging with all tags, accessories and documentation.</li><li><strong>Ship it back.</strong> Drop the parcel at your nearest carrier location, following the instructions in your return authorization email.</li></ul>",
+            "keywords": "start return process how to return steps label authorization",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_returns_3": {
+          "type": "question",
+          "settings": {
+            "question": "Who pays for return shipping?",
+            "answer": "<p>If your item arrives damaged, defective, incorrect or harmed in transit, the return costs you nothing. If you ordered the wrong product, it did not meet your expectations or you simply changed your mind, the return shipping cost is yours.</p>",
+            "keywords": "return shipping cost pay fee label change of mind",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_returns_4": {
+          "type": "question",
+          "settings": {
+            "question": "What if my item arrives damaged or defective?",
+            "answer": "<p>We send a replacement at no additional charge, and there is no return cost to you. Email <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a> with your order number and a photo of the problem, then return the item within 30 days of delivery using the instructions we send you.</p>",
+            "keywords": "damaged broken defective faulty wrong incorrect replacement cracked",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_returns_5": {
+          "type": "question",
+          "settings": {
+            "question": "When will I receive my refund?",
+            "answer": "<p>Once your return arrives we inspect it to make sure it meets the return conditions. After approval your refund is issued, and it usually takes <strong>5 to 7 business days</strong> to appear on your original payment method, depending on your bank or payment provider.</p>",
+            "keywords": "refund money back how long when credit",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_returns_6": {
+          "type": "question",
+          "settings": {
+            "question": "Can I exchange an item?",
+            "answer": "<p>Yes. If you need a different size, color or product, email <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a> and we will gladly help you with a quick exchange. Please contact us before sending anything back.</p>",
+            "keywords": "exchange swap different size color",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_returns_7": {
+          "type": "question",
+          "settings": {
+            "question": "Are any items not returnable?",
+            "answer": "<p>Some products cannot be returned for hygiene or safety reasons. Any such item is clearly marked as non returnable in its product description.</p>",
+            "keywords": "non returnable final sale hygiene safety exceptions",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_returns_8": {
+          "type": "question",
+          "settings": {
+            "question": "Do your products come with a warranty?",
+            "answer": "<p>Yes. Every item purchased from Nora Furnish comes with a <strong>30 day warranty</strong>. If a product turns out to be faulty, email <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a> and we will send a replacement at no additional charge.</p>",
+            "keywords": "warranty guarantee faulty stopped working",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "topic_products": {
+          "type": "topic",
+          "settings": {
+            "title": "Products and Installation",
+            "anchor": "products",
+            "icon": "lamp"
+          }
+        },
+        "q_products_1": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I find dimensions, materials and care details?",
+            "answer": "<p>Every product page has sections for <strong>Dimensions</strong>, <strong>Materials</strong>, <strong>Care and Maintenance</strong> and <strong>Additional Details</strong> just below the Add to Cart button. If a detail you need is missing, email <a href=\"mailto:info@norafurnish.com\">info@norafurnish.com</a> and we will check it for you.</p>",
+            "keywords": "dimensions size measurements materials care clean specifications details",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_products_2": {
+          "type": "question",
+          "settings": {
+            "question": "Is the mounting hardware included?",
+            "answer": "<p>Yes. All required hardware and assembly instructions are included. Decorative accessories and items styled in the product photos are not included with your purchase.</p>",
+            "keywords": "hardware screws mounting assembly instructions included in the box",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_products_3": {
+          "type": "question",
+          "settings": {
+            "question": "Which voltage should I choose?",
+            "answer": "<p>Many of our lights come in two voltage options. Homes in the United States run on 110 to 120 volts, so choose the <strong>100V to 120V</strong> option whenever a listing asks.</p>",
+            "keywords": "voltage 110v 120v 220v 240v electrical plug power",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_products_4": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need an electrician to install my light?",
+            "answer": "<p>Hardwired fixtures such as chandeliers, pendants, flush mounts and wall sconces connect to your home wiring, so we recommend a licensed electrician for those. Plug in, battery, solar and rechargeable lights need no wiring.</p>",
+            "keywords": "install installation electrician hardwired wiring plug in",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_products_5": {
+          "type": "question",
+          "settings": {
+            "question": "Will the color match the product photos?",
+            "answer": "<p>We make every effort to show colors and finishes accurately, but every screen displays color a little differently, and natural materials can vary slightly from piece to piece. The Materials section on each product lists the available finishes.</p>",
+            "keywords": "color colour finish photo match looks different screen",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "topic_custom": {
+          "type": "topic",
+          "settings": {
+            "title": "Professionals and Bulk Orders",
+            "anchor": "custom",
+            "icon": "custom"
+          }
+        },
+        "q_custom_4": {
+          "type": "question",
+          "settings": {
+            "question": "Do you work with designers, hotels and businesses?",
+            "answer": "<p>Yes. We help with lighting ideas for hospitality, office, retail, home and outdoor projects, from a single room to a whole building. See our <a href=\"/pages/professionals\">Professionals</a> page, and browse design ideas in our <a href=\"/pages/project-portfolio\">Project Portfolio</a>.</p>",
+            "keywords": "designer trade hotel restaurant office retail business commercial project contractor",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_custom_5": {
+          "type": "question",
+          "settings": {
+            "question": "Do you offer bulk or volume pricing?",
+            "answer": "<p>Yes. Send your full list on our <a href=\"/pages/bulk-project-orders\">Bulk and Project Orders</a> page and we price every piece together, with pricing that reflects your quantities. There is no minimum order, we reply within 2 business days, and there is no commitment until you approve the quote.</p>",
+            "keywords": "bulk wholesale volume quantity many discount large order",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "topic_payment": {
+          "type": "topic",
+          "settings": {
+            "title": "Payment and Discounts",
+            "anchor": "payment",
+            "icon": "card"
+          }
+        },
+        "q_payment_1": {
+          "type": "question",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "<p>We accept the payment methods shown below. Every price in our store is in U.S. dollars (USD).</p>",
+            "keywords": "payment pay methods card credit visa mastercard paypal apple pay shop pay currency usd",
+            "anchor": "",
+            "show_payment_icons": true
+          }
+        },
+        "q_payment_2": {
+          "type": "question",
+          "settings": {
+            "question": "Is checkout secure?",
+            "answer": "<p>Yes. Our store and checkout run on Shopify, and your payment information is encrypted during transmission.</p>",
+            "keywords": "secure safe security encrypted checkout fraud",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_payment_3": {
+          "type": "question",
+          "settings": {
+            "question": "Is there a discount when I buy more than one item?",
+            "answer": "<p>Yes. Add <strong>2 or more items</strong> to your cart and you save <strong>10% on your entire order</strong>. The discount applies automatically in your cart and at checkout, with no code needed. It cannot be combined with other discount codes.</p>",
+            "keywords": "discount buy 2 save 10% two items bundle promo deal offer sale code",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        },
+        "q_payment_4": {
+          "type": "question",
+          "settings": {
+            "question": "Do newsletter subscribers get a discount?",
+            "answer": "<p>Yes. Join our newsletter at the bottom of any page and we email you a code for <strong>10% off your first order</strong>. The code works once per customer and cannot be combined with other discounts.</p>",
+            "keywords": "newsletter subscribe email signup welcome code 10% first order coupon",
+            "anchor": "",
+            "show_payment_icons": false
+          }
+        }
+      },
+      "block_order": [
+        "topic_orders",
+        "q_orders_1",
+        "q_orders_2",
+        "q_orders_3",
+        "q_orders_4",
+        "q_orders_5",
+        "topic_shipping",
+        "q_shipping_1",
+        "q_shipping_2",
+        "q_shipping_3",
+        "q_shipping_4",
+        "q_shipping_5",
+        "topic_returns",
+        "q_returns_1",
+        "q_returns_2",
+        "q_returns_3",
+        "q_returns_4",
+        "q_returns_5",
+        "q_returns_6",
+        "q_returns_7",
+        "q_returns_8",
+        "topic_products",
+        "q_products_1",
+        "q_products_2",
+        "q_products_3",
+        "q_products_4",
+        "q_products_5",
+        "topic_custom",
+        "q_custom_4",
+        "q_custom_5",
+        "topic_payment",
+        "q_payment_1",
+        "q_payment_2",
+        "q_payment_3",
+        "q_payment_4"
+      ],
+      "settings": {
+        "eyebrow": "Help center",
+        "heading": "Frequently asked questions",
+        "text": "Straight answers about orders, delivery, returns and working with our team.",
+        "placeholder": "Search questions, for example returns or tracking",
+        "image_file": "nf-story-cover-ceiling-light.jpg",
+        "fact1": "Free US shipping",
+        "fact2": "6 to 9 business days",
+        "fact3": "30 day returns",
+        "fact4": "Email replies in 1 to 2 business days",
+        "email": "info@norafurnish.com"
+      }
+    },
+    "help": {
+      "type": "nf-faq-help",
+      "blocks": {
+        "l_ship": {
+          "type": "link",
+          "settings": {
+            "label": "Shipping Policy",
+            "note": "Delivery times, carriers and tracking",
+            "url": "/policies/shipping-policy"
+          }
+        },
+        "l_refund": {
+          "type": "link",
+          "settings": {
+            "label": "Refund Policy",
+            "note": "Returns, exchanges and refunds",
+            "url": "/policies/refund-policy"
+          }
+        },
+        "l_track": {
+          "type": "link",
+          "settings": {
+            "label": "Track Your Order",
+            "note": "Follow your delivery",
+            "url": "/apps/trackyourorder"
+          }
+        },
+        "l_custom": {
+          "type": "link",
+          "settings": {
+            "label": "Bulk and Project Orders",
+            "note": "Volume pricing for your project",
+            "url": "/pages/bulk-project-orders"
+          }
+        },
+        "l_terms": {
+          "type": "link",
+          "settings": {
+            "label": "Terms of Service",
+            "note": "The terms of using our store",
+            "url": "/policies/terms-of-service"
+          }
+        }
+      },
+      "block_order": [
+        "l_ship",
+        "l_refund",
+        "l_track",
+        "l_custom",
+        "l_terms"
+      ],
+      "settings": {
+        "eyebrow": "We are here to help",
+        "heading": "Still have a question?",
+        "text": "Send us your question, with your order number if you have one, and we will get back to you within 1 to 2 business days.",
+        "email": "info@norafurnish.com",
+        "btn1_label": "Email us",
+        "btn2_label": "Visit the contact page",
+        "btn2_url": "/pages/contact",
+        "hours": "Monday through Friday, 9:00 AM to 5:00 PM (CST)",
+        "links_label": "Helpful pages"
+      }
+    }
+  },
+  "order": [
+    "faq",
+    "help"
+  ]
+}

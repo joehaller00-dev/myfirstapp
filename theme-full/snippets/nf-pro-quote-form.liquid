@@ -1,0 +1,170 @@
+{%- comment -%}
+  nf-pro-quote-form (Professionals, 2026-09-11). Native Shopify contact form, emails the store contact address.
+  Params: variant ('full' or 'short'), form_id, form_label (hidden Form value), service (hidden default), button_label
+  URL prefill (assets/nf-pro.js): ?product=<handle>  ?concept=<slug>  ?service=<custom-lighting|led-strip-neon|neon-signs|linear|bulk|hospitality|office|retail|home|outdoor>
+{%- endcomment -%}
+{%- liquid
+  assign q_v = variant | default: 'full'
+  assign q_id = form_id | default: 'nf-quote-form'
+  assign q_label = form_label | default: 'Custom quote'
+  assign q_btn = button_label | default: 'Get My Free Quote'
+-%}
+{%- form 'contact', id: q_id, class: 'nfp-form', novalidate: 'novalidate', data-nfp-form: q_v -%}
+  {%- if form.posted_successfully? -%}
+    <div class="nfp-success" role="status">
+      <div class="nfp-success__icon">{% render 'nf-pro-icon', name: 'check' %}</div>
+      <h3 class="nfp-h2">Thank you, your request is in.</h3>
+      <p class="nfp-lead">We have it and we will read it closely. Expect a reply by email within 2 business days, sent from info@norafurnish.com.</p>
+      <ul class="nfp-success__steps">
+        <li>Options, pricing and timing, written out clearly</li>
+        <li>Questions if we need a size, a photo or a detail</li>
+        <li>No commitment until you approve the quote</li>
+      </ul>
+      <div class="nfp-actions" style="justify-content:center">
+        <a class="nfp-btn nfp-btn--browse" href="/pages/project-portfolio">Browse design concepts <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="nfp-link" href="/pages/professionals">Back to Professionals</a>
+      </div>
+    </div>
+  {%- else -%}
+    {%- if form.errors -%}
+      <div class="nfp-alert" role="alert">Something needs another look before we can send this. {{ form.errors | default_errors }}</div>
+    {%- endif -%}
+
+    <input type="hidden" name="contact[subject]" value="NFPRO quote request: {{ q_label | escape }}">
+    <input type="hidden" name="contact[Form]" value="{{ q_label | escape }}">
+    <input type="hidden" name="contact[Tag]" value="nfpro quote">
+    <input type="hidden" name="contact[Service]" value="{{ service | escape }}" data-nfp-service>
+    <input type="hidden" name="contact[Page]" value="{{ canonical_url }}" data-nfp-pageurl>
+    <input type="hidden" name="contact[Product asked about]" value="" data-nfp-product data-nfp-optional>
+
+    <div class="nfp-context" data-nfp-context aria-live="polite"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" width="46" height="46" hidden><span data-nfp-context-text></span></div>
+
+    <fieldset>
+      <legend>About you <small>Fields marked <span class="nfp-req">*</span> are required</small></legend>
+      <div class="nfp-fields">
+        <div class="nfp-field">
+          <label for="{{ q_id }}-name">Your name<span class="nfp-req" aria-hidden="true">*</span></label>
+          <input class="nfp-input" id="{{ q_id }}-name" type="text" name="contact[name]" autocomplete="name" required aria-describedby="{{ q_id }}-name-err" value="{{ form.name }}">
+          <p class="nfp-err" id="{{ q_id }}-name-err">Please enter your name.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-email">Email<span class="nfp-req" aria-hidden="true">*</span></label>
+          <input class="nfp-input" id="{{ q_id }}-email" type="email" name="contact[email]" autocomplete="email" inputmode="email" placeholder="you@example.com" required aria-describedby="{{ q_id }}-email-err" value="{{ form.email }}">
+          <p class="nfp-err" id="{{ q_id }}-email-err">Please enter a valid email address so we can reply.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-phone">Phone<span class="nfp-opt">optional</span></label>
+          <input class="nfp-input" id="{{ q_id }}-phone" type="tel" name="contact[phone]" autocomplete="tel" inputmode="tel">
+          <p class="nfp-help">We reply by email. A number only helps if a delivery needs it.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-company">Company or project name<span class="nfp-opt">optional</span></label>
+          <input class="nfp-input" id="{{ q_id }}-company" type="text" name="contact[Company or project]" autocomplete="organization">
+        </div>
+      </div>
+    </fieldset>
+
+    {%- if q_v == 'full' -%}
+    <fieldset>
+      <legend>What you have in mind</legend>
+      <div class="nfp-fields">
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-ref">Reference product or page link<span class="nfp-opt">optional</span></label>
+          <input class="nfp-input" id="{{ q_id }}-ref" type="text" inputmode="url" name="contact[Reference link]" placeholder="Paste a link to one of our products, a page or a photo" data-nfp-ref>
+          <p class="nfp-help">Leave it blank if you are starting from an idea. A rough description in the message works too.</p>
+        </div>
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-concept">Concept you liked<span class="nfp-opt">optional</span></label>
+          <select class="nfp-input" id="{{ q_id }}-concept" name="contact[Concept you liked]" data-nfp-concept>
+            <option value="">Choose a design concept</option>
+            <option value="The Alder Lobby" data-slug="alder-lobby">01 The Alder Lobby</option>
+            <option value="Corner Bistro" data-slug="corner-bistro">02 Corner Bistro</option>
+            <option value="Rooftop at Nine" data-slug="rooftop-at-nine">03 Rooftop at Nine</option>
+            <option value="Maker Studio" data-slug="maker-studio">04 Maker Studio</option>
+            <option value="Linen and Oak" data-slug="linen-and-oak">05 Linen and Oak</option>
+            <option value="Family Kitchen" data-slug="family-kitchen">06 Family Kitchen</option>
+            <option value="Garden Courtyard" data-slug="garden-courtyard">07 Garden Courtyard</option>
+            <option value="Guest Suite" data-slug="guest-suite">08 Guest Suite</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>What would you like to change? <small>Choose any that apply</small></legend>
+      <div class="nfp-tiles">
+        {%- assign q_tiles = 'finish|Finish and color;size|Size;output|Light output and color temperature;dimming|Dimming and controls;mounting|Cord, drop or mounting;shape|Logo or custom shape;unsure|Not sure yet' | split: ';' -%}
+        {%- for t in q_tiles -%}
+          {%- assign tp = t | split: '|' -%}
+          {%- assign t_label = tp[1] -%}
+          <label class="nfp-tile">
+            <input type="checkbox" name="contact[Change: {{ t_label }}]" value="Yes" data-nfp-tile="{{ tp[0] }}" data-label="{{ t_label }}">
+            <span class="nfp-tile__box">{% render 'nf-pro-icon', name: 'check' %}</span>
+            <span>{{ t_label }}</span>
+          </label>
+        {%- endfor -%}
+      </div>
+    </fieldset>
+    {%- endif -%}
+
+    <fieldset>
+      <legend>Your project</legend>
+      <div class="nfp-fields">
+        <div class="nfp-field">
+          <label for="{{ q_id }}-qty">Quantity needed<span class="nfp-req" aria-hidden="true">*</span></label>
+          <input class="nfp-input" id="{{ q_id }}-qty" type="text" name="contact[Quantity needed]" placeholder="For example 1, 12 or not sure yet" required aria-describedby="{{ q_id }}-qty-err">
+          <p class="nfp-err" id="{{ q_id }}-qty-err">Please give a rough quantity. Not sure yet is a fine answer.</p>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-space">Space type</label>
+          <select class="nfp-input" id="{{ q_id }}-space" name="contact[Space type]" data-nfp-space>
+            <option value="">Choose a space</option>
+            <option>Home</option>
+            <option>Rental property or several units</option>
+            <option>Hotel or guest house</option>
+            <option>Restaurant, cafe or bar</option>
+            <option>Office or workspace</option>
+            <option>Shop or showroom</option>
+            <option>Salon, spa or studio</option>
+            <option>Outdoor or garden</option>
+            <option>Event or venue</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-time">Timeline</label>
+          <select class="nfp-input" id="{{ q_id }}-time" name="contact[Timeline]">
+            <option value="">Choose a timeline</option>
+            <option>As soon as possible</option>
+            <option>Within a month</option>
+            <option>1 to 3 months</option>
+            <option>3 to 6 months</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+        <div class="nfp-field">
+          <label for="{{ q_id }}-budget">Budget range</label>
+          <select class="nfp-input" id="{{ q_id }}-budget" name="contact[Budget range]">
+            <option value="">Choose a range</option>
+            <option>Under $500</option>
+            <option>$500 to $2,000</option>
+            <option>$2,000 to $5,000</option>
+            <option>$5,000 to $15,000</option>
+            <option>$15,000 or more</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="nfp-field nfp-field--full">
+          <label for="{{ q_id }}-msg">Message</label>
+          <textarea class="nfp-input" id="{{ q_id }}-msg" name="contact[body]" rows="5" placeholder="Tell us about the space, the sizes you have in mind, the look you want and anything we should know.">{{ form.body }}</textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="nfp-submit">
+      <button type="submit" class="nfp-btn nfp-btn--primary">{{ q_btn | escape }}</button>
+      <p class="nfp-submit__note">Free quote. We reply within 2 business days, and nothing is made or charged until you approve.</p>
+    </div>
+  {%- endif -%}
+{%- endform -%}

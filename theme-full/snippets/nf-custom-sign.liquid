@@ -1,0 +1,126 @@
+{%- comment -%} NF-CUSTOM3-V1 live neon name sign preview (rendered by sections/nf-custom-tool). Logic: initSign in assets/nf-custom.js.
+The six Google fonts load only when this tool comes near the viewport. A chosen logo file is previewed locally and never uploaded:
+the Shopify contact form cannot carry files, so the customer attaches it when they reply to our email. {%- endcomment -%}
+<div class="nfc-tool nfc-tool--sign" data-nfc-signtool>
+  <div class="nfc-tool__vis nfc-vis">
+    <div class="nfc-stage" data-nfc-stage>
+      <div class="nfc-stage__wall" aria-hidden="true"></div>
+      <div class="nfc-stage__glow" aria-hidden="true"></div>
+      <div class="nfc-sign nfc-sign--clear" data-nfc-sign>
+        <span class="nfc-sign__dot" aria-hidden="true"></span><span class="nfc-sign__dot" aria-hidden="true"></span><span class="nfc-sign__dot" aria-hidden="true"></span><span class="nfc-sign__dot" aria-hidden="true"></span>
+        <p class="nfc-neon" data-nfc-neon data-text="Ella" style="font-family:'Sacramento',cursive">Ella</p>
+        <img class="nfc-logo" data-nfc-logo alt="Your logo preview" hidden>
+      </div>
+      <div class="nfc-ref" data-nfc-ref aria-hidden="true">
+        <svg viewBox="0 0 240 70" preserveAspectRatio="none"><path fill="currentColor" d="M12 70V20Q12 6 26 6H214Q228 6 228 20V70Z"/></svg>
+      </div>
+      <div class="nfc-stage__tools">
+        <button type="button" class="nfc-pill" data-nfc-glow aria-pressed="true"><span class="nfc-pill__dot" aria-hidden="true"></span><span data-out="glowlbl">Light on</span></button>
+        <button type="button" class="nfc-pill" data-nfc-wall aria-pressed="false"><span data-out="walllbl">Dark wall</span></button>
+      </div>
+      <p class="nfc-stage__cap" data-out="cap">Queen bed, 60 in wide, shown for scale</p>
+    </div>
+    <div class="nfc-readout">
+      <div>
+        <div class="nfc-readout__big" data-out="dims">30 x 11 in</div>
+        <div class="nfc-readout__small">Width x height, including the backing</div>
+      </div>
+      <div>
+        <div class="nfc-readout__big" data-out="colorname">Pink</div>
+        <div class="nfc-readout__small">LED neon color</div>
+      </div>
+    </div>
+    <div class="nfc-results" style="padding-top:0">
+      <p class="nfc-note" style="margin-top:0">The preview is a close guide to lettering, color and size. Real LED neon is bent from flexible tube, so letters join into smooth lines and a few shapes are adjusted. We send the design for you to approve before anything is made.</p>
+      <p class="nfc-sr" aria-live="polite" data-out="sentence"></p>
+      <div class="nfc-cta">
+        <button type="button" class="nfc-btn" data-nfc-go>{{ cta | default: 'Add this to my quote' | escape }}</button>
+        <p class="nfc-cta__note">Your design goes straight into the form below.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nfc-tool__a nfc-panel">
+    <h3 class="nfc-panel__t">1. Your words or logo</h3>
+    <p class="nfc-panel__s">Type it the way you want it to read, capitals and all.</p>
+    <fieldset class="nfc-group">
+      <legend class="nfc-sr">Sign type</legend>
+      <div class="nfc-seg">
+        <label class="nfc-choice"><input type="radio" name="nfc-type" value="text" data-label="Name or words" checked><b>Name or words</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-type" value="logo" data-label="Logo or artwork"><b>Logo or artwork</b></label>
+      </div>
+    </fieldset>
+    <div class="nfc-field nfc-field--full" data-when="text">
+      <label class="nfc-label" for="nfc-text">Your text</label>
+      <textarea class="nfc-input" id="nfc-text" name="nfc-text" rows="2" maxlength="40" aria-describedby="nfc-text-h" style="min-height:64px">Ella</textarea>
+      <p class="nfc-hint" id="nfc-text-h">Up to 2 lines and 40 characters. Press Enter for a second line.</p>
+    </div>
+    <fieldset class="nfc-group" data-when="text" style="margin-top:18px">
+      <legend>Font</legend>
+      <div class="nfc-choices nfc-choices--sm">
+        <label class="nfc-choice"><input type="radio" name="nfc-font" value="sacramento" data-family="'Sacramento', cursive" data-label="Signature (Sacramento)" checked><span class="nfc-fontprev" style="font-family:'Sacramento',cursive;font-size:28px">Signature</span><small>Thin script</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-font" value="pacifico" data-family="'Pacifico', cursive" data-label="Retro (Pacifico)"><span class="nfc-fontprev" style="font-family:'Pacifico',cursive;font-size:19px">Retro</span><small>Bold script</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-font" value="tilt" data-family="'Tilt Neon', sans-serif" data-label="Classic neon (Tilt Neon)"><span class="nfc-fontprev" style="font-family:'Tilt Neon',sans-serif;font-size:20px">Classic</span><small>Rounded letters</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-font" value="dancing" data-family="'Dancing Script', cursive" data-label="Soft script (Dancing Script)"><span class="nfc-fontprev" style="font-family:'Dancing Script',cursive;font-size:22px">Soft script</span><small>Flowing script</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-font" value="righteous" data-family="'Righteous', sans-serif" data-label="Bold (Righteous)"><span class="nfc-fontprev" style="font-family:'Righteous',sans-serif;font-size:20px">Bold</span><small>Strong capitals</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-font" value="caveat" data-family="'Caveat', cursive" data-label="Handwritten (Caveat)"><span class="nfc-fontprev" style="font-family:'Caveat',cursive;font-size:24px">Handwritten</span><small>Casual hand</small></label>
+      </div>
+    </fieldset>
+    <div data-when="logo" hidden>
+      <div class="nfc-field nfc-field--full">
+        <label class="nfc-label" for="nfc-logofile">Preview your logo</label>
+        <div class="nfc-file"><input id="nfc-logofile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" data-nfc-file aria-describedby="nfc-logofile-h"></div>
+        <p class="nfc-hint" id="nfc-logofile-h">Your file stays on your device and is only used for this preview. A PNG with a clear background looks best. To send it to us, attach it when you reply to our first email, or paste a link below.</p>
+      </div>
+      <div class="nfc-field nfc-field--full" style="margin-top:14px">
+        <label class="nfc-label" for="nfc-logolink">Link to your logo file <span style="font-weight:400;color:#5b5b5b">(optional)</span></label>
+        <input class="nfc-input" id="nfc-logolink" name="nfc-logolink" type="url" inputmode="url" maxlength="300" placeholder="A shared drive or website link">
+      </div>
+      <div class="nfc-field nfc-field--full" style="margin-top:14px">
+        <label class="nfc-label" for="nfc-logodesc">Or describe it <span style="font-weight:400;color:#5b5b5b">(optional)</span></label>
+        <textarea class="nfc-input" id="nfc-logodesc" name="nfc-logodesc" rows="3" maxlength="600" placeholder="For example our cafe name in a round badge with a coffee cup above it"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="nfc-tool__b nfc-panel">
+    <h3 class="nfc-panel__t">2. Color, size and backing</h3>
+    <p class="nfc-panel__s">Try a few. The preview updates as you go.</p>
+    <fieldset class="nfc-group">
+      <legend>Color</legend>
+      <div class="nfc-swatches">
+        {%- assign sw = 'warm|Warm white|#fff4e2|#ffb957;cool|Cool white|#f6fbff|#bfe3ff;pink|Pink|#ffe6f4|#ff4fae;red|Red|#ffe3e3|#ff2d3f;orange|Orange|#fff0e0|#ff7a1c;yellow|Yellow|#fffbe0|#ffd21f;green|Green|#e9ffea|#2fe05a;ice|Ice blue|#e8fcff|#35d4ff;blue|Blue|#e6ecff|#3a62ff;purple|Purple|#f3e8ff|#a64dff' | split: ';' -%}
+        {%- for c in sw -%}
+          {%- assign cp = c | split: '|' -%}
+          <label class="nfc-sw" title="{{ cp[1] }}"><input type="radio" name="nfc-color" value="{{ cp[0] }}" data-label="{{ cp[1] }}"{% if cp[0] == 'pink' %} checked{% endif %}><span style="--core:{{ cp[2] }};--glow:{{ cp[3] }}"></span><span class="nfc-sr">{{ cp[1] }}</span></label>
+        {%- endfor -%}
+      </div>
+      <p class="nfc-colorname">Selected: <strong data-out="colorname">Pink</strong></p>
+    </fieldset>
+    <div class="nfc-group">
+      <label class="nfc-label nfc-legend" for="nfc-size" style="display:flex;justify-content:space-between;gap:10px"><span>Size</span><span data-out="sizeval" style="font-weight:500">30 in wide</span></label>
+      <input class="nfc-range" id="nfc-size" name="nfc-size" type="range" min="12" max="72" step="1" value="30" aria-describedby="nfc-size-h">
+      <p class="nfc-hint" id="nfc-size-h">12 to 72 in wide. Over a bed or sofa, about half its width looks balanced.</p>
+    </div>
+    <fieldset class="nfc-group">
+      <legend>Backing</legend>
+      <div class="nfc-choices nfc-choices--sm">
+        <label class="nfc-choice"><input type="radio" name="nfc-back" value="clear" data-label="Clear acrylic" checked><b>Clear acrylic</b><small>Disappears on the wall</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-back" value="black" data-label="Black acrylic"><b>Black acrylic</b><small>Bold panel, great on light walls</small></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-back" value="shape" data-label="Clear, cut to shape"><b>Cut to shape</b><small>Clear, follows the letters</small></label>
+      </div>
+    </fieldset>
+    <fieldset class="nfc-group">
+      <legend>Where it goes</legend>
+      <div class="nfc-seg">
+        <label class="nfc-choice"><input type="radio" name="nfc-where" value="indoor" data-label="Indoor" checked><b>Indoor</b></label>
+        <label class="nfc-choice"><input type="radio" name="nfc-where" value="outdoor" data-label="Outdoor"><b>Outdoor</b></label>
+      </div>
+      <p class="nfc-hint" style="margin-top:8px">For outdoor signs we quote a version built for the weather and confirm what suits your spot.</p>
+    </fieldset>
+    <div class="nfc-power">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 2v5M13 2v5M5 7h10v3a5 5 0 0 1-10 0V7zM10 15v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Every sign comes with a US plug in adapter and a dimmer, so you can set the brightness.</span>
+    </div>
+  </div>
+</div>

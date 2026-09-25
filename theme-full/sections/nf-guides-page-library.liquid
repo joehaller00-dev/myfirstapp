@@ -1,0 +1,140 @@
+{%- comment -%}
+  nf-guides-page-library : closing band of the Ideas & Guides page. 2026-09-11.
+  Keeps the useful parts of the old hub (sections/nf-hub-page.liquid, still in the theme): the digital catalog as an
+  open book (snippets/nf-catalog-book.liquid, rendered unchanged), the curated lighting guides (one "guide" block per
+  article handle), blog topic links, the all articles and all catalogs links, and the email help line.
+{%- endcomment -%}
+{{- 'nf-catalog.css' | asset_url | stylesheet_tag -}}
+{{- 'nf-guides-page.css' | asset_url | stylesheet_tag -}}
+{%- liquid
+  assign l_blog = blogs[section.settings.blog_handle]
+  if l_blog == blank
+    assign l_blog = blogs['blog']
+  endif
+  assign l_page = section.settings.catalog_page
+  if l_page == blank
+    assign l_page = pages['lighting-catalog']
+  endif
+  assign l_cat = l_page.metafields.custom.catalog.value
+  assign l_pages = 0
+  assign l_chapters = 0
+  if l_cat != blank
+    assign l_chapters = l_cat.chapters.size
+    assign l_sp = 0
+    for ch in l_cat.chapters
+      assign l_sp = l_sp | plus: ch.spreads.size
+    endfor
+    assign l_pages = l_cat.chapters.size | plus: l_sp | plus: 1 | times: 2 | plus: 2
+    if l_cat.welcome
+      assign l_pages = l_pages | plus: 2
+    endif
+    assign l_pages = l_pages | divided_by: 2 | plus: 1
+  endif
+  assign l_topics = section.settings.topics | split: ','
+-%}
+<section class="nfg nfg-sec nfg-library nfg-on-dark"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handle }}"{% endif %} aria-label="{{ section.settings.aria_label | default: 'Catalog and lighting guides' | escape }}">
+  <div class="nfg-wrap">
+    <div class="nfg-library__grid">
+      {%- if l_cat != blank -%}
+        <div class="nfg-lib-cat" id="catalog">
+          <div class="nfg-lib-cat__book">
+            {%- render 'nf-catalog-book', cat: l_cat, url: l_page.url, sizes: '(max-width: 699px) 70vw, 300px' -%}
+          </div>
+          <div class="nfg-lib-cat__text">
+            {%- if section.settings.catalog_eyebrow != blank -%}<p class="nfg-eyebrow">{{ section.settings.catalog_eyebrow | escape }}</p>{%- endif -%}
+            <h2 class="nfg-h2">{{ l_page.title | escape }}</h2>
+            {%- if l_pages > 0 -%}<p class="nfg-lib-cat__meta">{{ l_pages }} pages{% if l_chapters > 0 %}, {{ l_chapters }} chapters{% endif %}</p>{%- endif -%}
+            {%- if section.settings.catalog_text != blank -%}<p class="nfg-lead">{{ section.settings.catalog_text | escape }}</p>{%- endif -%}
+            <div class="nfg-actions">
+              <a class="nfg-btn nfg-btn--gold" href="{{ l_page.url }}">{{ section.settings.catalog_button | default: 'Open the catalog' | escape }}<span class="nfg-arrow" aria-hidden="true">&rarr;</span></a>
+              {%- if section.settings.catalogs_label != blank -%}<a class="nfg-btn nfg-btn--outline" href="{{ section.settings.catalogs_url | default: '/pages/catalog' | escape }}">{{ section.settings.catalogs_label | escape }}</a>{%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="nfg-lib-guides">
+        {%- if section.settings.guides_eyebrow != blank -%}<p class="nfg-eyebrow">{{ section.settings.guides_eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfg-h2">{{ section.settings.guides_heading | escape }}</h2>
+        {%- if section.settings.guides_text != blank -%}<p class="nfg-lead">{{ section.settings.guides_text | escape }}</p>{%- endif -%}
+        {%- if l_blog != blank and section.blocks.size > 0 -%}
+          <ol class="nfg-guides" role="list">
+            {%- for block in section.blocks -%}
+              {%- assign g_handle = block.settings.handle | strip -%}
+              {%- if g_handle == blank -%}{%- continue -%}{%- endif -%}
+              {%- assign g_key = l_blog.handle | append: '/' | append: g_handle -%}
+              {%- assign g = articles[g_key] -%}
+              {%- if g == blank or g.title == blank -%}{%- continue -%}{%- endif -%}
+              <li {{ block.shopify_attributes }}>
+                <a class="nfg-guide" href="{{ g.url }}">
+                  <span class="nfg-guide__img" aria-hidden="true">
+                    {%- if g.image != blank -%}{{- g.image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120,160,240', sizes: '72px', alt: '' -}}{%- endif -%}
+                  </span>
+                  <span class="nfg-guide__txt">
+                    {%- if g.tags.size > 0 -%}<span class="nfg-guide__tag">{{ g.tags.first }}</span>{%- endif -%}
+                    <span class="nfg-guide__t">{{ block.settings.label | default: g.title | escape }}</span>
+                  </span>
+                  <span class="nfg-arrow nfg-guide__arrow" aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ol>
+        {%- endif -%}
+        {%- if l_blog != blank -%}
+          <div class="nfg-topics">
+            {%- if section.settings.topics_label != blank -%}<span class="nfg-topics__label">{{ section.settings.topics_label | escape }}</span>{%- endif -%}
+            {%- for raw in l_topics -%}
+              {%- assign tg = raw | strip -%}
+              {%- if tg != blank and l_blog.all_tags contains tg -%}
+                <a class="nfg-topic" href="{{ l_blog.url }}/tagged/{{ tg | handle }}">{{ tg }}</a>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          <p class="nfg-lib-guides__all"><a class="nfg-link" href="{{ l_blog.url }}">{{ section.settings.articles_label | default: 'All articles' | escape }}<span class="nfg-arrow" aria-hidden="true">&rarr;</span></a></p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.settings.help_text != blank -%}
+      <div class="nfg-help">{{ section.settings.help_text }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF guides library",
+  "class": "nfg-section nfg-section--library",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor id", "default": "guides" },
+    { "type": "text", "id": "aria_label", "label": "Section label (screen readers)", "default": "Catalog and lighting guides" },
+    { "type": "text", "id": "blog_handle", "label": "Blog handle", "default": "blog" },
+    { "type": "header", "content": "Catalog" },
+    { "type": "page", "id": "catalog_page", "label": "Catalog page", "info": "Page whose metafield custom.catalog holds the catalog. Default: lighting-catalog." },
+    { "type": "text", "id": "catalog_eyebrow", "label": "Eyebrow", "default": "Digital catalog" },
+    { "type": "textarea", "id": "catalog_text", "label": "Text" },
+    { "type": "text", "id": "catalog_button", "label": "Button label", "default": "Open the catalog" },
+    { "type": "text", "id": "catalogs_label", "label": "Second button label", "default": "Browse by chapter" },
+    { "type": "text", "id": "catalogs_url", "label": "Second button link", "default": "/pages/catalog" },
+    { "type": "header", "content": "Lighting guides" },
+    { "type": "text", "id": "guides_eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "guides_heading", "label": "Heading", "default": "Lighting guides" },
+    { "type": "textarea", "id": "guides_text", "label": "Text" },
+    { "type": "text", "id": "topics_label", "label": "Topic links label", "default": "Browse by topic" },
+    { "type": "text", "id": "topics", "label": "Topic links", "info": "Blog tags separated by commas. Tags the blog does not use are skipped.", "default": "Buying Guides, How To, Installation, Maintenance, Indoor, Outdoor, 101" },
+    { "type": "text", "id": "articles_label", "label": "All articles label", "default": "All articles" },
+    { "type": "richtext", "id": "help_text", "label": "Help line" }
+  ],
+  "blocks": [
+    {
+      "type": "guide",
+      "name": "Guide",
+      "settings": [
+        { "type": "text", "id": "handle", "label": "Article handle", "info": "The last part of the article URL, for example chandelier-size-guide." },
+        { "type": "text", "id": "label", "label": "Title override", "info": "Leave blank to use the article title." }
+      ]
+    }
+  ],
+  "max_blocks": 12
+}
+{% endschema %}

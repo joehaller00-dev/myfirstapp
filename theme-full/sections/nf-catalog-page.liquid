@@ -1,0 +1,227 @@
+{%- comment -%}
+  nf-catalog-page : /pages/catalogs (templates/page.catalog-v2.json). NF-CATALOG-PAGE-V2, 2026-09-11.
+  One catalog, presented big: a wide white hero with a large open copy of the real catalog (its welcome spread,
+  with a closed copy showing the cover behind it), the title, a short line, the facts and one button into the
+  viewer; then a rail of the chapters, each opening the viewer at its first page.
+  No page turning here (the homepage band keeps the hover book, NFBOOK5); the book only rises in and follows the
+  mouse a little (assets/nf-catalog-page.js), and both are off under reduced motion.
+  Catalog content: the chosen page's metafield custom.catalog (default page lighting-catalog). The page count comes
+  from snippets/nf-catalog-book.liquid (mode stats) so it matches the viewer: the cover, then one page per spread.
+  Chapter links use the viewer's leaf numbers (#pN); the labels use its page numbers (leaf n -> n / 2 + 1).
+{%- endcomment -%}
+{%- liquid
+  assign cp = section.settings.catalog_page
+  if cp == blank
+    assign cp = pages['lighting-catalog']
+  endif
+  assign cat = cp.metafields.custom.catalog.value
+  assign vurl = cp.url | default: '/pages/lighting-catalog'
+  assign title = section.settings.title
+  if title == blank
+    assign title = cat.title | default: '2026 Nora Furnish Lighting Catalog'
+  endif
+  assign n_pages = 0
+  assign n_fx = 0
+  assign n_ch = 0
+  if cat != blank
+    capture nf_stats
+      render 'nf-catalog-book', cat: cat, mode: 'stats'
+    endcapture
+    assign st = nf_stats | strip | split: '|'
+    assign n_pages = st[0] | plus: 0
+    assign n_fx = st[1] | plus: 0
+    assign n_ch = st[2] | plus: 0
+  endif
+  assign wl = cat.welcome
+  assign cv = cat.cover
+-%}
+{{ 'nf-catalog-page.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  comment
+    NF-CATPAGE-V2 (2026-09-22): the last rail card used to be a flat black panel. Pass the catalog cover
+    through as a CSS variable so it can sit behind the words.
+  endcomment
+  assign cvu = cv.image
+  assign cvsep = '?'
+  if cvu contains '?'
+    assign cvsep = '&'
+  endif
+-%}
+<section class="nfcp" id="nfcp-{{ section.id }}" data-nfcp{% if cvu != blank %} style="--cp-cover:url({{ cvu }}{{ cvsep }}width=900)"{% endif %}>
+  <div class="nfcp-hero">
+    <div class="nfcp-hero__in">
+      <div class="nfcp-copy">
+        {%- if section.settings.eyebrow != blank -%}<p class="nfcp-eyebrow nfcp-rv" style="--d:0">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h1 class="nfcp-title nfcp-rv" style="--d:1">{{ title | escape }}</h1>
+        {%- if section.settings.line != blank -%}<p class="nfcp-line nfcp-rv" style="--d:2">{{ section.settings.line | escape }}</p>{%- endif -%}
+      </div>
+
+      <div class="nfcp-stage" data-nfcp-stage>
+        {%- if cat != blank -%}
+        <a class="nfcp-scene" href="{{ vurl }}" aria-label="{{ section.settings.button_label | default: 'Open the catalog' | escape }}: {{ title | escape }}">
+          <span class="nfcp-floor" aria-hidden="true"></span>
+          <span class="nfcp-rise">
+            <span class="nfcp-tilt" data-nfcp-tilt>
+              {%- if cv.image != blank -%}
+                {%- liquid
+                  assign u = cv.image
+                  assign sep = '?'
+                  if u contains '?'
+                    assign sep = '&'
+                  endif
+                -%}
+                <span class="nfcp-closed" aria-hidden="true">
+                  <span class="nfcp-cover">
+                    <img src="{{ u }}{{ sep }}width=900" srcset="{{ u }}{{ sep }}width=500 500w, {{ u }}{{ sep }}width=700 700w, {{ u }}{{ sep }}width=900 900w, {{ u }}{{ sep }}width=1200 1200w" sizes="(max-width: 999px) 40vw, 26vw" style="object-position: {{ cv.focal | default: '50% 50%' }}" alt="" width="900" height="1200" fetchpriority="high" draggable="false">
+                    <span class="nfcp-cover__veil"></span>
+                    <span class="nfcp-cover__brand">Nora Furnish</span>
+                    <span class="nfcp-cover__yr">{{ cv.edition | default: '2026' }}</span>
+                  </span>
+                </span>
+              {%- endif -%}
+              <span class="nfcp-open" aria-hidden="true">
+                <span class="nfcp-blk nfcp-blk--l"></span><span class="nfcp-blk nfcp-blk--r"></span>
+                <span class="nfcp-pg nfcp-pg--l">
+                  <span class="nfcp-wl">
+                    <span class="nfcp-wl__label">Welcome</span>
+                    <span class="nfcp-wl__h">{{ wl.heading | default: 'Welcome to Nora Furnish' | escape }}</span>
+                    <span class="nfcp-wl__rule"></span>
+                    {%- if wl.paragraphs.size > 0 -%}<span class="nfcp-wl__p">{{ wl.paragraphs[0] | escape }}</span>{%- endif -%}
+                    {%- if wl.offers.size > 0 -%}
+                      <span class="nfcp-wl__offers">
+                        {%- for o in wl.offers limit: 2 -%}<span><b>{{ o.label | escape }}</b><span>{{ o.detail | escape }}</span></span>{%- endfor -%}
+                      </span>
+                    {%- endif -%}
+                  </span>
+                  <span class="nfcp-foot"><span>2</span><span>norafurnish.com</span></span>
+                </span>
+                <span class="nfcp-pg nfcp-pg--r">
+                  {%- assign wu = wl.image | default: cv.image -%}
+                  {%- if wu != blank -%}
+                    {%- liquid
+                      assign sep = '?'
+                      if wu contains '?'
+                        assign sep = '&'
+                      endif
+                    -%}
+                    <img class="nfcp-ph" src="{{ wu }}{{ sep }}width=1200" srcset="{{ wu }}{{ sep }}width=600 600w, {{ wu }}{{ sep }}width=900 900w, {{ wu }}{{ sep }}width=1200 1200w, {{ wu }}{{ sep }}width=1600 1600w" sizes="(max-width: 999px) 46vw, 33vw" style="object-position: {{ wl.focal | default: '50% 50%' }}" data-focal="{{ wl.focal | default: '50% 50%' }}" alt="" width="1200" height="1600" fetchpriority="high" draggable="false">
+                    {%- for hp in wl.hotspots limit: 4 -%}<span class="nfcp-hs" data-x="{{ hp.x }}" data-y="{{ hp.y }}"></span>{%- endfor -%}
+                  {%- endif -%}
+                  <span class="nfcp-foot nfcp-foot--light"><span>norafurnish.com</span><span>2</span></span>
+                </span>
+                <span class="nfcp-gutter"></span>
+                <span class="nfcp-sheen"></span>
+              </span>
+            </span>
+          </span>
+        </a>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} NF-CATPAGE-V3 (2026-09-22): the welcome page type is sized in container units, so on a phone
+        it shrinks to a few pixels and cannot be read. Repeat that page as plain text under the spread on phones. {%- endcomment -%}
+      <div class="nfcp-wlm" aria-hidden="false">
+        <p class="nfcp-wlm__label">Welcome</p>
+        <h2 class="nfcp-wlm__h">{{ wl.heading | default: 'Welcome to Nora Furnish' | escape }}</h2>
+        {%- for p in wl.paragraphs limit: 2 -%}<p class="nfcp-wlm__p">{{ p | escape }}</p>{%- endfor -%}
+        {%- if wl.offers.size > 0 -%}
+          <ul class="nfcp-wlm__offers">
+            {%- for o in wl.offers limit: 4 -%}<li><b>{{ o.label | escape }}</b><span>{{ o.detail | escape }}</span></li>{%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      <div class="nfcp-cta">
+        <div class="nfcp-actions nfcp-rv" style="--d:3">
+          <a class="nfcp-btn" href="{{ vurl }}">{{ section.settings.button_label | default: 'Open the catalog' | escape }}<span class="nfcp-btn__ic" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 8h10.5M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          {%- if cat != blank and section.settings.chapters_label != blank -%}<a class="nfcp-link" href="#nfcp-chapters-{{ section.id }}">{{ section.settings.chapters_label | escape }}</a>{%- endif -%}
+        </div>
+        {%- if n_pages > 0 -%}
+        <dl class="nfcp-facts nfcp-rv" style="--d:4">
+          <div><dt>{{ n_pages }}</dt><dd>Pages</dd></div>
+          <div><dt>{{ n_fx }}</dt><dd>Fixtures</dd></div>
+          <div><dt>{{ n_ch }}</dt><dd>Chapters</dd></div>
+          <div><dt><span class="nfcp-live" aria-hidden="true"></span>Live</dt><dd>Prices</dd></div>
+        </dl>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- if cat != blank and cat.chapters.size > 0 -%}
+  <div class="nfcp-ch" id="nfcp-chapters-{{ section.id }}">
+    <div class="nfcp-ch__in">
+      <div class="nfcp-ch__head">
+        <div>
+          {%- if section.settings.rail_eyebrow != blank -%}<p class="nfcp-eyebrow">{{ section.settings.rail_eyebrow | escape }}</p>{%- endif -%}
+          <h2 class="nfcp-h2">{{ section.settings.rail_heading | escape }}</h2>
+          {%- if section.settings.rail_text != blank -%}<p class="nfcp-ch__text">{{ section.settings.rail_text | escape }}</p>{%- endif -%}
+        </div>
+        <div class="nfcp-ch__nav">
+          <button type="button" class="nfcp-arw" data-nfcp-prev aria-label="Previous chapters"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button type="button" class="nfcp-arw" data-nfcp-next aria-label="Next chapters"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="nfcp-rail" data-nfcp-rail>
+      {%- liquid
+        assign leaf = 4
+        if wl
+          assign leaf = 6
+        endif
+      -%}
+      {%- for ch in cat.chapters -%}
+        {%- liquid
+          assign st_leaf = leaf
+          assign leaf = leaf | plus: 2 | plus: ch.spreads.size | plus: ch.spreads.size
+          assign en_leaf = leaf | minus: 1
+          assign p1 = st_leaf | divided_by: 2 | plus: 1
+          assign p2 = en_leaf | divided_by: 2 | plus: 1
+          assign u = ch.opener_image
+          assign sep = '?'
+          if u contains '?'
+            assign sep = '&'
+          endif
+        -%}
+        <a class="nfcp-card" href="{{ vurl }}#p{{ st_leaf }}">
+          <span class="nfcp-card__img">
+            {%- if u != blank -%}<img src="{{ u }}{{ sep }}width=700" srcset="{{ u }}{{ sep }}width=400 400w, {{ u }}{{ sep }}width=600 600w, {{ u }}{{ sep }}width=800 800w, {{ u }}{{ sep }}width=1000 1000w, {{ u }}{{ sep }}width=1200 1200w" sizes="(max-width: 749px) 96vw, (min-width: 1790px) 452px, 25vw"{% comment %} NF-IMG-SHARP-0916: 3:4 cards crop square photos, so the image needs ~1.33x the card width (was 330px / max 800, soft) {% endcomment %} style="object-position: {{ ch.opener_focal | default: '50% 50%' }}" alt="{{ ch.opener_alt | escape }}" width="600" height="800" loading="lazy" decoding="async" draggable="false">{%- endif -%}
+          </span>
+          <span class="nfcp-card__cap">
+            <span class="nfcp-card__n">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+            <span class="nfcp-card__t">{{ ch.title | escape }}</span>
+            <span class="nfcp-card__p">{% if p1 == p2 %}Page {{ p1 }}{% else %}Pages {{ p1 }} to {{ p2 }}{% endif %}</span>
+          </span>
+        </a>
+      {%- endfor -%}
+      <a class="nfcp-card nfcp-card--end" href="{{ vurl }}">
+        <span class="nfcp-card__end">
+          <span class="nfcp-card__n">{{ n_pages }} pages</span>
+          <span class="nfcp-card__t">The full catalog</span>
+          <span class="nfcp-card__go">{{ section.settings.button_label | default: 'Open the catalog' | escape }}<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </span>
+      </a>
+    </div>
+  </div>
+  {%- endif -%}
+</section>
+<script src="{{ 'nf-catalog-page.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "NF catalog page",
+  "class": "nf-catalog-page-section",
+  "settings": [
+    { "type": "page", "id": "catalog_page", "label": "Catalog page", "info": "Page whose metafield custom.catalog holds the catalog. Default: lighting-catalog." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Digital edition" },
+    { "type": "text", "id": "title", "label": "Title", "info": "Leave blank to use the catalog title." },
+    { "type": "textarea", "id": "line", "label": "Short line", "default": "Chandeliers, pendants, sconces, lamps and outdoor lights, photographed in real rooms with the lights switched on. Every piece links to its product page at a live price." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Open the catalog" },
+    { "type": "text", "id": "chapters_label", "label": "Chapters link label", "default": "Browse the chapters" },
+    { "type": "text", "id": "rail_eyebrow", "label": "Chapters eyebrow", "default": "Inside the catalog" },
+    { "type": "text", "id": "rail_heading", "label": "Chapters heading", "default": "Start with any room" },
+    { "type": "text", "id": "rail_text", "label": "Chapters line", "default": "Each chapter opens the catalog at its first page." }
+  ],
+  "presets": [{ "name": "NF catalog page" }]
+}
+{% endschema %}

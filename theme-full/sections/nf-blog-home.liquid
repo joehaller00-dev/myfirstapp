@@ -1,0 +1,93 @@
+{%- comment -%} NF homepage journal carousel (nf-blog). Newest articles as nf-blog-card. Styles: assets/nf-blog.css, script: assets/nf-blog.js {%- endcomment -%}
+{%- comment -%} NF-SPEED-A-0916: on the homepage this section is far below the first screen, so its stylesheet no longer holds up first paint (loads at once, applied when it arrives). {%- endcomment -%}{%- if request.page_type == 'index' -%}<link rel="stylesheet" href="{{ 'nf-blog.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'nf-blog.css' | asset_url | stylesheet_tag }}</noscript>{%- else -%}{{ 'nf-blog.css' | asset_url | stylesheet_tag }}{%- endif -%}
+{%- comment -%} NF-SPEED-A-0916: on the homepage this script loads when the section comes near (window.nfLazyJs in layout/theme.liquid). {%- endcomment -%}{%- if request.page_type == 'index' and request.design_mode == false -%}<script>if(window.nfLazyJs){nfLazyJs("{{ 'nf-blog.js' | asset_url }}","#shopify-section-{{ section.id }}");}else{document.write('<script src="{{ 'nf-blog.js' | asset_url }}" defer><\/script>');}</script>{%- else -%}<script src="{{ 'nf-blog.js' | asset_url }}" defer></script>{%- endif -%}
+{%- liquid
+  assign nf_b = section.settings.blog
+  if nf_b == blank
+    assign nf_b = blogs['blog']
+  endif
+  assign nf_limit = section.settings.limit | default: 10
+-%}
+{%- if nf_b != blank and nf_b.articles_count > 0 -%}
+  <div class="nf-more nf-journal" data-nf-carousel data-nf-smooth>
+    <div class="nf-more__wrap">
+      <div class="nf-journal__head">
+        <div class="nf-journal__intro">
+          <h2 class="nf-journal__title">{{ section.settings.heading | escape }}</h2>
+          {%- if section.settings.text != blank -%}
+            <p class="nf-journal__text">{{ section.settings.text | escape }}</p>
+          {%- endif -%}
+        </div>
+        <div class="nf-journal__nav">
+          <a class="nf-journal__all" href="{{ nf_b.url }}">{{ section.settings.link_label | escape }}</a>
+          <div class="nf-more__arrows">
+            <button type="button" class="nf-arrow" data-nf-prev aria-label="Previous articles" disabled>
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="nf-arrow" data-nf-next aria-label="Next articles">
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="nf-more__track nf-journal__track" data-nf-track tabindex="0" role="region" aria-label="{{ section.settings.heading | escape }}">
+        {%- for a in nf_b.articles limit: nf_limit -%}
+          {%- render 'nf-blog-card',
+            article: a,
+            blog: nf_b,
+            sizes: '(max-width: 699px) 80vw, (max-width: 999px) 44vw, 360px',
+            heading_tag: 'h3',
+            class: 'nf-more__item'
+          -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF Journal carousel",
+  "class": "shopify-section--nf-journal",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From Our Blogs"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Straightforward guides to choosing, placing, and caring for the lights in your home."
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "View all articles"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Articles shown",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "NF Journal carousel"
+    }
+  ]
+}
+{% endschema %}

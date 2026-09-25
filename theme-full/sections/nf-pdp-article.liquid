@@ -1,0 +1,102 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) product article, the last section of the page.
+  custom.article (multi_line_text_field, HTML: <h3>, <p>, <ul>), custom.article_heading (single_line_text_field,
+  the owner's "Why [title] works so well as [a] [sub collection]" shell, reworded), custom.article_faq (json [{q,a}] x10).
+  Also prints the ONE FAQPage JSON-LD for the page: custom.faq_short (the D2 accordion) + custom.article_faq.
+  Renders nothing visible when custom.article is empty.
+  NF-ART-COLLAPSE (2026-09-14, owner: the guide took so much room that reaching the footer meant scrolling forever).
+  The guide starts collapsed with a faded preview and a "Read the full guide" button. The script below adds the
+  collapsed state, so without JS the whole guide simply shows. Short guides skip the button entirely.
+{%- endcomment -%}
+{%- liquid
+  assign art = product.metafields.custom.article.value | default: product.metafields.custom.article
+  assign ah = product.metafields.custom.article_heading.value | default: product.metafields.custom.article_heading
+  assign af = product.metafields.custom.article_faq.value
+  assign fs = product.metafields.custom.faq_short.value
+  if ah == blank
+    assign ah = 'What makes the ' | append: product.title | append: ' worth a closer look'
+  endif
+-%}
+{%- if art != blank -%}
+{%- comment -%} NF-SPEED-B-0916: far below the fold, load its CSS without blocking the parser (deferred theme scripts wait for parsing) {%- endcomment -%}
+<link rel="stylesheet" href="{{ 'nf-pdp-below.css' | asset_url }}" media="print" onload="this.media='all'"><noscript>{{ 'nf-pdp-below.css' | asset_url | stylesheet_tag }}</noscript>
+<section class="nf-art nf-lz" data-nf-art aria-labelledby="nf-art-h-{{ section.id }}">
+  <div class="nf-art__in">
+    <p class="nf-eyebrow nf-rv">The Nora Furnish guide</p>
+    <h2 class="nf-art__h nf-rv" id="nf-art-h-{{ section.id }}">{{ ah }}</h2>
+    <div class="nf-art__clip" id="nf-art-clip-{{ section.id }}" data-nf-artclip>
+      <nav class="nf-art__toc" data-nf-toc hidden aria-label="In this guide"><p class="nf-art__toch">In this guide</p><ol></ol></nav>
+      <div class="nf-art__body" data-nf-artbody>{{ art }}</div>
+      {%- if af != blank and af.size > 0 -%}
+        <h3 class="nf-art__fh" id="nf-art-faq">Frequently asked questions</h3>
+        <div class="nf-art__faq">
+          {%- for qa in af limit: 12 -%}
+            <details class="nf-faqa__q"><summary><span>{{ qa.q | escape }}</span><i aria-hidden="true"></i></summary><div class="nf-faqa__a"><p>{{ qa.a | escape }}</p></div></details>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+    <button type="button" class="nf-art__more" data-nf-artmore aria-controls="nf-art-clip-{{ section.id }}" aria-expanded="false" hidden>
+      <span data-nf-artmore-label>Read the full guide</span>
+      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4.5l4 4 4-4"/></svg>
+    </button>
+  </div>
+</section>
+<style>
+  .nf-art__clip{position:relative;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.8,.2,1)}
+  .nf-art__clip.is-closed{max-height:230px}
+  .nf-art__clip::after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;pointer-events:none;opacity:0;transition:opacity .35s ease;background:linear-gradient(to bottom,rgba(255,255,255,0),var(--nf-art-fade,#fff) 88%)}
+  .nf-art__clip.is-closed::after{opacity:1}
+  .nf-art__more{display:flex;align-items:center;gap:9px;width:max-content;margin:20px auto 0;padding:12px 24px;border:1px solid #1c1c1c;border-radius:999px;background:transparent;color:#1c1c1c;font:600 12px/1 var(--text-font-family,Inter,sans-serif);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background-color .25s ease,color .25s ease}
+  .nf-art__more:hover{background:#1c1c1c;color:#fff}
+  .nf-art__more[hidden]{display:none}
+  .nf-art__more svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:1.6;transition:transform .35s ease}
+  .nf-art__more[aria-expanded="true"] svg{transform:rotate(180deg)}
+  @media (prefers-reduced-motion: reduce){.nf-art__clip,.nf-art__clip::after,.nf-art__more svg{transition:none}}
+</style>
+<script>
+  (function () {
+    var c = document.getElementById('nf-art-clip-{{ section.id }}');
+    var b = c && c.parentElement.querySelector('[data-nf-artmore]');
+    if (!c || !b) return;
+    var el = c, bg = '';
+    while (el && !bg) { var col = getComputedStyle(el).backgroundColor; if (col && col !== 'rgba(0, 0, 0, 0)' && col !== 'transparent') bg = col; el = el.parentElement; }
+    if (bg) c.style.setProperty('--nf-art-fade', bg);
+    if (c.scrollHeight <= 340) return;
+    c.classList.add('is-closed');
+    b.hidden = false;
+    var label = b.querySelector('[data-nf-artmore-label]');
+    b.addEventListener('click', function () {
+      var open = b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      label.textContent = open ? 'Show less' : 'Read the full guide';
+      if (open) {
+        c.style.maxHeight = c.scrollHeight + 'px';
+        c.classList.remove('is-closed');
+        setTimeout(function () { if (b.getAttribute('aria-expanded') === 'true') c.style.maxHeight = 'none'; }, 520);
+      } else {
+        c.style.maxHeight = c.scrollHeight + 'px';
+        void c.offsetHeight;
+        c.style.maxHeight = '';
+        c.classList.add('is-closed');
+        var s = c.closest('[data-nf-art]');
+        if (s && s.getBoundingClientRect().top < 0) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  })();
+</script>
+{%- endif -%}
+{%- assign nq = 0 -%}
+{%- capture ld -%}
+  {%- if fs != blank -%}{%- for qa in fs limit: 3 -%}{%- if nq > 0 -%},{%- endif -%}{%- assign nq = nq | plus: 1 -%}{"@type":"Question","name":{{ qa.q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ qa.a | json }}}}{%- endfor -%}{%- endif -%}
+  {%- if art != blank and af != blank -%}{%- for qa in af limit: 12 -%}{%- if nq > 0 -%},{%- endif -%}{%- assign nq = nq | plus: 1 -%}{"@type":"Question","name":{{ qa.q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ qa.a | json }}}}{%- endfor -%}{%- endif -%}
+{%- endcapture -%}
+{%- if nq > 0 -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{{ ld }}]}</script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "NF Product article",
+  "settings": []
+}
+{% endschema %}

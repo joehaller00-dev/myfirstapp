@@ -1,0 +1,163 @@
+{%- comment -%} nf-pro-cards (Professionals, 2026-09-11). Card grid in five looks: text, media, numbered, steps and rows. {%- endcomment -%}
+{{- 'nf-pro.css' | asset_url | stylesheet_tag -}}
+{%- comment -%} NF-RHYTHM-V1: bg charcoal option and the nfp-look--<style> class (styles in nf-rhythm.css) {%- endcomment -%}
+{%- assign s = section.settings -%}
+<section class="nfp nfp--{{ s.bg }} nfp-look--{{ s.style }} nfp-sec{% if s.tight %} nfp-sec--tight{% endif %}"{% if s.anchor != blank %} id="{{ s.anchor | handle }}"{% endif %}>
+  <div class="nfp-wrap">
+    {%- if s.heading != blank or s.eyebrow != blank -%}
+      <div class="nfp-head{% if s.center %} nfp-head--center{% endif %}">
+        <div class="nfp-head__main">
+          {%- if s.eyebrow != blank -%}<p class="nfp-eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+          {%- if s.heading != blank -%}<h2 class="nfp-h2">{{ s.heading | escape }}</h2>{%- endif -%}
+          {%- if s.text != blank -%}<p class="nfp-lead">{{ s.text | escape }}</p>{%- endif -%}
+        </div>
+        {%- if s.link_label != blank and s.center == false -%}
+          <a class="nfp-btn nfp-btn--browse" href="{{ s.link_url }}">{{ s.link_label | escape }} <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- case s.style -%}
+    {%- when 'steps' -%}
+      <ol class="nfp-steps" role="list">
+        {%- for block in section.blocks -%}
+          <li class="nfp-step" {{ block.shopify_attributes }}>
+            <div class="nfp-step__top"><span class="nfp-step__n">{{ forloop.index }}</span>{%- if block.settings.meta != blank -%}<span class="nfp-step__time">{{ block.settings.meta | escape }}</span>{%- endif -%}</div>
+            <h3 class="nfp-h3">{{ block.settings.title | escape }}</h3>
+            {%- if block.settings.text != blank -%}<p class="nfp-text">{{ block.settings.text | escape }}</p>{%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ol>
+      {%- if s.note != blank -%}<p class="nfp-steps__note">{{ s.note | escape }}</p>{%- endif -%}
+
+    {%- when 'rows' -%}
+      <div class="nfp-rows">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign b = block.settings
+            assign r_url = b.url
+            assign r_title = b.title
+            if block.type == 'collection' and b.collection != blank
+              assign r_url = b.collection.url
+              if r_title == blank
+                assign r_title = b.collection.title
+              endif
+            endif
+          -%}
+          <a class="nfp-row" href="{{ r_url }}" {{ block.shopify_attributes }}>
+            {%- if b.icon != blank and b.icon != 'none' -%}<span class="nfp-card__icon" style="margin:0">{% render 'nf-pro-icon', name: b.icon %}</span>{%- endif -%}
+            <span class="nfp-row__t"><strong>{{ r_title | escape }}</strong>{%- if b.text != blank -%}<span>{{ b.text | escape }}</span>{%- endif -%}</span>
+            <span class="nfp-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        {%- endfor -%}
+      </div>
+
+    {%- else -%}
+      <div class="nfp-grid nfp-grid--{{ s.columns }}">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign b = block.settings
+            assign c_url = b.url
+            assign c_title = b.title
+            assign c_fb = b.fallback_collection
+            assign c_img = blank
+            if block.type == 'collection' and b.collection != blank
+              assign c_url = b.collection.url
+              if c_title == blank
+                assign c_title = b.collection.title
+              endif
+              assign c_fb = b.collection.handle
+              assign c_img = b.collection.featured_image
+            endif
+            assign c_link = b.link_label
+          -%}
+          {%- if s.style == 'media' -%}
+            <a class="nfp-card nfp-card--media{% if s.tall %} nfp-card--tall{% endif %}" href="{{ c_url }}" {{ block.shopify_attributes }}>
+              <span class="nfp-media nfp-card__img">
+                {%- if c_img != blank and b.image_file == blank -%}
+                  {{- c_img | image_url: width: 1000 | image_tag: loading: 'lazy', widths: '400,600,800,1000', sizes: '(max-width: 640px) 100vw, 33vw', alt: c_title -}}
+                {%- else -%}
+                  {%- render 'nf-pro-media', file: b.image_file, alt: c_title, fallback: c_fb, sizes: '(max-width: 640px) 100vw, 33vw', label: c_title -%}
+                {%- endif -%}
+              </span>
+              <span class="nfp-card__body">
+                {%- if b.meta != blank -%}<span class="nfp-card__meta">{{ b.meta | escape }}</span>{%- endif -%}
+                <span class="nfp-h3">{{ c_title | escape }}</span>
+                {%- if b.text != blank -%}<span class="nfp-text">{{ b.text | escape }}</span>{%- endif -%}
+                <span class="nfp-card__foot"><span class="nfp-card__go">{{ c_link | default: 'Explore' | escape }} <span class="nfp-arrow" aria-hidden="true">&rarr;</span></span></span>
+              </span>
+            </a>
+          {%- else -%}
+            {%- if c_url != blank -%}<a class="nfp-card" href="{{ c_url }}" {{ block.shopify_attributes }}>{%- else -%}<div class="nfp-card" {{ block.shopify_attributes }}>{%- endif -%}
+              {%- if s.style == 'numbered' -%}
+                <span class="nfp-card__num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+              {%- elsif b.icon != blank and b.icon != 'none' -%}
+                <span class="nfp-card__icon">{% render 'nf-pro-icon', name: b.icon %}</span>
+              {%- endif -%}
+              {%- if b.meta != blank -%}<span class="nfp-card__meta">{{ b.meta | escape }}</span>{%- endif -%}
+              <h3 class="nfp-h3">{{ c_title | escape }}</h3>
+              {%- if b.text != blank -%}<p class="nfp-text">{{ b.text | escape }}</p>{%- endif -%}
+              {%- if c_url != blank and c_link != blank -%}<span class="nfp-card__foot"><span class="nfp-card__go">{{ c_link | escape }} <span class="nfp-arrow" aria-hidden="true">&rarr;</span></span></span>{%- endif -%}
+            {%- if c_url != blank -%}</a>{%- else -%}</div>{%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endcase -%}
+
+    {%- if s.center and s.link_label != blank -%}
+      <div class="nfp-actions" style="justify-content:center"><a class="nfp-btn nfp-btn--browse" href="{{ s.link_url }}">{{ s.link_label | escape }} <span class="nfp-arrow" aria-hidden="true">&rarr;</span></a></div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF Pro cards",
+  "class": "nfp-shell",
+  "settings": [
+    { "type": "select", "id": "style", "label": "Look", "default": "text", "options": [ { "value": "text", "label": "Text cards" }, { "value": "media", "label": "Image cards" }, { "value": "numbered", "label": "Numbered cards" }, { "value": "steps", "label": "Steps" }, { "value": "rows", "label": "Link rows" } ] },
+    { "type": "select", "id": "columns", "label": "Card width", "default": "3", "options": [ { "value": "2", "label": "Wide" }, { "value": "3", "label": "Medium" }, { "value": "4", "label": "Narrow" }, { "value": "5", "label": "Very narrow" } ] },
+    { "type": "checkbox", "id": "tall", "label": "Tall images", "default": false },
+    { "type": "select", "id": "bg", "label": "Background", "default": "cream", "options": [ { "value": "cream", "label": "Cream" }, { "value": "sand", "label": "Sand" }, { "value": "white", "label": "White" }, { "value": "charcoal", "label": "Charcoal" } ] },
+    { "type": "checkbox", "id": "tight", "label": "Less spacing", "default": false },
+    { "type": "checkbox", "id": "center", "label": "Center the heading", "default": false },
+    { "type": "text", "id": "anchor", "label": "Anchor id" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "link_label", "label": "Browse button label" },
+    { "type": "text", "id": "link_url", "label": "Browse button link" },
+    { "type": "text", "id": "note", "label": "Note under steps" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "meta", "label": "Small label" },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "none", "options": [ { "value": "none", "label": "None" }, { "value": "designer", "label": "Designer" }, { "value": "hardhat", "label": "Contractor" }, { "value": "hotel", "label": "Hotel" }, { "value": "dining", "label": "Dining" }, { "value": "office", "label": "Office" }, { "value": "shop", "label": "Shop" }, { "value": "home", "label": "Home" }, { "value": "lantern", "label": "Lantern" }, { "value": "spark", "label": "Spark" }, { "value": "box", "label": "Box" }, { "value": "layers", "label": "Layers" }, { "value": "clock", "label": "Clock" }, { "value": "invoice", "label": "Invoice" }, { "value": "truck", "label": "Truck" }, { "value": "mail", "label": "Mail" }, { "value": "ruler", "label": "Ruler" }, { "value": "bulb", "label": "Bulb" }, { "value": "dimmer", "label": "Dimmer" }, { "value": "palette", "label": "Palette" }, { "value": "cord", "label": "Cord" }, { "value": "people", "label": "People" }, { "value": "shape", "label": "Shape" }, { "value": "line", "label": "Linear" }, { "value": "strip", "label": "Strip" }, { "value": "chat", "label": "Chat" }, { "value": "info", "label": "Info" } ] },
+        { "type": "text", "id": "image_file", "label": "Image file name in Files" },
+        { "type": "text", "id": "fallback_collection", "label": "Fallback collection handle" },
+        { "type": "text", "id": "url", "label": "Link" },
+        { "type": "text", "id": "link_label", "label": "Link label" }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "title", "label": "Title override" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "meta", "label": "Small label" },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "none", "options": [ { "value": "none", "label": "None" }, { "value": "hotel", "label": "Hotel" }, { "value": "office", "label": "Office" }, { "value": "shop", "label": "Shop" }, { "value": "home", "label": "Home" }, { "value": "lantern", "label": "Lantern" } ] },
+        { "type": "text", "id": "image_file", "label": "Image file name in Files" },
+        { "type": "text", "id": "link_label", "label": "Link label" }
+      ]
+    }
+  ],
+  "max_blocks": 12
+}
+{% endschema %}

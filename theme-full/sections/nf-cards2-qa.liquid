@@ -1,0 +1,36 @@
+{%- comment -%}
+  NF-OPTCARDS-V2 / NF-LIGHTCARDS-V2 QA view (cards2). Not used by any template and has no preset, so it never shows on the
+  storefront or in the theme editor. Request it through the Section Rendering API on a product URL:
+    /products/<handle>?section_id=nf-cards2-qa
+  Prints how the light card and option card snippets classify each option and value, so the Liquid can be audited against
+  the Python mirror (scratchpad newbuild/cards2/mirror2.py, py_extra.py) for the whole catalog.
+{%- endcomment -%}
+{%- if product -%}
+<pre id="nf-c2-qa">
+{%- for nf_o in product.options_with_values %}
+OPT~~{{ nf_o.position }}~~{{ nf_o.name | escape }}~~{%- capture nf_c -%}{%- render 'nf-light-cards', part: 'classify', option: nf_o -%}{%- endcapture -%}{{ nf_c | strip }}~~{%- capture nf_oc -%}{%- render 'nf-option-cards', part: 'classify', product: product, option: nf_o -%}{%- endcapture -%}{{ nf_oc | strip }}
+{%- for nf_v in nf_o.values %}
+VAL~~{{ nf_v.name | escape }}~~{%- capture nf_l -%}{%- render 'nf-light-cards', part: 'look', value: nf_v.name -%}{%- endcapture -%}{{ nf_l | strip | escape }}~~{%- capture nf_f -%}{%- render 'nf-option-cards', part: 'fin', value: nf_v.name -%}{%- endcapture -%}{{ nf_f | strip }}~~{%- capture nf_p -%}{%- render 'nf-option-cards', part: 'pw', value: nf_v.name -%}{%- endcapture -%}{{ nf_p | strip | escape }}~~{%- capture nf_s -%}{%- render 'nf-option-cards', part: 'shsplit', value: nf_v.name -%}{%- endcapture -%}{{ nf_s | strip | escape }}
+{%- endfor -%}
+{%- endfor %}
+DETECT~~{%- capture nf_d -%}{%- render 'nf-light-cards', part: 'detect', product: product -%}{%- endcapture -%}{{ nf_d | strip }}~~{%- capture nf_d2 -%}{%- render 'nf-option-cards', part: 'detect', product: product -%}{%- endcapture -%}{{ nf_d2 | strip }}
+</pre>
+{%- if request.path contains 'nfc2preview' -%}{%- endif -%}
+<div id="nf-c2-preview">
+{%- for option in product.options_with_values -%}
+  {%- assign nf_opt_idx = option.position | minus: 1 -%}
+  {%- capture nf_fs -%}{%- render 'nf-light-cards', part: 'option', product: product, option: option, form_id: 'nfc2', nf_ovr: false, nf_iv: product.selected_or_first_available_variant, nf_opt_idx: nf_opt_idx, nf_sel_value: option.selected_value, hide_sold_out_variants: false -%}{%- endcapture -%}
+  {%- if nf_fs == blank -%}
+    {%- capture nf_fs -%}{%- render 'nf-option-cards', part: 'option', product: product, option: option, form_id: 'nfc2', nf_ovr: false, nf_iv: product.selected_or_first_available_variant, nf_opt_idx: nf_opt_idx, nf_sel_value: option.selected_value, hide_sold_out_variants: false -%}{%- endcapture -%}
+  {%- endif -%}
+  {{- nf_fs -}}
+{%- endfor -%}
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF cards2 QA",
+  "settings": []
+}
+{% endschema %}

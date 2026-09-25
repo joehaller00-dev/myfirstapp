@@ -1,0 +1,116 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "heading": "Blogs",
+        "intro": "Guides, ideas and straight answers for lighting every room of your home.",
+        "posts_per_page": 24,
+        "featured": "how-to-layer-lighting-in-a-living-room"
+      }
+    },
+    "nf_room_band": {
+      "type": "nf-room-band",
+      "blocks": {
+        "room_living": {
+          "type": "room",
+          "settings": {
+            "collection": "living-room",
+            "label": "Living room",
+            "article": "blog/how-to-layer-lighting-in-a-living-room",
+            "focus": "object-position: 50% 50%",
+            "lift": 8
+          }
+        },
+        "room_bedroom": {
+          "type": "room",
+          "settings": {
+            "collection": "bedroom",
+            "label": "Bedroom",
+            "article": "blog/bedroom-lighting-ideas",
+            "focus": "object-position: 40% 50%",
+            "lift": 16
+          }
+        },
+        "room_kitchen": {
+          "type": "room",
+          "settings": {
+            "collection": "kitchen-dining",
+            "label": "Kitchen and dining",
+            "article": "blog/how-high-to-hang-a-chandelier-over-a-dining-table",
+            "focus": "object-position: 50% 45%",
+            "lift": 0
+          }
+        },
+        "room_bath": {
+          "type": "room",
+          "settings": {
+            "collection": "bathroom",
+            "label": "Bathroom",
+            "article": "blog/bathroom-vanity-lighting-guide",
+            "focus": "object-position: 40% 50%",
+            "lift": 4
+          }
+        },
+        "room_entry": {
+          "type": "room",
+          "settings": {
+            "collection": "entryway-hallway",
+            "label": "Entryway",
+            "article": "",
+            "focus": "object-position: 50% 40%",
+            "lift": 0
+          }
+        },
+        "room_outdoor": {
+          "type": "room",
+          "settings": {
+            "collection": "porch-entry",
+            "label": "Outdoor",
+            "article": "blog/front-porch-lighting-guide",
+            "focus": "object-position: 50% 55%",
+            "lift": 10
+          }
+        }
+      },
+      "block_order": [
+        "room_living",
+        "room_bedroom",
+        "room_kitchen",
+        "room_bath",
+        "room_entry",
+        "room_outdoor"
+      ],
+      "settings": {
+        "eyebrow": "Shop by room",
+        "heading": "Light it room by room",
+        "text": "Every guide here ends the same way, with a light you can actually buy. Start with the room you are working on.",
+        "rule": false
+      }
+    },
+    "nf_catalog_promo": {
+      "type": "nf-catalog-promo",
+      "settings": {
+        "catalog_page": "lighting-catalog",
+        "heading": "New Catalog 2026",
+        "link_label": "Get the Digital Catalog",
+        "pad_desktop": 72,
+        "pad_mobile": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "nf_room_band",
+    "nf_catalog_promo"
+  ]
+}

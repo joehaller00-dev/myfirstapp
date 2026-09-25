@@ -1,0 +1,611 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "banner",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "",
+        "eyebrow": "Nora Furnish for Professionals",
+        "heading": "Lighting for projects of every size",
+        "text": "Designers, contractors, hotels, restaurants, offices, shops and homeowners with big plans all come to us for the same thing: good lighting in the right size and finish, without the runaround. Browse ideas by industry and order in the quantities you need.",
+        "image_file": "nf-pro-hub.jpg",
+        "image_alt": "A warmly lit hospitality space with Nora Furnish pendants and wall lights",
+        "fallback_collection": "hospitality-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form",
+        "btn2_label": "How bulk pricing works",
+        "btn2_url": "/pages/bulk-project-orders",
+        "facts": "Reply within 2 business days\nNo minimum order\nFree US shipping\nNothing is made until you approve",
+        "link_label": "See the design concepts",
+        "link_url": "/pages/project-portfolio"
+      }
+    },
+    "who": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "media",
+        "columns": "3",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "Who we work with",
+        "heading": "Made for people planning more than one light",
+        "text": "If your project has a list, a floor plan or a deadline, this is the place to start."
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "icon": "designer",
+            "title": "Interior designers",
+            "text": "Fixtures in the finish and size your scheme calls for, chosen room by room from the catalog.",
+            "image_file": "nf-pro3-hub-who-1b.png",
+            "url": "/pages/project-portfolio",
+            "link_label": "See the design concepts"
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "icon": "hardhat",
+            "title": "Contractors and builders",
+            "text": "Lighting for a whole build ordered at once, with quantities, pricing and timing agreed before anything ships.",
+            "image_file": "nf-pro3-hub-who-2.jpg",
+            "url": "/pages/bulk-project-orders",
+            "link_label": "How bulk pricing works"
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "icon": "hotel",
+            "title": "Hotels, restaurants and cafes",
+            "text": "Warm, consistent light from the lobby to the last table, in finishes that carry through the whole property.",
+            "image_file": "nf-pro3-fix-hub-who-3.png",
+            "url": "/pages/hospitality-lighting-projects",
+            "link_label": "Hospitality projects"
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "icon": "office",
+            "title": "Offices and workspaces",
+            "text": "Clear light for desks and meetings, and warmer pieces for the places people gather.",
+            "image_file": "nf-pro3-hub-who-4.png",
+            "url": "/pages/office-lighting-projects",
+            "link_label": "Office projects"
+          }
+        },
+        "b5": {
+          "type": "card",
+          "settings": {
+            "icon": "shop",
+            "title": "Shops and showrooms",
+            "text": "Light that shows products at their best and makes the space feel like your brand.",
+            "image_file": "nf-pro3-hub-who-5.jpg",
+            "url": "/pages/retail-lighting-projects",
+            "link_label": "Retail projects"
+          }
+        },
+        "b6": {
+          "type": "card",
+          "settings": {
+            "icon": "home",
+            "title": "Homeowners with big projects",
+            "text": "Renovating, building or furnishing several rooms? Get pricing for the whole list together.",
+            "image_file": "nf-pro3-hub-who-6b.png",
+            "url": "/pages/home-lighting-projects",
+            "link_label": "Home projects"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ]
+    },
+    "offer": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "numbered",
+        "columns": "4",
+        "bg": "white",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "What we offer",
+        "heading": "Everything a lighting project needs, in one place"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Bulk and project orders",
+            "text": "Buying many pieces for a hotel, office, shop or whole home? See pricing for your quantities on pieces from the catalog.",
+            "url": "/pages/bulk-order-form",
+            "link_label": "Start a bulk order"
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Bulk and project orders",
+            "text": "Pricing for many pieces or many rooms, with pricing that reflects your quantities.",
+            "url": "/pages/bulk-project-orders",
+            "link_label": "How bulk pricing works"
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Project collections",
+            "text": "Fixtures we would choose for hotels, offices, shops, homes and outdoor spaces, gathered in one place.",
+            "url": "#collections",
+            "link_label": "Browse the collections"
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "Design concepts",
+            "text": "Eight concept projects by our team, each with the fixtures used and a way to ask for the same look.",
+            "url": "/pages/project-portfolio",
+            "link_label": "See the portfolio"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "projects": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "media",
+        "columns": "4",
+        "bg": "cream",
+        "tight": false,
+        "center": false,
+        "tall": true,
+        "anchor": "projects",
+        "eyebrow": "Projects",
+        "heading": "Explore by type of project",
+        "text": "Design ideas, recommended fixtures and concept spaces for each kind of project."
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "title": "Hospitality",
+            "text": "Hotels, guest houses, restaurants, cafes and bars.",
+            "url": "/pages/hospitality-lighting-projects",
+            "image_file": "nf-pro3-hub-projects-1.jpg",
+            "fallback_collection": "hospitality-lighting",
+            "link_label": "Explore hospitality projects"
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "title": "Offices",
+            "text": "Workspaces, studios and meeting rooms.",
+            "url": "/pages/office-lighting-projects",
+            "image_file": "nf-pro3-hub-projects-2.png",
+            "fallback_collection": "office-lighting",
+            "link_label": "Explore offices projects"
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "title": "Retail",
+            "text": "Shops, showrooms, salons and studios.",
+            "url": "/pages/retail-lighting-projects",
+            "image_file": "nf-pro3-hub-projects-3.png",
+            "fallback_collection": "retail-lighting",
+            "link_label": "Explore retail projects"
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "title": "Homes",
+            "text": "Renovations, new builds and whole house refreshes.",
+            "url": "/pages/home-lighting-projects",
+            "image_file": "nf-pro3-hub-projects-4b.png",
+            "fallback_collection": "home-project-lighting",
+            "link_label": "Explore homes projects"
+          }
+        },
+        "b5": {
+          "type": "card",
+          "settings": {
+            "title": "Outdoor",
+            "text": "Rooftops, courtyards, gardens and facades.",
+            "url": "/pages/outdoor-lighting-projects",
+            "image_file": "nf-pro3-hub-projects-5.jpg",
+            "fallback_collection": "outdoor-project-lighting",
+            "link_label": "Explore outdoor projects"
+          }
+        },
+        "b6": {
+          "type": "card",
+          "settings": {
+            "title": "Restaurants and Cafes",
+            "text": "Dining rooms, bars, counters and patios.",
+            "url": "/pages/restaurant-cafe-lighting-projects",
+            "image_file": "nf-ref-cafe-counter.png",
+            "fallback_collection": "pendants",
+            "link_label": "Explore ideas"
+          }
+        },
+        "b7": {
+          "type": "card",
+          "settings": {
+            "title": "Short Term Rentals",
+            "text": "Airbnb homes and rental units, room by room.",
+            "url": "/pages/rental-property-lighting-projects",
+            "image_file": "nf-ref-guest-suite.png",
+            "fallback_collection": "bedside-lamps",
+            "link_label": "Explore ideas"
+          }
+        },
+        "b8": {
+          "type": "card",
+          "settings": {
+            "title": "Salons and Spas",
+            "text": "Styling stations, treatment rooms and reception.",
+            "url": "/pages/salon-spa-lighting-projects",
+            "image_file": "nf-ref-bath-vanity.png",
+            "fallback_collection": "vanity-lighting",
+            "link_label": "Explore ideas"
+          }
+        },
+        "b9": {
+          "type": "card",
+          "settings": {
+            "title": "Schools and Libraries",
+            "text": "Classrooms, libraries and reading rooms.",
+            "url": "/pages/school-library-lighting-projects",
+            "image_file": "nf-ref-book-corner.png",
+            "fallback_collection": "reading-floor-lamps",
+            "link_label": "Explore ideas"
+          }
+        },
+        "b10": {
+          "type": "card",
+          "settings": {
+            "title": "Gyms and Studios",
+            "text": "Training floors, yoga rooms and lounges.",
+            "url": "/pages/gym-studio-lighting-projects",
+            "image_file": "nf-ref-office-lounge.jpg",
+            "fallback_collection": "linear-suspension",
+            "link_label": "Explore ideas"
+          }
+        },
+        "b11": {
+          "type": "card",
+          "settings": {
+            "title": "Model Homes and Staging",
+            "text": "Show homes, listings and new developments.",
+            "url": "/pages/model-home-staging-lighting",
+            "image_file": "nf-blog-layered-living-room.png",
+            "fallback_collection": "chandeliers",
+            "link_label": "Explore ideas"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9",
+        "b10",
+        "b11"
+      ]
+    },
+    "collections": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "media",
+        "columns": "5",
+        "bg": "sand",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "anchor": "collections",
+        "eyebrow": "Project collections",
+        "heading": "Curated collections for every kind of space",
+        "text": "Real fixtures from our range, chosen for how each type of space is used. All of them is available in quantity with bulk pricing."
+      },
+      "blocks": {
+        "b1": {
+          "type": "collection",
+          "settings": {
+            "collection": "hospitality-lighting",
+            "text": "For lobbies, dining rooms and guest rooms.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-hub-collections-1.jpg"
+          }
+        },
+        "b2": {
+          "type": "collection",
+          "settings": {
+            "collection": "office-lighting",
+            "text": "For desks, meeting rooms and studios.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-hub-collections-2.png"
+          }
+        },
+        "b3": {
+          "type": "collection",
+          "settings": {
+            "collection": "retail-lighting",
+            "text": "For shops, showrooms and salons.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-hub-collections-3.png"
+          }
+        },
+        "b4": {
+          "type": "collection",
+          "settings": {
+            "collection": "home-project-lighting",
+            "text": "For renovations and whole home projects.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-hub-collections-4b.png"
+          }
+        },
+        "b5": {
+          "type": "collection",
+          "settings": {
+            "collection": "outdoor-project-lighting",
+            "text": "For terraces, gardens, paths and facades.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-hub-collections-5.webp"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ]
+    },
+    "concepts": {
+      "type": "nf-pro-concepts",
+      "settings": {
+        "mode": "related",
+        "filter": "all",
+        "limit": 4,
+        "bg": "cream",
+        "eyebrow": "Project portfolio",
+        "heading": "Design concepts to borrow from",
+        "text": "Concept spaces designed by our team, each built from real fixtures you can order.",
+        "note": "These are design concepts created by our team, not client projects.",
+        "link_label": "See all eight concepts"
+      },
+      "blocks": {
+        "c_alder_lobby": {
+          "type": "concept",
+          "settings": {
+            "slug": "alder-lobby",
+            "number": "01",
+            "title": "The Alder Lobby",
+            "category": "hospitality",
+            "space": "Boutique hotel lobby",
+            "summary": "A boutique hotel lobby that feels like a warm living room from the moment the door opens.",
+            "image_file": "nf-pro3-hub-concepts-1.png",
+            "fallback_collection": "hospitality-lighting"
+          }
+        },
+        "c_maker_studio": {
+          "type": "concept",
+          "settings": {
+            "slug": "maker-studio",
+            "number": "04",
+            "title": "Maker Studio",
+            "category": "office",
+            "space": "Creative studio office",
+            "summary": "A studio office with bright, even light for making things and a softer glow for talking them through.",
+            "image_file": "nf-pro3-hub-concepts-2b.png",
+            "fallback_collection": "linear-suspension"
+          }
+        },
+        "c_linen_and_oak": {
+          "type": "concept",
+          "settings": {
+            "slug": "linen-and-oak",
+            "number": "05",
+            "title": "Linen and Oak",
+            "category": "retail",
+            "space": "Home goods boutique",
+            "summary": "A home goods boutique lit like a beautiful home, so products look the way they will in yours.",
+            "image_file": "nf-pro3-hub-concepts-3.webp",
+            "fallback_collection": "pendants"
+          }
+        },
+        "c_garden_courtyard": {
+          "type": "concept",
+          "settings": {
+            "slug": "garden-courtyard",
+            "number": "07",
+            "title": "Garden Courtyard",
+            "category": "outdoor",
+            "space": "Walled garden courtyard",
+            "summary": "A walled courtyard garden with gentle paths of light and a glowing seating corner.",
+            "image_file": "nf-pro3-hub-concepts-4.webp",
+            "fallback_collection": "path-lights"
+          }
+        }
+      },
+      "block_order": [
+        "c_alder_lobby",
+        "c_maker_studio",
+        "c_linen_and_oak",
+        "c_garden_courtyard"
+      ]
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "sand",
+        "heading": "Questions professionals ask us",
+        "show_email": true,
+        "open_first": false,
+        "eyebrow": "Good to know",
+        "text": "Straight answers on minimums, timing, payment and returns."
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building. Larger quantities get bulk pricing.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "q": "Are the portfolio projects real client jobs?",
+            "a": "<p>No. They are design concepts created by our team to show what our lighting can do in different spaces. Every fixture shown is a real product you can buy, order in quantity.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q6"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how our lighting can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form",
+        "btn2_label": "Explore project types",
+        "btn2_url": "#projects",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Restaurant",
+            "image_file": "nf-pro3-hub-ref-1.png",
+            "alt": "Restaurant inspiration photo, lit in the evening"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Loft Workspace",
+            "image_file": "nf-pro3-hub-ref-2.jpg",
+            "alt": "Loft Workspace inspiration photo, lit in the evening"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Boutique",
+            "image_file": "nf-pro3-hub-ref-3.png",
+            "alt": "Boutique inspiration photo, lit in the evening"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Family Kitchen",
+            "image_file": "nf-pro3-hub-ref-4b.png",
+            "alt": "Family Kitchen inspiration photo, lit in the evening"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Front Entry",
+            "image_file": "nf-blog-rainy-entry-lanterns.png",
+            "alt": "Front Entry lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Patio",
+            "image_file": "nf-hero-patio-evening.jpg",
+            "alt": "Patio lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Guest Suite",
+            "image_file": "nf-pro3-hub-ref-7.webp",
+            "alt": "Guest Suite inspiration photo, lit in the evening"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Rooftop Bar",
+            "image_file": "nf-pro3-hub-ref-8.jpg",
+            "alt": "Rooftop Bar inspiration photo, lit in the evening"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "who",
+    "offer",
+    "references_v2",
+    "projects",
+    "collections",
+    "concepts",
+    "faq"
+  ]
+}

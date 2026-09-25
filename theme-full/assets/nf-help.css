@@ -1,0 +1,45 @@
+/* NF-HELP-V1 (2026-09-21): our own help button and panel, replaces the Shopify Inbox bubble */
+shopify-chat,#shopify-chat,.shopify-chat{display:none!important}
+.nfh-btn{position:fixed;right:20px;bottom:calc(20px + var(--nf-chat-lift,0px));z-index:60;display:flex;align-items:center;gap:8px;height:48px;padding:0 20px 0 16px;border:0;border-radius:999px;background:#1c1c1c;color:#fff;cursor:pointer;font:500 14px/1 var(--text-font-family,Montserrat,system-ui,sans-serif);letter-spacing:.02em;box-shadow:0 10px 26px -10px rgba(0,0,0,.45);transition:transform .2s ease,opacity .2s ease}
+.nfh-btn svg{width:20px;height:20px;flex:none}
+.nfh-btn:hover{transform:translateY(-2px)}
+html.nfh-open .nfh-btn,html.nf-chat-dodge .nfh-btn{opacity:0;pointer-events:none}
+.nfh-ov{position:fixed;inset:0;z-index:9500;background:rgba(20,18,16,.38);opacity:0;transition:opacity .22s ease}
+.nfh-ov.is-on{opacity:1}
+.nfh-ov[hidden],.nfh-panel[hidden]{display:none}
+.nfh-panel{position:fixed;z-index:9501;right:20px;bottom:20px;width:380px;max-height:min(640px,calc(100vh - 40px));display:flex;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 24px 60px -18px rgba(0,0,0,.35);transform:translateY(12px);opacity:0;transition:transform .24s ease,opacity .24s ease;font-family:var(--text-font-family,Montserrat,system-ui,sans-serif);color:#1c1c1c}
+.nfh-panel.is-on{transform:none;opacity:1}
+.nfh-hd{position:relative;padding:22px 56px 18px 22px;background:#1c1c1c;color:#fff}
+.nfh-hd h2{margin:0 0 4px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:22px;color:#fff;letter-spacing:.01em}
+.nfh-hd p{margin:0;font-size:13px;line-height:1.5;color:#d9d4cc}
+.nfh-x{position:absolute;top:14px;right:14px;width:34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;font-size:20px;line-height:34px;padding:0}
+.nfh-bd{overflow-y:auto;padding:6px 0 4px;-webkit-overflow-scrolling:touch}
+.nfh-q{border-bottom:1px solid #eee}
+.nfh-q summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 22px;cursor:pointer;font-weight:500;font-size:14.5px}
+.nfh-q summary::-webkit-details-marker{display:none}
+.nfh-q summary::after{content:"+";font-size:20px;font-weight:300;color:#8a7a66}
+.nfh-q[open] summary::after{content:"\2212"}
+.nfh-q div{padding:0 22px 16px;font-size:13.5px;line-height:1.6;color:#4a4540}
+.nfh-q a{color:#1c1c1c;text-decoration:underline}
+.nfh-form{padding:16px 22px 20px;display:grid;gap:10px}
+.nfh-form h3{margin:4px 0 2px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:18px}
+.nfh-form input,.nfh-form textarea{width:100%;font:inherit;font-size:16px;border:1px solid #ddd;border-radius:10px;padding:11px 12px;background:#fff;color:#1c1c1c;box-sizing:border-box}
+.nfh-form textarea{min-height:88px;resize:vertical}
+.nfh-form input:focus,.nfh-form textarea:focus{outline:none;border-color:#1c1c1c}
+.nfh-send{height:46px;border:0;border-radius:999px;background:#1c1c1c;color:#fff;font:500 14px/1 inherit;letter-spacing:.04em;cursor:pointer}
+.nfh-send[disabled]{opacity:.55}
+.nfh-note{margin:0;font-size:12px;color:#7a7168;text-align:center}
+.nfh-err{margin:0;font-size:12.5px;color:#b3261e}
+.nfh-ok{padding:26px 22px;text-align:center}
+.nfh-ok h3{margin:0 0 6px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:20px}
+.nfh-ok p{margin:0;font-size:13.5px;line-height:1.6;color:#4a4540}
+@media (max-width:749px){
+  .nfh-btn{right:14px;bottom:calc(14px + var(--nf-chat-lift,0px));width:52px;height:52px;padding:0;justify-content:center}
+  .nfh-btn span{display:none}
+  .nfh-panel{left:0;right:0;bottom:0;width:auto;max-height:86vh;border-radius:18px 18px 0 0}
+}
+@media (prefers-reduced-motion:reduce){.nfh-btn,.nfh-panel,.nfh-ov{transition:none}}
+/* NF-HELP-V1.1 (2026-09-22): the back to top button used to be placed off the Shopify chat bubble.
+   That bubble is gone, so pin it directly above our help button instead. */
+.nf-totop{right:20px !important;bottom:calc(var(--nf-chat-lift,0px) + 80px) !important;width:48px !important;height:48px !important;min-width:48px !important;min-height:48px !important}
+@media (max-width:749px){.nf-totop{right:14px !important;bottom:calc(var(--nf-chat-lift,0px) + 86px) !important;width:52px !important;height:52px !important;min-width:52px !important;min-height:52px !important}}

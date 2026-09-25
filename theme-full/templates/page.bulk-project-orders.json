@@ -1,0 +1,401 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "nf-pro-hero",
+      "settings": {
+        "layout": "split",
+        "bg": "charcoal",
+        "crumb_parent": true,
+        "btn1_style": "gold",
+        "btn2_style": "outline",
+        "crumb_label": "Bulk and Project Orders",
+        "eyebrow": "Bulk and project orders",
+        "heading": "Many pieces, many rooms, one simple order",
+        "text": "Fitting out several rooms, a whole property or a run of identical units? Pick from the project collections, order the quantities you need, and 10% comes off automatically on 2 or more items.",
+        "image_file": "nf-pro-bulk.jpg",
+        "image_alt": "Matching light fixtures ready for a project",
+        "fallback_collection": "hospitality-lighting",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form",
+        "btn2_label": "Shop project collections",
+        "btn2_url": "/pages/professionals#collections",
+        "facts": "Buy 2 or more, save 10%\nNo minimum order\nFree US shipping\nDelivered in 6 to 9 business days",
+        "link_label": "",
+        "link_url": ""
+      }
+    },
+    "when": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "text",
+        "columns": "3",
+        "bg": "cream",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "When buying in bulk makes sense",
+        "heading": "Built for lists, not single clicks"
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "icon": "home",
+            "title": "Several rooms at once",
+            "text": "A renovation or new build where every room needs lighting."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "icon": "layers",
+            "title": "Repeat units",
+            "text": "Hotel rooms, rental units or offices that share the same fixtures."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "icon": "palette",
+            "title": "Matching finishes",
+            "text": "Pieces from different collections that need to match."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "icon": "box",
+            "title": "Larger quantities",
+            "text": "Ten, fifty or more of the same fixture."
+          }
+        },
+        "b5": {
+          "type": "card",
+          "settings": {
+            "icon": "spark",
+            "title": "The same finish on every piece",
+            "text": "Pick one finish and light color and use it across the whole project."
+          }
+        },
+        "b6": {
+          "type": "card",
+          "settings": {
+            "icon": "invoice",
+            "title": "One simple checkout",
+            "text": "One order for the whole list, with the discount applied at checkout."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6"
+      ]
+    },
+    "includes": {
+      "type": "nf-pro-split",
+      "settings": {
+        "bg": "white",
+        "flip": true,
+        "btn_style": "secondary",
+        "eyebrow": "What you get",
+        "heading": "What buying in bulk includes",
+        "image_file": "nf-pro3-bulk-includes-1.jpg",
+        "image_alt": "Pathway at night lined with continuous warm LED light strips",
+        "fallback_collection": "hospitality-lighting",
+        "text": "<p>Every piece is a real product from the catalog, ready to order in the quantities you need.</p>",
+        "bullets": "Automatic savings: Buy 2 or more items and 10% comes off at checkout, no code needed.\nMatching pieces: The same fixture, finish and light color across every room or unit.\nFree shipping: Delivered free anywhere in the United States. Larger orders may arrive in more than one box.\nEmail support: Questions about a large order? Email info@norafurnish.com for a reply within 1 to 2 business days.",
+        "btn_label": "Start a bulk order",
+        "btn_url": "/pages/bulk-order-form"
+      }
+    },
+    "collections": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "media",
+        "columns": "5",
+        "bg": "sand",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "Start from a collection",
+        "heading": "Project collections to build your list from",
+        "text": "Curated fixtures for each kind of space. Add the ones you like to your cart in the quantities you need."
+      },
+      "blocks": {
+        "b1": {
+          "type": "collection",
+          "settings": {
+            "collection": "hospitality-lighting",
+            "text": "For lobbies, dining rooms and guest rooms.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-bulk-collections-1.jpg"
+          }
+        },
+        "b2": {
+          "type": "collection",
+          "settings": {
+            "collection": "office-lighting",
+            "text": "For desks, meeting rooms and studios.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-bulk-collections-2.png"
+          }
+        },
+        "b3": {
+          "type": "collection",
+          "settings": {
+            "collection": "retail-lighting",
+            "text": "For shops, showrooms and salons.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-bulk-collections-3.jpg"
+          }
+        },
+        "b4": {
+          "type": "collection",
+          "settings": {
+            "collection": "home-project-lighting",
+            "text": "For renovations and whole home projects.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-bulk-collections-4b.png"
+          }
+        },
+        "b5": {
+          "type": "collection",
+          "settings": {
+            "collection": "outdoor-project-lighting",
+            "text": "For terraces, gardens, paths and facades.",
+            "link_label": "Shop the collection",
+            "image_file": "nf-pro3-bulk-collections-5.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5"
+      ]
+    },
+    "how": {
+      "type": "nf-pro-cards",
+      "settings": {
+        "style": "steps",
+        "columns": "3",
+        "bg": "charcoal",
+        "tight": false,
+        "center": false,
+        "tall": false,
+        "eyebrow": "How it works",
+        "heading": "From list to delivery in four steps",
+        "note": "No minimum order. 10% off 2 or more items, applied automatically."
+      },
+      "blocks": {
+        "b1": {
+          "type": "card",
+          "settings": {
+            "meta": "A few minutes",
+            "title": "Build your list",
+            "text": "Pick fixtures from the project collections or anywhere in the catalog."
+          }
+        },
+        "b2": {
+          "type": "card",
+          "settings": {
+            "meta": "At checkout",
+            "title": "Save automatically",
+            "text": "Add 2 or more items and 10% comes off at checkout. No code needed."
+          }
+        },
+        "b3": {
+          "type": "card",
+          "settings": {
+            "meta": "Secure checkout",
+            "title": "Pay online",
+            "text": "Pay through the secure Shopify checkout with your usual card or wallet."
+          }
+        },
+        "b4": {
+          "type": "card",
+          "settings": {
+            "meta": "6 to 9 business days",
+            "title": "Delivered",
+            "text": "Your pieces ship free to your door anywhere in the United States."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ]
+    },
+    "faq": {
+      "type": "nf-pro-faq",
+      "settings": {
+        "bg": "white",
+        "heading": "Common questions",
+        "show_email": true,
+        "open_first": false
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a minimum order?",
+            "a": "<p>No. Order a single piece or the lighting for a whole building, and 2 or more items get 10% off.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "Is there a discount for buying more?",
+            "a": "<p>Yes. Buy 2 or more items and 10% comes off automatically at checkout, with no code needed.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "Can I return items from a bulk order?",
+            "a": "<p>Yes. Pieces from a bulk order follow the usual 30 day return policy. Anything that arrives damaged or faulty is replaced or refunded.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "How do I pay?",
+            "a": "<p>Pay online through the secure Shopify checkout with your usual card or wallet.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "Do you charge for shipping?",
+            "a": "<p>Shipping is free anywhere in the United States. Larger orders can arrive in more than one box.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ]
+    },
+    "references_v2": {
+      "type": "nf-pro2-references",
+      "settings": {
+        "anchor": "references",
+        "eyebrow": "Inspiration",
+        "heading": "Application references",
+        "caption": "Inspiration showing how lighting in quantity can be used. These are example spaces, not our installed projects.",
+        "foot": "Seen a look you like? Every fixture in it is in the catalog, with bulk pricing for larger orders.",
+        "btn1_label": "Start a bulk order",
+        "btn1_url": "/pages/bulk-order-form",
+        "btn2_label": "",
+        "btn2_url": "",
+        "quote_links": false,
+        "quote_anchor": "quote"
+      },
+      "blocks": {
+        "r1": {
+          "type": "ref",
+          "settings": {
+            "label": "Restaurant Rows",
+            "image_file": "nf-pro3-bulk-ref-1.png",
+            "alt": "Restaurant Rows inspiration photo, lit in the evening"
+          }
+        },
+        "r2": {
+          "type": "ref",
+          "settings": {
+            "label": "Apartment Halls",
+            "image_file": "nf-pro3-bulk-ref-2.png",
+            "alt": "Apartment Halls inspiration photo, lit in the evening"
+          }
+        },
+        "r3": {
+          "type": "ref",
+          "settings": {
+            "label": "Guest Rooms",
+            "image_file": "nf-ref-guest-rooms.png",
+            "alt": "Guest Rooms lit in the evening, inspiration image"
+          }
+        },
+        "r4": {
+          "type": "ref",
+          "settings": {
+            "label": "Cafe Pendants",
+            "image_file": "nf-ref-cafe-pendants.webp",
+            "alt": "Cafe Pendants lit in the evening, inspiration image"
+          }
+        },
+        "r5": {
+          "type": "ref",
+          "settings": {
+            "label": "Path Runs",
+            "image_file": "nf-ref-path-runs.png",
+            "alt": "Path Runs lit in the evening, inspiration image"
+          }
+        },
+        "r6": {
+          "type": "ref",
+          "settings": {
+            "label": "Patio Strings",
+            "image_file": "nf-ref-patio-strings.png",
+            "alt": "Patio Strings lit in the evening, inspiration image"
+          }
+        },
+        "r7": {
+          "type": "ref",
+          "settings": {
+            "label": "Rental Baths",
+            "image_file": "nf-ref-family-bath.png",
+            "alt": "Rental Baths lit in the evening, inspiration image"
+          }
+        },
+        "r8": {
+          "type": "ref",
+          "settings": {
+            "label": "Deck Posts",
+            "image_file": "nf-ref-deck-posts.png",
+            "alt": "Deck Posts lit in the evening, inspiration image"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6",
+        "r7",
+        "r8"
+      ]
+    }
+  },
+  "order": [
+    "hero",
+    "when",
+    "references_v2",
+    "includes",
+    "collections",
+    "how",
+    "faq"
+  ]
+}

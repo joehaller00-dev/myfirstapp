@@ -1,0 +1,53 @@
+{%- comment -%}
+  NF-DIRECTORY-V1 (2026-09-11): the sets of collection picture tiles inside one department of the /collections
+  directory (sections/nf-directory-departments.liquid). Input: groups = "Title@group-handle=child,child:Label;Title=child".
+  "@group-handle" (optional) adds an "All <Title>" tile first; "=" separates the title from the children; ";" separates
+  sets; "child:Label" renames a tile. ov = photo swaps passed through to nf-directory-img.
+  A collection that does not exist or has no products on the storefront is left out, and an empty set is not printed.
+{%- endcomment -%}
+{%- assign nfdg_list = groups | split: ';' -%}
+{%- for nfdg_raw in nfdg_list -%}
+  {%- assign nfdg = nfdg_raw | strip -%}
+  {%- if nfdg == '' -%}{%- continue -%}{%- endif -%}
+  {%- if nfdg contains '=' -%}
+    {%- assign nfdg_head = nfdg | split: '=' | first | strip -%}
+    {%- assign nfdg_body = nfdg | split: '=' | last -%}
+    {%- if nfdg_head == nfdg_body -%}{%- assign nfdg_head = '' -%}{%- endif -%}
+  {%- else -%}
+    {%- assign nfdg_head = '' -%}
+    {%- assign nfdg_body = nfdg -%}
+  {%- endif -%}
+  {%- assign nfdg_title = nfdg_head -%}
+  {%- assign nfdg_h = '' -%}
+  {%- if nfdg_head contains '@' -%}
+    {%- assign nfdg_title = nfdg_head | split: '@' | first | strip -%}
+    {%- assign nfdg_h = nfdg_head | split: '@' | last | strip -%}
+  {%- endif -%}
+  {%- capture nfdg_lis -%}
+    {%- if nfdg_h != '' -%}
+      {%- assign nfdg_hc = collections[nfdg_h] -%}
+      {%- if nfdg_hc.id != blank and nfdg_hc.all_products_count > 0 -%}
+        {%- assign nfdg_hl = 'All ' | append: nfdg_title -%}
+        {%- render 'nf-directory-tile', c: nfdg_hc, label: nfdg_hl, ov: ov, k: nfdg_title -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- assign nfdg_kids = nfdg_body | split: ',' -%}
+    {%- for nfdg_kraw in nfdg_kids -%}
+      {%- assign nfdg_k = nfdg_kraw | strip -%}
+      {%- if nfdg_k == '' -%}{%- continue -%}{%- endif -%}
+      {%- assign nfdg_kh = nfdg_k | split: ':' | first | strip -%}
+      {%- assign nfdg_kl = '' -%}
+      {%- if nfdg_k contains ':' -%}{%- assign nfdg_kl = nfdg_k | split: ':' | last | strip -%}{%- endif -%}
+      {%- assign nfdg_c = collections[nfdg_kh] -%}
+      {%- if nfdg_c.id == blank or nfdg_c.all_products_count == 0 -%}{%- continue -%}{%- endif -%}
+      {%- render 'nf-directory-tile', c: nfdg_c, label: nfdg_kl, ov: ov, k: nfdg_title -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- assign nfdg_lis = nfdg_lis | strip -%}
+  {%- if nfdg_lis != '' -%}
+    <div class="nfd-set" data-nfd-group>
+      {%- if nfdg_title != '' -%}<p class="nfd-set__t">{{ nfdg_title | escape }}</p>{%- endif -%}
+      <ul class="nfd-tiles" role="list">{{ nfdg_lis }}</ul>
+    </div>
+  {%- endif -%}
+{%- endfor -%}

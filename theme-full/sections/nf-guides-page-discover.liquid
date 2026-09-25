@@ -1,0 +1,75 @@
+{%- comment -%}
+  nf-guides-page-discover : "Discover Nora Furnish" explore our world tiles (Ideas & Guides page). 2026-09-11.
+  Six photo tiles on a deep charcoal ground with gold accents. Tile 1 is tall, 2 and 3 stack beside it, 4 to 6 share
+  the bottom row (desktop). Each whole tile is one link; its gold outline button fills when the tile is hovered.
+  Photos are Shopify Files images picked by FILENAME. Styles: assets/nf-guides-page.css.
+{%- endcomment -%}
+{{- 'nf-guides-page.css' | asset_url | stylesheet_tag -}}
+<section class="nfg nfg-sec nfg-discover nfg-on-dark"{% if section.settings.anchor != blank %} id="{{ section.settings.anchor | handle }}"{% endif %} aria-labelledby="nfg-disc-h-{{ section.id }}">
+  <div class="nfg-wrap">
+    <header class="nfg-head nfg-head--center">
+      <div class="nfg-head__main">
+        {%- if section.settings.eyebrow != blank -%}<p class="nfg-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="nfg-h2" id="nfg-disc-h-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<p class="nfg-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+    </header>
+    <ul class="nfg-tiles nfg-tiles--{{ section.blocks.size }}" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign t_img = blank
+          if block.settings.image_file != blank
+            assign t_img = images[block.settings.image_file]
+          endif
+          assign t_sizes = '(max-width: 699px) 92vw, (max-width: 999px) 46vw, 34vw'
+          if forloop.index == 2 or forloop.index == 3
+            assign t_sizes = '(max-width: 699px) 92vw, (max-width: 999px) 46vw, 56vw'
+          endif
+        -%}
+        <li class="nfg-tiles__item" {{ block.shopify_attributes }}>
+          <a class="nfg-tile" href="{{ block.settings.url | default: '#' | escape }}">
+            <span class="nfg-tile__img" aria-hidden="true">
+              {%- if t_img != blank and t_img.width > 0 -%}
+                {{- t_img | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '480,720,960,1280,1600,1800', sizes: t_sizes, alt: '' -}}
+              {%- endif -%}
+            </span>
+            <span class="nfg-tile__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}{% if block.settings.eyebrow != blank %}<span class="nfg-tile__rule" aria-hidden="true"></span>{{ block.settings.eyebrow | escape }}{% endif %}</span>
+            <h3 class="nfg-tile__t">{{ block.settings.title | escape }}</h3>
+            {%- if block.settings.text != blank -%}<span class="nfg-tile__p">{{ block.settings.text | escape }}</span>{%- endif -%}
+            {%- if block.settings.btn_label != blank -%}
+              <span class="nfg-btn nfg-btn--outline nfg-btn--sm">{{ block.settings.btn_label | escape }}<span class="nfg-arrow" aria-hidden="true">&rarr;</span></span>
+            {%- endif -%}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "NF guides discover",
+  "class": "nfg-section nfg-section--discover",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor id", "default": "discover" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Discover Nora Furnish" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Explore our world" },
+    { "type": "textarea", "id": "text", "label": "Text" }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        { "type": "text", "id": "image_file", "label": "Image filename in Files" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "btn_label", "label": "Button label" },
+        { "type": "text", "id": "url", "label": "Link", "info": "A path such as /pages/our-story or an anchor such as #reviews" }
+      ]
+    }
+  ],
+  "max_blocks": 6
+}
+{% endschema %}

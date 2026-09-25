@@ -1,0 +1,51 @@
+{%- comment -%}
+  NF-TOPBAR-V2 (2026-09-11): resolves one "top-bar" menu URL for snippets/nf-topbar-panel.liquid and the phone drawer
+  (snippets/header-sidebar.liquid). Prints the URL when the link is live and nothing when it points at a collection that
+  does not exist yet or has no products, so Shop By and Best Sellers fill in by themselves as their collections land.
+  The Best Sellers split has two spellings in the store; each falls back to the other while one of them is empty:
+  best-sellers-indoor <> indoor-best-sellers, best-sellers-outdoor <> outdoor-best-sellers.
+  A /pages/<handle> link passes only when that page exists and is published (pages[handle].id), so a custom service page
+  that is late or later unpublished never shows as a 404 (Made to Measure Curtains, Custom Size Chandeliers, Custom Name
+  Signs were added to the menu while their pages were still being built).
+  Anything else (blogs, anchors, /collections itself) always passes.
+  Usage: {%- capture u -%}{%- render 'nf-tb-url', url: link.url -%}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign nfu = url | strip
+  assign nfu_out = nfu
+  if nfu contains '/pages/'
+    assign nfu_p = nfu | split: '/pages/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+    if nfu_p != blank and pages[nfu_p].id == blank
+      assign nfu_out = ''
+    endif
+  endif
+  if nfu contains '/collections/'
+    assign nfu_h = nfu | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+    if nfu_h != blank and nfu_h != 'all'
+      assign nfu_c = collections[nfu_h]
+      if nfu_c.products_count > 0
+        assign nfu_out = nfu
+      else
+        assign nfu_out = ''
+        assign nfu_alt = ''
+        case nfu_h
+          when 'best-sellers-indoor'
+            assign nfu_alt = 'indoor-best-sellers'
+          when 'best-sellers-outdoor'
+            assign nfu_alt = 'outdoor-best-sellers'
+          when 'indoor-best-sellers'
+            assign nfu_alt = 'best-sellers-indoor'
+          when 'outdoor-best-sellers'
+            assign nfu_alt = 'best-sellers-outdoor'
+        endcase
+        if nfu_alt != ''
+          assign nfu_c2 = collections[nfu_alt]
+          if nfu_c2.products_count > 0
+            assign nfu_out = '/collections/' | append: nfu_alt
+          endif
+        endif
+      endif
+    endif
+  endif
+  echo nfu_out
+-%}

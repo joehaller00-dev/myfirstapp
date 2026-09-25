@@ -1,0 +1,26 @@
+{%- comment -%}
+  NF-PDP-V1 (2026-09-13) rows for "Complete the look" (snippets/nf-pdp-ctl.liquid). Only rendered through
+  /recommendations/products?section_id=nf-pdp-recs&product_id=...&intent=complementary|related. Not in any template.
+{%- endcomment -%}
+<div class="nf-recs" data-count="{{ recommendations.products_count }}">
+  {%- for p in recommendations.products -%}
+    {%- capture nf_seas -%}{%- render 'nf-seasonal', p: p -%}{%- endcapture -%}
+{%- if p.available and p.featured_image != blank and nf_seas == blank -%}
+      {%- capture p_rooms -%}{%- for t in p.tags -%}{%- if t contains 'shop-room-' or t contains 'shop-area-' -%}{{ t }} {% endif -%}{%- endfor -%}{%- endcapture -%}
+      <a class="nf-ctl__row" href="{{ p.url }}" data-nf-rec data-type="{{ p.type | escape }}" data-rooms="{{ p_rooms | strip }}">
+        <span class="nf-ctl__img">{{ p.featured_image | image_url: width: 180 | image_tag: loading: 'lazy', widths: '90,135,180', sizes: '64px', alt: p.title, class: 'nf-ctl__im' }}</span>
+        <span class="nf-ctl__meta">
+          <span class="nf-ctl__t">{{ p.title }}</span>
+          <span class="nf-ctl__p">{% if p.price_varies %}From {% endif %}{% render 'nf-acc-price', product: p %}</span>
+        </span>
+        <span class="nf-ctl__go" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+{% schema %}
+{
+  "name": "NF PDP recommendations",
+  "settings": []
+}
+{% endschema %}

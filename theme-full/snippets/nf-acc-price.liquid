@@ -1,0 +1,28 @@
+{%- comment -%}
+  NF-ACC-V1 (2026-09-13): the lowest price among a product's FIXTURE variants, for cards that print "From $X".
+  Accessory variants (bulb, cord, glass, oil set) listed in the product metafield custom.accessory_variant_ids are skipped,
+  so a fixture card never reads "From $11.99". Products without that metafield print product.price_min exactly as before.
+  Params: product (required), format: 'money' (default) or 'text' (money | strip_html).
+{%- endcomment -%}
+{%- liquid
+  assign nf_ap = product.price_min
+  if product.metafields.custom.accessory_variant_ids != blank
+    assign nf_accids = product.metafields.custom.accessory_variant_ids.value | map: 'id' | join: ',' | prepend: ',' | append: ','
+    assign nf_found = false
+    for nf_av in product.variants
+      assign nf_akey = ',' | append: nf_av.id | append: ','
+      if nf_accids contains nf_akey
+        continue
+      endif
+      if nf_found == false or nf_av.price < nf_ap
+        assign nf_ap = nf_av.price
+        assign nf_found = true
+      endif
+    endfor
+  endif
+  if format == 'text'
+    echo nf_ap | money | strip_html
+  else
+    echo nf_ap | money
+  endif
+-%}

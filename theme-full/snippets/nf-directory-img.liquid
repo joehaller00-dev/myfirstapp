@@ -1,0 +1,54 @@
+{%- comment -%}
+  NF-DIRECTORY-V1 (2026-09-11): the picture for one collection on the /collections directory.
+  c = collection, ov = photo swaps ("handle=value" per line; value = a Shopify Files filename or a full https CDN URL
+  of a bright product photo from inside that collection), w = width to request, sizes = sizes attribute,
+  eager = true for above the fold. Order: swap, else the collection image, else the collection's first product photo
+  (collection.featured_image), else a plain grey block. Never a broken image.
+  BANNED anywhere: Files BRANDED_1_CLEAN.png (old gold script render). Never put it in a swap.
+{%- endcomment -%}
+{%- liquid
+  assign nfi_v = ''
+  if ov != blank
+    assign nfi_pairs = ov | newline_to_br | replace: '<br />', ',' | split: ','
+    for nfi_p in nfi_pairs
+      assign nfi_k = nfi_p | split: '=' | first | strip
+      if nfi_k == c.handle
+        assign nfi_v = nfi_p | split: '=' | last | strip
+      endif
+    endfor
+  endif
+  assign nfi_w = w | default: 480
+  assign nfi_half = nfi_w | divided_by: 2
+  assign nfi_load = 'lazy'
+  if eager
+    assign nfi_load = 'eager'
+  endif
+  assign nfi_img = blank
+  assign nfi_url = ''
+  if nfi_v != ''
+    assign nfi_head = nfi_v | slice: 0, 4
+    if nfi_head == 'http'
+      assign nfi_url = nfi_v
+    else
+      assign nfi_img = images[nfi_v]
+      if nfi_img.width == blank or nfi_img.width == 0
+        assign nfi_img = blank
+      endif
+    endif
+  endif
+  if nfi_url == '' and nfi_img == blank
+    if c.image
+      assign nfi_img = c.image
+    elsif c.featured_image
+      assign nfi_img = c.featured_image
+    endif
+  endif
+-%}
+{%- if nfi_url != '' -%}
+  <img src="{{ nfi_url }}?width={{ nfi_w }}" srcset="{{ nfi_url }}?width={{ nfi_half }} {{ nfi_half }}w, {{ nfi_url }}?width={{ nfi_w }} {{ nfi_w }}w" sizes="{{ sizes | default: '50vw' }}" width="{{ nfi_w }}" height="{{ nfi_w }}" alt="" loading="{{ nfi_load }}" decoding="async">
+{%- elsif nfi_img != blank -%}
+  {%- assign nfi_ws = nfi_half | append: ',' | append: nfi_w -%}
+  {{- nfi_img | image_url: width: nfi_w | image_tag: loading: nfi_load, widths: nfi_ws, sizes: sizes, alt: '' -}}
+{%- else -%}
+  <span class="nfd-noimg" aria-hidden="true"></span>
+{%- endif -%}

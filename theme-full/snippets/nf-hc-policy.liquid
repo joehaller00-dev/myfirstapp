@@ -1,0 +1,88 @@
+{%- comment -%}
+  NF-HELP-V1 (2026-09-12): "At a glance" cards and a "Still unsure? Ask us" band for the refund and shipping policies.
+  Shopify policy pages have no sections, so layout/theme.liquid renders this snippet after content_for_layout only when
+  request.page_type == 'policy'. The glance row is moved to sit right under the policy title by the inline script
+  (without JS it simply shows below the policy text, above the band). Card text is taken word for word from the
+  policies (the shipping window "6 to 9" is written with "to" instead of the policy's dash, per the no dashes rule).
+  Email only, never a phone number.
+{%- endcomment -%}
+{%- liquid
+  assign nfp_path = request.path | downcase
+  assign nfp_kind = ''
+  if nfp_path contains 'refund-policy'
+    assign nfp_kind = 'refund'
+  elsif nfp_path contains 'shipping-policy'
+    assign nfp_kind = 'shipping'
+  endif
+-%}
+{%- if nfp_kind != '' -%}
+  {{- 'nf-hc.css' | asset_url | stylesheet_tag -}}
+  <div class="nfhc nfhc-glance" id="nfhc-glance" data-nfhc-glance>
+    <p class="nfhc-eyebrow">At a glance</p>
+    <ul class="nfhc-glance__row" role="list">
+      {%- if nfp_kind == 'refund' -%}
+        <li class="nfhc-glance__card">
+          <span class="nfhc-glance__k">How long</span>
+          <h2 class="nfhc-glance__t">30 Day Return Period</h2>
+          <p class="nfhc-glance__x">You may request a return within 30 days from the date your order is delivered.</p>
+        </li>
+        <li class="nfhc-glance__card">
+          <span class="nfhc-glance__k">Who pays</span>
+          <h2 class="nfhc-glance__t">Damaged or Incorrect Items</h2>
+          <p class="nfhc-glance__x">If your item arrives damaged, defective, incorrect, or harmed during transit, there is no return cost to you.</p>
+        </li>
+        <li class="nfhc-glance__card">
+          <span class="nfhc-glance__k">How to start</span>
+          <h2 class="nfhc-glance__t">Reach Out to Us</h2>
+          <p class="nfhc-glance__x">Email our support team at <a href="mailto:info@norafurnish.com?subject=Return%20request">info@norafurnish.com</a> with your order number and the reason for the return.</p>
+        </li>
+      {%- else -%}
+        <li class="nfhc-glance__card">
+          <span class="nfhc-glance__k">What it costs</span>
+          <h2 class="nfhc-glance__t">Shipping Fees</h2>
+          <p class="nfhc-glance__x">Free standard shipping on all orders delivered within the United States. No minimum purchase requirement.</p>
+        </li>
+        <li class="nfhc-glance__card">
+          <span class="nfhc-glance__k">How long</span>
+          <h2 class="nfhc-glance__t">Total Estimated Delivery Window</h2>
+          <p class="nfhc-glance__x">Approximately 6 to 9 business days from the date of order.</p>
+        </li>
+        <li class="nfhc-glance__card">
+          <span class="nfhc-glance__k">Built for you</span>
+          <h2 class="nfhc-glance__t">Made to Order Pieces</h2>
+          <p class="nfhc-glance__x">Pieces marked Made to order are built after you buy. Production takes 3 to 4 weeks, so allow about 4 to 6 weeks in total.</p>
+        </li>
+        <li class="nfhc-glance__card">
+          <span class="nfhc-glance__k">Where is it</span>
+          <h2 class="nfhc-glance__t">Tracking Information</h2>
+          <p class="nfhc-glance__x">You may track your order at any time using the tracking number provided. <a href="/apps/trackyourorder">Track your order</a></p>
+        </li>
+      {%- endif -%}
+    </ul>
+  </div>
+  <script>
+    (function () {
+      var g = document.getElementById('nfhc-glance');
+      var t = document.querySelector('.shopify-policy__title');
+      if (g && t && t.parentNode) { t.parentNode.insertBefore(g, t.nextSibling); g.classList.add('is-moved'); }
+    })();
+  </script>
+
+  <section class="nfhc nfhc-ask" aria-labelledby="nfhc-ask-h">
+    <div class="nfhc-ask__in">
+      <div class="nfhc-ask__copy">
+        <h2 class="nfhc-ask__h" id="nfhc-ask-h">Still unsure? Ask us.</h2>
+        <p class="nfhc-ask__x">Email <a href="mailto:info@norafurnish.com">info@norafurnish.com</a>, Monday to Friday, 9:00 AM to 5:00 PM (CST).</p>
+        <p class="nfhc-ask__promise">We reply within 1 to 2 business days.</p>
+      </div>
+      <div class="nfhc-ask__actions">
+        {%- if nfp_kind == 'refund' -%}
+          <a class="nfhc-btn nfhc-btn--gold" href="mailto:info@norafurnish.com?subject=Return%20request&amp;body=Order%20number%3A%20%0AReason%20for%20the%20return%3A%20">Start a return by email</a>
+        {%- else -%}
+          <a class="nfhc-btn nfhc-btn--gold" href="/apps/trackyourorder">Track my order</a>
+        {%- endif -%}
+        <a class="nfhc-btn nfhc-btn--ghost" href="/pages/contact">Ask a question</a>
+      </div>
+    </div>
+  </section>
+{%- endif -%}

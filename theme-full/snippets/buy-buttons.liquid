@@ -1,0 +1,152 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  BUY BUTTONS
+  ----------------------------------------------------------------------------------------------------------------------
+
+  This component is used to show the buy buttons
+
+  ********************************************
+  Supported variables
+  ********************************************
+
+  * product: the product from which to show the buttons (if empty, a placeholder is displayed)
+  * show_payment_button: if we show or not the dynamic checkout button
+  * show_gift_card_recipient: for gift card products, an optional message/email to be sent to the recipient
+  * atc_button_background: the background of the ATC button
+  * atc_button_text_color: the color of the ATC button
+  * payment_button_background: the background of the dynamic payment button
+  * payment_button_background: the color of the dynamic payment button
+  * form_id: if specified, define the form ID linked to this input
+  * show_quantity: NF-BUYBOX-V2 (2026-09-14): when true, renders the quantity selector inline, to the left of the
+    Add to Cart button, instead of as its own separate row above. Only passed as true from the main product page.
+{%- endcomment -%}
+
+{%- if product != blank -%}
+  {%- liquid
+    assign variant_picker_block = section.blocks | where: 'type', 'variant_picker' | first
+    # NF-CHEAPEST-V2: render the variant main-product chose (cheapest available on a bare product URL)
+    assign nf_iv = nf_initial_variant | default: product.selected_or_first_available_variant
+    assign recipient_feature_active = false
+
+    if product.gift_card? and show_gift_card_recipient
+      assign recipient_feature_active = true
+    endif
+  -%}
+
+  <product-form>
+    {%- form 'product', product, id: form_id -%}
+      {%- comment -%}NF-ORDERINFO-V1 hidden line item properties, enabled by the panel in custom-nav.js{%- endcomment -%}
+      {%- liquid
+        assign nf_oi = product.metafields.custom.order_info.value
+      -%}
+      {%- if nf_oi != blank -%}
+        <div class="nf-oi-data" hidden data-nf-oi="{{ nf_oi | json | escape }}"></div>
+        {%- for f in nf_oi.fields -%}
+          <input type="hidden" disabled data-nf-oi-field="{{ f.k }}" name="properties[{{ f.l }}]" value="">
+        {%- endfor -%}
+      {%- endif -%}
+      <input
+        type="hidden"
+        {% if variant_picker_block != blank %}
+          disabled
+        {% endif %}
+        name="id"
+        value="{{ nf_iv.id }}"
+      >
+
+      {% liquid
+        assign button_disabled = false
+
+        if nf_iv == null
+          assign button_disabled = true
+          assign button_content = 'product.general.unavailable_button' | t
+        elsif nf_iv.available == false
+          assign button_disabled = true
+          assign button_content = 'product.general.sold_out_button' | t
+        else
+          if product.template_suffix contains 'pre-order'
+            assign button_content = 'product.general.pre_order_button' | t
+          else
+            assign button_content = 'product.general.add_to_cart_button' | t
+          endif
+        endif
+      %}
+
+      <div class="v-stack gap-4 nf-bb-stack">
+        {%- if recipient_feature_active -%}
+          <gift-card-recipient class="gift-card-recipient v-stack gap-3">
+            {%- assign checkbox_label = 'gift_card.recipient.checkbox' | t -%}
+            {%- render 'checkbox', label: checkbox_label, name: 'properties[__shopify_send_gift_card_to_recipient]' -%}
+
+            <div class="gift-card-recipient__fields" hidden>
+              <div class="fieldset">
+                {%- liquid
+                  assign recipient_email_label = 'gift_card.recipient.email_label' | t
+                  render 'input', type: 'email', label: recipient_email_label, name: 'properties[Recipient email]', value: form.email, required: true, maxlength: 138
+
+                  assign recipient_name_label = 'gift_card.recipient.name_label' | t
+                  render 'input', label: recipient_name_label, name: 'properties[Recipient name]', value: form.name
+
+                  assign send_on_label = 'gift_card.recipient.send_on_label' | t
+                  render 'input', type: 'date', label: send_on_label, name: 'properties[Send on]', value: form.send_on, pattern: '\d{4}-\d{2}-\d{2}'
+                  render 'input', type: 'hidden', name: 'properties[__shopify_offset]'
+
+                  assign message_label = 'gift_card.recipient.message_label' | t
+                  render 'input', label: message_label, name: 'properties[Message]', value: form.message, multiline: 3, maxlength: 200, show_max_characters_count: true
+                -%}
+              </div>
+            </div>
+          </gift-card-recipient>
+        {%- endif -%}
+
+        <div class="{% if show_quantity %}nf-qty-atc-row{% endif %}">
+          {%- if show_quantity and product.available -%}
+            <div class="nf-qty-inline">
+              {%- render 'quantity-selector', variant: nf_iv, form: form_id -%}
+            </div>
+          {%- endif -%}
+
+          <buy-buttons class="buy-buttons nf-buybuttons" form="{{ form_id }}">
+            {%- if nf_iv.available == false or show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
+              {%- assign atc_button_style = 'outline' -%}
+            {%- else -%}
+              {%- assign atc_button_style = 'solid' -%}
+            {%- endif -%}
+
+            {%- render 'button',
+              content: button_content,
+              type: 'submit',
+              disabled: button_disabled,
+              style: atc_button_style,
+              background: atc_button_background,
+              text_color: atc_button_text_color,
+              stretch: true
+            -%}
+          </buy-buttons>
+        </div>
+
+        {%- comment -%} NF-BUYNOW-V1 (2026-09-14): Shopify's native dynamic checkout button. Renders the store's
+          enabled express wallets (Shop Pay / PayPal / Apple Pay / Google Pay, whichever are turned on in Payments
+          settings) plus Shopify's own "More payment options" link beneath it, which goes to the regular checkout
+          where every payment method can be chosen. Only rendered when the block setting turns it on and the
+          variant can actually be purchased. Sits as its own full width row below quantity + Add to Cart. {%- endcomment -%}
+        {%- if show_payment_button and button_disabled == false -%}
+          <div class="nf-buynow">
+            {{- form | payment_button -}}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endform -%}
+  </product-form>
+{%- else -%}
+  <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ form_id }}">
+    {%- assign button_content = 'product.general.add_to_cart_button' | t -%}
+    {%- render 'button',
+      content: button_content,
+      type: 'submit',
+      background: variant_picker_block.settings.atc_button_background,
+      text_color: variant_picker.settings.atc_button_text_color,
+      stretch: true
+    -%}
+  </buy-buttons>
+{%- endif -%}

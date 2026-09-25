@@ -1,0 +1,54 @@
+{%- comment -%} NF "More From Our Blogs" carousel (nf-blog). Hidden when the blog has no other post. {%- endcomment -%}
+{%- liquid
+  assign nf_more_count = 0
+  for a in blog.articles limit: 13
+    if a.id != article.id
+      assign nf_more_count = nf_more_count | plus: 1
+    endif
+  endfor
+-%}
+{%- if nf_more_count > 0 -%}
+  <div class="nf-more" data-nf-carousel>
+    <div class="nf-more__wrap">
+      <div class="nf-more__head">
+        <h2 class="nf-sec-title">{{ section.settings.heading | escape }}</h2>
+        <div class="nf-more__arrows">
+          <button type="button" class="nf-arrow" data-nf-prev aria-label="Previous posts" disabled>
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button type="button" class="nf-arrow" data-nf-next aria-label="Next posts">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="nf-more__track" data-nf-track tabindex="0" role="region" aria-label="{{ section.settings.heading | escape }}">
+        {%- for a in blog.articles limit: 13 -%}
+          {%- if a.id == article.id -%}{%- continue -%}{%- endif -%}
+          {%- render 'nf-blog-card',
+            article: a,
+            blog: blog,
+            sizes: '(max-width: 699px) 80vw, (max-width: 999px) 46vw, 300px',
+            heading_tag: 'h3',
+            class: 'nf-more__item'
+          -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF More from our blog",
+  "class": "shopify-section--nf-more",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "More From Our Blogs"
+    }
+  ]
+}
+{% endschema %}
