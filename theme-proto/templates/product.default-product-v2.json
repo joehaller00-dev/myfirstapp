@@ -110,13 +110,7 @@
         "nf_pdp3": {
           "type": "liquid",
           "settings": {
-            "liquid": "{{ 'nf-pdp.css' | asset_url | stylesheet_tag }}{{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}<script src=\"{{ 'nf-pdp.js' | asset_url }}\" defer></script><script src=\"{{ 'nf-pdp3.js' | asset_url }}\" defer></script><span data-nf3 hidden></span>{% render 'nf-bundle-tiers', product: product, pct2: 10, pct3: 15 %}"
-          }
-        },
-        "nf_assure": {
-          "type": "liquid",
-          "settings": {
-            "liquid": "{% render 'nf-pdp-assure' %}"
+            "liquid": "{{ 'nf-pdp.css' | asset_url | stylesheet_tag }}{{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}<script src=\"{{ 'nf-pdp.js' | asset_url }}\" defer></script><script src=\"{{ 'nf-pdp3.js' | asset_url }}\" defer></script><span data-nf3 hidden></span>{% render 'nf-pdp-stock', product: product %}{% render 'nf-pdp-assure' %}"
           }
         },
         "acc_keyfeat": {
@@ -129,6 +123,12 @@
             "liquid": "{% render 'nf-pdp-keyfeat', product: product %}",
             "page": ""
           }
+        },
+        "nf_bundle": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'nf-bundle-tiers', product: product, pct2: 10, pct3: 15 %}{% render 'nf-pdp-wish', product: product %}"
+          }
         }
       },
       "block_order": [
@@ -137,7 +137,7 @@
         "variant_picker",
         "nf_pdp3",
         "buy_buttons",
-        "nf_assure",
+        "nf_bundle",
         "acc_keyfeat",
         "acc_dimensions",
         "acc_materials",
@@ -150,7 +150,7 @@
         "color_scheme": "",
         "allow_transparent_header": false,
         "transparent_header_use_primary_colors": false,
-        "container_size": "xl",
+        "container_size": "full",
         "product_info_size": 44,
         "show_sticky_add_to_cart": true,
         "center_basic_info": false,

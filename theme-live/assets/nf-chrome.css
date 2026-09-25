@@ -1,0 +1,898 @@
+/* =====================================================================================================
+   NF-CHROME-V1 (2026-09-12) : the approved "store chrome" upgrades from BLAND_PROPOSALS sections 6, 7, 8.
+   Loaded from layout/theme.liquid right after nf-redesign.css, with assets/nf-chrome.js (defer).
+     1. Nora promise band   : every text-with-icons section (home, collections, product) as a charcoal band.
+     2. Evening footer      : charcoal footer, white script logo, gold newsletter button, gold link underlines,
+                              full width phone dividers. Markup (lamp + brand line) lives in sections/footer.liquid.
+     3. Footer lamp         : a small pendant from the footer's top edge, lit by nf-chrome.js (one IntersectionObserver).
+     4. Newsletter popup    : charcoal and gold, bedroom photo warms from dim. Same form, same WELCOME10 email flow.
+     5. 10% pill            : small charcoal pill with a gold dot. Phones: parked left of the Chat button, never over it.
+     6. Quick polish        : New Outdoor tile and heading line, homepage "Loved in real homes" ground.
+   Every selector starts with an id (#main, #nf-nl-overlay, #nf-nl-tab, #nf-newin) so it outranks the
+   section <style> blocks, nf-footer.css and custom-nav.css that load around it.
+   ===================================================================================================== */
+
+:root {
+  --nfc-ink: #1a1714;
+  --nfc-char: #1c1c1c;
+  --nfc-night: #141414;
+  --nfc-gold: #b38b5d;
+  --nfc-gold-hi: #c9a36a;
+  --nfc-glow: 255, 196, 122;
+  --nfc-white-72: rgba(255, 255, 255, .72);
+  --nfc-white-55: rgba(255, 255, 255, .55);
+  --nfc-hair: rgba(255, 255, 255, .12);
+  --nfc-ease: cubic-bezier(.2, .7, .2, 1);
+  --nfc-shadow: 0 14px 26px -16px rgba(0, 0, 0, .8), 0 2px 6px -2px rgba(0, 0, 0, .3);
+}
+
+/* =====================================================================================================
+   1. NORA PROMISE BAND
+   ===================================================================================================== */
+html body #main .shopify-section--text-with-icons .section-spacing {
+  background: var(--nfc-char) !important;
+  padding-top: 22px !important;
+  padding-bottom: 22px !important;
+  border: 0 !important;
+}
+html body #main .shopify-section--text-with-icons .text-with-icons,
+html body #main .shopify-section--text-with-icons .text-with-icons--stacked {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0 28px !important;
+  padding-inline: 0 !important;
+  max-width: 1380px;
+  margin-inline: auto;
+  justify-content: stretch !important;
+}
+html body #main .shopify-section--text-with-icons .text-with-icons > * {
+  max-width: none !important;
+  min-width: 0 !important;
+  width: auto !important;
+  flex: none !important;
+  padding: 4px 0;
+}
+html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-6 {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  justify-items: initial !important;
+  gap: 14px !important;
+}
+html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-6 > div:first-child,
+html body #main .shopify-section--text-with-icons .text-with-icons__item p.h6,
+html body #main .shopify-section--text-with-icons .text-with-icons__item .prose {
+  transform: none !important;
+}
+/* gold line icon in a 48px well; the halo lives on ::before */
+html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-6 > div:first-child {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--nfc-gold-hi) !important;
+}
+html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-6 > div:first-child::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--nfc-glow), .42) 0%, rgba(var(--nfc-glow), .16) 42%, rgba(var(--nfc-glow), 0) 70%);
+  opacity: 0;
+  transform: scale(.72);
+  transition: opacity .5s var(--nfc-ease), transform .5s var(--nfc-ease);
+  pointer-events: none;
+}
+html body #main .shopify-section--text-with-icons .text-with-icons__item svg {
+  position: relative;
+  width: 40px !important;
+  height: 40px !important;
+  stroke-width: 1.15;
+  color: var(--nfc-gold-hi);
+  opacity: 1 !important;
+  transition: color .4s ease, filter .4s ease;
+}
+@media (hover: hover) {
+  html body #main .shopify-section--text-with-icons .text-with-icons__item:hover .v-stack.gap-6 > div:first-child::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons__item:hover svg {
+    color: #e2c28c;
+    filter: drop-shadow(0 0 6px rgba(var(--nfc-glow), .55));
+  }
+}
+html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-2,
+html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-2 > * {
+  text-align: left !important;
+}
+html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-2 {
+  gap: 3px !important;
+  justify-items: start !important;
+  min-width: 0;
+}
+/* wide screens: the band's row breaks out of the narrow section container so four items breathe */
+@media screen and (min-width: 1100px) {
+  html body #main .shopify-section--text-with-icons .text-with-icons,
+  html body #main .shopify-section--text-with-icons .text-with-icons--stacked {
+    --nfc-band-w: min(1320px, calc(100vw - 96px));
+    width: var(--nfc-band-w) !important;
+    max-width: none !important;
+    margin-inline: calc((100% - var(--nfc-band-w)) / 2) !important;
+  }
+}
+@media screen and (min-width: 1360px) {
+  html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-2 > p.h6 {
+    white-space: nowrap;
+    font-size: 16px !important;
+  }
+}
+html body #main .shopify-section--text-with-icons .text-with-icons__item p.h6 {
+  margin: 0 !important;
+  font-family: var(--heading-font-family) !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  letter-spacing: .015em !important;
+  line-height: 1.3 !important;
+  text-transform: none !important;
+  color: #fff !important;
+}
+html body #main .shopify-section--text-with-icons .text-with-icons__item .prose,
+html body #main .shopify-section--text-with-icons .text-with-icons__item .prose p {
+  margin: 0 !important;
+  font-family: var(--text-font-family) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  letter-spacing: .01em !important;
+  color: var(--nfc-white-72) !important;
+}
+html body #main .shopify-section--text-with-icons .text-with-icons__item .prose a {
+  color: inherit !important;
+}
+@media screen and (max-width: 1099px) and (min-width: 700px) {
+  html body #main .shopify-section--text-with-icons .text-with-icons,
+  html body #main .shopify-section--text-with-icons .text-with-icons--stacked {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    row-gap: 22px !important;
+    max-width: 720px;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-6 {
+    justify-content: flex-start !important;
+  }
+}
+@media screen and (max-width: 699px) {
+  html body #main .shopify-section--text-with-icons .section-spacing {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons,
+  html body #main .shopify-section--text-with-icons .text-with-icons--stacked {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 10px !important;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons > * {
+    padding: 0 4px;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-6 {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-6 > div:first-child {
+    width: 46px;
+    height: 46px;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons__item svg {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-2,
+  html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-2 > * {
+    text-align: center !important;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons__item .v-stack.gap-2 {
+    justify-items: center !important;
+    width: 100%;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons__item p.h6 {
+    font-size: 15px !important;
+  }
+  html body #main .shopify-section--text-with-icons .text-with-icons__item .prose,
+  html body #main .shopify-section--text-with-icons .text-with-icons__item .prose p {
+    font-size: 12.5px !important;
+    line-height: 1.45 !important;
+  }
+}
+
+/* =====================================================================================================
+   2. EVENING FOOTER
+   nf-footer.css is loaded later (from the footer section) with ".shopify-section--footer .nf-footer.footer"
+   !important rules; the #main prefix outranks all of them.
+   ===================================================================================================== */
+html body #main .shopify-section--footer {
+  background: var(--nfc-night) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer {
+  --nf-ft-ink: #fff;
+  --nf-ft-soft: rgba(255, 255, 255, .72);
+  --nf-ft-muted: rgba(255, 255, 255, .5);
+  --nf-ft-line: rgba(255, 255, 255, .12);
+  --nf-ft-field: rgba(255, 255, 255, .26);
+  position: relative;
+  isolation: isolate;
+  background: var(--nfc-night) !important;
+  color: var(--nfc-white-72);
+  border-top-color: rgba(255, 255, 255, .08) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__inner {
+  position: relative;
+  z-index: 1;
+}
+/* column headings: plain small gold eyebrows */
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-accordion__title,
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-accordion__summary {
+  color: var(--nfc-gold-hi) !important;
+}
+/* links: soft white, a gold underline slides in on hover */
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__col--links a,
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose a {
+  color: var(--nfc-white-72) !important;
+  opacity: 1 !important;
+  text-decoration: none !important;
+  background-image: linear-gradient(var(--nfc-gold-hi), var(--nfc-gold-hi)) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 100% !important;
+  background-size: 0 1px !important;
+  padding-bottom: 2px;
+  transition: background-size .35s var(--nfc-ease), color .2s ease !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__col--links a:hover,
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__col--links a:focus-visible,
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose a:hover,
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose a:focus-visible {
+  color: #fff !important;
+  background-size: 100% 1px !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose p {
+  color: rgba(255, 255, 255, .66) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__col--text .nf-footer__prose strong {
+  color: rgba(255, 255, 255, .86) !important;
+}
+/* newsletter */
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__title {
+  color: #fff !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__text,
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__text p {
+  color: var(--nfc-white-72) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__input {
+  height: 52px;
+  border: 1px solid rgba(255, 255, 255, .26) !important;
+  border-radius: 2px !important;
+  background: rgba(255, 255, 255, .06) !important;
+  color: #fff !important;
+  caret-color: var(--nfc-gold-hi);
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__input::placeholder {
+  color: rgba(255, 255, 255, .5) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__input:hover {
+  border-color: rgba(255, 255, 255, .45) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__input:focus,
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__input:focus-visible {
+  border-color: var(--nfc-gold-hi) !important;
+  background: rgba(255, 255, 255, .09) !important;
+  box-shadow: 0 0 0 3px rgba(201, 163, 106, .18) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__input[aria-invalid="true"] {
+  border-color: #e0877d !important;
+}
+/* the Ideas & Guides solid gold button: a brighter gold sweeps in on hover */
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__button {
+  height: 52px;
+  padding: 0 30px;
+  border: 1.5px solid var(--nfc-gold) !important;
+  border-radius: 2px !important;
+  background-color: var(--nfc-gold) !important;
+  background-image: linear-gradient(var(--nfc-gold-hi), var(--nfc-gold-hi)) !important;
+  background-repeat: no-repeat !important;
+  background-position: 0 0 !important;
+  background-size: 0% 100% !important;
+  color: var(--nfc-ink) !important;
+  font-family: var(--text-font-family) !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: .16em !important;
+  transition: background-size .45s var(--nfc-ease), border-color .3s ease, box-shadow .3s ease, transform .3s var(--nfc-ease) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__button:hover,
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__button:focus-visible {
+  background-size: 100% 100% !important;
+  border-color: var(--nfc-gold-hi) !important;
+  color: var(--nfc-ink) !important;
+  box-shadow: var(--nfc-shadow) !important;
+  transform: translateY(-2px);
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__button:focus-visible {
+  outline: 2px solid #fff !important;
+  outline-offset: 3px !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__status--success {
+  background: rgba(255, 255, 255, .06) !important;
+  border-color: rgba(201, 163, 106, .45) !important;
+  color: #fff !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__check {
+  color: var(--nfc-gold-hi);
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__status--error {
+  color: #f0a39b !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__social .social-media__item a {
+  border-color: rgba(255, 255, 255, .26) !important;
+  background: transparent !important;
+  color: #fff !important;
+}
+@media (hover: hover) {
+  html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__social .social-media__item a:hover {
+    border-color: var(--nfc-gold) !important;
+    background: var(--nfc-gold) !important;
+    color: var(--nfc-ink) !important;
+  }
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer-nl__social .social-media__item a:focus-visible {
+  outline-color: #fff !important;
+}
+/* bottom bar: white script logo, one true brand line, quiet copyright */
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__bar {
+  position: relative;
+  border-top-color: var(--nfc-hair) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__bar > * {
+  position: relative;
+  z-index: 1;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__logo-img {
+  filter: brightness(0) invert(1);
+  transition: filter 1.4s ease .5s;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__brandline {
+  margin: -4px 0 0;
+  font-family: var(--heading-font-family);
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: .02em;
+  line-height: 1.5;
+  color: var(--nfc-white-72) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__copy,
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__copy a {
+  color: rgba(255, 255, 255, .5) !important;
+}
+html body #main .shopify-section--footer .nf-footer.footer :focus-visible {
+  outline-color: #fff;
+}
+/* phones: the three menu rows line up, full width dividers */
+@media screen and (max-width: 749px) {
+  html body #main .shopify-section--footer .nf-footer.footer .nf-footer__grid,
+  html body #main .shopify-section--footer .nf-footer.footer .nf-footer__grid--nl {
+    align-items: stretch !important;
+  }
+  html body #main .shopify-section--footer .nf-footer.footer .nf-footer__col--menu {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box;
+    border-top: 1px solid var(--nfc-hair) !important;
+  }
+  html body #main .shopify-section--footer .nf-footer.footer .nf-footer-accordion__chevron {
+    color: var(--nfc-gold-hi);
+  }
+}
+
+/* =====================================================================================================
+   3. FOOTER LAMP
+   Lit is the default (no JS, reduced motion). nf-chrome.js adds .nfc-armed (lamp off) and then .nfc-lit
+   when the footer scrolls into view.
+   ===================================================================================================== */
+html body #main .nf-footer .nfc-lamp-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+html body #main .nf-footer .nfc-lamp {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 44px;
+  margin-left: -22px;
+  transform-origin: 50% 0;
+}
+html body #main .nf-footer .nfc-lamp__cord {
+  display: block;
+  width: 1px;
+  height: var(--nfc-cord, 30px);
+  margin: 0 auto;
+  background: linear-gradient(rgba(255, 255, 255, .08), rgba(255, 255, 255, .42));
+}
+html body #main .nf-footer .nfc-lamp__shade {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 19px;
+  margin: 0 auto;
+  border-radius: 20px 20px 3px 3px / 19px 19px 3px 3px;
+  background: linear-gradient(170deg, #4a423a 0%, #2a2520 60%, #1f1b18 100%);
+  box-shadow: inset 0 -2px 0 var(--nfc-gold), inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+html body #main .nf-footer .nfc-lamp__shade::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 7px;
+  height: 5px;
+  margin-left: -3.5px;
+  border-radius: 2px 2px 0 0;
+  background: var(--nfc-gold);
+}
+html body #main .nf-footer .nfc-lamp__bulb {
+  display: block;
+  width: 16px;
+  height: 7px;
+  margin: -1px auto 0;
+  border-radius: 0 0 16px 16px;
+  background: #fff3dc;
+  box-shadow: 0 0 10px 3px rgba(var(--nfc-glow), .85), 0 0 34px 10px rgba(var(--nfc-glow), .35);
+  transition: background-color .35s ease, box-shadow .6s ease;
+}
+/* the pool: a soft cone from the shade, landing on the logo in the bottom bar */
+html body #main .nf-footer .nfc-lamp__cone {
+  position: absolute;
+  top: calc(var(--nfc-cord, 30px) + 22px);
+  left: 50%;
+  bottom: 0;
+  width: min(1000px, 96vw);
+  transform: translateX(-50%);
+  /* no hard top edge: the pool fades in just under the bulb */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
+  background:
+    radial-gradient(ellipse 30% 42% at 50% 0%, rgba(var(--nfc-glow), .16) 0%, rgba(var(--nfc-glow), .06) 55%, rgba(var(--nfc-glow), 0) 100%),
+    radial-gradient(ellipse 34% 22% at 50% 88%, rgba(var(--nfc-glow), .12) 0%, rgba(var(--nfc-glow), 0) 100%);
+  opacity: 1;
+  transition: opacity 1.6s ease .2s;
+}
+html body #main .nf-footer.nfc-lit .nf-footer__logo-img,
+html body #main .nf-footer:not(.nfc-armed) .nf-footer__logo-img {
+  filter: brightness(0) invert(1) drop-shadow(0 0 16px rgba(var(--nfc-glow), .42));
+}
+/* off (armed, not yet lit) */
+html body #main .nf-footer.nfc-armed:not(.nfc-lit) .nfc-lamp__bulb {
+  background: #5d5248;
+  box-shadow: none;
+}
+html body #main .nf-footer.nfc-armed:not(.nfc-lit) .nfc-lamp__cone {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html body #main .nf-footer.nfc-armed.nfc-lit .nfc-lamp {
+    animation: nfcSwing 2.6s var(--nfc-ease) both;
+  }
+  html body #main .nf-footer.nfc-armed.nfc-lit .nfc-lamp__bulb {
+    animation: nfcFlick .9s linear both;
+  }
+}
+@keyframes nfcSwing {
+  0% { transform: rotate(4deg); }
+  30% { transform: rotate(-2.4deg); }
+  55% { transform: rotate(1.2deg); }
+  78% { transform: rotate(-.5deg); }
+  100% { transform: rotate(0); }
+}
+@keyframes nfcFlick {
+  0%, 8% { opacity: .15; }
+  12% { opacity: .9; }
+  18% { opacity: .3; }
+  30%, 100% { opacity: 1; }
+}
+@media screen and (max-width: 749px) {
+  html body #main .nf-footer { --nfc-cord: 6px; }
+  html body #main .nf-footer .nfc-lamp__cone {
+    width: 150vw;
+  }
+}
+
+/* =====================================================================================================
+   4. NEWSLETTER POPUP : charcoal and gold (sections/newsletter-popup.liquid keeps its form and logic)
+   ===================================================================================================== */
+html body #nf-nl-overlay {
+  background: rgba(14, 12, 10, .62);
+}
+html body #nf-nl-overlay .nf-nl-modal {
+  background: var(--nfc-ink);
+  border-radius: 4px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .06);
+}
+html body #nf-nl-overlay .nf-nl-image {
+  background: var(--nfc-ink);
+}
+html body #nf-nl-overlay.open .nf-nl-image img {
+  animation: nfcWarm 1.15s cubic-bezier(.3, .6, .25, 1) both;
+}
+@keyframes nfcWarm {
+  0% { filter: brightness(.34) saturate(.55); }
+  55% { filter: brightness(.9) saturate(1.02); }
+  100% { filter: brightness(1) saturate(1); }
+}
+html body #nf-nl-overlay .nf-nl-right {
+  background: var(--nfc-ink);
+  padding: 52px 48px 46px;
+}
+html body #nf-nl-overlay .nf-nl-close {
+  color: rgba(255, 255, 255, .8);
+  opacity: 1;
+}
+html body #nf-nl-overlay .nf-nl-close:hover,
+html body #nf-nl-overlay .nf-nl-close:focus-visible {
+  color: var(--nfc-gold-hi);
+}
+html body #nf-nl-overlay .nf-nl-eyebrow,
+html body #nf-nl-overlay .nf-nl-success-eyebrow {
+  margin-bottom: 12px;
+  font-family: var(--text-font-family);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .26em;
+  color: var(--nfc-gold-hi);
+}
+html body #nf-nl-overlay .nf-nl-percent {
+  font-family: var(--heading-font-family);
+  font-size: 92px;
+  font-weight: 300;
+  line-height: .95;
+  letter-spacing: -.01em;
+  color: var(--nfc-gold-hi);
+}
+html body #nf-nl-overlay .nf-nl-subhead {
+  margin: 14px 0 18px;
+  font-family: var(--text-font-family);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .24em;
+  color: #fff;
+}
+html body #nf-nl-overlay .nf-nl-divider,
+html body #nf-nl-overlay .nf-nl-success-divider {
+  display: none !important;
+}
+html body #nf-nl-overlay .nf-nl-body {
+  margin-bottom: 24px;
+  font-family: var(--text-font-family);
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--nfc-white-72);
+}
+html body #nf-nl-overlay .nf-nl-input {
+  padding: 15px 16px;
+  border: 1px solid rgba(255, 255, 255, .26);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, .06);
+  color: #fff;
+  font-family: var(--text-font-family);
+  font-size: 14px;
+  caret-color: var(--nfc-gold-hi);
+}
+html body #nf-nl-overlay .nf-nl-input::placeholder {
+  color: rgba(255, 255, 255, .5);
+  font-size: 13px;
+}
+html body #nf-nl-overlay .nf-nl-input:focus {
+  border-color: var(--nfc-gold-hi);
+  background: rgba(255, 255, 255, .09);
+  box-shadow: 0 0 0 3px rgba(201, 163, 106, .18);
+}
+html body #nf-nl-overlay .nf-nl-submit {
+  min-height: 52px;
+  padding: 0 20px;
+  border: 1.5px solid var(--nfc-gold);
+  border-radius: 2px;
+  background-color: var(--nfc-gold);
+  background-image: linear-gradient(var(--nfc-gold-hi), var(--nfc-gold-hi));
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 0% 100%;
+  color: var(--nfc-ink);
+  font-family: var(--text-font-family);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: .16em;
+  transition: background-size .45s var(--nfc-ease), border-color .3s ease, box-shadow .3s ease, transform .3s var(--nfc-ease);
+}
+html body #nf-nl-overlay .nf-nl-submit:hover,
+html body #nf-nl-overlay .nf-nl-submit:focus-visible {
+  background-color: var(--nfc-gold);
+  background-size: 100% 100%;
+  border-color: var(--nfc-gold-hi);
+  box-shadow: var(--nfc-shadow);
+  transform: translateY(-2px);
+}
+html body #nf-nl-overlay .nf-nl-submit:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+html body #nf-nl-overlay form p[style] {
+  color: #f0a39b !important;
+}
+html body #nf-nl-overlay .nf-nl-success-title {
+  font-family: var(--heading-font-family);
+  font-size: 30px;
+  font-weight: 300;
+  color: #fff;
+}
+html body #nf-nl-overlay .nf-nl-success-sub {
+  font-family: var(--text-font-family);
+  font-size: 13px;
+  color: var(--nfc-white-72);
+}
+html body #nf-nl-overlay .nf-nl-note {
+  font-family: var(--text-font-family);
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .6);
+}
+@media (max-width: 599px) {
+  html body #nf-nl-overlay .nf-nl-right {
+    padding: 24px 18px 22px;
+  }
+  html body #nf-nl-overlay .nf-nl-percent {
+    font-size: 54px;
+  }
+  html body #nf-nl-overlay .nf-nl-eyebrow {
+    margin-bottom: 8px;
+    font-size: 9px;
+    letter-spacing: .2em;
+  }
+  html body #nf-nl-overlay .nf-nl-subhead {
+    margin: 8px 0 12px;
+    font-size: 10px;
+    letter-spacing: .18em;
+  }
+  html body #nf-nl-overlay .nf-nl-body {
+    margin-bottom: 14px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  html body #nf-nl-overlay .nf-nl-input {
+    padding: 12px;
+    font-size: 16px;
+  }
+  html body #nf-nl-overlay .nf-nl-submit {
+    min-height: 46px;
+    font-size: 10.5px;
+    letter-spacing: .12em;
+  }
+  html body #nf-nl-overlay .nf-nl-success-title {
+    font-size: 22px;
+  }
+}
+
+/* =====================================================================================================
+   5. THE 10% PILL (#nf-nl-tab). Desktop: bottom left. Phones: to the left of the 48px Chat button
+   (right 20px, bottom 20px), centred on it, so NF-CHAT-V2 never has to lift the chat. The phone
+   scroll away (.nf-nl-away, nf-redesign.css) still wins on specificity.
+   ===================================================================================================== */
+html body #nf-nl-tab.nf-nl-tab {
+  display: none;
+  top: auto !important;
+  right: auto !important;
+  bottom: 24px !important;
+  left: 20px !important;
+  transform: none;
+  align-items: center;
+  gap: 9px;
+  height: 36px;
+  padding: 0 17px 0 15px !important;
+  border: 1px solid rgba(201, 163, 106, .38);
+  border-radius: 999px !important;
+  background: var(--nfc-char) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .22), 0 1px 3px rgba(0, 0, 0, .2) !important;
+  transition: background-color .25s ease, border-color .25s ease, transform .28s ease, opacity .28s ease !important;
+}
+html body #nf-nl-tab.nf-nl-tab.visible {
+  display: inline-flex;
+}
+html body #nf-nl-tab.nf-nl-tab:hover {
+  background: #2b2622 !important;
+  border-color: rgba(201, 163, 106, .7);
+}
+html body #nf-nl-tab.nf-nl-tab:focus-visible {
+  outline: 2px solid var(--nfc-gold-hi);
+  outline-offset: 3px;
+}
+html body #nf-nl-tab.nf-nl-tab span {
+  writing-mode: horizontal-tb !important;
+  transform: none !important;
+}
+html body #nf-nl-tab.nf-nl-tab .nf-nl-tab__label {
+  display: block;
+  font-family: var(--text-font-family) !important;
+  font-size: 12.5px !important;
+  font-weight: 500;
+  letter-spacing: .03em !important;
+  line-height: 1;
+  text-transform: none;
+  color: #fff !important;
+  white-space: nowrap;
+}
+html body #nf-nl-tab.nf-nl-tab .nf-nl-tab__dot {
+  display: block;
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--nfc-gold-hi);
+}
+html body #nf-nl-tab.nf-nl-tab.visible .nf-nl-tab__dot {
+  animation: nfcDot 1.4s ease-out .6s 2 both;
+}
+html.nfc-pill-calm body #nf-nl-tab.nf-nl-tab .nf-nl-tab__dot {
+  animation: none;
+}
+@keyframes nfcDot {
+  0% { background: var(--nfc-gold-hi); box-shadow: 0 0 0 0 rgba(201, 163, 106, .65); }
+  35% { background: #f2d49c; }
+  100% { background: var(--nfc-gold-hi); box-shadow: 0 0 0 10px rgba(201, 163, 106, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html body #nf-nl-tab.nf-nl-tab.visible .nf-nl-tab__dot {
+    animation-name: nfcDotSoft;
+  }
+}
+@keyframes nfcDotSoft {
+  0%, 100% { background: var(--nfc-gold-hi); box-shadow: 0 0 0 0 rgba(201, 163, 106, 0); }
+  40% { background: #f2d49c; box-shadow: 0 0 8px 3px rgba(201, 163, 106, .5); }
+}
+/* folded: a small charcoal dot while page content sits under it (nf-chrome.js adds .nfc-mini);
+   hover and keyboard focus open it back up */
+html body #nf-nl-tab.nf-nl-tab.nfc-mini {
+  justify-content: center;
+  width: 36px;
+  gap: 0;
+  padding: 0 !important;
+}
+html body #nf-nl-tab.nf-nl-tab.nfc-mini .nf-nl-tab__label {
+  display: none;
+}
+html body #nf-nl-tab.nf-nl-tab.nfc-mini .nf-nl-tab__dot {
+  width: 9px;
+  height: 9px;
+}
+html body #nf-nl-tab.nf-nl-tab.nfc-mini:focus-visible {
+  width: auto;
+  gap: 9px;
+  padding: 0 17px 0 15px !important;
+}
+html body #nf-nl-tab.nf-nl-tab.nfc-mini:focus-visible .nf-nl-tab__label {
+  display: block;
+}
+@media (hover: hover) {
+  html body #nf-nl-tab.nf-nl-tab.nfc-mini:hover {
+    width: auto;
+    gap: 9px;
+    padding: 0 17px 0 15px !important;
+  }
+  html body #nf-nl-tab.nf-nl-tab.nfc-mini:hover .nf-nl-tab__label {
+    display: block;
+  }
+}
+@media (max-width: 749px) {
+  html body #nf-nl-tab.nf-nl-tab.nfc-mini {
+    width: 32px;
+    padding: 0 !important;
+  }
+}
+/* label: "10% off your first order" on wider screens, "Get 10% off" on phones */
+html body #nf-nl-tab.nf-nl-tab .nf-nl-tab__label span {
+  display: inline !important;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+  text-transform: inherit !important;
+  color: inherit !important;
+}
+html body #nf-nl-tab.nf-nl-tab .nf-nl-tab__label .nfc-lead {
+  display: none !important;
+}
+@media (max-width: 749px) {
+  html body #nf-nl-tab.nf-nl-tab {
+    right: 78px !important;
+    left: auto !important;
+    bottom: calc(28px + env(safe-area-inset-bottom, 0px)) !important;
+    height: 32px;
+    padding: 0 13px 0 12px !important;
+    gap: 8px;
+    /* rides above a pinned sticky bar together with the Chat button (NF-CHAT-V2 sets the lift) */
+    translate: 0 calc(-1 * var(--nf-chat-lift, 0px));
+  }
+  html body #nf-nl-tab.nf-nl-tab .nf-nl-tab__label {
+    font-size: 12px !important;
+  }
+  html body #nf-nl-tab.nf-nl-tab .nf-nl-tab__label .nfc-lead {
+    display: inline !important;
+  }
+  html body #nf-nl-tab.nf-nl-tab .nf-nl-tab__label .nfc-tail {
+    display: none !important;
+  }
+}
+
+/* =====================================================================================================
+   6. QUICK POLISH
+   ===================================================================================================== */
+/* Homepage "New Outdoor Lighting": neutral grey selected tile, no decorative lines */
+#nf-newin .nf-newin__rule {
+  display: none !important;
+}
+#nf-newin .nf-newin__title {
+  margin-bottom: 18px;
+}
+#nf-newin .nf-cat:hover,
+#nf-newin .nf-cat.is-active {
+  background: #f7f7f7 !important;
+}
+#nf-newin .nf-cat.is-active {
+  border-color: #1c1c1c !important;
+}
+#nf-newin .nf-cat.is-active::after {
+  display: none !important;
+}
+/* Homepage "Loved in real homes": neutral grey ground */
+html body #main [id$="custom_liquid_nfproof"] .nf-rcw {
+  background: #f7f7f7;
+}
+/* Journal articles: the "Who This Is For" box, neutral grey (nf-blog.css had #faf8f4) */
+html body .nf-article__body .nf-who {
+  background: #f7f7f7 !important;
+}
+/* the popup photo simply shows lit when motion is reduced */
+@media (prefers-reduced-motion: reduce) {
+  html body #nf-nl-overlay.open .nf-nl-image img {
+    animation: none;
+  }
+}
+
+/* ===== /NF-CHROME-V1 ===== */
+
+/* NF-PILL-HIDE (2026-09-12): the folded dot sat on the footer's newsletter text. While the footer is in view, or when
+   even the 36px dot would cover text or a link, nf-chrome.js adds .nfc-gone and the pill fades out entirely.
+   Keyboard focus keeps it visible. */
+html body #nf-nl-tab.nf-nl-tab.nfc-gone:not(:focus-visible) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .25s ease, visibility 0s linear .25s !important;
+}
+
+/* NF-PILL-ALWAYS (2026-09-13, owner reversed NF-PILL-HIDE): the 10% pill is always visible at the bottom left on every page
+   and device. Outranks nf-redesign.css (right 12px on phones, .nf-nl-away slide out) and nf-cart-page.css (hidden under the
+   /cart phone bar). It rises above bottom pinned bars through --nfc-lift (nf-chrome.js lift()); motion is translate and
+   opacity only. z-index 90 keeps it under the cart drawer, the phone menu and every modal (999+), above page content. */
+html.nfc-pill-on body #nf-nl-tab.nf-nl-tab{display:inline-flex!important;position:fixed!important;top:auto!important;right:auto!important;left:calc(24px + env(safe-area-inset-left,0px))!important;bottom:calc(24px + env(safe-area-inset-bottom,0px))!important;z-index:90!important;transform:none!important;translate:0 calc(-1 * var(--nfc-lift,0px))!important;visibility:visible!important;pointer-events:auto!important;opacity:1;transition:background-color .25s ease,border-color .25s ease,translate .38s cubic-bezier(.2,.8,.2,1),opacity .3s ease!important;animation:nfcPillIn .55s cubic-bezier(.2,.8,.2,1) .15s both}
+html.nfc-pill-on body #nf-nl-tab.nf-nl-tab.nf-nl-away,html.nfc-pill-on.nfcp-bar-on body #nf-nl-tab.nf-nl-tab,html.nfc-pill-on body #nf-nl-tab.nf-nl-tab.nfc-gone{opacity:1!important;visibility:visible!important;pointer-events:auto!important;transform:none!important}
+html.nfc-pill-on body #nf-nl-tab.nf-nl-tab.nfc-mini{width:auto;gap:9px;padding:0 17px 0 15px!important}
+html.nfc-pill-on body #nf-nl-tab.nf-nl-tab.nfc-mini .nf-nl-tab__label{display:block}
+html.nfc-pill-on body:has(#nf-nl-overlay.open) #nf-nl-tab.nf-nl-tab{opacity:0!important;visibility:hidden!important;pointer-events:none!important;animation:none}
+@keyframes nfcPillIn{from{opacity:0;scale:.9}to{opacity:1;scale:1}}
+@media (max-width:749px){
+  html.nfc-pill-on body #nf-nl-tab.nf-nl-tab{left:calc(14px + env(safe-area-inset-left,0px))!important;bottom:calc(20px + env(safe-area-inset-bottom,0px))!important;height:34px;padding:0 14px 0 12px!important}
+  html.nfc-pill-on body #nf-nl-tab.nf-nl-tab.nfc-mini{padding:0 14px 0 12px!important}
+}
+@media (prefers-reduced-motion:reduce){html.nfc-pill-on body #nf-nl-tab.nf-nl-tab{animation:none;transition:background-color .25s ease,border-color .25s ease!important}}
+/* /NF-PILL-ALWAYS */

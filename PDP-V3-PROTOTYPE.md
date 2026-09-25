@@ -23,9 +23,18 @@ Preview: https://norafurnish.com/products/black-gold-minimalist-wall-lamp?previe
 
 `theme-live/` is a read-only snapshot of the relevant live files, taken on 2026-09-25 for reference and rollback.
 
+## Round 2 (owner feedback, same day)
+
+- There's no card box around the buy column any more; it's plain with one hairline divider, like Baskoraa. The container is full width and the split is 52/48, so the buy column is wider and starts further left.
+- The page opens on the product's **first image**. Before, it opened on the cheapest option's picture, which is often a spec drawing.
+- Bundle & Save now sits under Add to Cart / PayPal, like Baskoraa. It didn't render in round 1 because the storefront can't see the discount collection; eligibility is now "type is not Room Set", which is exactly that collection's rule.
+- The 2 and 3+ cards show one option dropdown per item. Mixed options are added in one go.
+- The quantity box and the cards stay in sync: 2 selects 2 Items, and 3 or more (e.g. 6) selects 3+ at 15%.
+- A green **In stock** line was added, and "Order today, arrives…" is gone.
+- **Add to Wishlist** was added. It's stored in the shopper's browser, since the store has no wishlist app.
+- Everything is bigger: title, price, buttons, cards, and the "Why customers love us" cards (3 per view with larger photos).
+- **Live discount created:** "Buy 3+ items, save 15%" (automatic, same collection). Shopify applies the better of 10% / 15%.
+
 ## Before going live
 
-1. **The 15% at 3+ is not real yet.** Live checkout only has "Buy 2+ items, save 10%". Pick one:
-   - create an automatic discount "Buy 3+ items, save 15%" on the same collection (Shopify applies the better of the two), or
-   - change `pct3: 15` to `pct3: 10` in the `nf_pdp3` block.
-2. To ship, copy these files into the live theme and replace its product template. Don't publish the prototype theme: the live theme is edited almost daily, and publishing the copy would roll those edits back.
+1. To ship, copy these files into the live theme and replace its product template. Don't publish the prototype theme: the live theme is edited almost daily, and publishing the copy would roll those edits back.

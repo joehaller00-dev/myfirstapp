@@ -1,33 +1,52 @@
-/* NF-PDP3-V1 (2026-09-25) product page redesign behaviours. Styles in assets/nf-pdp3.css.
-   1. gallery: the "n / total" counter and the end state of the arrows (the arrows themselves are the theme's
-      carousel-prev-button / carousel-next-button, see snippets/product-gallery.liquid)
-   2. Bundle & Save cards (snippets/nf-bundle-tiers.liquid): picking a card sets the add to cart quantity; prices
-      follow the selected variant. Prestige re-renders the info column on every option change (the quantity resets to
-      1 and the cards come back unselected), so the choice is kept here and put back after each re-render.
-   3. "Why customers love us" carousel (sections/nf-pdp-story.liquid): arrows, one dot per page, native snap scroll.
+/* NF-PDP3-V2 (2026-09-25) product page redesign behaviours. Styles in assets/nf-pdp3.css.
+   1. gallery: left and right arrows plus an "n / total" counter on the main image, and the page always opens on the
+      product's FIRST image (unless the link asks for a variant); the theme used to open on the cheapest option's
+      picture, which is often a spec drawing
+   2. "In stock" line follows the selected option (snippets/nf-pdp-stock.liquid)
+   3. Bundle & Save (snippets/nf-bundle-tiers.liquid): a card sets the quantity and the quantity box picks the card
+      (2 = 2 Items, 3 or more = 3+ Items). The 2 and 3+ cards get one option dropdown per item; when the items differ,
+      Add to Cart adds the mix in one request. Prestige re-renders the info column on every option change, so the
+      choice is kept here and put back after each re-render.
+   4. "Why customers love us" carousel (sections/nf-pdp-story.liquid)
+   5. hand-offs: Complete the room moves into its own band, Enquire opens the existing bulk quote form
+   6. wishlist kept in this browser (snippets/nf-pdp-wish.liquid)
    No class is put on <html> or <body>. */
 (function () {
   'use strict';
   if (window.__nfPdp3) return; window.__nfPdp3 = 1;
-  var d = document;
+  var d = document, de = d.documentElement;
+  var ROOT = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
   function $(s, r) { return (r || d).querySelector(s); }
   function $$(s, r) { return [].slice.call((r || d).querySelectorAll(s)); }
   var raf = window.requestAnimationFrame || function (f) { return setTimeout(f, 16); };
   function money(c) { return '$' + (Math.round(c) / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  var ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }; ESC[String.fromCharCode(39)] = '&#39;';
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ESC[c]; }); }
 
-  /* ------------------------------------------------------------------ 1. gallery arrows and counter
-     The template uses the theme's "carousel, thumbnails bottom" layout; this adds a left and right arrow (the theme's
-     own carousel-prev-button / carousel-next-button elements, so they drive its scroll-carousel) and an
-     "n / total" counter on top of the main image, and asks for sharper square thumbnails. */
-  var ARL = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>';
-  var ARR = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
+  /* shared variant data */
+  var VL = null;
+  function vlist() {
+    if (VL) return VL;
+    try { VL = JSON.parse(($('[data-nf3-variants]') || {}).textContent || '[]'); } catch (e) { VL = []; }
+    return VL;
+  }
+  function vById(id) { return vlist().filter(function (v) { return v.id === +id; })[0] || null; }
+  function mainForm() { return $('form[id^="product-form-main"]'); }
+  function curId() {
+    var f = mainForm(), el = f && f.querySelector('[name="id"]');
+    return el ? +el.value : ((vlist()[0] || {}).id || 0);
+  }
+
+  /* ------------------------------------------------------------------ 1. gallery */
+  var ARL = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>';
+  var ARR = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
   function gallery() {
     if (!$('[data-nf3]')) return;
     $$('.shopify-section--main-product product-gallery').forEach(function (gal) {
       var list = $('.product-gallery__image-list', gal), car = list && $('scroll-carousel', list);
       if (!car || car._nf3) return;
       car._nf3 = 1;
-      $$('.product-gallery__thumbnail img', gal).forEach(function (im) { im.sizes = '96px'; });
+      $$('.product-gallery__thumbnail img', gal).forEach(function (im) { im.sizes = '110px'; });
       if ($$('.product-gallery__media', car).length < 2) return;
       list.classList.add('nf3-stage');
       $$('.nf3-ui', list).forEach(function (n) { n.remove(); });
@@ -41,18 +60,18 @@
       list.appendChild(ui);
       var iEl = $('[data-nf3-i]', ui), nEl = $('[data-nf3-n]', ui);
       var prev = $('.nf3-arrow--prev', ui), next = $('.nf3-arrow--next', ui);
+      function slides() { return $$('.product-gallery__media', car).filter(function (m) { return !m.hidden; }); }
       function upd() {
-        var slides = $$('.product-gallery__media', car).filter(function (m) { return !m.hidden; });
-        if (!slides.length) return;
+        var s = slides(); if (!s.length) return;
         var left = car.getBoundingClientRect().left, best = 0, dist = Infinity;
-        slides.forEach(function (m, i) {
+        s.forEach(function (m, i) {
           var dd = Math.abs(m.getBoundingClientRect().left - left);
           if (dd < dist) { dist = dd; best = i; }
         });
         iEl.textContent = best + 1;
-        nEl.textContent = slides.length;
+        nEl.textContent = s.length;
         prev.classList.toggle('is-end', best === 0);
-        next.classList.toggle('is-end', best === slides.length - 1);
+        next.classList.toggle('is-end', best === s.length - 1);
       }
       var q = 0;
       car.addEventListener('scroll', function () { if (!q) { q = 1; raf(function () { q = 0; upd(); }); } }, { passive: true });
@@ -60,42 +79,82 @@
       upd(); setTimeout(upd, 400);
     });
   }
+  /* open on the first image: the theme scrolls to the selected option's picture while it starts up, so hold slide 1
+     for the first seconds, until the shopper touches anything */
+  function firstImage() {
+    if (/[?&]variant=/.test(location.search) || !$('[data-nf3]')) return;
+    var stop = false, t0 = Date.now();
+    function halt() { stop = true; }
+    ['pointerdown', 'wheel', 'keydown', 'touchstart'].forEach(function (e) { d.addEventListener(e, halt, { once: true, passive: true }); });
+    d.addEventListener('variant:change', halt, { once: true });
+    (function hold() {
+      if (stop || Date.now() - t0 > 3500) return;
+      var gal = $('.shopify-section--main-product product-gallery'), car = gal && $('scroll-carousel', gal);
+      if (car) {
+        var first = $$('.product-gallery__media', car).filter(function (m) { return !m.hidden; })[0];
+        if (first && Math.abs(first.getBoundingClientRect().left - car.getBoundingClientRect().left) > 2) {
+          car.scrollTo({ left: first.offsetLeft - car.offsetLeft, behavior: 'instant' });
+        }
+        $$('.product-gallery__thumbnail', gal).filter(function (b) { return !b.hidden; }).forEach(function (b, i) {
+          var want = i === 0 ? 'true' : 'false';
+          if (b.getAttribute('aria-current') !== want) b.setAttribute('aria-current', want);
+        });
+      }
+      setTimeout(hold, 80);
+    })();
+  }
 
-  /* ------------------------------------------------------------------ 2. Bundle & Save */
-  var st = { n: 1, q3: 3 };
-  var MAX3 = 20;
-  function mainForm() { return $('form[id^="product-form-main"]'); }
+  /* ------------------------------------------------------------------ 2. stock line */
+  function stock() {
+    var el = $('[data-nf-stock]'); if (!el) return;
+    var v = vById(curId()); if (!v) return;
+    el.classList.toggle('is-out', !v.a);
+    var t = $('[data-nf-stock-t]', el), txt = v.a ? 'In stock' : 'Sold out';
+    if (t && t.textContent !== txt) t.textContent = txt;
+  }
+
+  /* ------------------------------------------------------------------ 3. Bundle & Save */
+  var st = { n: 1, q3: 3, picks: [], base: 0 };
+  var MAX3 = 50, muting = false;
   function qtyInputs() {
     var f = mainForm(); if (!f) return [];
     return $$('input[name="quantity"]').filter(function (i) { return i.form === f || i.getAttribute('form') === f.id; });
   }
   function wantQty() { return st.n === 3 ? st.q3 : st.n; }
   function setQty(n) {
+    muting = true;
     qtyInputs().forEach(function (inp) {
       if (String(inp.value) === String(n)) return;
       inp.value = n;
       inp.dispatchEvent(new Event('input', { bubbles: true }));
       inp.dispatchEvent(new Event('change', { bubbles: true }));
     });
+    muting = false;
   }
-  function variants(root) {
-    if (root._v) return root._v;
-    try { root._v = JSON.parse(($('[data-nf-bt-variants]', root) || {}).textContent || '[]'); } catch (e) { root._v = []; }
-    return root._v;
+  function multi() { return vlist().filter(function (v) { return v.a; }).length > 1; }
+  function syncPicks() {
+    var cur = curId(), len = wantQty();
+    if (st.base !== cur) { st.base = cur; st.picks = []; }
+    while (st.picks.length < len) st.picks.push(cur);
+    st.picks.length = len;
   }
-  function current(root) {
-    var f = mainForm(), idEl = f && f.querySelector('[name="id"]');
-    var id = idEl ? +idEl.value : 0, list = variants(root);
-    return list.filter(function (v) { return v.id === id; })[0] || list[0] || null;
+  function pickHtml(i, val) {
+    return '<label class="nf-bt__pick"><span>' + (i + 1) + '.</span><select data-pick="' + i + '" aria-label="Option for item ' + (i + 1) + '">' +
+      vlist().filter(function (v) { return v.a || v.id === val; }).map(function (v) {
+        return '<option value="' + v.id + '"' + (v.id === val ? ' selected' : '') + '>' + esc(v.t) + '</option>';
+      }).join('') + '</select></label>';
   }
   function paint(root) {
-    var v = current(root); if (!v) return;
-    var p2 = +root.getAttribute('data-pct2') || 0, p3 = +root.getAttribute('data-pct3') || p2;
+    syncPicks();
+    var cur = vById(curId()); if (!cur) return;
+    var p2 = +root.getAttribute('data-pct2') || 0, p3 = +root.getAttribute('data-pct3') || p2, many = multi();
     $$('.nf-bt__opt', root).forEach(function (o) {
-      var tier = +o.getAttribute('data-n'), n = tier === 3 ? st.q3 : tier;
+      var tier = +o.getAttribute('data-n'), on = tier === st.n, n = tier === 3 ? st.q3 : tier;
       var pct = tier === 1 ? 0 : (tier === 2 ? p2 : p3);
-      var full = v.price * n, save = Math.floor(full * pct / 100), now = full - save;   /* round the saving DOWN, like Shopify */
-      var on = tier === st.n;
+      var ids = on ? st.picks.slice(0, n) : [];
+      while (ids.length < n) ids.push(cur.id);
+      var full = ids.reduce(function (s, id) { var v = vById(id); return s + (v ? v.price : cur.price); }, 0);
+      var save = Math.floor(full * pct / 100), now = full - save;   /* round the saving DOWN, like Shopify */
       o.classList.toggle('is-on', on);
       o.setAttribute('aria-checked', on ? 'true' : 'false');
       o.tabIndex = on ? 0 : -1;
@@ -112,11 +171,20 @@
           btn.disabled = dir < 0 ? st.q3 <= 3 : st.q3 >= MAX3;
         });
       }
-      if (v.img && root._img !== v.img) $$('.nf-bt__img', o).forEach(function (im) {
-        im.removeAttribute('srcset'); im.src = v.img.indexOf('//') === 0 ? 'https:' + v.img : v.img;
-      });
+      var box = $('[data-picks]', o);
+      if (box) {
+        if (!on || !many) { if (box.innerHTML) box.innerHTML = ''; }
+        else {
+          var sels = $$('select', box);
+          if (sels.length !== n) { box.innerHTML = ids.map(function (id, i) { return pickHtml(i, id); }).join(''); }
+          else sels.forEach(function (s, i) { if (+s.value !== ids[i]) s.value = ids[i]; });
+        }
+      }
+      if (cur.img && o._img !== cur.img) {
+        o._img = cur.img;
+        $$('.nf-bt__img', o).forEach(function (im) { im.removeAttribute('srcset'); im.src = cur.img.indexOf('//') === 0 ? 'https:' + cur.img : cur.img; });
+      }
     });
-    if (v.img) root._img = v.img;
   }
   function choose(n) {
     st.n = n;
@@ -130,6 +198,7 @@
     if (!root._nf3) {
       root._nf3 = 1;
       root.addEventListener('click', function (e) {
+        if (e.target.closest('select, label.nf-bt__pick')) return;
         var sb = e.target.closest('[data-step-dir]');
         if (sb) {
           e.preventDefault(); e.stopPropagation();
@@ -139,7 +208,13 @@
         var o = e.target.closest('.nf-bt__opt');
         if (o) choose(+o.getAttribute('data-n'));
       });
+      root.addEventListener('change', function (e) {
+        var s = e.target.closest('select[data-pick]'); if (!s) return;
+        st.picks[+s.getAttribute('data-pick')] = +s.value;
+        paint(root);
+      });
       root.addEventListener('keydown', function (e) {
+        if (e.target.closest('select')) return;
         var o = e.target.closest && e.target.closest('.nf-bt__opt'); if (!o) return;
         var n = +o.getAttribute('data-n'), to = 0;
         if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); choose(n); return; }
@@ -151,8 +226,64 @@
     paint(root);
     setQty(wantQty());
   }
+  /* the quantity box drives the cards: 1 = 1 Item, 2 = 2 Items, 3 or more = 3+ Items */
+  function onQty(e) {
+    var t = e.target;
+    if (muting || !t || t.name !== 'quantity' || !$('[data-nf-bt]')) return;
+    var f = mainForm(); if (!f || !(t.form === f || t.getAttribute('form') === f.id)) return;
+    var q = parseInt(t.value, 10);
+    if (!(q >= 1)) return;
+    if (q >= 3) { st.n = 3; st.q3 = Math.min(MAX3, q); } else st.n = q;
+    var root = $('[data-nf-bt]'); if (root) paint(root);
+    if (q > MAX3) setQty(MAX3);
+  }
+  d.addEventListener('change', onQty, true);
+  d.addEventListener('input', onQty, true);
+  /* quantity-selector +/- buttons change the value without an input event in some builds */
+  d.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.shopify-section--main-product quantity-selector')) {
+      setTimeout(function () { var i = qtyInputs()[0]; if (i) onQty({ target: i }); }, 40);
+    }
+  }, true);
 
-  /* ------------------------------------------------------------------ 3. reviews carousel */
+  /* Add to Cart with a mix of options: one /cart/add.js with every item, then the theme's own cart:change so the
+     drawer re-renders and opens (the same protocol assets/nf-bundle.js uses) */
+  function addItems(items) {
+    var secs = [];
+    de.dispatchEvent(new CustomEvent('cart:prepare-bundled-sections', { bubbles: true, detail: { sections: secs } }));
+    return fetch(ROOT + 'cart/add.js', {
+      method: 'POST', credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ items: items, sections: secs.join(',') })
+    }).then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); })
+      .then(function (j) {
+        return fetch(ROOT + 'cart.js', { credentials: 'same-origin' }).then(function (r) { return r.json(); }).then(function (cart) {
+          cart.sections = j.sections;
+          de.dispatchEvent(new CustomEvent('cart:change', { bubbles: true, detail: { baseEvent: 'variant:add', cart: cart, nfBundle: true } }));
+          var cd = $('cart-drawer'); if (cd && typeof cd.show === 'function') setTimeout(function () { cd.show(); }, 50);
+          return cart;
+        });
+      });
+  }
+  d.addEventListener('submit', function (e) {
+    var f = mainForm(), root = $('[data-nf-bt]');
+    if (!f || e.target !== f || !root || st.n < 2 || !multi()) return;
+    syncPicks();
+    var cur = curId(), mixed = st.picks.some(function (id) { return id !== cur; });
+    if (!mixed) return;                                   /* same option for every item: the theme adds it as usual */
+    e.preventDefault(); e.stopImmediatePropagation();
+    var counts = {}, order = [];
+    st.picks.forEach(function (id) { if (!counts[id]) { counts[id] = 0; order.push(id); } counts[id]++; });
+    var btn = f.querySelector('[type="submit"]'), err = $('.nf-bt__err', root);
+    if (!err) { err = d.createElement('p'); err.className = 'nf-bt__err'; err.setAttribute('role', 'alert'); root.appendChild(err); }
+    err.hidden = true;
+    if (btn) { btn.disabled = true; btn.setAttribute('aria-busy', 'true'); }
+    addItems(order.map(function (id) { return { id: id, quantity: counts[id] }; }))
+      .catch(function (x) { err.textContent = (x && (x.description || x.message)) || 'That did not go through. Please try again.'; err.hidden = false; })
+      .then(function () { if (btn) { btn.disabled = false; btn.removeAttribute('aria-busy'); } });
+  }, true);
+
+  /* ------------------------------------------------------------------ 4. reviews carousel */
   function loves() {
     $$('[data-nf-lv]').forEach(function (box) {
       if (box._nf3) return; box._nf3 = 1;
@@ -195,11 +326,7 @@
     });
   }
 
-  /* ------------------------------------------------------------------ 4. hand-offs to the existing scripts
-     - "Complete the room" (assets/nf-bundle.js) builds itself under Add to Cart; move it into its own band
-       (sections/nf-pdp-ctr.liquid). Its listeners are on the box, so moving it keeps it working.
-     - Enquire (story band) opens the existing bulk quote form from assets/nf-pdp.js (its own button is hidden
-       here); without it the link simply goes to the Bulk and Project Orders page. */
+  /* ------------------------------------------------------------------ 5. hand-offs to the existing scripts */
   function room() {
     var box = $('.nf-bdl'), mount = $('[data-nfb-mount]');
     if (!box || !mount || mount.contains(box)) return;
@@ -213,22 +340,78 @@
     if (q) { e.preventDefault(); q.click(); }
   });
 
+  /* ------------------------------------------------------------------ 6. wishlist (this browser only) */
+  var WK = 'nf_wishlist_v1';
+  function wlRead() { try { return JSON.parse(localStorage.getItem(WK) || '[]') || []; } catch (e) { return []; } }
+  function wlWrite(a) { try { localStorage.setItem(WK, JSON.stringify(a.slice(0, 60))); } catch (e) {} }
+  function wlPaint() {
+    var box = $('[data-nf-wl]'); if (!box) return;
+    var list = wlRead(), h = box.getAttribute('data-handle'), on = list.some(function (x) { return x.h === h; });
+    var btn = $('[data-nf-wl-btn]', box), lab = $('[data-nf-wl-label]', box), view = $('[data-nf-wl-view]', box);
+    /* write only what changed: this runs from a MutationObserver */
+    var pr = on ? 'true' : 'false', lt = on ? 'Saved to your Wishlist' : 'Add to Wishlist', cnt = $('[data-nf-wl-count]', box);
+    if (btn.getAttribute('aria-pressed') !== pr) btn.setAttribute('aria-pressed', pr);
+    if (lab.textContent !== lt) lab.textContent = lt;
+    if (view.hidden !== !list.length) view.hidden = !list.length;
+    if (cnt.textContent !== String(list.length)) cnt.textContent = list.length;
+  }
+  function wlOpen() {
+    var dlg = $('.nf-wlm');
+    if (!dlg) {
+      dlg = d.createElement('dialog'); dlg.className = 'nf-wlm'; dlg.setAttribute('aria-label', 'Your wishlist');
+      d.body.appendChild(dlg);
+      dlg.addEventListener('click', function (e) {
+        if (e.target === dlg || e.target.closest('.nf-wlm__x')) { dlg.close(); return; }
+        var rm = e.target.closest('[data-rm]');
+        if (rm) { wlWrite(wlRead().filter(function (x) { return x.h !== rm.getAttribute('data-rm'); })); fill(); wlPaint(); }
+      });
+    }
+    function fill() {
+      var list = wlRead();
+      dlg.innerHTML = '<div class="nf-wlm__in"><button type="button" class="nf-wlm__x" aria-label="Close">&times;</button>' +
+        '<h2 class="nf-wlm__h">Your wishlist</h2>' +
+        (list.length ? '<ul class="nf-wlm__list">' + list.map(function (x) {
+          return '<li><a href="' + esc(x.u) + '"><img src="' + esc(x.i) + '" alt="" loading="lazy"><span><b>' + esc(x.t) + '</b><small>' + esc(x.p) + '</small></span></a>' +
+            '<button type="button" data-rm="' + esc(x.h) + '">Remove</button></li>';
+        }).join('') + '</ul>' : '<p class="nf-wlm__empty">Nothing saved yet.</p>') +
+        '<p class="nf-wlm__note">Saved on this device.</p></div>';
+    }
+    fill();
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  d.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-nf-wl-btn], [data-nf-wl-view]');
+    if (!b) return;
+    var box = b.closest('[data-nf-wl]');
+    if (b.hasAttribute('data-nf-wl-view')) { wlOpen(); return; }
+    var h = box.getAttribute('data-handle'), list = wlRead();
+    if (list.some(function (x) { return x.h === h; })) list = list.filter(function (x) { return x.h !== h; });
+    else {
+      var im = box.getAttribute('data-img') || '';
+      list.unshift({ h: h, t: box.getAttribute('data-title'), u: box.getAttribute('data-url'), i: im.indexOf('//') === 0 ? 'https:' + im : im, p: box.getAttribute('data-price') });
+    }
+    wlWrite(list); wlPaint();
+  });
+
   /* ------------------------------------------------------------------ wiring */
-  function run() { gallery(); tiers(); loves(); room(); }
+  function run() { gallery(); stock(); tiers(); loves(); room(); wlPaint(); }
   function start() {
     run();
+    firstImage();
     d.addEventListener('variant:change', function () {
       setTimeout(run, 60); setTimeout(run, 450); setTimeout(run, 1200);
     });
-    /* Prestige swaps parts of the product section on option change; put the gallery counter and the chosen tier back */
+    /* Prestige swaps parts of the product section on option change; put the counter, the stock line and the chosen
+       card back */
     var host = $('.shopify-section--main-product') || d.body, t = 0;
     var rt = 0, rw = setInterval(function () { room(); if ($('[data-nfb-mount] .nf-bdl') || ++rt > 60) clearInterval(rw); }, 250);
     new MutationObserver(function () {
       clearTimeout(t);
       t = setTimeout(function () {
         var root = $('[data-nf-bt]'), stage = $('.shopify-section--main-product product-gallery scroll-carousel');
-        var qs = qtyInputs();
-        if ((root && !root._nf3) || (stage && !stage._nf3) || (root && qs.some(function (i) { return String(i.value) !== String(wantQty()); }))) run();
+        if ((root && !root._nf3) || (stage && !stage._nf3) ||
+            (root && qtyInputs().some(function (i) { return String(i.value) !== String(wantQty()); }))) run();
+        else { stock(); wlPaint(); }
       }, 30);
     }).observe(host, { childList: true, subtree: true });
   }
