@@ -86,6 +86,20 @@ Preview: https://norafurnish.com/products/black-gold-minimalist-wall-lamp?previe
 - **Headings.** Only New Outdoor Lighting stays bold; every other homepage title is back to the house serif, which also makes Autumn at Home readable again. Fifteen font and weight options are in `docs/heading-font-options.html`. The owner picks, then we apply it.
 - **Room sets show every piece.** A new "Every piece, photo by photo" block (`sections/nf-set-pieces.liquid`) lists each piece with its name, option, quantity and price, and a strip of all its own photos. Tapping one opens a large viewer with arrows. On desktop the block sits directly under the set's gallery.
 
+## Round 5 (owner feedback)
+
+- **Headings:** option 3 was chosen. Fraunces at weight 450 is used on every homepage section title, and New Outdoor Lighting keeps 600.
+- **Reviews are now our own section** (`sections/nf-reviews.liquid`). The round 4 restyle never showed because the live Judge.me widget uses different markup.
+  - It is drawn from Judge.me's review data on the product, in the exact Baskoraa layout. Mock: `docs/reviews-v5-mock.png`.
+  - "Show more reviews" asks Judge.me for the next page. If that fails, it opens Judge.me's own list.
+  - Write a review opens Judge.me's own form, so new reviews still go to Judge.me.
+  - The Judge.me block stays on the page, hidden until one of those is needed.
+- **Footer V5.** Mock: `docs/footer-v5-desktop-mock.png`.
+  - The script logo is much larger, 380 to 760px wide.
+  - The belief line is set in large Fraunces, with "Nora Furnish" in tan. It showed black before.
+  - The floor uplights are replaced by a brass picture light that lights the logo from above.
+- **Room sets:** "Every piece, photo by photo" replaces the set's own gallery at the top left. Each piece shows big photos two to a row: four on desktop and two on phones, then "See all N photos". Mock: `docs/room-set-pieces-mock.png`.
+
 ## Before going live
 
 1. The live theme was last edited at 13:36 UTC on 2026-09-25, before the prototype was copied, so **publishing the prototype as it is now loses nothing**. If anyone edits the live theme before you publish, copy those edits across first, or copy the files listed above into the live theme instead.

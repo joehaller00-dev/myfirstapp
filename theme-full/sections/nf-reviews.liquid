@@ -1,0 +1,110 @@
+{%- comment -%}
+  NF-REVIEWS-V5 (2026-09-25, owner round 5: "the reviews didn't change at all"). Restyling Judge.me's widget depended on
+  class names that are not on the live page, so this section draws the reviews itself, in the Baskoraa layout:
+    the average, stars and count on the left, Write a review and Ask a question on the right,
+    Reviews (N) / Questions (N) tabs on a full width rule, a sort menu on the right,
+    fixed width cards that start at the left, photo first.
+  Data: judgeme.review_widget_data (the first page of reviews Judge.me keeps on the product). "Show more reviews" asks
+  Judge.me for the next page (assets/nf-pdp3.js, section 9); if that fails it opens Judge.me's own full list.
+  Write a review opens Judge.me's own form, so reviews still go to Judge.me. The Judge.me section stays on the page,
+  hidden until it is needed. Questions: the #nf-questions panel (custom-nav.js, NF-QA-V1) is moved into the Questions tab.
+  Not shown on room sets, which have sections/nf-set-reviews.liquid.
+{%- endcomment -%}
+{%- liquid
+  assign jd = product.metafields.judgeme.review_widget_data.value
+  assign n = jd.number_of_reviews | default: 0
+  assign avg = jd.average_rating | default: 0 | plus: 0
+  assign revs = jd.reviews
+  assign nq = 0
+  assign qa = product.metafields.custom.qa.value
+  if qa != blank
+    assign nq = qa.size
+  endif
+-%}
+{%- unless product.type == 'Room Set' -%}
+  {{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}
+  <section class="nfrv" id="nf-reviews" data-nfrv data-n="{{ n }}" data-loaded="{{ revs.size | default: 0 }}" data-pid="{{ product.id }}" data-shop="{{ shop.permanent_domain }}" aria-labelledby="nfrv-h">
+    <div class="nfrv__in">
+      <h2 class="nfrv__sr" id="nfrv-h">Customer reviews</h2>
+      <div class="nfrv__top">
+        <div class="nfrv__sum">
+          {%- if n > 0 -%}
+            <p class="nfrv__score">{{ avg | round: 1 }} <span class="nfsr__stars" style="--r: {{ avg | times: 20 }}%" role="img" aria-label="{{ avg | round: 1 }} out of 5 stars"></span></p>
+            <p class="nfrv__count">{{ n }} {% if n == 1 %}review{% else %}reviews{% endif %}</p>
+          {%- else -%}
+            <p class="nfrv__score">No reviews yet</p>
+            <p class="nfrv__count">Be the first to share how it looks at home.</p>
+          {%- endif -%}
+        </div>
+        <div class="nfrv__acts">
+          <button type="button" class="nfrv__btn" data-nfrv-write>Write a review</button>
+          <button type="button" class="nfrv__btn" data-nfrv-ask>Ask a question</button>
+        </div>
+      </div>
+
+      <div class="nfrv__tabs" role="tablist">
+        <button type="button" class="nfrv__tab is-on" role="tab" aria-selected="true" data-nfrv-tab="r">Reviews ({{ n }})</button>
+        <button type="button" class="nfrv__tab" role="tab" aria-selected="false" data-nfrv-tab="q">Questions ({{ nq }})</button>
+      </div>
+
+      <div class="nfrv__panel" data-nfrv-panel="r">
+        {%- if revs.size > 0 -%}
+          <div class="nfrv__bar">
+            <label class="nfrv__sort"><span class="nfrv__sr">Sort reviews</span>
+              <select data-nfrv-sort>
+                <option value="new">Newest</option>
+                <option value="high">Highest rating</option>
+                <option value="low">Lowest rating</option>
+                <option value="pics">With photos</option>
+              </select>
+            </label>
+          </div>
+          <div class="nfrv__grid" data-nfrv-grid>
+            {%- for r in revs -%}
+              {%- liquid
+                assign pic = blank
+                assign p0 = r.pictures_urls | first
+                if p0 != blank
+                  if p0.urls
+                    assign pic = p0.urls.huge | default: p0.urls.original | default: p0.urls.small
+                  else
+                    assign pic = p0
+                  endif
+                endif
+              -%}
+              <article class="nfrv__card" data-t="{{ r.created_at }}" data-s="{{ r.rating }}" data-p="{% if pic != blank %}1{% else %}0{% endif %}">
+                {%- if pic != blank -%}<img class="nfrv__img" src="{{ pic }}" width="600" height="600" alt="Photo from {{ r.reviewer_name | escape }}'s review" loading="lazy">{%- endif -%}
+                <div class="nfrv__body">
+                  <div class="nfrv__row"><span class="nfsr__stars nfrv__stars" style="--r: {{ r.rating | times: 20 }}%" role="img" aria-label="{{ r.rating }} out of 5 stars"></span><time class="nfrv__when" datetime="{{ r.created_at }}">{{ r.created_at | date: '%b %-d, %Y' }}</time></div>
+                  <p class="nfrv__name">{{ r.reviewer_name | escape }}</p>
+                  {%- if r.verified_buyer -%}<p class="nfrv__ver"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M4.5 8.2l2.2 2.1 4.8-4.8" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified purchase</p>{%- endif -%}
+                  {%- if r.title != blank -%}<p class="nfrv__title">{{ r.title | escape }}</p>{%- endif -%}
+                  <div class="nfrv__text">{{ r.body_html | default: r.body }}</div>
+                  {%- if r.reply_content != blank -%}<details class="nfrv__reply"><summary>Reply from Nora Furnish</summary>{{ r.reply_content }}</details>{%- endif -%}
+                </div>
+              </article>
+            {%- endfor -%}
+          </div>
+          {%- if n > revs.size -%}
+            <div class="nfrv__more"><button type="button" class="nfrv__btn" data-nfrv-more>Show more reviews</button></div>
+          {%- endif -%}
+        {%- else -%}
+          <p class="nfrv__empty">No reviews for this piece yet. Bought one? Tell other shoppers what it is like at home.</p>
+        {%- endif -%}
+      </div>
+
+      <div class="nfrv__panel" data-nfrv-panel="q" hidden></div>
+    </div>
+  </section>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "NF reviews",
+  "tag": "div",
+  "class": "shopify-section--nf-reviews",
+  "settings": [],
+  "presets": [{ "name": "NF reviews" }],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

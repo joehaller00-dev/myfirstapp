@@ -105,35 +105,36 @@ html body #main .nf-footer .nff-pend__cone{position:absolute;top:calc(var(--cord
 html body #main .nf-footer .nff-pend--2 .nff-pend__cone{top:calc(var(--cord) - 150px);width:420px;height:420px;background:radial-gradient(circle at 50% 50%,rgba(var(--nfb-glow),.15) 0%,rgba(var(--nfb-glow),.05) 35%,rgba(var(--nfb-glow),0) 62%);clip-path:none;-webkit-mask-image:none;mask-image:none}
 html body #main .nf-footer .nff-pend--3{--cone:min(620px,46vw);--reach:640px}
 
-/* the belief line under the social icons */
-html body #main .shopify-section--footer .nf-footer.footer .nff-belief{margin:22px 0 0!important;max-width:440px;font-family:var(--heading-font-family,Georgia,serif)!important;font-size:18px!important;font-weight:400!important;line-height:1.45!important;color:rgba(255,255,255,.86)!important}
-html body #main .shopify-section--footer .nf-footer.footer .nff-belief b{font-weight:400;color:var(--nfb-tan-hi)}
+/* the belief line under the social icons: large, confident, in the heading serif */
+html body #main .shopify-section--footer .nf-footer.footer .nff-belief{margin:28px 0 0!important;max-width:620px;font-family:"Fraunces","Poynter Oldstyle",Georgia,serif!important;font-variation-settings:"opsz" 144;font-size:clamp(26px,2.5vw,40px)!important;font-weight:450!important;line-height:1.18!important;letter-spacing:-.01em!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+html body #main .shopify-section--footer .nf-footer.footer .nff-belief b{font-weight:inherit!important;color:var(--nfb-tan-hi)!important;-webkit-text-fill-color:var(--nfb-tan-hi)!important}
 
-/* stage: the script logo, lit from below */
-html body #main .shopify-section--footer .nf-footer.footer .nff-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;margin:clamp(36px,4vw,56px) calc(-1 * var(--nf-ft-gutter,3rem)) 0;padding:clamp(20px,2vw,32px) 0 clamp(52px,5vw,70px);border:0!important}
-html body #main .shopify-section--footer .nf-footer.footer .nff-logo{position:relative;z-index:2}
-html body #main .shopify-section--footer .nf-footer.footer .nff-logo .nf-footer__logo-img{width:min(var(--nf-logo-w,300px),72vw)!important;filter:brightness(0) invert(1) drop-shadow(0 0 22px rgba(var(--nfb-glow),.5))!important;transition:filter 1.4s ease .9s}
-html body #main .nf-footer .nff-ups{position:absolute;left:0;right:0;bottom:14px;z-index:0;display:flex;justify-content:center;gap:clamp(60px,9vw,150px);pointer-events:none}
-html body #main .nf-footer .nff-ups i{position:relative;display:block;width:18px;height:4px;border-radius:3px;background:#ffe9c4;box-shadow:0 0 8px 2px rgba(var(--nfb-glow),.9),0 0 26px 8px rgba(var(--nfb-glow),.28);transition:opacity .6s ease,box-shadow .8s ease}
-html body #main .nf-footer .nff-ups i::before{content:"";position:absolute;left:50%;bottom:2px;width:min(230px,20vw);height:clamp(150px,13vw,210px);transform:translateX(-50%);
-  background:radial-gradient(ellipse 50% 100% at 50% 100%,rgba(var(--nfb-glow),.22) 0%,rgba(var(--nfb-glow),.07) 50%,rgba(var(--nfb-glow),0) 80%);
-  clip-path:polygon(44% 100%,56% 100%,100% 0,0 0);-webkit-mask-image:linear-gradient(to top,#000 40%,transparent 100%);mask-image:linear-gradient(to top,#000 40%,transparent 100%);transition:opacity 1.2s ease}
+/* stage: the script logo, large, lit from above by a brass picture light */
+html body #main .shopify-section--footer .nf-footer.footer .nff-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;margin:clamp(40px,4vw,64px) calc(-1 * var(--nf-ft-gutter,3rem)) 0;padding:0 0 clamp(44px,4vw,64px);border:0!important}
+html body #main .shopify-section--footer .nf-footer.footer .nff-logo{position:relative;z-index:2;margin-top:clamp(34px,3vw,50px)}
+html body #main .shopify-section--footer .nf-footer.footer .nff-logo .nf-footer__logo-img{width:clamp(380px,44vw,760px)!important;max-width:86vw!important;height:auto!important;filter:brightness(0) invert(1) drop-shadow(0 0 26px rgba(var(--nfb-glow),.35))!important;transition:filter 1.4s ease .9s}
+html body #main .nf-footer .nff-pic{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:clamp(260px,26vw,440px)}
+html body #main .nf-footer .nff-pic__plate{display:block;width:46px;height:12px;border-radius:3px;background:linear-gradient(180deg,#d9b27a,#8c6a3f);box-shadow:0 1px 0 rgba(255,255,255,.25) inset}
+html body #main .nf-footer .nff-pic__stem{display:block;width:4px;height:22px;background:linear-gradient(90deg,#8c6a3f,#e0bd86,#8c6a3f)}
+html body #main .nf-footer .nff-pic__bar{position:relative;display:block;width:100%;height:16px;border-radius:9px;background:linear-gradient(180deg,#f0cf98 0%,#c7a068 45%,#7d5c34 100%);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+html body #main .nf-footer .nff-pic__bar::after{content:"";position:absolute;left:6%;right:6%;bottom:-3px;height:4px;border-radius:3px;background:#fff4dc;box-shadow:0 0 12px 4px rgba(var(--nfb-glow),.75),0 0 40px 14px rgba(var(--nfb-glow),.25);transition:opacity .6s ease .9s}
+html body #main .nf-footer .nff-pic__wash{position:absolute;top:48px;left:50%;width:190%;height:clamp(240px,20vw,340px);transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(ellipse 50% 100% at 50% 0%,rgba(var(--nfb-glow),.24) 0%,rgba(var(--nfb-glow),.09) 45%,rgba(var(--nfb-glow),0) 80%);
+  clip-path:polygon(26% 0,74% 0,100% 100%,0 100%);-webkit-mask-image:linear-gradient(to bottom,#000 40%,transparent 100%);mask-image:linear-gradient(to bottom,#000 40%,transparent 100%);transition:opacity 1.4s ease .9s}
 html body #main .shopify-section--footer .nf-footer.footer .nf-footer__bar{margin-top:0!important;padding-top:18px!important;border-top:1px solid rgba(255,255,255,.06)!important}
 
 /* off until the footer scrolls into view (only when JS armed it), then on in sequence */
-html body #main .nf-footer.nff-armed:not(.nff-on) .nff-pend__bulb,
-html body #main .nf-footer.nff-armed:not(.nff-on) .nff-ups i{background:#5d5248;box-shadow:none}
+html body #main .nf-footer.nff-armed:not(.nff-on) .nff-pend__bulb{background:#5d5248;box-shadow:none}
+html body #main .nf-footer.nff-armed:not(.nff-on) .nff-pic__bar::after{opacity:0}
 html body #main .nf-footer.nff-armed:not(.nff-on) .nff-pend--2 .nff-pend__shade{background:#6a5d52;box-shadow:none}
 html body #main .nf-footer.nff-armed:not(.nff-on) .nff-pend__cone,
-html body #main .nf-footer.nff-armed:not(.nff-on) .nff-ups i::before{opacity:0}
+html body #main .nf-footer.nff-armed:not(.nff-on) .nff-pic__wash{opacity:0}
 html body #main .nf-footer.nff-armed:not(.nff-on) .nff-logo .nf-footer__logo-img{filter:brightness(0) invert(1) opacity(.45)!important}
 html body #main .nf-footer.nff-armed .nff-pend--1 *{transition-delay:.1s}
 html body #main .nf-footer.nff-armed .nff-pend--2 *{transition-delay:.3s}
 html body #main .nf-footer.nff-armed .nff-pend--3 *{transition-delay:0s}
 html body #main .nf-footer.nff-armed .nff-pend--4 *{transition-delay:.45s}
 html body #main .nf-footer.nff-armed .nff-pend--5 *{transition-delay:.6s}
-html body #main .nf-footer.nff-armed .nff-ups i,
-html body #main .nf-footer.nff-armed .nff-ups i::before{transition-delay:.9s}
 @media (prefers-reduced-motion:no-preference){
   html body #main .nf-footer.nff-armed.nff-on .nff-pend{animation:nffSwing 2.8s cubic-bezier(.2,.7,.2,1) both}
   html body #main .nf-footer.nff-armed.nff-on .nff-pend--2{animation-delay:.2s}
@@ -149,8 +150,6 @@ html body #main .nf-footer.nff-armed .nff-ups i::before{transition-delay:.9s}
   html body #main .nf-footer .nff-pend{--cone:62vw;--reach:420px}
   html body #main .nf-footer .nff-pend--3{--cone:80vw}
   html body #main .shopify-section--footer .nf-footer.footer .nf-footer__inner{padding-top:120px!important}
-  html body #main .nf-footer .nff-ups{gap:22vw}
-  html body #main .nf-footer .nff-ups i:nth-child(even){display:none}
-  html body #main .nf-footer .nff-ups i::before{width:36vw}
-  html body #main .shopify-section--footer .nf-footer.footer .nff-belief{font-size:16px!important;margin-inline:auto!important;text-align:center}
+  html body #main .shopify-section--footer .nf-footer.footer .nff-belief{font-size:26px!important;margin-inline:auto!important;text-align:center}
+  html body #main .nf-footer .nff-pic{width:64vw}
 }

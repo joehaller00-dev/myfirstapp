@@ -350,6 +350,10 @@
     "nf_set_pieces": {
       "type": "nf-set-pieces",
       "settings": {}
+    },
+    "nf_reviews": {
+      "type": "nf-reviews",
+      "settings": {}
     }
   },
   "order": [
@@ -357,6 +361,7 @@
     "nf_set_pieces",
     "nf_set_reviews",
     "nf_pdp_story",
+    "nf_reviews",
     "1788818754e2571264",
     "nf_pdp_ctr",
     "featured_collections_x7UQLX",

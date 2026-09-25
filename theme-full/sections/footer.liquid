@@ -147,15 +147,16 @@
       </div>
     {%- endif -%}
 
-    {%- comment -%} NF-FOOTER-V4 STAGE (owner round 4): only the script logo, lit from below by floor uplights. No second wordmark. {%- endcomment -%}
+    {%- comment -%} NF-FOOTER-V5 STAGE (owner round 5): the script logo, large, lit from above by a brass picture light. No second wordmark. {%- endcomment -%}
     <div class="nff-stage">
+      {%- comment -%} NF-FOOTER-V5: a brass picture light over the logo, the way one would light a painting (owner: "make it practical"). {%- endcomment -%}
+      <div class="nff-pic" aria-hidden="true"><span class="nff-pic__plate"></span><span class="nff-pic__stem"></span><span class="nff-pic__bar"></span><span class="nff-pic__wash"></span></div>
       {%- if nf_logo_block -%}
         {%- assign nf_logo_link = nf_logo_block.settings.link | default: routes.root_url -%}
         <a href="{{ nf_logo_link }}" class="nf-footer__logo nff-logo" style="--nf-logo-w: {{ nf_logo_block.settings.image_width }}px;" {{ nf_logo_block.shopify_attributes }}>
-          {{- nf_logo_block.settings.image | image_url: width: 720 | image_tag: alt: shop.name, loading: 'lazy', sizes: '(max-width: 749px) 220px, 320px', widths: '360, 720', class: 'nf-footer__logo-img' -}}
+          {{- nf_logo_block.settings.image | image_url: width: 1600 | image_tag: alt: shop.name, loading: 'lazy', sizes: '(max-width: 749px) 86vw, 44vw', widths: '600, 1000, 1600', class: 'nf-footer__logo-img' -}}
         </a>
       {%- endif -%}
-      <div class="nff-ups" aria-hidden="true">{%- for i in (1..5) -%}<i></i>{%- endfor -%}</div>
     </div>
 
     {%- comment -%} BOTTOM BAR: copyright (+ localization and payment icons when enabled) {%- endcomment -%}

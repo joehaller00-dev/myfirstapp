@@ -465,16 +465,21 @@
     var story = $('.nf-st__story'), lv = $('[data-nf-lv]'), band = $('.nf-st__in'), sp = $('[data-nfsp]');
     if (!prod || !$('[data-nf3]', prod) || (!band && !sp)) return;
     var below = $('.nf3-below', prod);
+    /* room sets: every piece, photo by photo, takes the gallery's place (owner round 5). The set's own few photos go. */
+    if (sp) {
+      var gal = $('product-gallery', prod);
+      if (gal && sp.parentNode !== gal.parentNode) gal.parentNode.insertBefore(sp, gal);
+      if (gal) gal.style.display = 'none';
+      sp.classList.add('nfsp--main');
+    }
     if (DESK.matches) {
       if (!below) { below = d.createElement('div'); below.className = 'nf3-below'; prod.appendChild(below); }
-      if (sp && sp.parentNode !== below) { if (!sp._home) sp._home = sp.parentNode; below.insertBefore(sp, below.firstChild); }
       if (story && story.parentNode !== below) below.appendChild(story);
       if (lv && info && lv.parentNode !== info) { info.appendChild(lv); lv.classList.add('nf-lv--side'); }
       prod.classList.add('nf3-split');
     } else {
       if (story && band && story.parentNode !== band) band.insertBefore(story, band.firstChild);
       if (lv && band && lv.parentNode !== band) { band.appendChild(lv); lv.classList.remove('nf-lv--side'); }
-      if (sp && sp._home && sp.parentNode !== sp._home) sp._home.appendChild(sp);
       if (below) below.remove();
       prod.classList.remove('nf3-split');
     }
@@ -517,29 +522,114 @@
     if (btn) btn.hidden = !mixed;
   }
 
-  /* ------------------------------------------------------------------ 9. review header (V4, Baskoraa layout)
-     The tab bar is built by custom-nav.js (NF-REVIEW-TABS-V1) a moment after load. Put a header row above it: the average
-     and the count on the left (from the product's review metafields, printed on [data-nf3]), and its two buttons on the
-     right. */
-  function rhead() {
-    var rt = $('.nf-rt');
-    if (!rt) return false;
-    if (rt._nf3h) return true;
-    rt._nf3h = 1;
-    var m = $('[data-nf3]'), r = parseFloat(m && m.getAttribute('data-rating')) || 0, n = parseInt(m && m.getAttribute('data-count'), 10) || 0;
-    var h = d.createElement('div');
-    h.className = 'nf-rh';
-    h.innerHTML = '<div class="nf-rh__sum">' +
-      (n ? '<p class="nf-rh__score">' + r.toFixed(1) + ' <span class="nfsr__stars" style="--r:' + Math.round(r * 20) + '%" aria-label="' + r.toFixed(1) + ' out of 5 stars"></span></p>' +
-           '<p class="nf-rh__n">' + n + (n === 1 ? ' review' : ' reviews') + '</p>'
-         : '<p class="nf-rh__score">No reviews yet</p><p class="nf-rh__n">Be the first to share how it looks at home.</p>') +
-      '</div>';
-    var acts = $('.nf-rt__acts', rt);
-    if (acts) h.appendChild(acts);
-    rt.parentNode.insertBefore(h, rt);
-    return true;
-  }
-  (function () { var k = 0, iv = setInterval(function () { if (rhead() || ++k > 60) clearInterval(iv); }, 300); })();
+  /* ------------------------------------------------------------------ 9. reviews (sections/nf-reviews.liquid, V5)
+     Tabs, sort, "2 months ago" dates, Show more (next page from Judge.me, else Judge.me's own list), Write a review
+     (Judge.me's own form), Ask a question (the NF-QA form, moved into the Questions tab). */
+  (function reviews() {
+    var box = $('[data-nfrv]');
+    if (!box) return;
+    var grid = $('[data-nfrv-grid]', box), qPanel = $('[data-nfrv-panel="q"]', box), rPanel = $('[data-nfrv-panel="r"]', box);
+    function ago(iso) {
+      var t = Date.parse(iso); if (!t) return '';
+      var s = (Date.now() - t) / 1000, u = [[31536000, 'year'], [2592000, 'month'], [604800, 'week'], [86400, 'day']];
+      for (var i = 0; i < u.length; i++) { var n = Math.floor(s / u[i][0]); if (n >= 1) return n + ' ' + u[i][1] + (n > 1 ? 's' : '') + ' ago'; }
+      return 'Today';
+    }
+    function dates(root) { $$('.nfrv__when', root || box).forEach(function (el) { var a = ago(el.getAttribute('datetime')); if (a) el.textContent = a; }); }
+    dates();
+    function tab(which) {
+      $$('[data-nfrv-tab]', box).forEach(function (b) { var on = b.getAttribute('data-nfrv-tab') === which; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      rPanel.hidden = which !== 'r'; qPanel.hidden = which !== 'q';
+      if (which === 'q') grabQ();
+    }
+    /* the Q and A panel is built by custom-nav.js a moment after load, and its own tab bar may move it: keep it here */
+    function grabQ() {
+      var qa = d.getElementById('nf-questions');
+      if (qa && qa.parentNode !== qPanel) { qPanel.appendChild(qa); }
+      if (qa) qa.hidden = false;
+      return !!qa;
+    }
+    var gq = 0, gi = setInterval(function () { if ((grabQ() && ++gq > 8) || gq++ > 60) clearInterval(gi); }, 500);
+    function native(scroll) {
+      d.documentElement.classList.add('nfrv-native');
+      var w = $('.jm-review-widget, .jdgm-rev-widg, #judgeme_product_reviews, .jdgm-widget');
+      if (scroll && w) setTimeout(function () { w.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
+      return w;
+    }
+    function sort(how) {
+      var cards = $$('.nfrv__card', grid);
+      cards.sort(function (x, y) {
+        if (how === 'high') return (+y.dataset.s - +x.dataset.s) || (Date.parse(y.dataset.t) - Date.parse(x.dataset.t));
+        if (how === 'low') return (+x.dataset.s - +y.dataset.s) || (Date.parse(y.dataset.t) - Date.parse(x.dataset.t));
+        return Date.parse(y.dataset.t) - Date.parse(x.dataset.t);
+      }).forEach(function (c) { c.hidden = how === 'pics' && c.dataset.p !== '1'; grid.appendChild(c); });
+    }
+    function card(r) {
+      var el = d.createElement('article'); el.className = 'nfrv__card';
+      el.dataset.t = r.t; el.dataset.s = r.s; el.dataset.p = r.pic ? '1' : '0';
+      el.innerHTML = (r.pic ? '<img class="nfrv__img" loading="lazy" alt="Photo from ' + esc(r.name) + '\'s review" src="' + esc(r.pic) + '">' : '') +
+        '<div class="nfrv__body"><div class="nfrv__row"><span class="nfsr__stars nfrv__stars" style="--r:' + (r.s * 20) + '%" role="img" aria-label="' + r.s + ' out of 5 stars"></span><time class="nfrv__when" datetime="' + esc(r.t) + '"></time></div>' +
+        '<p class="nfrv__name">' + esc(r.name) + '</p>' + (r.ver ? '<p class="nfrv__ver">Verified purchase</p>' : '') +
+        '<div class="nfrv__text"></div></div>';
+      $('.nfrv__text', el).textContent = r.body;
+      return el;
+    }
+    var page = 1;
+    function more(btn) {
+      var n = +box.getAttribute('data-n'), pid = box.getAttribute('data-pid'), shop = box.getAttribute('data-shop');
+      btn.disabled = true; btn.textContent = 'Loading';
+      var url = 'https://api.judge.me/reviews/reviews_for_widget?legacy_widget=true&url=' + encodeURIComponent(shop) + '&shop_domain=' + encodeURIComponent(shop) +
+        '&platform=shopify&per_page=5&page=' + (page + 1) + '&product_id=' + encodeURIComponent(pid);
+      fetch(url).then(function (r) { if (!r.ok) throw r; return r.json(); }).then(function (j) {
+        var tmp = d.createElement('div'); tmp.innerHTML = j.html || '';
+        var got = $$('.jdgm-rev', tmp).map(function (rv) {
+          var img = $('.jdgm-rev__pics img, .jdgm-rev__pic-img', rv), link = $('.jdgm-rev__pics a', rv);
+          var pic = (link && link.getAttribute('href')) || (img && (img.getAttribute('data-src') || img.getAttribute('src'))) || '';
+          var tm = $('.jdgm-rev__timestamp', rv), sc = $('.jdgm-rev__rating', rv);
+          return { t: (tm && (tm.getAttribute('datetime') || tm.getAttribute('data-content'))) || '', s: +(sc && sc.getAttribute('data-score')) || 5,
+            name: ($('.jdgm-rev__author', rv) || {}).textContent || '', ver: rv.getAttribute('data-verified-buyer') === 'true',
+            body: (($('.jdgm-rev__body', rv) || {}).textContent || '').trim(), pic: pic };
+        }).filter(function (r) { return r.body || r.pic; });
+        if (!got.length) throw new Error('empty');
+        got.forEach(function (r) { grid.appendChild(card(r)); });
+        page++; dates(grid);
+        var sel = $('[data-nfrv-sort]', box); if (sel && sel.value !== 'new') sort(sel.value);
+        if ($$('.nfrv__card', grid).length >= n) btn.parentNode.remove(); else { btn.disabled = false; btn.textContent = 'Show more reviews'; }
+      }).catch(function () {
+        /* Judge.me did not answer: open its own full list instead */
+        btn.parentNode.remove();
+        native(true);
+      });
+    }
+    box.addEventListener('click', function (e) {
+      var tb = e.target.closest('[data-nfrv-tab]'); if (tb) { tab(tb.getAttribute('data-nfrv-tab')); return; }
+      if (e.target.closest('[data-nfrv-more]')) { more(e.target.closest('[data-nfrv-more]')); return; }
+      if (e.target.closest('[data-nfrv-ask]')) {
+        tab('q');
+        setTimeout(function () {
+          var ask = $('#nf-questions .nf-qa__ask'); if (ask) ask.click();
+          var f = $('#nf-questions textarea'); if (f) { f.focus(); f.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        }, 80);
+        return;
+      }
+      if (e.target.closest('[data-nfrv-write]')) {
+        var w = native(false);
+        var btn = $$('.jdgm-write-rev-link, .jm-button, .jm-action-buttons__button, .nf-rt__btn--solid').filter(function (b) { return /write a review/i.test(b.textContent || ''); })[0];
+        if (btn) { btn.style.removeProperty('display'); btn.click(); }
+        setTimeout(function () { var f = $('.jdgm-form, .jm-review-form, form[class*="review"]') || w; if (f) f.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 250);
+      }
+    });
+    var sel = $('[data-nfrv-sort]', box);
+    if (sel) sel.addEventListener('change', function () { sort(sel.value); });
+    /* "N questions" under the title and #nf-questions links open our Questions tab */
+    d.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href$="#nf-questions"]');
+      if (!a || a.closest('#nf-questions')) return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      tab('q'); box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, true);
+    if (location.hash === '#nf-questions') setTimeout(function () { tab('q'); box.scrollIntoView({ block: 'start' }); }, 400);
+  })();
 
   /* ------------------------------------------------------------------ 10. room set piece photos: tap to view large */
   d.addEventListener('click', function (e) {
@@ -567,6 +657,14 @@
     dlg._all = all; dlg._name = name.trim();
     show(i);
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  });
+
+  d.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-nfsp-more]');
+    if (!b) return;
+    var grid = b.previousElementSibling;
+    if (grid) grid.classList.add('is-all');
+    b.remove();
   });
 
   /* ------------------------------------------------------------------ wiring */
