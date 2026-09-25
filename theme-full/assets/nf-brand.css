@@ -48,15 +48,27 @@ html body #nora-announcement-bar#nora-announcement-bar .nfa__clock [data-nfa-t]{
 .product:has([data-nf3]) .shopify-payment-button__button--unbranded:hover{background:#000!important}
 
 /* -------------------------------------------------------------------------------- 4. homepage headings */
-html body .nf-newin__title{
+/* Owner picked option 3 from docs/heading-font-options.html: Fraunces at a medium 450 weight on every homepage section
+   title. Colors are left to each section, so light titles on dark photos stay light. New Outdoor Lighting keeps the
+   heavier 600 the owner liked. */
+html body .nf-mosaic__head h2,
+html body .nf-newin__title,
+html body .nfdk__title,
+html body .nf-ah__title,
+html body .nfp__title,
+html body .nfrb__title,
+html body .nf-journal__title,
+html body .nf-vz__title,
+html body .nfcat-promo__h{
   font-family:"Fraunces","Poynter Oldstyle",Georgia,serif!important;
-  font-weight:600!important;
+  font-weight:450!important;
   font-variation-settings:"opsz" 144;
-  letter-spacing:-.018em!important;
-  line-height:1.02!important;
-  font-size:clamp(42px,4.6vw,72px)!important;
+  letter-spacing:-.01em!important;
+  line-height:1.06!important;
 }
-@media screen and (max-width:749px){html body .nf-newin__title{font-size:38px!important}}
+html body .nf-newin__title{font-weight:600!important;letter-spacing:-.018em!important;line-height:1.02!important;font-size:clamp(42px,4.6vw,72px)!important}
+html body .nf-mosaic__head h2{font-size:clamp(30px,3vw,46px)!important}
+@media screen and (max-width:749px){html body .nf-newin__title{font-size:38px!important}html body .nf-mosaic__head h2{font-size:28px!important}}
 
 /* ------------------------------------------------------------------------------------------ 5. footer V4 */
 /* Five pendants light the menus from above; a row of floor uplights lights the script logo from below. No second
