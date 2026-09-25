@@ -73,6 +73,19 @@ Preview: https://norafurnish.com/products/black-gold-minimalist-wall-lamp?previe
 - **The `lighting-catalog-2026` collection matches exactly:** 16 archived products were removed and 16 were added, for 128 products, all active.
 - **Room sets:** all 50 sets and all 12 industry "room sets" collections have images (added earlier today). If a set still looks bare, send the URL.
 
+## Round 4 (owner feedback)
+
+- **Reviews use the Baskoraa layout.** The average, stars and count sit on the left, with Write a review and Ask a question (both outlined) on the right. Tabs run on a full width rule, Newest sits on the right, and fixed width cards start at the left with the photo first, so a product with two reviews still looks tidy. Mock: `docs/reviews-v4-mock.png`.
+- **No red anywhere.**
+  - Add to cart is the signature tan (#b38b5d), and Buy it now is black.
+  - The announcement bar is back on its original dark background, with tan text and a tan outlined countdown that is always visible.
+  - Eyebrows, the Popular tag and the headings are back to the house colors.
+- **Footer V4.**
+  - The giant wordmark and the white divider are gone. The cursive logo (300px) is lit from below by five floor uplights, and the lower half is compact.
+  - The old brand line is removed. Under the social icons: "At Nora Furnish, we believe the right light is what turns a house into a home, one warm room at a time." Mock: `docs/footer-v4-desktop-mock.png`.
+- **Headings.** Only New Outdoor Lighting stays bold; every other homepage title is back to the house serif, which also makes Autumn at Home readable again. Fifteen font and weight options are in `docs/heading-font-options.html`. The owner picks, then we apply it.
+- **Room sets show every piece.** A new "Every piece, photo by photo" block (`sections/nf-set-pieces.liquid`) lists each piece with its name, option, quantity and price, and a strip of all its own photos. Tapping one opens a large viewer with arrows. On desktop the block sits directly under the set's gallery.
+
 ## Before going live
 
 1. The live theme was last edited at 13:36 UTC on 2026-09-25, before the prototype was copied, so **publishing the prototype as it is now loses nothing**. If anyone edits the live theme before you publish, copy those edits across first, or copy the files listed above into the live theme instead.

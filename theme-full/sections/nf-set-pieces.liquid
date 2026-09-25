@@ -1,0 +1,67 @@
+{%- comment -%}
+  NF-SETPIECES-V1 (2026-09-25, owner round 4: "the room set images, two or four images, it's pathetic. Show the images of
+  each product: here's the product, here are its images, here's the next product and its images").
+  For Room Set products only: every piece in custom.set_items, in order, with its name, option, quantity and price, and
+  a strip of all of that piece's own photos. Tapping a photo opens it large (assets/nf-pdp3.js, section 10).
+  On desktop nf-pdp3.js moves this block into the left column, directly under the set's own gallery.
+  Renders nothing on products that are not room sets.
+{%- endcomment -%}
+{%- liquid
+  assign nf_si = product.metafields.custom.set_items.value
+  assign nf_show = false
+  if product.type == 'Room Set' and nf_si != blank
+    assign nf_show = true
+  endif
+-%}
+{%- if nf_show -%}
+  {{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}
+  <section class="nfsp" id="nf-set-pieces" data-nfsp aria-labelledby="nfsp-h">
+    <div class="nfsp__in">
+      <p class="nfsr__eyebrow">In this set</p>
+      <h2 class="nfsp__h" id="nfsp-h">Every piece, photo by photo</h2>
+      <p class="nfsp__sub">{{ nf_si.size }} {% if nf_si.size == 1 %}piece{% else %}pieces{% endif %} in this set. Tap any photo to see it larger.</p>
+      {%- for it in nf_si -%}
+        {%- assign h = it.url | split: '/products/' | last | split: '?' | first -%}
+        {%- assign p = all_products[h] -%}
+        {%- if p == blank or p.id == nil -%}{%- continue -%}{%- endif -%}
+        {%- assign q = it.q | default: 1 -%}
+        <article class="nfsp__piece">
+          <div class="nfsp__head">
+            <span class="nfsp__num">{{ forloop.index }}</span>
+            <div class="nfsp__meta">
+              <a class="nfsp__t" href="{{ p.url }}">{{ p.title | escape }}</a>
+              <span class="nfsp__opt">
+                {%- if it.v != blank and it.v != 'Default Title' -%}{{ it.v | escape }} · {% endif -%}
+                {%- if q > 1 -%}{{ q }} included · {% endif -%}
+                {{ p.price | money }}{% if q > 1 %} each{% endif %}
+              </span>
+            </div>
+            <a class="nfsp__link" href="{{ p.url }}">View this piece <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <div class="nfsp__strip" role="list">
+            {%- assign shown = 0 -%}
+            {%- for m in p.media -%}
+              {%- if m.media_type != 'image' -%}{%- continue -%}{%- endif -%}
+              <button type="button" class="nfsp__ph" role="listitem" data-nfsp-img="{{ m | image_url: width: 1600 }}" aria-label="Open photo {{ forloop.index }} of {{ p.title | escape }}">
+                {{ m | image_url: width: 520 | image_tag: loading: 'lazy', alt: m.alt | default: p.title, sizes: '(max-width: 749px) 42vw, 200px', widths: '260, 520' }}
+              </button>
+              {%- assign shown = shown | plus: 1 -%}
+              {%- if shown >= 14 -%}{%- break -%}{%- endif -%}
+            {%- endfor -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF set pieces",
+  "tag": "div",
+  "class": "shopify-section--nf-set-pieces",
+  "settings": [],
+  "presets": [{ "name": "NF set pieces" }],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

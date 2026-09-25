@@ -462,21 +462,23 @@
   var DESK = window.matchMedia('(min-width: 1000px)');
   function layout() {
     var prod = $('.shopify-section--main-product .product'), info = prod && $('.product-info', prod);
-    var story = $('.nf-st__story'), lv = $('[data-nf-lv]'), band = $('.nf-st__in');
-    if (!prod || !$('[data-nf3]', prod) || !band) return;
+    var story = $('.nf-st__story'), lv = $('[data-nf-lv]'), band = $('.nf-st__in'), sp = $('[data-nfsp]');
+    if (!prod || !$('[data-nf3]', prod) || (!band && !sp)) return;
     var below = $('.nf3-below', prod);
     if (DESK.matches) {
       if (!below) { below = d.createElement('div'); below.className = 'nf3-below'; prod.appendChild(below); }
+      if (sp && sp.parentNode !== below) { if (!sp._home) sp._home = sp.parentNode; below.insertBefore(sp, below.firstChild); }
       if (story && story.parentNode !== below) below.appendChild(story);
       if (lv && info && lv.parentNode !== info) { info.appendChild(lv); lv.classList.add('nf-lv--side'); }
       prod.classList.add('nf3-split');
     } else {
-      if (story && story.parentNode !== band) band.insertBefore(story, band.firstChild);
-      if (lv && lv.parentNode !== band) { band.appendChild(lv); lv.classList.remove('nf-lv--side'); }
+      if (story && band && story.parentNode !== band) band.insertBefore(story, band.firstChild);
+      if (lv && band && lv.parentNode !== band) { band.appendChild(lv); lv.classList.remove('nf-lv--side'); }
+      if (sp && sp._home && sp.parentNode !== sp._home) sp._home.appendChild(sp);
       if (below) below.remove();
       prod.classList.remove('nf3-split');
     }
-    var sec = band.closest('.nf-st'); if (sec) sec.hidden = !band.children.length;
+    var sec = band && band.closest('.nf-st'); if (sec) sec.hidden = !band.children.length;
   }
   if (DESK.addEventListener) DESK.addEventListener('change', function () { layout(); $$('[data-nf-lv]').forEach(function (b) { b._nf3 = 0; }); loves(); });
 
@@ -514,6 +516,58 @@
     }
     if (btn) btn.hidden = !mixed;
   }
+
+  /* ------------------------------------------------------------------ 9. review header (V4, Baskoraa layout)
+     The tab bar is built by custom-nav.js (NF-REVIEW-TABS-V1) a moment after load. Put a header row above it: the average
+     and the count on the left (from the product's review metafields, printed on [data-nf3]), and its two buttons on the
+     right. */
+  function rhead() {
+    var rt = $('.nf-rt');
+    if (!rt) return false;
+    if (rt._nf3h) return true;
+    rt._nf3h = 1;
+    var m = $('[data-nf3]'), r = parseFloat(m && m.getAttribute('data-rating')) || 0, n = parseInt(m && m.getAttribute('data-count'), 10) || 0;
+    var h = d.createElement('div');
+    h.className = 'nf-rh';
+    h.innerHTML = '<div class="nf-rh__sum">' +
+      (n ? '<p class="nf-rh__score">' + r.toFixed(1) + ' <span class="nfsr__stars" style="--r:' + Math.round(r * 20) + '%" aria-label="' + r.toFixed(1) + ' out of 5 stars"></span></p>' +
+           '<p class="nf-rh__n">' + n + (n === 1 ? ' review' : ' reviews') + '</p>'
+         : '<p class="nf-rh__score">No reviews yet</p><p class="nf-rh__n">Be the first to share how it looks at home.</p>') +
+      '</div>';
+    var acts = $('.nf-rt__acts', rt);
+    if (acts) h.appendChild(acts);
+    rt.parentNode.insertBefore(h, rt);
+    return true;
+  }
+  (function () { var k = 0, iv = setInterval(function () { if (rhead() || ++k > 60) clearInterval(iv); }, 300); })();
+
+  /* ------------------------------------------------------------------ 10. room set piece photos: tap to view large */
+  d.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-nfsp-img]');
+    if (!b) return;
+    var strip = b.parentNode, all = $$('[data-nfsp-img]', strip), i = all.indexOf(b);
+    var name = (b.closest('.nfsp__piece') && $('.nfsp__t', b.closest('.nfsp__piece')) || {}).textContent || '';
+    var dlg = $('.nfsp-dlg');
+    if (!dlg) {
+      dlg = d.createElement('dialog'); dlg.className = 'nfsp-dlg';
+      dlg.innerHTML = '<img alt=""><div class="nfsp-dlg__bar"><button type="button" data-p aria-label="Previous photo">&larr;</button><span data-c></span><button type="button" data-n aria-label="Next photo">&rarr;</button><button type="button" data-x aria-label="Close">&times;</button></div>';
+      d.body.appendChild(dlg);
+      dlg.addEventListener('click', function (ev) {
+        if (ev.target === dlg || ev.target.closest('[data-x]')) { dlg.close(); return; }
+        if (ev.target.closest('[data-p]')) show(dlg._i - 1);
+        if (ev.target.closest('[data-n]')) show(dlg._i + 1);
+      });
+      dlg.addEventListener('keydown', function (ev) { if (ev.key === 'ArrowLeft') show(dlg._i - 1); if (ev.key === 'ArrowRight') show(dlg._i + 1); });
+    }
+    function show(k) {
+      var l = dlg._all; k = (k + l.length) % l.length; dlg._i = k;
+      var im = $('img', dlg); im.src = l[k].getAttribute('data-nfsp-img'); im.alt = dlg._name + ', photo ' + (k + 1);
+      $('[data-c]', dlg).textContent = dlg._name + '  ' + (k + 1) + ' / ' + l.length;
+    }
+    dlg._all = all; dlg._name = name.trim();
+    show(i);
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  });
 
   /* ------------------------------------------------------------------ wiring */
   function run() { layout(); gallery(); stock(); tiers(); loves(); room(); wlPaint(); express(); }

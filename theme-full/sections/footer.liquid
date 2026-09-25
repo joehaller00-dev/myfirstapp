@@ -96,6 +96,8 @@
                   {%- if nf_social != blank -%}
                     <div class="nf-footer-nl__social">{{ nf_social }}</div>
                   {%- endif -%}
+                  {%- comment -%} NF-FOOTER-V4: one line about what we believe, under the social icons (owner round 4, like Baskoraa). {%- endcomment -%}
+                  <p class="nff-belief">At <b>Nora Furnish</b>, we believe the right light is what turns a house into a home, one warm room at a time.</p>
                 </div>
               </div>
 
@@ -145,7 +147,7 @@
       </div>
     {%- endif -%}
 
-    {%- comment -%} NF-FOOTER-V3 STAGE: large logo, brand line and the giant wordmark, lit from below by floor uplights. {%- endcomment -%}
+    {%- comment -%} NF-FOOTER-V4 STAGE (owner round 4): only the script logo, lit from below by floor uplights. No second wordmark. {%- endcomment -%}
     <div class="nff-stage">
       {%- if nf_logo_block -%}
         {%- assign nf_logo_link = nf_logo_block.settings.link | default: routes.root_url -%}
@@ -153,9 +155,7 @@
           {{- nf_logo_block.settings.image | image_url: width: 720 | image_tag: alt: shop.name, loading: 'lazy', sizes: '(max-width: 749px) 220px, 320px', widths: '360, 720', class: 'nf-footer__logo-img' -}}
         </a>
       {%- endif -%}
-      <p class="nf-footer__brandline nff-line">Lighting and decor for rooms that glow. Shipped free across the USA.</p>
-      <div class="nff-mark" aria-hidden="true"><span class="nff-mark__word">Nora Furnish</span></div>
-      <div class="nff-ups" aria-hidden="true">{%- for i in (1..7) -%}<i></i>{%- endfor -%}</div>
+      <div class="nff-ups" aria-hidden="true">{%- for i in (1..5) -%}<i></i>{%- endfor -%}</div>
     </div>
 
     {%- comment -%} BOTTOM BAR: copyright (+ localization and payment icons when enabled) {%- endcomment -%}

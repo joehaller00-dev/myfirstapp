@@ -110,7 +110,7 @@
         "nf_pdp3": {
           "type": "liquid",
           "settings": {
-            "liquid": "{{ 'nf-pdp.css' | asset_url | stylesheet_tag }}{{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}<script src=\"{{ 'nf-pdp.js' | asset_url }}\" defer></script><script src=\"{{ 'nf-pdp3.js' | asset_url }}\" defer></script><span data-nf3 hidden></span>{% render 'nf-pdp-stock', product: product %}{% render 'nf-pdp-assure' %}"
+            "liquid": "{{ 'nf-pdp.css' | asset_url | stylesheet_tag }}{{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}<script src=\"{{ 'nf-pdp.js' | asset_url }}\" defer></script><script src=\"{{ 'nf-pdp3.js' | asset_url }}\" defer></script><span data-nf3 data-rating=\"{{ product.metafields.reviews.rating.value.rating | default: 0 }}\" data-count=\"{{ product.metafields.reviews.rating_count.value | default: 0 }}\" hidden></span>{% render 'nf-pdp-stock', product: product %}{% render 'nf-pdp-assure' %}"
           }
         },
         "acc_keyfeat": {
@@ -346,10 +346,15 @@
     "nf_set_reviews": {
       "type": "nf-set-reviews",
       "settings": {}
+    },
+    "nf_set_pieces": {
+      "type": "nf-set-pieces",
+      "settings": {}
     }
   },
   "order": [
     "main",
+    "nf_set_pieces",
     "nf_set_reviews",
     "nf_pdp_story",
     "1788818754e2571264",

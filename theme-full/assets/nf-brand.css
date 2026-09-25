@@ -1,91 +1,69 @@
-/* NF-BRAND-V1 (2026-09-25, owner round 3: "a signature color vibe", "bolder, more authoritative headings",
-   "the footer lighting doesn't make sense, add more pretty lights, bigger logo, a gigantic personalized footer").
-   Loaded after every other stylesheet from layout/theme.liquid. Remove the one <link> to roll all of it back.
-
-   1. Tokens. "Ember": the color of a filament just switched on. Deep ember red for accents and the big moments,
-      candle cream for warm grounds, the existing brass kept as the metal. Swap the four --nfb-* values to try the other
-      palettes in PDP-V3-PROTOTYPE.md (Midnight Brass, Olive Atelier, Terracotta).
-   2. Accents: announcement bar, eyebrows, the product page buy button and the Popular tag.
-   3. Homepage section headings: Fraunces 600 (already loaded), larger, tighter.
-   4. Footer V3: five pendants light the menus from above, seven floor uplights light the giant wordmark from below. */
+/* NF-BRAND-V2 (2026-09-25, owner round 4). Loaded last from layout/theme.liquid; remove that one <link> to roll it back.
+   Round 3 tried an ember red. The owner does not use red anywhere, so V2 goes back to the house colors: the signature tan
+   and near-black, with cream.
+   1. Tokens.
+   2. Announcement bar: the original dark background, tan text, a readable countdown.
+   3. Product page: Add to cart in the signature tan, Buy it now in black.
+   4. Homepage headings: only "New Outdoor Lighting" (New Arrivals) is set bold. The rest keep the house serif until the
+      owner picks from docs/heading-font-options.html.
+   5. Footer V4. */
 
 :root{
-  --nfb-ember:#7a2616;
-  --nfb-ember-deep:#3d140c;
-  --nfb-night:#170d0a;
-  --nfb-cream:#f6eee2;
-  --nfb-brass:#b38b5d;
-  --nfb-brass-hi:#e8c48a;
-  --nfb-ink:#24130d;
+  --nfb-tan:#b38b5d;
+  --nfb-tan-d:#9a7447;
+  --nfb-tan-hi:#e8c48a;
+  --nfb-night:#141010;
+  --nfb-ink:#1c1c1c;
   --nfb-glow:255,196,122;
 }
 
-/* ----------------------------------------------------------------------------------------- 2. accents */
-html body #nora-announcement-bar#nora-announcement-bar{
-  background:var(--nfb-ember-deep)!important;
-  background-image:radial-gradient(ellipse 42% 150% at 50% 0%,rgba(var(--nfb-glow),.26),rgba(var(--nfb-glow),0) 70%)!important;
-}
-html body #nora-announcement-bar#nora-announcement-bar .nfa__clock{background:var(--nfb-cream);color:var(--nfb-ember)}
-html body .nf-eyebrow{color:var(--nfb-ember)!important}
+/* ----------------------------------------------------------------------------------- 2. announcement bar */
+html body #nora-announcement-bar#nora-announcement-bar .nfa,
+html body #nora-announcement-bar#nora-announcement-bar .nfa__msg,
+html body #nora-announcement-bar#nora-announcement-bar .nfa__msg span,
+html body #nora-announcement-bar#nora-announcement-bar .nfa__msg b,
+html body #nora-announcement-bar#nora-announcement-bar .nfa__cta{color:var(--nfb-tan-hi)!important;-webkit-text-fill-color:var(--nfb-tan-hi)!important}
+html body #nora-announcement-bar#nora-announcement-bar .nfa__clock{background:rgba(232,196,138,.12)!important;box-shadow:0 0 0 1px rgba(232,196,138,.55) inset!important;min-width:0!important}
+html body #nora-announcement-bar#nora-announcement-bar .nfa__clock,
+html body #nora-announcement-bar#nora-announcement-bar .nfa__clock *{color:var(--nfb-tan-hi)!important;-webkit-text-fill-color:var(--nfb-tan-hi)!important;opacity:1!important;visibility:visible!important}
+html body #nora-announcement-bar#nora-announcement-bar .nfa__clock [data-nfa-t]{display:inline!important;font-size:13px!important;line-height:1!important;white-space:nowrap!important}
 
+/* ------------------------------------------------------------------------------------- 3. product page buttons */
 .product:has([data-nf3]) .nf-qty-atc-row .buy-buttons button[type="submit"],
 .product:has([data-nf3]) .product-info .nf-buybuttons button[type="submit"],
 .product:has([data-nf3]) .product-info .buy-buttons button[type="submit"]{
-  background:var(--nfb-ember)!important;border-color:var(--nfb-ember)!important;color:#fff!important;
+  background:var(--nfb-tan)!important;border-color:var(--nfb-tan)!important;color:#fff!important;
 }
 .product:has([data-nf3]) .nf-qty-atc-row .buy-buttons button[type="submit"]:hover,
 .product:has([data-nf3]) .product-info .nf-buybuttons button[type="submit"]:hover,
 .product:has([data-nf3]) .product-info .buy-buttons button[type="submit"]:hover{
-  background:var(--nfb-ember-deep)!important;border-color:var(--nfb-ember-deep)!important;
+  background:var(--nfb-tan-d)!important;border-color:var(--nfb-tan-d)!important;
 }
-.product:has([data-nf3]) .nf-bt__tag:not(.nf-bt__tag--best){background:var(--nfb-ember)}
+.product:has([data-nf3]) .nf3-buymix,
+.product:has([data-nf3]) .shopify-payment-button__button--unbranded,
+.product:has([data-nf3]) .nf-buynow .shopify-payment-button__button--unbranded{
+  background:#111!important;border-color:#111!important;color:#fff!important;
+}
+.product:has([data-nf3]) .nf3-buymix:hover,
+.product:has([data-nf3]) .shopify-payment-button__button--unbranded:hover{background:#000!important}
 
-/* ------------------------------------------------------------------------ 3. homepage headings, bolder */
-html body .nf-mosaic__head h2,
-html body .nf-newin__title,
-html body .nfdk__title,
-html body .nf-ah__title,
-html body .nfp__title,
-html body .nfrb__title,
-html body .nf-journal__title,
-html body .nf-vz__title,
-html body .nfcat-promo__h{
+/* -------------------------------------------------------------------------------- 4. homepage headings */
+html body .nf-newin__title{
   font-family:"Fraunces","Poynter Oldstyle",Georgia,serif!important;
   font-weight:600!important;
   font-variation-settings:"opsz" 144;
   letter-spacing:-.018em!important;
   line-height:1.02!important;
-  text-wrap:balance;
+  font-size:clamp(42px,4.6vw,72px)!important;
 }
-html body .nf-mosaic__head h2,
-html body .nf-newin__title,
-html body .nfdk__title,
-html body .nf-ah__title,
-html body .nfp__title,
-html body .nf-journal__title{color:var(--nfb-ink)!important}
-html body .nf-mosaic__head h2{font-size:clamp(34px,3.6vw,58px)!important}
-html body .nfdk__title{font-size:clamp(36px,3.8vw,62px)!important}
-html body .nf-newin__title{font-size:clamp(42px,4.6vw,72px)!important}
-html body .nf-ah__title,
-html body .nfp__title,
-html body .nfrb__title,
-html body .nf-journal__title,
-html body .nf-vz__title{font-size:clamp(34px,3.6vw,58px)!important}
-@media screen and (max-width:749px){
-  html body .nf-mosaic__head h2,
-  html body .nfdk__title,
-  html body .nf-ah__title,
-  html body .nfp__title,
-  html body .nfrb__title,
-  html body .nf-journal__title,
-  html body .nf-vz__title{font-size:32px!important}
-  html body .nf-newin__title{font-size:38px!important}
-}
+@media screen and (max-width:749px){html body .nf-newin__title{font-size:38px!important}}
 
-/* ------------------------------------------------------------------------------------------ 4. footer V3 */
+/* ------------------------------------------------------------------------------------------ 5. footer V4 */
+/* Five pendants light the menus from above; a row of floor uplights lights the script logo from below. No second
+   wordmark, no divider between the menus and the logo, and a compact lower half. */
 html body #main .shopify-section--footer,
 html body #main .shopify-section--footer .nf-footer.footer{
-  background:linear-gradient(180deg,#1f110c 0%,var(--nfb-night) 45%,#0e0705 100%)!important;
+  background:linear-gradient(180deg,#171211 0%,var(--nfb-night) 50%,#0d0b0a 100%)!important;
 }
 html body #main .shopify-section--footer .nf-footer.footer{overflow:hidden}
 html body #main .shopify-section--footer .nf-footer.footer .nf-footer__inner{padding-top:clamp(120px,11vw,168px)!important}
@@ -99,8 +77,7 @@ html body #main .nf-footer .nff-pend--3{--x:50%;--cord:14px;--w:64px;--h:30px}
 html body #main .nf-footer .nff-pend--4{--x:72%;--cord:74px;--w:22px;--h:34px}
 html body #main .nf-footer .nff-pend--5{--x:91%;--cord:38px;--w:34px;--h:18px}
 html body #main .nf-footer .nff-pend__cord{display:block;width:1px;height:var(--cord);background:linear-gradient(rgba(255,255,255,.06),rgba(255,255,255,.4))}
-html body #main .nf-footer .nff-pend__shade{position:relative;display:block;width:var(--w);height:var(--h);background:linear-gradient(170deg,#4a3a30 0%,#2a1d17 60%,#1c1310 100%);box-shadow:inset 0 -2px 0 var(--nfb-brass),inset 0 1px 0 rgba(255,255,255,.12)}
-/* 1 and 5 domes, 2 an opal globe, 3 a wide cone, 4 a tall cylinder */
+html body #main .nf-footer .nff-pend__shade{position:relative;display:block;width:var(--w);height:var(--h);background:linear-gradient(170deg,#4a3f36 0%,#2a221d 60%,#1c1714 100%);box-shadow:inset 0 -2px 0 var(--nfb-tan),inset 0 1px 0 rgba(255,255,255,.12)}
 html body #main .nf-footer .nff-pend--1 .nff-pend__shade,
 html body #main .nf-footer .nff-pend--5 .nff-pend__shade{border-radius:20px 20px 3px 3px/18px 18px 3px 3px}
 html body #main .nf-footer .nff-pend--2 .nff-pend__shade{border-radius:50%;background:radial-gradient(circle at 50% 62%,#fff6e4 0%,#f5d9a8 38%,#c89a5d 100%);box-shadow:0 0 18px 4px rgba(var(--nfb-glow),.45)}
@@ -116,22 +93,20 @@ html body #main .nf-footer .nff-pend__cone{position:absolute;top:calc(var(--cord
 html body #main .nf-footer .nff-pend--2 .nff-pend__cone{top:calc(var(--cord) - 150px);width:420px;height:420px;background:radial-gradient(circle at 50% 50%,rgba(var(--nfb-glow),.15) 0%,rgba(var(--nfb-glow),.05) 35%,rgba(var(--nfb-glow),0) 62%);clip-path:none;-webkit-mask-image:none;mask-image:none}
 html body #main .nf-footer .nff-pend--3{--cone:min(620px,46vw);--reach:640px}
 
-/* stage: logo, line, wordmark, uplights */
-html body #main .shopify-section--footer .nf-footer.footer .nff-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;margin:clamp(56px,6vw,96px) calc(-1 * var(--nf-ft-gutter,3rem)) 0;padding:clamp(44px,4vw,64px) 0 26px;border-top:1px solid rgba(255,255,255,.1)}
+/* the belief line under the social icons */
+html body #main .shopify-section--footer .nf-footer.footer .nff-belief{margin:22px 0 0!important;max-width:440px;font-family:var(--heading-font-family,Georgia,serif)!important;font-size:18px!important;font-weight:400!important;line-height:1.45!important;color:rgba(255,255,255,.86)!important}
+html body #main .shopify-section--footer .nf-footer.footer .nff-belief b{font-weight:400;color:var(--nfb-tan-hi)}
+
+/* stage: the script logo, lit from below */
+html body #main .shopify-section--footer .nf-footer.footer .nff-stage{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;margin:clamp(36px,4vw,56px) calc(-1 * var(--nf-ft-gutter,3rem)) 0;padding:clamp(20px,2vw,32px) 0 clamp(52px,5vw,70px);border:0!important}
 html body #main .shopify-section--footer .nf-footer.footer .nff-logo{position:relative;z-index:2}
-html body #main .shopify-section--footer .nf-footer.footer .nff-logo .nf-footer__logo-img{width:min(var(--nf-logo-w,280px),72vw)!important;filter:brightness(0) invert(1) drop-shadow(0 0 22px rgba(var(--nfb-glow),.45))!important}
-html body #main .shopify-section--footer .nf-footer.footer .nff-line{position:relative;z-index:2;max-width:min(640px,88vw);padding:0 16px;white-space:normal!important;margin:18px 0 0!important;font-size:16px!important;color:rgba(255,255,255,.78)!important}
-html body #main .nf-footer .nff-mark{position:relative;z-index:1;width:100%;margin-top:clamp(18px,2.4vw,40px);line-height:.8;overflow:hidden}
-html body #main .nf-footer .nff-mark__word{display:block;white-space:nowrap;font-family:"Fraunces","Poynter Oldstyle",Georgia,serif;font-weight:600;font-variation-settings:"opsz" 144;font-size:clamp(46px,13vw,250px);letter-spacing:-.025em;line-height:.9;padding-bottom:.06em;
-  background:linear-gradient(to top,#fff2d8 0%,#f1c88a 24%,rgba(214,150,86,.55) 58%,rgba(160,90,50,.16) 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
-  transition:opacity 1.6s ease .9s,filter 1.6s ease .9s;filter:drop-shadow(0 -8px 34px rgba(var(--nfb-glow),.22))}
-html body #main .nf-footer .nff-ups{position:absolute;left:0;right:0;bottom:14px;z-index:0;display:flex;justify-content:space-around;padding:0 6%;pointer-events:none}
+html body #main .shopify-section--footer .nf-footer.footer .nff-logo .nf-footer__logo-img{width:min(var(--nf-logo-w,300px),72vw)!important;filter:brightness(0) invert(1) drop-shadow(0 0 22px rgba(var(--nfb-glow),.5))!important;transition:filter 1.4s ease .9s}
+html body #main .nf-footer .nff-ups{position:absolute;left:0;right:0;bottom:14px;z-index:0;display:flex;justify-content:center;gap:clamp(60px,9vw,150px);pointer-events:none}
 html body #main .nf-footer .nff-ups i{position:relative;display:block;width:18px;height:4px;border-radius:3px;background:#ffe9c4;box-shadow:0 0 8px 2px rgba(var(--nfb-glow),.9),0 0 26px 8px rgba(var(--nfb-glow),.28);transition:opacity .6s ease,box-shadow .8s ease}
-html body #main .nf-footer .nff-ups i::before{content:"";position:absolute;left:50%;bottom:2px;width:min(260px,22vw);height:min(360px,30vw);transform:translateX(-50%);
-  background:radial-gradient(ellipse 50% 100% at 50% 100%,rgba(var(--nfb-glow),.2) 0%,rgba(var(--nfb-glow),.06) 50%,rgba(var(--nfb-glow),0) 80%);
+html body #main .nf-footer .nff-ups i::before{content:"";position:absolute;left:50%;bottom:2px;width:min(230px,20vw);height:clamp(150px,13vw,210px);transform:translateX(-50%);
+  background:radial-gradient(ellipse 50% 100% at 50% 100%,rgba(var(--nfb-glow),.22) 0%,rgba(var(--nfb-glow),.07) 50%,rgba(var(--nfb-glow),0) 80%);
   clip-path:polygon(44% 100%,56% 100%,100% 0,0 0);-webkit-mask-image:linear-gradient(to top,#000 40%,transparent 100%);mask-image:linear-gradient(to top,#000 40%,transparent 100%);transition:opacity 1.2s ease}
-html body #main .shopify-section--footer .nf-footer.footer .nf-footer__bar{margin-top:0!important;padding-top:22px!important;border-top:1px solid rgba(255,255,255,.08)!important}
+html body #main .shopify-section--footer .nf-footer.footer .nf-footer__bar{margin-top:0!important;padding-top:18px!important;border-top:1px solid rgba(255,255,255,.06)!important}
 
 /* off until the footer scrolls into view (only when JS armed it), then on in sequence */
 html body #main .nf-footer.nff-armed:not(.nff-on) .nff-pend__bulb,
@@ -139,7 +114,7 @@ html body #main .nf-footer.nff-armed:not(.nff-on) .nff-ups i{background:#5d5248;
 html body #main .nf-footer.nff-armed:not(.nff-on) .nff-pend--2 .nff-pend__shade{background:#6a5d52;box-shadow:none}
 html body #main .nf-footer.nff-armed:not(.nff-on) .nff-pend__cone,
 html body #main .nf-footer.nff-armed:not(.nff-on) .nff-ups i::before{opacity:0}
-html body #main .nf-footer.nff-armed:not(.nff-on) .nff-mark__word{opacity:.28;filter:none}
+html body #main .nf-footer.nff-armed:not(.nff-on) .nff-logo .nf-footer__logo-img{filter:brightness(0) invert(1) opacity(.45)!important}
 html body #main .nf-footer.nff-armed .nff-pend--1 *{transition-delay:.1s}
 html body #main .nf-footer.nff-armed .nff-pend--2 *{transition-delay:.3s}
 html body #main .nf-footer.nff-armed .nff-pend--3 *{transition-delay:0s}
@@ -162,7 +137,8 @@ html body #main .nf-footer.nff-armed .nff-ups i::before{transition-delay:.9s}
   html body #main .nf-footer .nff-pend{--cone:62vw;--reach:420px}
   html body #main .nf-footer .nff-pend--3{--cone:80vw}
   html body #main .shopify-section--footer .nf-footer.footer .nf-footer__inner{padding-top:120px!important}
-  html body #main .nf-footer .nff-ups{padding:0 2%}
+  html body #main .nf-footer .nff-ups{gap:22vw}
   html body #main .nf-footer .nff-ups i:nth-child(even){display:none}
-  html body #main .nf-footer .nff-mark__word{white-space:normal;font-size:23vw;line-height:.86}
+  html body #main .nf-footer .nff-ups i::before{width:36vw}
+  html body #main .shopify-section--footer .nf-footer.footer .nff-belief{font-size:16px!important;margin-inline:auto!important;text-align:center}
 }
