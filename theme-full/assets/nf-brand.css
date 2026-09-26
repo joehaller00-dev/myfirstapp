@@ -14,6 +14,7 @@
   --nfb-tan-hi:#c9a36a;
   --nfb-night:#141010;
   --nfb-ink:#1c1c1c;
+  --nfb-sale:#e32c2b;
   --nfb-glow:255,196,122;
 }
 
@@ -168,15 +169,22 @@ html body #main .nf-footer.nff-armed .nff-pend--5 *{transition-delay:.6s}
 /* product page titles */
 html body .nf-lv__h,
 html body .nf-st__h{color:var(--nfb-tan)!important}
-html body .nf-st__eyebrow{color:var(--nfb-tan-d)!important}
+html body .nf-st__eyebrow{color:var(--nfb-ink)!important}
 
 /* Get a quote (story card, and the other quote buttons that share the look) */
-html body .nf-st__trade-btn{color:var(--nfb-tan-d)!important;border-color:var(--nfb-tan)!important;background:#fff!important}
-html body .nf-st__trade-btn:hover{color:#fff!important;background:var(--nfb-tan)!important;border-color:var(--nfb-tan)!important}
+html body .nf-st__trade-btn{color:#fff!important;border-color:var(--nfb-ink)!important;background:var(--nfb-ink)!important;transition:box-shadow .25s ease,border-color .25s ease!important}
+html body .nf-st__trade-btn:hover,html body .nf-st__trade-btn:focus-visible{color:#fff!important;background:var(--nfb-ink)!important;border-color:var(--nfb-tan)!important;box-shadow:0 0 0 3px rgba(201,163,106,.35),0 0 18px 2px rgba(201,163,106,.55)!important}
 
 /* bundle prices: dark tan on white (5.1:1), light tan on the charcoal Complete the room card */
-html body .nf-bt__now{color:var(--nfb-tan-d)!important;font-weight:500}
-html body .nf-bt__opt.is-on .nf-bt__now{color:#86623a!important}
+/* round 11: sale prices in red (owner). Bundle & Save: the 2 and 3+ item prices are savings, so they are red too; the
+   single item price stays ink */
+html body .nf-bt__now{color:var(--nfb-ink)!important;font-weight:500}
+html body .nf-bt__opt:is([data-n="2"],[data-n="3"]) .nf-bt__now{color:var(--nfb-sale)!important;font-weight:600}
+html body sale-price.text-on-sale,
+html body .text-on-sale,
+html body .price-list .text-on-sale,
+html body .product:has([data-nf3]) .product-info [data-block-type="price"] price-list:has(compare-at-price) sale-price,
+html body .product-sticky-bar price-list:has(compare-at-price) sale-price{color:var(--nfb-sale)!important}
 html body .nf-bdl__price,
 html body .nf-bdl__now{color:var(--nfb-tan-hi)!important}
 html body .nf-bpop__price{color:var(--nfb-tan-d)!important}

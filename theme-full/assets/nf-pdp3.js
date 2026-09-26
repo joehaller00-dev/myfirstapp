@@ -752,7 +752,26 @@
     /* round 8 (owner: switching options was "choppy and loady"): one pass after the theme has swapped its blocks, not
        three full passes; the observer below still repairs anything the theme replaces later */
     var vt = 0;
-    d.addEventListener('variant:change', function () { clearTimeout(vt); vt = setTimeout(run, 140); });
+    d.addEventListener('variant:change', function () {
+      /* round 11 (owner: switching options was "like a dang slideshow"): stock line and Bundle & Save repaint on the
+         next frame instead of 140ms later; the full pass follows once the theme has settled */
+      raf(function () { stock(); var r = $('[data-nf-bt]'); if (r) paint(r); express(); });
+      clearTimeout(vt); vt = setTimeout(run, 160);
+    });
+    /* The theme re-renders the product column on every option change and swaps each "liquid" block for fresh server
+       HTML. Ours (nf_pdp3: the stock line plus both stylesheets and the variant data; nf_bundle: Bundle & Save, the
+       wishlist button and Complete the room; nf_share) are variant independent and repainted by this file, so swapping
+       them only re-applied two stylesheets to the whole page and rebuilt the bundle cards, one after another. Take them
+       out of the incoming HTML so the theme leaves them in place. A different product (combined listing) still swaps. */
+    d.addEventListener('product:rerender', function (e) {
+      var det = e.detail || {}, frag = det.htmlFragment;
+      if (!frag || det.productChange || !frag.querySelectorAll) return;
+      ['nf_pdp3', 'nf_bundle', 'nf_share'].forEach(function (id) {
+        var live = $('.shopify-section--main-product [data-block-id="' + id + '"]');
+        if (!live) return;
+        Array.prototype.forEach.call(frag.querySelectorAll('[data-block-id="' + id + '"]'), function (n) { n.remove(); });
+      });
+    }, true);
     /* every photo of the product is already in the gallery but lazy loaded, so the photo of an option often only started
        downloading when it was picked. Fetch them in the background once the page is idle. */
     var eager = function () {
