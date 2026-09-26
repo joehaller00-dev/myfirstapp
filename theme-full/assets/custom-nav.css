@@ -1012,7 +1012,7 @@ x-header .header__utility-group > .header__account-link{
   --nf-taupe:#5c5047;
   --nf-line:#d4d4d4;
   --nf-hair:#e8e8e8;
-  --nf-star:#a67c3d;
+  --nf-star:#c9a36a;
   max-width:1200px;
   margin-inline:auto;
   color:var(--nf-ink);
@@ -2172,7 +2172,7 @@ price-list compare-at-price,
   --nf-rc-mute:#7d746a;
   --nf-rc-line:#e2e2e2;
   --nf-rc-card:#ffffff;
-  --nf-rc-gold:#b8862f;
+  --nf-rc-gold:#c9a36a;
   padding:64px 0 68px;
   background:#faf9f7;
 }
@@ -2403,7 +2403,7 @@ price-list compare-at-price,
   background:#fff;color:#5c5047;cursor:pointer;
   transition:border-color .18s ease,color .18s ease,background .18s ease;
 }
-.nf-dc__chip:hover{border-color:#a67c3d;color:#1c1c1c}
+.nf-dc__chip:hover{border-color:#c9a36a;color:#1c1c1c}
 .nf-dc__chip.is-active{background:#1c1c1c;border-color:#1c1c1c;color:#faf9f7}
 .nf-dc__note{
   margin:10px 0 0;max-width:360px;
@@ -2429,9 +2429,9 @@ price-list compare-at-price,
   border:1px solid #d4d4d4;border-radius:10px;
   background:#fff;color:#5c5047;
 }
-.nf-dc .nf-dc__chips > .nf-dc__chip:hover{border-color:#a67c3d;color:#1c1c1c}
+.nf-dc .nf-dc__chips > .nf-dc__chip:hover{border-color:#c9a36a;color:#1c1c1c}
 .nf-dc .nf-dc__chips > .nf-dc__chip.is-active{background:#1c1c1c;border-color:#1c1c1c;color:#faf9f7}
-.nf-dc .nf-dc__chips > .nf-dc__chip:focus-visible{outline:2px solid #a67c3d;outline-offset:2px}
+.nf-dc .nf-dc__chips > .nf-dc__chip:focus-visible{outline:2px solid #c9a36a;outline-offset:2px}
 /* ===== /NF-DIMCHIPS-V1 ===== */
 
 
@@ -2473,12 +2473,12 @@ price-list compare-at-price,
   font-size:13px !important;
   font-weight:600 !important;
   letter-spacing:.22em !important;
-  color:#a67c3d !important;
+  color:#c9a36a !important;
   margin-bottom:14px !important;
 }
-.nf-rcw .nf-rc__stars svg{fill:#a67c3d}
+.nf-rcw .nf-rc__stars svg{fill:#c9a36a}
 .nf-rcw .nf-rc__link span{
-  border-bottom:1.5px solid #a67c3d !important;
+  border-bottom:1.5px solid #c9a36a !important;
   padding-bottom:2px;
 }
 .nf-rcw .nf-rc__link:hover span{border-bottom-color:#1c1c1c !important}
@@ -2555,7 +2555,7 @@ html{scroll-behavior:smooth}
   box-shadow:0 3px 12px rgba(28,28,28,.14) !important;
   transition:background .2s ease, border-color .2s ease !important;
 }
-.nf-qv-open:hover{background:#fff !important;border-color:#a67c3d !important}
+.nf-qv-open:hover{background:#fff !important;border-color:#c9a36a !important}
 
 @media (prefers-reduced-motion:reduce){
   /* reduced motion means no movement, not no fade: the overlay still fades in, the panel just does not slide */
@@ -2689,7 +2689,7 @@ html{scroll-behavior:smooth}
 /* ===== NF-QUICKVIEW-V3 : reviews and real accordions ===== */
 .nf-qv__rating{display:inline-flex;align-items:center;gap:8px;margin:6px 0 4px;text-decoration:none;color:#1c1c1c}
 .nf-qv__rating[hidden]{display:none !important}
-.nf-qv__stars{display:inline-flex;gap:2px;color:#a67c3d;line-height:0}
+.nf-qv__stars{display:inline-flex;gap:2px;color:#c9a36a;line-height:0}
 .nf-qv__star{width:16px;height:16px;display:block}
 .nf-qv__stars--sm .nf-qv__star{width:13px;height:13px}
 .nf-qv__rating-num{font-family:"Montserrat",system-ui,sans-serif;font-size:13px;font-weight:600}
@@ -2721,7 +2721,7 @@ html{scroll-behavior:smooth}
   font-family:"Roboto Serif",Georgia,serif;font-size:14.5px;font-weight:400;color:#1c1c1c;
 }
 .nf-qv__acc-head::-webkit-details-marker{display:none}
-.nf-qv__acc-head:focus-visible{outline:2px solid #a67c3d;outline-offset:2px}
+.nf-qv__acc-head:focus-visible{outline:2px solid #c9a36a;outline-offset:2px}
 .nf-qv__acc-icon{position:relative;width:12px;height:12px;flex:0 0 auto}
 .nf-qv__acc-icon::before,
 .nf-qv__acc-icon::after{
@@ -2743,8 +2743,8 @@ html{scroll-behavior:smooth}
 .nf-qv__reviews{margin-top:26px}
 .nf-qv__rev-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px}
 .nf-qv__rev-heading{margin:0;font-family:"Roboto Serif",Georgia,serif;font-size:15px;font-weight:400;color:#1c1c1c}
-.nf-qv__rev-all{font-family:"Montserrat",system-ui,sans-serif;font-size:12.5px;color:#a67c3d;text-decoration:none;border-bottom:1px solid #e3d4b8;padding-bottom:1px}
-.nf-qv__rev-all:hover{border-bottom-color:#a67c3d}
+.nf-qv__rev-all{font-family:"Montserrat",system-ui,sans-serif;font-size:12.5px;color:#c9a36a;text-decoration:none;border-bottom:1px solid #e3d4b8;padding-bottom:1px}
+.nf-qv__rev-all:hover{border-bottom-color:#c9a36a}
 .nf-qv__rev{padding:14px 0;border-top:1px solid #f0ede8}
 .nf-qv__rev-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
 .nf-qv__rev-meta{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:"Montserrat",system-ui,sans-serif;font-size:12px;color:#7d746a}
@@ -3049,8 +3049,8 @@ shopify-chat::part(activator){font-weight:600 !important;letter-spacing:.02em;bo
 shopify-chat::part(activator):hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(43,37,32,.32),0 3px 8px rgba(43,37,32,.2) !important}
 
 /* nf-chat-activator-tan: Inbox builds the button from the panel text color, so force our tan here */
-shopify-chat::part(activator){background:#B38B5D !important;background-color:#B38B5D !important;color:#FFFFFF !important;border:1px solid rgba(255,255,255,.35) !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important}
-shopify-chat::part(activator):hover{background:#A27A4E !important;background-color:#A27A4E !important}
+shopify-chat::part(activator){background:#c9a36a !important;background-color:#c9a36a !important;color:#FFFFFF !important;border:1px solid rgba(255,255,255,.35) !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important}
+shopify-chat::part(activator):hover{background:#c9a36a !important;background-color:#c9a36a !important}
 
 
 /* ===== NF-CHROMEBOOK-V1 : laptop and Chromebook polish, 1000 to 1440px (owner notes, 2026-09-11) =====
@@ -3527,12 +3527,12 @@ html body .nfcg .nfcg__n:empty{display:none}
 
 /* ===== NF-CHAT-V2 : the Shopify Inbox chat button, a lighter tan (owner notes, 2026-09-11) =====
    Owned by the chat pass. Outranks nf-chat-activator and nf-chat-activator-tan above (left in place).
-   All widths: regular tan #CFAF86 with charcoal #1c1c1c text and icon. Phones below 750px: a 48px
+   All widths: regular tan #c9a36a with charcoal #1c1c1c text and icon. Phones below 750px: a 48px
    round icon button (custom-nav.js NF-CHAT-V2 hides the label inside the chat's shadow root). It
    steps aside while an Add to Cart button is under it (html.nf-chat-dodge), lifts above a bottom
    pinned sticky bar (--nf-chat-lift), and hides while any drawer, popover or modal is open. */
 html body shopify-chat::part(activator){
-  background:#CFAF86 !important;background-color:#CFAF86 !important;color:#1c1c1c !important;
+  background:#c9a36a !important;background-color:#c9a36a !important;color:#1c1c1c !important;
   border:1px solid rgba(28,28,28,.12) !important;
   box-shadow:0 8px 22px rgba(43,37,32,.2),0 2px 6px rgba(43,37,32,.12) !important;
   translate:0 calc(-1 * var(--nf-chat-lift, 0px));
@@ -3673,7 +3673,7 @@ html body .nfcg.nffl.nffl--lc{display:grid;grid-template-columns:repeat(2,minmax
 html body .nfcg.nffl.nffl--lc .nfcg__opt{position:relative;flex-direction:column;align-items:stretch;gap:6px;min-height:0;padding:6px 6px 8px;border:1px solid #dcdcdc;border-radius:8px;background:#fff;color:#1c1c1cd9;font-size:13px;line-height:1.25;transition:border-color .15s ease,box-shadow .15s ease}
 html body .nfcg.nffl.nffl--lc .nfcg__opt:hover{border-color:#a8a8a8;color:#1c1c1c}
 html body .nfcg.nffl.nffl--lc .nfcg__opt.is-on{border-color:#1c1c1c;box-shadow:inset 0 0 0 1px #1c1c1c;color:#1c1c1c;font-weight:600}
-html body .nfcg.nffl.nffl--lc .nfcg__opt.is-on:after{content:"";position:absolute;top:10px;right:10px;width:6px;height:6px;border-radius:50%;background:#b38b5d;z-index:4}
+html body .nfcg.nffl.nffl--lc .nfcg__opt.is-on:after{content:"";position:absolute;top:10px;right:10px;width:6px;height:6px;border-radius:50%;background:#c9a36a;z-index:4}
 html body .nfcg.nffl.nffl--lc .nfcg__txt{display:block;padding:0 1px}
 html body .nfcg.nffl.nffl--lc .nfcg__name{display:block}
 html body .nffl__meta{display:flex;align-items:baseline;justify-content:space-between;gap:4px;margin-top:2px}
@@ -3766,12 +3766,12 @@ html body a.utility-link:hover::after {
 
 /* NF-VBADGE (2026-09-14, owner): on the review showcases (homepage carousel, Seen in Real Homes, About, Ideas & Guides)
    a review without a real name shows this badge instead of a name. White pill, thin gold line, small gold check. */
-.nf-vbadge{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px 0 5px;border:1px solid rgba(179,139,93,.45);border-radius:999px;background:#fff;color:#1c1c1c;font:600 10.5px/1 "Inter","Montserrat",system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.nf-vbadge{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px 0 5px;border:1px solid rgba(201,163,106,.45);border-radius:999px;background:#fff;color:#1c1c1c;font:600 10.5px/1 "Inter","Montserrat",system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;vertical-align:middle;box-shadow:0 1px 2px rgba(0,0,0,.05)}
 .nf-vbadge svg{width:15px;height:15px;flex:none;display:block}
-.nf-vbadge svg circle{fill:#b38b5d}
+.nf-vbadge svg circle{fill:#c9a36a}
 .nf-vbadge svg path{fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.nf-sp__tag.nf-vbadge{height:24px;padding:0 10px 0 5px;background:#fff;color:#1c1c1c;border:1px solid rgba(179,139,93,.45);border-radius:999px;font-size:10.5px}
-.nf-sp__who [data-nf-dname]:empty::before{content:"\2713\00a0\00a0Verified Buyer";display:inline-flex;align-items:center;height:24px;padding:0 10px;border:1px solid rgba(179,139,93,.45);border-radius:999px;background:#fff;color:#1c1c1c;font:600 10.5px/1 "Inter",system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.nf-sp__tag.nf-vbadge{height:24px;padding:0 10px 0 5px;background:#fff;color:#1c1c1c;border:1px solid rgba(201,163,106,.45);border-radius:999px;font-size:10.5px}
+.nf-sp__who [data-nf-dname]:empty::before{content:"\2713\00a0\00a0Verified Buyer";display:inline-flex;align-items:center;height:24px;padding:0 10px;border:1px solid rgba(201,163,106,.45);border-radius:999px;background:#fff;color:#1c1c1c;font:600 10.5px/1 "Inter",system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}
 
 /* NF-JM-NOFLASH (2026-09-14, owner: reloading while scrolled to the reviews showed "the code of the reviews" before the real ones).
    Judge.me prints a server copy of the reviews (.jdgm-ssr-reviews) from its cached product data: barely styled, 5,000px tall on a
@@ -3897,7 +3897,7 @@ a[href*='autumn-at-home']::before{background-image:linear-gradient(90deg,#a81d13
 /* /NF-AUTUMNNAV-V4 */
 
 /* NF-MTO-V1 made to order card flag */
-.nf-flag--mto{background:#b8862f!important;color:#fff!important;border-color:#b8862f!important}
+.nf-flag--mto{background:#c9a36a!important;color:#fff!important;border-color:#c9a36a!important}
 
 /* NF-NOTEPAD-0921 laptop tweaks (1000px to 1599px = laptops) */
 @media (min-width: 1000px) and (max-width: 1599px) {

@@ -9,10 +9,10 @@
   --nf-cv2-ink: #1c1c1c;
   --nf-cv2-sub: #6b6b6b;
   --nf-cv2-line: #e5e5e5;
-  --nf-cv2-gold: #b38b5d;
+  --nf-cv2-gold: #c9a36a;
   --nf-cv2-gold-2: #c9a36a;
-  --nf-cv2-gold-text: #8a6640;
-  --nf-cv2-warm: #f6cf8a;
+  --nf-cv2-gold-text: #c9a36a;
+  --nf-cv2-warm: #c9a36a;
 }
 
 /* ---------- Neutral line item frames in the drawer (older rules used warm tints) ---------- */
@@ -179,7 +179,7 @@ html.nf-cv2-glow product-sticky-bar .product-sticky-bar__info img { animation: n
    One small gold outline pill in the EMPTY drawer (and the empty cart page). Wording follows the real automatic discount
    "Buy 2+ items, save 10%" (DiscountAutomaticNode/1616713646132, 10% off all items, no end date): if it changes, change
    the pill in sections/cart-drawer.liquid and sections/main-cart.liquid the same day. Nothing else in the drawer changed. */
-.nf-cv2-offer{display:inline-flex;align-items:center;justify-content:center;gap:9px;max-width:100%;margin:-6px auto 20px;padding:8px 16px;border:1px solid rgba(179,139,93,.6);border-radius:20px;background:#fff;font-size:12.5px;line-height:1.35;font-weight:500;letter-spacing:.02em;color:var(--nf-cv2-gold-text);text-align:center;text-wrap:balance}
+.nf-cv2-offer{display:inline-flex;align-items:center;justify-content:center;gap:9px;max-width:100%;margin:-6px auto 20px;padding:8px 16px;border:1px solid rgba(201,163,106,.6);border-radius:20px;background:#fff;font-size:12.5px;line-height:1.35;font-weight:500;letter-spacing:.02em;color:var(--nf-cv2-gold-text);text-align:center;text-wrap:balance}
 .nf-cv2-offer__dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--nf-cv2-gold-2);box-shadow:0 0 0 3px rgba(201,163,106,.18)}
 
 /* NF-CART-V4 (2026-09-14, owner: sticky bar still too big, and needs its own quantity + variant + Buy Now, not

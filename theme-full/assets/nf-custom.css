@@ -5,7 +5,7 @@
    Never edit nf-pro.css for these pages; override here. */
 
 /* ---------- nf-pro re-skin (html prefix beats the .nfp rules whatever the load order) ---------- */
-html .nfp{--nfp-ink:#1c1c1c;--nfp-ink2:#333;--nfp-tan:#b08a52;--nfp-tan-hi:#c19c64;--nfp-tan-txt:#7a5e35;--nfp-cream:#fff;--nfp-sand:#f4f4f4;--nfp-card:#fff;--nfp-line:#e4e4e4;--nfp-line2:#cdcdcd;--nfp-muted:#5b5b5b;--nfp-err:#a3402d;--nfp-shadow:0 14px 26px -16px rgba(0,0,0,.42),0 2px 6px -2px rgba(0,0,0,.1);--nfp-serif:var(--heading-font-family,Georgia,serif);--nfp-sans:var(--text-font-family,system-ui,-apple-system,"Segoe UI",sans-serif)}
+html .nfp{--nfp-ink:#1c1c1c;--nfp-ink2:#333;--nfp-tan:#c9a36a;--nfp-tan-hi:#c19c64;--nfp-tan-txt:#7a5e35;--nfp-cream:#fff;--nfp-sand:#f4f4f4;--nfp-card:#fff;--nfp-line:#e4e4e4;--nfp-line2:#cdcdcd;--nfp-muted:#5b5b5b;--nfp-err:#a3402d;--nfp-shadow:0 14px 26px -16px rgba(0,0,0,.42),0 2px 6px -2px rgba(0,0,0,.1);--nfp-serif:var(--heading-font-family,Georgia,serif);--nfp-sans:var(--text-font-family,system-ui,-apple-system,"Segoe UI",sans-serif)}
 html .nfp-card__icon,html .nfp-step__time,html .nfp-label--static,html .nfp-aside__box--tint{background:#f1f1f1;border-color:#e4e4e4;color:#1c1c1c}
 html .nfp-context{background:#f4f4f4;border-color:#bdbdbd}
 html .nfp-ticks li::before{background-color:#efefef}
@@ -28,21 +28,21 @@ html .nfp-eyebrow,.nfc-eyebrow{padding-left:0 !important;border:0 !important;bac
 /* Neutral grey bands, chosen by section anchor */
 html .nfp#how-it-works,html .nfp.nfc--grey{background:#f4f4f4}
 /* Deliberate dark evening band (split section with anchor "evening") */
-html .nfp#evening{background:#161616;--nfp-ink:#f3f3f3;--nfp-muted:#bdbdbd;--nfp-card:#232323;--nfp-line:#343434;--nfp-line2:#4a4a4a;--nfp-tan-txt:#d2b27e;color:#f3f3f3}
+html .nfp#evening{background:#161616;--nfp-ink:#f3f3f3;--nfp-muted:#bdbdbd;--nfp-card:#232323;--nfp-line:#343434;--nfp-line2:#4a4a4a;--nfp-tan-txt:#c9a36a;color:#f3f3f3}
 html .nfp#evening .nfp-media{background:#222}
 html .nfp#evening .nfp-ticks li::before{background-color:#2c2c2c;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.4l2.9 2.8 6-6.4' fill='none' stroke='%23d2b27e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 html .nfp#evening .nfp-btn--secondary{border-color:rgba(255,255,255,.75);color:#fff}
 html .nfp#evening .nfp-btn--secondary:hover{background:#fff;color:#1c1c1c}
-html .nfp#evening .nfp-link{color:#fff;background-image:linear-gradient(#d2b27e,#d2b27e),linear-gradient(rgba(255,255,255,.35),rgba(255,255,255,.35))}
+html .nfp#evening .nfp-link{color:#fff;background-image:linear-gradient(#c9a36a,#c9a36a),linear-gradient(rgba(255,255,255,.35),rgba(255,255,255,.35))}
 
 /* ---------- Tool shell ---------- */
-.nfc{--c-ink:#1c1c1c;--c-muted:#5b5b5b;--c-line:#e4e4e4;--c-line2:#cdcdcd;--c-grey:#f4f4f4;--c-gold:#b08a52;--c-gold-txt:#7a5e35;--c-ease:cubic-bezier(.2,.8,.2,1);--c-t:.3s;font-family:var(--text-font-family,system-ui,sans-serif);color:var(--c-ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.nfc{--c-ink:#1c1c1c;--c-muted:#5b5b5b;--c-line:#e4e4e4;--c-line2:#cdcdcd;--c-grey:#f4f4f4;--c-gold:#c9a36a;--c-gold-txt:#7a5e35;--c-ease:cubic-bezier(.2,.8,.2,1);--c-t:.3s;font-family:var(--text-font-family,system-ui,sans-serif);color:var(--c-ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .nfc *,.nfc *::before,.nfc *::after{box-sizing:border-box}
 .nfc--white{background:#fff}
 .nfc--grey{background:#f4f4f4}
 .nfc--dark{background:#161616;color:#f3f3f3}
 .nfc--dark .nfc-lead{color:#bdbdbd}
-.nfc--dark .nfc-eyebrow{color:#d2b27e}
+.nfc--dark .nfc-eyebrow{color:#c9a36a}
 .nfc [id]{scroll-margin-top:120px}
 .nfc-sec{padding-block:clamp(48px,6.5vw,96px)}
 .nfc-wrap{max-width:1320px;margin:0 auto;padding-inline:clamp(18px,4vw,48px)}
@@ -180,7 +180,7 @@ textarea.nfc-input{min-height:88px;resize:vertical;line-height:1.5}
 /* ---------- Quote form bits ---------- */
 .nfc-sumta{min-height:180px !important;font-size:14.5px !important;line-height:1.6 !important;background:#fafafa !important}
 .nfc-sumta.is-flash{animation:nfcFlash 1.4s var(--c-ease,ease)}
-@keyframes nfcFlash{0%{box-shadow:0 0 0 0 rgba(176,138,82,.55);border-color:#b08a52}100%{box-shadow:0 0 0 10px rgba(176,138,82,0)}}
+@keyframes nfcFlash{0%{box-shadow:0 0 0 0 rgba(176,138,82,.55);border-color:#c9a36a}100%{box-shadow:0 0 0 10px rgba(176,138,82,0)}}
 .nfc-resync{margin-top:6px;align-self:flex-start}
 .nfc-resync[hidden]{display:none}
 

@@ -356,7 +356,7 @@
     '.nf-rv::backdrop{background:rgba(20,17,14,.55)}' +
     '.nf-rv__box{position:relative;box-sizing:border-box;width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 48px);overflow:auto;background:#fff;border-radius:18px;padding:30px 28px 26px;box-shadow:0 24px 60px rgba(0,0,0,.25);display:grid;gap:14px;color:#1c1c1c;font-family:inherit;text-align:left}' +
     '.nf-rv__x{position:absolute;top:10px;right:12px;width:38px;height:38px;border:0;background:transparent;font-size:28px;line-height:1;cursor:pointer;color:#555}' +
-    '.nf-rv__eyebrow{margin:0;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8a6640}' +
+    '.nf-rv__eyebrow{margin:0;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#c9a36a}' +
     '.nf-rv__prod{margin:0;font-family:var(--heading-font-family,serif);font-size:20px;font-weight:300;line-height:1.3;padding-right:34px}' +
     '.nf-rv__stars{display:flex;gap:4px}' +
     '.nf-rv__star{border:0;background:transparent;font-size:32px;line-height:1;color:#dadada;cursor:pointer;padding:2px;transition:color .15s,transform .15s}' +
@@ -375,7 +375,7 @@
     '.nf-rv__opts span{display:inline-flex;align-items:center;height:36px;padding:0 15px;border:1px solid #d8d8d8;border-radius:999px;background:#fff;font-size:13px;color:#1c1c1c;transition:border-color .15s,background-color .15s,color .15s}' +
     '.nf-rv__opts label:hover span{border-color:#1c1c1c}.nf-rv__opts input:checked+span{border-color:#1c1c1c;background:#1c1c1c;color:#fff}' +
     '.nf-rv__opts input:focus-visible+span{outline:2px solid #1c1c1c;outline-offset:2px}' +
-    '.nf-rv__preview{margin:8px 0 0;min-height:1em;font-size:12px;color:#8a6640}' +
+    '.nf-rv__preview{margin:8px 0 0;min-height:1em;font-size:12px;color:#c9a36a}' +
     '.nf-rv__msg{margin:0;min-height:1em;font-size:13px;color:#b3261e}' +
     '.nf-rv__go{height:48px;border:0;border-radius:999px;background:#1c1c1c;color:#fff;font-family:inherit;font-weight:600;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}' +
     '.nf-rv__go[disabled]{opacity:.55;cursor:default}' +

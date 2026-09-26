@@ -1,6 +1,6 @@
 /* NF-COLHEAD-V1 (2026-09-12) Collection evening header band, filter "no matches" state, Show more pagination.
    Loaded by sections/nf-collection-head.liquid on every collection template. Palette = Ideas & Guides:
-   ink #1A1714, charcoal #2B2520, gold #B38B5D / #C9A36A, on dark #F3EBDD. No cream fills, no eyebrow lines. */
+   ink #1A1714, charcoal #2B2520, gold #c9a36a / #C9A36A, on dark #F3EBDD. No cream fills, no eyebrow lines. */
 
 /* ---------- Band ----------
    NF-COLHEAD-V2 (2026-09-12, owner: "make the image bigger, I can barely see the products"): taller band, the photo
@@ -9,7 +9,7 @@
    Nav parents + best-sellers never get the band (plain title instead, see sections/nf-collection-head.liquid). */
 .nf-ch{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:clamp(300px,24vw,360px);background:#1A1714;color:#F3EBDD;-webkit-font-smoothing:antialiased}
 .nf-ch *,.nf-ch *::before,.nf-ch *::after{box-sizing:border-box}
-.nf-ch__glow{position:absolute;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(640px 320px at 52% 50%,rgba(179,139,93,.18),transparent 70%),radial-gradient(520px 240px at -4% 120%,rgba(179,139,93,.12),transparent 70%)}
+.nf-ch__glow{position:absolute;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(640px 320px at 52% 50%,rgba(201,163,106,.18),transparent 70%),radial-gradient(520px 240px at -4% 120%,rgba(201,163,106,.12),transparent 70%)}
 .nf-ch__media{position:absolute;top:0;right:0;bottom:0;width:min(52%,820px);z-index:-2;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.6) 6%,#000 13%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.6) 6%,#000 13%)}
 .nf-ch__img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--nf-ch-pos,50% 32%);filter:brightness(var(--nf-ch-lift,1))}
 @media (prefers-reduced-motion:no-preference){
@@ -49,7 +49,7 @@
 /* ---------- Filter "no matches" state ---------- */
 .empty-state.nf-ch-empty-host{display:block;padding-block:0;text-align:center}
 .nf-ch-empty{display:flex;flex-direction:column;align-items:center;padding:clamp(36px,5vw,64px) 0 clamp(24px,3vw,40px)}
-.nf-ch-empty__bulb{display:block;width:52px;height:52px;color:#B38B5D;opacity:.45;transition:opacity .45s ease,filter .45s ease}
+.nf-ch-empty__bulb{display:block;width:52px;height:52px;color:#c9a36a;opacity:.45;transition:opacity .45s ease,filter .45s ease}
 .nf-ch-empty__halo{fill:#C9A36A;opacity:0;transition:opacity .45s ease}
 .nf-ch-empty.is-hot .nf-ch-empty__bulb,.nf-ch-empty:has(.nf-ch-empty__clear:hover) .nf-ch-empty__bulb{opacity:1;filter:drop-shadow(0 0 9px rgba(201,163,106,.9)) drop-shadow(0 0 22px rgba(201,163,106,.5))}
 .nf-ch-empty.is-hot .nf-ch-empty__halo,.nf-ch-empty:has(.nf-ch-empty__clear:hover) .nf-ch-empty__halo{opacity:.3}
@@ -58,13 +58,13 @@
 .nf-ch-empty__chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 0 22px;padding:0;list-style:none}
 .nf-ch-empty__chips li{margin:0;list-style:none}
 .nf-ch-empty__chips li::before,.nf-ch-empty__chips li::marker{content:none}
-.nf-ch-fchip{display:inline-flex;align-items:center;gap:10px;min-height:38px;padding:0 8px 0 16px;border:1px solid #B38B5D;border-radius:999px;background:#fff;color:#2B2520;font:500 14px/1.2 var(--text-font-family,system-ui,sans-serif);text-decoration:none;transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .3s cubic-bezier(.2,.8,.2,1)}
-.nf-ch-fchip__x{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(179,139,93,.16);color:#8A6640;font-size:15px;line-height:1;transition:background-color .3s ease,color .3s ease}
+.nf-ch-fchip{display:inline-flex;align-items:center;gap:10px;min-height:38px;padding:0 8px 0 16px;border:1px solid #c9a36a;border-radius:999px;background:#fff;color:#2B2520;font:500 14px/1.2 var(--text-font-family,system-ui,sans-serif);text-decoration:none;transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .3s cubic-bezier(.2,.8,.2,1)}
+.nf-ch-fchip__x{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(201,163,106,.16);color:#c9a36a;font-size:15px;line-height:1;transition:background-color .3s ease,color .3s ease}
 .nf-ch-fchip:hover{background:#2B2520;border-color:#2B2520;color:#fff;transform:translateY(-1px)}
 .nf-ch-fchip:hover .nf-ch-fchip__x{background:#C9A36A;color:#1A1714}
-.nf-ch-fchip:focus-visible,.nf-ch-empty__clear:focus-visible{outline:2px solid #B38B5D;outline-offset:3px}
+.nf-ch-fchip:focus-visible,.nf-ch-empty__clear:focus-visible{outline:2px solid #c9a36a;outline-offset:3px}
 .nf-ch-empty__picks{width:100%;margin-top:clamp(40px,5vw,64px);text-align:left}
-.nf-ch-empty .nf-ch-empty__eyebrow{margin:0 0 6px;font:600 11.5px/1.3 var(--text-font-family,system-ui,sans-serif);letter-spacing:.2em;text-transform:uppercase;color:#8A6640}
+.nf-ch-empty .nf-ch-empty__eyebrow{margin:0 0 6px;font:600 11.5px/1.3 var(--text-font-family,system-ui,sans-serif);letter-spacing:.2em;text-transform:uppercase;color:#c9a36a}
 .nf-ch-empty .nf-ch-empty__h{margin:0 0 18px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:clamp(22px,2vw,28px);line-height:1.2;text-transform:none;color:#2B2520}
 .nf-ch-picks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
 .nf-ch-empty__picks.is-loading .nf-ch-picks{min-height:420px}
@@ -80,11 +80,11 @@ nav.pagination.nf-ch-pag-off{display:none!important}
 .nf-ch-more .nf-ch-more__txt{margin:0;font:500 14px/1.4 var(--text-font-family,system-ui,sans-serif);letter-spacing:.02em;color:#655A50}
 .nf-ch-more__txt b{font-weight:700;color:#1A1714}
 .nf-ch-more__bar{width:100%;height:2px;border-radius:2px;background:#e4e4e4;overflow:hidden}
-.nf-ch-more__bar span{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#B38B5D,#C9A36A);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.nf-ch-more__bar span{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#c9a36a,#C9A36A);transition:width .6s cubic-bezier(.2,.8,.2,1)}
 .nf-ch-more .nf-ch-more__btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;min-width:210px;margin-top:6px;padding:0 34px;border:1.5px solid #2B2520;border-radius:2px;background-color:transparent;background-image:linear-gradient(#2B2520,#2B2520);background-repeat:no-repeat;background-position:0 0;background-size:0% 100%;color:#2B2520;font:600 12px/1 var(--text-font-family,system-ui,sans-serif);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background-size .35s cubic-bezier(.2,.8,.2,1),color .35s ease,transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
 .nf-ch-more .nf-ch-more__btn:hover{background-size:100% 100%;color:#fff;transform:translateY(-2px);box-shadow:0 14px 26px -16px rgba(26,23,20,.6)}
 .nf-ch-more .nf-ch-more__btn[aria-busy="true"]{opacity:.6;pointer-events:none}
-.nf-ch-more .nf-ch-more__btn:focus-visible{outline:2px solid #B38B5D;outline-offset:3px}
+.nf-ch-more .nf-ch-more__btn:focus-visible{outline:2px solid #c9a36a;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){
   .nf-ch .nf-ch__chip,.nf-ch-fchip,.nf-ch-more .nf-ch-more__btn,.nf-ch-empty__bulb,.nf-ch-empty__halo{transition-duration:.15s}
 }
@@ -114,10 +114,10 @@ nav.pagination.nf-ch-pag-off{display:none!important}
 .nf-ct__a:focus-visible{outline:none}
 .nf-ct__a:focus-visible .nf-ct__img{box-shadow:0 0 0 2px #fff,0 0 0 4px #1c1c1c}
 .nf-ct__t{max-width:96px;font:500 12px/1.3 var(--text-font-family,Montserrat,sans-serif);letter-spacing:.02em;text-align:center;transition:color .2s ease}
-.nf-ct__a:hover .nf-ct__t{color:#8a6640}
-.nf-ct__it--bs .nf-ct__img{box-shadow:0 0 0 1.5px #b38b5d,0 10px 22px -14px rgba(26,23,20,.45)}
+.nf-ct__a:hover .nf-ct__t{color:#c9a36a}
+.nf-ct__it--bs .nf-ct__img{box-shadow:0 0 0 1.5px #c9a36a,0 10px 22px -14px rgba(26,23,20,.45)}
 .nf-ct__badge{position:absolute;left:6px;top:6px;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-.nf-ct__badge svg{width:11px;height:11px;fill:#b38b5d}
+.nf-ct__badge svg{width:11px;height:11px;fill:#c9a36a}
 @media (max-width:749px){
   .nf-ct{padding:16px 0 4px}
   .nf-ct__list{gap:12px;padding-left:16px;padding-right:16px}

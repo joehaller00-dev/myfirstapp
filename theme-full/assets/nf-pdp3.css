@@ -13,8 +13,8 @@
   --nf3-ink:#1c1c1c;
   --nf3-txt:#3b362f;
   --nf3-muted:#6f685f;
-  --nf3-gold:#B38B5D;
-  --nf3-gold-d:#8A6640;
+  --nf3-gold:#c9a36a;
+  --nf3-gold-d:#c9a36a;
   --nf3-line:#ebe5db;
   --nf3-warm:#fbf7f1;
   --nf3-ease:cubic-bezier(.2,.8,.2,1);
@@ -161,7 +161,7 @@
 .nf-bt__opt:focus-visible{outline:2px solid var(--nf3-gold);outline-offset:3px}
 .nf-bt__opt.is-on{
   border-color:var(--nf3-gold-d);background:linear-gradient(180deg,var(--nf3-warm) 0%,#fff 70%);
-  outline:1px solid var(--nf3-gold-d);outline-offset:3px;box-shadow:0 16px 30px -22px rgba(138,102,64,.75);
+  outline:1px solid var(--nf3-gold-d);outline-offset:3px;box-shadow:0 16px 30px -22px rgba(201,163,106,.75);
 }
 .nf-bt__tag{
   position:absolute;top:0;left:50%;padding:5px 11px 4px;border-radius:999px;background:var(--nf3-ink);color:#fff;

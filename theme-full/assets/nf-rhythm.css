@@ -4,7 +4,7 @@
    promise columns with big gold numerals, bolder "What can be customized" cards, and darker body text on light grounds.
    Loaded by sections/nf-pro-hero.liquid right after nf-pro2.css. Selectors carry ":not(#rh)" (id weight) so they win
    over nf-pro.css when it is linked again lower on the page and over the id rules in nf-custom.css.
-   Palette: white, neutral greys, charcoal #1C1C1C, gold #B38B5D / #C9A36A as an accent only. No cream grounds, no line
+   Palette: white, neutral greys, charcoal #1C1C1C, gold #c9a36a / #C9A36A as an accent only. No cream grounds, no line
    before eyebrows. Rollback: remove the nf-rhythm.css line from nf-pro-hero.liquid (bg "charcoal" then falls back to
    the plain white section). */
 
@@ -12,21 +12,21 @@
 html body .nfp:not(.nfp--charcoal):not(.nfp2-refs):not(#evening){--nfp-ink:#1C1C1C;--nfp-muted:#474747}
 
 /* ---------- 2. Charcoal band ---------- */
-html body .nfp.nfp--charcoal:not(#rh){--nfp-ink:#FFFFFF;--nfp-ink2:#F3F3F3;--nfp-muted:#CFCAC4;--nfp-line:rgba(255,255,255,.13);--nfp-line2:rgba(255,255,255,.3);--nfp-card:#262626;--nfp-sand:#262626;--nfp-tan-txt:#D9B77E;--g-txt:#D9B77E;background:#1C1C1C;color:#E9E6E2}
+html body .nfp.nfp--charcoal:not(#rh){--nfp-ink:#FFFFFF;--nfp-ink2:#F3F3F3;--nfp-muted:#CFCAC4;--nfp-line:rgba(255,255,255,.13);--nfp-line2:rgba(255,255,255,.3);--nfp-card:#262626;--nfp-sand:#262626;--nfp-tan-txt:#c9a36a;--g-txt:#c9a36a;background:#1C1C1C;color:#E9E6E2}
 html body .nfp.nfp-sec.nfp--charcoal:not(#rh){padding-block:clamp(34px,4vw,58px)}
 html body .nfp.nfp--charcoal:not(#rh) :is(.nfp-h1,.nfp-h2,.nfp-h3,.nfp-h4){color:#FFFFFF}
 html body .nfp.nfp--charcoal:not(#rh) :is(.nfp-lead,.nfp-text,.nfp-steps__note,.nfp-facts,.nfp-crumbs,.nfp-crumbs a,.nfp-row__t span){color:#CFCAC4}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-crumbs a:hover{color:#FFFFFF}
-html body .nfp.nfp--charcoal:not(#rh) .nfp-eyebrow{color:#D9B77E}
+html body .nfp.nfp--charcoal:not(#rh) .nfp-eyebrow{color:#c9a36a}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-btn--outline{color:#FFFFFF}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-btn--outline:hover{color:#1A1714}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-btn--browse{color:#1A1714}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-btn--primary{background:#FFFFFF;border-color:#FFFFFF;color:#1C1C1C}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-link{color:#FFFFFF;background-image:linear-gradient(#C9A36A,#C9A36A),linear-gradient(rgba(255,255,255,.35),rgba(255,255,255,.35))}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-card:not(.nfp-card--media){background:#262626;border-color:rgba(255,255,255,.1)}
-html body .nfp.nfp--charcoal:not(#rh) .nfp-card__icon{background:rgba(201,163,106,.14);border-color:transparent;color:#D9B77E}
+html body .nfp.nfp--charcoal:not(#rh) .nfp-card__icon{background:rgba(201,163,106,.14);border-color:transparent;color:#c9a36a}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-row{background:#262626;border-color:rgba(255,255,255,.12);color:#FFFFFF}
-html body .nfp .nfp-band .nfp-eyebrow{color:#D9B77E}
+html body .nfp .nfp-band .nfp-eyebrow{color:#c9a36a}
 
 /* Hero on charcoal: split heroes read like the Ideas & Guides hero; the banner card turns to dark glass */
 html body .nfp.nfp-hero.nfp--charcoal:not(#rh){padding-block:clamp(22px,2.6vw,40px) clamp(28px,3.2vw,48px)}
@@ -38,7 +38,7 @@ html body .nfp.nfp--charcoal:not(#rh) .nfp-steps{gap:clamp(20px,2.6vw,40px)}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-step{background:none;border:0;border-top:1px solid rgba(255,255,255,.22);border-radius:0;padding:20px 0 0;box-shadow:none}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-step__top{margin-bottom:14px;align-items:flex-end}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-step__n{width:auto;height:auto;background:none;border-radius:0;color:#C9A36A;font:300 clamp(48px,4.6vw,68px)/.9 var(--nfp-serif)}
-html body .nfp.nfp--charcoal:not(#rh) .nfp-step__time{background:rgba(255,255,255,.08);border:0;color:#E2C48F}
+html body .nfp.nfp--charcoal:not(#rh) .nfp-step__time{background:rgba(255,255,255,.08);border:0;color:#c9a36a}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-step .nfp-h3{font-size:clamp(20px,1.6vw,24px)}
 html body .nfp.nfp--charcoal:not(#rh) .nfp-steps__note{margin-top:26px;color:#E9E6E2}
 
@@ -50,9 +50,9 @@ html body .nfp-look--media:not(.nfp--sand) .nfp-card--media .nfp-card__img>img,h
 html body .nfp-look--media:not(.nfp--sand) .nfp-card--media .nfp-card__body{position:absolute;left:0;right:0;bottom:0;z-index:1;display:block;padding:clamp(60px,6vw,96px) clamp(18px,1.8vw,26px) clamp(18px,1.7vw,24px);background:linear-gradient(0deg,rgba(14,14,14,.96) 0%,rgba(14,14,14,.84) 48%,rgba(14,14,14,0) 100%)}
 html body .nfp-look--media:not(.nfp--sand) .nfp-card--media .nfp-h3{display:block;color:#FFFFFF;font-size:clamp(19px,1.5vw,23px);line-height:1.2}
 html body .nfp-look--media:not(.nfp--sand) .nfp-card--media .nfp-text{display:block;color:#E6E2DD;font-size:14.5px;line-height:1.5;margin-top:6px}
-html body .nfp-look--media:not(.nfp--sand) .nfp-card--media .nfp-card__meta{color:#E2C48F}
+html body .nfp-look--media:not(.nfp--sand) .nfp-card--media .nfp-card__meta{color:#c9a36a}
 html body .nfp-look--media:not(.nfp--sand) .nfp-card--media .nfp-card__foot{display:block;padding-top:10px}
-html body .nfp-look--media:not(.nfp--sand) .nfp-card--media .nfp-card__go{margin-top:0;color:#E2C48F}
+html body .nfp-look--media:not(.nfp--sand) .nfp-card--media .nfp-card__go{margin-top:0;color:#c9a36a}
 html body .nfp-look--media:not(.nfp--sand) a.nfp-card--media:hover{transform:translateY(-3px);box-shadow:0 22px 40px -24px rgba(0,0,0,.7)}
 @media (min-width:900px){
   /* five tiles: one big feature tile and four small ones */
@@ -87,7 +87,7 @@ html body .nfp-look--media.nfp--sand .nfp-card--media .nfp-card__foot{padding-to
 html body .nfp-look--numbered:not(.nfp--charcoal) .nfp-grid{gap:26px 0}
 html body .nfp-look--numbered:not(.nfp--charcoal) .nfp-card{background:none;border:0;border-left:1px solid #D6D6D6;border-radius:0;padding:4px clamp(18px,2.2vw,32px) 6px;box-shadow:none}
 html body .nfp-look--numbered:not(.nfp--charcoal) a.nfp-card:hover{transform:none;box-shadow:none}
-html body .nfp-look--numbered:not(.nfp--charcoal) a.nfp-card:hover .nfp-h3{color:#8A6640}
+html body .nfp-look--numbered:not(.nfp--charcoal) a.nfp-card:hover .nfp-h3{color:#c9a36a}
 html body .nfp-look--numbered:not(.nfp--charcoal) .nfp-card__num{font-size:clamp(46px,4.4vw,64px);font-weight:300;color:#A57B4C;margin-bottom:12px}
 html body .nfp-look--numbered:not(.nfp--charcoal) .nfp-h3{font-size:clamp(20px,1.6vw,24px)}
 
@@ -95,7 +95,7 @@ html body .nfp-look--numbered:not(.nfp--charcoal) .nfp-h3{font-size:clamp(20px,1
 html body .nfp-look--text:not(.nfp--charcoal) .nfp-grid{gap:clamp(24px,2.6vw,38px) clamp(24px,2.8vw,44px)}
 html body .nfp-look--text:not(.nfp--charcoal) .nfp-card{background:none;border:0;border-top:2px solid #1C1C1C;border-radius:0;padding:18px 0 0;box-shadow:none}
 html body .nfp-look--text:not(.nfp--charcoal) a.nfp-card:hover{transform:none;box-shadow:none}
-html body .nfp-look--text:not(.nfp--charcoal) .nfp-card__icon{display:block;width:auto;height:auto;margin:0 0 12px;background:none;border:0;border-radius:0;color:#8A6640}
+html body .nfp-look--text:not(.nfp--charcoal) .nfp-card__icon{display:block;width:auto;height:auto;margin:0 0 12px;background:none;border:0;border-radius:0;color:#c9a36a}
 html body .nfp-look--text:not(.nfp--charcoal) .nfp-card__icon svg{width:30px;height:30px}
 html body .nfp-look--text:not(.nfp--charcoal) .nfp-h3{font-size:clamp(19px,1.5vw,22px)}
 
@@ -103,7 +103,7 @@ html body .nfp-look--text:not(.nfp--charcoal) .nfp-h3{font-size:clamp(19px,1.5vw
 html body .nfp2-cust.nfp2--grey{background:#EFEFEF}
 html body .nfp2 .nfp2-cust__card{padding:clamp(24px,2.2vw,30px) clamp(20px,2vw,26px) clamp(24px,2.2vw,28px);border-radius:12px;gap:10px;background:#FFFFFF;border-color:#E2E2E2}
 html body .nfp2--white .nfp2-cust__card{background:#F3F3F3;border-color:#E6E6E6}
-html body .nfp2 .nfp2-cust__icon{width:54px;height:54px;margin-bottom:8px;border-radius:50%;background:#1C1C1C;color:#D9B77E}
+html body .nfp2 .nfp2-cust__icon{width:54px;height:54px;margin-bottom:8px;border-radius:50%;background:#1C1C1C;color:#c9a36a}
 html body .nfp2 .nfp2-cust__icon .nf2-ico{width:27px;height:27px}
 html body .nfp2 .nfp2-cust__t{font-size:clamp(19px,1.45vw,21px);color:#1C1C1C}
 html body .nfp2 .nfp2-cust__d{font-size:14.8px;color:#444444}
@@ -119,7 +119,7 @@ html body .nfp2 .nfp2-cust__num{color:#766C63}
 }
 
 /* ---------- 9. Fixes after the live check ---------- */
-html body .nfp#evening .nfp-eyebrow{color:#D9B77E}
+html body .nfp#evening .nfp-eyebrow{color:#c9a36a}
 @media (max-width:640px){
   html body .nfp-look--numbered:not(.nfp--charcoal) .nfp-card__num{font-size:40px;margin-bottom:6px}
 }

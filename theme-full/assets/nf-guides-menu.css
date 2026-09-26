@@ -370,7 +370,7 @@
 .nf-g3d-sv-pill { fill: #2b2520; }
 .nf-g3d-sv-g {
   fill: none;
-  stroke: #b0773a;
+  stroke: #c9a36a;
   stroke-width: .8;
   stroke-dasharray: 1.2 1.8;
   opacity: .55;
@@ -378,7 +378,7 @@
 }
 .nf-g3d-sv-a {
   fill: none;
-  stroke: #b0773a;
+  stroke: #c9a36a;
   stroke-width: 1.1;
   stroke-linecap: round;
   stroke-dasharray: 1;
@@ -387,7 +387,7 @@
 }
 .nf-g3d-sv-hd {
   fill: none;
-  stroke: #b0773a;
+  stroke: #c9a36a;
   stroke-width: 1.1;
   stroke-linecap: round;
   stroke-linejoin: round;

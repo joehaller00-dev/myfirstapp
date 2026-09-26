@@ -1,7 +1,7 @@
 /* NF-BULK-ORDER (2026-09-14): the bulk order form, sections/nf-bulk-order.liquid + sections/nf-bulk-table.liquid.
    Large type and big targets on purpose (many bulk buyers are older): 16 to 20px text, 50px quantity buttons, 56px main
    button. White and neutral grey with the gold accent only. */
-.nfbo{--nfbo-ink:#1c1c1c;--nfbo-mute:#5c5c5c;--nfbo-line:#e3e3e3;--nfbo-soft:#f5f5f5;--nfbo-gold:#b38b5d;box-sizing:border-box;max-width:1200px;margin:0 auto;padding:clamp(28px,4vw,56px) 20px 48px;color:var(--nfbo-ink);font-size:16px;line-height:1.5}
+.nfbo{--nfbo-ink:#1c1c1c;--nfbo-mute:#5c5c5c;--nfbo-line:#e3e3e3;--nfbo-soft:#f5f5f5;--nfbo-gold:#c9a36a;box-sizing:border-box;max-width:1200px;margin:0 auto;padding:clamp(28px,4vw,56px) 20px 48px;color:var(--nfbo-ink);font-size:16px;line-height:1.5}
 .nfbo *,.nfbo *::before,.nfbo *::after{box-sizing:border-box}
 .nfbo__head{max-width:780px;margin:0 auto clamp(28px,4vw,44px);text-align:center}
 .nfbo__title{margin:0 0 12px;font-family:var(--heading-font-family,"Roboto Serif",serif);font-weight:300;font-size:clamp(32px,3.8vw,48px);line-height:1.12}

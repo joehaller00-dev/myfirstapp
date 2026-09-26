@@ -4,21 +4,21 @@
 
 /* ---- complete the room (V2 2026-09-24: a card grid, big photos, bigger type) ---- */
 .nf-bdl{margin:18px 0 8px;padding:20px 18px 18px;border-radius:16px;background:#1c1c1c;color:#fff;box-shadow:0 16px 36px -24px rgba(0,0,0,.65)}
-.nf-bdl__eyebrow{margin:0 0 6px;font:600 11.5px/1 var(--text-font-family,Montserrat,system-ui,sans-serif);letter-spacing:.18em;text-transform:uppercase;color:#d6b26c}
+.nf-bdl__eyebrow{margin:0 0 6px;font:600 11.5px/1 var(--text-font-family,Montserrat,system-ui,sans-serif);letter-spacing:.18em;text-transform:uppercase;color:#c9a36a}
 .nf-bdl__title{margin:0 0 6px;font-family:var(--heading-font-family,Georgia,serif);font-weight:400;font-size:clamp(24px,2.5vw,28px);line-height:1.15;letter-spacing:.01em;color:#fff}
 .nf-bdl__deal{margin:0 0 16px;font-size:14.5px;line-height:1.5;color:#d9d3ca}
 .nf-bdl__deal b{font-weight:600;color:#f0d9a8}
 .nf-bdl__grid{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 16px;padding:0}
 .nf-bdl__card{position:relative;display:flex;flex-direction:column;padding:8px 8px 12px;border-radius:12px;background:#28231f;transition:opacity .2s ease}
 .nf-bdl__card.is-off{opacity:.42}
-.nf-bdl__card.is-base{box-shadow:inset 0 0 0 1.5px #d6b26c}
+.nf-bdl__card.is-base{box-shadow:inset 0 0 0 1.5px #c9a36a}
 .nf-bdl__img{display:block;aspect-ratio:1/1;border-radius:8px;overflow:hidden;background:#fff}
 .nf-bdl__img img{display:block;width:100%;height:100%;object-fit:cover}
-.nf-bdl__tag{position:absolute;top:14px;left:14px;z-index:1;padding:5px 9px;border-radius:999px;background:#d6b26c;color:#1c1c1c;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1}
+.nf-bdl__tag{position:absolute;top:14px;left:14px;z-index:1;padding:5px 9px;border-radius:999px;background:#c9a36a;color:#1c1c1c;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1}
 .nf-bdl__check{position:absolute;top:12px;right:12px;z-index:1;width:30px;height:30px;cursor:pointer}
 .nf-bdl__check input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
 .nf-bdl__tick{position:relative;display:block;width:30px;height:30px;border-radius:50%;border:2px solid #fff;background:rgba(20,18,16,.45);box-shadow:0 2px 8px rgba(0,0,0,.35);transition:background-color .15s ease,border-color .15s ease}
-.nf-bdl__check input:checked + .nf-bdl__tick{background:#d6b26c;border-color:#d6b26c}
+.nf-bdl__check input:checked + .nf-bdl__tick{background:#c9a36a;border-color:#c9a36a}
 .nf-bdl__check input:checked + .nf-bdl__tick::after{content:"";position:absolute;left:9px;top:5px;width:7px;height:12px;border:solid #1c1c1c;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
 .nf-bdl__check input:focus-visible + .nf-bdl__tick{outline:2px solid #f0d9a8;outline-offset:2px}
 .nf-bdl__name{display:-webkit-box;margin:10px 2px 2px;overflow:hidden;font-size:14px;font-weight:500;line-height:1.35;color:#fff;-webkit-line-clamp:2;-webkit-box-orient:vertical}
@@ -35,10 +35,10 @@
 .nf-bdl__now{font-family:var(--heading-font-family,Georgia,serif);font-size:28px;line-height:1;color:#fff}
 .nf-bdl__save{margin-left:auto;font-size:14px;font-weight:600;color:#f0d9a8}
 .nf-bdl__btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:100%;min-height:58px;padding:10px 16px;border:0;border-radius:999px;background:#fff;color:#1c1c1c;font:600 15px/1.2 var(--text-font-family,Montserrat,system-ui,sans-serif);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:transform .15s ease,background-color .2s ease}
-.nf-bdl__btn span{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:none;color:#8a6a2c}
+.nf-bdl__btn span{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:none;color:#c9a36a}
 .nf-bdl__btn:hover:not(:disabled){transform:translateY(-1px)}
 .nf-bdl__btn:disabled{opacity:.55;cursor:default}
-.nf-bdl__btn.is-done{background:#d6b26c}
+.nf-bdl__btn.is-done{background:#c9a36a}
 .nf-bdl__err{margin:10px 0 0;font-size:13px;color:#ff9b93}
 @media (max-width:749px){
   .nf-bdl{margin:16px 0 8px;padding:18px 14px 16px}
@@ -103,10 +103,10 @@ cart-drawer .nf-cv2-card__form{grid-column:2;align-self:end}
 cart-drawer .nf-cv2-card__add{padding:9px 18px;font-size:12px}
 
 /* ---- NF-SALEEND-V1: fall sale countdown under the price (sale products only) ---- */
-.nf-saleend{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin:10px 0 2px;padding:9px 14px;border-radius:10px;background:#16140f;box-shadow:inset 0 1px 0 rgba(214,178,108,.55)}
+.nf-saleend{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin:10px 0 2px;padding:9px 14px;border-radius:10px;background:#16140f;box-shadow:inset 0 1px 0 rgba(201,163,106,.55)}
 .nf-saleend[hidden]{display:none}
 .nf-saleend__l{font:600 11.5px/1.2 var(--text-font-family,Montserrat,system-ui,sans-serif);letter-spacing:.14em;text-transform:uppercase;color:#fff}
-.nf-saleend__t{font:600 15px/1.2 var(--text-font-family,Montserrat,system-ui,sans-serif);font-variant-numeric:tabular-nums;letter-spacing:.02em;color:#e6c48d}
+.nf-saleend__t{font:600 15px/1.2 var(--text-font-family,Montserrat,system-ui,sans-serif);font-variant-numeric:tabular-nums;letter-spacing:.02em;color:#c9a36a}
 
 /* ---- NF-ROOMSET-V1: room set product pages (see snippets/product-info.liquid) ---- */
 .nf-roomset-note{margin:8px 0 0;font-size:14px;font-weight:500;line-height:1.5;color:#1f5a39}
@@ -180,7 +180,7 @@ html body #cart-drawer .nf-cv2-pairs__slot:empty::before,html body #cart-drawer 
 
 /* ---- NF-SETIN-V1: "In this set" strip on room set pages ---- */
 .nf-setin{margin:14px 0 4px}
-.nf-setin__h{margin:0 0 8px;font:600 11.5px/1 var(--text-font-family,Montserrat,system-ui,sans-serif);letter-spacing:.14em;text-transform:uppercase;color:#8a6a2c}
+.nf-setin__h{margin:0 0 8px;font:600 11.5px/1 var(--text-font-family,Montserrat,system-ui,sans-serif);letter-spacing:.14em;text-transform:uppercase;color:#c9a36a}
 .nf-setin__list{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px;margin:0;padding:0}
 .nf-setin__item a{display:flex;flex-direction:column;gap:5px;color:#1c1c1c;text-decoration:none}
 .nf-setin__img{position:relative;display:block;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:#f5f4f2}
@@ -193,6 +193,6 @@ html body #cart-drawer .nf-cv2-pairs__slot:empty::before,html body #cart-drawer 
 /* ---- NF-ROOMSETS-IND: "N room sets" link under every industry in the Professionals menu ---- */
 .nf-tbp .nf-pr2__ind-it{position:relative}
 .nf-tbp .nf-pr2__sets{display:inline-flex;align-items:center;gap:6px;flex:0 0 auto;padding:6px 11px;border-radius:999px;background:#1c1c1c;color:#fff;font:600 11.5px/1 var(--text-font-family,Montserrat,system-ui,sans-serif);letter-spacing:.02em;text-decoration:none;white-space:nowrap;transition:background-color .2s ease}
-.nf-tbp .nf-pr2__sets:hover{background:#8a6a2c;color:#fff}
-.nf-tbp .nf-pr2__sets svg{color:#d6b26c}
+.nf-tbp .nf-pr2__sets:hover{background:#c9a36a;color:#fff}
+.nf-tbp .nf-pr2__sets svg{color:#c9a36a}
 .nf-tbp .nf-pr2__sets:hover svg{color:#fff}

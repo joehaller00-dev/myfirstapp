@@ -1,6 +1,6 @@
 /* nf-catalog-page.css : /pages/catalogs (NF-CATALOG-PAGE-V2, 2026-09-11). White ground and neutral greys, gold only as
    an accent (eyebrows, numerals, the button arrow). No cream fills and no line before eyebrows (owner rules). */
-.nfcp{--cp-ink:#1c1c1c;--cp-muted:#666;--cp-hair:#e5e5e5;--cp-grey:#f7f7f7;--cp-gold:#B38B5D;--cp-gold-txt:#8A6640;--cp-gold-hi:#C9A36A;
+.nfcp{--cp-ink:#1c1c1c;--cp-muted:#666;--cp-hair:#e5e5e5;--cp-grey:#f7f7f7;--cp-gold:#c9a36a;--cp-gold-txt:#c9a36a;--cp-gold-hi:#C9A36A;
   --cp-serif:var(--heading-font-family,"Roboto Serif",Georgia,serif);--cp-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);
   --cp-pad:clamp(20px,4.4vw,84px);--cp-max:1760px;--cp-ease:cubic-bezier(.2,.8,.2,1);
   color:var(--cp-ink);background:#fff;overflow:hidden;font-family:var(--cp-sans)}

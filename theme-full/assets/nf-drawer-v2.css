@@ -3,7 +3,7 @@
    which the script adds, so without the script the old drawer shows unchanged. */
 #sidebar-menu.nfd2 {
   --nfd-ink: #1c1c1c; --nfd-soft: #5c5c5c; --nfd-line: #ececec; --nfd-tint: #f5f5f5;
-  --nfd-gold: #a67c4f; --nfd-sale: #e32c2b;
+  --nfd-gold: #c9a36a; --nfd-sale: #e32c2b;
   --nfd-head: var(--heading-font-family, "Roboto Serif", Georgia, serif);
   --nfd-ui: Montserrat, var(--text-font-family, system-ui), sans-serif;
 }

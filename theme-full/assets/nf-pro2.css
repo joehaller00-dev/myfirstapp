@@ -2,12 +2,12 @@
    tighter vertical rhythm, crisp uppercase serif section headings, one gold button family (after Ideas & Guides),
    "What can be customized" icon cards, the dark "Application references" band with its light switch, and the
    detailed quote sheet. Loaded by sections/nf-pro-hero.liquid (early, so there is no layout shift) and by the
-   nf-pro2-* sections. Palette: white, neutral grey #F7F7F7, charcoal #1C1C1C / #1A1714, gold #B38B5D as an accent
+   nf-pro2-* sections. Palette: white, neutral grey #F7F7F7, charcoal #1C1C1C / #1A1714, gold #c9a36a as an accent
    only. No cream fills, no decorative line before eyebrows. Selectors start with "html body" so they win over
    nf-pro.css and nf-custom.css even when those stylesheets are linked again further down the page. */
 
 html body .nfp{--nfp-serif:var(--heading-font-family,"Poynter Oldstyle",Georgia,serif);--nfp-sans:var(--text-font-family,"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif);--nfp-ink:#1C1C1C;--nfp-ink2:#2B2520;--nfp-muted:#5E5A55;--nfp-line:#E6E6E6;--nfp-line2:#D4D4D4;--nfp-sand:#F7F7F7;--nfp-cream:#FFFFFF;--nfp-card:#FFFFFF;
-  --g:#B38B5D;--g-hi:#C9A36A;--g-txt:#8A6640;--dk:#1A1714;--dk2:#24201C;--on:#F3EBDD;--on2:rgba(243,235,221,.74);--e:cubic-bezier(.2,.8,.2,1);--t:.35s}
+  --g:#c9a36a;--g-hi:#C9A36A;--g-txt:#c9a36a;--dk:#1A1714;--dk2:#24201C;--on:#F3EBDD;--on2:rgba(243,235,221,.74);--e:cubic-bezier(.2,.8,.2,1);--t:.35s}
 
 /* ---------- Rhythm: about 68px between same colored sections at 1440, 44px on phones ---------- */
 html body .nfp.nfp-sec{padding-block:clamp(22px,2.4vw,34px)}
@@ -133,7 +133,7 @@ html body .nfp2-form legend{display:flex;align-items:center;flex-wrap:wrap;gap:6
 html body .nfp2-form legend small{flex-basis:auto;font:500 12px/1.3 var(--nfp-sans);letter-spacing:.02em;text-transform:none;color:var(--nfp-muted)}
 .nfp2-fs__n{display:inline-grid;place-items:center;min-width:30px;height:24px;padding:0 6px;border:1px solid var(--g);border-radius:2px;font:600 11px/1 var(--nfp-sans);letter-spacing:.08em;color:var(--g-txt)}
 html body .nfp2-form .nfp-input{border-radius:4px;border-color:#E0E0E0;min-height:48px}
-html body .nfp2-form .nfp-input:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(179,139,93,.2)}
+html body .nfp2-form .nfp-input:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(201,163,106,.2)}
 html body .nfp2-form textarea.nfp-input{min-height:112px}
 html body .nfp2-form select.nfp-input optgroup{font-style:normal;font-weight:600}
 .nfp2-tiles{grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:10px}
@@ -154,7 +154,7 @@ html body .nfp2-tile:has(input:checked){background:#FBF8F3;border-color:var(--g)
 .nfp2-mail:hover{border-color:var(--g-hi)}
 html body .nfp2-aside ol li::before{background:var(--dk);color:var(--on)}
 .nfp-field.nfp2-flash .nfp-input{animation:nfp2Flash 1.6s var(--e)}
-@keyframes nfp2Flash{0%,100%{box-shadow:0 0 0 0 rgba(179,139,93,0)}25%{box-shadow:0 0 0 5px rgba(179,139,93,.35);border-color:var(--g)}}
+@keyframes nfp2Flash{0%,100%{box-shadow:0 0 0 0 rgba(201,163,106,0)}25%{box-shadow:0 0 0 5px rgba(201,163,106,.35);border-color:var(--g)}}
 
 /* ---------- Consistent cards across the older nf-pro sections ---------- */
 html body .nfp .nfp-card,html body .nfp .nfp-step,html body .nfp .nfp-row,html body .nfp .nfp-pcard{border-radius:6px}

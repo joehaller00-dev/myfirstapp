@@ -1,8 +1,8 @@
 /* Nora Furnish Professionals (2026-09-11). NF-CUSTOM3-V1 source fix 2026-09-11: warm card, label, placeholder and tint border colors made white or neutral grey. Loaded by the sections/nf-pro-*.liquid files only.
-   Palette: charcoal #2B2520, tan #B38B5D, cream #FBF7F1. One hover language for every button:
+   Palette: charcoal #2B2520, tan #c9a36a, cream #FBF7F1. One hover language for every button:
    a 2px lift and a soft shadow on transition .35s cubic-bezier(.2,.8,.2,1). Transitions are kept
    under prefers-reduced-motion on purpose (owner request), they are short and small. */
-.nfp{--nfp-ink:#2B2520;--nfp-ink2:#3A322B;--nfp-tan:#B38B5D;--nfp-tan-hi:#C29A6B;--nfp-tan-txt:#8A6640;--nfp-cream:#FFFFFF;--nfp-sand:#F5F5F5;--nfp-card:#FFFFFF;--nfp-line:#E4E4E4;--nfp-line2:#D2D2D2;--nfp-muted:#655A50;--nfp-err:#A65440;--nfp-ease:cubic-bezier(.2,.8,.2,1);--nfp-t:.35s;--nfp-shadow:0 14px 26px -16px rgba(43,37,32,.55),0 2px 6px -2px rgba(43,37,32,.12);--nfp-serif:"Fraunces",Georgia,"Times New Roman",serif;--nfp-sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--nfp-cream);color:var(--nfp-ink);font-family:var(--nfp-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.nfp{--nfp-ink:#2B2520;--nfp-ink2:#3A322B;--nfp-tan:#c9a36a;--nfp-tan-hi:#c9a36a;--nfp-tan-txt:#c9a36a;--nfp-cream:#FFFFFF;--nfp-sand:#F5F5F5;--nfp-card:#FFFFFF;--nfp-line:#E4E4E4;--nfp-line2:#D2D2D2;--nfp-muted:#655A50;--nfp-err:#A65440;--nfp-ease:cubic-bezier(.2,.8,.2,1);--nfp-t:.35s;--nfp-shadow:0 14px 26px -16px rgba(43,37,32,.55),0 2px 6px -2px rgba(43,37,32,.12);--nfp-serif:"Fraunces",Georgia,"Times New Roman",serif;--nfp-sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--nfp-cream);color:var(--nfp-ink);font-family:var(--nfp-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .nfp *,.nfp *::before,.nfp *::after{box-sizing:border-box}
 .nfp-sr{position:absolute !important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .nfp--sand{background:var(--nfp-sand)}
@@ -46,9 +46,9 @@
 .nfp-on-dark .nfp-btn--primary:hover{background:#fff;border-color:#fff;color:var(--nfp-ink)}
 /* Secondary: charcoal outline that fills with a light tan tint. */
 .nfp-btn--secondary{background:transparent;border-color:var(--nfp-ink);color:var(--nfp-ink);text-transform:uppercase;letter-spacing:.14em;font-size:12px;border-radius:4px}
-.nfp-btn--secondary:hover{background:rgba(179,139,93,.17);color:var(--nfp-ink)}
+.nfp-btn--secondary:hover{background:rgba(201,163,106,.17);color:var(--nfp-ink)}
 .nfp-on-dark .nfp-btn--secondary{border-color:rgba(251,247,241,.7);color:var(--nfp-cream)}
-.nfp-on-dark .nfp-btn--secondary:hover{background:rgba(179,139,93,.28);border-color:var(--nfp-cream)}
+.nfp-on-dark .nfp-btn--secondary:hover{background:rgba(201,163,106,.28);border-color:var(--nfp-cream)}
 /* Browse: tan pill, sentence case, trailing arrow that slides. */
 .nfp-btn--browse{background:var(--nfp-tan);border-color:var(--nfp-tan);color:var(--nfp-ink);border-radius:999px;font-size:14.5px;font-weight:600;letter-spacing:.005em;min-height:46px;padding:0 20px 0 24px}
 .nfp-btn--browse:hover{background:var(--nfp-tan-hi);border-color:var(--nfp-tan-hi);color:var(--nfp-ink)}
@@ -85,7 +85,7 @@
 .nfp-hero__text .nfp-lead{margin-top:20px}
 .nfp-facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:30px 0 0;padding:0;list-style:none;font-size:13.5px;color:var(--nfp-muted)}
 .nfp-facts li{display:flex;align-items:center;gap:9px}
-.nfp-facts li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--nfp-tan);box-shadow:0 0 0 4px rgba(179,139,93,.18)}
+.nfp-facts li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--nfp-tan);box-shadow:0 0 0 4px rgba(201,163,106,.18)}
 .nfp-hero--banner .nfp-hero__stage{position:relative;border-radius:24px;overflow:hidden;min-height:clamp(460px,52vw,640px);display:flex;align-items:flex-end}
 .nfp-hero--banner .nfp-hero__bg{position:absolute;inset:0;border-radius:0}
 .nfp-hero--banner .nfp-hero__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,23,19,.55) 0%,rgba(28,23,19,.18) 55%,rgba(28,23,19,0) 80%)}
@@ -210,7 +210,7 @@ a.nfp-card--media:hover .nfp-card__img>img{transform:scale(1.035)}
 
 /* ---------- Band ---------- */
 .nfp-band{border-radius:26px;background:var(--nfp-ink);color:var(--nfp-cream);padding:clamp(34px,5vw,70px);display:grid;grid-template-columns:minmax(0,1.4fr) auto;gap:26px 48px;align-items:center;position:relative;overflow:hidden}
-.nfp-band::before{content:"";position:absolute;right:-8%;top:-40%;width:48%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(179,139,93,.38),rgba(179,139,93,0))}
+.nfp-band::before{content:"";position:absolute;right:-8%;top:-40%;width:48%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(201,163,106,.38),rgba(201,163,106,0))}
 .nfp-band>*{position:relative}
 .nfp-band .nfp-h2{color:var(--nfp-cream)}
 .nfp-band .nfp-lead{color:rgba(251,247,241,.78)}
@@ -233,7 +233,7 @@ a.nfp-card--media:hover .nfp-card__img>img{transform:scale(1.035)}
 .nfp-input{width:100%;min-height:50px;padding:13px 15px;border:1.5px solid var(--nfp-line);border-radius:10px;background:#fff;color:var(--nfp-ink);font:400 16px/1.4 var(--nfp-sans);-webkit-appearance:none;appearance:none;transition:border-color var(--nfp-t) var(--nfp-ease),box-shadow var(--nfp-t) var(--nfp-ease)}
 .nfp-input::placeholder{color:#A0948A}
 .nfp-input:hover{border-color:var(--nfp-line2)}
-.nfp-input:focus{outline:none;border-color:var(--nfp-tan);box-shadow:0 0 0 4px rgba(179,139,93,.22)}
+.nfp-input:focus{outline:none;border-color:var(--nfp-tan);box-shadow:0 0 0 4px rgba(201,163,106,.22)}
 select.nfp-input{padding-right:42px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 7.5l5 5 5-5' fill='none' stroke='%232B2520' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 14px center/16px no-repeat}
 textarea.nfp-input{min-height:130px;resize:vertical}
 .nfp-help{font-size:12.5px;color:var(--nfp-muted);margin:0}

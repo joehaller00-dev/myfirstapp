@@ -4,7 +4,7 @@
    bands. Gold is an accent only (eyebrows, outlines, the travelling light). No cream, ivory, beige or yellow grounds,
    no lead line before eyebrows. Motion is opacity and transform only; prefers-reduced-motion stops every loop and the
    404 room shows lit. Buttons follow the Ideas & Guides family: solid gold, gold outline on dark, dark line on white. */
-.nfhc{--nfhc-ink:#1c1c1c;--nfhc-night:#1a1714;--nfhc-card:#25211c;--nfhc-line:#e4e4e4;--nfhc-grey:#f5f5f5;--nfhc-muted:#5c5c5c;--nfhc-gold:#b38b5d;--nfhc-gold-hi:#c9a36a;--nfhc-gold-txt:#8a6640;--nfhc-glow:#f3cf8e;--nfhc-ease:cubic-bezier(.2,.8,.2,1);--nfhc-serif:var(--heading-font-family,"Roboto Serif",Georgia,serif);--nfhc-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);--nfhc-pad:clamp(18px,4vw,56px);font-family:var(--nfhc-sans);font-size:16px;line-height:1.6;color:var(--nfhc-ink);-webkit-font-smoothing:antialiased}
+.nfhc{--nfhc-ink:#1c1c1c;--nfhc-night:#1a1714;--nfhc-card:#25211c;--nfhc-line:#e4e4e4;--nfhc-grey:#f5f5f5;--nfhc-muted:#5c5c5c;--nfhc-gold:#c9a36a;--nfhc-gold-hi:#c9a36a;--nfhc-gold-txt:#c9a36a;--nfhc-glow:#f3cf8e;--nfhc-ease:cubic-bezier(.2,.8,.2,1);--nfhc-serif:var(--heading-font-family,"Roboto Serif",Georgia,serif);--nfhc-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);--nfhc-pad:clamp(18px,4vw,56px);font-family:var(--nfhc-sans);font-size:16px;line-height:1.6;color:var(--nfhc-ink);-webkit-font-smoothing:antialiased}
 .nfhc *,.nfhc *::before,.nfhc *::after{box-sizing:border-box}
 .nfhc img{display:block;max-width:100%}
 .nfhc a{color:inherit}
@@ -82,7 +82,7 @@
 .nfhc .nfhc-field label{font-size:13.5px;font-weight:600;color:var(--nfhc-ink)}
 .nfhc .nfhc-field label small{font-weight:500;color:var(--nfhc-muted)}
 .nfhc .nfhc-input{width:100%;min-height:52px;margin:0;padding:12px 14px;border:1px solid #cfcfcf;border-radius:4px;background:#fff;font:500 16px/1.5 var(--nfhc-sans);color:var(--nfhc-ink);box-shadow:none;transition:border-color .2s}
-.nfhc .nfhc-input:focus{outline:none;border-color:var(--nfhc-ink);box-shadow:0 0 0 3px rgba(179,139,93,.25)}
+.nfhc .nfhc-input:focus{outline:none;border-color:var(--nfhc-ink);box-shadow:0 0 0 3px rgba(201,163,106,.25)}
 .nfhc textarea.nfhc-input{min-height:160px;resize:vertical}
 .nfhc .nfhc-form__submit{width:100%;margin-top:6px}
 .nfhc .nfhc-form__note{margin:14px 0 0;font-size:13.5px;line-height:1.55;text-align:center;color:var(--nfhc-muted)}
@@ -160,7 +160,7 @@
 .nfhc-search{display:flex;max-width:680px;margin:0 auto clamp(28px,3vw,40px);border:1.5px solid var(--nfhc-ink);border-radius:2px;background:#fff}
 .nfhc .nfhc-search__in{flex:1;min-width:0;height:54px;margin:0;padding:0 18px;border:0;border-radius:0;background:transparent;font:500 16px/1 var(--nfhc-sans);color:var(--nfhc-ink);box-shadow:none}
 .nfhc .nfhc-search__in:focus{outline:none}
-.nfhc-search:focus-within{box-shadow:0 0 0 3px rgba(179,139,93,.3)}
+.nfhc-search:focus-within{box-shadow:0 0 0 3px rgba(201,163,106,.3)}
 .nfhc .nfhc-search .nfhc-btn{min-height:54px;margin:-1.5px -1.5px -1.5px 0;border-radius:0 2px 2px 0}
 .nfhc-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);margin:0;padding:0;list-style:none}
 .nfhc-tile a{position:relative;display:block;aspect-ratio:4 / 5;overflow:hidden;border-radius:4px;background:var(--nfhc-grey);color:#fff;text-decoration:none}

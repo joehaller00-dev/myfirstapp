@@ -2,7 +2,7 @@
    After the Ideas & Guides page: white ground, a strong serif heading, big line item images, a charcoal and gold
    order summary card, gold as an accent only. No cream fills, no line before eyebrows, no dashes in copy.
    Reuses from assets/nf-cart-v2.css: .nf-cv2-progress, .nf-cv2-pairs, .nf-cv2-next, .nf-cv2-note, .nf-cv2-lamp. */
-.nfcp-page{--cp-ink:#1A1714;--cp-ink2:#2B2520;--cp-gold:#B38B5D;--cp-gold-hi:#C9A36A;--cp-gold-txt:#8A6640;--cp-line:#E4E4E4;--cp-grey:#f7f7f7;--cp-muted:#655A50;--cp-ease:cubic-bezier(.2,.8,.2,1);--cp-serif:var(--heading-font-family,"Poynter Oldstyle",Georgia,serif);--cp-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);background:#fff!important;color:var(--cp-ink2)}
+.nfcp-page{--cp-ink:#1A1714;--cp-ink2:#2B2520;--cp-gold:#c9a36a;--cp-gold-hi:#C9A36A;--cp-gold-txt:#c9a36a;--cp-line:#E4E4E4;--cp-grey:#f7f7f7;--cp-muted:#655A50;--cp-ease:cubic-bezier(.2,.8,.2,1);--cp-serif:var(--heading-font-family,"Poynter Oldstyle",Georgia,serif);--cp-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);background:#fff!important;color:var(--cp-ink2)}
 .nfcp{max-width:1280px;margin:0 auto;padding:clamp(28px,4vw,56px) clamp(16px,4vw,48px) clamp(44px,5vw,80px);box-sizing:border-box;font-family:var(--cp-sans)}
 .nfcp *,.nfcp *::before,.nfcp *::after{box-sizing:border-box}
 .nfcp a{color:inherit}

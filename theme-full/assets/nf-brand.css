@@ -9,9 +9,9 @@
    5. Footer V4. */
 
 :root{
-  --nfb-tan:#b38b5d;
-  --nfb-tan-d:#9a7447;
-  --nfb-tan-hi:#e8c48a;
+  --nfb-tan:#c9a36a;
+  --nfb-tan-d:#c9a36a;
+  --nfb-tan-hi:#c9a36a;
   --nfb-night:#141010;
   --nfb-ink:#1c1c1c;
   --nfb-glow:255,196,122;
@@ -23,7 +23,7 @@ html body #nora-announcement-bar#nora-announcement-bar .nfa__msg,
 html body #nora-announcement-bar#nora-announcement-bar .nfa__msg span,
 html body #nora-announcement-bar#nora-announcement-bar .nfa__msg b,
 html body #nora-announcement-bar#nora-announcement-bar .nfa__cta{color:var(--nfb-tan-hi)!important;-webkit-text-fill-color:var(--nfb-tan-hi)!important}
-html body #nora-announcement-bar#nora-announcement-bar .nfa__clock{background:rgba(232,196,138,.12)!important;box-shadow:0 0 0 1px rgba(232,196,138,.55) inset!important;min-width:0!important}
+html body #nora-announcement-bar#nora-announcement-bar .nfa__clock{background:rgba(201,163,106,.12)!important;box-shadow:0 0 0 1px rgba(201,163,106,.55) inset!important;min-width:0!important}
 html body #nora-announcement-bar#nora-announcement-bar .nfa__clock,
 html body #nora-announcement-bar#nora-announcement-bar .nfa__clock *{color:var(--nfb-tan-hi)!important;-webkit-text-fill-color:var(--nfb-tan-hi)!important;opacity:1!important;visibility:visible!important}
 html body #nora-announcement-bar#nora-announcement-bar .nfa__clock [data-nfa-t]{display:inline!important;font-size:13px!important;line-height:1!important;white-space:nowrap!important}
@@ -62,11 +62,18 @@ html body .nf-vz__title,
 html body .nfcat-promo__h{
   font-family:"Fraunces","Poynter Oldstyle",Georgia,serif!important;
   font-weight:450!important;
-  font-variation-settings:"opsz" 144;
+  font-variation-settings:normal;
   letter-spacing:-.01em!important;
   line-height:1.06!important;
 }
-html body .nf-newin__title{font-weight:600!important;letter-spacing:-.018em!important;line-height:1.02!important;font-size:clamp(42px,4.6vw,72px)!important}
+html body .nf-newin__title{letter-spacing:-.01em!important;line-height:1.04!important;font-size:clamp(42px,4.6vw,72px)!important}
+/* round 10 v2 (owner: "the boldness of the homepage stuff is too much", option 3 again): every homepage section title is
+   Fraunces 450 exactly as option 3 showed it, including New Outdoor Lighting (it was 600) and the theme's own sections
+   (collection list, text with icons) that still drew 600 to 700. Bold words inside a title stay at 500. */
+html body.nf-tpl-index #main :is(h1,h2):not(.product-card__title):not(.sr-only){
+  font-family:"Fraunces","Poynter Oldstyle",Georgia,serif!important;font-weight:450!important;font-variation-settings:normal!important;
+}
+html body.nf-tpl-index #main :is(h1,h2) :is(b,strong){font-weight:500!important}
 html body .nf-mosaic__head h2{font-size:clamp(30px,3vw,46px)!important}
 @media screen and (max-width:749px){html body .nf-newin__title{font-size:38px!important}html body .nf-mosaic__head h2{font-size:28px!important}}
 
@@ -114,8 +121,8 @@ html body #main .shopify-section--footer .nf-footer.footer .nff-stage{position:r
 html body #main .shopify-section--footer .nf-footer.footer .nff-logo{position:relative;z-index:2;margin-top:clamp(34px,3vw,50px)}
 html body #main .shopify-section--footer .nf-footer.footer .nff-logo .nf-footer__logo-img{width:clamp(380px,44vw,760px)!important;max-width:86vw!important;height:auto!important;filter:brightness(0) invert(1) drop-shadow(0 0 26px rgba(var(--nfb-glow),.35))!important;transition:filter 1.4s ease .9s}
 html body #main .nf-footer .nff-pic{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:clamp(260px,26vw,440px)}
-html body #main .nf-footer .nff-pic__plate{display:block;width:46px;height:12px;border-radius:3px;background:linear-gradient(180deg,#d9b27a,#8c6a3f);box-shadow:0 1px 0 rgba(255,255,255,.25) inset}
-html body #main .nf-footer .nff-pic__stem{display:block;width:4px;height:22px;background:linear-gradient(90deg,#8c6a3f,#e0bd86,#8c6a3f)}
+html body #main .nf-footer .nff-pic__plate{display:block;width:46px;height:12px;border-radius:3px;background:linear-gradient(180deg,#d9b27a,#c9a36a);box-shadow:0 1px 0 rgba(255,255,255,.25) inset}
+html body #main .nf-footer .nff-pic__stem{display:block;width:4px;height:22px;background:linear-gradient(90deg,#c9a36a,#e0bd86,#c9a36a)}
 html body #main .nf-footer .nff-pic__bar{position:relative;display:block;width:100%;height:16px;border-radius:9px;background:linear-gradient(180deg,#f0cf98 0%,#c7a068 45%,#7d5c34 100%);box-shadow:0 2px 6px rgba(0,0,0,.5)}
 html body #main .nf-footer .nff-pic__bar::after{content:"";position:absolute;left:6%;right:6%;bottom:-3px;height:4px;border-radius:3px;background:#fff4dc;box-shadow:0 0 12px 4px rgba(var(--nfb-glow),.75),0 0 40px 14px rgba(var(--nfb-glow),.25);transition:opacity .6s ease .9s}
 html body #main .nf-footer .nff-pic__wash{position:absolute;top:48px;left:50%;width:190%;height:clamp(240px,20vw,340px);transform:translateX(-50%);pointer-events:none;
@@ -200,8 +207,7 @@ html body .header__wishlist-link{display:flex;align-items:center;list-style:none
 html body .nf-hdr-wl{position:relative;display:inline-flex;align-items:center;justify-content:center;color:var(--nfb-tan)}
 html body .nf-hdr-wl__ic{width:22px;height:22px;fill:var(--nfb-tan);stroke:var(--nfb-tan);stroke-width:1.2;transition:transform .2s ease}
 html body .nf-hdr-wl:hover .nf-hdr-wl__ic{transform:scale(1.08)}
-html body .nf-hdr-wl__n{position:absolute;top:-6px;right:-9px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--nfb-ink);color:#fff;font:600 10px/17px var(--text-font-family,Inter,system-ui,sans-serif);text-align:center}
-html body .nf-hdr-wl__n[hidden]{display:none}
+html body .nf-hdr-wl__n{position:absolute;top:-5px;right:-8px;min-width:15px;height:15px;padding:0 3px;border-radius:999px;background:var(--nfb-ink);box-shadow:0 0 0 2px #fff;color:#fff;font:600 9.5px/15px var(--text-font-family,Inter,system-ui,sans-serif);text-align:center;pointer-events:none}
 @media screen and (max-width:699px){
   html body x-header .header__utility-group > .header__account-link{right:80px!important}
   html body x-header .header__utility-group > .header__wishlist-link{
@@ -210,11 +216,23 @@ html body .nf-hdr-wl__n[hidden]{display:none}
   }
 }
 
-/* story column ends level with Why customers love us (desktop split layout, like Baskoraa): the left cell stretches to
-   the buy column's height and the Bulk card plus the three tiles sit at its foot */
+/* story column vs the buy column (round 10 v2, owner: "don't drag Bulk & project orders down, trim the product info
+   area"). The left story keeps its natural order and rides along (sticky) while the taller buy column scrolls, so both
+   columns finish together at the foot of the section. The buy column itself is tighter: smaller block gaps and a
+   compact Why customers love us. */
 @media screen and (min-width:1000px){
-  html body .product.nf3-split > .nf3-below{display:flex;flex-direction:column;align-self:stretch}
-  html body .nf3-below .nf-st__story{flex:1 1 auto;display:flex;flex-direction:column}
-  html body .nf3-below .nf-st__body{padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid var(--nf3-line,#ebe5db)}
-  html body .nf3-below .nf-st__trade{margin-top:auto}
+  html body .product.nf3-split > .nf3-below{align-self:stretch}
+  html body .nf3-below > .nf-st__story{position:sticky;top:calc(var(--sticky-area-height,0px) + 24px)}
+  html body .product.nf3-split:has([data-nf3]) > .product-info{--product-info-gap:1rem}
+  html body .product:has([data-nf3]) .product-info .accordion__toggle{padding-block:14px!important}
+  html body .nf-lv--side{margin-top:24px!important;padding-top:26px!important}
+  html body .nf-lv--side .nf-lv__h{font-size:clamp(26px,2.3vw,36px)!important}
+  html body .nf-lv--side .nf-lv__sub{margin:6px 0 18px!important;font-size:14.5px!important}
+  html body .nf-lv--side .nf-lv__link{padding:18px 14px 16px!important}
+  html body .nf-lv--side .nf-lv__q{font-size:44px!important;height:20px!important}
+  html body .nf-lv--side .nf-lv__img{width:80px!important;height:80px!important;margin:8px 0 12px!important}
+  html body .nf-lv--side .nf-lv__txt{font-size:14.5px!important;line-height:1.5!important;margin-bottom:10px!important;-webkit-line-clamp:4!important}
+  html body .nf-lv--side .nf-lv__stars svg{width:16px!important;height:16px!important}
+  html body .nf-lv--side .nf-lv__name{font-size:14.5px!important}
+  html body .nf-lv--side .nf-lv__nav{margin-top:10px!important}
 }

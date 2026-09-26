@@ -1,6 +1,6 @@
 /* Nora Furnish Professionals mega menu panel (2026-09-11). Loaded from snippets/mega-menu.liquid, Professionals branch only. */
 .mega-menu--pro .mega-menu__layout{display:block;width:100%}
-.nf-pro-menu{--npm-ink:#2B2520;--npm-tan:#B38B5D;--npm-tan-txt:#8A6640;--npm-cream:#F7F7F7;--npm-line:#E4E4E4;--npm-ease:cubic-bezier(.2,.8,.2,1);display:grid;grid-template-columns:minmax(0,1fr) clamp(240px,21vw,300px);gap:clamp(28px,3vw,48px);max-width:1200px;margin:0 auto;text-align:left;color:var(--npm-ink)}
+.nf-pro-menu{--npm-ink:#2B2520;--npm-tan:#c9a36a;--npm-tan-txt:#c9a36a;--npm-cream:#F7F7F7;--npm-line:#E4E4E4;--npm-ease:cubic-bezier(.2,.8,.2,1);display:grid;grid-template-columns:minmax(0,1fr) clamp(240px,21vw,300px);gap:clamp(28px,3vw,48px);max-width:1200px;margin:0 auto;text-align:left;color:var(--npm-ink)}
 .nf-pro-menu__main{display:flex;flex-direction:column;gap:26px;min-width:0}
 .nf-pro-menu__cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 0}
 .nf-pro-menu__col{padding:0 clamp(18px,2vw,32px);border-left:1px solid var(--npm-line);min-width:0}

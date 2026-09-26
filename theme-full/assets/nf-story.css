@@ -2,7 +2,7 @@
    White ground, charcoal ink, gold only as a small accent (eyebrows, concept badge). No cream, ivory or beige grounds.
    The evening feel comes from the photographs, not dark backgrounds.
    Motion: cards fade up when filtered in; under prefers-reduced-motion they only fade (no movement). */
-.nfs{--nfs-ink:#1c1c1c;--nfs-ink2:#2b2520;--nfs-muted:#5c5c5c;--nfs-line:#e2e2e2;--nfs-grey:#f3f3f3;--nfs-gold:#b38b5d;--nfs-gold-txt:#8a6640;--nfs-gold-hi:#d9b77e;--nfs-ease:cubic-bezier(.2,.8,.2,1);--nfs-serif:var(--heading-font-family,"Roboto Serif",Georgia,serif);--nfs-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);--nfs-pad:clamp(18px,4vw,56px);position:relative;background:#fff;color:var(--nfs-ink);font-family:var(--nfs-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.nfs{--nfs-ink:#1c1c1c;--nfs-ink2:#2b2520;--nfs-muted:#5c5c5c;--nfs-line:#e2e2e2;--nfs-grey:#f3f3f3;--nfs-gold:#c9a36a;--nfs-gold-txt:#c9a36a;--nfs-gold-hi:#c9a36a;--nfs-ease:cubic-bezier(.2,.8,.2,1);--nfs-serif:var(--heading-font-family,"Roboto Serif",Georgia,serif);--nfs-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);--nfs-pad:clamp(18px,4vw,56px);position:relative;background:#fff;color:var(--nfs-ink);font-family:var(--nfs-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .nfs *,.nfs *::before,.nfs *::after{box-sizing:border-box}
 .nfs img{display:block;max-width:100%}
 .nfs-wrap{max-width:1360px;margin:0 auto;padding-inline:var(--nfs-pad)}
@@ -51,7 +51,7 @@
 .nfs-card__logo{position:absolute;left:clamp(14px,1.4vw,20px);bottom:clamp(12px,1.2vw,18px);z-index:1;width:clamp(88px,7.2vw,112px)}
 .nfs-card__logo img{width:100%;height:auto;filter:brightness(0) invert(1);opacity:.96}
 .nfs-intro__media .nfs-card__logo{width:clamp(110px,9vw,150px);left:clamp(18px,2vw,28px);bottom:clamp(16px,2vw,26px)}
-.nfs-card__badge{position:absolute;top:14px;left:14px;z-index:1;padding:7px 12px;border-radius:999px;background:rgba(20,18,16,.72);border:1px solid rgba(217,183,126,.6);color:var(--nfs-gold-hi);font:600 10px/1 var(--nfs-sans);letter-spacing:.18em;text-transform:uppercase;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.nfs-card__badge{position:absolute;top:14px;left:14px;z-index:1;padding:7px 12px;border-radius:999px;background:rgba(20,18,16,.72);border:1px solid rgba(201,163,106,.6);color:var(--nfs-gold-hi);font:600 10px/1 var(--nfs-sans);letter-spacing:.18em;text-transform:uppercase;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .nfs-card__eyebrow{display:block;margin-top:18px;font:600 10.5px/1.45 var(--nfs-sans);letter-spacing:.19em;text-transform:uppercase;color:var(--nfs-gold-txt)}
 .nfs .nfs-card__t{margin:9px 0 0;font-family:var(--nfs-serif);font-weight:400;font-size:clamp(16.5px,1.24vw,19.5px);line-height:1.36;letter-spacing:.045em;text-transform:uppercase;color:var(--nfs-ink);transition:color .35s var(--nfs-ease)}
 .nfs-card__a:hover .nfs-card__t{color:var(--nfs-gold-txt)}
@@ -103,7 +103,7 @@
    before the white story grid. Box shadow plus clip-path paints the band edge to edge without any horizontal scroll. */
 .nfs .nfs-intro{position:relative;background:#1c1c1c;box-shadow:0 0 0 100vmax #1c1c1c;clip-path:inset(0 -100vmax);color:#e9e6e2;margin-bottom:clamp(26px,3vw,40px)}
 .nfs .nfs-intro .nfs-h1{color:#fff}
-.nfs .nfs-intro .nfs-eyebrow{color:#d9b77e}
+.nfs .nfs-intro .nfs-eyebrow{color:#c9a36a}
 .nfs .nfs-intro .nfs-lead,.nfs .nfs-intro .nfs-lead p{color:#cfcac4}
 .nfs .nfs-intro .nfs-meta{border-top-color:rgba(255,255,255,.16)}
 .nfs .nfs-intro .nfs-meta li{color:#cfcac4}

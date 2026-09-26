@@ -2,7 +2,7 @@
    NORA FURNISH — "WARM ATELIER" REDESIGN LAYER
    Draft theme only. Loads after every other stylesheet and re-skins the
    whole store: type, color, shape language, chrome.
-   Palette: bone #F6F2EA · card #FCFAF5 · ink #262019 · brass #A67C4F ·
+   Palette: bone #F6F2EA · card #FCFAF5 · ink #262019 · brass #c9a36a ·
             terracotta #A65440 · border #E4DBC9 · deep espresso #231D16
    Type:    Fraunces (display) · Inter (text/UI)
    ========================================================================== */
@@ -12,8 +12,8 @@
   --nf-card: #FCFAF5;
   --nf-ink: #262019;
   --nf-ink-soft: #55493C;
-  --nf-brass: #A67C4F;
-  --nf-brass-deep: #8A6540;
+  --nf-brass: #c9a36a;
+  --nf-brass-deep: #c9a36a;
   --nf-terracotta: #A65440;
   --nf-border: #E4DBC9;
   --nf-border-soft: #ECE5D6;
@@ -46,7 +46,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-::selection { background: rgba(166, 124, 79, 0.25); }
+::selection { background: rgba(201,163,106, 0.25); }
 
 :is(h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5) {
   font-family: var(--heading-font-family) !important;
@@ -183,7 +183,7 @@ a { text-underline-offset: 3px; }
   font-weight: 500 !important;
   padding: 11px 16px !important;
 }
-#nora-announcement-bar a { color: #D8B98B !important; font-weight: 600 !important; }
+#nora-announcement-bar a { color: #c9a36a !important; font-weight: 600 !important; }
 
 .top-utility-bar {
   background: var(--nf-bone) !important;
@@ -476,7 +476,7 @@ footer.footer {
 }
 .shopify-section--footer .footer * { border-color: rgb(237 228 211 / 0.14) !important; }
 .shopify-section--footer .footer a { color: #CDC2AC !important; }
-.shopify-section--footer .footer a:hover { color: #E4C89A !important; }
+.shopify-section--footer .footer a:hover { color: #c9a36a !important; }
 .shopify-section--footer .footer .h6, .shopify-section--footer .footer h2 {
   color: #F4EDDE !important;
   font-family: "Inter", sans-serif !important;
@@ -492,7 +492,7 @@ footer.footer {
   border-radius: 0.55rem !important;
 }
 .shopify-section--footer .footer .button {
-  background: #E4C89A !important;
+  background: #c9a36a !important;
   color: var(--nf-espresso) !important;
 }
 .shopify-section--footer .footer .button:hover { background: var(--nf-brass) !important; color: #FFFDF8 !important; }
@@ -764,7 +764,7 @@ footer.footer {
 
 /* announcement bar: charcoal, brass link stays */
 #nora-announcement-bar { background-color: #1c1c1c !important; color: #f5f5f5 !important; }
-#nora-announcement-bar a { color: #D8B98B !important; }
+#nora-announcement-bar a { color: #c9a36a !important; }
 
 /* header/nav/info-bar/search on white */
 header[id$="__header"], .header, .header__wrapper { background: #ffffff !important; }

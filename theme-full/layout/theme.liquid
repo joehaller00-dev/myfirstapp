@@ -533,7 +533,7 @@
        browses with reduced motion ON.
   {%- endcomment -%}
   <style id="nf-pagefeel">
-    loading-bar.loading-bar{mix-blend-mode:normal !important;height:3px !important;background:linear-gradient(90deg,#b8925c 0%,#e6c48d 45%,#f0d9b0 55%,#b8925c 100%) !important;box-shadow:0 0 10px rgba(201,163,106,.55),0 1px 0 rgba(0,0,0,.25) !important;border-radius:0 2px 2px 0 !important}
+    loading-bar.loading-bar{mix-blend-mode:normal !important;height:3px !important;background:linear-gradient(90deg,#b8925c 0%,#c9a36a 45%,#f0d9b0 55%,#b8925c 100%) !important;box-shadow:0 0 10px rgba(201,163,106,.55),0 1px 0 rgba(0,0,0,.25) !important;border-radius:0 2px 2px 0 !important}
     @media screen and (max-width:699px){loading-bar.loading-bar{height:2.5px !important}}
     @keyframes nfPageIn{from{opacity:.55;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
     @keyframes nfPageInSoft{from{opacity:.65;transform:translate3d(0,3px,0)}to{opacity:1;transform:none}}
@@ -556,7 +556,7 @@
     endif
   %}
 
-  <body class="{{ features_class }} color-scheme color-scheme--{{ settings.default_color_scheme.id }}">
+  <body class="{{ features_class }} nf-tpl-{{ template.name }} color-scheme color-scheme--{{ settings.default_color_scheme.id }}">
     {%- render 'shadow-dom-templates' -%}
 
       <div id="nf-curtain">
@@ -613,12 +613,12 @@
       html body #nora-announcement-bar.nf-anno-hidden{opacity:0;pointer-events:none}
       html body #nora-announcement-bar .nfa{display:flex;align-items:center;justify-content:center;gap:14px 22px;flex-wrap:wrap;color:#fff!important;text-decoration:none!important}
       html body #nora-announcement-bar .nfa__msg{display:flex;align-items:center;gap:10px}
-      html body #nora-announcement-bar .nfa__msg b{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;color:#e8c48a}
-      html body #nora-announcement-bar .nfa__dot{width:5px;height:5px;border-radius:50%;background:#e8c48a}
-      html body #nora-announcement-bar .nfa__clock{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:rgba(232,196,138,.12);color:#e8c48a;font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;letter-spacing:.04em;box-shadow:0 0 0 1px rgba(232,196,138,.55) inset}
+      html body #nora-announcement-bar .nfa__msg b{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;color:#c9a36a}
+      html body #nora-announcement-bar .nfa__dot{width:5px;height:5px;border-radius:50%;background:#c9a36a}
+      html body #nora-announcement-bar .nfa__clock{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:rgba(201,163,106,.12);color:#c9a36a;font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;letter-spacing:.04em;box-shadow:0 0 0 1px rgba(201,163,106,.55) inset}
       html body #nora-announcement-bar .nfa__clock svg{width:13px;height:13px}
-      html body #nora-announcement-bar .nfa__cta{font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #e8c48a;padding-bottom:1px}
-      html body #nora-announcement-bar .nfa:hover .nfa__cta{color:#e8c48a}
+      html body #nora-announcement-bar .nfa__cta{font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #c9a36a;padding-bottom:1px}
+      html body #nora-announcement-bar .nfa:hover .nfa__cta{color:#c9a36a}
       @media (max-width:749px){
         html body #nora-announcement-bar{min-height:44px;padding:7px 12px!important;font-size:13px!important}
         html body #nora-announcement-bar .nfa{gap:6px 12px}html body #nora-announcement-bar .nfa__msg b,html body #nora-announcement-bar .nfa__dot,html body #nora-announcement-bar .nfa__cta{display:none}

@@ -2,12 +2,12 @@
    Markup: snippets/nf-topbar-panel.liquid (+ nf-topbar-img, nf-tb-url). Loaded without blocking from snippets/nf-topbar.liquid:
    every panel is hidden until hover, so nothing paints late.
    Owner 2026-09-11: no cream, ivory, beige or yellow fills. Pure white panels, neutral grey tints and hairlines, charcoal
-   text. Gold (#a67c4f) only as a small accent: eyebrow text and hover underlines, never a fill.
+   text. Gold (#c9a36a) only as a small accent: eyebrow text and hover underlines, never a fill.
    Fraunces for names, Montserrat for the Shop By rail, Inter for small text (all three already loaded site wide).
    No ::after anywhere in this file, and nothing uses the mega-menu__group-list class (hard rules). */
 .nf-tbp {
   --k-ink: #1c1c1c; --k-soft: #5c5c5c; --k-mute: #8c8c8c; --k-line: #e8e8e8; --k-tint: #f5f5f5; --k-tint2: #ececec;
-  --k-gold: #a67c4f; --k-ease: cubic-bezier(.2, .8, .2, 1);
+  --k-gold: #c9a36a; --k-ease: cubic-bezier(.2, .8, .2, 1);
   position: relative;
   background: #fff;
   color: var(--k-ink);

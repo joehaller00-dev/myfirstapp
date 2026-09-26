@@ -1,10 +1,10 @@
 /* Nora Furnish Ideas & Guides resource center (2026-09-11). Loaded by sections/nf-guides-page-*.liquid only.
-   Dark and gold palette: ink #1A1714, charcoal #2B2520, gold #B38B5D to #C9A36A, cream #FBF7F1.
+   Dark and gold palette: ink #1A1714, charcoal #2B2520, gold #c9a36a to #C9A36A, cream #FBF7F1.
    Button family (same spirit as assets/nf-pro.css): solid gold primary, gold outline on dark that fills with gold on
    hover, a dark line button for light grounds that fills with charcoal, and a quiet text link with a sliding underline.
    Hover language: 2px lift plus a soft shadow, .35s cubic-bezier(.2,.8,.2,1).
    Transitions are KEPT under prefers-reduced-motion on purpose (the owner runs with it on); they are only shortened. */
-.nfg{--nfg-ink:#1A1714;--nfg-ink2:#2B2520;--nfg-ink3:#3A322B;--nfg-gold:#B38B5D;--nfg-gold-hi:#C9A36A;--nfg-gold-txt:#8A6640;--nfg-cream:#F7F7F7;--nfg-sand:#F3F3F3;--nfg-card:#FFFFFF;--nfg-line:#E4E4E4;--nfg-line2:#D2D2D2;--nfg-muted:#655A50;--nfg-on:#F3EBDD;--nfg-on-muted:rgba(243,235,221,.76);--nfg-hair:rgba(201,163,106,.28);--nfg-ease:cubic-bezier(.2,.8,.2,1);--nfg-t:.35s;--nfg-shadow:0 14px 26px -16px rgba(26,23,20,.6),0 2px 6px -2px rgba(26,23,20,.14);--nfg-serif:var(--heading-font-family,"Poynter Oldstyle",Georgia,serif);--nfg-sans:var(--text-font-family,"Inter","Montserrat",system-ui,sans-serif);position:relative;font-family:var(--nfg-sans);font-size:16px;line-height:1.6;color:var(--nfg-ink2);-webkit-font-smoothing:antialiased}
+.nfg{--nfg-ink:#1A1714;--nfg-ink2:#2B2520;--nfg-ink3:#3A322B;--nfg-gold:#c9a36a;--nfg-gold-hi:#C9A36A;--nfg-gold-txt:#c9a36a;--nfg-cream:#F7F7F7;--nfg-sand:#F3F3F3;--nfg-card:#FFFFFF;--nfg-line:#E4E4E4;--nfg-line2:#D2D2D2;--nfg-muted:#655A50;--nfg-on:#F3EBDD;--nfg-on-muted:rgba(243,235,221,.76);--nfg-hair:rgba(201,163,106,.28);--nfg-ease:cubic-bezier(.2,.8,.2,1);--nfg-t:.35s;--nfg-shadow:0 14px 26px -16px rgba(26,23,20,.6),0 2px 6px -2px rgba(26,23,20,.14);--nfg-serif:var(--heading-font-family,"Poynter Oldstyle",Georgia,serif);--nfg-sans:var(--text-font-family,"Inter","Montserrat",system-ui,sans-serif);position:relative;font-family:var(--nfg-sans);font-size:16px;line-height:1.6;color:var(--nfg-ink2);-webkit-font-smoothing:antialiased}
 .nfg *,.nfg *::before,.nfg *::after{box-sizing:border-box}
 .nfg img{display:block;max-width:100%}
 :where(.nfg) a{color:inherit}
@@ -53,7 +53,7 @@
 
 /* ---------- Hero ---------- */
 .nfg-hero{isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:clamp(600px,84vh,860px);background:var(--nfg-ink)}
-.nfg-hero__media{position:absolute;inset:0;z-index:-2;background:radial-gradient(900px 500px at 70% 30%,rgba(179,139,93,.25),transparent 60%),var(--nfg-ink)}
+.nfg-hero__media{position:absolute;inset:0;z-index:-2;background:radial-gradient(900px 500px at 70% 30%,rgba(201,163,106,.25),transparent 60%),var(--nfg-ink)}
 .nfg-hero__media img{width:100%;height:100%;object-fit:cover;object-position:62% 50%}
 .nfg-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(18,15,12,.9) 0%,rgba(18,15,12,.7) 34%,rgba(18,15,12,.18) 68%,rgba(18,15,12,.05) 100%),linear-gradient(0deg,rgba(18,15,12,.88) 0%,rgba(18,15,12,0) 42%)}
 .nfg-hero__inner{width:100%;padding-block:clamp(120px,16vh,190px) clamp(26px,3.4vw,40px)}
@@ -66,7 +66,7 @@
 .nfg-jump__a:hover{background-size:100% 1px;color:#fff}
 
 /* ---------- Discover (explore our world) ---------- */
-.nfg-discover{background:radial-gradient(1100px 520px at 88% -8%,rgba(179,139,93,.17),transparent 62%),radial-gradient(900px 480px at 0% 108%,rgba(179,139,93,.1),transparent 60%),var(--nfg-ink)}
+.nfg-discover{background:radial-gradient(1100px 520px at 88% -8%,rgba(201,163,106,.17),transparent 62%),radial-gradient(900px 480px at 0% 108%,rgba(201,163,106,.1),transparent 60%),var(--nfg-ink)}
 .nfg-discover .nfg-h2{color:#FBF4E8}
 .nfg-tiles{display:grid;gap:clamp(12px,1.3vw,18px);grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:clamp(270px,21vw,360px) clamp(270px,21vw,360px) clamp(360px,28vw,460px);margin:0;padding:0;list-style:none}
 .nfg-tiles__item{display:flex;min-width:0}
@@ -99,7 +99,7 @@
 .nfg-rv-feature{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);margin:0 0 clamp(20px,2.4vw,32px);overflow:hidden;border-radius:6px;background:var(--nfg-ink2)}
 .nfg-rv-feature__photo{position:relative;min-height:100%;background:var(--nfg-ink3)}
 .nfg-rv-feature__photo img{width:100%;height:100%;min-height:420px;object-fit:cover}
-.nfg-rv-feature__body{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(30px,4.6vw,76px);background:radial-gradient(720px 420px at 100% 0%,rgba(179,139,93,.2),transparent 60%),var(--nfg-ink2)}
+.nfg-rv-feature__body{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(30px,4.6vw,76px);background:radial-gradient(720px 420px at 100% 0%,rgba(201,163,106,.2),transparent 60%),var(--nfg-ink2)}
 .nfg-rv-feature__mark{display:block;height:40px;margin-bottom:8px;font-family:Georgia,serif;font-size:110px;line-height:.9;color:var(--nfg-gold)}
 .nfg-rv-feature__q{margin:18px 0 0;padding:0;border:0;font-family:var(--nfg-serif);font-weight:400;font-size:clamp(22px,2.2vw,32px);line-height:1.38;color:#FBF4E8}
 .nfg-rv-feature__q p{margin:0}
@@ -149,7 +149,7 @@
 .nfg-posts__note{max-width:70ch;margin:28px auto 0;font-size:12.5px;line-height:1.6;text-align:center;color:var(--nfg-muted)}
 
 /* ---------- Library: catalog and guides ---------- */
-.nfg-library{background:radial-gradient(900px 520px at 0% 0%,rgba(179,139,93,.14),transparent 60%),var(--nfg-ink2)}
+.nfg-library{background:radial-gradient(900px 520px at 0% 0%,rgba(201,163,106,.14),transparent 60%),var(--nfg-ink2)}
 .nfg-library .nfg-h2{color:#FBF4E8}
 .nfg-library__grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(44px,6vw,100px);align-items:start}
 .nfg-lib-cat{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(28px,3vw,40px)}

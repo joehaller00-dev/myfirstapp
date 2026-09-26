@@ -2,7 +2,7 @@
    Grounds: white and neutral grey, plus one deliberate dark evening band (the delivery steps). Gold is only a small accent.
    No cream, ivory, beige or yellow tinted grounds. Headings use the theme heading font (Roboto Serif Light).
    Motion is opacity and transform only. prefers-reduced-motion: no scroll scrubbing, flicker, pulse or sequencing. */
-.nfa{--nfa-ink:#1c1c1c;--nfa-night:#14120f;--nfa-cord:#403831;--nfa-muted:#5c5c5c;--nfa-line:#e2e2e2;--nfa-grey:#f3f3f3;--nfa-gold:#b38b5d;--nfa-gold-txt:#8a6640;--nfa-gold-hi:#e0bd84;--nfa-star:#f5b301;--nfa-ease:cubic-bezier(.2,.8,.2,1);--nfa-serif:var(--heading-font-family,"Roboto Serif",Georgia,serif);--nfa-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);--nfa-pad:clamp(18px,4vw,56px);position:relative;font-family:var(--nfa-sans);font-size:16px;line-height:1.65;color:var(--nfa-ink);background:#fff;-webkit-font-smoothing:antialiased}
+.nfa{--nfa-ink:#1c1c1c;--nfa-night:#14120f;--nfa-cord:#403831;--nfa-muted:#5c5c5c;--nfa-line:#e2e2e2;--nfa-grey:#f3f3f3;--nfa-gold:#c9a36a;--nfa-gold-txt:#c9a36a;--nfa-gold-hi:#e0bd84;--nfa-star:#f5b301;--nfa-ease:cubic-bezier(.2,.8,.2,1);--nfa-serif:var(--heading-font-family,"Roboto Serif",Georgia,serif);--nfa-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);--nfa-pad:clamp(18px,4vw,56px);position:relative;font-family:var(--nfa-sans);font-size:16px;line-height:1.65;color:var(--nfa-ink);background:#fff;-webkit-font-smoothing:antialiased}
 .nfa *,.nfa *::before,.nfa *::after{box-sizing:border-box}
 .nfa img{display:block;max-width:100%}
 .nfa a{color:inherit}

@@ -1,7 +1,7 @@
 /* NF-SEARCH-V2 (2026-09-12) Lamplight instant search, honest nothing found state, search results header.
    White panel, charcoal text, gold only as a small accent (Ideas & Guides palette). No cream fills,
    no decorative line before eyebrows. Loaded by layout/theme.liquid and the search page snippets. */
-:root{--nf-srch-ink:#1A1714;--nf-srch-ink2:#2B2520;--nf-srch-gold:#B38B5D;--nf-srch-gold-hi:#C9A36A;--nf-srch-gold-txt:#8A6640;--nf-srch-line:#E4E4E4;--nf-srch-grey:#f7f7f7;--nf-srch-muted:#655A50;--nf-srch-ease:cubic-bezier(.2,.8,.2,1);--nf-srch-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);--nf-srch-serif:var(--heading-font-family,"Poynter Oldstyle",Georgia,serif)}
+:root{--nf-srch-ink:#1A1714;--nf-srch-ink2:#2B2520;--nf-srch-gold:#c9a36a;--nf-srch-gold-hi:#C9A36A;--nf-srch-gold-txt:#c9a36a;--nf-srch-line:#E4E4E4;--nf-srch-grey:#f7f7f7;--nf-srch-muted:#655A50;--nf-srch-ease:cubic-bezier(.2,.8,.2,1);--nf-srch-sans:var(--text-font-family,"Montserrat",system-ui,sans-serif);--nf-srch-serif:var(--heading-font-family,"Poynter Oldstyle",Georgia,serif)}
 .nf-srch-sr{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important;padding:0!important;margin:-1px!important}
 
 /* panel grows to hold the drop */

@@ -1,7 +1,7 @@
 /* NF-PDP-V1 (2026-09-13) product page additions in the buy box and accordions.
    D1 Complete the look, D5 trust strip, Why This Is Special, D3 accordion rows, D2 FAQ accordion, D4 share.
    Motion: transform and opacity only. Colors: charcoal text, neutral greys, gold as a small accent. No cream. */
-.nf-ctl,.nf-trust,.nf-why,.nf-pdp-acc,.nf-faqa,.nf-share{--nfp-ink:#1A1714;--nfp-txt:#1c1c1c;--nfp-muted:#555;--nfp-gold:#B38B5D;--nfp-gold-t:#8A6640;--nfp-line:#e6e6e6;--nfp-grey:#f5f5f5;--nfp-ease:cubic-bezier(.2,.8,.2,1);font-family:var(--text-font-family,Inter,system-ui,sans-serif)}
+.nf-ctl,.nf-trust,.nf-why,.nf-pdp-acc,.nf-faqa,.nf-share{--nfp-ink:#1A1714;--nfp-txt:#1c1c1c;--nfp-muted:#555;--nfp-gold:#c9a36a;--nfp-gold-t:#c9a36a;--nfp-line:#e6e6e6;--nfp-grey:#f5f5f5;--nfp-ease:cubic-bezier(.2,.8,.2,1);font-family:var(--text-font-family,Inter,system-ui,sans-serif)}
 
 /* D1 Complete the look */
 .nf-ctl{margin:16px 0 0;padding:14px 0 0;border-top:1px solid var(--nfp-line)}
@@ -161,7 +161,7 @@
 .nf-buynow .shopify-payment-button__more-options{
   font:500 12.5px/1.3 var(--text-font-family,Inter,sans-serif)!important;
   color:#6b6b6b!important;text-decoration:underline!important;
-  text-decoration-color:#B38B5D!important;text-underline-offset:3px!important;
+  text-decoration-color:#c9a36a!important;text-underline-offset:3px!important;
 }
 
 /* NF-BUYBOX-V2 (2026-09-14, owner: quantity to the left of Add to Cart, a little bigger, not its own row) */
@@ -192,8 +192,8 @@
 .nf-pk-ship,.nf-pk-save{flex:1 1 170px;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;text-align:center;line-height:1.3}
 .nf-pk-ship{border:1px solid var(--nf-ink,#1c1c1c);background:#fff;color:var(--nf-ink,#1c1c1c);font-family:var(--heading-font-family,Georgia,serif);font-size:13.5px;letter-spacing:.07em;text-transform:uppercase}
 .nf-pk-ship svg{flex:none;width:15px;height:15px}
-.nf-pk-save{position:relative;background:#f6f3ec;border:1px solid #ece5d8;color:#8f6a25;font-family:var(--text-font-family,inherit);font-size:12.5px;font-weight:500;letter-spacing:.02em;flex-direction:column;gap:2px}
-.nf-pk-save b{font-weight:600;font-size:13px;color:#8f6a25}
+.nf-pk-save{position:relative;background:#f6f3ec;border:1px solid #ece5d8;color:#c9a36a;font-family:var(--text-font-family,inherit);font-size:12.5px;font-weight:500;letter-spacing:.02em;flex-direction:column;gap:2px}
+.nf-pk-save b{font-weight:600;font-size:13px;color:#c9a36a}
 .nf-pk-save i{font-style:normal;opacity:.85;display:inline-flex;align-items:center;gap:5px}
 .nf-pk-q{appearance:none;border:1px solid currentColor;background:none;color:inherit;cursor:pointer;width:14px;height:14px;border-radius:50%;font-size:10px;line-height:1;display:inline-flex;align-items:center;justify-content:center;padding:0;flex:none;opacity:.8}
 .nf-pk-q:hover{opacity:1}
@@ -202,7 +202,7 @@
 .nf-pk-pop b{display:block;font-family:var(--heading-font-family,Georgia,serif);font-size:13.5px;font-weight:400;letter-spacing:.04em;margin-bottom:6px;color:var(--nf-ink,#1c1c1c)}
 .nf-pk-pop p{margin:0 0 7px}
 .nf-pk-pop p:last-child{margin:0;color:var(--nf-taupe,#5c5047)}
-.nf-pk-pack{display:inline-flex;align-items:center;margin-left:9px;padding:3px 8px;border-radius:2px;background:#b8862f;color:#fff;font-family:var(--text-font-family,inherit);font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;vertical-align:middle;white-space:nowrap}
+.nf-pk-pack{display:inline-flex;align-items:center;margin-left:9px;padding:3px 8px;border-radius:2px;background:#c9a36a;color:#fff;font-family:var(--text-font-family,inherit);font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;vertical-align:middle;white-space:nowrap}
 .nf-pk-quote{display:block;width:100%;margin:18px 0 2px;padding:15px 18px;background:#fff;cursor:pointer;border:1px solid var(--nf-ink,#1c1c1c);color:var(--nf-ink,#1c1c1c);font-family:var(--heading-font-family,Georgia,serif);font-size:14px;letter-spacing:.09em;text-transform:uppercase;transition:background .18s ease,color .18s ease}
 .nf-pk-quote:hover{background:var(--nf-ink,#1c1c1c);color:#fff}
 .nf-pk-ov{position:fixed;inset:0;z-index:9000;background:rgba(20,18,16,.44);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
@@ -246,7 +246,7 @@
 .nf-pk-pb{appearance:none;cursor:pointer;background:#fff;color:var(--nf-ink,#1c1c1c);border:1px solid var(--nf-line,#d4d4d4);border-radius:999px;padding:8px 17px;font-family:var(--heading-font-family,Georgia,serif);font-size:14px;line-height:1.2;transition:background .15s ease,color .15s ease,border-color .15s ease}
 .nf-pk-pb:hover{border-color:var(--nf-ink,#1c1c1c)}
 .nf-pk-pb[aria-pressed="true"]{background:var(--nf-ink,#1c1c1c);color:#fff;border-color:var(--nf-ink,#1c1c1c)}
-.nf-pk-pb:focus-visible,.nf-pk-rv__arr:focus-visible{outline:2px solid #b8862f;outline-offset:2px}
+.nf-pk-pb:focus-visible,.nf-pk-rv__arr:focus-visible{outline:2px solid #c9a36a;outline-offset:2px}
 .nf-pk-packs__note{margin:9px 0 0;font-size:12.5px;color:var(--nf-taupe,#5c5047)}
 .nf-pk-packs__note[hidden]{display:none}
 .nf-pk-rv{padding:56px 0 28px}
