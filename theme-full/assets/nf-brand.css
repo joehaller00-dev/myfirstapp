@@ -245,8 +245,6 @@ html body .nf-hdr-wl__n{position:absolute;top:-5px;right:-8px;min-width:15px;hei
   html body .nf-lv--side .nf-lv__nav{margin-top:10px!important}
 }
 
-/* round 13 (owner: "dim the boldness a little for Pieces made for every home, just that one section") */
-html body.nf-tpl-index #main .nfp__title.nfp__title.nfp__title{font-weight:340!important}
-html body.nf-tpl-index #main .nfp .nfp-card__title.nfp-card__title.nfp-card__title{font-weight:350!important}
-html body.nf-tpl-index #main .nfp .nfp-card__price{font-weight:400!important}
-html body.nf-tpl-index #main .nfp .nfp__tab{font-weight:400!important}
+/* round 13 v2 (owner: the Fraunces "F" in "Pieces made for every home" looks wrong; use another house font at the
+   earlier weight). Lora is already loaded site wide (layout/theme.liquid) at 400 and 500. */
+html body.nf-tpl-index #main .nfp__title.nfp__title.nfp__title{font-family:"Lora",Georgia,serif!important;font-weight:500!important;letter-spacing:-.005em!important}

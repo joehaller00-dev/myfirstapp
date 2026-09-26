@@ -157,7 +157,7 @@
     var hdr = document.querySelector('.shopify-section--header, header'), off = hdr ? Math.max(0, hdr.getBoundingClientRect().bottom) : 0;
     var from = window.scrollY, to = Math.max(0, el.getBoundingClientRect().top + from - off - 16), dist = to - from;
     if (Math.abs(dist) < 4) return;
-    var dur = Math.min(950, 450 + Math.abs(dist) * 0.3), t0 = performance.now(), prev = de.style.scrollBehavior;
+    var dur = Math.min(830, 390 + Math.abs(dist) * 0.26), t0 = performance.now(), prev = de.style.scrollBehavior;
     de.style.scrollBehavior = 'auto';
     function step(now) {
       var p = Math.min(1, (now - t0) / dur), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
