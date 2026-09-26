@@ -1060,8 +1060,10 @@
   html.nf-autohide-nav header[id$="__header"] { transition: transform .28s ease; will-change: transform; }
 }
 @media (min-width: 1000px) {
-  html.nf-autohide-nav.nf-nav-off header[id$="__header"] { transform: translateY(-100%); }
-  html.nf-autohide-nav.nf-nav-off .collection-toolbar { top: 0 !important; }
+  /* NF-SMOOTH-V2 (round 10): the hidden state is a class on the header and the toolbar themselves. It used to be a
+     class on <html>, and every flip restyled the whole page mid scroll. */
+  html.nf-autohide-nav header[id$="__header"].nf-nav-off { transform: translateY(-100%); }
+  html.nf-autohide-nav .collection-toolbar.nf-nav-off { top: 0 !important; }
   html.nf-autohide-nav .collection-toolbar { transition: top .28s ease; z-index: 3; }
 }
 </style>
@@ -1084,24 +1086,34 @@
     }
     return false;
   }
+  var off = false, tb = null;
+  function setOff(v){
+    if (v === off) return;
+    off = v;
+    hdr.classList.toggle("nf-nav-off", v);
+    if (!tb || !tb.isConnected) tb = document.querySelector(".collection-toolbar");
+    if (tb) tb.classList.toggle("nf-nav-off", v);
+    /* collection pages still key the filter sidebar and toolbar offsets off the <html> class (custom-nav.css) */
+    if (tb || document.querySelector(".facets-sidebar")) root.classList.toggle("nf-nav-off", v);
+  }
   function update(){
     ticking = false;
     var y = window.scrollY;
     /* NF-SMOOTH-V1: blocked() reads layout, so only ask it at the moment the header would hide */
-    if (nearTop || y < SHOW_ABOVE || (y > lastY + DELTA && !root.classList.contains("nf-nav-off") && blocked())) { root.classList.remove("nf-nav-off"); lastY = y; return; }
-    if (y > lastY + DELTA) root.classList.add("nf-nav-off");
-    else if (y < lastY - DELTA) root.classList.remove("nf-nav-off");
+    if (nearTop || y < SHOW_ABOVE || (y > lastY + DELTA && !off && blocked())) { setOff(false); lastY = y; return; }
+    if (y > lastY + DELTA) setOff(true);
+    else if (y < lastY - DELTA) setOff(false);
     lastY = y;
   }
   window.addEventListener("scroll", function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
   document.addEventListener("mousemove", function(e){
     var top = e.clientY <= REVEAL_PX;
-    if (top && !nearTop) { nearTop = true; root.classList.remove("nf-nav-off"); }
+    if (top && !nearTop) { nearTop = true; setOff(false); }
     else if (!top && nearTop && !hdr.matches(":hover")) { nearTop = false; }
   }, {passive:true});
-  hdr.addEventListener("mouseenter", function(){ nearTop = true; root.classList.remove("nf-nav-off"); });
+  hdr.addEventListener("mouseenter", function(){ nearTop = true; setOff(false); });
   hdr.addEventListener("mouseleave", function(){ nearTop = false; });
-  window.addEventListener("keydown", function(e){ if(e.key === "Tab") root.classList.remove("nf-nav-off"); });
+  window.addEventListener("keydown", function(e){ if(e.key === "Tab") setOff(false); });
 })();
 </script>
 {%- endif -%}

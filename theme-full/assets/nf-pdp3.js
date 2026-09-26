@@ -59,30 +59,63 @@
       var id = car.id;
       var ui = d.createElement('div');
       ui.className = 'nf3-ui contents';
+      /* round 10 (owner: the arrows were "choppy", "not as fast as I want", and should keep going past the last photo
+         and back from the first). Our own buttons now: a 260ms eased glide with scroll snapping paused while it runs,
+         wrapping around at both ends. The theme's carousel buttons used the browser's slow smooth scroll. */
       ui.innerHTML =
-        '<carousel-prev-button aria-controls="' + id + '" class="contents"><button type="button" class="nf3-arrow nf3-arrow--prev"><span class="sr-only">Previous image</span>' + ARL + '</button></carousel-prev-button>' +
-        '<carousel-next-button aria-controls="' + id + '" class="contents"><button type="button" class="nf3-arrow nf3-arrow--next"><span class="sr-only">Next image</span>' + ARR + '</button></carousel-next-button>' +
+        '<button type="button" class="nf3-arrow nf3-arrow--prev" aria-controls="' + id + '"><span class="sr-only">Previous image</span>' + ARL + '</button>' +
+        '<button type="button" class="nf3-arrow nf3-arrow--next" aria-controls="' + id + '"><span class="sr-only">Next image</span>' + ARR + '</button>' +
         '<span class="nf3-count" aria-hidden="true"><b data-nf3-i>1</b> / <span data-nf3-n></span></span>';
       list.appendChild(ui);
       var iEl = $('[data-nf3-i]', ui), nEl = $('[data-nf3-n]', ui);
       var prev = $('.nf3-arrow--prev', ui), next = $('.nf3-arrow--next', ui);
       function slides() { return $$('.product-gallery__media', car).filter(function (m) { return !m.hidden; }); }
-      function upd() {
-        var s = slides(); if (!s.length) return;
-        var left = car.getBoundingClientRect().left, best = 0, dist = Infinity;
-        s.forEach(function (m, i) {
-          var dd = Math.abs(m.getBoundingClientRect().left - left);
-          if (dd < dist) { dist = dd; best = i; }
-        });
-        iEl.textContent = best + 1;
-        nEl.textContent = s.length;
-        prev.classList.toggle('is-end', best === 0);
-        next.classList.toggle('is-end', best === s.length - 1);
+      /* offsets are read once per gesture, not per scroll frame */
+      var offs = [];
+      function measure() {
+        var s = slides(), base = car.getBoundingClientRect().left - car.scrollLeft;
+        offs = s.map(function (m) { return m.getBoundingClientRect().left - base; });
+        return s;
       }
+      function current() {
+        var x = car.scrollLeft, best = 0, dist = Infinity;
+        for (var i = 0; i < offs.length; i++) { var dd = Math.abs(offs[i] - x); if (dd < dist) { dist = dd; best = i; } }
+        return best;
+      }
+      function upd() {
+        if (!offs.length) measure();
+        iEl.textContent = current() + 1;
+        nEl.textContent = offs.length;
+      }
+      var anim = 0;
+      function glide(to) {
+        if (anim) (window.cancelAnimationFrame || clearTimeout)(anim);
+        var from = car.scrollLeft, dist = to - from, t0 = performance.now(), dur = Math.min(420, 200 + Math.abs(dist) / car.clientWidth * 60);
+        if (Math.abs(dist) < 1) return;
+        car.style.scrollSnapType = 'none'; car.style.scrollBehavior = 'auto';
+        function step() {
+          var p = Math.min(1, (performance.now() - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+          car.scrollLeft = from + dist * e;
+          if (p < 1) anim = raf(step);
+          else { anim = 0; car.style.scrollSnapType = ''; upd(); }
+        }
+        anim = raf(step);
+      }
+      function go(dir) {
+        var s = measure(); if (s.length < 2) return;
+        var i = (current() + dir + s.length) % s.length;
+        /* the image the shopper lands on is decoded before the glide ends */
+        var im = $('img', s[i]); if (im && im.loading === 'lazy') im.loading = 'eager';
+        glide(offs[i]);
+      }
+      prev.addEventListener('click', function () { go(-1); });
+      next.addEventListener('click', function () { go(1); });
+      car.addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } else if (e.key === 'ArrowRight') { e.preventDefault(); go(1); } });
       var q = 0;
-      car.addEventListener('scroll', function () { if (!q) { q = 1; raf(function () { q = 0; upd(); }); } }, { passive: true });
-      window.addEventListener('resize', upd);
-      upd(); setTimeout(upd, 400);
+      car.addEventListener('scroll', function () { if (!q && !anim) { q = 1; raf(function () { q = 0; upd(); }); } }, { passive: true });
+      window.addEventListener('resize', function () { offs = []; upd(); });
+      d.addEventListener('variant:change', function () { offs = []; setTimeout(upd, 200); });
+      upd(); setTimeout(function () { offs = []; upd(); }, 400);
     });
   }
   /* open on the first image: the theme scrolls to the selected option's picture while it starts up, so hold slide 1
@@ -350,7 +383,7 @@
   /* ------------------------------------------------------------------ 6. wishlist (this browser only) */
   var WK = 'nf_wishlist_v1';
   function wlRead() { try { return JSON.parse(localStorage.getItem(WK) || '[]') || []; } catch (e) { return []; } }
-  function wlWrite(a) { try { localStorage.setItem(WK, JSON.stringify(a.slice(0, 60))); } catch (e) {} }
+  function wlWrite(a) { try { localStorage.setItem(WK, JSON.stringify(a.slice(0, 60))); } catch (e) {} d.dispatchEvent(new CustomEvent('nf:wishlist-change')); }
   function wlPaint() {
     var box = $('[data-nf-wl]'); if (!box) return;
     var list = wlRead(), h = box.getAttribute('data-handle'), on = list.some(function (x) { return x.h === h; });
@@ -381,7 +414,7 @@
           return '<li><a href="' + esc(x.u) + '"><img src="' + esc(x.i) + '" alt="" loading="lazy"><span><b>' + esc(x.t) + '</b><small>' + esc(x.p) + '</small></span></a>' +
             '<button type="button" data-rm="' + esc(x.h) + '">Remove</button></li>';
         }).join('') + '</ul>' : '<p class="nf-wlm__empty">Nothing saved yet.</p>') +
-        '<p class="nf-wlm__note">Saved on this device.</p></div>';
+        '<p class="nf-wlm__note"><a href="/pages/wishlist">Open your full wishlist</a> &middot; saved on this device.</p></div>';
     }
     fill();
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');

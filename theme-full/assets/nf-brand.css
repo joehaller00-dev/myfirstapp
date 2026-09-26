@@ -153,3 +153,68 @@ html body #main .nf-footer.nff-armed .nff-pend--5 *{transition-delay:.6s}
   html body #main .shopify-section--footer .nf-footer.footer .nff-belief{font-size:26px!important;margin-inline:auto!important;text-align:center}
   html body #main .nf-footer .nff-pic{width:64vw}
 }
+
+/* ----------------------------------------------------------------------------------- NF-ROUND10 (2026-09-25)
+   Owner round 10: tan titles, tan Get a quote, tan bundle prices that stay readable, tan card buttons, tan carousel
+   arrows site wide, a tan wishlist heart in the header, and the story column ending level with Why customers love us. */
+
+/* product page titles */
+html body .nf-lv__h,
+html body .nf-st__h{color:var(--nfb-tan)!important}
+html body .nf-st__eyebrow{color:var(--nfb-tan-d)!important}
+
+/* Get a quote (story card, and the other quote buttons that share the look) */
+html body .nf-st__trade-btn{color:var(--nfb-tan-d)!important;border-color:var(--nfb-tan)!important;background:#fff!important}
+html body .nf-st__trade-btn:hover{color:#fff!important;background:var(--nfb-tan)!important;border-color:var(--nfb-tan)!important}
+
+/* bundle prices: dark tan on white (5.1:1), light tan on the charcoal Complete the room card */
+html body .nf-bt__now{color:var(--nfb-tan-d)!important;font-weight:500}
+html body .nf-bt__opt.is-on .nf-bt__now{color:#86623a!important}
+html body .nf-bdl__price,
+html body .nf-bdl__now{color:var(--nfb-tan-hi)!important}
+html body .nf-bpop__price{color:var(--nfb-tan-d)!important}
+
+/* collection cards: Choose options / Add to cart in the signature tan */
+html body .nf-card-cta,
+html body .product-card .nf-row-btn--primary,
+html body .nf-qv__cta{background:var(--nfb-tan)!important;color:#fff!important;border-color:var(--nfb-tan)!important}
+html body .nf-card-cta:hover,
+html body .product-card .nf-row-btn--primary:hover,
+html body .nf-qv__cta:hover{background:var(--nfb-tan-d)!important}
+
+/* carousel arrows everywhere: an active arrow is a tan circle with a white chevron; a spent one stays pale */
+html body :is(carousel-prev-button, carousel-next-button) .circle-button:not([disabled]),
+html body .prev-next-button:not([disabled]),
+html body :is(.nf3-arrow, .nf-lv__arr, .nf-pk-rv__arr, .nfp__arrow, .nfp-iconbtn, .nfd-arrow-btn, .nfcp-arw, .nf-arrow, .nf-rail-nav__b, .nfcat-ic[data-act="prev"], .nfcat-ic[data-act="next"]):not(:disabled):not(.is-end){
+  background:var(--nfb-tan)!important;border-color:var(--nfb-tan)!important;color:#fff!important;
+}
+html body :is(carousel-prev-button, carousel-next-button) .circle-button:not([disabled]):hover,
+html body .prev-next-button:not([disabled]):hover,
+html body :is(.nf3-arrow, .nf-lv__arr, .nf-pk-rv__arr, .nfp__arrow, .nfp-iconbtn, .nfd-arrow-btn, .nfcp-arw, .nf-arrow, .nf-rail-nav__b, .nfcat-ic[data-act="prev"], .nfcat-ic[data-act="next"]):not(:disabled):not(.is-end):hover{
+  background:var(--nfb-tan-d)!important;border-color:var(--nfb-tan-d)!important;color:#fff!important;
+}
+html body :is(.nf3-arrow, .nf-lv__arr, .nf-pk-rv__arr, .nfp__arrow, .nfd-arrow-btn, .nfcp-arw, .nf-arrow, .nf-rail-nav__b):disabled{background:#fff!important;border-color:#e2d8c8!important;color:#b9ad9c!important}
+
+/* header wishlist heart, filled tan, between account and cart */
+html body .header__wishlist-link{display:flex;align-items:center;list-style:none}
+html body .nf-hdr-wl{position:relative;display:inline-flex;align-items:center;justify-content:center;color:var(--nfb-tan)}
+html body .nf-hdr-wl__ic{width:22px;height:22px;fill:var(--nfb-tan);stroke:var(--nfb-tan);stroke-width:1.2;transition:transform .2s ease}
+html body .nf-hdr-wl:hover .nf-hdr-wl__ic{transform:scale(1.08)}
+html body .nf-hdr-wl__n{position:absolute;top:-6px;right:-9px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--nfb-ink);color:#fff;font:600 10px/17px var(--text-font-family,Inter,system-ui,sans-serif);text-align:center}
+html body .nf-hdr-wl__n[hidden]{display:none}
+@media screen and (max-width:699px){
+  html body x-header .header__utility-group > .header__account-link{right:80px!important}
+  html body x-header .header__utility-group > .header__wishlist-link{
+    position:absolute!important;top:0!important;bottom:0!important;right:40px!important;width:40px!important;height:54px!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;margin:0!important;z-index:5!important;
+  }
+}
+
+/* story column ends level with Why customers love us (desktop split layout, like Baskoraa): the left cell stretches to
+   the buy column's height and the Bulk card plus the three tiles sit at its foot */
+@media screen and (min-width:1000px){
+  html body .product.nf3-split > .nf3-below{display:flex;flex-direction:column;align-self:stretch}
+  html body .nf3-below .nf-st__story{flex:1 1 auto;display:flex;flex-direction:column}
+  html body .nf3-below .nf-st__body{padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid var(--nf3-line,#ebe5db)}
+  html body .nf3-below .nf-st__trade{margin-top:auto}
+}

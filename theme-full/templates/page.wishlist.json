@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "nf_wishlist": {
+      "type": "nf-wishlist",
+      "settings": {
+        "heading": "Your wishlist",
+        "browse_url": "shopify://collections/best-sellers"
+      }
+    }
+  },
+  "order": ["nf_wishlist"]
+}

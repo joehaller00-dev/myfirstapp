@@ -13,10 +13,18 @@
   Styles in assets/nf-pdp3.css, carousel in assets/nf-pdp3.js.
 {%- endcomment -%}
 {%- liquid
-  assign nf_hl = product.metafields.custom.highlights.value
+  comment
+    Round 10 (owner): the headline used to fall back to the first highlight, a spec line ("Only 1.97 inches deep").
+    Now: the product's own custom.story_headline if set in admin, else the written headline from the shop lookup
+    custom.nf_heads_<bucket> (16 small JSON maps keyed by product id; bucket = id / 32768 mod 16, about 6KB each),
+    else the product title. Never the highlights.
+  endcomment
   assign nf_head = product.metafields.custom.story_headline.value
-  if nf_head == blank and nf_hl != blank and nf_hl.size > 0
-    assign nf_head = nf_hl | first
+  if nf_head == blank
+    assign nf_bk = product.id | divided_by: 32768 | modulo: 16
+    assign nf_bkey = 'nf_heads_' | append: nf_bk
+    assign nf_pid = product.id | append: ''
+    assign nf_head = shop.metafields.custom[nf_bkey].value[nf_pid]
   endif
   if nf_head == blank
     assign nf_head = product.title
