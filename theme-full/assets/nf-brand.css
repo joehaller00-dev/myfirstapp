@@ -178,8 +178,8 @@ html body .nf-st__trade-btn:hover,html body .nf-st__trade-btn:focus-visible{colo
 /* bundle prices: dark tan on white (5.1:1), light tan on the charcoal Complete the room card */
 /* round 11: sale prices in red (owner). Bundle & Save: the 2 and 3+ item prices are savings, so they are red too; the
    single item price stays ink */
-html body .nf-bt__now{color:var(--nfb-ink)!important;font-weight:500}
-html body .nf-bt__opt:is([data-n="2"],[data-n="3"]) .nf-bt__now{color:var(--nfb-sale)!important;font-weight:600}
+html body .nf-bt__now{color:var(--nfb-sale)!important;font-weight:600}
+html body .nf-bt__opt[data-n="1"] .nf-bt__picks{margin-top:8px}
 html body sale-price.text-on-sale,
 html body .text-on-sale,
 html body .price-list .text-on-sale,

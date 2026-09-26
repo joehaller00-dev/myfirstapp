@@ -237,7 +237,15 @@
         });
       }
       var box = $('[data-picks]', o);
-      if (box) {
+      if (box && box.hasAttribute('data-main-pick')) {
+        /* round 14 (owner): the 1 Item card has its own option menu, like Baskoraa; it changes the page's variant */
+        if (!many) { if (box.innerHTML) box.innerHTML = ''; }
+        else {
+          var ms = $('select', box);
+          if (!ms) { box.innerHTML = pickHtml(0, cur.id).replace('data-pick="0"', 'data-main').replace('aria-label="Option for item 1"', 'aria-label="Option"').replace('<span>1.</span>', ''); }
+          else if (+ms.value !== cur.id) ms.value = cur.id;
+        }
+      } else if (box) {
         if (!on || !many) { if (box.innerHTML) box.innerHTML = ''; }
         else {
           var sels = $$('select', box);
@@ -250,6 +258,22 @@
         $$('.nf-bt__img', o).forEach(function (im) { im.removeAttribute('srcset'); im.src = cur.img.indexOf('//') === 0 ? 'https:' + cur.img : cur.img; });
       }
     });
+  }
+  /* switch the page's variant to vid by ticking the theme's option radios (one change event, after all are set) */
+  function setMain(vid) {
+    var v = vById(vid); if (!v || vid === curId()) return;
+    var f = mainForm(), fid = f && f.id, parts = String(v.t || '').split(' / '), last = null;
+    var so = $('.nf-sb-native option[value="' + vid + '"]'), vids = so ? (so.getAttribute('data-value-ids') || '').split(',') : [];
+    parts.forEach(function (name, i) {
+      var pos = i + 1, radios = $$('input[type="radio"][data-option-position="' + pos + '"]' + (fid ? '[form="' + fid + '"]' : ''));
+      var r = (vids[i] && radios.filter(function (x) { return x.value === vids[i]; })[0]) || radios.filter(function (x) {
+        var l = x.nextElementSibling && x.nextElementSibling.tagName === 'LABEL' ? x.nextElementSibling : (x.closest('label') || x.parentNode);
+        var txt = ((l && l.textContent) || '').replace(/\s+/g, ' ').trim();
+        return txt === name || txt.indexOf(name + ' ') === 0;
+      })[0];
+      if (r && !r.checked) { r.checked = true; last = r; }
+    });
+    if (last) last.dispatchEvent(new Event('change', { bubbles: true }));
   }
   function choose(n) {
     st.n = n;
@@ -275,6 +299,8 @@
         if (o) choose(+o.getAttribute('data-n'));
       });
       root.addEventListener('change', function (e) {
+        var mm = e.target.closest('select[data-main]');
+        if (mm) { if (st.n !== 1) choose(1); setMain(+mm.value); return; }
         var s = e.target.closest('select[data-pick]'); if (!s) return;
         st.picks[+s.getAttribute('data-pick')] = +s.value;
         paint(root); express();
