@@ -1,0 +1,19 @@
+{%- comment -%}
+  NF-MENUS-DRAWER (round 16, owner: the phone menu "loads forever", Shop By blank). The phone only needs the drawer's
+  sub panels, not the four desktop dropdowns (most of sections/nf-menus-deferred.liquid's weight), so assets/nf-menus.js
+  fetches this smaller section on phones, right after the page is parsed. Same drawer markup and photo map. Not placed on
+  any template.
+{%- endcomment -%}
+<div class="nf-menus-deferred" hidden>
+  <template data-nf-menus-drawer>
+    {%- render 'nf-drawer-subpanels', menu: linklists['main-menu'], show_dividers: true, text_font: 'heading' -%}
+    {%- render 'nf-menu-img-map', id: 'nfd-img-map-all', depth: 'all' -%}
+  </template>
+</div>
+
+{% schema %}
+{
+  "name": "NF menus (phone drawer)",
+  "settings": []
+}
+{% endschema %}

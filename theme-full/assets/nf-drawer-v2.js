@@ -91,10 +91,22 @@
     'autumn at home': 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/Sf155150a3621467292178e7cfaea3226f.webp',
     'new arrivals': 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/staircase-lighting-chandelier-sleek-luxurious-living-room.jpg'
   };
+  /* NF-MENU-IMG (round 16): photos printed by the server for every menu row (snippets/nf-menu-img-map.liquid):
+     #nfd-img-map (first level, in the page) and #nfd-img-map-all (every level, arrives with the sub panels).
+     Checked before the old copy-from-the-desktop-dropdowns fallback, which a phone never has. */
+  var MAP = {};
+  function readMap() {
+    ['nfd-img-map', 'nfd-img-map-all'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el || el._nfd) return;
+      try { var o = JSON.parse(el.textContent); for (var k in o) if (!MAP[k]) MAP[k] = o[k]; el._nfd = 1; } catch (e) {}
+    });
+  }
+  function mapFor(title, href) { var p = path(href); return (p && MAP[p]) || MAP['t:' + norm(title)] || ''; }
   function imgFor(title, href) {
     var t = norm(title), p = path(href) || path(H.tb[t]) || path(HREF[t]);
     if (IMG[t]) return IMG[t];
-    return (p && H.h[p]) || H.t[t] || (PIC[t] && H.h[PIC[t]]) || '';
+    return mapFor(t, p) || (p && H.h[p]) || H.t[t] || (PIC[t] && H.h[PIC[t]]) || '';
   }
   function mkImg(u, w, cls) {
     var i = document.createElement('img');
@@ -199,14 +211,14 @@
     var pics = rows.map(function (b) {
       var t = textOf(b), u;
       if (b.classList.contains('nf-panel-btn')) {
-        u = imgFor(t);
+        u = mapFor(t) || imgFor(t);
         if (!u) {
           var tp = document.getElementById(b.getAttribute('data-target'));
           var fa = tp && tp.querySelectorAll('a.header-sidebar__linklist-button');
           for (var i = 0; fa && i < fa.length && !u; i++) u = H.h[path(fa[i].getAttribute('href'))] || '';
         }
       } else {
-        u = H.h[path(b.getAttribute('href'))] || H.t[t] || '';
+        u = mapFor(t, b.getAttribute('href')) || H.h[path(b.getAttribute('href'))] || H.t[t] || '';
       }
       return u;
     });
@@ -270,32 +282,34 @@
     return true;
   }
 
+  /* round 16: the first level (tiles, rows, photos) is built at once from the photo map in the page; the sub panels
+     are decorated the moment their markup lands (assets/nf-menus.js), instead of the whole drawer waiting for it */
+  function panels() {
+    if (!cp) return;
+    H = harvest(); readMap();
+    Array.prototype.forEach.call(cp.querySelectorAll('.header-sidebar__sub-panel'), buildPanel);
+    /* warm every first level panel's photos while the shopper is still looking at the list */
+    if (sb.hasAttribute('open')) warmAll();
+  }
+  var warmed = false;
+  function warmAll() {
+    if (warmed || !cp) return; warmed = true;
+    var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 250); };
+    idle(function () { Array.prototype.forEach.call(cp.querySelectorAll('.header-sidebar__sub-panel'), loadIn); }, { timeout: 900 });
+  }
   function build() {
     if (built) return true;
-    /* NF-MENUS-DEFER (2026-09-14): the sub panels and the desktop panels this drawer takes its photos from arrive after load
-       (assets/nf-menus.js). Build once they are in, so every tile, thumbnail and hero is still there. */
-    var MN = window.__nfMenus;
-    if (MN && !MN.loaded) {
-      if (!waitBuild) {
-        waitBuild = true;
-        MN.load().then(function () {
-          waitBuild = false;
-          var s = document.getElementById('sidebar-menu');
-          if (s && s.hasAttribute('open')) onOpen(); else if (MQ.matches) build();
-        });
-      }
-      return false;
-    }
     sb = document.getElementById('sidebar-menu');
     if (!sb) return false;
     cp = sb.querySelector('header-sidebar-collapsible-panel');
-    H = harvest();
+    H = harvest(); readMap();
     if (!buildMain()) return false;
     sb.classList.add('nfd2');
     document.documentElement.classList.add('nfd2-on');
     built = true;
+    var MN = window.__nfMenus;
+    if (MN && !MN.loaded) { MN.load().then(panels); } else panels();
     if (cp) {
-      Array.prototype.forEach.call(cp.querySelectorAll('.header-sidebar__sub-panel'), buildPanel);
       new MutationObserver(function () {
         var id = activeId(), p = id && document.getElementById(id);
         if (!p) return;
@@ -319,7 +333,7 @@
       if (!b) return;
       var id = b.getAttribute('aria-controls') || b.getAttribute('data-target') || b.getAttribute('data-nfd-open');
       var p = id && document.getElementById(id);
-      if (p) { var hi = p.querySelector('.nfd-hero img[data-nfd-src]'); if (hi) { hi.src = hi.getAttribute('data-nfd-src'); hi.removeAttribute('data-nfd-src'); hi.addEventListener('load', function () { hi.classList.add('is-in'); }, { once: true }); } }
+      if (p) loadIn(p);
     }, { passive: true });
     wireHistory();
     return true;
@@ -370,14 +384,21 @@
     if (!build()) return;
     var main = sb.querySelector('.header-sidebar__main-panel');
     loadIn(main);
+    var MN = window.__nfMenus;
+    if (!MN || MN.loaded) warmAll();
   }
   function init() {
     var s = document.getElementById('sidebar-menu');
     if (!s) return;
     s.addEventListener('dialog:before-show', onOpen);
     if (s.hasAttribute('open')) onOpen();
-    var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 1200); };
-    idle(function () { if (MQ.matches) build(); }, { timeout: 4000 });
+    var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 300); };
+    idle(function () { if (MQ.matches) build(); }, { timeout: 1500 });
+    /* the drawer is usually opened with a tap on the menu button: start its first photos on touch down */
+    document.addEventListener('pointerdown', function (e) {
+      if (!MQ.matches || !e.target.closest || !e.target.closest('[aria-controls="sidebar-menu"]')) return;
+      if (build()) loadIn(sb.querySelector('.header-sidebar__main-panel'));
+    }, { capture: true, passive: true });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

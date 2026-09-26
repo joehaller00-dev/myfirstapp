@@ -13,8 +13,12 @@
   'use strict';
   if (window.__nfMenus) return;
   var me = document.currentScript;
-  var KEY = 'nfMenus:' + ((me && me.getAttribute('data-nf-menus-key')) || '0');
-  var URL_ = ((me && me.getAttribute('data-nf-menus-url')) || '/') + '?section_id=nf-menus-deferred';
+  /* round 16 (owner: the phone menu "loads forever"): phones fetch only the drawer (sections/nf-menus-drawer.liquid),
+     not the desktop dropdowns, and start as soon as the page is parsed instead of after load */
+  var PHONE = window.matchMedia && matchMedia('(max-width: 999px)').matches;
+  var ROOT_ = (me && me.getAttribute('data-nf-menus-url')) || '/';
+  var KEY = 'nfMenus:' + ((me && me.getAttribute('data-nf-menus-key')) || '0') + (PHONE ? ':m' : '');
+  var URL_ = ROOT_ + '?section_id=' + (PHONE ? 'nf-menus-drawer' : 'nf-menus-deferred');
   var M = window.__nfMenus = { loaded: false };
   var resolveReady;
   M.ready = new Promise(function (r) { resolveReady = r; });
@@ -87,6 +91,22 @@
     afterLoad(function () { get().catch(function () {}); });
     return;
   }
+  /* a phone that turns into a wide screen later still gets the desktop dropdowns */
+  if (PHONE && window.matchMedia) {
+    var mq = matchMedia('(min-width: 1000px)'), deskDone = false;
+    var desk = function () {
+      if (deskDone || !mq.matches) return; deskDone = true;
+      fetch(ROOT_ + '?section_id=nf-menus-deferred', { credentials: 'same-origin' }).then(function (r) { return r.text(); }).then(function (h) {
+        var box = document.createElement('div'); box.innerHTML = h;
+        Array.prototype.forEach.call(box.querySelectorAll('template[data-nf-menus-tb]'), function (t) {
+          var slot = document.getElementById('nf-tb-panel-' + t.getAttribute('data-nf-menus-tb'));
+          if (slot && !slot.firstElementChild) slot.appendChild(document.importNode(t.content, true));
+        });
+      }).catch(function () { deskDone = false; });
+    };
+    if (mq.addEventListener) mq.addEventListener('change', desk); else if (mq.addListener) mq.addListener(desk);
+  }
+  if (PHONE) { M.load(); return; }
   function early() {
     ['pointerover', 'pointerdown', 'touchstart', 'keydown', 'focusin'].forEach(function (t) { document.removeEventListener(t, early, true); });
     M.load();

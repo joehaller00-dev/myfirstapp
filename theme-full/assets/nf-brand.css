@@ -283,3 +283,17 @@ html body .nf-bt__note{margin-top:10px!important;font-size:12px!important}
   html body .nf-bt__qty{font-size:14px!important}
   html body .nf-bt__now{font-size:17px!important}
 }
+
+/* round 16 (owner): header icons.
+   Phones: search moves to the left, right beside the menu button, so it no longer sits on the account icon.
+   Everywhere: account, wishlist and cart get equal slots with the icon centred, so the heart sits exactly midway. */
+html body x-header .header__utility-group > :is(.header__account-link,.header__wishlist-link,.header__cart-link){display:flex!important;align-items:center!important;justify-content:center!important}
+@media screen and (min-width:700px){
+  html body x-header .header__utility-group{gap:0!important}
+  html body x-header .header__utility-group > :is(.header__account-link,.header__wishlist-link,.header__cart-link){width:44px!important;min-width:44px!important}
+  html body x-header .header__utility-group > .header__account-link shopify-account{display:flex!important;justify-content:center!important}
+}
+@media screen and (max-width:699px){
+  html body x-header .header__search-row{left:40px!important;right:auto!important;width:40px!important}
+  html body x-header .header__search-toggle .header__search-label{display:none!important}
+}

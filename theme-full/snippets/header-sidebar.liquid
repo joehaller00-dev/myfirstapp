@@ -34,6 +34,7 @@
 {{- nfd_pk | json -}}:{"u":{{ nfd_c.image | image_url: width: 900 | json }},"p":{{ nfd_p | default: '' | json }}}
 {%- endfor -%}
 }</script>
+{%- render 'nf-menu-img-map', id: 'nfd-img-map', depth: 'top' -%}
 <style>
   /* Match desktop nav font styles */
   .header-sidebar__linklist-button,

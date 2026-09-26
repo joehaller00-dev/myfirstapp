@@ -1,0 +1,85 @@
+{%- comment -%}
+  NF-MENU-IMG (round 16, owner: "there should be an image for every single menu item" on phones, and Shop By was blank).
+  A JSON map printed by the server, read by assets/nf-drawer-v2.js: link path -> photo, plus "t:<title>" keys for menu
+  rows that are only group headings (Shop By, Shop by Room, Industries...). The drawer used to copy its photos out of
+  the desktop dropdowns, which are not on the page on a phone, so most rows had none.
+  Collections use their own image, else their first product's (collection.featured_image). Pages and headings borrow a
+  fitting collection (lists below). Params: id (element id), depth: 'top' = only the first level (printed in every
+  page, tiny), 'all' = every level (arrives with the deferred drawer panels).
+{%- endcomment -%}
+{%- liquid
+  assign w = 240
+  assign page_map = '/pages/professionals=style-glam,/pages/hospitality-lighting-projects=hospitality-lighting,/pages/office-lighting-projects=office-lighting,/pages/retail-lighting-projects=retail-lighting,/pages/home-lighting-projects=home-project-lighting,/pages/outdoor-lighting-projects=outdoor-project-lighting,/pages/restaurant-cafe-lighting-projects=kitchen-dining,/pages/rental-property-lighting-projects=living-room,/pages/salon-spa-lighting-projects=bathroom,/pages/school-library-lighting-projects=home-office,/pages/gym-studio-lighting-projects=style-industrial,/pages/model-home-staging-lighting=bedroom,/pages/bulk-order-form=room-sets,/pages/bulk-project-orders=hospitality-lighting,/pages/project-portfolio=style-modern,/pages/ideas-and-guides=living-room,/pages/catalog=best-sellers,/blogs/blog=bedroom,/pages/custom-lighting=material-crystal' | split: ','
+  assign title_map = 'shop by=living-room,shop by category=ceiling-light,shop by room=bedroom,shop by outdoor area=garden-pathway,shop by style=style-modern,shop by material=material-wood,industries=hospitality-lighting,services=room-sets,project collections=office-lighting,featured=new-arrivals,ideas & guides=living-room,professionals=style-glam,best sellers=best-sellers-indoor,lighting guides=living-room,autumn at home=autumn-at-home,sale=clearance' | split: ','
+  assign urls = ''
+  for l1 in linklists['main-menu'].links
+    assign urls = urls | append: l1.url | append: '|' | append: l1.title | append: '^'
+    if depth == 'all'
+      for l2 in l1.links
+        assign urls = urls | append: l2.url | append: '|' | append: l2.title | append: '^'
+        for l3 in l2.links
+          assign urls = urls | append: l3.url | append: '|' | append: l3.title | append: '^'
+        endfor
+      endfor
+    endif
+  endfor
+  for l1 in linklists['top-bar'].links
+    assign urls = urls | append: l1.url | append: '|' | append: l1.title | append: '^'
+    if depth == 'all'
+      for l2 in l1.links
+        assign urls = urls | append: l2.url | append: '|' | append: l2.title | append: '^'
+        for l3 in l2.links
+          assign urls = urls | append: l3.url | append: '|' | append: l3.title | append: '^'
+        endfor
+      endfor
+    endif
+  endfor
+  assign rows = urls | split: '^'
+  assign seen = ','
+  assign n = 0
+-%}
+<script type="application/json" id="{{ id }}">{
+{%- for row in rows -%}
+  {%- assign u = row | split: '|' | first -%}
+  {%- assign t = row | split: '|' | last | downcase | strip -%}
+  {%- assign p = u | split: '://' | last -%}
+  {%- if u contains '://' -%}{%- assign p = p | split: '/' -%}{%- assign p = p | slice: 1, p.size | join: '/' | prepend: '/' -%}{%- endif -%}
+  {%- assign p = p | split: '#' | first | split: '?' | first -%}
+  {%- assign img = blank -%}
+  {%- assign key = p -%}
+  {%- if p contains '/collections/' -%}
+    {%- assign h = p | split: '/collections/' | last | split: '/' | first -%}
+    {%- assign c = collections[h] -%}
+    {%- if c != blank -%}{%- assign img = c.featured_image -%}{%- endif -%}
+  {%- else -%}
+    {%- for pm in page_map -%}
+      {%- assign pk = pm | split: '=' | first -%}
+      {%- if pk == p -%}{%- assign ph = pm | split: '=' | last -%}{%- assign img = collections[ph].featured_image -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- comment -%} group headings and titles: keyed by title as well {%- endcomment -%}
+  {%- assign tk = 't:' | append: t -%}
+  {%- assign timg = blank -%}
+  {%- for tm in title_map -%}
+    {%- assign tt = tm | split: '=' | first -%}
+    {%- if tt == t -%}{%- assign th = tm | split: '=' | last -%}{%- assign timg = collections[th].featured_image -%}{%- break -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if timg == blank -%}{%- assign timg = img -%}{%- endif -%}
+  {%- assign sk = ',' | append: key | append: ',' -%}
+  {%- if img != blank and p != '/collections' and p != '/' and p != '' -%}
+    {%- unless seen contains sk -%}
+      {%- assign seen = seen | append: key | append: ',' -%}
+      {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
+      {{- key | json -}}:{{- img | image_url: width: w | json -}}
+    {%- endunless -%}
+  {%- endif -%}
+  {%- assign stk = ',' | append: tk | append: ',' -%}
+  {%- if timg != blank -%}
+    {%- unless seen contains stk -%}
+      {%- assign seen = seen | append: tk | append: ',' -%}
+      {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
+      {{- tk | json -}}:{{- timg | image_url: width: w | json -}}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+}</script>

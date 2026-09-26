@@ -12,6 +12,7 @@
 <div class="nf-menus-deferred" hidden>
   <template data-nf-menus-drawer>
     {%- render 'nf-drawer-subpanels', menu: linklists['main-menu'], show_dividers: true, text_font: 'heading' -%}
+    {%- render 'nf-menu-img-map', id: 'nfd-img-map-all', depth: 'all' -%}
   </template>
   {%- assign nf_tb_menu = linklists['top-bar'] -%}
   {%- for link in nf_tb_menu.links -%}
