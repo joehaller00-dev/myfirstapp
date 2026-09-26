@@ -244,3 +244,9 @@ html body .nf-hdr-wl__n{position:absolute;top:-5px;right:-8px;min-width:15px;hei
   html body .nf-lv--side .nf-lv__name{font-size:14.5px!important}
   html body .nf-lv--side .nf-lv__nav{margin-top:10px!important}
 }
+
+/* round 13 (owner: "dim the boldness a little for Pieces made for every home, just that one section") */
+html body.nf-tpl-index #main .nfp__title.nfp__title.nfp__title{font-weight:340!important}
+html body.nf-tpl-index #main .nfp .nfp-card__title.nfp-card__title.nfp-card__title{font-weight:350!important}
+html body.nf-tpl-index #main .nfp .nfp-card__price{font-weight:400!important}
+html body.nf-tpl-index #main .nfp .nfp__tab{font-weight:400!important}

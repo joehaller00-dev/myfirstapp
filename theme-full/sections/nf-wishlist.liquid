@@ -148,24 +148,30 @@
 
   /* round 11 (owner): the Wishlist / Recently viewed / You may also like buttons glide down to their section instead of
      jumping. Eased window scroll, stopping just under the sticky header. */
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Round 13 (owner: "it still teleports"): on a device set to reduce motion the browser's own smooth scroll (and the theme's anchor
+     handler) jumped. This glide is always on, runs before the theme's handler (window, capture), and switches off the
+     page's CSS smooth scrolling while it runs so each frame lands exactly. */
+  var de = document.documentElement;
   function glideTo(el) {
     if (!el || el.hidden) return;
     var hdr = document.querySelector('.shopify-section--header, header'), off = hdr ? Math.max(0, hdr.getBoundingClientRect().bottom) : 0;
     var from = window.scrollY, to = Math.max(0, el.getBoundingClientRect().top + from - off - 16), dist = to - from;
-    if (reduce || Math.abs(dist) < 4) { window.scrollTo(0, to); return; }
-    var dur = Math.min(900, 380 + Math.abs(dist) * 0.35), t0 = performance.now();
-    (function step(now) {
+    if (Math.abs(dist) < 4) return;
+    var dur = Math.min(950, 450 + Math.abs(dist) * 0.3), t0 = performance.now(), prev = de.style.scrollBehavior;
+    de.style.scrollBehavior = 'auto';
+    function step(now) {
       var p = Math.min(1, (now - t0) / dur), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
-      window.scrollTo(0, from + dist * e);
-      if (p < 1) requestAnimationFrame(step);
-    })(t0);
+      window.scrollTo(0, Math.round(from + dist * e));
+      if (p < 1) requestAnimationFrame(step); else de.style.scrollBehavior = prev;
+    }
+    requestAnimationFrame(step);
   }
-  root.querySelector('.nfwl__tabs').addEventListener('click', function (e) {
-    var a = e.target.closest('a[href^="#"]'); if (!a) return;
+  var tabs = root.querySelector('.nfwl__tabs');
+  window.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a || !tabs.contains(a)) return;
     var el = document.getElementById(a.getAttribute('href').slice(1));
     if (!el || el.hidden) { e.preventDefault(); return; }
-    e.preventDefault(); e.stopPropagation();
+    e.preventDefault(); e.stopImmediatePropagation();
     glideTo(el);
     try { history.replaceState(null, '', a.getAttribute('href')); } catch (x) {}
   }, true);

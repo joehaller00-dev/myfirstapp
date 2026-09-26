@@ -114,7 +114,34 @@
       var q = 0;
       car.addEventListener('scroll', function () { if (!q && !anim) { q = 1; raf(function () { q = 0; upd(); }); } }, { passive: true });
       window.addEventListener('resize', function () { offs = []; upd(); });
-      d.addEventListener('variant:change', function () { offs = []; setTimeout(upd, 200); });
+      /* round 13 (owner: picking an option must not scroll the gallery, "just have that image pop up like a teleport").
+         For a moment after an option change every programmatic scroll of this carousel is instant, and we put the
+         option's photo in place ourselves, with snapping paused so nothing animates. */
+      var hold = 0, natTo = car.scrollTo, natBy = car.scrollBy;
+      function inst(a) { return (a && typeof a === 'object') ? Object.assign({}, a, { behavior: 'instant' }) : a; }
+      car.scrollTo = function (a, b) { return natTo.call(car, Date.now() < hold ? inst(a) : a, b); };
+      car.scrollBy = function (a, b) { return natBy.call(car, Date.now() < hold ? inst(a) : a, b); };
+      function jumpTo(mid) {
+        var m = mid && $('.product-gallery__media[data-media-id="' + mid + '"]', car);
+        if (!m || m.hidden) return;
+        var im = $('img', m); if (im && im.loading === 'lazy') im.loading = 'eager';
+        if (anim) { (window.cancelAnimationFrame || clearTimeout)(anim); anim = 0; }
+        var base = car.getBoundingClientRect().left - car.scrollLeft, x = m.getBoundingClientRect().left - base;
+        if (Math.abs(car.scrollLeft - x) < 2) return;
+        car.style.scrollBehavior = 'auto'; car.style.scrollSnapType = 'none';
+        car.scrollLeft = x;
+        raf(function () { car.style.scrollSnapType = ''; offs = []; upd(); });
+      }
+      var lastMid = 0;
+      d.addEventListener('variant:change', function (e) {
+        var v = e.detail && e.detail.variant, fm = v && v.featured_media;
+        hold = Date.now() + 1200;
+        lastMid = fm ? fm.id : 0;
+        jumpTo(lastMid);
+        setTimeout(function () { jumpTo(lastMid); }, 60);
+        offs = []; setTimeout(upd, 200);
+      }, true);
+      d.addEventListener('product:rerender', function () { hold = Date.now() + 1200; raf(function () { jumpTo(lastMid); }); });
       upd(); setTimeout(function () { offs = []; upd(); }, 400);
     });
   }
