@@ -59,9 +59,9 @@ Each has several options, but none is linked to a picture, so picking one never 
 | 16 | [Pebble Cut Outdoor Sconce](https://norafurnish.com/products/up-and-down-exterior-wall-lights-modern-led-garden-light) | Square: storefront photo. Round: gold cylinder photo | Done, check |
 | 17 | [Scrolled Iron Lantern Sconce](https://norafurnish.com/products/vintage-wall-sconce-lighting-european-outdoor-glass-lamp) | Small / Large renamed 31.5 inch / 40 inch | Done |
 | 18 | [Portal Up and Down Outdoor Wall Light](https://norafurnish.com/products/unique-outdoor-wall-lighting-led-up-down-illuminating-decor-lamp) | 2 head stone pillar, 3 head concrete wall, 4 head round lens photo, 6 head product shot | Done, 4 and 6 head check |
-| 19 | [Pebble Shade Outdoor Wall Light](https://norafurnish.com/products/pebble-shade-outdoor-wall-light-black-aluminum-porch-light) | Small / Large renamed 5.1 inch / 6.4 inch | Done |
-| 20 | [Hexagon Matrix Outdoor Wall Light](https://norafurnish.com/products/hexagon-matrix-outdoor-wall-light-black-aluminum-sconce) | Four / Six / Eight Heads renamed 2 Head 5.9 x 4.3, 3 Head 6.1 x 5.9, 4 Head 7.8 x 5.9 (inch) | Done |
-| 21 | [Gilded Feather Wall Light](https://norafurnish.com/products/gilded-feather-wall-light-white-resin-led-wall-art-sconce) | With Accent Feathers and Feather Only get their own photos | Done, check |
+| 19 | [Pebble Shade Outdoor Wall Light](https://norafurnish.com/products/up-and-down-outdoor-wall-lights-led-waterproof-minimalist-lamp) | Small / Large renamed 5.1 inch / 6.4 inch | Done |
+| 20 | [Hexagon Matrix Outdoor Wall Light](https://norafurnish.com/products/black-outdoor-up-and-down-wall-lights-nordic-style-led-light) | Four / Six / Eight Heads renamed 2 Head 5.9 x 4.3, 3 Head 6.1 x 5.9, 4 Head 7.8 x 5.9 (inch) | Done |
+| 21 | [Gilded Feather Wall Light](https://norafurnish.com/products/modern-art-decorative-resin-feather-dimmable-white-wall-sconces-with-led-strip) | With Accent Feathers and Feather Only get their own photos | Done, check |
 | 22 | [Glass Bouquet Wall Sconce](https://norafurnish.com/products/bouquet-flowers-leaves-white-light-pastoral-american-style-wall-lamp) | 10 Light white: dark wall photo. Transparent: plain background photo. 6 Light white unchanged | Done, check |
 
 Skipped by the owner: Lattice Glass Lantern, River Pebble, Polished Steel Vanity, Double Strip, Angel Sconce, Slender Rod Vanity, Folded Facet, Crescent Moon, Slim Column, Heritage Lantern.
