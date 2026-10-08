@@ -1,0 +1,13 @@
+{
+  "id": "P066",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "My electrician is back in three weeks and I need fixtures in hand well before that. 10 to 12 business days is cutting it close, made-to-order at 6 weeks is out, and I have never heard of this store.",
+  "objection": "Nothing says it is UL listed, so I do not know it is safe or that my electrician will install it, and with a hard install date I cannot risk a slow delivery or a return that I pay to ship back.",
+  "would_change_my_mind": "A visible UL/ETL listing on the product page, a guaranteed in-stock ship date that lands well inside two weeks, and free return shipping if the fixture does not work for the install.",
+  "price_too_cheap": 120,
+  "price_cheap": 220,
+  "price_expensive": 450,
+  "price_too_expensive": 700
+}

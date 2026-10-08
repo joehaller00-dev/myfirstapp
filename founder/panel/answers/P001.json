@@ -1,0 +1,13 @@
+{
+  "id": "P001",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish, and nothing here tells me the lights are UL listed or that my electrician will be happy to hang them. With my electrician back in three weeks I'm not going to gamble on an unknown store when Wayfair, Lumens or Lowe's have known returns and delivery.",
+  "objection": "Is it UL listed, and will my electrician install it without a fight? Nothing says so. If it turns out to be wrong or not certified, I'm stuck paying return shipping on a big boxed fixture from a store I don't know.",
+  "would_change_my_mind": "A clearly shown UL/ETL listing on the product page, plus free returns (or at least a prepaid return label) and some proof the store is real, like reviews from verified buyers or a known retailer behind it.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 450,
+  "price_too_expensive": 700
+}

@@ -1,0 +1,13 @@
+{
+  "id": "P032",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of them, and I'd screenshot that cloud pendant into Google Lens and probably find the same thing on AliExpress or Amazon for half. $360 plus a 10 to 12 business day wait from an unknown store isn't enough to make me stop looking.",
+  "objection": "10 to 12 business days is a long wait for a light, and I can't tell if this is a real brand or a reseller of the same factory pendant I can get cheaper elsewhere. Return shipping on a big fragile pendant is on me if I change my mind.",
+  "would_change_my_mind": "Proof it isn't a rebadged marketplace item (real reviews, photos from actual customers), a price clearly below what Lens turns up for the same piece, and free returns or faster in-stock shipping.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 320,
+  "price_too_expensive": 500
+}

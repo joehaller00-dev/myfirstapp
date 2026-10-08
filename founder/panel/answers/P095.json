@@ -1,0 +1,13 @@
+{
+  "id": "P095",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish, and I'd rather pay a bit more at Wayfair or Lowe's where I know how returns and delivery work. A $360 pendant is a big spend on my $52k income to risk on a store I don't know.",
+  "objection": "Return shipping on a big fixture would cost me a fortune, and I'd be paying it myself if it doesn't suit the room. Add 10 to 12 days of waiting and an unknown store, and it's too much risk.",
+  "would_change_my_mind": "Free returns, or a prepaid return label, plus real customer reviews with photos from buyers or a listing on Wayfair or Amazon.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 320,
+  "price_too_expensive": 450
+}

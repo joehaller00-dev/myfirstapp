@@ -1,0 +1,13 @@
+{
+  "id": "P020",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and I'm not putting a $360 light on a card without knowing it's legit. I'd pin the pendant and keep looking, since I don't buy until the room comes together anyway.",
+  "objection": "I've never heard of this store, is it legit? I can't see it in person, the photos might not match the real thing, and if I change my mind I pay return shipping on a bulky fixture.",
+  "would_change_my_mind": "Real customer photos and reviews from people who installed the fixture, plus free return shipping or a clear way to see the quality (like a sample or video) before I commit.",
+  "price_too_cheap": 120,
+  "price_cheap": 230,
+  "price_expensive": 480,
+  "price_too_expensive": 800
+}

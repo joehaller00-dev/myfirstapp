@@ -1,0 +1,13 @@
+{
+  "id": "P002",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I buy lighting from Wayfair, Amazon or Lowe's because I know how returns and delivery work, and I have never heard of Nora Furnish. UL listing numbers and free returns are good signs, but with almost no reviews and 2 to 3 weeks delivery I would stick with the big retailers for my Airbnb refresh.",
+  "objection": "Brand new store with hardly any reviews, so I don't know if they'll actually honor the returns or if my electrician will have problems with the fixture. At $360 for one pendant, I'd rather not be the guinea pig.",
+  "would_change_my_mind": "A pile of verified reviews from real buyers, or the same fixture listed on Amazon or Wayfair where I already trust the returns.",
+  "price_too_cheap": 70,
+  "price_cheap": 150,
+  "price_expensive": 280,
+  "price_too_expensive": 450
+}

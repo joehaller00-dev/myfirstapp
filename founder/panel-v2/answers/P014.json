@@ -1,0 +1,13 @@
+{
+  "id": "P014",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I buy lighting from Wayfair, Lowe's or Lumens because I know how delivery and returns work there. $360 for a paper pendant from a store I've never heard of is a lot, and the free returns don't make up for not knowing who they are.",
+  "objection": "I've never heard of them, they have almost no reviews, and 2 to 3 weeks delivery is slow when I'm mid-renovation. If it's not right I'm the one stuck sending back a big fragile fixture.",
+  "would_change_my_mind": "A lower price, around $250 to $300, or seeing the same fixture reviewed by real buyers or sold through a retailer I already trust, like Wayfair or Amazon.",
+  "price_too_cheap": 70,
+  "price_cheap": 150,
+  "price_expensive": 300,
+  "price_too_expensive": 450
+}

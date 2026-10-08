@@ -1,0 +1,13 @@
+{
+  "id": "P012",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "The returns and UL listing are better than I expected, but $360 to a store I have never heard of with almost no reviews is a lot, and 2 to 3 weeks of shipping would land right when my electrician shows up. I would pin it and see if the store still exists in a few months.",
+  "objection": "I can't tell if this is a real, established shop or a dropshipper with a nice website, and I would be hanging $360 over my new kitchen on that guess.",
+  "would_change_my_mind": "Photos from real buyers with the light hung in an actual kitchen, plus a confirmed delivery date that clears my electrician with a week to spare.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 300,
+  "price_too_expensive": 500
+}

@@ -1,0 +1,13 @@
+{
+  "id": "P002",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "I buy lighting from Wayfair, Amazon or Lowe's because I know how returns and delivery work there, and I've never heard of Nora Furnish. The UL listing, free returns and the trade discount are good, but 60 reviews on a one-person store isn't enough for me to switch when I'm watching my budget.",
+  "objection": "It's a tiny store I've never heard of. If a fixture shows up damaged or the wiring doesn't match what my electrician expects, I don't know how fast one founder in Oklahoma will sort it out compared to Amazon or Wayfair.",
+  "would_change_my_mind": "A trade-account price clearly below Wayfair or Amazon for the same style, plus a UL listing number I can check myself and proof that returns on a damaged fixture are handled without a fight.",
+  "price_too_cheap": 60,
+  "price_cheap": 120,
+  "price_expensive": 280,
+  "price_too_expensive": 400
+}

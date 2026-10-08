@@ -1,0 +1,13 @@
+{
+  "id": "P007",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and there are no reviews, Trustpilot score or track record on the page, and I don't wire my kitchen with a light from a store I can't verify. Nothing says UL listed either, and my electrician won't hang something that isn't.",
+  "objection": "Is it UL listed and safe, and will my electrician install it? I also can't find out if this store is legit, and with return shipping on me for a change of mind I'd be stuck with a 24-inch pendant if it shows up wrong.",
+  "would_change_my_mind": "Visible UL/ETL listing on the product page, plus a solid pile of independent reviews (Trustpilot or similar) from real buyers with photos, and a clear delivery date that lands before my electrician's visit.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 550,
+  "price_too_expensive": 900
+}

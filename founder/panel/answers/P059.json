@@ -1,0 +1,13 @@
+{
+  "id": "P059",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "I just bought a house and I'm watching every dollar. I'd screenshot that paper cloud pendant, run it through Google Lens, and find a lookalike on Amazon or AliExpress for way less than $360 from a store I've actually heard of.",
+  "objection": "Return shipping on a big fixture would cost me a fortune if it's wrong, and I've never heard of this store, so I'd be stuck with a $360 light I can't afford to send back.",
+  "would_change_my_mind": "Free return shipping (or a prepaid return label) and a price that beats what I can find for the same-looking pendant elsewhere.",
+  "price_too_cheap": 60,
+  "price_cheap": 140,
+  "price_expensive": 250,
+  "price_too_expensive": 400
+}

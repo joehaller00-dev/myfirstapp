@@ -1,0 +1,13 @@
+{
+  "id": "P037",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish, and I'm not putting $360 on a fixture from a store I don't know when I can get something similar from Wayfair or Amazon with returns I understand. Waiting 10 to 12 days, or 6 weeks if it's made to order, doesn't help either.",
+  "objection": "Return shipping on a big fixture would cost me a fortune, and I'd be paying it if it looks different in my hallway than on the website. With a store I've never heard of, I have no idea if it would even show up undamaged.",
+  "would_change_my_mind": "Free returns, or a free return label, from a store with solid reviews I can check, or the same pendant on Wayfair or Amazon with their return policy.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 300,
+  "price_too_expensive": 450
+}

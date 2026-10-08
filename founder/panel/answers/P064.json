@@ -1,0 +1,13 @@
+{
+  "id": "P064",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "I buy on a deadline and need fixtures in hand within a week or two, and 10 to 12 business days is already cutting it, with 6 weeks for made-to-order being a non-starter. On top of that I've never heard of this store, and I'd be stuck paying return shipping on a big fixture if it's wrong.",
+  "objection": "Return shipping on a big fixture would cost me a fortune, and with a store I don't know and a 2+ week delivery window, if it shows up wrong or damaged I miss my date and eat the cost.",
+  "would_change_my_mind": "Guaranteed delivery within about 5 business days on in-stock pieces, plus free returns or a prepaid return label on a fixture.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 420,
+  "price_too_expensive": 650
+}

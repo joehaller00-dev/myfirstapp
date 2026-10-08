@@ -1,0 +1,13 @@
+{
+  "id": "P018",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "When I need a fixture I need it in hand in a week or two, and 10 to 12 business days is basically three weeks. I've never heard of this store, so I'm not betting a deadline on it.",
+  "objection": "10 to 12 business days is a long wait for a light, and if it shows up late or wrong I've got a turnover and a guest check-in with an empty ceiling and no easy way out, since I'd pay return shipping on a bulky box.",
+  "would_change_my_mind": "A firm delivery date I could count on in under a week or two, with a store I can trust to hit it, or a free-returns policy for a damaged or wrong item.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 320,
+  "price_too_expensive": 500
+}

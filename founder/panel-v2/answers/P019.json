@@ -1,0 +1,13 @@
+{
+  "id": "P019",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "I'm renovating against an electrician date and need fixtures in hand within a week or two, and 2 to 3 weeks from a store I've never heard of doesn't work. I'd rather order from Amazon Prime or a retailer with stock on hand.",
+  "objection": "I can't judge the quality from photos, and it's a brand-new store with almost no reviews. A paper pendant at $360 could look flimsy in person, and 2 to 3 weeks of shipping would put me past my deadline.",
+  "would_change_my_mind": "Fixtures in stock and delivered within about 7 days, with a firm date shown at checkout. Or a cheap sample or swatch I could see before committing, plus a handful of real reviews with customer photos.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 450,
+  "price_too_expensive": 800
+}

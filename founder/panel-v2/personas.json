@@ -1,0 +1,222 @@
+[
+ {
+  "id": "P001",
+  "name": "Wes",
+  "age": 30,
+  "segment": "Trade buyer (interior designer, contractor or short-term-rental host)",
+  "income": 150000,
+  "behaviour": "Price checker",
+  "behaviour_how": "Screenshots products and runs them through Google Lens or searches Amazon, Wayfair and AliExpress for the same item before buying.",
+  "objection": "I can't judge the quality from photos",
+  "habit": "you order most things on Amazon Prime"
+ },
+ {
+  "id": "P002",
+  "name": "Nico",
+  "age": 32,
+  "segment": "First-home buyer on a budget",
+  "income": 64000,
+  "behaviour": "Big-retailer loyalist",
+  "behaviour_how": "Buys lighting from Wayfair, Amazon, Lowe's, Lumens or West Elm because returns and delivery are known.",
+  "objection": "Is it UL listed and safe, and will my electrician install it?",
+  "habit": "you manage two Airbnb units and refresh them every winter"
+ },
+ {
+  "id": "P003",
+  "name": "Dana",
+  "age": 50,
+  "segment": "Renovating homeowner",
+  "income": 115000,
+  "behaviour": "Reads every review",
+  "behaviour_how": "Will not buy from a store without reviews, Trustpilot or a track record; checks 'is X legit' before paying.",
+  "objection": "I can probably find the same light cheaper on Amazon or AliExpress",
+  "habit": "you have a Pinterest board called 'dining room' with 40 pendant lights on it"
+ },
+ {
+  "id": "P004",
+  "name": "Ben",
+  "age": 34,
+  "segment": "Affluent design-led homeowner",
+  "income": 317000,
+  "behaviour": "Pinterest and Instagram saver",
+  "behaviour_how": "Saves statement pieces from social feeds for months and buys when a room comes together.",
+  "objection": "I can't judge the quality from photos",
+  "habit": "you manage two Airbnb units and refresh them every winter"
+ },
+ {
+  "id": "P005",
+  "name": "Jonah",
+  "age": 35,
+  "segment": "Renovating homeowner",
+  "income": 94000,
+  "behaviour": "Pinterest and Instagram saver",
+  "behaviour_how": "Saves statement pieces from social feeds for months and buys when a room comes together.",
+  "objection": "$300 for a light from a brand nobody knows is a lot",
+  "habit": "you have a Pinterest board called 'dining room' with 40 pendant lights on it"
+ },
+ {
+  "id": "P006",
+  "name": "Raj",
+  "age": 57,
+  "segment": "Trade buyer (interior designer, contractor or short-term-rental host)",
+  "income": 102000,
+  "behaviour": "Deal hunter",
+  "behaviour_how": "Waits for sales and promo codes and compares totals across stores.",
+  "objection": "$300 for a light from a brand nobody knows is a lot",
+  "habit": "you have a Pinterest board called 'dining room' with 40 pendant lights on it"
+ },
+ {
+  "id": "P007",
+  "name": "Finn",
+  "age": 37,
+  "segment": "Trade buyer (interior designer, contractor or short-term-rental host)",
+  "income": 136000,
+  "behaviour": "Price checker",
+  "behaviour_how": "Screenshots products and runs them through Google Lens or searches Amazon, Wayfair and AliExpress for the same item before buying.",
+  "objection": "10 to 12 business days is a long wait for a light",
+  "habit": "you manage two Airbnb units and refresh them every winter"
+ },
+ {
+  "id": "P008",
+  "name": "Nia",
+  "age": 32,
+  "segment": "Affluent design-led homeowner",
+  "income": 224000,
+  "behaviour": "Big-retailer loyalist",
+  "behaviour_how": "Buys lighting from Wayfair, Amazon, Lowe's, Lumens or West Elm because returns and delivery are known.",
+  "objection": "$300 for a light from a brand nobody knows is a lot",
+  "habit": "you spent last weekend at a lighting showroom and left without buying"
+ },
+ {
+  "id": "P009",
+  "name": "Celine",
+  "age": 50,
+  "segment": "First-home buyer on a budget",
+  "income": 89000,
+  "behaviour": "Reads every review",
+  "behaviour_how": "Will not buy from a store without reviews, Trustpilot or a track record; checks 'is X legit' before paying.",
+  "objection": "I've never heard of this store, is it legit?",
+  "habit": "you just closed on a house and every room has builder-grade flush mounts"
+ },
+ {
+  "id": "P010",
+  "name": "Esme",
+  "age": 31,
+  "segment": "Renovating homeowner",
+  "income": 103000,
+  "behaviour": "Deadline buyer",
+  "behaviour_how": "Has a move-in, listing or electrician date and needs fixtures in hand within a week or two.",
+  "objection": "Is it UL listed and safe, and will my electrician install it?",
+  "habit": "you just closed on a house and every room has builder-grade flush mounts"
+ },
+ {
+  "id": "P011",
+  "name": "Theo",
+  "age": 36,
+  "segment": "Affluent design-led homeowner",
+  "income": 196000,
+  "behaviour": "Spec-driven project planner",
+  "behaviour_how": "Needs exact dimensions, lumens, colour temperature, UL listing and install details for the electrician; buys a room at a time.",
+  "objection": "Return shipping on a big fixture would cost me a fortune",
+  "habit": "you are halfway through redoing your kitchen and the electrician comes back in three weeks"
+ },
+ {
+  "id": "P012",
+  "name": "Omar",
+  "age": 32,
+  "segment": "Renovating homeowner",
+  "income": 139000,
+  "behaviour": "Pinterest and Instagram saver",
+  "behaviour_how": "Saves statement pieces from social feeds for months and buys when a room comes together.",
+  "objection": "$300 for a light from a brand nobody knows is a lot",
+  "habit": "you are halfway through redoing your kitchen and the electrician comes back in three weeks"
+ },
+ {
+  "id": "P013",
+  "name": "Emma",
+  "age": 56,
+  "segment": "Renovating homeowner",
+  "income": 85000,
+  "behaviour": "Reads every review",
+  "behaviour_how": "Will not buy from a store without reviews, Trustpilot or a track record; checks 'is X legit' before paying.",
+  "objection": "I've never heard of this store, is it legit?",
+  "habit": "you have a Pinterest board called 'dining room' with 40 pendant lights on it"
+ },
+ {
+  "id": "P014",
+  "name": "Malik",
+  "age": 57,
+  "segment": "Renovating homeowner",
+  "income": 104000,
+  "behaviour": "Big-retailer loyalist",
+  "behaviour_how": "Buys lighting from Wayfair, Amazon, Lowe's, Lumens or West Elm because returns and delivery are known.",
+  "objection": "$300 for a light from a brand nobody knows is a lot",
+  "habit": "you spent last weekend at a lighting showroom and left without buying"
+ },
+ {
+  "id": "P015",
+  "name": "Idris",
+  "age": 41,
+  "segment": "Affluent design-led homeowner",
+  "income": 293000,
+  "behaviour": "Price checker",
+  "behaviour_how": "Screenshots products and runs them through Google Lens or searches Amazon, Wayfair and AliExpress for the same item before buying.",
+  "objection": "I can't judge the quality from photos",
+  "habit": "you are halfway through redoing your kitchen and the electrician comes back in three weeks"
+ },
+ {
+  "id": "P016",
+  "name": "Kofi",
+  "age": 50,
+  "segment": "Affluent design-led homeowner",
+  "income": 308000,
+  "behaviour": "Spec-driven project planner",
+  "behaviour_how": "Needs exact dimensions, lumens, colour temperature, UL listing and install details for the electrician; buys a room at a time.",
+  "objection": "$300 for a light from a brand nobody knows is a lot",
+  "habit": "you are halfway through redoing your kitchen and the electrician comes back in three weeks"
+ },
+ {
+  "id": "P017",
+  "name": "Gabriel",
+  "age": 39,
+  "segment": "First-home buyer on a budget",
+  "income": 88000,
+  "behaviour": "Reads every review",
+  "behaviour_how": "Will not buy from a store without reviews, Trustpilot or a track record; checks 'is X legit' before paying.",
+  "objection": "I've never heard of this store, is it legit?",
+  "habit": "you spent last weekend at a lighting showroom and left without buying"
+ },
+ {
+  "id": "P018",
+  "name": "Darius",
+  "age": 37,
+  "segment": "Renovating homeowner",
+  "income": 94000,
+  "behaviour": "Price checker",
+  "behaviour_how": "Screenshots products and runs them through Google Lens or searches Amazon, Wayfair and AliExpress for the same item before buying.",
+  "objection": "10 to 12 business days is a long wait for a light",
+  "habit": "you just closed on a house and every room has builder-grade flush mounts"
+ },
+ {
+  "id": "P019",
+  "name": "Priya",
+  "age": 58,
+  "segment": "Renovating homeowner",
+  "income": 147000,
+  "behaviour": "Deadline buyer",
+  "behaviour_how": "Has a move-in, listing or electrician date and needs fixtures in hand within a week or two.",
+  "objection": "I can't judge the quality from photos",
+  "habit": "you order most things on Amazon Prime"
+ },
+ {
+  "id": "P020",
+  "name": "Lucia",
+  "age": 28,
+  "segment": "First-home buyer on a budget",
+  "income": 66000,
+  "behaviour": "Deal hunter",
+  "behaviour_how": "Waits for sales and promo codes and compares totals across stores.",
+  "objection": "Is it UL listed and safe, and will my electrician install it?",
+  "habit": "you have a Pinterest board called 'dining room' with 40 pendant lights on it"
+ }
+]

@@ -1,0 +1,13 @@
+{
+  "id": "P091",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "I buy against a move-in or listing date and need fixtures in hand within a week or two. 10 to 12 business days for in-stock is already too slow, and 6 weeks for made-to-order is out of the question.",
+  "objection": "10 to 12 business days is a long wait for a light, and I've never heard of this store. I'm not betting a install date on an unknown seller, and I'd pay return shipping if the fixture is wrong.",
+  "would_change_my_mind": "Guaranteed delivery in 5 to 7 days with a tracked ship date, or a trade account with sample or expedited shipping and free returns.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 450,
+  "price_too_expensive": 750
+}

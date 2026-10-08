@@ -1,0 +1,13 @@
+{
+  "id": "P018",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I'd screenshot that cloud pendant and run it through Google Lens first, and I'd bet the same fixture is on Amazon or AliExpress for a lot less. A store I've never heard of with almost no reviews and a 2 to 3 week wait for a light isn't winning over a listing I can get in a few days.",
+  "objection": "Unknown store, hardly any reviews, and $360 for something I can probably find cheaper elsewhere. 2 to 3 weeks is a long wait for a light when I'm living with builder-grade flush mounts right now.",
+  "would_change_my_mind": "Seeing that the same fixture isn't sold cheaper elsewhere, plus a handful of real verified reviews with photos and delivery in under a week.",
+  "price_too_cheap": 120,
+  "price_cheap": 200,
+  "price_expensive": 320,
+  "price_too_expensive": 450
+}

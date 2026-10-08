@@ -1,0 +1,13 @@
+{
+  "id": "P015",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "I'd run that paper cloud pendant through Google Lens in about a minute and I'm pretty sure I'd find the same shape on Amazon or AliExpress for a fraction of $249. The reviews and the returns policy are nice, but they don't tell me why this one is worth the premium.",
+  "objection": "I can't judge the quality from photos, and a white paper cloud light looks like a commodity item, so I don't see what I'm paying $249 for over the cheaper lookalikes.",
+  "would_change_my_mind": "Proof this isn't the generic factory piece, such as a cheap sample of the paper and diffuser, or a side-by-side with the Amazon version showing a real difference in materials and light quality.",
+  "price_too_cheap": 60,
+  "price_cheap": 130,
+  "price_expensive": 300,
+  "price_too_expensive": 450
+}

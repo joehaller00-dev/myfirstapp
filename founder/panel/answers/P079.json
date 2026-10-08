@@ -1,0 +1,13 @@
+{
+  "id": "P079",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish, and I'd rather pay a bit more at Wayfair or Lowe's where I know how delivery and returns work. $360 is a lot for me on a first-home budget to risk on a store I can't vouch for.",
+  "objection": "If the light shows up looking different or damaged and I just change my mind, I'm paying return shipping on a big boxed fixture, and that could cost me a fortune on top of a $360 light.",
+  "would_change_my_mind": "Free returns (or a prepaid return label), plus some proof they're a real store, like reviews from verified buyers or a name I recognise.",
+  "price_too_cheap": 70,
+  "price_cheap": 140,
+  "price_expensive": 280,
+  "price_too_expensive": 420
+}

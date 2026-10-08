@@ -1,0 +1,13 @@
+{
+  "id": "P067",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and there's not a single review, Trustpilot score or track record on the page. I'm not putting $360 on a light from a store I can't verify as legit, especially with 10-12 days to ship and return freight on me if it looks cheap in person.",
+  "objection": "$300+ for a light from a brand nobody knows, with no reviews or track record I can check, and I pay return shipping if it's not what the photos promised.",
+  "would_change_my_mind": "A solid base of real verified reviews (Trustpilot or similar) with photos from actual customers, plus free returns or a cheap sample/swatch so I can see the quality before committing.",
+  "price_too_cheap": 120,
+  "price_cheap": 200,
+  "price_expensive": 350,
+  "price_too_expensive": 550
+}

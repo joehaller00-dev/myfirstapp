@@ -1,0 +1,13 @@
+{
+  "id": "P035",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and the cloud pendant looks like something I'd find on Amazon or AliExpress for a lot less. I'd screenshot it, run it through Google Lens, and either buy it from the cheaper seller or move on.",
+  "objection": "Is this store legit, or is it reselling a generic import at a markup? There are no reviews, no brand story, and no way to see the quality, plus I'd pay return shipping on a big, awkward box if it looks wrong in my dining room.",
+  "would_change_my_mind": "Real customer photos and reviews from verified buyers, proof the store makes or designs its own pieces rather than reselling, a free sample or swatch, and free returns on a fixture this size.",
+  "price_too_cheap": 120,
+  "price_cheap": 220,
+  "price_expensive": 420,
+  "price_too_expensive": 650
+}

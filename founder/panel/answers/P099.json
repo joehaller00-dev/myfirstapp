@@ -1,0 +1,13 @@
+{
+  "id": "P099",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I have never heard of this store and I would be spending $300+ on a light for a kitchen I am midway through. I would price-check it against stores I already know before handing over a card.",
+  "objection": "Unknown store, 10 to 12 business days is a long wait with the electrician due in three weeks, and I pay return shipping on a big fragile fixture if it is not right.",
+  "would_change_my_mind": "Free returns, a firm delivery date, and solid independent reviews of the store, plus a promo code deeper than 10% off.",
+  "price_too_cheap": 120,
+  "price_cheap": 240,
+  "price_expensive": 430,
+  "price_too_expensive": 620
+}

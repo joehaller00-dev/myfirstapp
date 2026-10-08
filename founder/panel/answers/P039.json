@@ -1,0 +1,13 @@
+{
+  "id": "P039",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and nothing here shows reviews, Trustpilot or a track record, so I'd be googling 'is Nora Furnish legit' before I'd put $360 on it. And I'm not paying return shipping on a big fixture if it arrives looking nothing like the photo.",
+  "objection": "Return shipping on a big fixture would cost me a fortune, and with no reviews or track record I have no way to know what's in the box before I'm stuck with it.",
+  "would_change_my_mind": "Lots of real, independent reviews (Trustpilot or similar) from people who bought fixtures like this, plus free return shipping or a prepaid return label.",
+  "price_too_cheap": 90,
+  "price_cheap": 250,
+  "price_expensive": 450,
+  "price_too_expensive": 700
+}

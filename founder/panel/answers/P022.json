@@ -1,0 +1,13 @@
+{
+  "id": "P022",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I have never heard of Nora Furnish and nothing here tells me the fixtures are UL listed. I would save the pendant to a board and keep looking, not buy a hardwired light from a store I don't know.",
+  "objection": "Is it UL listed and safe, and will my electrician install it? Nothing here says so, and I'm not putting an unknown fixture in a rental unit. A paper pendant for $360 from a store I don't know also makes me doubt the build quality, and I'd pay return shipping if it looks cheap in person.",
+  "would_change_my_mind": "A visible UL or ETL listing on the product page, plus real customer photos and reviews, and free return shipping on a fixture that disappoints.",
+  "price_too_cheap": 120,
+  "price_cheap": 250,
+  "price_expensive": 550,
+  "price_too_expensive": 900
+}

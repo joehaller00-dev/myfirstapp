@@ -1,0 +1,13 @@
+{
+  "id": "P001",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "I'd screenshot that paper cloud pendant, run it through Google Lens and find a near-identical one on Amazon or Wayfair for a lot less, and I already have Prime. Sixty reviews on a store I've never heard of isn't enough for me to pay a premium over a lookalike I can get in two days.",
+  "objection": "I can't judge the quality from photos, and for $249 I can't tell what I'm getting over the $90 version on Amazon that looks the same.",
+  "would_change_my_mind": "Proof that it's a different product from the Amazon lookalikes (not the same factory item rebranded), plus a cheap sample or swatch I can hold, or a trade price that gets it close to Amazon pricing.",
+  "price_too_cheap": 60,
+  "price_cheap": 120,
+  "price_expensive": 280,
+  "price_too_expensive": 400
+}

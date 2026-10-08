@@ -1,0 +1,5 @@
+Nora Furnish (norafurnish.com), an online lighting store run by its founder in Edmond, Oklahoma. It sells a curated line of about 150 pendants, chandeliers and wall lights, each sampled and inspected before it is listed. The store has 60 verified-buyer reviews (average 4.7), most with photos of the light installed in the buyer's home, also shown on Google.
+Example piece: White Paper Cloud Pendant Light, 23.6 inches wide, LED with 3 switchable color temperatures, UL listed (listing number shown), full spec sheet, $249.
+This piece is stocked in the US: ships in 1 business day and arrives in 3 to 5 business days. Free shipping and free 30-day returns with a prepaid label. 1-year warranty on the LEDs and driver.
+Free sizing help: send a photo of your room and get a size and hanging-height recommendation within one business day. Phone, text and chat support, Monday to Friday.
+Buy 2 or more from the same collection and save 10%. Trade accounts (designers, contractors, rental hosts) get 15% off.

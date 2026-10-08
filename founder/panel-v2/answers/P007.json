@@ -1,0 +1,13 @@
+{
+  "id": "P007",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "I'd screenshot that paper cloud pendant and find a near-identical one on Amazon or AliExpress for a fraction of $359.99, and I buy for two Airbnb units so I'm not paying a premium for a store I've never heard of. The UL listing and the returns are nice, but they don't close that gap.",
+  "objection": "It's a new store with hardly any reviews, 2 to 3 weeks is a long wait for a light, and I can almost certainly find the same lamp cheaper elsewhere.",
+  "would_change_my_mind": "A trade or multi-unit price clearly below what the lookalikes cost, plus a firm delivery date well inside 2 weeks, and a few verified reviews from other hosts or designers.",
+  "price_too_cheap": 90,
+  "price_cheap": 170,
+  "price_expensive": 280,
+  "price_too_expensive": 420
+}

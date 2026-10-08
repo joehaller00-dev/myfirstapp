@@ -1,0 +1,13 @@
+{
+  "id": "P017",
+  "buys": true,
+  "purchases_first_month": 1,
+  "reason_code": "trust",
+  "reason": "I'd normally bounce off a store I've never heard of, but 60 verified reviews with real install photos, the same reviews on Google, a UL number I can look up, and free 30-day returns take most of the risk out. I'd still Google the store name first, and if that comes up clean I'd order one pendant.",
+  "objection": "I've never heard of this store. Sixty reviews is a small number, there's no Trustpilot page, and it's one person in Oklahoma, so I worry about what happens if the light arrives damaged or the founder is out sick.",
+  "would_change_my_mind": "Finding a bad pattern in the Google reviews or Trustpilot (unanswered complaints, refund fights), or the UL listing number not checking out. A Trustpilot page with a decent score would make me more comfortable.",
+  "price_too_cheap": 80,
+  "price_cheap": 150,
+  "price_expensive": 300,
+  "price_too_expensive": 420
+}

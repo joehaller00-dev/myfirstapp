@@ -1,0 +1,13 @@
+{
+  "id": "P038",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and nothing here says the fixture is UL listed. I'm not putting an unknown $360 pendant over my dining table when my electrician has to sign off on it.",
+  "objection": "Is it UL listed and safe, and will my electrician install it? There are no lumens, wattage, canopy size, wiring or hanging specs, and I'd pay return shipping on a big pendant if it turns out wrong. A made-to-order wait of 6 weeks would also stall my renovation.",
+  "would_change_my_mind": "A UL/ETL listing shown on the product page, a full spec sheet (lumens, CRI, wattage, canopy and drop dimensions, install guide), and proof from real customers who installed it, plus free return shipping or a sample.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 450,
+  "price_too_expensive": 750
+}

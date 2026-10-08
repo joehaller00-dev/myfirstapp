@@ -1,0 +1,13 @@
+{
+  "id": "P016",
+  "buys": true,
+  "purchases_first_month": 1,
+  "reason_code": "trust",
+  "reason": "A UL listing number I can check, a full spec sheet for the electrician and photo reviews from real homes take most of the risk out, and free 30-day returns make $249 an easy thing to try. I'd order one before the electrician comes and send it back if the spec sheet or the finish is off.",
+  "objection": "It's a brand nobody knows, and I can't tell from this whether the lumens, the actual color temperature values and the canopy and wiring details are really on that spec sheet. If I find that out after the electrician has booked the day, I'm stuck.",
+  "would_change_my_mind": "",
+  "price_too_cheap": 60,
+  "price_cheap": 150,
+  "price_expensive": 350,
+  "price_too_expensive": 600
+}

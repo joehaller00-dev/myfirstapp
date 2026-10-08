@@ -1,0 +1,13 @@
+{
+  "id": "P068",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I'd never heard of Nora Furnish and $360 is real money on my budget. There's no UL listing, no lumens and no install details, and my electrician is back in three weeks, so I can't gamble on a no-name light that might not pass.",
+  "objection": "A brand nobody knows, no UL listing or lumens or mounting specs shown, and I pay return shipping if it doesn't work out. That's a lot of risk for $360 with a hard install date.",
+  "would_change_my_mind": "A full spec sheet with UL/ETL listing, lumens, dimensions and canopy details, real customer reviews with photos, and free returns or a guaranteed in-stock delivery date before my electrician comes.",
+  "price_too_cheap": 120,
+  "price_cheap": 200,
+  "price_expensive": 300,
+  "price_too_expensive": 420
+}

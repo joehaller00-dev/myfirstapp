@@ -1,0 +1,13 @@
+{
+  "id": "P025",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I buy fixtures from Wayfair, Lowe's or West Elm because I know how returns and delivery work there, and I've never heard of Nora Furnish. A big fixture shipped back on my dime if I change my mind is a gamble I don't need to take with a whole house to light.",
+  "objection": "Return shipping on a big fixture would cost me a fortune, and I have no idea if this company will still answer the phone if something arrives cracked or wrong.",
+  "would_change_my_mind": "Free returns (or a prepaid label) on the first order, plus a sample or reviews from other designers or hosts I can check.",
+  "price_too_cheap": 120,
+  "price_cheap": 220,
+  "price_expensive": 480,
+  "price_too_expensive": 750
+}

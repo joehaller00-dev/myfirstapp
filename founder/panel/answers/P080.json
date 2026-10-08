@@ -1,0 +1,13 @@
+{
+  "id": "P080",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish, and I buy lighting from Wayfair, Amazon or Lowe's because I know how delivery and returns work. That paper cloud pendant looks like something I could find cheaper on Amazon or AliExpress.",
+  "objection": "Unknown store, 10 to 12 days delivery (6 weeks if made to order), and I'd pay return shipping on a bulky fixture if it looks wrong. $360 is a lot to risk on a site I don't know.",
+  "would_change_my_mind": "Free returns on a fixture I'm unsure about, plus reviews from real buyers or a listing on Amazon or Wayfair, and a price closer to $200 to $250 for the cloud pendant.",
+  "price_too_cheap": 80,
+  "price_cheap": 150,
+  "price_expensive": 280,
+  "price_too_expensive": 400
+}

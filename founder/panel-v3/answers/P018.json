@@ -1,0 +1,13 @@
+{
+  "id": "P018",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "A white paper cloud pendant is a generic style, and I'd screenshot it into Google Lens and find near-identical ones on Amazon, Wayfair and AliExpress for well under $249. The UL listing, reviews and free returns are nice, but I'm not paying a premium for them when I have a whole house of flush mounts to replace.",
+  "objection": "I can probably find the same cloud pendant for half the price elsewhere, and nothing here proves this one is actually better than that.",
+  "would_change_my_mind": "A side-by-side showing what makes this one different from the cheap lookalikes (materials, LED quality, the sampling and inspection), or a price closer to $150, or a bigger discount for buying several fixtures for the house.",
+  "price_too_cheap": 60,
+  "price_cheap": 120,
+  "price_expensive": 230,
+  "price_too_expensive": 350
+}

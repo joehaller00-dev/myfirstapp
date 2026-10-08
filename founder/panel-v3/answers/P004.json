@@ -1,0 +1,13 @@
+{
+  "id": "P004",
+  "buys": true,
+  "purchases_first_month": 1,
+  "reason_code": "trust",
+  "reason": "Free 30-day returns, real buyer photos and a UL number make it low-risk to order one for an Airbnb refresh, and the 15% trade rate helps. I'd start with a single piece, not a whole order.",
+  "objection": "I can't judge the quality from photos. Paper and LED fixtures can look cheap in person, and I've never heard of this store.",
+  "would_change_my_mind": "A short video of the actual pendant lit up, or a way to see the material in person, would make me comfortable buying more than one.",
+  "price_too_cheap": 80,
+  "price_cheap": 150,
+  "price_expensive": 320,
+  "price_too_expensive": 480
+}

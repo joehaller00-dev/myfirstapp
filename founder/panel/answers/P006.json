@@ -1,0 +1,13 @@
+{
+  "id": "P006",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and I buy lighting from Wayfair, Amazon or Lowe's because I know how delivery and returns go. For a client or a rental I'm not putting an unknown store's fixture in a project when I can't tell the quality from photos.",
+  "objection": "I can't judge the quality from photos, and if it's wrong I'm paying return shipping on a bulky fixture to a store I don't know. 10 to 12 business days, or 6 weeks for made-to-order, is also slow when a job has a deadline.",
+  "would_change_my_mind": "A trade or designer program with a free sample or swatch, free returns, real reviews with customer photos, and a clear spec sheet (materials, certifications like UL/ETL listing, dimensions). Faster guaranteed delivery would help too.",
+  "price_too_cheap": 120,
+  "price_cheap": 220,
+  "price_expensive": 450,
+  "price_too_expensive": 650
+}

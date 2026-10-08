@@ -1,0 +1,13 @@
+{
+  "id": "P078",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "10 to 12 business days is a long wait for a light when my electrician is booked and I normally get things from Amazon Prime in two days. I've never heard of this store, and I'd be spending a few hundred dollars on a first-home budget.",
+  "objection": "I can't see the exact dimensions, lumens, UL listing or install details for the electrician, and the store is unknown to me with a 10 to 12 business day wait and return shipping on me if I change my mind.",
+  "would_change_my_mind": "A full spec sheet showing lumens, UL listing and install details, plus delivery in under a week or free returns.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 380,
+  "price_too_expensive": 550
+}

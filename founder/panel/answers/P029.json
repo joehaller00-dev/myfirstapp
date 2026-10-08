@@ -1,0 +1,13 @@
+{
+  "id": "P029",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and I'd screenshot that cloud pendant into Google Lens and find the same thing on Amazon or AliExpress for less. For $360 I'm not ordering from an unknown shop on photos alone.",
+  "objection": "I can't judge the quality from photos, and a no-name store with a 6 week wait and return shipping on me if I change my mind is too much risk for a fixture that has to look right in a guest-facing unit.",
+  "would_change_my_mind": "Real customer photos and reviews from a source I trust, plus a paid sample or swatch of the paper and a free return even if I just change my mind.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 320,
+  "price_too_expensive": 480
+}

@@ -1,0 +1,13 @@
+{
+  "id": "P001",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "I'd screenshot that paper cloud pendant, run it through Google Lens and find a near-identical one on Amazon or AliExpress for a fraction of $360. I've never heard of this store, and there's no trade pricing, so I'd just buy the cheaper one on Prime.",
+  "objection": "I can't judge the quality from photos, and nothing here shows me why this one is worth more than the lookalikes I can get for $100 to $150 with two-day Prime shipping. A new store with almost no reviews and a 2 to 3 week wait doesn't help.",
+  "would_change_my_mind": "A trade or designer discount (15 to 20% off), or a $10 to $15 physical sample or swatch of the paper and fixture finish shipped to me before I commit to the full price.",
+  "price_too_cheap": 60,
+  "price_cheap": 150,
+  "price_expensive": 280,
+  "price_too_expensive": 450
+}

@@ -1,0 +1,159 @@
+{
+ "business": "Nora Furnish (norafurnish.com), an online store for modern and statement lighting and home decor",
+ "seed": 18297,
+ "dealt": 20,
+ "answered": 20,
+ "skipped": [],
+ "buys": 0,
+ "passes": 20,
+ "buy_rate": 0.0,
+ "by_segment": [
+  [
+   "Trade buyer (interior designer, contractor or short-term-rental host)",
+   3,
+   0.0
+  ],
+  [
+   "First-home buyer on a budget",
+   4,
+   0.0
+  ],
+  [
+   "Renovating homeowner",
+   8,
+   0.0
+  ],
+  [
+   "Affluent design-led homeowner",
+   5,
+   0.0
+  ]
+ ],
+ "by_behaviour": [
+  [
+   "Price checker",
+   4,
+   0.0
+  ],
+  [
+   "Big-retailer loyalist",
+   3,
+   0.0
+  ],
+  [
+   "Reads every review",
+   4,
+   0.0
+  ],
+  [
+   "Pinterest and Instagram saver",
+   3,
+   0.0
+  ],
+  [
+   "Deal hunter",
+   2,
+   0.0
+  ],
+  [
+   "Deadline buyer",
+   2,
+   0.0
+  ],
+  [
+   "Spec-driven project planner",
+   2,
+   0.0
+  ]
+ ],
+ "by_income": [
+  [
+   "$147,000 and up",
+   7,
+   0.0
+  ],
+  [
+   "under $94,000",
+   5,
+   0.0
+  ],
+  [
+   "$94,000 to $147,000",
+   8,
+   0.0
+  ]
+ ],
+ "why_not": [
+  [
+   "trust",
+   14,
+   [
+    "I buy lighting from Wayfair, Amazon or Lowe's because I know how returns and delivery work, and I have never heard of Nora Furnish. UL listing numbers and free returns are good signs, but with almost no reviews and 2 to 3 weeks delivery I would stick with the big retailers for my Airbnb refresh.",
+    "I won't spend $360 on a light from a store I've never heard of that has barely any reviews. The UL listing numbers and the free returns are nice, but I'd still be the guinea pig, and I have 40 pendants on my Pinterest board to pick from elsewhere."
+   ],
+   [
+    "P002",
+    "P003"
+   ]
+  ],
+  [
+   "timing",
+   3,
+   [
+    "I need fixtures in hand within a week or two for my electrician, and 2 to 3 weeks of delivery doesn't work for that. The UL listing and the returns are reassuring, but I've never heard of this store and it has almost no reviews.",
+    "The spec sheet, UL numbers and free returns are what I look for, but 2 to 3 weeks delivery with my electrician back in three weeks leaves no slack if it slips or the size is wrong. I will not hang my kitchen schedule on a store I have never heard of."
+   ],
+   [
+    "P010",
+    "P016"
+   ]
+  ],
+  [
+   "price",
+   2,
+   [
+    "I'd screenshot that paper cloud pendant, run it through Google Lens and find a near-identical one on Amazon or AliExpress for a fraction of $360. I've never heard of this store, and there's no trade pricing, so I'd just buy the cheaper one on Prime.",
+    "I'd screenshot that paper cloud pendant and find a near-identical one on Amazon or AliExpress for a fraction of $359.99, and I buy for two Airbnb units so I'm not paying a premium for a store I've never heard of. The UL listing and the returns are nice, but they don't close that gap."
+   ],
+   [
+    "P001",
+    "P007"
+   ]
+  ],
+  [
+   "quality",
+   1,
+   [
+    "I can't tell from photos whether a paper cloud pendant is actually well made, and I'd screenshot it and find near-identical ones on Amazon or Wayfair for a fraction of $360. A store I've never heard of with almost no reviews isn't enough to make me skip that comparison, even with free returns."
+   ],
+   [
+    "P015"
+   ]
+  ]
+ ],
+ "why_yes": [],
+ "flip": [
+  "A trade or designer discount (15 to 20% off), or a $10 to $15 physical sample or swatch of the paper and fixture finish shipped to me before I commit to the full price.",
+  "A pile of verified reviews from real buyers, or the same fixture listed on Amazon or Wayfair where I already trust the returns.",
+  "A solid pile of independent reviews (Trustpilot, Google, photos from real buyers in real rooms) or seeing the store mentioned by a design blog or renovation forum I trust.",
+  "Real customer photos of installed pieces, close-up video showing the material and finish, or a cheap fabric or material sample I could hold before ordering.",
+  "A bunch of verified reviews with real customer photos of the pendant hanging in a home, or a cheap swatch/sample so I can see the material in person.",
+  "A real discount or trade pricing that brings the price near $250, plus a handful of verified reviews with photos, or a cheap sample or swatch to check the quality first.",
+  "A trade or multi-unit price clearly below what the lookalikes cost, plus a firm delivery date well inside 2 weeks, and a few verified reviews from other hosts or designers.",
+  "A decent number of verified reviews with real customer photos, or the same pendant at a retailer I already trust.",
+  "A solid pile of independent reviews (Trustpilot or similar) from real buyers with photos, and some history showing the store has been around and handles returns and damage claims properly.",
+  "A guaranteed in-stock delivery date within 7 to 10 days, or a few in-stock pieces that ship in days.",
+  "A firm ship-by date guaranteed to arrive before the electrician visit, plus a free sample or swatch of the paper shade, or a meaningful number of verified reviews with photos of installed fixtures.",
+  "Photos from real buyers with the light hung in an actual kitchen, plus a confirmed delivery date that clears my electrician with a week to spare.",
+  "A solid number of verified reviews with photos from real buyers, plus a Trustpilot or similar page and some independent track record (press, a real address, people on Pinterest or Houzz showing the lights installed).",
+  "A lower price, around $250 to $300, or seeing the same fixture reviewed by real buyers or sold through a retailer I already trust, like Wayfair or Amazon.",
+  "A cheap sample of the shade material, or clear real-life photos and video from verified buyers showing the finish, plus proof it isn't the same item sold under other names for much less.",
+  "A firm ship-by date guaranteed in writing at least a week before my electrician comes, or stock that ships in a few days, plus a UL listing number I can verify and a few verified reviews with photos.",
+  "A solid base of independent reviews (Trustpilot or similar) and some track record showing they ship and honour returns, or a recommendation from someone I know who bought from them.",
+  "Seeing that the same fixture isn't sold cheaper elsewhere, plus a handful of real verified reviews with photos and delivery in under a week.",
+  "Fixtures in stock and delivered within about 7 days, with a firm date shown at checkout. Or a cheap sample or swatch I could see before committing, plus a handful of real reviews with customer photos.",
+  "A handful of verified reviews with photos of the fixture installed, or a first-order code or sale that puts it clearly below what I can find elsewhere."
+ ],
+ "purchases_first_month_per_buyer": null,
+ "price_answers": 20
+}

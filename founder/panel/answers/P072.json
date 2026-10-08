@@ -1,0 +1,13 @@
+{
+  "id": "P072",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and I'm not putting $360 on a card for something I can't see in person. I've got 40 pendants saved and I'm in no rush, so I'll stay with the brands I already know.",
+  "objection": "I've never heard of this store, is it legit? If the light shows up looking cheap, I pay return shipping on a big fragile box and there's nothing to say they'd stand behind it.",
+  "would_change_my_mind": "Real customer photos and reviews from owners of that pendant, plus a free-return policy or a cheap fabric sample so I can check the quality first.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 450,
+  "price_too_expensive": 800
+}

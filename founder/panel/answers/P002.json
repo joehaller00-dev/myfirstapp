@@ -1,0 +1,13 @@
+{
+  "id": "P002",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and nothing here shows reviews, a Trustpilot page or any track record, so I wouldn't put $360 on a card for a lamp I can't see in person. I'd Google 'is norafurnish legit' first, and with a 6-week wait and return shipping on me, there's no reason to take the risk.",
+  "objection": "I can't judge the quality from photos, and with no reviews or track record I have no way to know whether the paper, the finish and the LED are good or cheap. If it arrives and looks flimsy, I pay to ship it back.",
+  "would_change_my_mind": "A lot of independent reviews (Trustpilot, Google, photos from real customers in real rooms), a free return on a change of mind or a sample of the material, and some sign the company has been around for years.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 450,
+  "price_too_expensive": 700
+}

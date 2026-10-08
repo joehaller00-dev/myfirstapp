@@ -1,0 +1,13 @@
+{
+  "id": "P015",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and I'd screenshot that cloud pendant and run it through Google Lens first. Odds are I'd find the same paper pendant on Amazon or AliExpress for a lot less, and I walked out of a showroom last weekend without buying, so I'm not in a rush.",
+  "objection": "I've never heard of this store, is it legit? Ten to twelve business days is slow, six weeks for made-to-order is worse, and if I change my mind I pay return shipping on a big fragile fixture.",
+  "would_change_my_mind": "Seeing the exact same pendant is not cheaper elsewhere, plus real third-party reviews with customer photos and free return shipping.",
+  "price_too_cheap": 90,
+  "price_cheap": 190,
+  "price_expensive": 400,
+  "price_too_expensive": 650
+}

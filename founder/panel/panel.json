@@ -1,0 +1,102 @@
+{
+ "n": 100,
+ "seed": 18297,
+ "customer": {
+  "business": "Nora Furnish (norafurnish.com), an online store for modern and statement lighting and home decor",
+  "target": "US homeowners, 28 to 60, buying statement or replacement lighting ($150 to $1,000 a fixture) online for a renovation, a new home or a room refresh",
+  "where": "United States, online",
+  "age": [
+   28,
+   60
+  ],
+  "segments": [
+   {
+    "name": "Renovating homeowner",
+    "share": 0.4,
+    "income": [
+     75000,
+     150000
+    ]
+   },
+   {
+    "name": "Affluent design-led homeowner",
+    "share": 0.25,
+    "income": [
+     150000,
+     350000
+    ]
+   },
+   {
+    "name": "First-home buyer on a budget",
+    "share": 0.2,
+    "income": [
+     50000,
+     90000
+    ]
+   },
+   {
+    "name": "Trade buyer (interior designer, contractor or short-term-rental host)",
+    "share": 0.15,
+    "income": [
+     80000,
+     200000
+    ]
+   }
+  ],
+  "behaviours": [
+   {
+    "name": "Reads every review",
+    "share": 0.2,
+    "how": "Will not buy from a store without reviews, Trustpilot or a track record; checks 'is X legit' before paying."
+   },
+   {
+    "name": "Price checker",
+    "share": 0.18,
+    "how": "Screenshots products and runs them through Google Lens or searches Amazon, Wayfair and AliExpress for the same item before buying."
+   },
+   {
+    "name": "Big-retailer loyalist",
+    "share": 0.15,
+    "how": "Buys lighting from Wayfair, Amazon, Lowe's, Lumens or West Elm because returns and delivery are known."
+   },
+   {
+    "name": "Pinterest and Instagram saver",
+    "share": 0.15,
+    "how": "Saves statement pieces from social feeds for months and buys when a room comes together."
+   },
+   {
+    "name": "Spec-driven project planner",
+    "share": 0.12,
+    "how": "Needs exact dimensions, lumens, colour temperature, UL listing and install details for the electrician; buys a room at a time."
+   },
+   {
+    "name": "Deadline buyer",
+    "share": 0.1,
+    "how": "Has a move-in, listing or electrician date and needs fixtures in hand within a week or two."
+   },
+   {
+    "name": "Deal hunter",
+    "share": 0.1,
+    "how": "Waits for sales and promo codes and compares totals across stores."
+   }
+  ],
+  "objections": [
+   "I've never heard of this store, is it legit?",
+   "I can probably find the same light cheaper on Amazon or AliExpress",
+   "10 to 12 business days is a long wait for a light",
+   "Is it UL listed and safe, and will my electrician install it?",
+   "Return shipping on a big fixture would cost me a fortune",
+   "I can't judge the quality from photos",
+   "$300 for a light from a brand nobody knows is a lot"
+  ],
+  "habits": [
+   "you are halfway through redoing your kitchen and the electrician comes back in three weeks",
+   "you just closed on a house and every room has builder-grade flush mounts",
+   "you have a Pinterest board called 'dining room' with 40 pendant lights on it",
+   "you manage two Airbnb units and refresh them every winter",
+   "you order most things on Amazon Prime",
+   "you spent last weekend at a lighting showroom and left without buying"
+  ]
+ },
+ "pitch": "Nora Furnish (norafurnish.com), an online lighting and home decor store you have not heard of before.\nExample piece: White Paper Cloud Pendant Light, 23.6 inches wide, LED with 3 switchable color temperatures, $359.99. Other pendants, chandeliers, wall sconces and outdoor lanterns are mostly $200 to $600.\nFree shipping in the US. In-stock pieces arrive in 10 to 12 business days; made-to-order pieces take about 6 weeks.\n30-day returns: the item must be unused and in its original packaging, and you pay return shipping if you simply change your mind.\n10% off your first order, 10% off 2 items, 15% off 3 or more."
+}

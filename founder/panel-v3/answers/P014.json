@@ -1,0 +1,13 @@
+{
+  "id": "P014",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "I buy lighting from Wayfair, Lowe's or Amazon because I know how delivery and returns work there, and I walked out of a showroom last weekend without buying anything. The free returns and UL listing help, but I'm not switching to a store I've never heard of for a fixture I can't see in person.",
+  "objection": "Sixty reviews on a store nobody knows is thin next to the thousands I see at the big retailers, and $249 is a lot to hand over before I know what the paper actually looks like on my ceiling.",
+  "would_change_my_mind": "Seeing the same pendant on Wayfair or Amazon with a few hundred reviews, or the store sending me a cheap physical sample of the shade to hold up in my room first.",
+  "price_too_cheap": 80,
+  "price_cheap": 150,
+  "price_expensive": 280,
+  "price_too_expensive": 400
+}

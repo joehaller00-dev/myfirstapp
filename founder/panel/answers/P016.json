@@ -1,0 +1,13 @@
+{
+  "id": "P016",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and I'm about to put $360 into a fixture I can't see in person, with an electrician to schedule around it. Nothing here tells me the specs or the UL listing, so I'd go with a brand I know.",
+  "objection": "I can't judge the quality from photos, and the store is unknown to me. If it shows up looking cheap or the wrong size, I'm stuck paying return shipping on a big boxed pendant, and I might wait 6 weeks to find out.",
+  "would_change_my_mind": "A full spec sheet with exact dimensions, lumens, color temperature and a UL listing, plus real customer photos and reviews, and free return shipping or a cheap sample of the material.",
+  "price_too_cheap": 120,
+  "price_cheap": 220,
+  "price_expensive": 450,
+  "price_too_expensive": 650
+}

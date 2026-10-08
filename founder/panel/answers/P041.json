@@ -1,0 +1,13 @@
+{
+  "id": "P041",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "My electrician is back in three weeks and 10 to 12 business days is basically 2 to 2.5 weeks, so one delay and I'm standing there with no light. I've never heard of this store and I'd rather grab something from Amazon that shows up in days.",
+  "objection": "10 to 12 business days from a store I've never heard of leaves me no buffer before the electrician comes, and if it shows up wrong or damaged I'm stuck paying return shipping.",
+  "would_change_my_mind": "A guaranteed delivery date inside 7 to 10 days, or free returns, plus some proof the store is real, like reviews from actual buyers.",
+  "price_too_cheap": 90,
+  "price_cheap": 170,
+  "price_expensive": 300,
+  "price_too_expensive": 450
+}

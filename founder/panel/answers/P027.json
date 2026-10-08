@@ -1,0 +1,13 @@
+{
+  "id": "P027",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish, and I buy lighting from Wayfair, Amazon or Lowe's because I know how returns and delivery work there. Nothing here tells me it's UL listed, and I'm not sending $360 to a store I can't vet.",
+  "objection": "Is it UL listed and safe, and will my electrician install it? The page doesn't say, and I'd pay return shipping on a fixture that turns out wrong. Delivery in 10 to 12 business days, or 6 weeks for made-to-order, is also slow for a renovation schedule.",
+  "would_change_my_mind": "Clear UL/ETL listing on the product page, plus the same pendant on Wayfair or Amazon with Prime delivery and easy returns, or free return shipping and a lot of real customer reviews.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 400,
+  "price_too_expensive": 650
+}

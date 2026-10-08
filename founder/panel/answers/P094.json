@@ -1,0 +1,13 @@
+{
+  "id": "P094",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store, and I'd screenshot that cloud pendant and find the same thing cheaper on Amazon or AliExpress or from a store I already know. For a $360 fixture with an electrician arriving in three weeks, I'm not risking a brand I can't vet.",
+  "objection": "I've never heard of this store, is it legit? If the light shows up late, damaged or not as pictured, I'm stuck paying return shipping on a bulky fixture and my electrician is already here.",
+  "would_change_my_mind": "Lots of real customer photos and reviews from places other than their own site, a firm delivery date that lands well before the electrician, and free returns. Or a price clearly below what the identical pendant costs elsewhere.",
+  "price_too_cheap": 120,
+  "price_cheap": 220,
+  "price_expensive": 380,
+  "price_too_expensive": 550
+}

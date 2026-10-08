@@ -1,0 +1,13 @@
+{
+  "id": "P015",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "quality",
+  "reason": "I can't tell from photos whether a paper cloud pendant is actually well made, and I'd screenshot it and find near-identical ones on Amazon or Wayfair for a fraction of $360. A store I've never heard of with almost no reviews isn't enough to make me skip that comparison, even with free returns.",
+  "objection": "It looks like a lookalike I can find cheaper elsewhere, and I have no way to judge the real material and finish from photos from a brand with hardly any reviews.",
+  "would_change_my_mind": "A cheap sample of the shade material, or clear real-life photos and video from verified buyers showing the finish, plus proof it isn't the same item sold under other names for much less.",
+  "price_too_cheap": 80,
+  "price_cheap": 180,
+  "price_expensive": 400,
+  "price_too_expensive": 650
+}

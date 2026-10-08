@@ -1,0 +1,13 @@
+{
+  "id": "P003",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "The reviews, UL number and free returns are reassuring, but a white paper cloud pendant is a look I can probably find on Amazon for a lot less. I'd pin it to my dining room board and keep comparing.",
+  "objection": "Sixty reviews is a small track record, and I can't tell why this one is worth $249 when lookalike paper pendants are everywhere for a third of that.",
+  "would_change_my_mind": "Proof that it is clearly better made than the Amazon lookalikes (side-by-side photos, materials, how the paper and LED hold up after a year), or a price nearer $180.",
+  "price_too_cheap": 80,
+  "price_cheap": 150,
+  "price_expensive": 260,
+  "price_too_expensive": 380
+}

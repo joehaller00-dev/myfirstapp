@@ -1,0 +1,13 @@
+{
+  "id": "P044",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and I'd screenshot that cloud pendant into Google Lens first to see if it's the same lamp on Amazon or AliExpress for half the price. I'm not putting $360 on a stranger's site when I'd be stuck paying return shipping on a big fixture.",
+  "objection": "I've never heard of this store, is it legit? It looks like a rebranded dropship item, and if it shows up wrong I pay to ship a big pendant back.",
+  "would_change_my_mind": "Proof they're legit (real reviews with photos from buyers, a physical address and a company I can look up) and a price that beats the identical lamp I can find elsewhere, plus free returns on defects.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 330,
+  "price_too_expensive": 480
+}

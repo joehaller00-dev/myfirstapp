@@ -1,0 +1,13 @@
+{
+  "id": "P011",
+  "buys": true,
+  "purchases_first_month": 1,
+  "reason_code": "trust",
+  "reason": "Free prepaid-label returns kill my usual worry about shipping a bulky fixture back, and a shown UL listing number plus a full spec sheet is what my electrician needs. $249 is low risk for a kitchen, so I'd order one and check it against the sheet before the electrician comes.",
+  "objection": "A paper pendant from a small unknown store: I can't tell from this whether the lumens, canopy size and finish match the spec sheet, and 60 reviews is thin. If the paper looks cheap in person I'm returning it.",
+  "would_change_my_mind": "If the spec sheet turned out not to list lumens, CRI and canopy dimensions, or the returns excluded large fixtures, I'd walk away.",
+  "price_too_cheap": 80,
+  "price_cheap": 160,
+  "price_expensive": 350,
+  "price_too_expensive": 550
+}

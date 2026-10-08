@@ -1,0 +1,13 @@
+{
+  "id": "P084",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish, and a white paper cloud pendant looks like something I'd find on Amazon or AliExpress for a lot less once I run it through Google Lens. For $360 I want to know who is behind the store before I hand over money.",
+  "objection": "Return shipping on a big fixture would cost me a fortune, and I'd be paying it if I just change my mind. With an unknown store, a fixture that looks different from the photos, and a 10 to 12 day wait, that's too much risk.",
+  "would_change_my_mind": "Free returns, or a free return label, plus real reviews with customer photos and proof that it isn't just a rebadged marketplace item I can get cheaper elsewhere.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 400,
+  "price_too_expensive": 600
+}

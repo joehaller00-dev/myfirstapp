@@ -1,0 +1,13 @@
+{
+  "id": "P008",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I buy lighting from Wayfair, Lumens or West Elm because I know how delivery and returns work there, and I have never heard of this store. The free returns and UL listing are good, but $360 to a brand with almost no reviews is still a gamble for me.",
+  "objection": "Nobody has heard of them and there are barely any reviews, so I have no proof the paper pendant looks as good in person as in the photos. I would be the guinea pig, and 2 to 3 weeks of waiting is a long time to find that out.",
+  "would_change_my_mind": "A decent number of verified reviews with real customer photos, or the same pendant at a retailer I already trust.",
+  "price_too_cheap": 120,
+  "price_cheap": 220,
+  "price_expensive": 350,
+  "price_too_expensive": 550
+}

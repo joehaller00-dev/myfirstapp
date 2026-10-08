@@ -1,0 +1,13 @@
+{
+  "id": "P017",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and it has almost no reviews, which is exactly what I check before paying. UL listing and free returns are nice, but I'd rather spend $360 where I can read a pile of reviews.",
+  "objection": "A brand new store with hardly any reviews and no track record. Is it legit? I can't find out, and the money is tight on a first home.",
+  "would_change_my_mind": "A solid base of independent reviews (Trustpilot or similar) and some track record showing they ship and honour returns, or a recommendation from someone I know who bought from them.",
+  "price_too_cheap": 80,
+  "price_cheap": 180,
+  "price_expensive": 400,
+  "price_too_expensive": 650
+}

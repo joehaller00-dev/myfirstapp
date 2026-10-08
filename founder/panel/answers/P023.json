@@ -1,0 +1,13 @@
+{
+  "id": "P023",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish, and I buy lighting from Wayfair, Amazon or Lowe's because I know how delivery and returns work there. I'm not putting $360 on a store I don't know when I can get something similar with Prime.",
+  "objection": "Is it UL listed and safe, and will my electrician install it? Nothing here says so. I'd also pay to ship it back if it's wrong, and delivery takes 10 to 12 business days or 6 weeks.",
+  "would_change_my_mind": "A visible UL/ETL listing on the product page, plus free returns and a few real reviews from verified buyers, or the same item available on Amazon or Wayfair.",
+  "price_too_cheap": 80,
+  "price_cheap": 170,
+  "price_expensive": 330,
+  "price_too_expensive": 520
+}

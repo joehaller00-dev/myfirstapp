@@ -1,0 +1,13 @@
+{
+  "id": "P011",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "I need fixtures in hand within a week or two, and 10 to 12 business days for in-stock pieces (6 weeks if made to order) is too slow and too uncertain for my electrician date. On top of that, I've never heard of this store and $360 is a lot to risk on it.",
+  "objection": "I can't tell when it will actually arrive, and I don't know this brand. If it's late or looks cheap in person, I'm stuck paying return shipping with my electrician date already passed.",
+  "would_change_my_mind": "A guaranteed delivery date within about 7 days on in-stock pieces, plus free returns, or reviews from real buyers with photos showing the quality.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 380,
+  "price_too_expensive": 600
+}

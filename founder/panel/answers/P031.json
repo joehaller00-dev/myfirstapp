@@ -1,0 +1,13 @@
+{
+  "id": "P031",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "I've never heard of this store and a paper cloud pendant at $360 looks like something I can find for a lot less on Amazon or AliExpress. The 10% off doesn't move me, since every store has a first-order code.",
+  "objection": "Unknown store, and I'd be paying return shipping on a big fragile light if I change my mind. I can probably find the same light cheaper elsewhere.",
+  "would_change_my_mind": "A side-by-side showing it's a different, better build than the cheap lookalikes, plus free returns and a price closer to $250 with a real stacking promo code.",
+  "price_too_cheap": 90,
+  "price_cheap": 170,
+  "price_expensive": 280,
+  "price_too_expensive": 400
+}

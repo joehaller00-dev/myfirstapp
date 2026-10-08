@@ -1,0 +1,13 @@
+{
+  "id": "P090",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and the listing gives me a width and three color temperatures but no lumens, no UL listing, no canopy size or install details, which my electrician needs before I spend $360 on a fixture. With no retailer track record, I'm not putting a large fixture at risk on a 6-week lead time.",
+  "objection": "If it arrives wrong, too big or looks cheap, I pay return shipping on a big boxed fixture myself, and I can't tell whether it's UL listed or what the real specs are.",
+  "would_change_my_mind": "A full spec sheet with lumens, UL/ETL listing, canopy and weight and install details, plus free return shipping (or a prepaid return label) and real independent reviews with photos from owners.",
+  "price_too_cheap": 80,
+  "price_cheap": 200,
+  "price_expensive": 450,
+  "price_too_expensive": 700
+}

@@ -1,0 +1,92 @@
+{
+  "business": "Nora Furnish (online lighting store, supplier-fulfilled from China)",
+  "unit": "order",
+  "price": 350.0,
+  "variable": [
+    {
+      "label": "Product cost from supplier (est. 25% of order value; recorded costs run 7-44% of current prices, 14% on the $279 hero pendant)",
+      "cost": 87.5
+    },
+    {
+      "label": "Supplier shipping China to US per order (est.; confirm whether Shopify unit cost includes it)",
+      "cost": 30.0
+    },
+    {
+      "label": "Shopify Payments 2.9% + $0.30",
+      "cost": 10.45
+    },
+    {
+      "label": "Refunds allowance (est. 10% of orders refunded and written off; today 4 of 14)",
+      "cost": 35.0
+    },
+    {
+      "label": "Discounts (bundle 10% on extra pieces + one welcome offer; est. 5% of order value)",
+      "cost": 17.5
+    },
+    {
+      "label": "Guarantee stack: free return labels, late-delivery credit, 1-year warranty, damage replacements (offer.md)",
+      "cost": 20.3
+    },
+    {
+      "label": "Blended customer acquisition cost per order (est. $120; paid ads untested)",
+      "cost": 120.0
+    }
+  ],
+  "fixed_monthly": [
+    {
+      "label": "Shopify Basic plan",
+      "cost": 39
+    },
+    {
+      "label": "Apps: Judge.me reviews, delivery-date, email (est.)",
+      "cost": 100
+    },
+    {
+      "label": "Google Workspace, domain, Google Voice (est.)",
+      "cost": 25
+    },
+    {
+      "label": "Ongoing QC samples and photography (est.)",
+      "cost": 200
+    }
+  ],
+  "startup": [
+    {
+      "label": "Sample and inspect 30 hero SKUs (est. $80 each incl. shipping)",
+      "cost": 2400
+    },
+    {
+      "label": "Own product and lifestyle photography of samples (est.)",
+      "cost": 600
+    },
+    {
+      "label": "Trademark clearance opinion on the NORA conflict + USPTO filing for the final name (est.)",
+      "cost": 850
+    },
+    {
+      "label": "Review requests, returns portal and delivery-date app setup (est.)",
+      "cost": 150
+    },
+    {
+      "label": "Relaunch test ad spend, first 30 days (est.)",
+      "cost": 1000
+    }
+  ],
+  "days_per_month": 30,
+  "capacity_per_day": 20,
+  "plan_per_day": 1.0,
+  "ramp_per_day": [
+    0.05,
+    0.1,
+    0.15,
+    0.25,
+    0.35,
+    0.45,
+    0.55,
+    0.65,
+    0.75,
+    0.85,
+    0.9,
+    1.0
+  ]
+}

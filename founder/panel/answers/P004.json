@@ -1,0 +1,13 @@
+{
+  "id": "P004",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and I can't tell from photos whether a $360 paper pendant is well made or a cheap import. I also have an electrician date, and 10 to 12 business days is already pushing it, so I'd go with a place I know that has stock close by.",
+  "objection": "I can't judge the quality from photos, and with a brand I've never heard of there are no reviews or showroom I trust. If it turns out cheap, I'm paying return shipping on a big fragile box.",
+  "would_change_my_mind": "Real customer reviews with photos of the actual product, a firm delivery date that beats my electrician date, and free return shipping or a cheap fabric or finish sample before I commit.",
+  "price_too_cheap": 90,
+  "price_cheap": 190,
+  "price_expensive": 450,
+  "price_too_expensive": 700
+}

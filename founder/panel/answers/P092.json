@@ -1,0 +1,13 @@
+{
+  "id": "P092",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish, and nothing here tells me the things my electrician needs: UL listing, lumens, dimming, canopy and install details. I just walked out of a showroom without buying, so I'm not handing $360 to an unknown store on a 10 to 12 day wait.",
+  "objection": "No UL listing or full specs shown, an unknown brand, and I'd pay return shipping on a big, awkward pendant if it doesn't look right in my room. 10 to 12 business days is a long wait for a light.",
+  "would_change_my_mind": "A full spec sheet with UL/ETL listing, lumens and dimmer compatibility, plus free returns or a sample, and real customer photos or reviews from installed pieces.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 500,
+  "price_too_expensive": 900
+}

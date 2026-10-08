@@ -1,0 +1,13 @@
+{
+  "id": "P043",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I'd screenshot that paper cloud pendant, run it through Google Lens and find the same shape on Amazon or AliExpress for a fraction of the price. I've never heard of Nora Furnish, so nothing tells me this isn't just a rebadged generic light.",
+  "objection": "It looks like a generic drop-shipped pendant at a marked-up price from a store I don't know, and I'd pay return shipping on a 23-inch fixture if I changed my mind.",
+  "would_change_my_mind": "Proof it's not the same light as the cheap listings (own design, real materials, real photos and reviews), plus free return shipping.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 350,
+  "price_too_expensive": 550
+}

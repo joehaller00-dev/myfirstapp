@@ -1,0 +1,13 @@
+{
+  "id": "P009",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I just bought a house and I'm watching every dollar, and I won't pay $360 to a store I've never heard of that admits it has few reviews. The return policy and UL listing are nice, but I'd still be fronting the money and fighting a return on a big fragile fixture.",
+  "objection": "Is this store even legit? New store, almost no reviews, no Trustpilot or track record I can check, and I'd be paying hundreds of dollars up front for something that takes 2 to 3 weeks to arrive.",
+  "would_change_my_mind": "A solid pile of independent reviews (Trustpilot or similar) from real buyers with photos, and some history showing the store has been around and handles returns and damage claims properly.",
+  "price_too_cheap": 70,
+  "price_cheap": 160,
+  "price_expensive": 320,
+  "price_too_expensive": 550
+}

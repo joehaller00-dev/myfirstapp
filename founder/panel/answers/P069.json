@@ -1,0 +1,13 @@
+{
+  "id": "P069",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store, and nothing here says the lights are UL listed or that an electrician can install them without trouble. I buy lighting from Wayfair, Amazon or Lowe's because I know how delivery and returns work there.",
+  "objection": "Is it UL listed and safe, and will my electrician install it? An unknown store with 10 to 12 business day delivery, 6 weeks for made-to-order, and return shipping on me if I change my mind is a lot to risk on a fixture I can't easily send back.",
+  "would_change_my_mind": "Proof the fixtures are UL or ETL listed, shown on the product page, plus free returns or a store I already trust selling the same piece.",
+  "price_too_cheap": 70,
+  "price_cheap": 140,
+  "price_expensive": 280,
+  "price_too_expensive": 400
+}

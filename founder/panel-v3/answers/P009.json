@@ -1,0 +1,13 @@
+{
+  "id": "P009",
+  "buys": true,
+  "purchases_first_month": 1,
+  "reason_code": "trust",
+  "reason": "I'd normally bounce off a store I've never heard of, but 60 verified reviews with real install photos, the same rating on Google, a UL number I can look up and free 30-day returns answer my 'is it legit' question. I'd buy one pendant for the room that bugs me most and see how it goes before doing more.",
+  "objection": "It's still a one-person store with only 60 reviews, and I'm watching every dollar after closing. If the light arrives damaged or looks cheap, I'm stuck dealing with a tiny shop.",
+  "would_change_my_mind": "If the Google reviews turned out to be thin or the photos looked staged, or if I found complaints about damaged shipments or slow refunds, I'd walk away.",
+  "price_too_cheap": 60,
+  "price_cheap": 150,
+  "price_expensive": 300,
+  "price_too_expensive": 450
+}

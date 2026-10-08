@@ -1,0 +1,13 @@
+{
+  "id": "P033",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and there's nothing here showing reviews or a track record. I'm not putting $360 down on a store I can't verify, even with free shipping.",
+  "objection": "I've never heard of this store, is it legit? No Trustpilot, no reviews, and a 6-week wait on made-to-order pieces plus paying return shipping if I change my mind means I'd be stuck if something goes wrong.",
+  "would_change_my_mind": "A solid Trustpilot or independent review history with real customer photos, and ideally free return shipping or a clear refund record.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 300,
+  "price_too_expensive": 450
+}

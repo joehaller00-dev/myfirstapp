@@ -1,0 +1,13 @@
+{
+  "id": "P007",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "The US stock, 3 to 5 day delivery and free returns are all fine, but I'd screenshot that paper cloud pendant into Google Lens and find a near-identical one on Amazon or AliExpress for a fraction of $249. For a rental unit I'm not paying a premium for a paper shade guests will bump and stain.",
+  "objection": "It's a paper pendant, and I can almost certainly get the same look for $60 to $90 elsewhere. 15% trade off $249 still doesn't close that gap, and 60 reviews on a store I've never heard of doesn't make me pay extra.",
+  "would_change_my_mind": "A trade price under about $120 for this style, or proof that it's a different build from the lookalikes (not just 'inspected'), plus a bulk price for 4 or more units across my two rentals.",
+  "price_too_cheap": 40,
+  "price_cheap": 85,
+  "price_expensive": 140,
+  "price_too_expensive": 200
+}

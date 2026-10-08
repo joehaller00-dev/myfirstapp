@@ -1,0 +1,13 @@
+{
+  "id": "P100",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and I'd be spending $360 on a light I can't see in person. I can usually find something close at a big retailer with a promo code and faster delivery.",
+  "objection": "10 to 12 business days is a long wait for a light, and if I change my mind I pay return shipping on a bulky fixture. Unknown store, so I have no idea about quality or if they'd back me up.",
+  "would_change_my_mind": "Real customer photos and reviews, plus free return shipping or a faster delivery date. Bulk pricing for my two rentals would get me to take a second look.",
+  "price_too_cheap": 90,
+  "price_cheap": 190,
+  "price_expensive": 300,
+  "price_too_expensive": 450
+}

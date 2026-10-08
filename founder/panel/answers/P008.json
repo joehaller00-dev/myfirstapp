@@ -1,0 +1,13 @@
+{
+  "id": "P008",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and nothing here shows reviews, Trustpilot or any track record, so I'd be googling 'is Nora Furnish legit' before anything else. I can't judge the quality of a paper pendant from photos, and I'm not putting a fixture in an Airbnb on a hunch.",
+  "objection": "I can't judge the quality from photos, and there's no proof other people have bought and been happy. A paper pendant could be flimsy or the LED could flicker, and the return deal means I'd pay shipping out of my own pocket and ship it back in the original box if it's wrong.",
+  "would_change_my_mind": "A solid base of independent reviews (Trustpilot or similar) with real customer photos, plus a way to see the material in person, like a cheap sample or a free-return policy.",
+  "price_too_cheap": 120,
+  "price_cheap": 250,
+  "price_expensive": 500,
+  "price_too_expensive": 850
+}

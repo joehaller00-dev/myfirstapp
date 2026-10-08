@@ -1,0 +1,13 @@
+{
+  "id": "P010",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of Nora Furnish and nothing here tells me it's a real, established store. I'm not putting $360 of hardwired fixtures that an electrician has to install on a stranger's site.",
+  "objection": "Is this store legit? There's no UL listing, no lumens, no wattage, no canopy or mounting details, and no height or drop, only a width. I can't hand this to my electrician or pass an inspection on that. And if it's not right, I pay return shipping on a big fragile pendant.",
+  "would_change_my_mind": "A full spec sheet with UL/ETL listing, lumens, CRI, wattage, dimensions and mounting details, plus real reviews with customer photos and a verifiable company address and phone number. Free return shipping on defects or on anything that arrives damaged would help too.",
+  "price_too_cheap": 90,
+  "price_cheap": 200,
+  "price_expensive": 450,
+  "price_too_expensive": 700
+}

@@ -1,0 +1,229 @@
+{
+ "business": "Nora Furnish (norafurnish.com), an online store for modern and statement lighting and home decor",
+ "seed": 18297,
+ "dealt": 100,
+ "answered": 100,
+ "skipped": [],
+ "buys": 0,
+ "passes": 100,
+ "buy_rate": 0.0,
+ "by_segment": [
+  [
+   "Renovating homeowner",
+   40,
+   0.0
+  ],
+  [
+   "Affluent design-led homeowner",
+   25,
+   0.0
+  ],
+  [
+   "Trade buyer (interior designer, contractor or short-term-rental host)",
+   15,
+   0.0
+  ],
+  [
+   "First-home buyer on a budget",
+   20,
+   0.0
+  ]
+ ],
+ "by_behaviour": [
+  [
+   "Big-retailer loyalist",
+   15,
+   0.0
+  ],
+  [
+   "Reads every review",
+   20,
+   0.0
+  ],
+  [
+   "Deadline buyer",
+   10,
+   0.0
+  ],
+  [
+   "Pinterest and Instagram saver",
+   15,
+   0.0
+  ],
+  [
+   "Deal hunter",
+   10,
+   0.0
+  ],
+  [
+   "Spec-driven project planner",
+   12,
+   0.0
+  ],
+  [
+   "Price checker",
+   18,
+   0.0
+  ]
+ ],
+ "by_income": [
+  [
+   "$100,000 to $143,000",
+   33,
+   0.0
+  ],
+  [
+   "$143,000 and up",
+   34,
+   0.0
+  ],
+  [
+   "under $100,000",
+   33,
+   0.0
+  ]
+ ],
+ "why_not": [
+  [
+   "trust",
+   88,
+   [
+    "I've never heard of Nora Furnish, and nothing here tells me the lights are UL listed or that my electrician will be happy to hang them. With my electrician back in three weeks I'm not going to gamble on an unknown store when Wayfair, Lumens or Lowe's have known returns and delivery.",
+    "I've never heard of Nora Furnish and nothing here shows reviews, a Trustpilot page or any track record, so I wouldn't put $360 on a card for a lamp I can't see in person. I'd Google 'is norafurnish legit' first, and with a 6-week wait and return shipping on me, there's no reason to take the risk."
+   ],
+   [
+    "P001",
+    "P002"
+   ]
+  ],
+  [
+   "timing",
+   8,
+   [
+    "I need fixtures in hand within a week or two, and 10 to 12 business days for in-stock pieces (6 weeks if made to order) is too slow and too uncertain for my electrician date. On top of that, I've never heard of this store and $360 is a lot to risk on it.",
+    "When I need a fixture I need it in hand in a week or two, and 10 to 12 business days is basically three weeks. I've never heard of this store, so I'm not betting a deadline on it."
+   ],
+   [
+    "P011",
+    "P018"
+   ]
+  ],
+  [
+   "price",
+   4,
+   [
+    "I've never heard of this store and a paper cloud pendant at $360 looks like something I can find for a lot less on Amazon or AliExpress. The 10% off doesn't move me, since every store has a first-order code.",
+    "I just bought a house and I'm watching every dollar. I'd screenshot that paper cloud pendant, run it through Google Lens, and find a lookalike on Amazon or AliExpress for way less than $360 from a store I've actually heard of."
+   ],
+   [
+    "P031",
+    "P059"
+   ]
+  ]
+ ],
+ "why_yes": [],
+ "flip": [
+  "A clearly shown UL/ETL listing on the product page, plus free returns (or at least a prepaid return label) and some proof the store is real, like reviews from verified buyers or a known retailer behind it.",
+  "A lot of independent reviews (Trustpilot, Google, photos from real customers in real rooms), a free return on a change of mind or a sample of the material, and some sign the company has been around for years.",
+  "Hundreds of verified reviews with customer photos on Trustpilot or similar, plus free returns and a faster, firm delivery date.",
+  "Real customer reviews with photos of the actual product, a firm delivery date that beats my electrician date, and free return shipping or a cheap fabric or finish sample before I commit.",
+  "Free returns, or a prepaid return label for anything damaged or not as pictured. Real customer photos and reviews of the pendant hanging in actual homes would help too.",
+  "A trade or designer program with a free sample or swatch, free returns, real reviews with customer photos, and a clear spec sheet (materials, certifications like UL/ETL listing, dimensions). Faster guaranteed delivery would help too.",
+  "Visible UL/ETL listing on the product page, plus a solid pile of independent reviews (Trustpilot or similar) from real buyers with photos, and a clear delivery date that lands before my electrician's visit.",
+  "A solid base of independent reviews (Trustpilot or similar) with real customer photos, plus a way to see the material in person, like a cheap sample or a free-return policy.",
+  "Free return shipping or a clear damage guarantee, real customer photos and reviews, and a faster delivery date. A sale or promo code beyond 10% off would also help.",
+  "A full spec sheet with UL/ETL listing, lumens, CRI, wattage, dimensions and mounting details, plus real reviews with customer photos and a verifiable company address and phone number. Free return shipping on defects or on anything that arrives damaged would help too.",
+  "A guaranteed delivery date within about 7 days on in-stock pieces, plus free returns, or reviews from real buyers with photos showing the quality.",
+  "A pile of real, verifiable customer reviews (Trustpilot or similar) with photos of this light, plus free return shipping or a price clearly below Amazon for the same fixture.",
+  "Verified customer reviews (Trustpilot or similar) plus a clearly stated UL/ETL listing on the product page, and free return shipping if it doesn't fit or look right.",
+  "Free returns, or a store that already has real customer photos and reviews from people with kitchens like mine, plus a firm delivery date that lands well before the electrician.",
+  "Seeing the exact same pendant is not cheaper elsewhere, plus real third-party reviews with customer photos and free return shipping.",
+  "A full spec sheet with exact dimensions, lumens, color temperature and a UL listing, plus real customer photos and reviews, and free return shipping or a cheap sample of the material.",
+  "Free returns (prepaid label) on fixtures, plus proof the store is established, like reviews I can check elsewhere, or seeing the same lights on Amazon or Wayfair.",
+  "A firm delivery date I could count on in under a week or two, with a store I can trust to hit it, or a free-returns policy for a damaged or wrong item.",
+  "Free returns, plus real reviews or trade/pro pricing, would flip it. I'd also want to see the same pendant priced clearly below what I'd pay elsewhere, around $250 after discount.",
+  "Real customer photos and reviews from people who installed the fixture, plus free return shipping or a clear way to see the quality (like a sample or video) before I commit.",
+  "A solid base of independent reviews (Trustpilot or similar) with real customer photos, plus free returns or a trade discount for buying several fixtures.",
+  "A visible UL or ETL listing on the product page, plus real customer photos and reviews, and free return shipping on a fixture that disappoints.",
+  "A visible UL/ETL listing on the product page, plus free returns and a few real reviews from verified buyers, or the same item available on Amazon or Wayfair.",
+  "Lots of verified customer reviews with real photos, a solid Trustpilot or similar track record, and free returns or a sample of the material.",
+  "Free returns (or a prepaid label) on the first order, plus a sample or reviews from other designers or hosts I can check.",
+  "Free returns, or real customer photos and reviews from people who bought, plus faster delivery on in-stock pieces.",
+  "Clear UL/ETL listing on the product page, plus the same pendant on Wayfair or Amazon with Prime delivery and easy returns, or free return shipping and a lot of real customer reviews.",
+  "A UL/ETL listing shown on the product page, a full spec sheet (lumens, dimensions, wiring and install details), and independent reviews or a known name backing the store, plus free returns.",
+  "Real customer photos and reviews from a source I trust, plus a paid sample or swatch of the paper and a free return even if I just change my mind.",
+  "Lots of verified third-party reviews (Trustpilot or similar) with photos from real buyers, plus free returns or a prepaid return label on large fixtures.",
+  "A side-by-side showing it's a different, better build than the cheap lookalikes, plus free returns and a price closer to $250 with a real stacking promo code.",
+  "Proof it isn't a rebadged marketplace item (real reviews, photos from actual customers), a price clearly below what Lens turns up for the same piece, and free returns or faster in-stock shipping.",
+  "A solid Trustpilot or independent review history with real customer photos, and ideally free return shipping or a clear refund record.",
+  "A full spec sheet with UL listing, lumens, dimensions and wiring details, plus real customer reviews with photos and free returns on a damaged or not-as-pictured fixture.",
+  "Real customer photos and reviews from verified buyers, proof the store makes or designs its own pieces rather than reselling, a free sample or swatch, and free returns on a fixture this size.",
+  "A UL/ETL listing and a full spec sheet (lumens, CRI, wiring and mounting details) on the product page, plus real photos or reviews from other hosts or designers, or a cheap sample I could inspect before ordering for two units.",
+  "Free returns, or a free return label, from a store with solid reviews I can check, or the same pendant on Wayfair or Amazon with their return policy.",
+  "A UL/ETL listing shown on the product page, a full spec sheet (lumens, CRI, wattage, canopy and drop dimensions, install guide), and proof from real customers who installed it, plus free return shipping or a sample.",
+  "Lots of real, independent reviews (Trustpilot or similar) from people who bought fixtures like this, plus free return shipping or a prepaid return label.",
+  "Visible UL/ETL listing on each product page, plenty of independent verified reviews (Trustpilot, photos from real customers), and free return shipping or a sample/swatch of the paper shade material.",
+  "A guaranteed delivery date inside 7 to 10 days, or free returns, plus some proof the store is real, like reviews from actual buyers.",
+  "Free returns, plus real reviews from verified buyers with photos, or seeing the same pendant at a retailer I already use.",
+  "Proof it's not the same light as the cheap listings (own design, real materials, real photos and reviews), plus free return shipping.",
+  "Proof they're legit (real reviews with photos from buyers, a physical address and a company I can look up) and a price that beats the identical lamp I can find elsewhere, plus free returns on defects.",
+  "Free returns, or a price clearly below what the same fixture costs on Amazon or Wayfair, plus real reviews showing it's a genuine product.",
+  "A full spec sheet with lumens, CRI, UL/ETL listing, dimensions, canopy and wiring details, plus real customer photos or reviews of the piece installed, and free returns or a sample.",
+  "Stock that ships in 2 to 3 days with a firm delivery date, or free returns, plus some reviews from real buyers I can check.",
+  "Seeing the same pendant on Amazon or another store I trust with real customer reviews, or a stacked promo code that brings it near $250 with free returns.",
+  "Visible UL/ETL listing on the product page, clear install specs, real customer photos and reviews of installed pieces, and a returns policy that doesn't make me pay shipping on a large fragile pendant.",
+  "Real customer photos and reviews from verified buyers, plus free return shipping, and a clear reason this one is better than the cheap lookalikes.",
+  "Real customer photos and reviews from people who installed it, plus free returns, and a price that beats what I find when I run the image through Google Lens.",
+  "Plenty of verified customer reviews with real photos (Trustpilot or similar), plus free returns or a clear sign this isn't a generic dropship listing.",
+  "A $5-10 material swatch or sample, or real customer photos and reviews of the piece installed in a home, plus free returns on a fixture I haven't opened.",
+  "Free return shipping or a prepaid return label, plus real customer photos and reviews from people who bought the same pendant.",
+  "Free return shipping or a cheap sample, plus real customer photos and reviews, UL/ETL listing shown on the product page, and a verified review from another designer or host.",
+  "Free returns, or a free-return guarantee on lighting, from a store I could find reviews for.",
+  "Lots of verified customer reviews with photos of the pendant in real homes, plus free return shipping or a sample of the paper shade so I can see the material first.",
+  "A free or cheap sample of the shade material, plus real customer photos and reviews from verified buyers, or free return shipping.",
+  "Free return shipping (or a prepaid return label) and a price that beats what I can find for the same-looking pendant elsewhere.",
+  "UL/ETL listing shown on the product page, a real in-stock ship date I can count on within a week, and free returns or reviews from verified buyers with photos.",
+  "A UL/ETL listing shown on the product page, a full spec sheet (lumens, wattage, dimmability, canopy size, wiring and install instructions), and independent reviews or photos from real buyers, plus free returns.",
+  "Lots of real Trustpilot or customer reviews with photos of the actual light, plus free returns, or a price closer to $200.",
+  "Clear UL or ETL listing on the product page, real customer photos and reviews, and a guaranteed in-stock delivery date before the electrician comes, plus free return shipping.",
+  "Guaranteed delivery within about 5 business days on in-stock pieces, plus free returns or a prepaid return label on a fixture.",
+  "Real customer reviews with photos, plus proof it's not just the same light sold cheaper elsewhere, or free returns.",
+  "A visible UL/ETL listing on the product page, a guaranteed in-stock ship date that lands well inside two weeks, and free return shipping if the fixture does not work for the install.",
+  "A solid base of real verified reviews (Trustpilot or similar) with photos from actual customers, plus free returns or a cheap sample/swatch so I can see the quality before committing.",
+  "A full spec sheet with UL/ETL listing, lumens, dimensions and canopy details, real customer reviews with photos, and free returns or a guaranteed in-stock delivery date before my electrician comes.",
+  "Proof the fixtures are UL or ETL listed, shown on the product page, plus free returns or a store I already trust selling the same piece.",
+  "Google Lens showing no cheaper match anywhere, plus real customer photos and reviews, free returns on a change of mind, and a price nearer $200.",
+  "A free sample of the material or free returns including shipping, plus independent reviews with real customer photos from a source I trust, or a bigger sale stacked on the 10% off.",
+  "Real customer photos and reviews from owners of that pendant, plus a free-return policy or a cheap fabric sample so I can check the quality first.",
+  "Free returns, plus real customer reviews with photos or a sample I can see before committing.",
+  "Real reviews with customer photos of the pendant installed, a safety listing (UL/ETL) shown on the product, and a clear contact and returns page I can check. Free return shipping, or a sample of the shade, would also help.",
+  "Independent reviews with real customer photos, a named maker or brand behind the fixtures, and free return shipping or a sample so I can see the quality before committing.",
+  "Lots of real verified customer reviews with photos, plus free return shipping or a price clearly below what I find for the same fixture elsewhere.",
+  "A solid pile of independent reviews (Trustpilot or similar) from real buyers with photos, plus a trade or designer discount and free returns on unopened items.",
+  "A full spec sheet showing lumens, UL listing and install details, plus delivery in under a week or free returns.",
+  "Free returns (or a prepaid return label), plus some proof they're a real store, like reviews from verified buyers or a name I recognise.",
+  "Free returns on a fixture I'm unsure about, plus reviews from real buyers or a listing on Amazon or Wayfair, and a price closer to $200 to $250 for the cloud pendant.",
+  "Free returns, or the same pendant sold through a retailer I already trust like Wayfair or Amazon. Real customer photos and reviews, or a sample of the shade material, would also help.",
+  "Hundreds of real, independent reviews with customer photos on Trustpilot or similar, a visible track record, and free returns.",
+  "A visible UL/ETL listing for this exact fixture, real customer photos and reviews, and free returns, or a price clearly below what the same-looking pendant costs elsewhere.",
+  "Free returns, or a free return label, plus real reviews with customer photos and proof that it isn't just a rebadged marketplace item I can get cheaper elsewhere.",
+  "Free returns even if I just change my mind, plus real customer photos and reviews, and a firm in-stock ship date inside a week.",
+  "Hundreds of independent reviews with customer photos (Trustpilot or similar), a clear UL/ETL listing on the product page, and free returns or a damaged-in-transit guarantee.",
+  "Free returns, or a free return label on a fixture. Reviews from real buyers with photos would also help, along with a code better than 10% off.",
+  "Free returns, plus real reviews from other hosts or trade buyers, or a trade price when I buy several fixtures for my units.",
+  "A solid base of independent reviews (Trustpilot, photos from real buyers) and free returns or a clear quality guarantee, plus a firm delivery date I can plan around.",
+  "A full spec sheet with lumens, UL/ETL listing, canopy and weight and install details, plus free return shipping (or a prepaid return label) and real independent reviews with photos from owners.",
+  "Guaranteed delivery in 5 to 7 days with a tracked ship date, or a trade account with sample or expedited shipping and free returns.",
+  "A full spec sheet with UL/ETL listing, lumens and dimmer compatibility, plus free returns or a sample, and real customer photos or reviews from installed pieces.",
+  "A clearly stated UL/ETL listing on the product page, real customer photos and reviews from verified buyers, and free returns or a price that beats what Google Lens turns up for the same item.",
+  "Lots of real customer photos and reviews from places other than their own site, a firm delivery date that lands well before the electrician, and free returns. Or a price clearly below what the identical pendant costs elsewhere.",
+  "Free returns, or a prepaid return label, plus real customer reviews with photos from buyers or a listing on Wayfair or Amazon.",
+  "Proof it is not a rebadged generic, such as real customer photos and reviews, plus free returns. A price that clearly beats what I find on a reverse image search would also do it.",
+  "A deeper first-order discount or promo code that beats the Amazon price, plus free returns and proof of reviews from real buyers.",
+  "Hundreds of verified reviews on Trustpilot or Google with real customer photos of the pendant installed, plus free returns or a faster delivery window.",
+  "Free returns, a firm delivery date, and solid independent reviews of the store, plus a promo code deeper than 10% off.",
+  "Real customer photos and reviews, plus free return shipping or a faster delivery date. Bulk pricing for my two rentals would get me to take a second look."
+ ],
+ "purchases_first_month_per_buyer": null,
+ "price_answers": 100
+}

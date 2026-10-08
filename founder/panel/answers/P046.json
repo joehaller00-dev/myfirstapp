@@ -1,0 +1,13 @@
+{
+  "id": "P046",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I'd pin it to the board, but I wouldn't spend $360 on a light from a store I've never heard of. The page doesn't give me what my electrician needs, like lumens, UL listing, or install details, so I can't spec it.",
+  "objection": "$360 is a lot for an unknown brand, and I have no UL listing, lumen output, or install specs to give my electrician. Paying return shipping on a 23.6 inch fixture if it looks wrong in the room is a real risk, and so are 6 weeks for made-to-order.",
+  "would_change_my_mind": "A full spec sheet with lumens, CRI, UL/ETL listing, dimensions, canopy and wiring details, plus real customer photos or reviews of the piece installed, and free returns or a sample.",
+  "price_too_cheap": 120,
+  "price_cheap": 220,
+  "price_expensive": 380,
+  "price_too_expensive": 550
+}

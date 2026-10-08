@@ -1,0 +1,13 @@
+{
+  "id": "P083",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "I've never heard of this store and I'd screenshot that paper cloud pendant into Google Lens and find the same thing on Amazon or AliExpress for a lot less. Nothing here tells me it's UL listed, and I'm not hanging a $360 light my electrician might refuse to install.",
+  "objection": "Is it UL listed and safe, and will my electrician install it? Plus I'd pay return shipping on a big fragile pendant if I change my mind, from a store I've never heard of.",
+  "would_change_my_mind": "A visible UL/ETL listing for this exact fixture, real customer photos and reviews, and free returns, or a price clearly below what the same-looking pendant costs elsewhere.",
+  "price_too_cheap": 90,
+  "price_cheap": 180,
+  "price_expensive": 320,
+  "price_too_expensive": 450
+}

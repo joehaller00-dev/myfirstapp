@@ -1,0 +1,161 @@
+{
+ "business": "Nora Furnish (norafurnish.com), an online store for modern and statement lighting and home decor",
+ "seed": 18297,
+ "dealt": 20,
+ "answered": 20,
+ "skipped": [],
+ "buys": 9,
+ "passes": 11,
+ "buy_rate": 0.45,
+ "by_segment": [
+  [
+   "Affluent design-led homeowner",
+   5,
+   0.6
+  ],
+  [
+   "First-home buyer on a budget",
+   4,
+   0.5
+  ],
+  [
+   "Renovating homeowner",
+   8,
+   0.375
+  ],
+  [
+   "Trade buyer (interior designer, contractor or short-term-rental host)",
+   3,
+   0.3333333333333333
+  ]
+ ],
+ "by_behaviour": [
+  [
+   "Deadline buyer",
+   2,
+   1.0
+  ],
+  [
+   "Spec-driven project planner",
+   2,
+   1.0
+  ],
+  [
+   "Reads every review",
+   4,
+   0.75
+  ],
+  [
+   "Deal hunter",
+   2,
+   0.5
+  ],
+  [
+   "Pinterest and Instagram saver",
+   3,
+   0.3333333333333333
+  ],
+  [
+   "Price checker",
+   4,
+   0.0
+  ],
+  [
+   "Big-retailer loyalist",
+   3,
+   0.0
+  ]
+ ],
+ "by_income": [
+  [
+   "under $94,000",
+   5,
+   0.6
+  ],
+  [
+   "$147,000 and up",
+   7,
+   0.5714285714285714
+  ],
+  [
+   "$94,000 to $147,000",
+   8,
+   0.25
+  ]
+ ],
+ "why_not": [
+  [
+   "price",
+   6,
+   [
+    "I'd screenshot that paper cloud pendant, run it through Google Lens and find a near-identical one on Amazon or Wayfair for a lot less, and I already have Prime. Sixty reviews on a store I've never heard of isn't enough for me to pay a premium over a lookalike I can get in two days.",
+    "The reviews, UL number and free returns are reassuring, but a white paper cloud pendant is a look I can probably find on Amazon for a lot less. I'd pin it to my dining room board and keep comparing."
+   ],
+   [
+    "P001",
+    "P003"
+   ]
+  ],
+  [
+   "habit",
+   4,
+   [
+    "I buy lighting from Wayfair, Amazon or Lowe's because I know how returns and delivery work there, and I've never heard of Nora Furnish. The UL listing, free returns and the trade discount are good, but 60 reviews on a one-person store isn't enough for me to switch when I'm watching my budget.",
+    "The reviews with real photos, the UL number and free returns calm me down a lot, and $249 isn't crazy. But I'd pin it to my dining room board with the other 40 and wait until the room actually comes together, so I wouldn't buy this month."
+   ],
+   [
+    "P002",
+    "P005"
+   ]
+  ],
+  [
+   "trust",
+   1,
+   [
+    "The returns, UL listing and photo reviews are all reassuring, but I buy lighting from Wayfair, West Elm or Lumens because I know how a return or a damaged box gets handled. A paper cloud pendant from a one-person shop in Oklahoma is not something I would put in my cart this week."
+   ],
+   [
+    "P008"
+   ]
+  ]
+ ],
+ "why_yes": [
+  [
+   "trust",
+   8,
+   [
+    "Free 30-day returns, real buyer photos and a UL number make it low-risk to order one for an Airbnb refresh, and the 15% trade rate helps. I'd start with a single piece, not a whole order.",
+    "I'd normally bounce off a store I've never heard of, but 60 verified reviews with real install photos, the same rating on Google, a UL number I can look up and free 30-day returns answer my 'is it legit' question. I'd buy one pendant for the room that bugs me most and see how it goes before doing more."
+   ],
+   [
+    "P004",
+    "P009"
+   ]
+  ],
+  [
+   "price",
+   1,
+   [
+    "With the 15% trade discount it lands around $212, the UL number is listed and free 30-day returns take the risk out, so I'd order one to see it in person. If it checks out I might use them on a rental."
+   ],
+   [
+    "P006"
+   ]
+  ]
+ ],
+ "flip": [
+  "Proof that it's a different product from the Amazon lookalikes (not the same factory item rebranded), plus a cheap sample or swatch I can hold, or a trade price that gets it close to Amazon pricing.",
+  "A trade-account price clearly below Wayfair or Amazon for the same style, plus a UL listing number I can check myself and proof that returns on a damaged fixture are handled without a fight.",
+  "Proof that it is clearly better made than the Amazon lookalikes (side-by-side photos, materials, how the paper and LED hold up after a year), or a price nearer $180.",
+  "The dining room being painted and ready, plus a review photo of this exact pendant over a table in a room like mine. Or a cheaper sample of the paper material.",
+  "A trade price under about $120 for this style, or proof that it's a different build from the lookalikes (not just 'inspected'), plus a bulk price for 4 or more units across my two rentals.",
+  "Seeing the same pendant on Wayfair, Amazon or Lumens with a few hundred reviews, or a designer I follow showing it installed in a real home.",
+  "Photos of this exact pendant over a kitchen island from a real buyer, plus a sizing recommendation for my kitchen. If the shade were a more durable material and the price were under about $200, I'd order it before the electrician comes.",
+  "Seeing the same pendant on Wayfair or Amazon with a few hundred reviews, or the store sending me a cheap physical sample of the shade to hold up in my room first.",
+  "Proof this isn't the generic factory piece, such as a cheap sample of the paper and diffuser, or a side-by-side with the Amazon version showing a real difference in materials and light quality.",
+  "A side-by-side showing what makes this one different from the cheap lookalikes (materials, LED quality, the sampling and inspection), or a price closer to $150, or a bigger discount for buying several fixtures for the house.",
+  "A first-order promo code or sale bringing it to about $190 or less, plus me verifying the UL number on UL's own site."
+ ],
+ "purchases_first_month_per_buyer": 1.0,
+ "price_answers": 20
+}
