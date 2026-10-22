@@ -34,3 +34,25 @@ The cloud session can't load the storefront, so this was checked against the the
 - About 1MB of render-blocking CSS on every product page (theme.css, custom-nav.css, nf-mod-style.css 330KB...).
 - `nf-cart-v2.css` and `nf-gamify.css` block rendering outside the homepage; they could load non-blocking.
 - `snippets/nf-gate.liquid` creates a WebGL context in the head on the first product view.
+
+# Round 6 (same day): menu, cart, photos, collections
+
+All in PREVIEW v7 (187544633396), checksums verified after upload.
+
+- **Menu slide = cart slide.** nf-m6.js part 2 gives #sidebar-menu the cart drawer's own Web Animations (320ms overlay,
+  500ms slide, cubic-bezier(.455,.03,.515,.955), 300ms close), mirrored from the left; nf-m4.js part 7 no longer takes
+  the menu over. The first level shows while it slides in (the theme hid it until the slide ended, then staggered it).
+- **Menu photos.** snippets/nf-menu-picks.liquid: 85 hand-picked room/dusk photos from the store's own product media,
+  used by the menu rows, tiles, panel heroes and the collection-page sub tiles (nf-menu-img-map, header-sidebar,
+  nf-coll-mod). Tiles request ~400px instead of 1200px, photos come from the shop's own /cdn/shop/ path, the first screen
+  preloads on idle, deeper panels one level ahead, photos decode before they fade in. Plan: docs/menu-images-plan.md.
+  Picked from file names/alt text, not by eye: check them on the preview.
+- **Cart page + empty cart.** assets/nf-cart-v4.css (cart page restyle, drawer family), new empty states in
+  sections/main-cart.liquid and sections/cart-drawer.liquid (serif "Your cart is empty", Shop new arrivals, popular
+  collections, best sellers, trust row).
+- **Collections (live store data, applies now).** docs/collection-audit/*.md. Removed: Anello Vase and Galena from
+  Golden Hour (description rewritten), Cadran from Glow Anywhere, outdoor chandeliers/patio floor lamps from indoor
+  collections (and their nav-ceiling-light / nav-lamps tags), patio floor lamps and chandeliers from outdoor lanterns and
+  landscape, a planter, desk clock and two vases from decor collections, mat-copper from Trieste.
+  Owner decisions open: empty seasonal collections (Fall Decor, Halloween all archived), 20 empty decor collections,
+  Glow Anywhere description, a possible "Outdoor Floor Lamps" collection.
