@@ -65,3 +65,12 @@ All in PREVIEW v7 (187544633396), checksums verified after upload.
 - New smart collection Outdoor Floor Lamps (product type "Lighting > Outdoor Floor Lamps", 8 lamps), published, in
   main-menu-v3 under Outdoor > Shop All Outdoor Lighting, and as the phone homepage pill that used to be Soft Furnishings
   (v7 snippets/nf-cpills.liquid). Menu backups: docs/menu-backups/.
+
+# Round 8: menu photos and More to explore
+- More to explore (phone menu) = Professionals + Trade Program, no photos on those rows; Bulk & Project Orders stays
+  under Professionals > Services; the duplicate "Join Trade Program" footer link was removed.
+- Editorial (non-product) scene photos for Indoor, Outdoor, Shop All, the Best Sellers / New Arrivals / Shop By tiles,
+  Inspirations, Room Sets, Solar & Landscape (+ Solar Wall Lights, Spotlights, Step & Deck) and Shop by Area (+ its four
+  areas). Picks + 3 alternatives each: docs/menu-scenic-picks.md. Menu cache key nfm6.
+- Review sheet for the owner: https://norafurnish.com/pages/nf-menu-photo-review (published, hidden from search,
+  not linked; delete when done).
