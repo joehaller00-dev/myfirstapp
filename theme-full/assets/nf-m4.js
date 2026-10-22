@@ -289,7 +289,8 @@
     if (!PHONE.matches || reduce.matches) return;
     root.classList.add('nf-m5');
     var DUR = 470;
-    [['#sidebar-menu', 'x'], ['facets-drawer', 'y'], ['facets-sort-popover', 'y']].forEach(function (d) {
+    /* NF-M6 (2026-10-22): the menu drawer left this list; it now slides exactly like the cart drawer (nf-m6.js part 2) */
+    [['facets-drawer', 'y'], ['facets-sort-popover', 'y']].forEach(function (d) {
       Array.prototype.forEach.call(doc.querySelectorAll(d[0]), function (el) {
         if (el.__nfM5 || typeof el.createEnterAnimationControls !== 'function') return;
         el.__nfM5 = 1;

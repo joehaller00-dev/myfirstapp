@@ -71,3 +71,12 @@ html:root:not(#nfprm) body .nf-prm .nf-prm__head { text-align: center !important
   html:root:not(#nfs3):not(#nfs4):not(#nfu) body .collection-toolbar .collection-toolbar__button[aria-controls="sort-by-popover"] .text-with-icon {
     font: 400 14px/1 Poppins, sans-serif !important; letter-spacing: 0 !important; text-transform: none !important; }
 }
+
+/* ===== H. Menu drawer (phones): the first level shows while it slides in (nf-m6.js part 2), and the photos appear
+   with the same soft fade but a touch quicker ===== */
+@media (max-width: 999px) {
+  html.nf-m6-mopen #sidebar-menu .header-sidebar__main-panel,
+  html.nf-m6-mopen #sidebar-menu .header-sidebar__main-panel .header-sidebar__linklist li,
+  html.nf-m6-mopen #sidebar-menu .header-sidebar__footer { opacity: 1 !important; transform: none !important; }
+  #sidebar-menu.nfd2 .nfd-img { transition: opacity .25s ease !important; }
+}
