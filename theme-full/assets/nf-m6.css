@@ -1,0 +1,13 @@
+/* NF-M6 (2026-10-22) phone product gallery + PDP fixes. Loaded last by snippets/nf-mod-global.liquid (after nf-m4.css). */
+
+/* ===== A. Gallery swipe: native scroll-snap on phones (see nf-m6.js part 1) =====
+   custom-nav.css NF-MOBILE-V4 limited the carousel, slides and images to touch-action: pan-y, so the browser never
+   scrolled sideways and a JS drag did it instead. "manipulation" = pan-x + pan-y + pinch-zoom. */
+@media (max-width: 999px) {
+  html:root body product-gallery scroll-carousel.product-gallery__carousel {
+    touch-action: manipulation !important; overflow-x: auto !important; overflow-y: hidden !important;
+    overscroll-behavior-x: contain !important; -webkit-overflow-scrolling: touch; }
+  html:root body product-gallery scroll-carousel.product-gallery__carousel > .product-gallery__media,
+  html:root body product-gallery scroll-carousel.product-gallery__carousel > .product-gallery__media img { touch-action: manipulation !important; }
+  html:root body product-gallery scroll-carousel.product-gallery__carousel > .product-gallery__media { scroll-snap-stop: always; }
+}
