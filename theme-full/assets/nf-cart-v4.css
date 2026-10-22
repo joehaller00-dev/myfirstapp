@@ -1,0 +1,289 @@
+/* NF-CART-V4 (2026-10-22, owner: "update the actual cart page on our store too. It looks pretty, but needs to be a little bit
+   updated. And update the basic 'your cart' with nothing in it.")
+   A MOD Lighting calm restyle of the /cart page and of BOTH empty cart states (/cart and the cart drawer), so the page reads as
+   the same family as the phone cart drawer the owner loves (nf-m4.css section F): white ground, cream #f7f5f2 panels, hairlines
+   #e6e1d9, ink #1c1c1c, tan #c9a36a as a small accent only, EB Garamond headings, Poppins text, 4px radii, black buttons.
+
+   Loaded by sections/main-cart.liquid and sections/cart-drawer.liquid, right after nf-cart-v3.css (the drawer is on every page,
+   so the empty drawer styles are always present). Nothing here changes how the cart works: quantity, remove, note, Buy 2/3
+   progress, Fall Hosting / Black Friday lines, discount rows, app blocks, dynamic checkout buttons and checkout are untouched.
+
+   Specificity: every rule starts with  html:root:not(#nfc4) body  (one id level), so it beats nf-cart-page.css (.nfcp ...,
+   html body ... !important), nf-mod-style.css (html body .nfcp-yml ...), nf-cart-v3.css and nf-m4.css
+   (html:root body cart-drawer#cart-drawer.cart-drawer ...). !important is used only where an older rule is !important.
+
+   1) /cart with items   2) /cart empty   3) cart drawer empty   4) phones   5) reduced motion */
+
+:root { --nfc4-ink: #1c1c1c; --nfc4-ink2: #3a3a3a; --nfc4-muted: #6f685f; --nfc4-line: #e6e1d9; --nfc4-warm: #f7f5f2; --nfc4-sand: #f3efe8;
+  --nfc4-img: #f4f1ec; --nfc4-tan: #c9a36a; --nfc4-tan-txt: #94703c; --nfc4-r: 4px;
+  --nfc4-serif: "EB Garamond", Georgia, serif; --nfc4-sans: Poppins, Inter, system-ui, sans-serif; --nfc4-ease: cubic-bezier(.2, .8, .2, 1); }
+
+/* =====================================================================================================================
+   1) /cart with items
+   ===================================================================================================================== */
+html:root:not(#nfc4) body .nfcp-page { background: #fff !important; color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp { max-width: 1240px; padding: 40px 48px 72px; font-family: var(--nfc4-sans); color: var(--nfc4-ink); }
+
+/* heading: "Your cart  3 items", like the drawer header */
+html:root:not(#nfc4) body .nfcp-page .nfcp-head { align-items: flex-end; gap: 10px 24px; padding: 0 0 18px !important; margin: 0 !important; border-bottom: 1px solid var(--nfc4-line); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-head > div { display: flex; flex-direction: row-reverse; justify-content: flex-end; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-eyebrow { margin: 0; font: 400 14px/1.3 var(--nfc4-sans); letter-spacing: 0; text-transform: none; color: var(--nfc4-muted); }
+html:root:not(#nfc4) body .nfcp-page .nfcp .nfcp-title { margin: 0; font-family: var(--nfc4-serif) !important; font-weight: 400 !important; font-size: 44px !important;
+  line-height: 1.1 !important; letter-spacing: 0 !important; text-transform: none !important; color: var(--nfc4-ink) !important; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-head .nfcp-link { padding: 0 0 2px; background: none; font: 400 13.5px/1.3 var(--nfc4-sans); letter-spacing: 0; text-transform: none;
+  color: var(--nfc4-ink); text-decoration: underline; text-decoration-color: rgba(28, 28, 28, .35); text-underline-offset: 4px; transition: text-decoration-color .2s ease; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-head .nfcp-link:hover { text-decoration-color: var(--nfc4-ink); }
+
+/* checkout steps: quieter */
+html:root:not(#nfc4) body .nfcp-page .nf-gm-steps { margin: 18px 0 4px; font-family: var(--nfc4-sans); font-size: 12.5px; color: #8a8178; }
+html:root:not(#nfc4) body .nfcp-page .nf-gm-steps .is-done,
+html:root:not(#nfc4) body .nfcp-page .nf-gm-steps .is-next { color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nf-gm-steps .is-next { font-weight: 500; }
+
+/* two columns */
+html:root:not(#nfc4) body .nfcp-page .nfcp-grid { grid-template-columns: minmax(0, 1fr) minmax(340px, 380px); gap: 56px; margin-top: 4px; }
+
+/* line items */
+html:root:not(#nfc4) body .nfcp-page .nfcp-item { border-bottom: 1px solid var(--nfc4-line); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line { grid-template-columns: 120px minmax(0, 1fr) auto; column-gap: 22px; row-gap: 12px; padding: 24px 0; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__img { border-radius: var(--nfc4-r); background: var(--nfc4-img); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__info { gap: 4px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp .nfcp-line__title { font-family: var(--nfc4-serif) !important; font-weight: 400; font-size: 21px; line-height: 1.22; letter-spacing: 0;
+  text-transform: none; color: var(--nfc4-ink); text-decoration: none; }
+html:root:not(#nfc4) body .nfcp-page .nfcp a.nfcp-line__title:hover { text-decoration: underline; text-decoration-color: rgba(28, 28, 28, .4); text-underline-offset: 4px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__opts { margin-top: 2px; font: 400 13px/1.45 var(--nfc4-sans); color: var(--nfc4-muted); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__price { margin-top: 2px; font-family: var(--nfc4-sans); font-size: 14px; color: var(--nfc4-ink2); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__meta { font-family: var(--nfc4-sans); font-size: 12.5px; color: var(--nfc4-muted); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__qty { gap: 16px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__qty .quantity-selector { display: inline-flex; align-items: center; height: 40px; border: 1px solid #d9d2c8 !important;
+  border-radius: var(--nfc4-r) !important; background: #fff; box-shadow: none !important; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__qty .quantity-selector__button { width: 40px; height: 38px; color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__qty .quantity-selector__input { width: 28px; font: 400 15px/1 var(--nfc4-sans); color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-remove { font: 400 13px/1.3 var(--nfc4-sans); color: var(--nfc4-muted) !important; text-decoration: underline; text-decoration-color: rgba(28, 28, 28, .25); text-underline-offset: 4px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-remove:hover { color: var(--nfc4-ink) !important; text-decoration-color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__total { font: 500 16px/1.25 var(--nfc4-sans); color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-line__was { font: 400 13px/1.2 var(--nfc4-sans); color: #8a8178; }
+
+/* "You may also like" under the lines (MOD cards) */
+html:root:not(#nfc4) body .nfcp-page .nfcp-main > .nfcp-yml { margin: 0; padding: 36px 0 8px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-yml__h { margin: 0 0 18px; font-family: var(--nfc4-serif) !important; font-size: 28px; font-weight: 400; line-height: 1.2; color: var(--nfc4-ink); text-align: left; }
+
+/* order note */
+html:root:not(#nfc4) body .nfcp-page .nfcp-note { margin-top: 28px; padding: 0; border-top: 1px solid var(--nfc4-line); border-bottom: 1px solid var(--nfc4-line); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-note > summary { display: flex; align-items: center; gap: 10px; padding: 16px 0; font: 400 14px/1.3 var(--nfc4-sans); color: var(--nfc4-ink); cursor: pointer; list-style: none; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-note > summary::-webkit-details-marker { display: none; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-note > summary svg { width: 18px; height: 18px; flex: none; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-note[open] > summary { padding-bottom: 10px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-note .cart-note { display: block; padding: 0 0 16px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-note textarea { border: 1px solid var(--nfc4-line) !important; border-radius: var(--nfc4-r) !important; background: #fff; font: 400 14px/1.5 var(--nfc4-sans); }
+
+/* order summary: the drawer footer as a card (cream, hairline, square-ish) */
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum { gap: 16px; padding: 28px; border: 1px solid var(--nfc4-line); border-radius: var(--nfc4-r); background: var(--nfc4-warm);
+  color: var(--nfc4-ink); box-shadow: none; }
+html:root:not(#nfc4) body .nfcp-page .nfcp .nfcp-sum__title { margin: 0 !important; font-family: var(--nfc4-serif) !important; font-weight: 400; font-size: 26px; line-height: 1.2; color: var(--nfc4-ink); }
+/* Buy 2 / 3 reward track, Fall Hosting and Black Friday lines: white tiles inside the cream card */
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-cv2-progress { margin: 0; padding: 14px 16px 12px; border: 1px solid var(--nfc4-line); border-radius: var(--nfc4-r); background: #fff; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-cv2-progress__text { font: 400 13px/1.45 var(--nfc4-sans); color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-cv2-progress__text strong { margin-right: .3em; font-weight: 600; color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-cv2-progress.is-done .nf-cv2-progress__text strong { color: var(--nfc4-tan-txt); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-cv2-progress__save { color: var(--nfc4-muted); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-fall { margin: 0 !important; padding: 12px 16px !important; border: 1px solid var(--nfc4-line) !important; border-radius: var(--nfc4-r) !important; background: #fff !important; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-pc-fall { margin: 0; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-pc-bf { margin: 0; padding: 12px 16px; border: 1px solid var(--nfc4-line); border-radius: var(--nfc4-r); background: #fff; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-fall__text,
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-pc-bf__text { font-family: var(--nfc4-sans); font-size: 13px; }
+
+/* totals */
+html:root:not(#nfc4) body .nfcp-page .nfcp-rows { gap: 10px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-row { font: 400 14px/1.4 var(--nfc4-sans); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-row dt { color: var(--nfc4-muted); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-row dd { color: var(--nfc4-ink); font-weight: 500; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-row--save dt,
+html:root:not(#nfc4) body .nfcp-page .nfcp-row--save dd { color: var(--nfc4-tan-txt); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-row__x button { background: #fff; border: 1px solid var(--nfc4-line); color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-row--total { align-items: baseline; margin-top: 4px; padding-top: 14px; border-top: 1px solid var(--nfc4-line); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-row--total dt { font: 500 16px/1.2 var(--nfc4-sans); color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-row--total dd { font: 600 19px/1.2 var(--nfc4-sans); color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum__note { margin: -6px 0 0; font: 400 12.5px/1.5 var(--nfc4-sans); color: var(--nfc4-muted); }
+
+/* email note: a quiet white tile */
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-mailnote { margin: 0; padding: 12px 14px; border: 1px solid var(--nfc4-line); border-radius: var(--nfc4-r); background: #fff;
+  font: 400 12.5px/1.5 var(--nfc4-sans); color: var(--nfc4-muted); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nf-mailnote svg { color: var(--nfc4-ink); opacity: 1; }
+
+/* checkout: the drawer's black button */
+html:root:not(#nfc4) body .nfcp-page .nfcp-checkout { min-height: 54px; height: 54px; padding: 0 24px; border: 0; border-radius: var(--nfc4-r); background: var(--nfc4-ink); background-image: none;
+  color: #fff !important; font: 500 15px/1 var(--nfc4-sans); letter-spacing: .08em; text-transform: uppercase; box-shadow: none; transform: none; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-checkout:hover { background: #000; box-shadow: none; transform: none; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-checkout:focus-visible { outline: 2px solid var(--nfc4-ink); outline-offset: 3px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-checkout svg { width: 16px; height: 16px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum__dyn { margin-top: -6px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum__dyn :is(shopify-accelerated-checkout-cart, .shopify-cleanslate) { --shopify-accelerated-checkout-button-border-radius: 4px; }
+
+/* trust row: the drawer's (ink icons, hairline separators) */
+html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nfcp-trust { flex-wrap: nowrap; gap: 0; padding: 14px 0 0; border-top: 1px solid var(--nfc4-line); font: 400 12px/1.3 var(--nfc4-sans); letter-spacing: 0; color: var(--nfc4-ink2); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-trust > span { padding: 0 12px; border-left: 1px solid var(--nfc4-line); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-trust > span:first-child { padding-left: 0; border-left: 0; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-trust > span:last-child { padding-right: 0; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-trust svg { width: 16px; height: 16px; color: var(--nfc4-ink); }
+
+/* "Pairs well with" and "What happens next" (desktop only; phones already hide them) */
+html:root:not(#nfc4) body .nfcp-page .nfcp-next { border-radius: var(--nfc4-r) !important; background: var(--nfc4-warm) !important; border: 1px solid var(--nfc4-line); color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-next :is(.nf-cv2-next__heading, .nf-cv2-next__title) { color: var(--nfc4-ink) !important; font-family: var(--nfc4-serif) !important; font-weight: 400; }
+html:root:not(#nfc4) body .nfcp-page .nfcp-next .nf-cv2-next__text { color: var(--nfc4-muted) !important; font-family: var(--nfc4-sans); }
+html:root:not(#nfc4) body .nfcp-page .nfcp-next svg { color: var(--nfc4-ink) !important; }
+
+/* phone sticky checkout bar (shown until the real button is on screen) */
+html:root:not(#nfc4) body .nfcp-page .nfcp-mbar__sum { font-family: var(--nfc4-sans); }
+
+/* =====================================================================================================================
+   2) /cart empty
+   ===================================================================================================================== */
+html:root:not(#nfc4) body .nfcp-page .nfc4-empty { display: block; max-width: 1240px; padding: 56px 48px 72px; text-align: center; }
+html:root:not(#nfc4) body .nfc4-empty__hero,
+html:root:not(#nfc4) body .nfc4-dempty__hero { display: flex; flex-direction: column; align-items: center; text-align: center; }
+html:root:not(#nfc4) body .nfc4-empty__hero { max-width: 560px; margin: 0 auto; }
+html:root:not(#nfc4) body .nfc4-empty__icon { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 0 18px; border: 1px solid var(--nfc4-line); border-radius: 50%;
+  background: var(--nfc4-warm); color: var(--nfc4-ink); }
+html:root:not(#nfc4) body .nfc4-empty__icon svg { width: 24px; height: 24px; }
+html:root:not(#nfc4) body .nfcp-page .nfcp .nfc4-empty__title { margin: 0 !important; font-size: 48px !important; line-height: 1.08 !important; }
+html:root:not(#nfc4) body .nfc4-empty__text,
+html:root:not(#nfc4) body .nfc4-dempty__text { max-width: 38ch; margin: 12px auto 0; font: 400 15px/1.6 var(--nfc4-sans); letter-spacing: 0; color: var(--nfc4-muted); }
+html:root:not(#nfc4) body a.nfc4-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 260px; height: 52px; margin: 26px 0 0; padding: 0 32px;
+  border: 0; border-radius: var(--nfc4-r); background: var(--nfc4-ink); color: #fff !important; font: 500 14px/1 var(--nfc4-sans) !important; letter-spacing: .08em;
+  text-transform: uppercase; text-decoration: none !important; transition: background-color .2s ease, transform .12s ease; }
+html:root:not(#nfc4) body a.nfc4-btn:hover { background: #000; }
+html:root:not(#nfc4) body a.nfc4-btn:active { transform: scale(.98); }
+html:root:not(#nfc4) body a.nfc4-btn:focus-visible { outline: 2px solid var(--nfc4-ink); outline-offset: 3px; }
+html:root:not(#nfc4) body .nfc4-offer { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin: 16px 0 0; font: 400 12.5px/1.4 var(--nfc4-sans);
+  letter-spacing: 0; color: var(--nfc4-muted); text-wrap: balance; }
+html:root:not(#nfc4) body .nfc4-offer::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--nfc4-tan); }
+
+/* popular collections */
+html:root:not(#nfc4) body .nfc4-cats__h { margin: 0 0 14px; font: 500 11.5px/1.3 var(--nfc4-sans); letter-spacing: .14em; text-transform: uppercase; color: var(--nfc4-muted); }
+html:root:not(#nfc4) body .nfc4-cats { max-width: 920px; margin: 48px auto 0; }
+html:root:not(#nfc4) body .nfc4-cats__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+html:root:not(#nfc4) body .nfc4-cats__list li { margin: 0; padding: 0; }
+html:root:not(#nfc4) body .nfc4-cats .nfc4-cat { display: flex; align-items: center; justify-content: space-between; gap: 10px; height: 58px; padding: 0 18px;
+  border: 1px solid var(--nfc4-line); border-radius: var(--nfc4-r); background: #fff; color: var(--nfc4-ink) !important; text-decoration: none !important;
+  font: 400 19px/1.2 var(--nfc4-serif); transition: border-color .2s ease, background-color .2s ease; }
+html:root:not(#nfc4) body .nfc4-cat svg { width: 18px; height: 18px; flex: none; color: var(--nfc4-muted); transition: transform .3s var(--nfc4-ease), color .2s ease; }
+html:root:not(#nfc4) body .nfc4-cats .nfc4-cat:hover { border-color: var(--nfc4-ink); background: var(--nfc4-warm); }
+html:root:not(#nfc4) body .nfc4-cat:hover svg { color: var(--nfc4-ink); transform: translateX(3px); }
+
+/* best sellers (MOD cards, reuses the .nfcp-yml grid: 4 across, 2 on phones) */
+html:root:not(#nfc4) body .nfcp-page .nfc4-best { margin: 56px 0 0; padding: 40px 0 0; border-top: 1px solid var(--nfc4-line); text-align: left; }
+html:root:not(#nfc4) body .nfc4-best__h { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin: 0 0 18px; }
+html:root:not(#nfc4) body .nfcp-page .nfc4-best .nfcp-yml__h { margin: 0; font-size: 30px; }
+html:root:not(#nfc4) body .nfc4-best__all { font: 400 13.5px/1.3 var(--nfc4-sans); color: var(--nfc4-ink) !important; text-decoration: underline !important; text-decoration-color: rgba(28, 28, 28, .35) !important;
+  text-underline-offset: 4px; white-space: nowrap; }
+html:root:not(#nfc4) body .nfc4-best__all:hover { text-decoration-color: var(--nfc4-ink) !important; }
+html:root:not(#nfc4) body .nfcp-page .nfc4-trust { justify-content: center; margin: 40px 0 0; padding: 0; border-top: 0; font: 400 12.5px/1.3 var(--nfc4-sans); color: var(--nfc4-ink2); }
+
+/* =====================================================================================================================
+   3) Cart drawer, empty (desktop and phone). Prestige centres an empty drawer body (.drawer--center-body); with the longer
+      content it starts at the top instead, so nothing is cut off on short screens.
+   ===================================================================================================================== */
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer.drawer--center-body::part(body) { align-self: stretch !important; justify-self: stretch !important; width: 100%; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty { display: block; width: 100%; box-sizing: border-box; padding: 32px 0 28px; text-align: center; font-family: var(--nfc4-sans); color: var(--nfc4-ink); }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty__hero { padding: 0 24px; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nfc4-empty__icon { width: 52px; height: 52px; margin-bottom: 16px; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty__title { margin: 0; font-family: var(--nfc4-serif) !important; font-size: 30px; font-weight: 400; line-height: 1.15;
+  letter-spacing: 0; text-transform: none; color: var(--nfc4-ink); }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty__text { margin-top: 8px; font-size: 14px; max-width: 32ch; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty a.nfc4-btn { width: 100%; min-width: 0; margin-top: 22px; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nfc4-offer { margin-top: 14px; font-size: 12px; }
+
+/* popular collections as hairline rows (MOD menu) */
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dlinks { margin: 30px 0 0; text-align: left; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dlinks .nfc4-cats__h { margin: 0 0 8px; padding: 0 24px; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dlinks ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--nfc4-line); }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dlinks li { margin: 0; padding: 0; border-bottom: 1px solid var(--nfc4-line); }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dlinks .nfc4-cat { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px;
+  padding: 0 24px; color: var(--nfc4-ink) !important; text-decoration: none !important; font: 400 19px/1.2 var(--nfc4-serif); transition: background-color .2s ease; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dlinks .nfc4-cat:hover { background: var(--nfc4-warm); }
+
+/* best sellers row (snippets/nf-cd-yml.liquid, the drawer's "You may also like" cards) */
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nf-cdy { margin: 0 !important; padding: 26px 0 4px !important; border: 0 !important; text-align: left; }
+
+/* trust row: the drawer footer's */
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nfc4-dtrust { display: flex; flex-wrap: nowrap; justify-content: center; gap: 0; width: 100%; box-sizing: border-box;
+  margin: 22px 0 0; padding: 18px 16px 0; border-top: 1px solid var(--nfc4-line); font: 400 12px/1.3 var(--nfc4-sans); letter-spacing: 0; color: var(--nfc4-ink2); }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nfc4-dtrust > span { padding: 0 10px; border-left: 1px solid var(--nfc4-line); }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nfc4-dtrust > span:first-child { border-left: 0; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nfc4-dtrust svg { width: 16px; height: 16px; color: var(--nfc4-ink); }
+
+/* entrance: the empty content settles in as the drawer slides open (compositor only) */
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer[open] .nfc4-dempty > * { animation: nfc4Rise .5s var(--nfc4-ease) both; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer[open] .nfc4-dempty > :nth-child(2) { animation-delay: .06s; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer[open] .nfc4-dempty > :nth-child(3) { animation-delay: .12s; }
+html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer[open] .nfc4-dempty > :nth-child(n+4) { animation-delay: .18s; }
+@keyframes nfc4Rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* =====================================================================================================================
+   4) Tablets and phones
+   ===================================================================================================================== */
+@media (max-width: 999px) {
+  html:root:not(#nfc4) body .nfcp-page .nfcp-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-sum { position: static; }
+  html:root:not(#nfc4) body .nfc4-cats__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  html:root:not(#nfc4) body .nfc4-cats { max-width: 560px; }
+}
+@media (max-width: 749px) {
+  html:root:not(#nfc4) body .nfcp-page .nfcp { padding: 20px 16px 40px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-head { padding: 4px 0 14px !important; margin: 0 !important; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp .nfcp-title { font-size: 30px !important; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-eyebrow { font-size: 13px; }
+  html:root:not(#nfc4) body .nfcp-page .nf-gm-steps { margin: 14px 0 0; font-size: 11.5px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-line { grid-template-columns: 96px minmax(0, 1fr) auto; column-gap: 14px; row-gap: 10px; padding: 18px 0; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp .nfcp-line__title { font-size: 18px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-line__opts { font-size: 12.5px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-line__total { font-size: 15px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-line__qty { gap: 14px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-main > .nfcp-yml { padding-top: 28px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-yml__h { font-size: 24px; margin-bottom: 14px; }
+  /* summary: full-bleed cream band, like the drawer's sticky footer */
+  html:root:not(#nfc4) body .nfcp-page .nfcp-sum { margin: 0 -16px; padding: 22px 16px 24px; border-width: 1px 0; border-radius: 0; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp .nfcp-sum__title { font-size: 24px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-checkout { height: 52px; min-height: 52px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-sum .nfcp-trust { font-size: 11.5px; }
+  /* sticky bar: white, hairline, black button */
+  html:root:not(#nfc4) body .nfcp-page .nfcp-mbar { border-top: 1px solid var(--nfc4-line); background: #fff; box-shadow: 0 -10px 24px -18px rgba(20, 16, 12, .35); }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-mbar__sum { font-size: 10.5px; letter-spacing: .12em; color: var(--nfc4-muted); }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-mbar__sum strong { font: 600 17px/1.15 var(--nfc4-sans); letter-spacing: 0; color: var(--nfc4-ink); }
+  html:root:not(#nfc4) body .nfcp-page .nfcp-mbar__btn { min-height: 48px; padding: 0 24px; border-radius: var(--nfc4-r); background: var(--nfc4-ink); color: #fff;
+    font: 500 14px/1 var(--nfc4-sans); letter-spacing: .08em; }
+
+  /* empty page */
+  html:root:not(#nfc4) body .nfcp-page .nfc4-empty { padding: 36px 16px 44px; }
+  html:root:not(#nfc4) body .nfcp-page .nfcp .nfc4-empty__title { font-size: 34px !important; }
+  html:root:not(#nfc4) body .nfc4-empty__text { font-size: 14px; }
+  html:root:not(#nfc4) body .nfcp-page .nfc4-empty a.nfc4-btn { width: 100%; min-width: 0; }
+  html:root:not(#nfc4) body .nfc4-cats { margin-top: 36px; }
+  html:root:not(#nfc4) body .nfc4-cats__list { gap: 10px; }
+  html:root:not(#nfc4) body .nfc4-cats .nfc4-cat { height: 52px; padding: 0 14px; font-size: 17px; }
+  html:root:not(#nfc4) body .nfcp-page .nfc4-best { margin-top: 40px; padding-top: 30px; }
+  html:root:not(#nfc4) body .nfcp-page .nfc4-best .nfcp-yml__h { font-size: 24px; }
+  html:root:not(#nfc4) body .nfcp-page .nfc4-trust { flex-wrap: nowrap; gap: 0; margin-top: 30px; font-size: 11.5px; }
+
+  /* empty drawer (phones: 20px gutters like nf-m4.css section F) */
+  html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty { padding-top: 28px; }
+  html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty__hero { padding: 0 20px; }
+  html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty__title { font-size: 28px; }
+  html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dlinks .nfc4-cats__h,
+  html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dlinks .nfc4-cat { padding-left: 20px; padding-right: 20px; }
+  html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nfc4-dtrust { font-size: 11.5px; padding-left: 8px; padding-right: 8px; }
+  html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nfc4-dtrust > span { padding: 0 8px; }
+}
+@media (max-width: 374px) {
+  html:root:not(#nfc4) body .nfcp-page .nfc4-trust,
+  html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer .nfc4-dempty .nfc4-dtrust { flex-wrap: wrap; row-gap: 8px; }
+}
+
+/* =====================================================================================================================
+   5) Reduced motion
+   ===================================================================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html:root:not(#nfc4) body cart-drawer#cart-drawer.cart-drawer[open] .nfc4-dempty > * { animation: none !important; }
+  html:root:not(#nfc4) body .nfc4-cat svg, html:root:not(#nfc4) body a.nfc4-btn { transition: none !important; }
+}
