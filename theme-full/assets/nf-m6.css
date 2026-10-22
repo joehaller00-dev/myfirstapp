@@ -85,20 +85,25 @@ html:root:not(#nfprm) body .nf-prm .nf-prm__head { text-align: center !important
 @media (max-width: 999px) {
   html.nf-m6-srch body > #header-search-panel.is-open {
     position: fixed !important; top: var(--nf-vvt, 0px) !important; bottom: auto !important; left: 0 !important; right: 0 !important;
-    width: 100% !important; height: var(--nf-vvh, 100%) !important; max-height: none !important; z-index: 2147483600 !important;
+    width: 100% !important; height: var(--nf-ph, 100lvh) !important; box-sizing: border-box !important; max-height: none !important; z-index: 2147483600 !important;
     display: flex !important; flex-direction: column !important; margin: 0 !important; transform: none !important; opacity: 1 !important;
-    padding: env(safe-area-inset-top, 0px) 0 0 !important; background: var(--nf-m4-warm, #f7f5f2) !important; border: 0 !important;
+    padding: env(safe-area-inset-top, 0px) 0 var(--nf-kb, env(safe-area-inset-bottom, 0px)) !important; background: var(--nf-m4-warm, #f7f5f2) !important; border: 0 !important;
     overflow: hidden !important; overscroll-behavior: contain; visibility: visible !important; }
   html.nf-m6-srch body > #header-search-panel.is-open .header-search-panel__inner { flex: 0 0 auto; padding: 12px 16px 10px !important; }
-  html.nf-m6-srch body > #header-search-panel.is-open .nf-srch { flex: 1 1 auto !important; min-height: 0 !important; height: auto !important; max-height: none !important;
+  html.nf-m6-srch body > #header-search-panel.is-open .nf-srch { position: relative !important; inset: auto !important; top: auto !important; left: auto !important; right: auto !important;
+    width: auto !important; margin: 0 !important; transform: none !important; box-shadow: none !important; flex: 1 1 auto !important; min-height: 0 !important; height: auto !important; max-height: none !important;
     overflow-y: auto !important; -webkit-overflow-scrolling: touch; overscroll-behavior: contain !important; }
+  /* nf-search.js adds the results list after the bottom button, so the order is set here: search row, list, button */
+  html.nf-m6-srch body > #header-search-panel.is-open .header-search-panel__inner { order: 1; }
+  html.nf-m6-srch body > #header-search-panel.is-open .nf-srch { order: 2; }
+  html.nf-m6-srch body > #header-search-panel.is-open .nf-m6-sfoot { order: 3; margin-top: auto; }
   html.nf-m6-srch .nf-srch-scrim { display: none !important; }
   html.nf-m6-srch body { overflow: hidden !important; }
 }
 
 /* the search page's one bottom button (nf-m6.js part 3), MOD: it rides on top of the keyboard while typing */
 @media (max-width: 999px) {
-  html.nf-m6-srch body > #header-search-panel.is-open .nf-m6-sfoot { display: block !important; flex: 0 0 auto; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  html.nf-m6-srch body > #header-search-panel.is-open .nf-m6-sfoot { display: block !important; flex: 0 0 auto; padding: 10px 16px 10px;
     background: var(--nf-m4-warm, #f7f5f2); border-top: 1px solid var(--nf-m4-line, #e6e1d9); }
   html body #header-search-panel .nf-m6-sfoot__btn { display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 4px;
     background: var(--nf-m4-ink, #1c1c1c); color: #fff !important; font: 500 16px/1 var(--nf-m4-sans, Poppins, sans-serif); letter-spacing: .01em; text-decoration: none; }

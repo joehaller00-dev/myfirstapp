@@ -160,8 +160,12 @@
   var vv = window.visualViewport;
   function fit() {
     if (!panel || !vv || !locked) return;
-    panel.style.setProperty('--nf-vvh', Math.round(vv.height) + 'px');
+    /* the panel's cream reaches the very bottom of the screen (behind Safari's floating address bar and the keyboard), and
+       its content (search row, list, bottom button) ends where the visible area ends, just above the address bar */
+    var H = Math.max(window.innerHeight || 0, root.clientHeight || 0, (window.screen && screen.height) || 0);
     panel.style.setProperty('--nf-vvt', Math.round(vv.offsetTop) + 'px');
+    panel.style.setProperty('--nf-ph', H + 'px');
+    panel.style.setProperty('--nf-kb', Math.max(0, Math.round(H - vv.height)) + 'px');
   }
   if (vv) { vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
 
