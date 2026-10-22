@@ -1,0 +1,546 @@
+{
+  "indoor-lighting": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-hero-autumn-room.jpg?v=1789841912",
+      "w": 2800,
+      "h": 1575,
+      "alt": "Autumn dining room lit by a brass chandelier and wall sconces with maples in the windows",
+      "why": "Autumn dining room, brass chandelier + sconces, maples in the windows: warm, wide, editorial"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-chandelier-over-dining-table.png?v=1789082250",
+        "w": 2400,
+        "h": 1792,
+        "alt": "Black branch chandelier glowing over an oak dining table",
+        "why": "Black branch chandelier glowing over oak dining table, cosy evening interior"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787889040588_7ebe35b8_1787889041237_7b0375fb.png?v=1787889107",
+        "w": 2528,
+        "h": 1696,
+        "alt": "Indoor Lighting collection banner - green kitchen (no grey panel)",
+        "why": "Made as the Indoor Lighting collection banner: green kitchen, multi-bulb ceiling light (the version without the grey panel)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-warm-vs-cool-light-nook.png?v=1789098300",
+        "w": 2400,
+        "h": 1792,
+        "alt": "Breakfast nook glowing with warm white light against a cool blue dusk window",
+        "why": "Breakfast nook glowing warm against a blue-dusk window"
+      }
+    ]
+  },
+  "outdoor-lighting": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-discover-hero.jpg?v=1789155006",
+      "w": 2400,
+      "h": 1340,
+      "alt": "Modern family home at dusk with glowing wall lights and path lights",
+      "why": "Modern family home at dusk, glowing wall + path lights: the classic outdoor hero, 16:9"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_outdoor_lighting.jpg?v=1780638810",
+        "w": 2200,
+        "h": 1228,
+        "alt": "Outdoor Lighting",
+        "why": "Outdoor Lighting hero, 2200x1228 banner shape"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787884107539_48f3d276_1787884108157_7409fbb0.png?v=1787884205",
+        "w": 2528,
+        "h": 1696,
+        "alt": "NF banner - Outdoor Wall Lighting",
+        "why": "Generated as an NF banner (outdoor wall lighting). May have a text panel, so check it"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787884117483_e04b0f74_1787884118067_92b73eb9.png?v=1787884204",
+        "w": 2528,
+        "h": 1696,
+        "alt": "NF banner - Outdoor Lanterns",
+        "why": "Generated as an NF banner (outdoor lanterns). May have a text panel, so check it"
+      }
+    ]
+  },
+  "shop-all": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-custom-chandelier-grand-foyer.jpg?v=1789187966",
+      "w": 2528,
+      "h": 1696,
+      "alt": "Large crystal and brass chandelier glowing in a bright two story foyer with a curved staircase at evening",
+      "why": "Bright two-storey foyer, crystal and brass chandelier, curved staircase: elegant and wide"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nfm-hero-living-20260927.jpg?v=1790542587",
+        "w": 2600,
+        "h": 1181,
+        "alt": "Sunlit living room with a linen sectional and brass sconces",
+        "why": "Sunlit living room, linen sectional, brass sconces: very wide 2.2:1 banner"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf_hero_living_room.jpg?v=1780608241",
+        "w": 2200,
+        "h": 1228,
+        "alt": "Living room with sofa and garden view",
+        "why": "Living room with sofa and garden view"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-custom-chandelier-foyer.png?v=1789171797",
+        "w": 2528,
+        "h": 1696,
+        "alt": "Two tier black and gold candle chandelier glowing over a round entry table in a tall foyer at evening",
+        "why": "Tall foyer at evening, black and gold candle chandelier over a round entry table"
+      }
+    ]
+  },
+  "tile-best-sellers": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-pro-homes.jpg?v=1789150013",
+      "w": 2400,
+      "h": 1610,
+      "alt": "Warm family kitchen at evening with three glass pendant lights on chains over a quartz island and a black branch chandelier over a round oak dining table",
+      "why": "Warm family kitchen at evening: three glass pendants over the island plus a branch chandelier over an oak table"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-members-dining-sconces.jpg?v=1790543617",
+        "w": 1800,
+        "h": 1005,
+        "alt": "Dining room with a row of glowing wall sconces above a long wooden table",
+        "why": "Dining room with a row of glowing sconces over a long wooden table"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-discover-guides.jpg?v=1789155123",
+        "w": 2400,
+        "h": 1792,
+        "alt": "Kitchen island at dusk under three travertine pendant lights",
+        "why": "Kitchen island at dusk under three travertine pendants"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/hero_best_sellers.webp?v=1785999959",
+        "w": 2400,
+        "h": 1610,
+        "alt": "Best Sellers Hero",
+        "why": "Made as the Best Sellers hero, 2400x1610. Content unknown, so check it"
+      }
+    ]
+  },
+  "tile-new-arrivals": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-banner-crystal-pendants.jpg?v=1792433081",
+      "w": 2600,
+      "h": 1451,
+      "alt": "Crystal glass pendant cluster glowing warm over a dining table",
+      "why": "Newest banner (Oct 19): crystal pendant cluster glowing warm over a dining table"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-reading-nook-floor-lamp.png?v=1789098300",
+        "w": 2400,
+        "h": 1792,
+        "alt": "Arched floor lamp glowing over a reading chair by a window at dusk",
+        "why": "Arched floor lamp over a reading chair by a window at dusk"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-discover-catalog.jpg?v=1789155071",
+        "w": 2400,
+        "h": 1792,
+        "alt": "Dining room at night under a glowing linear pendant light",
+        "why": "Dining room at night under a glowing linear pendant"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-ref-bedroom-sconces.png?v=1789189123",
+        "w": 2400,
+        "h": 1792,
+        "alt": "bedroom sconces, inspiration image",
+        "why": "Bedroom with glowing sconces (inspiration render)"
+      }
+    ]
+  },
+  "tile-shop-by": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-members-open-plan-living.jpg?v=1790543617",
+      "w": 1800,
+      "h": 1005,
+      "alt": "Open plan living and dining room in warm natural light with arched bookshelves",
+      "why": "Open-plan living + dining in warm light with arched bookshelves: reads as \"rooms\""
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-ref-family-kitchen.png?v=1789189088",
+        "w": 2528,
+        "h": 1696,
+        "alt": "family kitchen, inspiration image",
+        "why": "Family kitchen (inspiration render)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-members-living-room.jpg?v=1790543617",
+        "w": 1800,
+        "h": 1005,
+        "alt": "Bright living room with a linen sofa, round coffee table and olive tree",
+        "why": "Bright living room, linen sofa, round coffee table, olive tree"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-pro-concept-08.jpg?v=1789150085",
+        "w": 2400,
+        "h": 1610,
+        "alt": "Hotel guest suite at night with curved arc wall lights beside an upholstered headboard and crystal table lamps glowing on walnut nightstands",
+        "why": "Hotel suite at night: arc wall lights by the headboard, crystal lamps on walnut nightstands"
+      }
+    ]
+  },
+  "inspiration": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-pro-hub.jpg?v=1789149883",
+      "w": 2400,
+      "h": 1610,
+      "alt": "Boutique hotel lounge at evening with a cluster of amber glass pendant lights over a travertine coffee table, wood grain table lamps, picture lights and a glowing fireplace",
+      "why": "Boutique hotel lounge at evening: amber pendant cluster, travertine table, picture lights, fireplace. Magazine-style"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-pro-concept-01.jpg?v=1789150050",
+        "w": 2400,
+        "h": 1610,
+        "alt": "Boutique hotel lobby with alder wood paneling at evening, a cluster of glass globe pendants on brass rods over lounge seating and paper lantern floor lamps",
+        "why": "Boutique hotel lobby, alder panelling, globe pendants on brass rods, paper lantern lamps"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-ref-woven-pendant.png?v=1789189089",
+        "w": 5504,
+        "h": 3072,
+        "alt": "woven pendant, inspiration image",
+        "why": "Woven pendant inspiration scene, 5504x3072"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-discover-custom.jpg?v=1789155070",
+        "w": 2400,
+        "h": 1792,
+        "alt": "Custom cluster of amber glass pendants glowing in a stairwell",
+        "why": "Custom amber glass pendant cluster glowing in a stairwell"
+      }
+    ]
+  },
+  "room-sets": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-layered-living-room.png?v=1789098300",
+      "w": 2400,
+      "h": 1792,
+      "alt": "Living room at night lit by a ceiling light, table lamp, floor lamp and picture light",
+      "why": "Living room at night with a full layered set: ceiling light, table lamp, floor lamp and picture light"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-dusk-kitchen-night.png?v=1789206244",
+        "w": 2752,
+        "h": 1536,
+        "alt": "The same kitchen at night with the glass dome pendants, brass globe sconce and table lamp glowing",
+        "why": "Kitchen/dining at night: dome pendants + brass globe sconce + table lamp all glowing (a coordinated set)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-pro-concept-06.jpg?v=1789150082",
+        "w": 2400,
+        "h": 1610,
+        "alt": "Modern family kitchen at evening with gold crystal pendant lights over a walnut island and a wave shaped LED linear suspension light over the dining table",
+        "why": "Family kitchen at evening: gold crystal pendants over the island + wave linear suspension over the table"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-custom-curtains.png?v=1789171796",
+        "w": 2528,
+        "h": 1696,
+        "alt": "Living room at dusk with full, floor length made to measure curtains hung high on a black rod, a table lamp and floor lamp glowing warm",
+        "why": "Living room at dusk, table lamp + floor lamp glowing, floor-length curtains"
+      }
+    ]
+  },
+  "landscape-lighting": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-solar-garden-lights.png?v=1789098300",
+      "w": 2400,
+      "h": 1792,
+      "alt": "Solar path lights and lanterns glowing along a garden border at dusk",
+      "why": "Solar path lights and lanterns glowing along a garden border at dusk: exactly the category"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787884747560_534928de_1787884748637_39c343e2.png?v=1787884841",
+        "w": 2528,
+        "h": 1696,
+        "alt": "NF banner v2 - Landscape Lighting",
+        "why": "Generated as an NF banner v2 (Landscape Lighting). May have a text panel, so check it"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787871064842_1ef8438b_1787871065579_249cfd0b.png?v=1787871443",
+        "w": 2048,
+        "h": 2048,
+        "alt": "Solar Lantern Path Lights along a garden path at dusk",
+        "why": "Solar lantern path lights along a garden path at dusk (square)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-pro-outdoor.jpg?v=1789150015",
+        "w": 2400,
+        "h": 1610,
+        "alt": "Restaurant garden terrace at dusk with black up and down wall lights on a stucco wall, globe string lights overhead and stainless steel path lights along a gravel path",
+        "why": "Garden terrace at dusk: up/down wall lights, string lights, path lights along gravel"
+      }
+    ]
+  },
+  "outdoor-solar-wall-lights": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787890398005_ddfe7e85_1787890399626_9fadfefa.png?v=1787890426",
+      "w": 2528,
+      "h": 1696,
+      "alt": "Luxury terrace at blue hour - up down wall sconces",
+      "why": "Luxury terrace at blue hour, up/down wall sconces throwing light fans. Wide; shows the look rather than a solar unit"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/collections/modern-solar-powered-black-wall-fence-lights-4-pack-963788.jpg?v=1789247419",
+        "w": 1000,
+        "h": 1000,
+        "alt": "Solar wall lights casting warm fan patterns on a wall",
+        "why": "Current collection image: solar wall lights casting warm fans on a wall (square)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/modern-outdoor-lights-wall-mount_c1621c4a-26ed-4c5e-80e7-67f8039b203b.jpg?v=1788675058",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Wall Mount Solar Strip Light, Long Outdoor Facade Accent, view 7",
+        "why": "Wall-mount solar strip light on a facade (product gallery view 7)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-8851522322484-1785533141538-0.jpg?v=1785533277",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Solar motion light on garage",
+        "why": "Solar motion light on a garage (square product-in-scene)"
+      }
+    ]
+  },
+  "outdoor-spotlights": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/dramatic-nighttime-tree-lighting-twilight_2f3bcdeb-ab3f-4702-ad98-6e7e1a0667f8.jpg?v=1788631716",
+      "w": 1080,
+      "h": 1080,
+      "alt": "Nordic Ground Stake Spotlight, Gray Die Cast Aluminum Light",
+      "why": "Tree uplit by ground-stake spotlights at twilight (file name says \"dramatic nighttime tree lighting\")"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/collections/linear-led-wall-washer-modern-stone-entry-wall.webp?v=1789850381",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Outdoor spotlight washing a timber and stone house front with warm light",
+        "why": "Current collection image: spotlight washing a timber and stone house front"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/inground-uplights-stone-pathway-evening.jpg?v=1788632295",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Recessed Well Light, Black Die Cast Aluminum Ground Uplight",
+        "why": "In-ground uplights along a stone pathway at evening"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-8850314690612-1785532935117-1.jpg?v=1785533064",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Solar spotlight lighting garden path",
+        "why": "Solar spotlight lighting a garden path"
+      }
+    ]
+  },
+  "step-deck-lights": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-ref-deck-steps.png?v=1789189088",
+      "w": 2400,
+      "h": 1792,
+      "alt": "deck steps, inspiration image",
+      "why": "Deck steps lit at dusk (inspiration render, 2400x1792)"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-ref-deck-strips.png?v=1789189123",
+        "w": 2400,
+        "h": 1792,
+        "alt": "deck strips, inspiration image",
+        "why": "Deck LED strips (inspiration render, 2400x1792)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/recessed-deck-step-lights-garden-pathway-soft-warm-glow.jpg?v=1788632387",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Ultra Thin Recessed Step Light, Black Aluminum Deck Light",
+        "why": "Recessed step lights, soft warm glow along a garden path"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-8850314231860-1785532739792-0.jpg?v=1785532872",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Solar deck lights on porch steps at night",
+        "why": "Solar deck lights on porch steps at night"
+      }
+    ]
+  },
+  "shop-by-area": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-pro-concept-07.jpg?v=1789150084",
+      "w": 2400,
+      "h": 1610,
+      "alt": "Residential garden courtyard at dusk with curved gold wall lights beside glass doors and black bollard path lights along a flagstone path",
+      "why": "Garden courtyard at dusk: wall lights by glass doors + bollard path lights on flagstones. Covers several areas in one wide shot"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787884723165_7f4245f5_1787884723610_5512fa07.png?v=1787884841",
+        "w": 2528,
+        "h": 1696,
+        "alt": "NF banner v2 - Outdoor Post Lights",
+        "why": "Generated as an NF banner v2 (outdoor post lights). May have a text panel, so check it"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787885540679_8a96b854_1787885541282_54fc4425.png?v=1787885606",
+        "w": 2528,
+        "h": 1696,
+        "alt": "NF banner v3 - Landscape Lighting",
+        "why": "Generated as an NF banner v3 (landscape lighting). May have a text panel, so check it"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-hero-patio-evening.jpg?v=1789099267",
+        "w": 3200,
+        "h": 1786,
+        "alt": "Stone and timber home at dusk with a pergola strung with lights, lanterns, path lights and a fire pit",
+        "why": "Stone and timber home at dusk, pergola lights, lanterns, path lights, fire pit. ALREADY USED on the homepage (Glow Anywhere banner), so only as a fallback"
+      }
+    ]
+  },
+  "porch-entry": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-front-porch-lanterns.png?v=1789082250",
+      "w": 2400,
+      "h": 1792,
+      "alt": "Craftsman front porch with two glowing black lanterns at dusk",
+      "why": "Craftsman front porch with two glowing black lanterns at dusk"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/image_1787890197960_f08198fa_1787890198786_d6bb1f2a.png?v=1787890212",
+        "w": 2528,
+        "h": 1696,
+        "alt": "Luxury home entrance - up down wall sconces at blue hour",
+        "why": "Luxury home entrance, up/down wall sconces at blue hour"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-rainy-entry-lanterns.png?v=1789098300",
+        "w": 2400,
+        "h": 1792,
+        "alt": "Two outdoor lanterns glowing beside a navy front door during evening rain",
+        "why": "Two lanterns glowing beside a navy front door in evening rain"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/collections/black-outdoor-sconce-light-grid-gray-stone-wall-wooden-door.jpg?v=1789283988",
+        "w": 1020,
+        "h": 1020,
+        "alt": "Vertical wall lantern glowing beside an entry gate at dusk",
+        "why": "Current collection image: wall lantern beside an entry gate at dusk (square)"
+      }
+    ]
+  },
+  "patio-deck": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-patio-string-lights.png?v=1789082250",
+      "w": 2400,
+      "h": 1792,
+      "alt": "Globe string lights glowing over a backyard patio at dusk",
+      "why": "Globe string lights glowing over a backyard patio at dusk"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/collections/stylish-outdoor-patio-floor-lamps-chic-lounge-dusk-illumination.jpg?v=1792700705",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Outdoor floor lamps lighting a patio lounge at dusk",
+        "why": "Outdoor floor lamps lighting a patio lounge at dusk (outdoor-floor-lamps collection image, square)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/led-globe-string-lights-pergola-backyard-dining_4c8b321f-0900-4045-bd3e-26bba4d6ed5e.jpg?v=1790344803",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Terrace Dining Lighting Set",
+        "why": "String lights over a pergola backyard dining table (Terrace Dining set photo)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/moon-light-outdoor-sofa-patio.webp?v=1788674040",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Glowing Moon Orb Lawn Light, Frosted Glass Solar Garden Light, view 2",
+        "why": "Moon orb lights beside an outdoor sofa on a patio"
+      }
+    ]
+  },
+  "garden-pathway": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-ref-garden-path.png?v=1789189088",
+      "w": 2400,
+      "h": 1792,
+      "alt": "garden path, inspiration image",
+      "why": "Garden path lit at dusk (inspiration render, 2400x1792)"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/collections/2_365244a7-0909-4a59-a36b-31a41a611c41.jpg?v=1789848780",
+        "w": 1020,
+        "h": 1020,
+        "alt": "Lantern path lights glowing warm along a curving garden path at night",
+        "why": "Path-lights collection image: lantern path lights along a curving garden path at night"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/outdoor-step-light-fixtures-garden-pathway-warm-glow-dusk.jpg?v=1788632295",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Mini Inground Marker Light Set, Polished Stainless Steel Light",
+        "why": "Inground marker lights along a garden pathway at dusk"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/outdoor-bollards-lighting-contemporary-wooden-walkway-dusk.jpg?v=1792052342",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Disc Top Solar Path Light, Die Cast Aluminum Garden Light, view 2",
+        "why": "Solar path lights along a wooden walkway at dusk"
+      }
+    ]
+  },
+  "driveway-security": {
+    "primary": {
+      "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/short-bollard-light-contemporary-house-driveway-soft-directional-light.jpg?v=1792052341",
+      "w": 1080,
+      "h": 1080,
+      "alt": "Volcano Head Lawn Light, Low Die Cast Aluminum Border Light, view 2",
+      "why": "Short bollard lights along a contemporary house driveway"
+    },
+    "alts": [
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/modern-driveway-bollard-lights.jpg?v=1788629642",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Low Profile Driveway Bollard Light, Gray Aluminum Landscape Light, view 7",
+        "why": "Low-profile driveway bollard lights (gallery view 7, scene name)"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-8851522322484-1785533141538-0.jpg?v=1785533277",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Solar motion light on garage",
+        "why": "Solar motion light on a garage"
+      },
+      {
+        "url": "https://cdn.shopify.com/s/files/1/0750/8380/8820/collections/contemporary-outdoor-wall-light-covered-porch-entry.jpg?v=1789247221",
+        "w": 1080,
+        "h": 1080,
+        "alt": "Rectangular outdoor wall lantern glowing beside a wooden front door",
+        "why": "Current collection image: outdoor wall lantern beside a wooden front door"
+      }
+    ]
+  }
+}
