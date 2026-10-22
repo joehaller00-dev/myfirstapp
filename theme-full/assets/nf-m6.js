@@ -209,3 +209,44 @@
   }, { capture: true, passive: true });
   window.addEventListener('pageshow', function () { if (panel && !panel.classList.contains('is-open')) unlock(); });
 })();
+
+/* 4. Phone search taps and close (owner 2026-10-22):
+      - a Popular word (Chandelier...) or any result goes straight to its page: the keyboard drops and the bottom button goes
+        away at once (nf-m4.js used to type the word into the box and show live results instead);
+      - closing the search (X) empties the box, so the next open starts clean. */
+(function () {
+  'use strict';
+  if (window.__nfM6Srch2) return;
+  window.__nfM6Srch2 = 1;
+  var doc = document, root = doc.documentElement;
+  var PHONE = window.matchMedia('(max-width: 999px)');
+  function input() { return doc.getElementById('header-search-panel-input'); }
+  function going() {
+    var i = input(); if (i) { try { i.blur(); } catch (e) {} }
+    if (doc.activeElement && doc.activeElement.blur) { try { doc.activeElement.blur(); } catch (e) {} }
+    root.classList.add('nf-m6-going');
+  }
+  doc.addEventListener('click', function (e) {
+    if (!PHONE.matches || !e.target.closest) return;
+    var a = e.target.closest('#header-search-panel a[href]');
+    if (!a || e.defaultPrevented && !a.hasAttribute('data-nf-srch-term')) return;
+    if (a.hasAttribute('data-nf-srch-term')) { e.preventDefault(); e.stopImmediatePropagation(); going(); location.href = a.href; return; }
+    going();
+  }, true);
+  doc.addEventListener('submit', function (e) {
+    if (PHONE.matches && e.target.closest && e.target.closest('#header-search-panel')) going();
+  }, true);
+  window.addEventListener('pageshow', function () { root.classList.remove('nf-m6-going'); });
+  /* empty the box whenever the panel closes */
+  function watch() {
+    var p = doc.getElementById('header-search-panel');
+    if (!p || p.__nfM6Clr) return;
+    p.__nfM6Clr = 1;
+    new MutationObserver(function () {
+      if (p.classList.contains('is-open')) return;
+      var i = input();
+      if (i && i.value) { i.value = ''; i.dispatchEvent(new Event('input', { bubbles: true })); }
+    }).observe(p, { attributes: true, attributeFilter: ['class'] });
+  }
+  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', watch); else watch();
+})();
