@@ -117,3 +117,5 @@ html:root:not(#nfprm) body .nf-prm .nf-prm__head { text-align: center !important
    0.9s + up to 360ms of stagger once the band was in view; it is simply there now. The book's own page turns are kept. ===== */
 html body .nfcat-promo.is-js .nfcat-promo__rv,
 html body .nfcat-promo.is-in .nfcat-promo__rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+/* the same band on product pages (sections/nf-pdp-catalog.liquid) used the general scroll reveal: shown at once too */
+html.nf-js body .nf-cat__book.nf-rv, html.nf-js body .nf-cat__copy.nf-rv { opacity: 1 !important; transform: none !important; transition: none !important; }
