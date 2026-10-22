@@ -198,6 +198,18 @@
     if (!list) return false;
     scroller.insertBefore(buildTiles(list), list);
     list.classList.add('nfd-main');
+    /* 2026-10-22 (owner: "Inspirations should be underneath More to explore", like the desktop's Inspirations menu): the
+       Inspirations row (Guides, Catalog, Blog, Reviews & Inspiration, Project Portfolio) moves to the top of More to explore */
+    (function () {
+      var insp = null, firstTb = list.querySelector(':scope > li.nf-tb-drawer-item');
+      Array.prototype.forEach.call(list.querySelectorAll(':scope > li'), function (li) {
+        var b = li.querySelector(':scope > .header-sidebar__linklist-button');
+        if (b && textOf(b) === 'inspirations') insp = li;
+      });
+      if (!insp) return;
+      insp.classList.add('nf-tb-drawer-item');
+      if (firstTb) list.insertBefore(insp, firstTb); else list.appendChild(insp);
+    })();
     var firstTb = true;
     Array.prototype.forEach.call(list.querySelectorAll(':scope > li'), function (li) {
       var b = li.querySelector(':scope > .header-sidebar__linklist-button');

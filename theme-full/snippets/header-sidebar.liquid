@@ -3,7 +3,7 @@
   rendered (the utility row became snippets/nf-utilbar.liquid), so the phone drawer's sub panels never arrived and Indoor, Outdoor
   etc. did nothing when tapped. The loader now lives here, keyed on the menus it serves. {%- endcomment -%}
 {%- comment -%} NF-M4 (2026-10-21): fingerprint prefix nfm3 -> nfm4; NF-MENU-PICKS (2026-10-22): nfm4 -> nfm5 so phones drop sub panels cached with the old photos {%- endcomment -%}
-{%- capture nf_menus_fp -%}nfm6{%- for l1 in linklists['main-menu-v3'].links -%}{{ l1.url }}{{ l1.title }}{%- for l2 in l1.links -%}{{ l2.url }}{{ l2.title }}{%- for l3 in l2.links -%}{{ l3.url }}{{ l3.title }}{%- endfor -%}{%- endfor -%}{%- endfor -%}|{%- for l1 in linklists['top-bar'].links -%}{{ l1.url }}{{ l1.title }}{%- for l2 in l1.links -%}{{ l2.url }}{{ l2.title }}{%- for l3 in l2.links -%}{{ l3.url }}{{ l3.title }}{%- endfor -%}{%- endfor -%}{%- endfor -%}{%- endcapture -%}
+{%- capture nf_menus_fp -%}nfm7{%- for l1 in linklists['main-menu-v3'].links -%}{{ l1.url }}{{ l1.title }}{%- for l2 in l1.links -%}{{ l2.url }}{{ l2.title }}{%- for l3 in l2.links -%}{{ l3.url }}{{ l3.title }}{%- endfor -%}{%- endfor -%}{%- endfor -%}|{%- for l1 in linklists['top-bar'].links -%}{{ l1.url }}{{ l1.title }}{%- for l2 in l1.links -%}{{ l2.url }}{{ l2.title }}{%- for l3 in l2.links -%}{{ l3.url }}{{ l3.title }}{%- endfor -%}{%- endfor -%}{%- endfor -%}{%- endcapture -%}
 <script src="{{ 'nf-menus.js' | asset_url }}" defer data-nf-menus-key="{{ nf_menus_fp | md5 }}-{{ 'nf-menus.js' | asset_url | split: 'v=' | last }}" data-nf-menus-url="{{ routes.root_url }}"></script>
 {%- comment -%} NF-DRAWER-V2 (2026-09-12): phone drawer redesign, see assets/nf-drawer-v2.js. Rollback = delete the next 2 lines. {%- endcomment -%}
 <link rel="stylesheet" href="{{ 'nf-drawer-v2.css' | asset_url }}" media="screen and (max-width: 999px)">
@@ -248,6 +248,8 @@
         {%- assign nf_ml_dc = nf_ml_t | downcase | strip -%}
         {%- if nf_ml_dc == 'blogs' -%}{%- assign nf_ml_t = 'Blog' -%}{%- endif -%}
         {%- if nf_ml_dc == 'catalog' -%}{%- assign nf_ml_t = 'Lighting Catalog' -%}{%- assign nf_ml_u = '/pages/lighting-catalog' -%}{%- endif -%}
+        {%- comment -%} 2026-10-22 (owner): Blog and Lighting Catalog live in Inspirations (now under More to explore), not in Help & info {%- endcomment -%}
+        {%- if nf_ml_dc == 'blogs' or nf_ml_dc == 'blog' or nf_ml_dc == 'catalog' -%}{%- continue -%}{%- endif -%}
         <a href="{{ nf_ml_u }}" class="header-sidebar__utility-link">{{ nf_ml_t }}</a>
       {%- endfor -%}
     </div>
