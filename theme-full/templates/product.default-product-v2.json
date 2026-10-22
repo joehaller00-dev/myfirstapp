@@ -94,7 +94,7 @@
         "nf_share": {
           "type": "liquid",
           "settings": {
-            "liquid": "{% render 'nf-pdp-share', product: product, layout: 'row' %}"
+            "liquid": "{% render 'nf-pdp-share', product: product, layout: 'row' %}{%- comment -%} NF-M6: on a refresh or back/forward, theme.liquid NF-RELOAD-SMOOTH-V2 held the first frame until #nf-main-end (the end of <main>, after reviews and Q&A). The first match ends that wait, so the page now paints once the gallery and buy box are in. {%- endcomment -%}<div id=\"nf-main-end\" hidden></div>"
           }
         },
         "nf_trust": {

@@ -23,6 +23,9 @@
   collection About collapse, recently viewed size). Loaded last so it wins; the account sheet markup is printed once here. {%- endcomment -%}
 {{ 'nf-m4.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'nf-m4.js' | asset_url }}" defer></script>
+{%- comment -%} NF-M6 (2026-10-22): native phone gallery swipe, PDP + collection toolbar fixes (MOD). Loaded after nf-m4 so it wins. {%- endcomment -%}
+{{ 'nf-m6.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-m6.js' | asset_url }}" defer></script>
 {%- render 'nf-m4-account' -%}
 <style>
 /* NF-HSEARCH-V8 (2026-10-19): static placeholder "What can we help you find?" fits the desktop box without being cut */
