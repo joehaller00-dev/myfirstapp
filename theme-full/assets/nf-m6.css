@@ -119,3 +119,29 @@ html body .nfcat-promo.is-js .nfcat-promo__rv,
 html body .nfcat-promo.is-in .nfcat-promo__rv { opacity: 1 !important; transform: none !important; transition: none !important; }
 /* the same band on product pages (sections/nf-pdp-catalog.liquid) used the general scroll reveal: shown at once too */
 html.nf-js body .nf-cat__book.nf-rv, html.nf-js body .nf-cat__copy.nf-rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+/* ===== K. Empty search page (/search with nothing typed), MOD: Back, Search, one line, Popular words, Trending grid
+   (sections/main-search.liquid NF-SEARCH-PAGE) ===== */
+.nfsp { background: var(--nf-m4-warm, #f7f5f2); }
+.nfsp__in { max-width: 1200px; margin: 0 auto; padding: 22px max(16px, env(safe-area-inset-right, 0px)) 72px max(16px, env(safe-area-inset-left, 0px)); }
+html body .nfsp .nfsp__back { display: inline-flex; align-items: center; gap: 6px; font: 400 13.5px/1 var(--nf-m4-sans, Poppins, sans-serif); color: #6f685f; text-decoration: none; }
+html body .nfsp .nfsp__back:hover { color: var(--nf-m4-ink, #1c1c1c); }
+html body .nfsp .nfsp__h { margin: 22px 0 10px; font: 400 40px/1.05 var(--nf-m4-serif, "EB Garamond", Georgia, serif); letter-spacing: 0; text-transform: none; color: var(--nf-m4-ink, #1c1c1c); }
+html body .nfsp .nfsp__sub { margin: 0 0 40px; font: 400 15px/1.5 var(--nf-m4-sans, Poppins, sans-serif); color: #6f685f; }
+html body .nfsp .nf-srch-m4 { padding-bottom: 0; }
+html body .nfsp .nf-srch-m4__h { font-size: 28px; margin: 0 0 16px; }
+html body .nfsp .nf-srch-m4__chips { gap: 8px; }
+html body .nfsp .nf-srch-m4__chip { min-height: 40px; padding: 0 14px; font-size: 14px; }
+html body .nfsp .nf-srch-m4__chip:hover { border-color: var(--nf-m4-ink, #1c1c1c); }
+html body .nfsp .nf-srch-m4__trend { margin-top: 48px !important; }
+html body .nfsp .nf-srch-m4__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 14px; }
+html body .nfsp .nf-srch-m4__img { border-radius: 2px; }
+html body .nfsp .nf-srch-m4__card:hover .nf-srch-m4__img img { transform: scale(1.03); }
+html body .nfsp .nf-srch-m4__t { font-size: 21px; margin-top: 14px; }
+html body .nfsp .nf-srch-m4__foot { display: none; }
+@media (max-width: 999px) {
+  html body .nfsp .nf-srch-m4__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 12px; }
+  html body .nfsp .nfsp__h { font-size: 34px; margin-top: 16px; }
+  html body .nfsp .nfsp__sub { margin-bottom: 28px; }
+  html body .nfsp .nf-srch-m4__t { font-size: 18px; }
+}

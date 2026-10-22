@@ -288,24 +288,15 @@
     {%- render 'nf-search-none', terms: search.terms, suggestions: nfs_no_sugs, context: 'page', raw: search.results_count -%}{%- comment -%} NF-SEARCH-V2 nothing found {%- endcomment -%}
   {%- endif -%}
 {%- else -%}
-  <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
-    <div class="container container--xs">
-      <div class="empty-state">
-        <div class="v-stack gap-4">
-          <div class="prose">
-            <h1 class="h4">{{ 'search.general.title' | t }}</h1>
-          </div>
-
-          <form class="main-search-form" action="{{ routes.search_url }}" method="get" role="search">
-            {%- assign placeholder = 'search.general.search_placeholder' | t -%}
-
-            <div class="relative">
-              {%- render 'input', type: 'text', name: 'q', label: placeholder, autocomplete: 'off', autocorrect: 'off' -%}
-              <button type="submit" class="input-suffix link-faded">{% render 'icon' with 'search' %}</button>
-            </div>
-          </form>
-        </div>
-      </div>
+  {%- comment -%} NF-SEARCH-PAGE (2026-10-22, owner: the empty search page should look like MOD's): Back, "Search", one line,
+    Popular search words and the Trending grid (the same picks as the phone search, snippets/nf-search-discover.liquid
+    context 'drop'). Styles: assets/nf-m6.css section K. {%- endcomment -%}
+  <div class="nfsp color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+    <div class="nfsp__in">
+      <a class="nfsp__back" href="{{ routes.root_url }}" onclick="if (history.length > 1 && document.referrer.indexOf(location.host) > -1) { history.back(); return false; }"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M13 8H3.5M7.5 4L3.5 8l4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Back</a>
+      <h1 class="nfsp__h">Search</h1>
+      <p class="nfsp__sub">Popular searches, and the pieces shoppers are looking at now.</p>
+      {%- render 'nf-search-discover', context: 'drop' -%}
     </div>
   </div>
 {%- endif -%}
