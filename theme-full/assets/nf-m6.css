@@ -111,3 +111,9 @@ html:root:not(#nfprm) body .nf-prm .nf-prm__head { text-align: center !important
   html.nf-m6-srch body > #header-search-panel.is-open .nf-srch-m4 { padding-bottom: 8px !important; }
 }
 .nf-m6-sfoot { display: none; }
+
+/* ===== J. Lighting catalog band (homepage, "See Every Light Switched On"): no fade in (owner 2026-10-22: scrolling fast,
+   the band looked empty for a moment). nf-catalog.js hid every part (.is-js) and faded them in one after another over
+   0.9s + up to 360ms of stagger once the band was in view; it is simply there now. The book's own page turns are kept. ===== */
+html body .nfcat-promo.is-js .nfcat-promo__rv,
+html body .nfcat-promo.is-in .nfcat-promo__rv { opacity: 1 !important; transform: none !important; transition: none !important; }
