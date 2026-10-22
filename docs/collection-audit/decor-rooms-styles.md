@@ -61,3 +61,10 @@ Read-only review of the Nora Furnish Shopify store, run on 2026-10-22. Nothing w
 - These need a ruling on "genuine and good" rather than on fit:
   - decor (483 members) and accents-objects hold many ARCHIVED Halloween/fall items, which are hidden from the storefront.
   - wall-decor contains 30 LED Wall Art lighting products, which fits the title.
+
+## Applied 2026-10-22 (clear misfits only)
+- decorative-trays: removed Agave Succulent Planter (8859817181236)
+- wall-clocks: removed Cubetto Desk Clock (10330853081140)
+- botanicals: removed Doro Vase (10330853015604) and Cotto Vase (10330852917300); both stay in Vases
+- material-copper: removed tag `mat-copper` from Trieste (8945874337844)
+Everything else in this file is left for the owner's decision.
