@@ -1,3 +1,6 @@
+{%- comment -%} NF-SHOP-V3 (2026-10-20): the shop page layer (same layout, filters and cards as the collection pages) {%- endcomment -%}
+{{ 'nf-shop-v3.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-shop-v3.js' | asset_url }}" defer></script>
 {%- if search.performed -%}
   {%- liquid
     assign active_values_count = 0
