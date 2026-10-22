@@ -1,0 +1,7 @@
+Verification: main-menu-v3 (gid://shopify/Menu/256725942324), backup vs live re-query after menuUpdate, 2026-10-22
+menu title/handle unchanged: True
+item count before: 138 after: 139
++ ADDED   ROOT > Outdoor > Shop All Outdoor Lighting > Outdoor Floor Lamps (gid://shopify/MenuItem/666268663860 COLLECTION /collections/outdoor-floor-lamps gid://shopify/Collection/512656769076) at position 2
+live tree == backup + intended insert exactly: True
+
+top-bar (gid://shopify/Menu/250000212020): NOT updated. Backup contains 0 items pointing to the 52 deleted handles and all resourceIds resolve; the Soft Furnishings / Poufs & Floor Cushions items were already absent at backup time (Shopify drops COLLECTION-linked menu items when the collection is deleted).

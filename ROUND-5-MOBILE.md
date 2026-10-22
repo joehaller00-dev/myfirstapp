@@ -56,3 +56,12 @@ All in PREVIEW v7 (187544633396), checksums verified after upload.
   landscape, a planter, desk clock and two vases from decor collections, mat-copper from Trieste.
   Owner decisions open: empty seasonal collections (Fall Decor, Halloween all archived), 20 empty decor collections,
   Glow Anywhere description, a possible "Outdoor Floor Lamps" collection.
+
+# Round 7: collection clean-up (owner approved)
+- 52 collections with no active products deleted (list, definitions to recreate, references: docs/empty-collections.md).
+  Every old address redirects to the closest live page first (docs/empty-collections-redirects.json, Admin > Navigation >
+  URL Redirects). Members Only kept (members portal uses it).
+- Glow Anywhere description + SEO rewritten to match its products.
+- New smart collection Outdoor Floor Lamps (product type "Lighting > Outdoor Floor Lamps", 8 lamps), published, in
+  main-menu-v3 under Outdoor > Shop All Outdoor Lighting, and as the phone homepage pill that used to be Soft Furnishings
+  (v7 snippets/nf-cpills.liquid). Menu backups: docs/menu-backups/.
