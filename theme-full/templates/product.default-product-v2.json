@@ -9,13 +9,36 @@
  */
 {
   "sections": {
+    "nf_mod_css": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "{%- comment -%} NF-PDP (2026-10-13 v3): MOD Haylen layout. {%- endcomment -%}\n{%- render 'nf-pdp-taxo', product: product, mode: 'breadcrumb' -%}\n{%- render 'nf-pdp-quality-badges' -%}",
+        "text_alignment": "center"
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
+        "nf_head": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'nf-pdp-head', product: product %}"
+          }
+        },
         "title": {
           "type": "title",
           "settings": {
-            "heading_tag": "h3"
+            "heading_tag": "h1"
+          }
+        },
+        "nf_pmeta": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'nf-pdp-taxo', product: product, mode: 'meta' %}"
           }
         },
         "price": {
@@ -23,6 +46,10 @@
           "settings": {
             "show_taxes_notice": false
           }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -33,6 +60,12 @@
             "variant_image_options": "",
             "variant_image_show_underline": false,
             "size_chart_page": ""
+          }
+        },
+        "nf_urgency": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'nf-pdp-head', product: product, part: 'urgency' %}"
           }
         },
         "buy_buttons": {
@@ -46,115 +79,54 @@
             "payment_button_text_color": ""
           }
         },
-        "acc_dimensions": {
-          "type": "accordion",
+        "nf_bundle": {
+          "type": "liquid",
           "settings": {
-            "show_below_gallery": false,
-            "icon": "picto-document",
-            "title": "Dimensions",
-            "content": "",
-            "liquid": "{{ product.metafields.custom.dimensions }}",
-            "page": ""
+            "liquid": "{% render 'nf-pdp-bundle', product: product %}"
           }
         },
-        "acc_materials": {
-          "type": "accordion",
+        "nf_pillars": {
+          "type": "liquid",
           "settings": {
-            "show_below_gallery": false,
-            "icon": "picto-leaf",
-            "title": "Materials & Care",
-            "content": "<p>Materials vary by product and are listed in the product description above. Common materials across this collection include solid wood, engineered wood (MDF, plywood, eco-board), metal frames (carbon steel, iron, stainless steel), and surface finishes in lacquer, laminate, or natural oil. Glass and stone accents where applicable are tempered.</p><p>Wipe surfaces with a soft, damp cloth and mild soap if needed. Avoid abrasive cleaners or prolonged moisture. Keep away from direct sunlight to prevent fading. For metal frames, dry immediately if exposed to water.</p>",
-            "liquid": "{%- if product.metafields.custom.materials != blank -%}<p class=\"nf-pdp-sub\">Materials</p>{% render 'nf-pdp-acc', kind: 'materials', content: product.metafields.custom.materials.value %}{%- endif -%}{%- if product.metafields.custom.care != blank -%}<p class=\"nf-pdp-sub\">Care</p>{% render 'nf-pdp-acc', kind: 'care', content: product.metafields.custom.care.value %}{%- endif -%}",
-            "page": ""
-          }
-        },
-        "acc_additional": {
-          "type": "accordion",
-          "settings": {
-            "show_below_gallery": false,
-            "icon": "picto-box",
-            "title": "What's Included & How to Use",
-            "content": "<p>What is included, how it is powered and how to set it up are listed here for each product. All required hardware and instructions are included unless stated otherwise. Decorative accessories and items shown in product photos are not included with purchase.</p>",
-            "liquid": "{% render 'nf-pdp-acc', kind: 'included', content: product.metafields.custom.additional_details.value, alt: product.metafields.custom.included_html.value %}",
-            "page": ""
-          }
-        },
-        "acc_shipping_returns": {
-          "type": "accordion",
-          "settings": {
-            "show_below_gallery": false,
-            "icon": "picto-delivery-truck",
-            "title": "Shipping & Returns",
-            "content": "<p><strong>If it arrives damaged, defective or incorrect, returning it costs you nothing.</strong> Email us within 7 days of delivery with a photo of the item and the box, and we cover the return in full.</p><p>Fragile pieces are packed individually with extra protection. Crystal, glass and stone take an extra day of handling so they travel safely.</p><p>Free shipping on all US orders, no minimum required. Delivery is typically 6 to 9 business days: 1 to 2 business days to prepare your order, then 5 to 7 business days in transit. You will receive a tracking number as soon as it ships.</p><p>30 day returns from the day it is delivered. Items must be unused and in their original packaging. If you simply change your mind, the return shipping is yours.</p><p>Questions? Email info@norafurnish.com and we reply in 1 to 2 business days.</p>",
-            "liquid": "",
-            "page": ""
-          }
-        },
-        "acc_faq": {
-          "type": "accordion",
-          "settings": {
-            "show_below_gallery": false,
-            "icon": "picto-chat",
-            "title": "FAQ",
-            "content": "",
-            "liquid": "{% render 'nf-pdp-faq', product: product %}",
-            "page": ""
+            "liquid": "{% render 'nf-pdp-pillars' %}"
           }
         },
         "nf_share": {
           "type": "liquid",
           "settings": {
-            "liquid": "{% render 'nf-pdp-share', product: product %}"
+            "liquid": "{% render 'nf-pdp-share', product: product, layout: 'row' %}"
           }
         },
-        "nf_pdp3": {
+        "nf_trust": {
           "type": "liquid",
           "settings": {
-            "liquid": "{{ 'nf-pdp.css' | asset_url | stylesheet_tag }}{{ 'nf-pdp3.css' | asset_url | stylesheet_tag }}<script src=\"{{ 'nf-pdp.js' | asset_url }}\" defer></script><script src=\"{{ 'nf-pdp3.js' | asset_url }}\" defer></script><span data-nf3 data-rating=\"{{ product.metafields.reviews.rating.value.rating | default: 0 }}\" data-count=\"{{ product.metafields.reviews.rating_count.value | default: 0 }}\" hidden></span>{% render 'nf-pdp-stock', product: product %}{% render 'nf-pdp-assure' %}"
-          }
-        },
-        "acc_keyfeat": {
-          "type": "accordion",
-          "settings": {
-            "show_below_gallery": false,
-            "icon": "picto-star",
-            "title": "Key Features",
-            "content": "",
-            "liquid": "{% render 'nf-pdp-keyfeat', product: product %}",
-            "page": ""
-          }
-        },
-        "nf_bundle": {
-          "type": "liquid",
-          "settings": {
-            "liquid": "{% render 'nf-bundle-tiers', product: product, pct2: 10, pct3: 15 %}{% render 'nf-pdp-wish', product: product %}"
+            "liquid": "{% render 'nf-pdp-trust', product: product %}"
           }
         }
       },
       "block_order": [
+        "nf_head",
         "title",
+        "nf_pmeta",
         "price",
+        "separator",
         "variant_picker",
-        "nf_pdp3",
         "buy_buttons",
+        "nf_urgency",
         "nf_bundle",
-        "acc_keyfeat",
-        "acc_dimensions",
-        "acc_materials",
-        "acc_additional",
-        "acc_shipping_returns",
-        "acc_faq",
+        "nf_pillars",
+        "nf_trust",
         "nf_share"
       ],
       "settings": {
         "color_scheme": "",
         "allow_transparent_header": false,
         "transparent_header_use_primary_colors": false,
-        "container_size": "full",
+        "container_size": "lg",
         "product_info_size": 44,
-        "show_sticky_add_to_cart": true,
+        "show_sticky_add_to_cart": false,
         "center_basic_info": false,
-        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_layout": "carousel_thumbnails_left",
         "desktop_media_grid_gap": 8,
         "mobile_controls": "thumbnails",
         "enable_media_autoplay": false,
@@ -163,209 +135,54 @@
         "max_image_zoom_level": 3
       }
     },
-    "featured_collections_x7UQLX": {
-      "type": "related-products",
-      "settings": {
-        "color_scheme": "scheme-1",
-        "separate_section_with_border": false,
-        "hide_product_information": false,
-        "stack_products": false,
-        "recommendations_count": 10,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 5,
-        "horizontal_spacing_factor": 1,
-        "vertical_spacing_factor": 0.5,
-        "subheading": "",
-        "title": "You may also like",
-        "content": ""
-      }
-    },
-    "image_with_text_overlay_7UiPzb": {
-      "type": "image-with-text-overlay",
-      "blocks": {
-        "heading_bestsellers": {
-          "type": "heading",
-          "settings": {
-            "text": "Best Sellers for a Reason",
-            "heading_tag": "h2"
-          }
-        },
-        "button_bestsellers": {
-          "type": "button",
-          "settings": {
-            "style": "fill",
-            "text": "Shop Best Sellers",
-            "url": "/collections/best-sellers",
-            "background": "#111111",
-            "text_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "heading_bestsellers",
-        "button_bestsellers"
-      ],
-      "custom_css": [],
-      "settings": {
-        "color_scheme": "scheme-4",
-        "image_size": "lg",
-        "image": "shopify://shop_images/image_1787890398005_ddfe7e85_1787890399626_9fadfefa.png",
-        "allow_transparent_header": false,
-        "reveal_on_scroll": true,
-        "remove_vertical_spacing": false,
-        "content_width": "md",
-        "mobile_text_position": "place-self-start text-start",
-        "desktop_text_position": "sm:place-self-start sm:text-start",
-        "overlay_color": "#000000",
-        "overlay_opacity": 0
-      },
-      "disabled": true
-    },
-    "text_with_icons_Wat3Cm": {
-      "type": "text-with-icons",
-      "blocks": {
-        "item_zUpXP3": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-delivery-truck",
-            "icon_width": 40,
-            "mobile_icon_width": 24,
-            "title": "Free shipping across the USA",
-            "content": "<p>No minimum. Arrives in 6 to 9 business days.</p>"
-          }
-        },
-        "item_j9qdGL": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-return",
-            "icon_width": 40,
-            "mobile_icon_width": 24,
-            "title": "30 day returns",
-            "content": "<p>Send it back within 30 days of delivery.</p>"
-          }
-        },
-        "item_nfc_reply": {
-          "settings": {
-            "icon": "picto-mailbox",
-            "icon_width": 40,
-            "mobile_icon_width": 24,
-            "title": "Real replies by email",
-            "content": "<p>Answered within 1 to 2 business days.</p>"
-          },
-          "type": "item"
-        },
-        "item_fMtzwz": {
-          "type": "item",
-          "settings": {
-            "icon": "picto-lock",
-            "icon_width": 40,
-            "mobile_icon_width": 24,
-            "title": "Secure checkout",
-            "content": "<p>Your card details are always encrypted.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "item_zUpXP3",
-        "item_j9qdGL",
-        "item_nfc_reply",
-        "item_fMtzwz"
-      ],
-      "name": "t:sections.text_with_icons.presets.text_with_icons.name",
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
-        "stack_on_mobile": true,
-        "icon_color": "",
-        "text_color": "",
-        "text_alignment": "center"
-      },
-      "disabled": true
-    },
-    "1788818754e2571264": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_3FFpJi": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "real_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_3FFpJi"
-      ],
-      "settings": {
-        "color_scheme": "",
-        "separate_section_with_border": true,
-        "remove_vertical_spacing": false,
-        "remove_horizontal_spacing": false
-      }
-    },
-    "nf_pdp_spaces": {
-      "type": "nf-pdp-spaces",
-      "settings": {
-        "defer": true
-      }
-    },
-    "nf_pdp_standard": {
-      "type": "nf-pdp-standard",
-      "settings": {
-        "defer": true
-      }
-    },
-    "nf_pdp_shopby": {
-      "type": "nf-pdp-shopby",
-      "settings": {
-        "defer": true
-      }
-    },
-    "nf_pdp_catalog": {
-      "type": "nf-pdp-catalog",
-      "settings": {
-        "defer": true
-      }
-    },
-    "nf_pdp_article": {
-      "type": "nf-pdp-article",
+    "nf_pdp_tabs": {
+      "type": "nf-pdp-tabs",
       "settings": {}
-    },
-    "nf_pdp_story": {
-      "type": "nf-pdp-story",
-      "settings": {
-        "eyebrow": "Why you'll love it"
-      }
     },
     "nf_pdp_ctr": {
       "type": "nf-pdp-ctr",
       "settings": {}
     },
-    "nf_set_pieces": {
-      "type": "nf-set-pieces",
-      "settings": {}
+    "nf_goes_well": {
+      "type": "nf-goes-well",
+      "settings": {
+        "title": "Goes well with...",
+        "limit": 4
+      }
     },
-    "nf_reviews": {
-      "type": "nf-reviews",
+    "nf_pdp_promise": {
+      "type": "nf-pdp-promise",
+      "settings": {
+        "title": "Our Promise"
+      }
+    },
+    "nf_pdp_loox": {
+      "type": "nf-pdp-loox",
+      "settings": {
+        "title": "Customer Reviews"
+      }
+    },
+    "nf_recent": {
+      "type": "nf-recent",
+      "settings": {
+        "title": "Recently viewed",
+        "limit": 8
+      }
+    },
+    "nf_pdp_care": {
+      "type": "nf-pdp-care",
       "settings": {}
     }
   },
   "order": [
+    "nf_mod_css",
     "main",
-    "nf_set_pieces",
-    "nf_pdp_story",
-    "nf_reviews",
-    "1788818754e2571264",
+    "nf_pdp_tabs",
+    "nf_goes_well",
+    "nf_pdp_promise",
+    "nf_pdp_loox",
+    "nf_recent",
     "nf_pdp_ctr",
-    "featured_collections_x7UQLX",
-    "nf_pdp_spaces",
-    "nf_pdp_standard",
-    "nf_pdp_shopby",
-    "nf_pdp_catalog",
-    "nf_pdp_article",
-    "image_with_text_overlay_7UiPzb",
-    "text_with_icons_Wat3Cm"
+    "nf_pdp_care"
   ]
 }

@@ -1,0 +1,251 @@
+{%- comment -%}
+  NF-MOD-GLOBAL (2026-10-13): loads the MOD design layer site-wide from the header group
+  and drives the transparent header (measures the header group height, flips the header
+  to solid once the hero scrolls away).
+  v2: desktop search is a real text box in the header (type and press Enter, no dropdown panel), owner request.
+  v3 (2026-10-14): the empty search box types and deletes example searches (Linear sconces, Pendant lights...) as its
+  placeholder; it stops while the box has focus or text, and respects reduced motion.
+  v7 (2026-10-19): new phrase list for the typing placeholder.
+  v8 (2026-10-19 14:29, owner): typing removed; static placeholder "What can we help you find?" (12px, MOD-like), and the
+  box is a little wider at 1280-2399px so the whole line shows (NF-HSEARCH-V8 style block below).
+{%- endcomment -%}
+{%- comment -%} v5 (2026-10-14): wishlist saves need a signed-in customer. v4 (2026-10-14, owner: "look exactly like MOD"): MOD's type, Poppins for text and EB Garamond for headings {%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=swap">
+{{ 'nf-mod-style.css' | asset_url | stylesheet_tag }}
+{%- comment -%} NF-CARD-V2 (2026-10-19): MOD card type + wider collection grid {%- endcomment -%}
+{{ 'nf-card-v2.css' | asset_url | stylesheet_tag }}
+{%- comment -%} NF-QA-FIXES (2026-10-19): site QA overrides (card hover never reveals an unloaded photo, outdated styles); loaded last {%- endcomment -%}
+{{ 'nf-qa-fixes.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-qa-fixes.js' | asset_url }}" defer></script>
+{%- comment -%} NF-M4 (2026-10-21): mobile UI + speed pass (header, search drop, account sheet, cart drawer, desktop seam fix,
+  collection About collapse, recently viewed size). Loaded last so it wins; the account sheet markup is printed once here. {%- endcomment -%}
+{{ 'nf-m4.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-m4.js' | asset_url }}" defer></script>
+{%- render 'nf-m4-account' -%}
+<style>
+/* NF-HSEARCH-V8 (2026-10-19): static placeholder "What can we help you find?" fits the desktop box without being cut */
+@media (min-width: 1000px) {
+  html:root body .shopify-section--header .nf-hsearch__input { padding: 0 3px 0 10px !important; text-overflow: ellipsis; }
+  html:root body .shopify-section--header .nf-hsearch__input::placeholder { font-family: Poppins, sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 0; opacity: .85; }
+  html:root body .shopify-section--header .nf-hsearch__btn { width: 32px !important; }
+}
+@media (min-width: 1280px) and (max-width: 1365px) {
+  html:root body .shopify-section--header x-header.header { grid-template-columns: 148px 205px minmax(0, 1fr) auto !important; }
+  html:root body .shopify-section--header x-header.header .header__search-row,
+  html:root body .shopify-section--header x-header.header .header__search-row .nf-hsearch { width: 205px !important; }
+  html:root body .shopify-section--header .nf-hsearch__input::placeholder { font-size: 11.5px; letter-spacing: -.01em; }
+}
+/* the phone search panel switches to its fade style on page idle (nf-search.js adds .nf-srch-fx); without this the closed
+   panel faded out once, so a white search bar flashed under the header a few seconds after load */
+.header-search-panel.nf-srch-fx:not(.is-open) { transition: none !important; }
+@media (min-width: 1366px) and (max-width: 2399px) {
+  html:root body .shopify-section--header x-header.header { grid-template-columns: 156px 228px minmax(0, 1fr) auto !important; }
+  html:root body .shopify-section--header x-header.header .header__search-row,
+  html:root body .shopify-section--header x-header.header .header__search-row .nf-hsearch { width: 228px !important; }
+}
+</style>
+{%- render 'nf-atc-fx' -%}
+<style>
+  /* NF-HDR-SYNC: fade in when the header turns white, but clear instantly when the hero comes back under it */
+  .shopify-section--header .header:not(.is-solid) { transition: none !important; }
+</style>
+<script>
+(function () {
+  function initSearch() {
+    var row = document.querySelector('.shopify-section--header .header__search-row') ||
+              (document.querySelector('.shopify-section--header .header__search-toggle') || {}).parentElement;
+    if (!row || row.querySelector('.nf-hsearch')) return;
+    var f = document.createElement('form');
+    f.className = 'nf-hsearch';
+    f.action = '{{ routes.search_url }}';
+    f.method = 'get';
+    f.setAttribute('role', 'search');
+    f.innerHTML = '<input type="hidden" name="options[prefix]" value="last">' +
+      '<input class="nf-hsearch__input" type="search" name="q" placeholder="What can we help you find?" aria-label="Search" autocomplete="off">' +
+      '<button class="nf-hsearch__btn" type="submit" aria-label="Search"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>';
+    row.appendChild(f);
+    document.documentElement.classList.add('nf-hsearch-on');
+  }
+  /* v8 (2026-10-19 14:29, owner: the typing animation "isn't working"): no animation any more. Every search box shows the
+     static placeholder "What can we help you find?" from its own markup; nothing in here touches the placeholder. */
+  /* NF-HEART (2026-10-14): wishlist hearts on product photos (snippets/nf-heart.liquid) */
+  var WK = 'nf_wishlist_v1';
+  function wlRead() { try { return JSON.parse(localStorage.getItem(WK) || '[]') || []; } catch (e) { return []; } }
+  function wlWrite(a) {
+    try { localStorage.setItem(WK, JSON.stringify(a.slice(0, 60))); } catch (e) {}
+    document.dispatchEvent(new CustomEvent('nf:wishlist-change'));
+  }
+  function paintHearts() {
+    var list = wlRead();
+    var set = {}; list.forEach(function (x) { set[x.h] = 1; });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-nf-heart]'), function (b) {
+      var on = !!set[b.getAttribute('data-h')];
+      if (b.getAttribute('aria-pressed') !== String(on)) b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.nf-hdr-wl [data-nf-hdr-wl-n], .nf-hdr-wl__n, .nf-hdr-wl .count-bubble'), function (n) {
+      if (n.textContent !== String(list.length)) n.textContent = list.length;
+    });
+  }
+  /* v5 (2026-10-14, owner): only signed-in customers can save to the wishlist. Everyone else gets a short prompt to
+     sign in or create an account, and comes back to the same page afterwards. Removing is always allowed. */
+  var NF_SIGNED_IN = {% if customer %}true{% else %}false{% endif %};
+  function signPrompt() {
+    var back = encodeURIComponent(location.pathname + location.search);
+    var d = document.getElementById('nf-wlsign');
+    if (!d) {
+      d = document.createElement('div'); d.id = 'nf-wlsign'; d.className = 'nf-wlsign'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-labelledby', 'nf-wlsign-h');
+      d.innerHTML = '<div class="nf-wlsign__box"><button type="button" class="nf-wlsign__x" aria-label="Close">&times;</button>' +
+        '<h2 class="nf-wlsign__h" id="nf-wlsign-h">Save it to your wishlist</h2>' +
+        '<p class="nf-wlsign__p">Sign in to save pieces to your wishlist and see them on any device.</p>' +
+        '<div class="nf-wlsign__a"><a data-in href="{{ routes.account_login_url }}">Sign in</a><a data-up href="{{ routes.account_register_url }}">Create an account</a></div></div>';
+      document.body.appendChild(d);
+      d.addEventListener('click', function (e) { if (e.target === d || e.target.closest('.nf-wlsign__x')) d.hidden = true; });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') d.hidden = true; });
+    }
+    var li = '{{ routes.account_login_url }}', re = '{{ routes.account_register_url }}';
+    d.querySelector('[data-in]').href = li + (li.indexOf('?') > -1 ? '&' : '?') + 'return_url=' + back;
+    d.querySelector('[data-up]').href = re + (re.indexOf('?') > -1 ? '&' : '?') + 'return_url=' + back;
+    d.hidden = false;
+    var a = d.querySelector('[data-in]'); if (a) a.focus();
+  }
+  function toggleHeart(b) {
+    var h = b.getAttribute('data-h'), list = wlRead();
+    if (!NF_SIGNED_IN && !list.some(function (x) { return x.h === h; })) { signPrompt(); return; }
+    if (list.some(function (x) { return x.h === h; })) {
+      wlWrite(list.filter(function (x) { return x.h !== h; }));
+    } else {
+      var im = b.getAttribute('data-i') || '';
+      list.unshift({ h: h, t: b.getAttribute('data-t'), u: b.getAttribute('data-u'), i: im.indexOf('//') === 0 ? 'https:' + im : im, p: b.getAttribute('data-p') });
+      wlWrite(list);
+      b.classList.remove('is-pop'); void b.offsetWidth; b.classList.add('is-pop');
+    }
+    paintHearts();
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-nf-heart]');
+    if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    toggleHeart(b);
+  }, true);
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var b = e.target.closest && e.target.closest('[data-nf-heart]');
+    if (!b) return;
+    e.preventDefault(); toggleHeart(b);
+  });
+  document.addEventListener('nf:wishlist-change', paintHearts);
+  window.addEventListener('storage', function (e) { if (e.key === WK) paintHearts(); });
+  if ('MutationObserver' in window) {
+    var pt; new MutationObserver(function () { clearTimeout(pt); pt = setTimeout(paintHearts, 120); }).observe(document.documentElement, { childList: true, subtree: true });
+  }
+
+  function init() {
+    initSearch();
+    paintHearts();
+    var hero = document.querySelector('#main > .shopify-section:first-child [allow-transparent-header]');
+    if (!hero) return;
+    var header = document.querySelector('.shopify-section--header .header');
+    var groups = document.querySelectorAll('.shopify-section-group-header-group');
+    function measure() {
+      var total = 0;
+      groups.forEach(function (s) { total += s.offsetHeight; });
+      if (total > 0) document.documentElement.style.setProperty('--nf-hg-h', total + 'px');
+    }
+    measure();
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(measure);
+      groups.forEach(function (s) { ro.observe(s); });
+    } else {
+      window.addEventListener('resize', measure);
+    }
+    if (header && 'IntersectionObserver' in window) {
+      /* NF-HDR-SYNC (2026-10-20, owner: "when I scroll up ... it shows this white nav bar temporarily. fix that").
+         The theme turned the header white (is-solid) from 2px of scroll until you were back at the very top, then faded it
+         out over 0.3s, so scrolling up over the hero showed a white bar. The header is now solid only while the hero is out
+         from under it, and it goes clear instantly when the hero comes back. */
+      var heroOut = false;
+      function sync() {
+        if (header.classList.contains('nf-scrolled') !== heroOut) header.classList.toggle('nf-scrolled', heroOut);
+        if (header.classList.contains('is-solid') !== heroOut) header.classList.toggle('is-solid', heroOut);
+      }
+      /* v2: worked out on every scroll event (they fire before each paint), so a quick scroll back up never shows a white
+         frame. The header turns clear as soon as half of it is over the hero, and solid only once the hero has gone. */
+      function compute() {
+        var hb = hero.getBoundingClientRect().bottom;
+        var hh = header.getBoundingClientRect().bottom || 120;
+        /* NF-M4 (2026-10-21): the phone search drop asks for a solid header while it is open (html.nf-hdr-solid) */
+        var out = hb <= hh * 0.5 || document.documentElement.classList.contains('nf-hdr-solid');
+        if (out !== heroOut) { heroOut = out; }
+        sync();
+      }
+      window.__nfHdrSync = compute;
+      window.addEventListener('scroll', compute, { passive: true });
+      window.addEventListener('resize', compute, { passive: true });
+      new IntersectionObserver(compute, { threshold: [0, 0.01, 0.1, 0.25, 0.5, 1] }).observe(hero);
+      compute();
+      if ('MutationObserver' in window) {
+        new MutationObserver(function () {
+          if (header.classList.contains('is-solid') !== heroOut) sync();
+        }).observe(header, { attributes: true, attributeFilter: ['class'] });
+      }
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+
+{%- render 'nf-review-hide' -%}
+<script>
+/* NF-TAP (2026-10-14, owner: "on mobile, if I click a product while scrolling it won't click, I have to double tap").
+   Phones swallow a tap that lands while the page is still gliding, and a tap that first triggers a hover state. On touch
+   screens a clean short tap (under 10px of movement, under 450ms) on a product or collection link now opens it at once.
+   Buttons inside cards (wishlist heart, quick view, add to cart, option swatches) are left alone. */
+(function () {
+  if (!('ontouchstart' in window)) return;
+  var st = null;
+  var SKIP = 'button, input, select, label, [role="button"], [data-nf-heart], .nf-mcard__qv, .nf-qv-open, .quick-buy, quick-buy-modal, .nf-bdl__card, .nf-space__arrow';
+  function link(t) {
+    var a = t.closest && t.closest('a[href]');
+    if (!a || t.closest(SKIP)) return null;
+    var h = a.getAttribute('href') || '';
+    if (!/\/(products|collections)\//.test(h) || a.target === '_blank' || a.hasAttribute('download')) return null;
+    if (a.closest('.header, .mega-menu, .drawer, dialog, [aria-modal="true"], .loox-pn')) return null;
+    return a;
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) { st = null; return; }
+    var a = link(e.target); if (!a) { st = null; return; }
+    st = { a: a, x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() };
+  }, { passive: true, capture: true });
+  document.addEventListener('touchmove', function (e) {
+    if (!st) return; var p = e.touches[0];
+    if (Math.abs(p.clientX - st.x) > 10 || Math.abs(p.clientY - st.y) > 10) st = null;
+  }, { passive: true, capture: true });
+  var timer = 0;
+  document.addEventListener('touchend', function () {
+    var s = st; st = null;
+    if (!s || Date.now() - s.t > 450) return;
+    var href = s.a.href;
+    clearTimeout(timer);
+    timer = setTimeout(function () { if (!document.hidden) location.href = href; }, 140);
+  }, { passive: true, capture: true });
+  /* the phone delivered its own click: let it navigate normally */
+  document.addEventListener('click', function () { clearTimeout(timer); }, true);
+})();
+</script>
+<script>
+/* NF-MEGA-WARM (2026-10-14, owner: "if I'm hovering over Shop By, I need the living room, bedroom ... images to load
+   quicker"). The menu tiles are lazy and hidden, so the browser only fetched them on open. Once the page has loaded they
+   are fetched in the background; hovering a menu item fetches that menu's tiles straight away. */
+(function () {
+  function eager(root) { Array.prototype.forEach.call((root || document).querySelectorAll('.mega-menu img[loading="lazy"]'), function (i) { i.loading = 'eager'; i.setAttribute('fetchpriority', 'low'); }); }
+  document.addEventListener('pointerover', function (e) {
+    var it = e.target.closest && e.target.closest('.header__primary-nav-item, details, li');
+    if (it && it.querySelector && it.querySelector('.mega-menu')) eager(it);
+  }, { passive: true });
+  /* NF-M4 (2026-10-21): phones never show the desktop mega menu, so its ~28 tiles are no longer fetched there */
+  window.addEventListener('load', function () { if (window.matchMedia('(max-width: 999px)').matches) return; if (window.requestIdleCallback) { requestIdleCallback(function () { eager(); }, { timeout: 1200 }); } else { setTimeout(function () { eager(); }, 1200); } });
+})();
+</script>
