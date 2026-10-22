@@ -1,0 +1,283 @@
+{%- comment -%}
+  NF-COLL-MOD (2026-10-14, owner: "get rid of the small collection images ... make the sub-collections bigger rectangle
+  tiles like MOD"). MOD Lighting's collection header: breadcrumb (menu path), serif title with the product count,
+  one line of description, then a row of 200 x 156 landscape photo tiles with serif names.
+    - Shop All (/collections/all): the main categories (setting "all_tiles").
+    - A parent in the preview main menu (level 1 or a level 2 group with links): its children.
+    - A leaf (or a collection that is not in the menu): no tiles, just the title and the line.
+  Menu: setting "menu" (default main-menu-preview, the menu the preview header uses).
+  Still loads nf-colhead.css/js (filter empty state and Show more). Styles: assets/nf-mod-style.css Section 27.8.
+  NF-SHOP-V3 (2026-10-20, owner: "customize our shop page and our shop everything ... to our new store look"):
+    - /collections/shop-all (the header's Shop All link) gets the main category tiles too.
+    - Tag views (/collections/x/showroom) show the count of that view, not the whole collection.
+    - The tiles sit in one sideways scrolling row with round arrows (MOD), instead of wrapping onto a second row.
+    - Loads assets/nf-shop-v3.css + nf-shop-v3.js (the shop page layer) for every collection page.
+{%- endcomment -%}
+{%- if collection -%}
+{%- liquid
+  assign h = collection.handle
+  assign cnt = collection.all_products_count
+  if current_tags.size > 0
+    assign cnt = collection.products_count
+  endif
+  assign mh = section.settings.tiles_menu | default: 'main-menu-preview'
+  assign menu = linklists[mh]
+
+  assign line = collection.description | strip_html | replace: '&nbsp;', ' ' | strip_newlines | strip
+  if line == blank and collection.metafields.custom.nf_headline != blank
+    assign line = collection.metafields.custom.nf_headline.value | strip_html | strip_newlines | strip
+  endif
+  if line != blank
+    assign first_sentence = line | split: '. ' | first
+    if first_sentence.size < line.size
+      assign line = first_sentence | append: '.'
+    endif
+    assign line = line | truncate: 180
+  endif
+
+  # tiles: handle::label items joined by ##, crumbs: label::url items joined by ##
+  assign tiles = ''
+  assign crumbs = ''
+  assign found = false
+
+  assign ttl = collection.title
+  if h == 'all'
+    assign ttl = section.settings.all_title | default: collection.title
+    if section.settings.all_line != blank
+      assign line = section.settings.all_line
+    endif
+    assign tiles = section.settings.all_tiles | default: '' | strip_newlines
+    assign found = true
+  endif
+
+  if h == 'shop-all'
+    assign tiles = section.settings.all_tiles | default: '' | strip_newlines
+    assign found = true
+  endif
+
+  unless found
+    for l1 in menu.links
+      assign h1 = ''
+      if l1.url contains '/collections/'
+        assign h1 = l1.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+      endif
+      if h1 != blank and h1 == h
+        for l2 in l1.links
+          unless l2.url contains '/collections/'
+            continue
+          endunless
+          assign c2 = l2.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+          if c2 == blank or c2 == h
+            continue
+          endif
+          assign tiles = tiles | append: c2 | append: '::' | append: l2.title | append: '##'
+        endfor
+        assign found = true
+        break
+      endif
+    endfor
+  endunless
+
+  unless found
+    for l1 in menu.links
+      for l2 in l1.links
+        assign h2 = ''
+        if l2.url contains '/collections/'
+          assign h2 = l2.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+        endif
+        if h2 != blank and h2 == h and l2.links.size > 0
+          for l3 in l2.links
+            unless l3.url contains '/collections/'
+              continue
+            endunless
+            assign c3 = l3.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+            if c3 == blank or c3 == h
+              continue
+            endif
+            assign tiles = tiles | append: c3 | append: '::' | append: l3.title | append: '##'
+          endfor
+          if l1.url contains '/collections/'
+            assign u1 = l1.url | split: '?' | first
+            unless u1 == '/collections' or u1 == '/collections/all'
+              assign crumbs = l1.title | append: '::' | append: u1 | append: '##'
+            endunless
+          endif
+          assign found = true
+          break
+        endif
+      endfor
+      if found
+        break
+      endif
+    endfor
+  endunless
+
+  # leaf: breadcrumb from its menu path, no tiles
+  unless found
+    for l1 in menu.links
+      for l2 in l1.links
+        for l3 in l2.links
+          assign h3 = ''
+          if l3.url contains '/collections/'
+            assign h3 = l3.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+          endif
+          if h3 != blank and h3 == h
+            if l1.url contains '/collections/'
+              assign u1 = l1.url | split: '?' | first
+              unless u1 == '/collections' or u1 == '/collections/all'
+                assign crumbs = l1.title | append: '::' | append: u1 | append: '##'
+              endunless
+            endif
+            assign u2 = l2.url | split: '?' | first
+            unless u2 == '/collections' or u2 == '/collections/all'
+              assign crumbs = crumbs | append: l2.title | append: '::' | append: u2 | append: '##'
+            endunless
+            assign found = true
+            break
+          endif
+        endfor
+        if found
+          break
+        endif
+      endfor
+      if found
+        break
+      endif
+    endfor
+  endunless
+
+  # NF-COLL-TILES2 (2026-10-15, owner: "copy their collection page"): MOD shows big subcollection tiles under the title even
+  # on a category like Chandeliers (Modern, Crystal). When the preview menu has no children for this collection, use the
+  # children it has in the full store menu (setting "tiles_menu2", default main-menu), e.g. Chandeliers -> Modern, Candle,
+  # Crystal, Staircase.
+  if tiles == blank
+    assign mh2 = section.settings.tiles_menu2 | default: 'main-menu'
+    assign menu2 = linklists[mh2]
+    assign found2 = false
+    for l1 in menu2.links
+      for l2 in l1.links
+        assign h2 = ''
+        if l2.url contains '/collections/'
+          assign h2 = l2.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+        endif
+        if h2 == h and l2.links.size > 0
+          for l3 in l2.links
+            unless l3.url contains '/collections/'
+              continue
+            endunless
+            assign c3 = l3.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+            if c3 == blank or c3 == h or c3 == 'ceiling-fans'
+              continue
+            endif
+            assign tiles = tiles | append: c3 | append: '::' | append: l3.title | append: '##'
+          endfor
+          assign found2 = true
+          break
+        endif
+      endfor
+      if found2
+        break
+      endif
+    endfor
+  endif
+
+  # NF-SHOP-V3 tiles map (2026-10-20): MOD shows sub-category tiles on every category page. When neither menu gives this
+  # collection children, the section's "tiles_map" setting can (one line per collection: handle=child::Label##child::Label).
+  if tiles == blank and section.settings.tiles_map != blank
+    assign map_lines = section.settings.tiles_map | newline_to_br | split: '<br />'
+    for ml in map_lines
+      assign mp = ml | strip_newlines | strip | split: '='
+      if mp.size > 1 and mp[0] == h
+        assign tiles = mp[1] | strip
+        break
+      endif
+    endfor
+  endif
+
+  # NF-COLL-TILES3 (2026-10-20, owner: "the decor needs to be prettier and more, it seems so empty"): a template can name one
+  # collection (setting "tiles_for") and give it its own tile list (setting "tiles_list", handle::Label##...). Used by
+  # templates/collection.decor.json so /collections/decor shows every decor sub-collection, not just the four menu groups.
+  # Empty collections are still skipped below.
+  if section.settings.tiles_list != blank and section.settings.tiles_for != blank and h == section.settings.tiles_for
+    assign tiles = section.settings.tiles_list | strip_newlines
+  endif
+-%}
+{{ 'nf-colhead.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-colhead.js' | asset_url }}" defer></script>
+{{ 'nf-shop-v3.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'nf-shop-v3.js' | asset_url }}" defer></script>
+<div class="nf-cm{% if crumbs == blank %} nf-cm--nocrumb{% endif %}" data-nf-cm>
+  <div class="nf-cm__in">
+    {%- if crumbs != blank -%}
+      <nav class="nf-cm__crumbs" aria-label="Breadcrumb">
+        <ol>
+          {%- assign cl = crumbs | split: '##' -%}
+          {%- for c in cl -%}
+            {%- assign cp = c | split: '::' -%}
+            <li><a href="{{ cp[1] }}">{{ cp[0] | escape }}</a><span aria-hidden="true">/</span></li>
+          {%- endfor -%}
+          <li aria-current="page">{{ ttl | escape }}</li>
+        </ol>
+      </nav>
+    {%- endif -%}
+    <div class="nf-cm__head">
+      <h1 class="nf-cm__title">{{ ttl | escape }}</h1>
+      <span class="nf-cm__count">({{ cnt }})</span>
+    </div>
+    {%- if line != blank -%}<p class="nf-cm__line">{{ line | escape }}</p>{%- endif -%}
+    {%- if tiles != blank -%}
+      {%- capture tiles_html -%}
+        {%- assign tl = tiles | split: '##' -%}
+        {%- for t in tl -%}
+          {%- assign tp = t | split: '::' -%}
+          {%- assign th = tp[0] | strip -%}
+          {%- assign c = collections[th] -%}
+          {%- if c == blank or c.all_products_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- assign tn = tp[1] | default: c.title | strip -%}
+          {%- assign img = c.image | default: c.featured_image -%}
+          <li class="nf-cm__tile">
+            <a href="{{ c.url }}">
+              <span class="nf-cm__img">
+                {%- if img != blank -%}{{- img | image_url: width: 600 | image_tag: loading: 'lazy', widths: '240,400,600', sizes: '(max-width: 699px) 150px, 220px', alt: tn -}}{%- endif -%}
+              </span>
+              <span class="nf-cm__name">{{ tn | escape }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if tiles_html contains 'nf-cm__tile' -%}
+        {%- assign nfs_tn = tiles_html | split: 'class="nf-cm__tile"' | size | minus: 1 -%}
+        <div class="nfs-tiles{% if nfs_tn > 9 %} nfs-tiles--wrap{% endif %}" data-nfs-scroller style="--nfs-tn: {{ nfs_tn }}">
+          <ul class="nf-cm__tiles" aria-label="Shop by category" data-nfs-track>{{ tiles_html }}</ul>
+          <button type="button" class="nfs-tiles__arr nfs-tiles__arr--prev" data-nfs-prev aria-label="Scroll categories back"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button type="button" class="nfs-tiles__arr nfs-tiles__arr--next" data-nfs-next aria-label="Scroll categories forward"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "NF collection MOD",
+  "tag": "section",
+  "class": "nf-cm-section",
+  "settings": [
+    { "type": "text", "id": "all_title", "label": "Shop All title", "default": "Lighting & Home Decor" },
+    { "type": "text", "id": "all_line", "label": "Shop All line", "default": "Explore the full Nora Furnish collection, from indoor statement pieces to outdoor essentials." },
+    { "type": "text", "id": "tiles_menu", "label": "Menu handle for the tiles", "default": "main-menu-preview" },
+    { "type": "text", "id": "tiles_menu2", "label": "Fallback menu for the tiles", "default": "main-menu" },
+    { "type": "text", "id": "tiles_for", "label": "Collection handle that uses the custom tile list" },
+    { "type": "textarea", "id": "tiles_list", "label": "Custom tile list for that collection (handle::Label##...)" },
+    { "type": "textarea", "id": "tiles_map", "label": "Sub-category tiles map", "info": "One line per collection: handle=child::Label##child::Label", "default": "chandeliers=modern-chandeliers::Modern Chandeliers##crystal-chandeliers::Crystal Chandeliers##candle-chandeliers::Candle Style##staircase-chandeliers::Staircase & Foyer##linear-suspension::Linear Suspension##\npendants=linear-suspension::Linear Suspension##chandeliers::Chandeliers##flush-mount-lighting::Flush Mounts##semi-flush-mount-lighting::Semi-Flush Mounts##\nceiling-light=chandeliers::Chandeliers##pendants::Pendant Lights##linear-suspension::Linear Suspension##flush-mount-lighting::Flush Mounts##semi-flush-mount-lighting::Semi-Flush Mounts##\nwall-lights=wall-sconces::Wall Sconces##vanity-lighting::Vanity Lights##picture-lights::Picture Lights##swing-arm-sconces::Swing Arm Sconces##plug-in-sconces::Plug-In Sconces##reading-wall-lamps::Reading Lights##mirror-lights::Mirror Lights##\nwall-sconces=led-wall-sconces::LED Sconces##up-and-down-wall-sconces::Up & Down##diffused-light-wall-sconces::Diffused Glow##linear-wall-sconces::Linear Sconces##swing-arm-sconces::Swing Arm##plug-in-sconces::Plug-In##down-light-wall-sconces::Down Light##\nvanity-lighting=mirror-lights::Mirror Lights##vanity-makeup-mirrors::Makeup Mirrors##wall-sconces::Wall Sconces##\nlamps=table-lamps::Table Lamps##floor-lamps::Floor Lamps##bedside-lamps::Bedside Lamps##rechargeable-lamps::Rechargeable Lamps##mushroom-lamps::Mushroom Lamps##sunset-lamps::Sunset Lamps##\ntable-lamps=bedside-lamps::Bedside Lamps##rechargeable-lamps::Rechargeable Lamps##mushroom-lamps::Mushroom Lamps##sunset-lamps::Sunset Lamps##ambient-novelty-lamps::Ambient & Novelty##\nfloor-lamps=reading-floor-lamps::Reading Floor Lamps##decorative-floor-lamps::Decorative Floor Lamps##\nambient-lighting=led-strip-lights::LED Strip Lights##night-lights::Night Lights##fairy-string-lights::Fairy Lights##novelty-lights::Novelty Lights##sunset-lamps::Sunset Lamps##ambient-novelty-lamps::Ambient & Novelty Lamps##\noutdoor-wall-lights=outdoor-lanterns::Lanterns##outdoor-up-down-wall-lights::Up & Down##outdoor-solar-wall-lights::Solar Wall Lights##motion-sensor-wall-lights::Motion Sensor##wall-washer-lights::Wall Washers##\nlandscape-lighting=path-lights::Path Lights##outdoor-spotlights::Spotlights##well-lights::Well Lights##step-deck-lights::Step & Deck##bollard-lights::Bollards##flood-lights::Flood Lights##\noutdoor-post-lights=post-lights::Post Lights##pillar-lights::Pillar Lights##bollard-lights::Bollards##\nbest-sellers=best-sellers-indoor::Indoor Best Sellers##best-sellers-outdoor::Outdoor Best Sellers##" },
+    {
+      "type": "textarea",
+      "id": "all_tiles",
+      "label": "Shop All tiles (handle::Label##...)",
+      "default": "chandeliers::Chandeliers##pendants::Pendant Lights##ceiling-light::Ceiling Lights##wall-lights::Wall Lights & Sconces##lamps::Floor & Table Lamps##ambient-lighting::Ambient Lighting##outdoor-lighting::Outdoor Lighting##decor::Home & Decor##"
+    }
+  ],
+  "enabled_on": { "templates": ["collection"] }
+}
+{% endschema %}

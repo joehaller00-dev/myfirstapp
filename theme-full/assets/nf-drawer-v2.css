@@ -7,8 +7,17 @@
   --nfd-head: var(--heading-font-family, "Roboto Serif", Georgia, serif);
   --nfd-ui: Montserrat, var(--text-font-family, system-ui), sans-serif;
 }
-#sidebar-menu.nfd2 .nfd-img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s ease; }
-#sidebar-menu.nfd2 .nfd-img.is-in { opacity: 1; }
+#sidebar-menu.nfd2 .nfd-img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity .45s ease, transform .9s cubic-bezier(.2, .7, .2, 1); }
+#sidebar-menu.nfd2 .nfd-img.is-in { opacity: 1; transform: none; }
+/* NF-MENU-SPEED (2026-10-22): a soft warm shimmer holds each photo's place until it has loaded and decoded, then the
+   photo fades in while settling from 104% to 100% (no pop). The shimmer stops as soon as the photo is in. */
+#sidebar-menu.nfd2 :is(.nfd-tile, .nfd-hero, .nfd-thumb, .nfd-grid__img) {
+  background-color: #efe9e2;
+  background-image: linear-gradient(100deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 70%);
+  background-size: 220% 100%; background-repeat: no-repeat; animation: nfd-shim 1.4s ease-in-out infinite;
+}
+#sidebar-menu.nfd2 :is(.nfd-tile, .nfd-hero, .nfd-thumb, .nfd-grid__img):has(> .nfd-img.is-in) { animation: none; background-image: none; }
+@keyframes nfd-shim { from { background-position: 120% 0; } to { background-position: -120% 0; } }
 
 /* quick tiles */
 #sidebar-menu.nfd2 .nfd-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 2px 0 14px; }
@@ -127,6 +136,8 @@
 @media (prefers-reduced-motion: reduce) {
   #sidebar-menu.nfd2 .header-sidebar__sub-panel:not([hidden]) { animation: none; }
   #sidebar-menu.nfd2 .nfd-img, #sidebar-menu.nfd2 .nfd-tile, #sidebar-menu.nfd2 .nfd-thumb { transition: none; }
+  #sidebar-menu.nfd2 .nfd-img { transform: none; }
+  #sidebar-menu.nfd2 :is(.nfd-tile, .nfd-hero, .nfd-thumb, .nfd-grid__img) { animation: none; background-image: none; }
 }
 
 /* NF-SALE-TILE-V1 (2026-09-13, owner: "the Sale tile is literally just red"): a real warm photo (glowing brass post lantern

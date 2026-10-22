@@ -1,11 +1,19 @@
 {{ 'nf-sidebar-overrides.css' | asset_url | stylesheet_tag }}
+{%- comment -%} NF-MENUS-LOADER (2026-10-17): assets/nf-menus.js used to be loaded by snippets/nf-topbar.liquid, which is no longer
+  rendered (the utility row became snippets/nf-utilbar.liquid), so the phone drawer's sub panels never arrived and Indoor, Outdoor
+  etc. did nothing when tapped. The loader now lives here, keyed on the menus it serves. {%- endcomment -%}
+{%- comment -%} NF-M4 (2026-10-21): fingerprint prefix nfm3 -> nfm4; NF-MENU-PICKS (2026-10-22): nfm4 -> nfm5 so phones drop sub panels cached with the old photos {%- endcomment -%}
+{%- capture nf_menus_fp -%}nfm5{%- for l1 in linklists['main-menu-v3'].links -%}{{ l1.url }}{{ l1.title }}{%- for l2 in l1.links -%}{{ l2.url }}{{ l2.title }}{%- for l3 in l2.links -%}{{ l3.url }}{{ l3.title }}{%- endfor -%}{%- endfor -%}{%- endfor -%}|{%- for l1 in linklists['top-bar'].links -%}{{ l1.url }}{{ l1.title }}{%- for l2 in l1.links -%}{{ l2.url }}{{ l2.title }}{%- for l3 in l2.links -%}{{ l3.url }}{{ l3.title }}{%- endfor -%}{%- endfor -%}{%- endfor -%}{%- endcapture -%}
+<script src="{{ 'nf-menus.js' | asset_url }}" defer data-nf-menus-key="{{ nf_menus_fp | md5 }}-{{ 'nf-menus.js' | asset_url | split: 'v=' | last }}" data-nf-menus-url="{{ routes.root_url }}"></script>
 {%- comment -%} NF-DRAWER-V2 (2026-09-12): phone drawer redesign, see assets/nf-drawer-v2.js. Rollback = delete the next 2 lines. {%- endcomment -%}
 <link rel="stylesheet" href="{{ 'nf-drawer-v2.css' | asset_url }}" media="screen and (max-width: 999px)">
 <script src="{{ 'nf-drawer-v2.js' | asset_url }}" defer></script>
 {%- comment -%} NF-DRAWER-V3 (2026-09-13): phone drawer panel heroes = the menu collection's own photo (the curated NF-COLHEAD band image) + custom.nf_band_pos, read by heroFor() in assets/nf-drawer-v2.js. Nav parents keep their mega menu figure unless nfd_force pairs them with a child whose photo they borrow (parent=child). Rollback = delete this block. {%- endcomment -%}
 {%- assign nfd_skip = ',best-sellers,ceiling-light,wall-lights,lamps,ambient-lighting,outdoor-lighting,outdoor-wall-lights,decor,soft-furnishings,storage-shelves,poufs-floor-cushions,home-fragrance,sale,' -%}
 {%- assign nfd_force = ',soft-furnishings=throw-blankets,storage-shelves=display-racks,ambient-lighting=led-strip-lights,' -%}
-{%- capture nfd_urls -%}{%- for nfd_l1 in linklists['main-menu'].links -%}{{ nfd_l1.url }} {% for nfd_l2 in nfd_l1.links %}{{ nfd_l2.url }} {% endfor -%}{%- endfor -%}{%- endcapture -%}
+{%- capture nfd_urls -%}{%- for nfd_l1 in linklists['main-menu-v3'].links -%}{{ nfd_l1.url }} {% for nfd_l2 in nfd_l1.links %}{{ nfd_l2.url }} {% endfor -%}{%- endfor -%}{%- endcapture -%}
+{%- comment -%} NF-MENU-PICKS (2026-10-22): a hand picked room / dusk photo from snippets/nf-menu-picks.liquid wins over the collection image and over nfd_skip; square product photos are cropped to 16:10 a little above centre (fixtures hang from the top). {%- endcomment -%}
+{%- capture nfd_picks -%}{%- render 'nf-menu-picks' -%}{%- endcapture -%}{%- assign nfd_picks = nfd_picks | strip -%}
 <script type="application/json" id="nfd-hero-map">{
 {%- assign nfd_n = 0 -%}{%- assign nfd_seen = ',' -%}
 {%- assign nfd_list = nfd_urls | split: ' ' -%}
@@ -14,6 +22,14 @@
 {%- assign nfd_h = nfd_u | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first -%}
 {%- assign nfd_k = ',' | append: nfd_h | append: ',' -%}
 {%- if nfd_seen contains nfd_k -%}{%- continue -%}{%- endif -%}
+{%- assign nfd_pkk = ',' | append: nfd_h | append: '=' -%}
+{%- if nfd_picks contains nfd_pkk -%}
+{%- assign nfd_seen = nfd_seen | append: nfd_h | append: ',' -%}
+{%- assign nfd_pu = nfd_picks | split: nfd_pkk | last | split: ',' | first | prepend: '/cdn/shop/' | append: '?width=900' -%}
+{%- if nfd_n > 0 -%},{%- endif -%}{%- assign nfd_n = nfd_n | plus: 1 -%}
+{{- '/collections/' | append: nfd_h | json -}}:{"u":{{ nfd_pu | json }},"p":"50% 38%"}
+{%- continue -%}
+{%- endif -%}
 {%- assign nfd_fk = ',' | append: nfd_h | append: '=' -%}{%- assign nfd_src = nfd_h -%}
 {%- if nfd_force contains nfd_fk -%}{%- assign nfd_src = nfd_force | split: nfd_fk | last | split: ',' | first -%}{%- elsif nfd_skip contains nfd_k -%}{%- continue -%}{%- endif -%}
 {%- assign nfd_c = collections[nfd_src] -%}
@@ -150,11 +166,18 @@
         {%- comment -%} NF-TOPBAR-V2 (2026-09-11): a main menu item that is also a top bar dropdown (Best Sellers) opens that dropdown's panel here instead of being a plain link, so the drawer lists it once, in its usual place. {%- endcomment -%}
         {%- for link in menu.links -%}
           {%- assign nf_tb_dup = 0 -%}
+          {%- comment -%} 2026-10-19: only when the main menu item has no links of its own. main-menu-v3's Shop By (Room, New Collections,
+            Style, Collection) used to open the old top bar Shop By panel (Category, Material...) on phones. {%- endcomment -%}
+          {%- comment -%} NF-M4 (2026-10-21): Best Sellers follows main-menu-v3 again (a plain link, like the desktop menu); its Indoor and
+            Outdoor best sellers are inside Indoor and Outdoor. {%- endcomment -%}
+          {%- assign nf_lt_dc = link.title | downcase | strip -%}
+          {%- if link.links.size == 0 and nf_lt_dc != 'best sellers' -%}
           {%- for nf_tl in linklists['top-bar'].links -%}{%- if nf_tl.links.size > 0 and nf_tl.title == link.title -%}{%- assign nf_tb_dup = forloop.index -%}{%- endif -%}{%- endfor -%}
+          {%- endif -%}
           <li>
             {%- if nf_tb_dup > 0 -%}
               <button type="button" class="header-sidebar__linklist-button {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}" aria-controls="header-panel-tb{{ nf_tb_dup }}" aria-expanded="false">
-                {{- link.title -}}
+                {{- link.title | replace: 'Ideas & Guides', 'Guides' -}}
                 {%- render 'icon' with 'chevron-right', width: 12, direction_aware: true -%}
               </button>
             {%- elsif link.links.size > 0 -%}
@@ -164,12 +187,12 @@
                 aria-controls="header-panel-{{ forloop.index }}"
                 aria-expanded="false"
               >
-                {{- link.title -}}
+                {{- link.title | replace: 'Ideas & Guides', 'Guides' -}}
                 {%- render 'icon' with 'chevron-right', width: 12, direction_aware: true -%}
               </button>
             {%- else -%}
               <a href="{{ link.url }}" class="header-sidebar__linklist-button {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}">
-                {{- link.title -}}
+                {{- link.title | replace: 'Ideas & Guides', 'Guides' -}}
               </a>
             {%- endif -%}
           </li>
@@ -179,6 +202,9 @@
         {%- for link in nf_tb_menu.links -%}
           {%- assign nf_tb_in_main = false -%}
           {%- for nf_ml in menu.links -%}{%- if nf_ml.title == link.title -%}{%- assign nf_tb_in_main = true -%}{%- endif -%}{%- endfor -%}
+          {%- comment -%} 2026-10-17: Shop By and Ideas & Guides are now inside the main menu (Shop by Room / Style, Inspirations), so the drawer no longer repeats them. {%- endcomment -%}
+          {%- assign nf_tb_lt = link.title | downcase | strip -%}
+          {%- if nf_tb_lt == 'shop by' or nf_tb_lt == 'ideas & guides' -%}{%- continue -%}{%- endif -%}
           {%- if link.links.size > 0 and nf_tb_in_main == false -%}
             <li class="nf-tb-drawer-item">
               <button
@@ -187,17 +213,38 @@
                 aria-controls="header-panel-tb{{ forloop.index }}"
                 aria-expanded="false"
               >
-                {{- link.title -}}
+                {{- link.title | replace: 'Ideas & Guides', 'Guides' -}}
                 {%- render 'icon' with 'chevron-right', width: 12, direction_aware: true -%}
               </button>
             </li>
           {%- endif -%}
         {%- endfor -%}
+        {%- comment -%} NF-M4 (2026-10-21, owner: "add a bit more under More to explore"): real pages and collections only, each listed once
+          (skipped when the Info menu below already has it). {%- endcomment -%}
+        {%- assign nf_more_seen = ',' -%}
+        {%- for link in linklists['Info'].links -%}{%- assign nf_more_seen = nf_more_seen | append: link.url | append: ',' -%}{%- endfor -%}
+        {%- capture nf_more_add -%}/collections/room-sets|Room Sets~/pages/our-collections|Our Collections~/pages/ideas-and-guides|Ideas &amp; Guides~/pages/inspiration|Reviews &amp; Inspiration~/pages/bulk-project-orders|Bulk &amp; Project Orders{%- endcapture -%}
+        {%- assign nf_more_add = nf_more_add | split: '~' -%}
+        {%- for x in nf_more_add -%}
+          {%- assign xp = x | split: '|' -%}
+          {%- assign xk = ',' | append: xp[0] | append: ',' -%}
+          {%- if nf_more_seen contains xk -%}{%- continue -%}{%- endif -%}
+          <li class="nf-tb-drawer-item nfd-more-item"><a href="{{ xp[0] }}" class="header-sidebar__linklist-button {% if section.settings.sidebar_text_font == 'heading' %}h6{% endif %}">{{ xp[1] }}</a></li>
+        {%- endfor -%}
       </ul>
 
     <div class="header-sidebar__utility-links">
+      {%- comment -%} NF-TRADE (2026-10-16): the trade program link (the desktop utility row is hidden on phones). 2026-10-20: "Join Trade Program" (owner). {%- endcomment -%}
+      <a href="{%- render 'nf-trade-url' -%}" class="header-sidebar__utility-link">Join Trade Program</a>
+      {%- comment -%} NF-M4 (2026-10-21, owner: "a lot is outdated"): labels and links follow main-menu-v3 (Blog, Lighting Catalog at
+        /pages/lighting-catalog), the extra pages sit under More to explore above. {%- endcomment -%}
       {%- for link in linklists['Info'].links -%}
-        <a href="{{ link.url }}" class="header-sidebar__utility-link">{{ link.title }}</a>
+        {%- assign nf_ml_t = link.title | replace: 'Ideas & Guides', 'Guides' -%}
+        {%- assign nf_ml_u = link.url -%}
+        {%- assign nf_ml_dc = nf_ml_t | downcase | strip -%}
+        {%- if nf_ml_dc == 'blogs' -%}{%- assign nf_ml_t = 'Blog' -%}{%- endif -%}
+        {%- if nf_ml_dc == 'catalog' -%}{%- assign nf_ml_t = 'Lighting Catalog' -%}{%- assign nf_ml_u = '/pages/lighting-catalog' -%}{%- endif -%}
+        <a href="{{ nf_ml_u }}" class="header-sidebar__utility-link">{{ nf_ml_t }}</a>
       {%- endfor -%}
     </div>
 
@@ -210,7 +257,7 @@
         <a href="https://www.tiktok.com/@norafurnish" target="_blank" rel="noopener" aria-label="TikTok" class="header-sidebar__social-link">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
         </a>
-        <a href="https://www.facebook.com/profile.php?id=61578464993386" target="_blank" rel="noopener" aria-label="Facebook" class="header-sidebar__social-link">
+        <a href="https://www.facebook.com/NoraFurnish" target="_blank" rel="noopener" aria-label="Facebook" class="header-sidebar__social-link">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
         </a>
       </div>

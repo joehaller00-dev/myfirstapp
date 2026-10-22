@@ -40,10 +40,13 @@
     }
     return s;
   }
+  /* NF-MENU-SPEED (2026-10-22): 2x is the most a 48-360px menu photo needs (3x phones were pulling 1200px files), and
+     cdn.shopify.com file URLs are served from the shop's own /cdn/shop/ path, so no second DNS + TLS connection. */
   function sized(u, cssW) {
     if (!u) return '';
-    var need = cssW * Math.min(window.devicePixelRatio || 1, 2.6), b = [120, 180, 240, 360, 480, 720, 960, 1200], w = 1200;
+    var need = cssW * Math.min(window.devicePixelRatio || 1, 2), b = [120, 180, 240, 360, 480, 720, 960], w = 960;
     for (var i = 0; i < b.length; i++) { if (b[i] >= need) { w = b[i]; break; } }
+    u = String(u).replace(/^(https?:)?\/\/cdn\.shopify\.com\/s\/files\/1\/0750\/8380\/8820\//, '/cdn/shop/');
     if (u.indexOf('//') === 0) u = 'https:' + u;
     try {
       var x = new URL(u, location.origin);
@@ -88,8 +91,8 @@
   /* NF-DRAWER-IMG-0921: hand picked row and tile photos (owner 2026-09-21) */
   var IMG = {
     'grand collection': 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/ceramic-crystal-led-chandelier-bedroom.jpg',
-    'autumn at home': 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/Sf155150a3621467292178e7cfaea3226f.webp',
-    'new arrivals': 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/staircase-lighting-chandelier-sleek-luxurious-living-room.jpg'
+    'autumn at home': 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/Sf155150a3621467292178e7cfaea3226f.webp'
+    /* 2026-10-22: 'new arrivals' removed, its photo now comes from snippets/nf-menu-picks.liquid via the photo map */
   };
   /* NF-MENU-IMG (round 16): photos printed by the server for every menu row (snippets/nf-menu-img-map.liquid):
      #nfd-img-map (first level, in the page) and #nfd-img-map-all (every level, arrives with the sub panels).
@@ -116,10 +119,18 @@
     i.setAttribute('data-nfd-src', sized(u, w));
     return i;
   }
-  function loadIn(root) {
+  /* NF-MENU-SPEED (2026-10-22): a photo is decoded off the main thread before it fades in, so it never pops in half
+     painted; tiles and heroes ask for high fetch priority when they are the thing the shopper is looking at. */
+  function reveal(i) { i.removeAttribute('data-nfd-dec'); i.classList.add('is-in'); }
+  function loadIn(root, hi) {
     if (!root) return;
     Array.prototype.forEach.call(root.querySelectorAll('img[data-nfd-src]'), function (i) {
-      i.addEventListener('load', function () { i.classList.add('is-in'); }, { once: true });
+      if (hi) try { i.fetchPriority = 'high'; } catch (e) {}
+      if (i.decode) i.setAttribute('data-nfd-dec', '1');
+      i.addEventListener('error', function () { reveal(i); }, { once: true });
+      i.addEventListener('load', function () {
+        if (i.decode) i.decode().then(function () { reveal(i); }, function () { reveal(i); }); else reveal(i);
+      }, { once: true });
       i.src = i.getAttribute('data-nfd-src');
       i.removeAttribute('data-nfd-src');
     });
@@ -158,11 +169,25 @@
       if (opts.btn) el.addEventListener('click', function () { opts.btn.click(); });
       wrap.appendChild(el);
     }
-    tile('Best Sellers', H.h['/collections/best-sellers-indoor'] || imgFor('best sellers'), { href: H.tb['best sellers'] || '/collections/best-sellers' });
-    tile('New Arrivals', IMG['new arrivals'], { href: '/collections/new-arrivals' });
-    if (byT['shop by']) tile('Shop By', imgFor('shop by'), { btn: byT['shop by'], sub: 'Room, style, material' });
+    /* 2026-10-22 (owner): the four tiles use room photos from active products, each different and none of the homepage heroes:
+       Best Sellers = Thicket (dining room), New Arrivals = Ginkgo (dining), Shop By = Forge (vaulted living room), Sale = Lunette (on sale, poolside deck). */
+    /* NF-MENU-PICKS (2026-10-22, owner: "absolute beauties"): Best Sellers, New Arrivals and Sale take their photo from
+       snippets/nf-menu-picks.liquid through the photo map (Cirrus ring chandelier in a grand foyer, Rhapsody butterfly
+       chandelier in a double height living room, Nimbus cloud pendants over a cream living room); the constants below are
+       only the fallback when the map is missing. w is the tile's CSS width (about 165px on a phone), not a pixel width:
+       it was 520, which made 3x phones download 1200px files for each tile. */
+    var TILE = { bs: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/multi-light-pendant-chandelier-rustic-dining-room.webp', na: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/black-geometric-chandelier-leaf-design-modern-dining-table.jpg',
+      sb: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/candles-chandelier-vaulted-living-room.jpg', sale: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/moon-shaped-stone-light-poolside-deck-lounge.jpg' };
+    var TW = 200;
+    tile('Best Sellers', MAP['/collections/best-sellers'] || TILE.bs, { w: TW, href: H.tb['best sellers'] || '/collections/best-sellers' });
+    tile('New Arrivals', MAP['/collections/new-arrivals'] || TILE.na, { w: TW, href: '/collections/new-arrivals' });
+    /* 2026-10-19: Shop By now opens main-menu-v3's Shop By (Room, New Collections, Style, Collection) */
+    if (byT['shop by']) tile('Shop By', TILE.sb, { w: TW, btn: byT['shop by'], sub: 'Room, style, collection' });
+    /* 2026-10-22 (owner: cleaner menu): the four tiles (Best Sellers, New Arrivals, Shop By, Sale) are not repeated as rows below */
+    ['shop by', 'best sellers', 'new arrivals', 'sale'].forEach(function (t) { var r = byT[t] && byT[t].closest('li'); if (r) r.classList.add('nfd-hide-ext'); });
     /* NF-SALE-TILE-V1 (2026-09-13): real warm photo for the Sale tile (Shopify File nf-sale-tile-lantern-v2.jpg, 720x360), sharper 520w request; red Sale chip is CSS. */
-    tile('Sale', 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-sale-tile-lantern-v2.jpg', { w: 520, href: '/collections/sale', cls: 'nfd-tile--sale', sub: 'Shop the markdowns' });
+    /* 2026-10-22 (owner: the lantern photo looked off): a clean photo of an active sale product, Chandra full moon wall lamp. */
+    tile('Sale', MAP['/collections/sale'] || TILE.sale, { w: TW, href: '/collections/sale', cls: 'nfd-tile--sale', sub: 'Shop the markdowns' });
     return wrap;
   }
 
@@ -292,10 +317,26 @@
     if (sb.hasAttribute('open')) warmAll();
   }
   var warmed = false;
+  var idleCb = window.requestIdleCallback || function (f) { return setTimeout(f, 250); };
+  /* NF-MENU-SPEED (2026-10-22): warm one level ahead instead of all ~240 panel photos at once. When the drawer is open
+     the first level panels (Indoor, Outdoor, Decor, Shop By, Inspirations) load; when one of those is opened, the
+     panels its rows lead to load in the background; a finger on any row still loads its panel at once (pointerdown). */
+  function childPanels(p) {
+    var out = [];
+    Array.prototype.forEach.call(p.querySelectorAll('[data-target], [aria-controls^="header-panel"]'), function (b) {
+      var c = document.getElementById(b.getAttribute('data-target') || b.getAttribute('aria-controls'));
+      if (c && c !== p && c.classList.contains('header-sidebar__sub-panel')) out.push(c);
+    });
+    return out;
+  }
+  function warmAhead(p) {
+    if (!p) return;
+    idleCb(function () { childPanels(p).forEach(function (c) { loadIn(c); }); }, { timeout: 2000 });
+  }
   function warmAll() {
     if (warmed || !cp) return; warmed = true;
-    var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 250); };
-    idle(function () { Array.prototype.forEach.call(cp.querySelectorAll('.header-sidebar__sub-panel'), loadIn); }, { timeout: 900 });
+    /* 2026-10-22: wait until the drawer has finished sliding in (photos that start loading during the slide make it stutter) */
+    setTimeout(function () { warmAhead(sb.querySelector('.header-sidebar__main-panel')); }, 700);
   }
   function build() {
     if (built) return true;
@@ -313,7 +354,8 @@
       new MutationObserver(function () {
         var id = activeId(), p = id && document.getElementById(id);
         if (!p) return;
-        loadIn(p);
+        loadIn(p, true);
+        warmAhead(p);
         var tries = 0;
         (function settle() {
           if (activeId() !== id) return;
@@ -333,7 +375,7 @@
       if (!b) return;
       var id = b.getAttribute('aria-controls') || b.getAttribute('data-target') || b.getAttribute('data-nfd-open');
       var p = id && document.getElementById(id);
-      if (p) loadIn(p);
+      if (p) loadIn(p, true);
     }, { passive: true });
     wireHistory();
     return true;
@@ -383,9 +425,20 @@
     if (!MQ.matches) return;
     if (!build()) return;
     var main = sb.querySelector('.header-sidebar__main-panel');
-    loadIn(main);
+    loadIn(main, true);
     var MN = window.__nfMenus;
     if (!MN || MN.loaded) warmAll();
+  }
+  /* NF-MENU-SPEED (2026-10-22): the first screen of the drawer (4 tiles + about 9 row thumbnails, roughly 150KB at
+     200/48px CSS widths) is fetched while the page sits idle after load, so the menu opens with its photos already
+     there. Skipped with Save-Data or on 2G. */
+  function lowData() {
+    var c = navigator.connection;
+    return !!(c && (c.saveData || /(^|-)2g$/.test(c.effectiveType || '')));
+  }
+  function preloadFirstScreen() {
+    if (!MQ.matches || lowData()) return;
+    if (build()) loadIn(sb.querySelector('.header-sidebar__main-panel'));
   }
   function init() {
     var s = document.getElementById('sidebar-menu');
@@ -394,11 +447,25 @@
     if (s.hasAttribute('open')) onOpen();
     var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 300); };
     idle(function () { if (MQ.matches) build(); }, { timeout: 1500 });
+    var afterLoad = function () { idle(preloadFirstScreen, { timeout: 4000 }); };
+    if (document.readyState === 'complete') afterLoad(); else window.addEventListener('load', afterLoad, { once: true });
     /* the drawer is usually opened with a tap on the menu button: start its first photos on touch down */
     document.addEventListener('pointerdown', function (e) {
       if (!MQ.matches || !e.target.closest || !e.target.closest('[aria-controls="sidebar-menu"]')) return;
-      if (build()) loadIn(sb.querySelector('.header-sidebar__main-panel'));
+      if (build()) loadIn(sb.querySelector('.header-sidebar__main-panel'), true);
     }, { capture: true, passive: true });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
+
+/* NF-DRAWER-REVEAL-0927: drawer pictures sometimes stayed at opacity 0 because the markup is rebuilt after the load
+   listener was attached. Reveal any .nfd-img that has loaded, whenever it loads or the drawer changes. */
+(function(){if(window.__nfdReveal)return;window.__nfdReveal=1;
+function on(i){if(i&&i.classList&&i.classList.contains('nfd-img')&&!i.classList.contains('is-in')&&!i.hasAttribute('data-nfd-dec')&&i.complete&&i.naturalWidth>0)i.classList.add('is-in')}
+/* NF-DRAWER-LAZY-V1 (2026-10-08, site speed): only load a menu photo once the phone drawer is open and its panel is showing. Before, every DOM change hydrated all 233 drawer photos on page load (about 10 MB on the homepage). */ function nfdShown(i){var sb=i.closest('#sidebar-menu');if(sb&&!sb.hasAttribute('open'))return false;if(i.closest('[hidden]'))return false;return true} function sweep(){var a=document.querySelectorAll('img.nfd-img:not(.is-in)');for(var k=0;k<a.length;k++){var i=a[k];if(!i.getAttribute('src')&&i.getAttribute('data-nfd-src')&&nfdShown(i)){i.src=i.getAttribute('data-nfd-src');i.removeAttribute('data-nfd-src')}on(i)}}
+document.addEventListener('load',function(e){on(e.target)},true);
+var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(sweep,40)}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['open','class','src']});
+document.addEventListener('click',function(){setTimeout(sweep,60);setTimeout(sweep,400)},true);
+/* 2026-10-22: the safety sweep only runs while the drawer is open (photos now load one level ahead, so some always wait) */
+setInterval(function(){if(document.querySelector('#sidebar-menu[open] img.nfd-img:not(.is-in)'))sweep()},700);
+sweep();})();

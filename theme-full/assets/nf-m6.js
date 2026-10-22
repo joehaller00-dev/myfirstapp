@@ -32,7 +32,7 @@
       The theme also hid the menu's rows until the slide had finished and then faded them in one by one (HeaderSidebar
       revealItems on dialog:after-show), so the items felt late. html.nf-m6-mopen (nf-m6.css H) keeps the first level
       visible while it slides in; it is dropped the moment a category is opened, so the theme's panel switch is untouched.
-      The first level's photos (4 tiles, ~10 row thumbnails) are fetched once the page is idle instead of on the first tap. */
+      The first level's photos are preloaded on idle by nf-drawer-v2.js (NF-MENU-SPEED). */
 (function () {
   'use strict';
   if (window.__nfM6Menu) return;
@@ -83,20 +83,7 @@
     }, true);
   });
 
-  /* first level photos on idle (nf-drawer-v2.js builds the drawer on idle and keeps each photo's URL in data-nfd-src) */
-  function warm() {
-    if (!PHONE.matches) return;
-    var n = 0;
-    (function tryIt() {
-      var imgs = doc.querySelectorAll('#sidebar-menu.nfd2 .header-sidebar__main-panel img[data-nfd-src]');
-      if (!imgs.length) { if (++n < 10) setTimeout(tryIt, 600); return; }
-      Array.prototype.forEach.call(imgs, function (i) {
-        try { i.fetchPriority = 'low'; } catch (e) {}
-        i.addEventListener('load', function () { i.classList.add('is-in'); }, { once: true });
-        i.src = i.getAttribute('data-nfd-src');
-        i.removeAttribute('data-nfd-src');
-      });
-    })();
+})();
   }
   function later() { (window.requestIdleCallback || function (f) { return setTimeout(f, 1500); })(warm, { timeout: 4000 }); }
   if (doc.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
