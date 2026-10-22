@@ -177,7 +177,7 @@
        only the fallback when the map is missing. w is the tile's CSS width (about 165px on a phone), not a pixel width:
        it was 520, which made 3x phones download 1200px files for each tile. */
     var TILE = { bs: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/multi-light-pendant-chandelier-rustic-dining-room.webp', na: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/black-geometric-chandelier-leaf-design-modern-dining-table.jpg',
-      sb: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/candles-chandelier-vaulted-living-room.jpg', sale: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/moon-shaped-stone-light-poolside-deck-lounge.jpg' };
+      sb: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/nf-blog-members-open-plan-living.jpg' /* 2026-10-22: editorial open plan living room, not a product shot */, sale: 'https://cdn.shopify.com/s/files/1/0750/8380/8820/files/moon-shaped-stone-light-poolside-deck-lounge.jpg' };
     var TW = 200;
     tile('Best Sellers', MAP['/collections/best-sellers'] || TILE.bs, { w: TW, href: H.tb['best sellers'] || '/collections/best-sellers' });
     tile('New Arrivals', MAP['/collections/new-arrivals'] || TILE.na, { w: TW, href: '/collections/new-arrivals' });
