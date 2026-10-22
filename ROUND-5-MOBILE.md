@@ -74,3 +74,9 @@ All in PREVIEW v7 (187544633396), checksums verified after upload.
   areas). Picks + 3 alternatives each: docs/menu-scenic-picks.md. Menu cache key nfm6.
 - Review sheet for the owner: https://norafurnish.com/pages/nf-menu-photo-review (published, hidden from search,
   not linked; delete when done).
+
+# v7 published by the owner (2026-10-22 ~21:43 UTC)
+- PREVIEW v7 (187544633396) is now the live theme. The API cannot write to the live theme, so further work goes into
+  **PREVIEW v8** (187572748340), a duplicate of v7 made right after publish. Publish v8 when it looks right.
+- v8 so far: homepage catalog band ("See Every Light Switched On") and the product page catalog band show at once,
+  no fade in (nf-m6.css J).
