@@ -42,3 +42,11 @@ Golden Hour now 10 products (7 active). Glow Anywhere now 202.
 ## Reviewed, no misfits found
 
 halo, carrara, mesa, kumo, ondine, cadence, isla, sorbet, selene, nordhaven, alba, aurelius, angelica, arabella, celestial, emma, haylen, obsidian, raven, solara-brand, umbra, velina, aurelia, ashford, ironworks, linea, bolla, grand-collection, grand-indoor-lighting, grand-outdoor-lighting, lighting-catalog-2026, hospitality-lighting, office-lighting, retail-lighting, home-project-lighting, outdoor-project-lighting, best-sellers, best-sellers-indoor, best-sellers-outdoor, top-picks, the-hosting-table, new-in-decor, autumn-at-home, fall-decor, halloween-decor, halloween-inflatables, all six *-picks.
+
+## 2026-10-22 follow-up (owner request)
+- glow-anywhere-collection: description + SEO rewritten to match the contents (solar wall/path/pillar/bollard lights,
+  lanterns, string lights, rechargeable lamps). Old: "Cord-free light for any table, shelf or patio. Slim rechargeable
+  table lamps and portable floor lights that share the same clean stem-and-shade silhouette."
+- NEW smart collection outdoor-floor-lamps (gid://shopify/Collection/512656769076): rule product type = "Lighting > Outdoor
+  Floor Lamps" (8 products: Kinross, Kailua, Kauai, Lampas, Loom, Lindos, Lace, Lombok). They are 31-76in shaded floor
+  lamps for patio seating, not path or bollard lights. Published to Online Store and Shop.
