@@ -138,9 +138,50 @@
   function sync() {
     if (!panel) return;
     var open = panel.classList.contains('is-open') && PHONE.matches;
-    if (open) { panel.style.removeProperty('top'); lock(); } else unlock();
+    if (open) { panel.style.removeProperty('top'); lock(); fit(); } else unlock();
   }
-  function boot() { if (own()) sync(); }
+  /* MOD: the search icon opens the page and the keyboard in the same tap. iOS only raises the keyboard for a focus()
+     made inside the tap itself, so the panel is opened here (document capture, before the theme's own toggle handler,
+     which focused the input before the panel was laid out full screen) and the input is focused at once. */
+  doc.addEventListener('click', function (e) {
+    if (!PHONE.matches || !e.target.closest || !e.target.closest('.header__search-toggle') || !own()) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if (panel.classList.contains('is-open')) { var c = panel.querySelector('.header-search-panel__close'); if (c) c.click(); return; }
+    lock();
+    panel.classList.add('is-open');
+    panel.setAttribute('aria-hidden', 'false');
+    fit();
+    var inp = doc.getElementById('header-search-panel-input');
+    if (inp) { try { inp.focus({ preventScroll: true }); } catch (er) { inp.focus(); } }
+  }, true);
+
+  /* MOD: while typing, the page shrinks to the space above the keyboard, so the bottom button sits right on top of it and
+     nothing of the store shows. The panel follows the visible viewport (visualViewport) while it is open. */
+  var vv = window.visualViewport;
+  function fit() {
+    if (!panel || !vv || !locked) return;
+    panel.style.setProperty('--nf-vvh', Math.round(vv.height) + 'px');
+    panel.style.setProperty('--nf-vvt', Math.round(vv.offsetTop) + 'px');
+  }
+  if (vv) { vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
+
+  /* one bottom button for the whole search page: Shop All Lighting while the box is empty, View all results while typing */
+  var foot = null, footA = null;
+  function footer() {
+    if (foot || !panel) return;
+    foot = doc.createElement('div'); foot.className = 'nf-m6-sfoot';
+    footA = doc.createElement('a'); footA.className = 'nf-m6-sfoot__btn';
+    foot.appendChild(footA); panel.appendChild(foot);
+    var inp = doc.getElementById('header-search-panel-input');
+    function label() {
+      var q = inp ? inp.value.trim() : '';
+      if (q) { footA.textContent = 'View all results'; footA.href = '/search?q=' + encodeURIComponent(q) + '&options%5Bprefix%5D=last'; }
+      else { footA.textContent = 'Shop All Lighting'; footA.href = '/collections/lighting'; }
+    }
+    if (inp) inp.addEventListener('input', label);
+    label();
+  }
+  function boot() { if (own()) { if (PHONE.matches) footer(); sync(); } }
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', boot); else boot();
   /* a tap on the search icon before this ran: take the panel over first */
   doc.addEventListener('pointerdown', function (e) {

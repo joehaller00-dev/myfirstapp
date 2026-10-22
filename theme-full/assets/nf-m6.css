@@ -84,8 +84,8 @@ html:root:not(#nfprm) body .nf-prm .nf-prm__head { text-align: center !important
 /* ===== I. Phone search: a full screen page over everything (nf-m6.js part 3), MOD style ===== */
 @media (max-width: 999px) {
   html.nf-m6-srch body > #header-search-panel.is-open {
-    position: fixed !important; inset: 0 !important; top: 0 !important; bottom: 0 !important; left: 0 !important; right: 0 !important;
-    width: 100% !important; height: 100% !important; max-height: none !important; z-index: 2147483600 !important;
+    position: fixed !important; top: var(--nf-vvt, 0px) !important; bottom: auto !important; left: 0 !important; right: 0 !important;
+    width: 100% !important; height: var(--nf-vvh, 100%) !important; max-height: none !important; z-index: 2147483600 !important;
     display: flex !important; flex-direction: column !important; margin: 0 !important; transform: none !important; opacity: 1 !important;
     padding: env(safe-area-inset-top, 0px) 0 0 !important; background: var(--nf-m4-warm, #f7f5f2) !important; border: 0 !important;
     overflow: hidden !important; overscroll-behavior: contain; visibility: visible !important; }
@@ -95,3 +95,14 @@ html:root:not(#nfprm) body .nf-prm .nf-prm__head { text-align: center !important
   html.nf-m6-srch .nf-srch-scrim { display: none !important; }
   html.nf-m6-srch body { overflow: hidden !important; }
 }
+
+/* the search page's one bottom button (nf-m6.js part 3), MOD: it rides on top of the keyboard while typing */
+@media (max-width: 999px) {
+  html.nf-m6-srch body > #header-search-panel.is-open .nf-m6-sfoot { display: block !important; flex: 0 0 auto; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: var(--nf-m4-warm, #f7f5f2); border-top: 1px solid var(--nf-m4-line, #e6e1d9); }
+  html body #header-search-panel .nf-m6-sfoot__btn { display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 4px;
+    background: var(--nf-m4-ink, #1c1c1c); color: #fff !important; font: 500 16px/1 var(--nf-m4-sans, Poppins, sans-serif); letter-spacing: .01em; text-decoration: none; }
+  html.nf-m6-srch body > #header-search-panel.is-open .nf-srch-m4__foot { display: none !important; }
+  html.nf-m6-srch body > #header-search-panel.is-open .nf-srch-m4 { padding-bottom: 8px !important; }
+}
+.nf-m6-sfoot { display: none; }
