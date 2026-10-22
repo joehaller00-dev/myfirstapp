@@ -84,7 +84,3 @@
   });
 
 })();
-  }
-  function later() { (window.requestIdleCallback || function (f) { return setTimeout(f, 1500); })(warm, { timeout: 4000 }); }
-  if (doc.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
-})();
