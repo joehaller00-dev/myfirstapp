@@ -11,3 +11,63 @@
   html:root body product-gallery scroll-carousel.product-gallery__carousel > .product-gallery__media img { touch-action: manipulation !important; }
   html:root body product-gallery scroll-carousel.product-gallery__carousel > .product-gallery__media { scroll-snap-stop: always; }
 }
+
+/* ===== B. Hero centred on tablets too, thumbnails that don't overlap, more air above the breadcrumb =====
+   nf-mod-style.css cancels only the LEFT bleed of the carousel (margin-left:0), theme.css .full-bleed keeps the right one,
+   so the photo had a gap on the left and none on the right. nf-m4.css S fixed it below 700px only. The thumbnail strip is
+   a grid with 56px columns (--product-gallery-thumbnail-size), so S's 72px buttons overlapped: the columns follow now. */
+@media (max-width: 999px) {
+  html:root body.nf-tpl-product product-gallery scroll-carousel.product-gallery__carousel {
+    margin-inline: 0 !important; padding-inline: 0 !important; width: 100% !important; max-width: 100% !important; scroll-padding-inline: 0 !important; }
+  html:root body.nf-tpl-product product-gallery scroll-carousel.product-gallery__carousel > .product-gallery__media { width: 100% !important; max-width: 100% !important; }
+  html:root body.nf-tpl-product product-gallery .product-gallery__thumbnail-scroller { --product-gallery-thumbnail-size: 72px; grid-auto-columns: 72px !important; }
+  html:root body.nf-tpl-product .nf-bc { padding-top: 24px !important; padding-bottom: 14px !important; }
+}
+
+/* ===== C. Sticky Add to cart bar: MOD's 56px top bar (nf-pdp-v2.css hides it with translateY(-56px) and the script
+   offsets jumps by 57px, so nf-m4.css T's 64px left 8px showing and landed tab jumps under it) ===== */
+@media (max-width: 999px) {
+  html:root body .nf-sb2 .nf-sb2__m { min-height: 56px !important; padding-block: 8px !important; }
+  html:root body .nf-sb2 .nf-sb2__was { font-size: 12px !important; }
+}
+
+/* ===== D. Reviews: 5 fully open, then Show more (nf-m4.js part 9 opens them). nf-mod-style.css forces every row to
+   display:block!important, which beat the [hidden] attribute the paging uses, so all reviews showed at once. ===== */
+html body #nf-pdp-reviews .nf-rv3__row[hidden] { display: none !important; }
+
+/* ===== E. Goes well with: same title size as the Recently viewed cards ===== */
+html body .nf-gw .nf-mcard__name { font-size: 18px !important; line-height: 1.25 !important; }
+
+/* ===== F. Our promise: finish nf-m4.css W (nf-mod-style.css still won on the heading block, gold rule and card shadow
+   on phones; desktop had padding on both the band and its inner wrapper) ===== */
+html:root:not(#nfprm) body .nf-prm .nf-prm__head { text-align: center !important; margin: 0 auto 30px !important; }
+@media (max-width: 999px) {
+  html:root:not(#nfprm) body .nf-prm::before { display: block !important; background: #c9a36a !important; }
+  html:root:not(#nfprm) body .nf-prm .nf-prm__item { box-shadow: 0 10px 24px -20px rgba(60, 42, 20, .45) !important; }
+}
+@media (min-width: 1000px) {
+  html:root:not(#nfprm) body .nf-prm .nf-prm__in { padding: 0 !important; }
+  html:root:not(#nfprm) body .nf-prm .nf-prm__item { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+}
+
+/* ===== G. Collection Filters / Sort bar (phones), MOD: one 50px full-width bar with hairlines, Filters + sliders icon at
+   the left gutter, "Sort by" at the right gutter, 14px Poppins 400, no middle divider. nf-m4.css U lost to
+   nf-shop-v3.css (two id :not()s, loaded later: 2-column grid, divider, Sort pinned right) and nf-mod-style.css (15px/500).
+   Three ids win whatever the load order. ===== */
+@media (max-width: 999px) {
+  html:root:not(#nfs3):not(#nfs4):not(#nfu) body :is(.shopify-section--main-collection, .shopify-section--main-search) .collection-toolbar {
+    height: 50px !important; min-height: 50px !important; margin-inline: calc(var(--nfs-gut, 16px) * -1) !important; padding: 0 var(--nfs-gut, 16px) !important;
+    border-top: 1px solid #e7e2dc !important; border-bottom: 1px solid #e7e2dc !important; align-items: center !important; }
+  html:root:not(#nfs3):not(#nfs4):not(#nfu) body :is(.shopify-section--main-collection, .shopify-section--main-search) .collection-toolbar .collection-toolbar__button-list {
+    display: flex !important; justify-content: space-between !important; align-items: center !important; gap: 16px !important; width: 100% !important; height: 100% !important; }
+  html:root:not(#nfs3):not(#nfs4):not(#nfu) body :is(.shopify-section--main-collection, .shopify-section--main-search) .collection-toolbar .collection-toolbar__button-container {
+    flex: 0 0 auto !important; width: auto !important; height: 100% !important; display: flex !important; align-items: center !important;
+    justify-content: flex-start !important; padding: 0 !important; margin: 0 !important; border: 0 !important; }
+  html:root:not(#nfs3):not(#nfs4):not(#nfu) body :is(.shopify-section--main-collection, .shopify-section--main-search) .collection-toolbar .collection-toolbar__button-container .collection-toolbar__button {
+    display: inline-flex !important; align-items: center !important; width: auto !important; height: 100% !important; padding: 0 !important; gap: 8px !important;
+    font: 400 14px/1 Poppins, sans-serif !important; letter-spacing: 0 !important; text-transform: none !important; color: #1c1c1c !important; background: transparent !important; }
+  html:root:not(#nfs3):not(#nfs4):not(#nfu) body .collection-toolbar .nf-mui-flabel,
+  html:root:not(#nfs3):not(#nfs4):not(#nfu) body .collection-toolbar .nf-mui-flabel::after,
+  html:root:not(#nfs3):not(#nfs4):not(#nfu) body .collection-toolbar .collection-toolbar__button[aria-controls="sort-by-popover"] .text-with-icon {
+    font: 400 14px/1 Poppins, sans-serif !important; letter-spacing: 0 !important; text-transform: none !important; }
+}
