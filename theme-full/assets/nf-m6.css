@@ -145,3 +145,10 @@ html body .nfsp .nf-srch-m4__foot { display: none; }
   html body .nfsp .nfsp__sub { margin-bottom: 28px; }
   html body .nfsp .nf-srch-m4__t { font-size: 18px; }
 }
+
+/* ===== L. Desktop collection and search grids: 4 across with the filter column open, like MOD (owner 2026-10-22).
+   nf-shop-v3.css section 3 kept 3 big cards beside the filters and 4 only with filters hidden; three ids win over it. ===== */
+@media (min-width: 1000px) {
+  html:root:not(#nfs3):not(#nfs4):not(#nfl) body :is(.shopify-section--main-collection, .shopify-section--main-search) .collection:not(.nf-rows) product-list.product-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+}
