@@ -202,7 +202,8 @@
     Array.prototype.forEach.call(list.querySelectorAll(':scope > li'), function (li) {
       var b = li.querySelector(':scope > .header-sidebar__linklist-button');
       if (!b) return;
-      var t = textOf(b), u = imgFor(t, b.getAttribute('href'));
+      /* 2026-10-22 (owner): the rows under More to explore (Professionals, Trade Program) have no photo */
+      var t = textOf(b), u = li.classList.contains('nf-tb-drawer-item') ? '' : imgFor(t, b.getAttribute('href'));
       if (u) b.insertBefore(thumb(u), b.firstChild);
       b.classList.add('nfd-row');
       if (isSale(t)) { li.classList.add('nfd-sale'); b.classList.add('nfd-sale'); }

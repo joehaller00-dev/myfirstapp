@@ -223,7 +223,11 @@
           (skipped when the Info menu below already has it). {%- endcomment -%}
         {%- assign nf_more_seen = ',' -%}
         {%- for link in linklists['Info'].links -%}{%- assign nf_more_seen = nf_more_seen | append: link.url | append: ',' -%}{%- endfor -%}
-        {%- capture nf_more_add -%}/collections/room-sets|Room Sets~/pages/our-collections|Our Collections~/pages/ideas-and-guides|Ideas &amp; Guides~/pages/inspiration|Reviews &amp; Inspiration~/pages/bulk-project-orders|Bulk &amp; Project Orders{%- endcapture -%}
+        {%- comment -%} 2026-10-22 (owner: "clean More to explore up", "where's our trade program?"): Room Sets, Our Collections,
+          Ideas & Guides and Reviews & Inspiration already sit under Shop By / Inspirations, and Bulk & Project Orders lives under
+          Professionals (Services), so More to explore is now Professionals + Trade Program. {%- endcomment -%}
+        {%- capture nf_more_tr -%}{%- render 'nf-trade-url' -%}{%- endcapture -%}
+        {%- capture nf_more_add -%}{{ nf_more_tr | strip }}|Trade Program{%- endcapture -%}
         {%- assign nf_more_add = nf_more_add | split: '~' -%}
         {%- for x in nf_more_add -%}
           {%- assign xp = x | split: '|' -%}
@@ -235,7 +239,7 @@
 
     <div class="header-sidebar__utility-links">
       {%- comment -%} NF-TRADE (2026-10-16): the trade program link (the desktop utility row is hidden on phones). 2026-10-20: "Join Trade Program" (owner). {%- endcomment -%}
-      <a href="{%- render 'nf-trade-url' -%}" class="header-sidebar__utility-link">Join Trade Program</a>
+      {%- comment -%} 2026-10-22: Trade Program moved up into More to explore {%- endcomment -%}
       {%- comment -%} NF-M4 (2026-10-21, owner: "a lot is outdated"): labels and links follow main-menu-v3 (Blog, Lighting Catalog at
         /pages/lighting-catalog), the extra pages sit under More to explore above. {%- endcomment -%}
       {%- for link in linklists['Info'].links -%}
