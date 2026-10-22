@@ -84,3 +84,67 @@
   });
 
 })();
+
+/* 3. Phone search: one full screen MOD-style page (owner 2026-10-22: "it doesn't go all the way down ... you're still able
+      to scroll behind on the actual page, it's really confusing"). Three older scripts each ran part of the phone panel
+      (custom-nav.js NF MOBILE SEARCH PANEL, nf-m4.js part 2, the nf-search-panel-align script in theme.liquid): they docked
+      it under the header with an inline top:<px>!important, sized it to the screen minus the header, and locked the page
+      only with overflow:hidden plus a touch guard that let touches on the panel's own search row through, so iOS scrolled
+      the page behind it. custom-nav.js also only loads after the window load event, so an early tap had no lock at all.
+      On phones the panel now lives directly in <body> (no header styles or transforms around it), covers the whole screen
+      (nf-m6.css I), and the page behind is frozen with position:fixed and put back exactly where it was on close.
+      Its inline 'top' is ignored on phones, so the older docking code can no longer pull it under the header. */
+(function () {
+  'use strict';
+  if (window.__nfM6Srch) return;
+  window.__nfM6Srch = 1;
+  var doc = document, root = doc.documentElement;
+  var PHONE = window.matchMedia('(max-width: 999px)');
+  var panel = null, y = 0, locked = false;
+
+  function own() {
+    panel = panel || doc.getElementById('header-search-panel');
+    if (!panel || panel.__nfM6) return panel;
+    panel.__nfM6 = 1;
+    var st = panel.style, set = st.setProperty;
+    st.setProperty = function (prop, val, pri) {
+      if (prop === 'top' && PHONE.matches) return;
+      return set.call(st, prop, val, pri);
+    };
+    if (PHONE.matches) st.removeProperty('top');
+    if (PHONE.matches && panel.parentNode !== doc.body) doc.body.appendChild(panel);
+    new MutationObserver(sync).observe(panel, { attributes: true, attributeFilter: ['class'] });
+    return panel;
+  }
+  function lock() {
+    if (locked) return;
+    locked = true;
+    y = window.pageYOffset || root.scrollTop || 0;
+    var b = doc.body.style;
+    b.position = 'fixed'; b.top = (-y) + 'px'; b.left = '0'; b.right = '0'; b.width = '100%';
+    root.classList.add('nf-m6-srch');
+  }
+  function unlock() {
+    if (!locked) return;
+    locked = false;
+    var b = doc.body.style;
+    b.position = ''; b.top = ''; b.left = ''; b.right = ''; b.width = '';
+    root.classList.remove('nf-m6-srch');
+    var sb = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, y);
+    root.style.scrollBehavior = sb;
+  }
+  function sync() {
+    if (!panel) return;
+    var open = panel.classList.contains('is-open') && PHONE.matches;
+    if (open) { panel.style.removeProperty('top'); lock(); } else unlock();
+  }
+  function boot() { if (own()) sync(); }
+  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', boot); else boot();
+  /* a tap on the search icon before this ran: take the panel over first */
+  doc.addEventListener('pointerdown', function (e) {
+    if (PHONE.matches && e.target.closest && e.target.closest('.header__search-toggle')) own();
+  }, { capture: true, passive: true });
+  window.addEventListener('pageshow', function () { if (panel && !panel.classList.contains('is-open')) unlock(); });
+})();
