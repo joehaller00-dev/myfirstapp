@@ -101,6 +101,7 @@
   var doc = document, root = doc.documentElement;
   var PHONE = window.matchMedia('(max-width: 999px)');
   var panel = null, y = 0, locked = false;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function own() {
     panel = panel || doc.getElementById('header-search-panel');
@@ -140,9 +141,8 @@
     var open = panel.classList.contains('is-open') && PHONE.matches;
     if (open) { panel.style.removeProperty('top'); lock(); fit(); } else unlock();
   }
-  /* MOD: the search icon opens the page and the keyboard in the same tap. iOS only raises the keyboard for a focus()
-     made inside the tap itself, so the panel is opened here (document capture, before the theme's own toggle handler,
-     which focused the input before the panel was laid out full screen) and the input is focused at once. */
+  /* The search icon opens the page here (document capture, before the theme's own toggle handler, which also focused
+     the input and so raised the keyboard straight away). */
   doc.addEventListener('click', function (e) {
     if (!PHONE.matches || !e.target.closest || !e.target.closest('.header__search-toggle') || !own()) return;
     e.preventDefault(); e.stopImmediatePropagation();
@@ -151,8 +151,24 @@
     panel.classList.add('is-open');
     panel.setAttribute('aria-hidden', 'false');
     fit();
-    var inp = doc.getElementById('header-search-panel-input');
-    if (inp) { try { inp.focus({ preventScroll: true }); } catch (er) { inp.focus(); } }
+    /* 2026-10-22 (owner): opening no longer raises the keyboard; tap the search box to type. One soft open: a 300ms fade
+       with a short rise, on the compositor (the older nf-search.css fade on the panel is switched off in nf-m6.css I). */
+    if (!reduce.matches && panel.animate) {
+      panel.animate([{ opacity: 0, transform: 'translate3d(0, 18px, 0)' }, { opacity: 1, transform: 'translate3d(0, 0, 0)' }],
+        { duration: 300, easing: 'cubic-bezier(.22, .8, .3, 1)' });
+    }
+  }, true);
+  /* the matching close: fade down 200ms, then the theme's own close runs (and the page is put back where it was) */
+  var closing = false;
+  doc.addEventListener('click', function (e) {
+    if (closing || !PHONE.matches || !panel || !panel.classList.contains('is-open') || reduce.matches || !panel.animate) return;
+    var c = e.target.closest && e.target.closest('.header-search-panel__close');
+    if (!c) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    closing = true;
+    var a = panel.animate([{ opacity: 1, transform: 'translate3d(0, 0, 0)' }, { opacity: 0, transform: 'translate3d(0, 14px, 0)' }],
+      { duration: 200, easing: 'cubic-bezier(.4, 0, .6, 1)', fill: 'forwards' });
+    a.onfinish = function () { c.click(); closing = false; requestAnimationFrame(function () { a.cancel(); }); };
   }, true);
 
   /* MOD: while typing, the page shrinks to the space above the keyboard, so the bottom button sits right on top of it and

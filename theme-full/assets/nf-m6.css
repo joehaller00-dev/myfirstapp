@@ -86,7 +86,7 @@ html:root:not(#nfprm) body .nf-prm .nf-prm__head { text-align: center !important
   html.nf-m6-srch body > #header-search-panel.is-open {
     position: fixed !important; top: var(--nf-vvt, 0px) !important; bottom: auto !important; left: 0 !important; right: 0 !important;
     width: 100% !important; height: var(--nf-ph, 100lvh) !important; box-sizing: border-box !important; max-height: none !important; z-index: 2147483600 !important;
-    display: flex !important; flex-direction: column !important; margin: 0 !important; transform: none !important; opacity: 1 !important;
+    display: flex !important; flex-direction: column !important; margin: 0 !important; transition: none !important; will-change: transform, opacity;
     padding: env(safe-area-inset-top, 0px) 0 var(--nf-kb, env(safe-area-inset-bottom, 0px)) !important; background: var(--nf-m4-warm, #f7f5f2) !important; border: 0 !important;
     overflow: hidden !important; overscroll-behavior: contain; visibility: visible !important; }
   html.nf-m6-srch body > #header-search-panel.is-open .header-search-panel__inner { flex: 0 0 auto; padding: 12px 16px 10px !important; }
