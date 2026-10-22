@@ -6,8 +6,14 @@
   Cart functions kept: quantity (Prestige line-item-quantity reloads this page after /cart/change.js), remove links,
   order note (cart-note), discount field (section setting), app blocks, dynamic checkout buttons, checkout.
   Backup of the previous file: scratchpad newbuild/polish2/backup/sections__main-cart.liquid
+  NF-CART-V4 (2026-10-22, owner: "update the actual cart page ... and the basic 'your cart' with nothing in it"): MOD calm
+  restyle in assets/nf-cart-v4.css (loaded below, after v3), same family as the phone cart drawer. Markup changed only in the
+  empty state: serif "Your cart is empty", one line, black "Shop new arrivals", four popular collections, four best sellers
+  (snippets/nf-mod-card.liquid), the trust row. The filled cart markup is unchanged.
 {%- endcomment -%}
 {{- 'nf-cart-page.css' | asset_url | stylesheet_tag -}}
+{{- 'nf-cart-v3.css' | asset_url | stylesheet_tag -}}
+{{- 'nf-cart-v4.css' | asset_url | stylesheet_tag -}}
 {%- liquid
   assign nfcp_trust = '<span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1.6 5.6h11v9h-11z" stroke="currentColor" stroke-width="1.2"/><path d="M12.6 8.4h4.2l3.6 3.4v2.8h-7.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="6" cy="17.4" r="1.7" stroke="currentColor" stroke-width="1.2"/><circle cx="16.7" cy="17.4" r="1.7" stroke="currentColor" stroke-width="1.2"/></svg>Free US shipping</span><span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M20 3.5V8h-4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>30 day returns</span><span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" stroke="currentColor" stroke-width="1.3"/></svg>Secure checkout</span>'
   assign nfcp_continue = settings.cart_empty_cart_link | default: routes.all_products_collection_url
@@ -16,28 +22,44 @@
 -%}
 <div class="nfcp-page color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
   {%- if cart.empty? -%}
-    <div class="nfcp nfcp--empty">
-      <svg class="nf-cv2-lamp nfcp-lamp" viewBox="0 0 92 116" aria-hidden="true" focusable="false"><defs><radialGradient id="nfcpGlowGrad" cx="50%" cy="30%" r="62%"><stop offset="0" stop-color="#c9a36a" stop-opacity="0.9"/><stop offset="0.45" stop-color="#c9a36a" stop-opacity="0.38"/><stop offset="1" stop-color="#c9a36a" stop-opacity="0"/></radialGradient></defs><ellipse class="nf-cv2-lamp__glow" cx="46" cy="88" rx="45" ry="30" fill="url(#nfcpGlowGrad)"/><path class="nf-cv2-lamp__line" d="M37 2.5h18M46 2.5v41"/><path class="nf-cv2-lamp__shade" d="M41 43.5h10l1.6 6.2C63.5 52.6 71.4 62 73 75.5H19c1.6-13.5 9.5-22.9 20.4-25.8z"/><path class="nf-cv2-lamp__bulb" d="M39.5 75.5a6.5 6.5 0 0 0 13 0z"/></svg>
-      <h1 class="nfcp-title nfcp-title--empty">Your cart</h1>
-      <p class="nfcp-empty__text">Your cart is empty. Start with a favorite, or pick a room to light.</p>
-      <p class="nf-cv2-offer nfcp-offer"><span class="nf-cv2-offer__dot" aria-hidden="true"></span>Buy 2 items, save 10%. Buy 3 or more, save 15%</p>
-      <div class="nfcp-empty__actions">
-        <a class="nfcp-btn" href="{{ routes.collections_url }}/best-sellers">Shop best sellers<span class="nfcp-arrow" aria-hidden="true">&rarr;</span></a>
-        <a class="nfcp-link" href="{{ routes.collections_url }}">Browse all categories</a>
+    <div class="nfcp nfcp--empty nfc4-empty">
+      <div class="nfc4-empty__hero">
+        <span class="nfc4-empty__icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5.2 8.2h13.6l-1 12.3H6.2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M8.8 10.4V6.8a3.2 3.2 0 0 1 6.4 0v3.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+        <h1 class="nfcp-title nfcp-title--empty nfc4-empty__title">Your cart is empty</h1>
+        <p class="nfc4-empty__text">Nothing here yet. Start with what&rsquo;s new, or explore a favorite collection.</p>
+        <a class="nfc4-btn" href="{{ routes.collections_url }}/new-arrivals">Shop new arrivals</a>
+        <p class="nfc4-offer">Buy 2 pieces, save 10%. Buy 3 or more, save 15%.</p>
       </div>
-      <div class="nfcp-tiles">
-        {%- capture nfcp_tiles -%}best-sellers|Best Sellers~ceiling-light|Ceiling Lights~outdoor-lighting|Outdoor Lighting{%- endcapture -%}
-        {%- assign nfcp_tiles = nfcp_tiles | split: '~' -%}
-        {%- for t in nfcp_tiles -%}
-          {%- assign tp = t | split: '|' -%}
-          {%- assign nf_img = collections[tp[0]].featured_image -%}
-          <a class="nfcp-tile" href="{{ routes.collections_url }}/{{ tp[0] }}">
-            <span class="nfcp-tile__img">{%- if nf_img -%}{{ nf_img | image_url: width: 720 | image_tag: loading: 'lazy', sizes: '(max-width: 749px) 45vw, 300px', widths: '360,480,720', alt: '' }}{%- endif -%}</span>
-            <span class="nfcp-tile__label">{{ tp[1] }}</span>
-          </a>
+      <nav class="nfc4-cats" aria-label="Popular collections">
+        <p class="nfc4-cats__h">Popular collections</p>
+        <ul class="nfc4-cats__list" role="list">
+          {%- capture nfc4_cats -%}lighting|Lighting~outdoor-lighting|Outdoor~decor|Decor~best-sellers|Best Sellers{%- endcapture -%}
+          {%- assign nfc4_cats = nfc4_cats | split: '~' -%}
+          {%- for c in nfc4_cats -%}
+            {%- assign cp = c | split: '|' -%}
+            <li><a class="nfc4-cat" href="{{ routes.collections_url }}/{{ cp[0] }}"><span>{{ cp[1] }}</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M4 10h11.5M11 5.5l4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+      {%- capture nfc4_best -%}
+        {%- assign nfc4_k = 0 -%}
+        {%- for product in collections['best-sellers'].products limit: 24 -%}
+          {%- if product.available == false -%}{%- continue -%}{%- endif -%}
+          {%- render 'nf-mod-card', product: product -%}
+          {%- assign nfc4_k = nfc4_k | plus: 1 -%}
+          {%- if nfc4_k >= 4 -%}{%- break -%}{%- endif -%}
         {%- endfor -%}
-      </div>
-      <div class="nfcp-trust nfcp-trust--light">{{ nfcp_trust }}</div>
+      {%- endcapture -%}
+      {%- if nfc4_best contains 'nf-mcard' -%}
+        <div class="nfcp-yml nfc4-best">
+          <div class="nfc4-best__h">
+            <p class="nfcp-yml__h">Best sellers</p>
+            <a class="nfc4-best__all" href="{{ routes.collections_url }}/best-sellers">View all</a>
+          </div>
+          <div class="nfcp-yml__grid">{{ nfc4_best }}</div>
+        </div>
+      {%- endif -%}
+      <div class="nfcp-trust nfcp-trust--light nfc4-trust">{{ nfcp_trust }}</div>
     </div>
   {%- else -%}
     <div class="nfcp nf-cv2-cartpage">
@@ -48,6 +70,14 @@
         </div>
         <a class="nfcp-link" href="{{ nfcp_continue }}">{{ 'cart.general.continue_shopping' | t }}</a>
       </header>
+
+      {%- comment -%} NF-GAMIFY-V1 (2026-10-09): checkout steps. Bag is already done the moment the shopper is here. {%- endcomment -%}
+      <ol class="nf-gm-steps" aria-label="Checkout steps">
+        <li class="is-done"><i><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.6 6.3l2.2 2.1 4.6-4.8"/></svg></i>Bag</li>
+        <li class="is-next"><i>2</i>Details</li>
+        <li><i>3</i>Delivery</li>
+        <li><i>4</i>Payment</li>
+      </ol>
 
       <form action="{{ routes.cart_url }}" method="POST" class="nfcp-form" id="nfcp-form">
         <input type="hidden" name="attributes[products_mobile_grid_mode]" value="">
@@ -79,7 +109,7 @@
                       {%- endunless -%}
                       <div class="nfcp-line__price">{%- render 'price-list', line_item: line_item, context: 'line_item' -%}</div>
                       {%- if line_item.selling_plan_allocation -%}
-                        <p class="nfcp-line__meta">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
+                        <p class="nfcp-line__meta">{%- if line_item.product.tags contains 'membership-product' -%}Renews every {{ settings.nf_mem_term | default: 6 }} months. Nothing ships.{%- else -%}{{ line_item.selling_plan_allocation.selling_plan.name }}{%- endif -%}</p>
                       {%- endif -%}
                       {%- unless line_item.properties == empty -%}
                         <ul class="nfcp-line__meta" role="list">
@@ -130,6 +160,25 @@
                 </li>
               {%- endfor -%}
             </ul>
+            {%- comment -%} NF-CART-LEFT (2026-10-15, owner plan "move cross-sells under the cart items, four products, like Mod"):
+              four Top Picks that are not in the cart yet, as MOD cards. Replaces the add-ons row and the side quick-add. {%- endcomment -%}
+            {%- assign nf_have = cart.items | map: 'product_id' | join: ',' | prepend: ',' | append: ',' -%}
+            {%- capture nf_yml -%}
+              {%- assign nf_k = 0 -%}
+              {%- for product in collections['top-picks'].products limit: 30 -%}
+                {%- assign nf_pid = product.id | prepend: ',' | append: ',' -%}
+                {%- if nf_have contains nf_pid or product.available == false -%}{%- continue -%}{%- endif -%}
+                {%- render 'nf-mod-card', product: product -%}
+                {%- assign nf_k = nf_k | plus: 1 -%}
+                {%- if nf_k >= 4 -%}{%- break -%}{%- endif -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+            {%- if nf_yml contains 'nf-mcard' -%}
+              <div class="nfcp-yml">
+                <p class="nfcp-yml__h">You may also like</p>
+                <div class="nfcp-yml__grid">{{ nf_yml }}</div>
+              </div>
+            {%- endif -%}
 
             {%- if section.settings.show_cart_note -%}
               <details class="nf-cv2-note nfcp-note"{% if cart.note != blank %} open{% endif %}>
@@ -145,12 +194,9 @@
 
           <aside class="nfcp-sum" aria-labelledby="nfcp-sum-h">
             {%- comment -%} NF-CART-SUM-V4 (2026-09-14, owner: the brown checkout button looked cheap and the card felt bare; add the logo and
-              a delivery note: usual delivery 6 to 9 business days, large orders may vary). Styles at the end of assets/nf-cart-page.css. {%- endcomment -%}
-            <div class="nfcp-sum__brand">
-              {%- if nfcp_logo != blank -%}<img src="{{ nfcp_logo | image_url: width: 360 }}" alt="{{ shop.name | escape }}" width="150" height="{{ 150 | divided_by: nfcp_logo.aspect_ratio | round }}" loading="eager" decoding="async">{%- else -%}<span class="nfcp-sum__brand-t">{{ shop.name | escape }}</span>{%- endif -%}
-            </div>
+              a delivery note: usual delivery 10 to 12 business days, large orders may vary). Styles at the end of assets/nf-cart-page.css. {%- endcomment -%}
             <h2 class="nfcp-sum__title" id="nfcp-sum-h">Order summary</h2>
-            {%- render 'nf-cart-progress' -%}
+            {%- render 'nf-promo-cart', part: 'gamify' -%}{%- render 'nf-promo-cart' -%}{%- comment -%} NF-PROMO-WINDOWS (2026-10-19): Buy 2/3 line (hidden during Black Friday), then the Fall Hosting Event / Black Friday line, each only inside its real window {%- endcomment -%}{%- comment -%} NF-TRADE (2026-10-16): membership row removed from the cart (owner). snippets/nf-member-cart.liquid is kept, unrendered. {%- endcomment -%}
 
             <dl class="nfcp-rows">
               <div class="nfcp-row"><dt>{{ 'cart.general.subtotal' | t }}</dt><dd>{%- if settings.currency_code_enabled -%}{{- cart.items_subtotal_price | money_with_currency -}}{%- else -%}{{- cart.items_subtotal_price | money -}}{%- endif -%}</dd></div>
@@ -174,17 +220,11 @@
               <div class="nfcp-row nfcp-row--total"><dt>{{ 'cart.general.total' | t }}</dt><dd>{{- cart.total_price | money_with_currency -}}</dd></div>
             </dl>
 
-            <div class="nfcp-ship">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1.6 5.6h11v9h-11z" stroke="currentColor" stroke-width="1.3"/><path d="M12.6 8.4h4.2l3.6 3.4v2.8h-7.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="6" cy="17.4" r="1.7" stroke="currentColor" stroke-width="1.3"/><circle cx="16.7" cy="17.4" r="1.7" stroke="currentColor" stroke-width="1.3"/></svg>
-              <p class="nfcp-ship__t">Free shipping on every US order</p>
-              <p class="nfcp-ship__d">Usual delivery is 6 to 9 business days. Large orders may take a little longer.</p>
-            </div>
 
             <p class="nfcp-sum__note">Taxes are calculated at checkout.</p>
 
-            {%- if section.settings.allow_discount_application -%}
-              <div class="nfcp-sum__disc">{%- render 'cart-discount' -%}</div>
-            {%- endif -%}
+            {%- comment -%} NF-CART-V3 (2026-10-19, owner 22:29): no code box on the cart page; codes are entered at checkout (a box here plus
+              the one at checkout invited two codes). A code already on the cart still shows as a row above with its remove X. {%- endcomment -%}
 
             {%- comment -%}Give apps a special hook to add features on the recap (such as capturing delivery dates){%- endcomment -%}
             {%- for block in section.blocks -%}
@@ -225,7 +265,7 @@
       <div class="nf-cv2-next nfcp-next">
         <p class="nf-cv2-next__heading">What happens next</p>
         <ul class="nf-cv2-next__grid">
-          <li class="nf-cv2-next__item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1.6 5.6h11v9h-11z" stroke="currentColor" stroke-width="1.2"/><path d="M12.6 8.4h4.2l3.6 3.4v2.8h-7.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="6" cy="17.4" r="1.7" stroke="currentColor" stroke-width="1.2"/><circle cx="16.7" cy="17.4" r="1.7" stroke="currentColor" stroke-width="1.2"/></svg><div><p class="nf-cv2-next__title">Free US shipping</p><p class="nf-cv2-next__text">Every order ships free within the US. Usual delivery is 6 to 9 business days, and large orders may take a little longer.</p></div></li>
+          <li class="nf-cv2-next__item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1.6 5.6h11v9h-11z" stroke="currentColor" stroke-width="1.2"/><path d="M12.6 8.4h4.2l3.6 3.4v2.8h-7.8z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="6" cy="17.4" r="1.7" stroke="currentColor" stroke-width="1.2"/><circle cx="16.7" cy="17.4" r="1.7" stroke="currentColor" stroke-width="1.2"/></svg><div><p class="nf-cv2-next__title">Free US shipping</p><p class="nf-cv2-next__text">Every order ships free within the US. Tracking on every order, and delivery times are in our <a href="/policies/shipping-policy" style="color:inherit;text-decoration:underline">Shipping Policy</a>.</p></div></li>
           <li class="nf-cv2-next__item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6.5-6.1-6.5-11A6.5 6.5 0 0 1 18.5 10c0 4.9-6.5 11-6.5 11z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.2"/></svg><div><p class="nf-cv2-next__title">Track it any time</p><p class="nf-cv2-next__text">Track your order any time from the <a href="/apps/trackyourorder">Track Your Order</a> page.</p></div></li>
           <li class="nf-cv2-next__item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M20 3.5V8h-4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg><div><p class="nf-cv2-next__title">30 day returns</p><p class="nf-cv2-next__text">Not right for your room? Send it back within 30 days.</p></div></li>
         </ul>

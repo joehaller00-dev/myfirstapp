@@ -1,0 +1,109 @@
+{%- comment -%}
+  NF-CD-YML (2026-10-19, owner 22:29: "a tiny 'You may also like' in the cart, using products we're proud of"). Up to 4 showcase
+  pieces (the ones with our studio card photo, custom.card_studio) in one sideways row: pieces from the most specific collection the
+  first piece in the cart is in first, then Best Sellers. A piece already in the cart is never shown. Photo = the standard card photo.
+  Image, name, star rating (when the piece has reviews), price. The whole card opens the product; "+ Add" (single-variant pieces
+  only) adds it in place (assets/nf-cart-v3.js). Rendered by sections/cart-drawer.liquid under the cart lines.
+  NF-CART-V4 (2026-10-22): optional param title (default "You may also like"); the empty drawer renders it as "Best sellers"
+  (no cart lines, so only the Best Sellers pass runs).
+{%- endcomment -%}
+{%- liquid
+  assign nfy_seen = cart.items | map: 'product_id' | join: ',' | prepend: ',' | append: ','
+  assign nfy_n = 0
+  assign nfy_src = nil
+  assign nfy_first = cart.items.first.product
+  comment
+    the most specific collection the first piece is in (fewest products, at least 4), skipping store-wide lists
+  endcomment
+  assign nfy_min = 100000
+  for c in nfy_first.collections
+    assign ch = c.handle
+    if ch == 'all' or ch == 'frontpage' or ch == 'top-picks' or ch contains 'best-seller' or ch contains 'sale' or ch contains 'new-' or ch contains 'shop-' or ch contains 'under-' or ch contains 'gift'
+      continue
+    endif
+    if c.products_count < 4 or c.products_count >= nfy_min
+      continue
+    endif
+    assign nfy_src = c
+    assign nfy_min = c.products_count
+  endfor
+-%}
+{%- capture nfy_cards -%}
+  {%- for nfy_pass in (1..2) -%}
+    {%- if nfy_n >= 4 -%}{%- break -%}{%- endif -%}
+    {%- if nfy_pass == 1 -%}
+      {%- if nfy_src == nil -%}{%- continue -%}{%- endif -%}
+      {%- assign nfy_list = nfy_src.products -%}
+    {%- else -%}
+      {%- assign nfy_list = collections['best-sellers'].products -%}
+    {%- endif -%}
+    {%- for p in nfy_list limit: 36 -%}
+      {%- if nfy_n >= 4 -%}{%- break -%}{%- endif -%}
+      {%- assign nfy_pid = p.id | prepend: ',' | append: ',' -%}
+      {%- if nfy_seen contains nfy_pid or p.available == false -%}{%- continue -%}{%- endif -%}
+      {%- assign nfy_img = p.metafields.custom.card_studio.value -%}
+      {%- if nfy_img == blank -%}{%- continue -%}{%- endif -%}
+      {%- liquid
+        assign nfy_seen = nfy_seen | append: p.id | append: ','
+        assign nfy_n = nfy_n | plus: 1
+        assign nfy_short = p.title | split: ',' | first | split: ' - ' | first | strip
+        assign nfy_rn = p.metafields.loox.num_reviews.value | default: p.metafields.reviews.rating_count.value | default: 0 | plus: 0
+        assign nfy_ra = p.metafields.loox.avg_rating.value | default: p.metafields.reviews.rating.value.rating | default: 0 | plus: 0
+        assign nfy_v = p.selected_or_first_available_variant
+        assign nfy_price = p.price
+        assign nfy_varies = p.price_varies
+        if p.metafields.custom.accessory_variant_ids != blank
+          assign nfy_acc = p.metafields.custom.accessory_variant_ids.value | map: 'id' | join: ',' | prepend: ',' | append: ','
+          assign nfy_price = nil
+          assign nfy_hi = 0
+          for v in p.variants
+            assign nfy_vk = ',' | append: v.id | append: ','
+            if nfy_acc contains nfy_vk
+              continue
+            endif
+            if nfy_price == nil or v.price < nfy_price
+              assign nfy_price = v.price
+            endif
+            if v.price > nfy_hi
+              assign nfy_hi = v.price
+            endif
+          endfor
+          if nfy_price == nil
+            assign nfy_price = p.price
+          endif
+          assign nfy_varies = false
+          if nfy_hi > nfy_price
+            assign nfy_varies = true
+          endif
+        endif
+      -%}
+      <div class="nf-cdy__c">
+        <a class="nf-cdy__img" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
+          {{- nfy_img | image_url: width: 360 | image_tag: loading: 'lazy', widths: '180,270,360', sizes: '(max-width: 699px) 42vw, 148px', alt: '' -}}
+        </a>
+        <a class="nf-cdy__t" href="{{ p.url }}">{{ nfy_short | escape }}</a>
+        {%- if nfy_rn > 0 and nfy_ra > 0 -%}
+          <p class="nf-cdy__r" aria-label="Rated {{ nfy_ra | round: 1 }} out of 5, {{ nfy_rn }} reviews">{{ nfy_ra | round: 1 }} <b aria-hidden="true">★</b> <span>({{ nfy_rn }})</span></p>
+        {%- endif -%}
+        <div class="nf-cdy__b">
+          <span class="nf-cdy__p">{% if nfy_varies %}from {% endif %}{{ nfy_price | money_without_trailing_zeros }}{% if nfy_varies == false and p.compare_at_price > nfy_price %}<s>{{ p.compare_at_price | money_without_trailing_zeros }}</s>{% endif %}</span>
+          {%- if p.variants.size == 1 and nfy_v.available -%}
+            <button type="button" class="nf-cdy__add" data-nf-cdy-add="{{ nfy_v.id }}" aria-label="Add {{ nfy_short | escape }} to cart">+ Add</button>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- if nfy_n > 0 -%}
+  <div class="nf-cdy" data-nf-cdy>
+    <div class="nf-cdy__h">
+      <p class="nf-cdy__title">{{ title | default: 'You may also like' }}</p>
+      <div class="nf-cdy__nav" hidden>
+        <button type="button" class="nf-cdy__arr" data-nf-cdy-dir="-1" aria-label="Scroll back"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
+        <button type="button" class="nf-cdy__arr" data-nf-cdy-dir="1" aria-label="Scroll forward"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
+      </div>
+    </div>
+    <div class="nf-cdy__row" data-nf-cdy-row>{{ nfy_cards }}</div>
+  </div>
+{%- endif -%}
