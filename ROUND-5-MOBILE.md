@@ -86,3 +86,9 @@ All in PREVIEW v7 (187544633396), checksums verified after upload.
   **PREVIEW v8** (187572748340), a duplicate of v7 made right after publish. Publish v8 when it looks right.
 - v8 so far: homepage catalog band ("See Every Light Switched On") and the product page catalog band show at once,
   no fade in (nf-m6.css J).
+
+# v8 published by the owner; work continues in v9
+- PREVIEW v8 (187572748340) is live (catalog no-fade, MOD empty search page, 4-across desktop grids).
+- **PREVIEW v9** (187573272628, copy of v8): phone search taps a Popular word straight to its results (keyboard and
+  bottom button go), closing search empties the box, typed results restyled to the empty-search look (nf-m6.css M/N,
+  nf-m6.js part 4).
