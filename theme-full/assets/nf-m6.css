@@ -202,3 +202,6 @@ html body .nf-srch-ask { border-radius: 4px !important; background: var(--nf-m4-
   /* the page's own bottom button already reads "View all results" */
   html body #header-search-panel .nf-srch .nf-srch-foot { display: none !important; }
 }
+
+/* ===== O. Search pages (phones): no round collection photo pills above the results (owner 2026-10-24) ===== */
+html body.nf-tpl-search .mobile-collection-pills { display: none !important; }
