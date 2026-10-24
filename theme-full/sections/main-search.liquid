@@ -72,12 +72,12 @@
       <div class="section-spacing section-spacing--tight color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
         <div class="container">
           <div class="section-stack">
-            <div class="section-header justify-self-center text-center">
+            <div class="section-header nfsr-wrap">
               {%- render 'nf-search-head', terms: search.terms, count: search.results_count, items: search.results -%}{%- comment -%} NF-SEARCH-V2 header {%- endcomment -%}
             </div>
 
             <div class="main-search">
-              <x-tabs class="main-search__tabs content-tabs content-tabs--center">
+              <x-tabs class="main-search__tabs content-tabs nfsr-tabs">
                 <template shadowrootmode="open">
                   <style>
                     .scrollable::-webkit-scrollbar {
@@ -101,7 +101,7 @@
                 {%- assign page_results = search.results | where: 'object_type', 'page' -%}
 
                 {%- if product_results.size > 0 or active_values_count > 0 -%}
-                  <button type="button" class="h6" role="tab" slot="title">{{ 'search.general.products' | t }}</button>
+                  <button type="button" class="h6" role="tab" slot="title">{{ 'search.general.products' | t }}{% if paginate.pages <= 1 %} ({{ product_results.size }}){% endif %}</button>
 
                   <div class="main-search__resource-item" role="tabpanel" slot="content" {% cycle 'result_tab': '', 'hidden', 'hidden', 'hidden' %}>
                     <div class="v-stack gap-6 sm:gap-12">
@@ -239,7 +239,7 @@
                 {%- endif -%}
 
                 {%- if article_results.size > 0 -%}
-                  <button type="button" class="h6" role="tab" slot="title">{{ 'search.general.posts' | t }}</button>
+                  <button type="button" class="h6" role="tab" slot="title">Blogs{% if paginate.pages <= 1 %} ({{ article_results.size }}){% endif %}</button>
 
                   <div class="main-search__resource-item" role="tabpanel" slot="content" {% cycle 'result_tab': '', 'hidden', 'hidden', 'hidden' %}>
                     <blog-posts

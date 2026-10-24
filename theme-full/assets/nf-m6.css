@@ -205,3 +205,21 @@ html body .nf-srch-ask { border-radius: 4px !important; background: var(--nf-m4-
 
 /* ===== O. Search pages (phones): no round collection photo pills above the results (owner 2026-10-24) ===== */
 html body.nf-tpl-search .mobile-collection-pills { display: none !important; }
+
+/* ===== P. Search results header and tabs, MOD: Back, "Results for “term” (n)", one line, left aligned; Products (n) /
+   Blogs (n) tabs on a hairline with a black underline (snippets/nf-search-head.liquid v3, sections/main-search.liquid) ===== */
+html body .shopify-section--main-search .section-header.nfsr-wrap { justify-self: stretch !important; width: 100% !important; max-width: none !important; text-align: left !important; margin: 0 !important; }
+html body .nf-srch-head.nfsr { display: block !important; text-align: left !important; }
+html body .nfsr .nfsr__back { display: inline-flex; align-items: center; gap: 6px; font: 400 14px/1 var(--nf-m4-sans, Poppins, sans-serif); color: #6f685f; text-decoration: none; }
+html body .nfsr .nfsr__h { margin: 18px 0 10px !important; font: 400 clamp(32px, 4vw, 44px)/1.12 var(--nf-m4-serif, "EB Garamond", Georgia, serif) !important; letter-spacing: 0 !important;
+  color: var(--nf-m4-ink, #1c1c1c) !important; overflow-wrap: anywhere; }
+html body .nfsr .nfsr__n { font-size: .62em; color: #6f685f; }
+html body .nfsr .nfsr__sub { margin: 0 !important; font: 400 15.5px/1.5 var(--nf-m4-sans, Poppins, sans-serif) !important; color: #6f685f !important; }
+html body .shopify-section--main-search .nfsr-tabs { display: block; border-top: 1px solid var(--nf-m4-line, #e6e1d9); border-bottom: 1px solid var(--nf-m4-line, #e6e1d9); }
+html body .shopify-section--main-search .nfsr-tabs > [role="tab"] { margin: 0 34px 0 0 !important; padding: 18px 0 16px !important; border: 0 !important; border-bottom: 2px solid transparent !important;
+  background: none !important; font: 400 17px/1 var(--nf-m4-sans, Poppins, sans-serif) !important; letter-spacing: 0 !important; text-transform: none !important; color: #8a8178 !important; }
+html body .shopify-section--main-search .nfsr-tabs > [role="tab"][aria-selected="true"] { color: var(--nf-m4-ink, #1c1c1c) !important; border-bottom-color: var(--nf-m4-ink, #1c1c1c) !important; }
+@media (max-width: 999px) {
+  html body .nfsr .nfsr__h { font-size: 32px !important; }
+  html body .shopify-section--main-search .nfsr-tabs > [role="tab"] { font-size: 16px !important; margin-right: 28px !important; }
+}
