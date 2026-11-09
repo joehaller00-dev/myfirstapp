@@ -39,7 +39,7 @@
   .square #s-studio { background: radial-gradient(ellipse at 50% 64%, #f4efe6 0%, #e7e0d3 55%, #cfc6b6 100%); }
   #studio-img { position: absolute; mix-blend-mode: multiply; will-change: transform; object-fit: contain; }
   .wide #studio-img { left: 2%; top: 3%; width: 56%; height: 94%; }
-  .square #studio-img { left: 16%; top: 43%; width: 68%; height: 55%; }
+  .square #studio-img { left: 8%; top: 39%; width: 84%; height: 59%; }
   #sheen { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 60%); mix-blend-mode: soft-light; will-change: transform; }
   #s-studio .eb { color: #9a7436; }
   #s-studio .ttl em { color: #6a5433; }
@@ -102,7 +102,7 @@ const hero = D.rooms[0];
 const pool = [...D.rooms.slice(1), ...D.closeups];          // photos for the dimension pane and the closing rooms
 const studio = D.studio[0];
 const hasDims = D.dims.length > 0 && pool.length > 0;
-const dimPhoto = hasDims ? (D.closeups[0] || pool[pool.length - 1]) : null;
+const dimPhoto = hasDims ? (D.rooms.length >= 4 ? D.rooms[D.rooms.length - 1] : (D.closeups[0] || pool[pool.length - 1])) : null;   // a room photo where there are enough
 let rest = D.rooms.slice(1).filter(r => r !== dimPhoto);
 if (!SQUARE) {                                              // wide closes on pairs of photos
   if (rest.length % 2) { const extra = D.closeups.find(c => c !== dimPhoto); if (extra && rest.length < 4) rest.push(extra); else rest.pop(); }

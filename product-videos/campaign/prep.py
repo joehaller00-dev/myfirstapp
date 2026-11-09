@@ -142,7 +142,12 @@ def prep(p):
     def score(c):
         return (1.2 if c["w"] >= 1600 else 0.0) + (0.2 if c["w"] >= 1080 else 0.0) + (0.8 if c["night"] and c["src"] else 0.0) + c["contrast"]
     rooms.sort(key=score, reverse=True)
-    studio = sorted([c for c in cands if c["kind"] == "studio"], key=lambda c: -c["w"])
+    def studio_score(c):   # a single clean product shot, lit if possible; not a chart or a parts photo
+        alt = c["alt"].lower()
+        bad = any(k in alt for k in ("inset", "chart", "marker", "styles a", "parts", "included", "remote", "cable", "back view", "rear"))
+        named = any(k in alt for k in STUDIO_ALT)
+        return (-3 if bad else 0) + (1.5 if named else 0) + (0.6 if ("lit" in alt.split() or "glowing" in alt or "lit," in alt) else 0) + min(c["w"], 2048) / 2048
+    studio = sorted([c for c in cands if c["kind"] == "studio"], key=studio_score, reverse=True)
     closeups = sorted([c for c in cands if c["kind"] == "closeup"], key=lambda c: -c["w"])
     keep = lambda c: {k: c[k] for k in ("file", "alt", "w", "h", "night", "src", "focus", "kind")}
     chart = json.loads(p["dimChart"]["value"]) if p.get("dimChart") else None
