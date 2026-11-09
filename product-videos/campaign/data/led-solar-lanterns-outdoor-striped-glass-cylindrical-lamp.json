@@ -1,0 +1,149 @@
+{
+ "handle": "led-solar-lanterns-outdoor-striped-glass-cylindrical-lamp",
+ "title": "Pinstripe",
+ "subtitle": "Striped Glass Lantern",
+ "type": "Portable Lanterns",
+ "highlights": [
+  "Striped glass and stainless steel",
+  "8\" x 13\" H or 12\" x 24\" H",
+  "Solar or hardwired power",
+  "Cylinder lantern for patios and tables"
+ ],
+ "rooms": [
+  {
+   "file": "img/led-solar-lanterns-outdoor-striped-glass-cylindrical-lamp/05.jpg",
+   "alt": "Striped Glass Solar Lantern on a rooftop deck",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.519,
+     0.609,
+     0.0696
+    ],
+    [
+     0.4224,
+     0.5431,
+     0.0418
+    ]
+   ],
+   "focus": [
+    0.4934,
+    0.5915
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/led-solar-lanterns-outdoor-striped-glass-cylindrical-lamp/00.jpg",
+   "alt": "Striped Glass Solar Lantern, 8 in Dia x 13 in H, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/led-solar-lanterns-outdoor-striped-glass-cylindrical-lamp/01.png",
+   "alt": "Pinstripe striped glass solar lantern as striped glass lanterns glowing on a patio",
+   "w": 800,
+   "h": 800,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/led-solar-lanterns-outdoor-striped-glass-cylindrical-lamp/09.png",
+   "alt": "Pinstripe striped glass solar lantern, lit with a warm bulb behind striped glass, on a beige background",
+   "w": 800,
+   "h": 800,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/led-solar-lanterns-outdoor-striped-glass-cylindrical-lamp/06.png",
+   "alt": "Pinstripe striped glass solar lantern, glowing warm with a black top handle, on a beige background",
+   "w": 800,
+   "h": 800,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/led-solar-lanterns-outdoor-striped-glass-cylindrical-lamp/11.png",
+   "alt": "Pinstripe striped glass solar lantern, glowing warm, front view on white",
+   "w": 800,
+   "h": 800,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/led-solar-lanterns-outdoor-striped-glass-cylindrical-lamp/10.jpg",
+   "alt": "Close-up of the Pinstripe striped glass solar lantern showing the black solar top and carry handle",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/led-solar-lanterns-outdoor-striped-glass-cylindrical-lamp/07.png",
+   "alt": "Close-up of the Pinstripe striped glass solar lantern showing the striped glass and black base",
+   "w": 800,
+   "h": 800,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "12\" Dia x 24\" H",
+   "Dia 12\"  \u00d7  H 24\""
+  ],
+  [
+   "8\" Dia x 13\" H",
+   "Dia 8\"  \u00d7  H 13\""
+  ]
+ ],
+ "counts": {
+  "rooms": 5,
+  "night": 1,
+  "studio": 2,
+  "closeups": 2
+ }
+}

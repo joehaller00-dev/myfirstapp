@@ -1,0 +1,188 @@
+{
+ "handle": "cascading-ring-staircase-chandelier",
+ "title": "Cirrus",
+ "subtitle": "Cascading Ring Staircase Chandelier",
+ "type": "Chandeliers",
+ "highlights": [
+  "Lit rings staggered down a central stem",
+  "Made for stairwells and tall entryways",
+  "Seven drops from 70.87 to 255.91 in",
+  "6 to 28 lights to suit the space",
+  "Integrated LED long drop design"
+ ],
+ "rooms": [
+  {
+   "file": "img/cascading-ring-staircase-chandelier/01.jpg",
+   "alt": "Cascading Ring Staircase Chandelier, 12 Light",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/cascading-ring-staircase-chandelier/02.jpg",
+   "alt": "Cascading Ring Staircase Chandelier, 24 Light",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/cascading-ring-staircase-chandelier/00.jpg",
+   "alt": "Cascading Ring Staircase Chandelier glowing in a grand curved staircase foyer",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/cascading-ring-staircase-chandelier/07.jpg",
+   "alt": "Cirrus cascading ring staircase chandelier, glowing rings hanging through a stairwell beside floating stone steps",
+   "w": 1000,
+   "h": 1000,
+   "night": true,
+   "src": [
+    [
+     0.8493,
+     0.8283,
+     0.0879
+    ],
+    [
+     0.8216,
+     0.9528,
+     0.0771
+    ],
+    [
+     0.6584,
+     0.9701,
+     0.0237
+    ]
+   ],
+   "focus": [
+    0.8302,
+    0.8859
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/cascading-ring-staircase-chandelier/21.jpg",
+   "alt": "Cirrus cascading ring staircase chandelier, glowing rings falling through a white spiral staircase",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/cascading-ring-staircase-chandelier/20.jpg",
+   "alt": "Cirrus cascading ring staircase chandelier, lit rings hanging beside a curved black staircase above a pink sofa",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/cascading-ring-staircase-chandelier/12.jpg",
+   "alt": "Cirrus cascading ring staircase chandelier, shortest and smallest ring cluster on a round black canopy, on white",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/cascading-ring-staircase-chandelier/11.jpg",
+   "alt": "Close-up of the Cirrus cascading ring staircase chandelier showing one lit ring hanging from a gold connector",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/cascading-ring-staircase-chandelier/10.jpg",
+   "alt": "Close-up of the Cirrus cascading ring staircase chandelier showing one glowing ring with its dark outer band",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "12 Light",
+   "W 19.69\"  \u00d7  D 19.69\"  \u00d7  H 125.98\""
+  ],
+  [
+   "15 Light",
+   "W 19.69\"  \u00d7  D 19.69\"  \u00d7  H 137.8\""
+  ],
+  [
+   "18 Light",
+   "W 23.62\"  \u00d7  D 23.62\"  \u00d7  H 177.17\""
+  ],
+  [
+   "24 Light",
+   "W 23.62\"  \u00d7  D 23.62\"  \u00d7  H 216.54\""
+  ],
+  [
+   "28 Light",
+   "W 27.56\"  \u00d7  D 27.56\"  \u00d7  H 255.91\""
+  ],
+  [
+   "6 Light",
+   "W 15.75\"  \u00d7  D 15.75\"  \u00d7  H 70.87\""
+  ],
+  [
+   "9 Light",
+   "W 17.72\"  \u00d7  D 17.72\"  \u00d7  H 94.49\""
+  ]
+ ],
+ "counts": {
+  "rooms": 9,
+  "night": 1,
+  "studio": 7,
+  "closeups": 2
+ }
+}

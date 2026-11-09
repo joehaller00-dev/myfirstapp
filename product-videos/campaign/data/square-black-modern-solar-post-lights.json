@@ -1,0 +1,192 @@
+{
+ "handle": "square-black-modern-solar-post-lights",
+ "title": "Plinth",
+ "subtitle": "Square Post Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Black stainless steel post cap",
+  "Three widths: 9.8\", 11.8\" or 15.7\"",
+  "Solar or hardwired power",
+  "Waterproof, sits on decks or gate posts"
+ ],
+ "rooms": [
+  {
+   "file": "img/square-black-modern-solar-post-lights/00.jpg",
+   "alt": "Square Solar Post Light on a boardwalk deck",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4675,
+     0.7826,
+     0.058
+    ],
+    [
+     0.8817,
+     0.4379,
+     0.0207
+    ],
+    [
+     0.8018,
+     0.8947,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.5417,
+    0.7581
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-black-modern-solar-post-lights/02.jpg",
+   "alt": "Square Solar Post Light on a stone pillar by a pool",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.5088,
+     0.489,
+     0.0586
+    ],
+    [
+     0.9684,
+     0.8597,
+     0.0202
+    ],
+    [
+     0.7656,
+     0.6108,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.5772,
+    0.5361
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-black-modern-solar-post-lights/08.jpg",
+   "alt": "Plinth square solar post light glowing low on paving and casting warm light beside red flowers at night",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.3543,
+     0.7669,
+     0.0712
+    ],
+    [
+     0.1024,
+     0.6732,
+     0.0576
+    ],
+    [
+     0.4496,
+     0.6155,
+     0.0534
+    ]
+   ],
+   "focus": [
+    0.3041,
+    0.7008
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-black-modern-solar-post-lights/01.jpg",
+   "alt": "Plinth square solar post light in black, lit on a terrace ledge beside a modern house at dusk",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.2732,
+     0.7054,
+     0.0466
+    ],
+    [
+     0.973,
+     0.3201,
+     0.0299
+    ],
+    [
+     0.7489,
+     0.3143,
+     0.0261
+    ]
+   ],
+   "focus": [
+    0.5267,
+    0.5424
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-black-modern-solar-post-lights/07.jpg",
+   "alt": "Plinth square solar post light, glowing on a post along a paved garden path",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-black-modern-solar-post-lights/09.jpg",
+   "alt": "Square Solar Post Light, Waterproof Black Deck Fixture",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/square-black-modern-solar-post-lights/12.jpg",
+   "alt": "Plinth square solar post light, lit, front view of the black housing and warm light band, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "11.8\"",
+   "W 11.81\"  \u00d7  D 11.81\"  \u00d7  H 5.91\""
+  ],
+  [
+   "15.7\"",
+   "W 15.75\"  \u00d7  D 15.75\"  \u00d7  H 5.91\""
+  ],
+  [
+   "9.8\"",
+   "W 9.84\"  \u00d7  D 9.84\"  \u00d7  H 5.91\""
+  ]
+ ],
+ "counts": {
+  "rooms": 9,
+  "night": 4,
+  "studio": 2,
+  "closeups": 0
+ }
+}

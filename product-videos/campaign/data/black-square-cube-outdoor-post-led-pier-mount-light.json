@@ -1,0 +1,232 @@
+{
+ "handle": "black-square-cube-outdoor-post-led-pier-mount-light",
+ "title": "Quadra",
+ "subtitle": "Black Cube Pillar Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Black stainless steel cube",
+  "Six sizes in low and tall versions",
+  "From 9.8\" to 15.8\" across",
+  "Solar or hardwired power",
+  "Mounts on piers, gate posts or fences"
+ ],
+ "rooms": [
+  {
+   "file": "img/black-square-cube-outdoor-post-led-pier-mount-light/01.jpg",
+   "alt": "Cube Pillar Light, 15.8 in x 15.7 in x 6.5 in, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4694,
+     0.6155,
+     0.1216
+    ],
+    [
+     0.7726,
+     0.4453,
+     0.0371
+    ],
+    [
+     0.637,
+     0.607,
+     0.0289
+    ]
+   ],
+   "focus": [
+    0.5022,
+    0.6013
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-square-cube-outdoor-post-led-pier-mount-light/07.jpg",
+   "alt": "Cube Pillar Light on a stone garden wall at twilight",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.6933,
+     0.373,
+     0.045
+    ],
+    [
+     0.5673,
+     0.3666,
+     0.0225
+    ]
+   ],
+   "focus": [
+    0.6681,
+    0.3717
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-square-cube-outdoor-post-led-pier-mount-light/00.jpg",
+   "alt": "Cube Pillar Light, 9.8 in Square x 6.5 in H, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.1289,
+     0.6246,
+     0.0698
+    ],
+    [
+     0.8666,
+     0.624,
+     0.0693
+    ],
+    [
+     0.8441,
+     0.2065,
+     0.035
+    ]
+   ],
+   "focus": [
+    0.5343,
+    0.5773
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-square-cube-outdoor-post-led-pier-mount-light/08.jpg",
+   "alt": "Cube Pillar Light, 11.8 in Square x 6.5 in H, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.1255,
+     0.5234,
+     0.0516
+    ],
+    [
+     0.3433,
+     0.4971,
+     0.035
+    ],
+    [
+     0.4627,
+     0.4808,
+     0.0275
+    ]
+   ],
+   "focus": [
+    0.2379,
+    0.5095
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-square-cube-outdoor-post-led-pier-mount-light/02.jpg",
+   "alt": "Cube Pillar Light, 9.8 in Square x 10.6 in H, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.083,
+     0.1206,
+     0.0947
+    ],
+    [
+     0.227,
+     0.5131,
+     0.0591
+    ],
+    [
+     0.3552,
+     0.5099,
+     0.0487
+    ]
+   ],
+   "focus": [
+    0.1604,
+    0.2753
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-square-cube-outdoor-post-led-pier-mount-light/21.jpg",
+   "alt": "Cube Pillar Light, 9.8 in Square x 10.6 in H, Solar",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.3166,
+     0.6138,
+     0.046
+    ],
+    [
+     0.4224,
+     0.6132,
+     0.0423
+    ],
+    [
+     0.6722,
+     0.439,
+     0.0202
+    ]
+   ],
+   "focus": [
+    0.3941,
+    0.597
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/black-square-cube-outdoor-post-led-pier-mount-light/09.jpg",
+   "alt": "Quadra cube pillar light in its tall cube size with a solar top, shown with smaller inset views",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "11.8\"x11.8\"x12.6\"",
+   "W 11.8\"  \u00d7  D 11.8\"  \u00d7  H 12.6\""
+  ],
+  [
+   "15.8\"x15.7\"x16.5\"",
+   "W 15.8\"  \u00d7  D 15.7\"  \u00d7  H 16.5\""
+  ],
+  [
+   "11.8\"x11.8\"x6.5\"",
+   "W 11.8\"  \u00d7  D 11.8\"  \u00d7  H 6.5\""
+  ],
+  [
+   "15.8\"x15.7\"x6.5\"",
+   "W 15.8\"  \u00d7  D 15.7\"  \u00d7  H 6.5\""
+  ],
+  [
+   "9.8\"x9.8\"x10.6\"",
+   "W 9.8\"  \u00d7  D 9.8\"  \u00d7  H 10.6\""
+  ],
+  [
+   "9.8\"x9.8\"x6.5\"",
+   "W 9.8\"  \u00d7  D 9.8\"  \u00d7  H 6.5\""
+  ]
+ ],
+ "counts": {
+  "rooms": 11,
+  "night": 8,
+  "studio": 9,
+  "closeups": 0
+ }
+}

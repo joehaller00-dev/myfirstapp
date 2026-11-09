@@ -1,0 +1,145 @@
+{
+ "handle": "lighting-ceiling-lights-pendant-lighting_51egv",
+ "title": "Nimbus",
+ "subtitle": "Cloud Pendant Light",
+ "type": "Pendant Lighting",
+ "highlights": [
+  "Fabric cloud spreads glare free light",
+  "Seven widths from 12\" to 35\"",
+  "Four white cloud styles or a color cloud",
+  "Hangs over a table, island or bed",
+  "Hang several for a sky of clouds"
+ ],
+ "rooms": [
+  {
+   "file": "img/lighting-ceiling-lights-pendant-lighting_51egv/09.jpg",
+   "alt": "Three Cloud Pendant Lights glowing in a penthouse living room at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lighting-ceiling-lights-pendant-lighting_51egv/00.jpg",
+   "alt": "Three White Cloud Pendant Lights over a cream living room",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lighting-ceiling-lights-pendant-lighting_51egv/07.jpg",
+   "alt": "Cloud Pendant Light, 12 in, White Cloud D",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lighting-ceiling-lights-pendant-lighting_51egv/12.jpg",
+   "alt": "Cloud Pendant Light, 12 in, Color Cloud",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lighting-ceiling-lights-pendant-lighting_51egv/08.jpg",
+   "alt": "Cloud Pendant Light, 16 in, White Cloud A",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lighting-ceiling-lights-pendant-lighting_51egv/06.jpg",
+   "alt": "Cloud Pendant Light, 16 in, White Cloud B",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/lighting-ceiling-lights-pendant-lighting_51egv/13.jpg",
+   "alt": "Nimbus cloud pendant light, design chart showing cloud styles A, B, C, D and a multicolor version, on a white background",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "12\"",
+   "W 11.81\"  \u00d7  D 7.87\"  \u00d7  H 7.87\""
+  ],
+  [
+   "16\"",
+   "W 15.75\"  \u00d7  D 9.06\"  \u00d7  H 9.06\""
+  ],
+  [
+   "20\"",
+   "W 19.69\"  \u00d7  D 10.24\"  \u00d7  H 10.24\""
+  ],
+  [
+   "24\"",
+   "W 23.62\"  \u00d7  D 13.78\"  \u00d7  H 13.78\""
+  ],
+  [
+   "28\"",
+   "W 27.56\"  \u00d7  D 15.75\"  \u00d7  H 15.75\""
+  ],
+  [
+   "31\"",
+   "W 31.50\"  \u00d7  D 13.78\"  \u00d7  H 13.78\""
+  ],
+  [
+   "35\"",
+   "W 35.43\"  \u00d7  D 15.75\"  \u00d7  H 15.75\""
+  ]
+ ],
+ "counts": {
+  "rooms": 11,
+  "night": 0,
+  "studio": 6,
+  "closeups": 0
+ }
+}

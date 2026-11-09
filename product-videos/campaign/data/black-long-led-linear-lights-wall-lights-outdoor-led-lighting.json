@@ -1,0 +1,154 @@
+{
+ "handle": "black-long-led-linear-lights-wall-lights-outdoor-led-lighting",
+ "title": "Stripline",
+ "subtitle": "Linear Strip Outdoor Wall Light",
+ "type": "Outdoor Wall Lights",
+ "highlights": [
+  "Slim black bar mounts flat to the wall",
+  "Seven lengths from 24\" to 94\"",
+  "White, warm white, RGB or dimmable",
+  "3 step dimming version available",
+  "Iron and metal construction",
+  "Hardwired for entries, porches, facades"
+ ],
+ "rooms": [
+  {
+   "file": "img/black-long-led-linear-lights-wall-lights-outdoor-led-lighting/16.jpg",
+   "alt": "Linear Strip Wall Light, 48 in, White",
+   "w": 2200,
+   "h": 2200,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-long-led-linear-lights-wall-lights-outdoor-led-lighting/06.jpg",
+   "alt": "Linear Strip Wall Light, Warm White",
+   "w": 2300,
+   "h": 2300,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-long-led-linear-lights-wall-lights-outdoor-led-lighting/00.jpg",
+   "alt": "Linear Strip Wall Lights beside a bronze door on an oak and limestone entrance",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-long-led-linear-lights-wall-lights-outdoor-led-lighting/20.jpg",
+   "alt": "Linear Strip Wall Light, RGB",
+   "w": 3500,
+   "h": 3500,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-long-led-linear-lights-wall-lights-outdoor-led-lighting/14.webp",
+   "alt": "Stripline linear strip wall light, single bar lit warm white beside a wood-clad entry door",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.6017,
+     0.0644,
+     0.1119
+    ],
+    [
+     0.913,
+     0.0129,
+     0.0379
+    ],
+    [
+     0.8411,
+     0.0612,
+     0.0241
+    ]
+   ],
+   "focus": [
+    0.642,
+    0.0592
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-long-led-linear-lights-wall-lights-outdoor-led-lighting/23.jpg",
+   "alt": "Stripline linear strip wall light, lit warm white on a textured concrete column beside garden trees",
+   "w": 800,
+   "h": 800,
+   "night": true,
+   "src": [
+    [
+     0.4348,
+     0.4479,
+     0.1102
+    ],
+    [
+     0.5478,
+     0.4633,
+     0.103
+    ],
+    [
+     0.8364,
+     0.0431,
+     0.0445
+    ]
+   ],
+   "focus": [
+    0.5154,
+    0.4221
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/black-long-led-linear-lights-wall-lights-outdoor-led-lighting/17.jpg",
+   "alt": "Stripline linear strip wall light, unlit slim black bar, front view on a white background",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "Overall",
+   "W 1.97\""
+  ]
+ ],
+ "counts": {
+  "rooms": 17,
+  "night": 2,
+  "studio": 1,
+  "closeups": 0
+ }
+}

@@ -1,0 +1,233 @@
+{
+ "handle": "waterproof-rgb-outdoor-solar-spot-light",
+ "title": "Vireo",
+ "subtitle": "Adjustable Solar Garden Spotlight",
+ "type": "Outdoor Spotlights",
+ "highlights": [
+  "Adjustable beam for trees and walls",
+  "Solar, no cable to bury",
+  "Ground insert or flat base",
+  "White, warm white or RGB light"
+ ],
+ "rooms": [
+  {
+   "file": "img/waterproof-rgb-outdoor-solar-spot-light/02.jpg",
+   "alt": "Solar Lawn Spotlight lighting white hydrangeas in a garden at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.2772,
+     0.5492,
+     0.0466
+    ],
+    [
+     0.4912,
+     0.373,
+     0.0427
+    ],
+    [
+     0.2885,
+     0.3764,
+     0.0377
+    ]
+   ],
+   "focus": [
+    0.3522,
+    0.4445
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-rgb-outdoor-solar-spot-light/10.jpg",
+   "alt": "Solar Lawn Spotlight lighting an olive tree",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.3437,
+     0.2945,
+     0.0554
+    ],
+    [
+     0.5437,
+     0.5876,
+     0.0418
+    ],
+    [
+     0.8438,
+     0.4297,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.449,
+    0.403
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-rgb-outdoor-solar-spot-light/01.jpg",
+   "alt": "Lawn Spotlight, RGB, With Base",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.6967,
+     0.8457,
+     0.0477
+    ],
+    [
+     0.2973,
+     0.6462,
+     0.0402
+    ],
+    [
+     0.8921,
+     0.3287,
+     0.0399
+    ]
+   ],
+   "focus": [
+    0.6357,
+    0.6368
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-rgb-outdoor-solar-spot-light/00.jpg",
+   "alt": "Lawn Spotlight, RGB, Ground Insert",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-rgb-outdoor-solar-spot-light/07.jpg",
+   "alt": "Vireo lawn spotlight, uplighting ornamental grass on a lawn at night",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.1992,
+     0.45,
+     0.1099
+    ],
+    [
+     0.318,
+     0.8057,
+     0.035
+    ]
+   ],
+   "focus": [
+    0.2101,
+    0.4828
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-rgb-outdoor-solar-spot-light/19.jpg",
+   "alt": "Vireo lawn spotlight, lit in a garden bed with autumn leaves at dusk",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.0184,
+     0.4,
+     0.0525
+    ],
+    [
+     0.5098,
+     0.3942,
+     0.0245
+    ]
+   ],
+   "focus": [
+    0.1063,
+    0.399
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/waterproof-rgb-outdoor-solar-spot-light/15.jpg",
+   "alt": "Vireo lawn spotlight with ground stake and solar panel, side view on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/waterproof-rgb-outdoor-solar-spot-light/12.jpg",
+   "alt": "Close-up of the Vireo lawn spotlight showing the solar panel joint and adjustable black head",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.0875,
+     0.492,
+     0.0911
+    ],
+    [
+     0.8939,
+     0.0394,
+     0.0738
+    ],
+    [
+     0.0835,
+     0.3335,
+     0.0538
+    ]
+   ],
+   "focus": [
+    0.3507,
+    0.3163
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/waterproof-rgb-outdoor-solar-spot-light/14.jpg",
+   "alt": "Close-up of the Vireo lawn spotlight showing the solar panel cells",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "Overall",
+   "W 5.31\"  \u00d7  D 6.89\"  \u00d7  H 7.28\""
+  ]
+ ],
+ "counts": {
+  "rooms": 12,
+  "night": 7,
+  "studio": 2,
+  "closeups": 2
+ }
+}

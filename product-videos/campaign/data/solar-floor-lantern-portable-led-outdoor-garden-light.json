@@ -1,0 +1,190 @@
+{
+ "handle": "solar-floor-lantern-portable-led-outdoor-garden-light",
+ "title": "Lumen",
+ "subtitle": "Solar Floor Lantern",
+ "type": "Portable Lanterns",
+ "highlights": [
+  "Solar lantern, no cable or outlet",
+  "Portable, carry it where light is needed",
+  "Two sizes: 7.1\" x 10.6\" or 8.3\" x 12.2\"",
+  "For patios, tables or camping trips"
+ ],
+ "rooms": [
+  {
+   "file": "img/solar-floor-lantern-portable-led-outdoor-garden-light/00.jpg",
+   "alt": "Solar Floor Lantern on a terrace at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.5274,
+     0.6644,
+     0.1993
+    ],
+    [
+     0.8516,
+     0.3242,
+     0.0318
+    ]
+   ],
+   "focus": [
+    0.5354,
+    0.656
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-floor-lantern-portable-led-outdoor-garden-light/02.jpg",
+   "alt": "Solar Floor Lantern, 8.3 in x 12.2 in",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4757,
+     0.7482,
+     0.1657
+    ],
+    [
+     0.3379,
+     0.0679,
+     0.0932
+    ],
+    [
+     0.2276,
+     0.4793,
+     0.0443
+    ]
+   ],
+   "focus": [
+    0.4315,
+    0.5793
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-floor-lantern-portable-led-outdoor-garden-light/10.jpg",
+   "alt": "Lumen solar floor lantern, hanging lit from a tree branch at night",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.3864,
+     0.5464,
+     0.1476
+    ]
+   ],
+   "focus": [
+    0.3864,
+    0.5464
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-floor-lantern-portable-led-outdoor-garden-light/12.jpg",
+   "alt": "Lumen solar floor lantern, pair lit beside a gray outdoor sofa on a wood deck",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.7095,
+     0.7679,
+     0.1637
+    ],
+    [
+     0.3935,
+     0.143,
+     0.0673
+    ]
+   ],
+   "focus": [
+    0.6638,
+    0.6776
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-floor-lantern-portable-led-outdoor-garden-light/07.jpg",
+   "alt": "Lumen solar floor lantern, pair glowing in tall grass at night",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.6959,
+     0.5876,
+     0.1399
+    ],
+    [
+     0.2751,
+     0.5443,
+     0.1127
+    ]
+   ],
+   "focus": [
+    0.5303,
+    0.5706
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-floor-lantern-portable-led-outdoor-garden-light/08.jpg",
+   "alt": "Lumen solar floor lantern, glowing among reeds with its curved carry handle",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.5162,
+     0.6226,
+     0.1408
+    ],
+    [
+     0.268,
+     0.6042,
+     0.063
+    ]
+   ],
+   "focus": [
+    0.4748,
+    0.6195
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/solar-floor-lantern-portable-led-outdoor-garden-light/15.jpg",
+   "alt": "Lumen solar floor lantern, unlit white body with a wood-tone handle, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "7.1\"x10.6\"",
+   "Dia 7.1\"  \u00d7  H 10.6\""
+  ],
+  [
+   "8.3\"x12.2\"",
+   "Dia 8.3\"  \u00d7  H 12.2\""
+  ]
+ ],
+ "counts": {
+  "rooms": 11,
+  "night": 10,
+  "studio": 1,
+  "closeups": 0
+ }
+}

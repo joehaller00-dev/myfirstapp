@@ -1,0 +1,171 @@
+{
+ "handle": "outdoor-waterproof-led-post-lights-solar-landscape-decorative-lighting-for-villa-fence",
+ "title": "Courtyard",
+ "subtitle": "Column Pillar Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Decorative column light for courtyards",
+  "Solar or hardwired power",
+  "Three low caps up to 15.7\" square",
+  "Tall 27.6\" column option",
+  "Waterproof for piers and fence posts"
+ ],
+ "rooms": [
+  {
+   "file": "img/outdoor-waterproof-led-post-lights-solar-landscape-decorative-lighting-for-villa-fence/02.jpg",
+   "alt": "Courtyard Column Light, L 15.7 in x W 15.7 in x H 13.4 in, Solar",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.8218,
+     0.2368,
+     0.0456
+    ],
+    [
+     0.1406,
+     0.4751,
+     0.02
+    ],
+    [
+     0.8796,
+     0.4342,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.7352,
+    0.2973
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-waterproof-led-post-lights-solar-landscape-decorative-lighting-for-villa-fence/00.jpg",
+   "alt": "Courtyard Column Light, L 9.8 in x W 9.8 in x H 8.3 in, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-waterproof-led-post-lights-solar-landscape-decorative-lighting-for-villa-fence/07.jpg",
+   "alt": "Courtyard column lights glowing on a row of dark fence pillars at night",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.7391,
+     0.2297,
+     0.0384
+    ]
+   ],
+   "focus": [
+    0.7391,
+    0.2297
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-waterproof-led-post-lights-solar-landscape-decorative-lighting-for-villa-fence/08.jpg",
+   "alt": "Courtyard column light lit on a wood-clad pillar beside a modern house",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.257,
+     0.0499,
+     0.0432
+    ],
+    [
+     0.6992,
+     0.3516,
+     0.0225
+    ],
+    [
+     0.7857,
+     0.355,
+     0.0211
+    ]
+   ],
+   "focus": [
+    0.42,
+    0.1523
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-waterproof-led-post-lights-solar-landscape-decorative-lighting-for-villa-fence/11.jpg",
+   "alt": "Courtyard column light lit on a stone pillar against palm trees at sunset",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-waterproof-led-post-lights-solar-landscape-decorative-lighting-for-villa-fence/01.jpg",
+   "alt": "Courtyard column lights glowing on pillars beside a slatted modern gate at dusk",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/outdoor-waterproof-led-post-lights-solar-landscape-decorative-lighting-for-villa-fence/13.jpg",
+   "alt": "Courtyard column light in black with horizontal louvers, lit, on a white background",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "L 11.8\"",
+   "W 11.81\"  \u00d7  D 11.81\"  \u00d7  H 9.84\""
+  ],
+  [
+   "L 15.7\"",
+   "W 15.75\"  \u00d7  D 15.75\"  \u00d7  H 13.39\""
+  ],
+  [
+   "L 9.8\"",
+   "W 9.84\"  \u00d7  D 9.84\"  \u00d7  H 8.27\""
+  ],
+  [
+   "L 6.7\"",
+   "W 6.69\"  \u00d7  D 6.69\"  \u00d7  H 27.56\""
+  ]
+ ],
+ "counts": {
+  "rooms": 7,
+  "night": 3,
+  "studio": 2,
+  "closeups": 0
+ }
+}

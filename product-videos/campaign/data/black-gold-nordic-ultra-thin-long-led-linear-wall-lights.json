@@ -1,0 +1,187 @@
+{
+ "handle": "black-gold-nordic-ultra-thin-long-led-linear-wall-lights",
+ "title": "Filo",
+ "subtitle": "Ultra Thin Linear Sconce",
+ "type": "Wall Sconces",
+ "highlights": [
+  "Silicone diffuser for a soft, even wash",
+  "Barely 2\" deep against the wall",
+  "Five lengths from 23.6\" to 55.1\"",
+  "Black or gold aluminum finish",
+  "3 step dimming or warm light",
+  "Sized for headboards and hallways"
+ ],
+ "rooms": [
+  {
+   "file": "img/black-gold-nordic-ultra-thin-long-led-linear-wall-lights/01.jpg",
+   "alt": "Ultra Thin Linear Wall Light, Black, 31.5 in, Warm light",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.1687,
+     0.4372,
+     0.076
+    ],
+    [
+     0.7761,
+     0.4736,
+     0.0612
+    ]
+   ],
+   "focus": [
+    0.4076,
+    0.4515
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-gold-nordic-ultra-thin-long-led-linear-wall-lights/00.jpg",
+   "alt": "Two Ultra Thin Linear Wall Lights on an oak wall above a bed",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.7509,
+     0.8825,
+     0.0802
+    ],
+    [
+     0.4925,
+     0.3757,
+     0.0456
+    ],
+    [
+     0.7182,
+     0.5541,
+     0.0392
+    ]
+   ],
+   "focus": [
+    0.6924,
+    0.7274
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-gold-nordic-ultra-thin-long-led-linear-wall-lights/02.jpg",
+   "alt": "Ultra Thin Linear Wall Light, Gold, 47.2 in, Warm light",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.1149,
+     0.4015,
+     0.0443
+    ],
+    [
+     0.751,
+     0.4107,
+     0.0344
+    ]
+   ],
+   "focus": [
+    0.3542,
+    0.405
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-gold-nordic-ultra-thin-long-led-linear-wall-lights/07.jpg",
+   "alt": "Ultra Thin Linear Wall Light, Gold, 31.5 in, Warm light",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-gold-nordic-ultra-thin-long-led-linear-wall-lights/08.jpg",
+   "alt": "Filo ultra thin linear wall light glowing above a sofa in a dark living room",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.6577,
+     0.1812,
+     0.086
+    ],
+    [
+     0.2205,
+     0.1068,
+     0.0646
+    ]
+   ],
+   "focus": [
+    0.5,
+    0.1544
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-gold-nordic-ultra-thin-long-led-linear-wall-lights/14.jpg",
+   "alt": "Filo ultra thin linear wall light in black, pair at two heights beside an armchair",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/black-gold-nordic-ultra-thin-long-led-linear-wall-lights/17.jpg",
+   "alt": "Filo ultra thin linear wall light in gold, unlit with a base pivot, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "23.6\"",
+   "L 23.6\""
+  ],
+  [
+   "31.5\"",
+   "L 31.5\""
+  ],
+  [
+   "39.4\"",
+   "L 39.4\""
+  ],
+  [
+   "47.2\"",
+   "L 47.2\""
+  ],
+  [
+   "55.1\"",
+   "L 55.1\""
+  ]
+ ],
+ "counts": {
+  "rooms": 15,
+  "night": 4,
+  "studio": 4,
+  "closeups": 0
+ }
+}

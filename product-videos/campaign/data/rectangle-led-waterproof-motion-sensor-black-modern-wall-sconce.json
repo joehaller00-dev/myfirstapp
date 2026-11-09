@@ -1,0 +1,186 @@
+{
+ "handle": "rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce",
+ "title": "Watch",
+ "subtitle": "Motion Sensor Wall Light",
+ "type": "Motion Sensor Wall Lights",
+ "highlights": [
+  "Motion sensor or always on versions",
+  "Two sizes, 10.2\" or 15\" tall",
+  "Warm white or white light",
+  "Black finish, waterproof housing",
+  "For side paths, garages, back doors"
+ ],
+ "rooms": [
+  {
+   "file": "img/rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce/01.jpg",
+   "alt": "Contemporary Sensor Wall Light, Motion Sensor, 4.3 in Square x 10.2 in H, White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.7725,
+     0.3675,
+     0.0384
+    ],
+    [
+     0.2206,
+     0.3678,
+     0.0374
+    ]
+   ],
+   "focus": [
+    0.5038,
+    0.3676
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce/14.jpg",
+   "alt": "Watch contemporary sensor wall light, lit warm white beside a door at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4839,
+     0.4938,
+     0.0902
+    ]
+   ],
+   "focus": [
+    0.4839,
+    0.4938
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce/09.jpg",
+   "alt": "Contemporary Sensor Wall Light, No Motion Sensor, 4.3 in Square x 10.2 in H, White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.9508,
+     0.3088,
+     0.0493
+    ]
+   ],
+   "focus": [
+    0.9508,
+    0.3088
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce/00.jpg",
+   "alt": "Contemporary Sensor Wall Light, No Motion Sensor, 4.3 in Square x 10.2 in H, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce/02.jpg",
+   "alt": "Contemporary Sensor Wall Light, No Motion Sensor, 5.1 in x 4.3 in x 15 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce/13.jpg",
+   "alt": "Watch contemporary sensor wall light, glowing on a dark slatted fence at night",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.5266,
+     0.6063,
+     0.0658
+    ],
+    [
+     0.4531,
+     0.6719,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.5204,
+    0.6118
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce/17.jpg",
+   "alt": "Watch contemporary sensor wall light, black rectangular frame with frosted white panels, angled view on white",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce/15.jpg",
+   "alt": "Close-up of the Watch contemporary sensor wall light showing the black top cap and frosted panel edge",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/rectangle-led-waterproof-motion-sensor-black-modern-wall-sconce/16.jpg",
+   "alt": "Close-up of the Watch contemporary sensor wall light showing the black frame around the frosted white panel",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "No Motion Sensor",
+   "W 5.12\"  \u00d7  D 14.96\"  \u00d7  H 5.12\""
+  ],
+  [
+   "Motion Sensor",
+   "W 4.33\"  \u00d7  D 10.24\"  \u00d7  H 4.33\""
+  ]
+ ],
+ "counts": {
+  "rooms": 10,
+  "night": 5,
+  "studio": 1,
+  "closeups": 2
+ }
+}

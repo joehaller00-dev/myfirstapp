@@ -1,0 +1,217 @@
+{
+ "handle": "reeded-glass-wall-sconce-rectangular-modern-outdoor-led",
+ "title": "Reeded",
+ "subtitle": "Reeded Glass Outdoor Sconce",
+ "type": "Outdoor Wall Sconces",
+ "highlights": [
+  "Reeded shade, acrylic and stainless steel",
+  "Four heights from 17.7\" to 39.4\"",
+  "Warm white or white light",
+  "Rectangular modern outdoor sconce",
+  "For porch, patio or entry walls"
+ ],
+ "rooms": [
+  {
+   "file": "img/reeded-glass-wall-sconce-rectangular-modern-outdoor-led/09.jpg",
+   "alt": "Reeded Glass Wall Sconce, 6.3 in x 3.9 in x 31.5 in, White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.0832,
+     0.3435,
+     0.1132
+    ],
+    [
+     0.5668,
+     0.413,
+     0.0371
+    ]
+   ],
+   "focus": [
+    0.1301,
+    0.3502
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/reeded-glass-wall-sconce-rectangular-modern-outdoor-led/01.jpg",
+   "alt": "Reeded Glass Wall Sconce, 6.3 in x 3.9 in x 23.6 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.1655,
+     0.0143,
+     0.0636
+    ],
+    [
+     0.2732,
+     0.4424,
+     0.0374
+    ],
+    [
+     0.7134,
+     0.4413,
+     0.0374
+    ]
+   ],
+   "focus": [
+    0.2995,
+    0.1891
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/reeded-glass-wall-sconce-rectangular-modern-outdoor-led/00.jpg",
+   "alt": "Reeded Glass Wall Sconce glowing warm on a limestone wall at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.2121,
+     0.1862,
+     0.1371
+    ],
+    [
+     0.4844,
+     0.5164,
+     0.0761
+    ]
+   ],
+   "focus": [
+    0.2762,
+    0.264
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/reeded-glass-wall-sconce-rectangular-modern-outdoor-led/02.jpg",
+   "alt": "Reeded Glass Wall Sconce, 6.3 in x 3.9 in x 39.4 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.7598,
+     0.0741,
+     0.107
+    ],
+    [
+     0.2399,
+     0.4142,
+     0.0406
+    ],
+    [
+     0.7819,
+     0.4376,
+     0.0344
+    ]
+   ],
+   "focus": [
+    0.7016,
+    0.1435
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/reeded-glass-wall-sconce-rectangular-modern-outdoor-led/08.jpg",
+   "alt": "Reeded Glass Wall Sconce, 6.3 in x 3.9 in x 31.5 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.1797,
+     0.289,
+     0.1119
+    ],
+    [
+     0.7036,
+     0.3445,
+     0.0456
+    ],
+    [
+     0.535,
+     0.3737,
+     0.0355
+    ]
+   ],
+   "focus": [
+    0.2766,
+    0.303
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/reeded-glass-wall-sconce-rectangular-modern-outdoor-led/06.jpg",
+   "alt": "Reeded Glass Wall Sconce, 6.3 in x 3.9 in x 23.6 in, White",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/reeded-glass-wall-sconce-rectangular-modern-outdoor-led/15.jpg",
+   "alt": "Reeded glass wall sconce in black with a ribbed glass shade, on a white background",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/reeded-glass-wall-sconce-rectangular-modern-outdoor-led/13.jpg",
+   "alt": "Close-up of the Reeded glass wall sconce showing the reeded panel and black base",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "5.1\"x3.1\"x17.7\"",
+   "W 5.1\"  \u00d7  D 3.1\"  \u00d7  H 17.7\""
+  ],
+  [
+   "6.3\"x3.9\"x23.6\"",
+   "W 6.3\"  \u00d7  D 3.9\"  \u00d7  H 23.6\""
+  ],
+  [
+   "6.3\"x3.9\"x31.5\"",
+   "W 6.3\"  \u00d7  D 3.9\"  \u00d7  H 31.5\""
+  ],
+  [
+   "6.3\"x3.9\"x39.4\"",
+   "W 6.3\"  \u00d7  D 3.9\"  \u00d7  H 39.4\""
+  ]
+ ],
+ "counts": {
+  "rooms": 10,
+  "night": 5,
+  "studio": 1,
+  "closeups": 1
+ }
+}

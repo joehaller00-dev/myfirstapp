@@ -1,0 +1,227 @@
+{
+ "handle": "garden-pedestal-light-minimalist-square-waterproof-led",
+ "title": "Pedestal",
+ "subtitle": "Square Garden Pedestal Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Acrylic and aluminum square pedestal",
+  "Solar or hardwired power",
+  "5.9\" x 7.3\" H or 8.9\" x 10\" H",
+  "Sits on piers, gate posts or fence caps",
+  "Waterproof for year round outdoor use"
+ ],
+ "rooms": [
+  {
+   "file": "img/garden-pedestal-light-minimalist-square-waterproof-led/10.jpg",
+   "alt": "Garden Pedestal Light, Solar, 8.9 in Square x 10 in H",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.6559,
+     0.7559,
+     0.0887
+    ],
+    [
+     0.2639,
+     0.6088,
+     0.0664
+    ],
+    [
+     0.8275,
+     0.7516,
+     0.0651
+    ]
+   ],
+   "focus": [
+    0.5953,
+    0.7155
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/garden-pedestal-light-minimalist-square-waterproof-led/09.jpg",
+   "alt": "Garden Pedestal Light, Hardwired, 8.9 in Square x 10 in H",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.8932,
+     0.3245,
+     0.0745
+    ],
+    [
+     0.2248,
+     0.7482,
+     0.0547
+    ],
+    [
+     0.5078,
+     0.6296,
+     0.0264
+    ]
+   ],
+   "focus": [
+    0.6477,
+    0.4847
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/garden-pedestal-light-minimalist-square-waterproof-led/00.jpg",
+   "alt": "Garden Pedestal Light, Hardwired, 5.9 in Square x 7.3 in H",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4612,
+     0.4889,
+     0.0501
+    ],
+    [
+     0.5623,
+     0.4895,
+     0.0425
+    ]
+   ],
+   "focus": [
+    0.5035,
+    0.4892
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/garden-pedestal-light-minimalist-square-waterproof-led/14.jpg",
+   "alt": "Garden Pedestal Light on a limestone pillar in a lavender garden at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/garden-pedestal-light-minimalist-square-waterproof-led/01.webp",
+   "alt": "Pedestal garden pedestal light, lit on brick pillars along a garden walk at night",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.2532,
+     0.4389,
+     0.045
+    ],
+    [
+     0.5696,
+     0.4062,
+     0.0289
+    ],
+    [
+     0.7461,
+     0.3867,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.3947,
+    0.4241
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/garden-pedestal-light-minimalist-square-waterproof-led/12.jpg",
+   "alt": "Pedestal garden light, row lit along a stone walkway at night",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.2992,
+     0.5994,
+     0.0874
+    ],
+    [
+     0.6693,
+     0.4892,
+     0.0464
+    ],
+    [
+     0.8353,
+     0.4419,
+     0.0275
+    ]
+   ],
+   "focus": [
+    0.4132,
+    0.5656
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/garden-pedestal-light-minimalist-square-waterproof-led/18.jpg",
+   "alt": "Pedestal garden light, black square frame with frosted white panels, low angle on white",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/garden-pedestal-light-minimalist-square-waterproof-led/15.jpg",
+   "alt": "Close-up of the Pedestal garden light showing the black frame corner and frosted panel",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/garden-pedestal-light-minimalist-square-waterproof-led/16.jpg",
+   "alt": "Close-up of the Pedestal garden light showing the angled black frame over the white panel",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "Hardwired",
+   "W 8.86\"  \u00d7  D 8.86\"  \u00d7  H 10.04\""
+  ],
+  [
+   "Solar",
+   "W 5.91\"  \u00d7  D 5.91\"  \u00d7  H 7.28\""
+  ]
+ ],
+ "counts": {
+  "rooms": 13,
+  "night": 7,
+  "studio": 2,
+  "closeups": 2
+ }
+}

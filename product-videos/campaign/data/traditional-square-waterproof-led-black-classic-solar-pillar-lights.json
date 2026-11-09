@@ -1,0 +1,180 @@
+{
+ "handle": "traditional-square-waterproof-led-black-classic-solar-pillar-lights",
+ "title": "Keystone",
+ "subtitle": "Stone Pillar Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Traditional black lantern for pillars",
+  "Aluminum and glass construction",
+  "Solar or hardwired power",
+  "Mounts on piers, gate posts or fences",
+  "Waterproof for year round outdoor use"
+ ],
+ "rooms": [
+  {
+   "file": "img/traditional-square-waterproof-led-black-classic-solar-pillar-lights/03.jpg",
+   "alt": "Traditional Stone Pillar Light on a brick gate pillar at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.9194,
+     0.1795,
+     0.0697
+    ],
+    [
+     0.4963,
+     0.3835,
+     0.0344
+    ],
+    [
+     0.4959,
+     0.4689,
+     0.0292
+    ]
+   ],
+   "focus": [
+    0.7944,
+    0.2503
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/traditional-square-waterproof-led-black-classic-solar-pillar-lights/02.jpg",
+   "alt": "Traditional Stone Pillar Light on a stone gate pier at a cottage garden",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/traditional-square-waterproof-led-black-classic-solar-pillar-lights/07.jpg",
+   "alt": "Keystone traditional stone pillar lights lit on gray gate pillars by a modern home at dusk",
+   "w": 900,
+   "h": 900,
+   "night": true,
+   "src": [
+    [
+     0.631,
+     0.0301,
+     0.1086
+    ],
+    [
+     0.7615,
+     0.5267,
+     0.035
+    ],
+    [
+     0.5593,
+     0.6923,
+     0.0286
+    ]
+   ],
+   "focus": [
+    0.6383,
+    0.1132
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/traditional-square-waterproof-led-black-classic-solar-pillar-lights/00.jpg",
+   "alt": "Traditional Stone Pillar Light, Black Waterproof LED Post",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/traditional-square-waterproof-led-black-classic-solar-pillar-lights/12.jpg",
+   "alt": "Keystone traditional stone pillar light glowing on a stone wall beside autumn leaves at sunset",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/traditional-square-waterproof-led-black-classic-solar-pillar-lights/20.jpg",
+   "alt": "Keystone traditional stone pillar light glowing on a brick pillar with a house behind at sunset",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/traditional-square-waterproof-led-black-classic-solar-pillar-lights/18.jpg",
+   "alt": "Keystone traditional stone pillar light in black with clear grid glass, lit, on a white background",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/traditional-square-waterproof-led-black-classic-solar-pillar-lights/16.jpg",
+   "alt": "Close-up of the Keystone traditional stone pillar light showing its black roof and finial",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/traditional-square-waterproof-led-black-classic-solar-pillar-lights/17.jpg",
+   "alt": "Close-up of the Keystone traditional stone pillar light showing the Edison bulb behind clear glass",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "Overall",
+   "W 7.28\"  \u00d7  D 7.28\"  \u00d7  H 13.98\""
+  ]
+ ],
+ "counts": {
+  "rooms": 14,
+  "night": 2,
+  "studio": 1,
+  "closeups": 2
+ }
+}

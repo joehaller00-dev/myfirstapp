@@ -1,0 +1,186 @@
+{
+ "handle": "3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting",
+ "title": "Boulevard",
+ "subtitle": "Twin Head Post Light",
+ "type": "Post Lights",
+ "highlights": [
+  "Tall post with 2 or 3 light heads",
+  "Solar or hardwired power",
+  "Black waterproof outdoor finish",
+  "Lifts light to head height",
+  "Lights a driveway or front path"
+ ],
+ "rooms": [
+  {
+   "file": "img/3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting/01.jpg",
+   "alt": "Twin Head Post Light on an estate garden path at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.7625,
+     0.1465,
+     0.204
+    ],
+    [
+     0.3958,
+     0.2266,
+     0.068
+    ],
+    [
+     0.5078,
+     0.0938,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.724,
+    0.154
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting/00.jpg",
+   "alt": "Twin Head Post Light, 2 Light, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting/02.jpg",
+   "alt": "Twin Head Post Light, 3 Light, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting/08.jpg",
+   "alt": "Boulevard twin head post light, 3-light version beside a curved walkway on a green lawn",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.7672,
+     0.9616,
+     0.0775
+    ],
+    [
+     0.7524,
+     0.8634,
+     0.0275
+    ],
+    [
+     0.5062,
+     0.0938,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.7511,
+    0.9028
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting/07.jpg",
+   "alt": "Boulevard twin head post light, 2-light version lit along a park lawn at dusk",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting/06.jpg",
+   "alt": "Boulevard twin head post light, 3-light version lighting a curved garden path in a city park at dusk",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting/11.jpg",
+   "alt": "Boulevard twin head post light, 2-light version with black lanterns on a tall pole, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting/09.jpg",
+   "alt": "Close-up of the Boulevard twin head post light showing the black pole joint and fixing bolts",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.8875,
+     0.5925,
+     0.2462
+    ],
+    [
+     0.1213,
+     0.2819,
+     0.223
+    ]
+   ],
+   "focus": [
+    0.5422,
+    0.4525
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/3-lights-waterproof-black-modern-outdoor-post-lights-public-lighting/10.jpg",
+   "alt": "Close-up of the Boulevard twin head post light showing the black frame and frosted glass of one lantern head",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [],
+ "counts": {
+  "rooms": 6,
+  "night": 2,
+  "studio": 2,
+  "closeups": 2
+ }
+}

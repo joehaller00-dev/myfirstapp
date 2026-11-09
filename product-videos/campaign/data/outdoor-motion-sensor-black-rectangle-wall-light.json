@@ -1,0 +1,162 @@
+{
+ "handle": "outdoor-motion-sensor-black-rectangle-wall-light",
+ "title": "Sentry",
+ "subtitle": "Motion Sensor Outdoor Light",
+ "type": "Motion Sensor Wall Lights",
+ "highlights": [
+  "Motion sensor or always on versions",
+  "Stainless steel body in black",
+  "Three lengths: 12.6\", 23.6\" or 31.5\"",
+  "Sensor model stays off until approached",
+  "For side paths, garages and back doors"
+ ],
+ "rooms": [
+  {
+   "file": "img/outdoor-motion-sensor-black-rectangle-wall-light/01.jpg",
+   "alt": "Rectangular Wall Light above walnut double doors in a sandstone entry",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-motion-sensor-black-rectangle-wall-light/02.jpg",
+   "alt": "Rectangular Wall Light above a forest green door on a limestone wall",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-motion-sensor-black-rectangle-wall-light/06.jpg",
+   "alt": "Sentry rectangular sensor wall light lit above a wooden front door at dusk",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.488,
+     0.2139,
+     0.0643
+    ]
+   ],
+   "focus": [
+    0.488,
+    0.2139
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-motion-sensor-black-rectangle-wall-light/09.jpg",
+   "alt": "Sentry rectangular sensor wall light, lit above a sliding glass door at sunset",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-motion-sensor-black-rectangle-wall-light/07.jpg",
+   "alt": "Sentry rectangular sensor wall light, lit above a wood double entry door at night",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/outdoor-motion-sensor-black-rectangle-wall-light/10.jpg",
+   "alt": "Sentry rectangular sensor wall light, lit above a wood and glass front door",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/outdoor-motion-sensor-black-rectangle-wall-light/13.jpg",
+   "alt": "Sentry rectangular sensor wall light, motion sensor version, black bar with a wood-tone sensor strip, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/outdoor-motion-sensor-black-rectangle-wall-light/11.jpg",
+   "alt": "Close-up of the Sentry rectangular sensor wall light showing the black housing and the light strip underneath",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/outdoor-motion-sensor-black-rectangle-wall-light/12.jpg",
+   "alt": "Close-up of the Sentry rectangular sensor wall light showing the black stainless steel housing and side edge",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "12.6\"",
+   "L 12.6\"  \u00d7  H 1.57\""
+  ],
+  [
+   "23.6\"",
+   "L 23.62\"  \u00d7  H 1.57\""
+  ],
+  [
+   "31.5\"",
+   "L 31.5\"  \u00d7  H 1.57\""
+  ]
+ ],
+ "counts": {
+  "rooms": 7,
+  "night": 1,
+  "studio": 2,
+  "closeups": 2
+ }
+}

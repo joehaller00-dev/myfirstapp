@@ -1,0 +1,224 @@
+{
+ "handle": "pavilion-stone-pillar-light-retro-solar-led-fence-post",
+ "title": "Pavilion",
+ "subtitle": "Pillar Lantern",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Retro pavilion style post lantern",
+  "Aluminum and glass construction",
+  "Black or bronze finish",
+  "Solar or hardwired power",
+  "Sits on piers, gate posts or fences"
+ ],
+ "rooms": [
+  {
+   "file": "img/pavilion-stone-pillar-light-retro-solar-led-fence-post/07.jpg",
+   "alt": "Pavilion Stone Pillar Light on a brick gate pier before an oak lined drive",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.156,
+     0.1516,
+     0.1199
+    ]
+   ],
+   "focus": [
+    0.156,
+    0.1516
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/pavilion-stone-pillar-light-retro-solar-led-fence-post/00.jpg",
+   "alt": "Pavilion Stone Pillar Light on a garden wall",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/pavilion-stone-pillar-light-retro-solar-led-fence-post/12.jpg",
+   "alt": "Pavilion Stone Pillar Light, Bronze, Solar",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/pavilion-stone-pillar-light-retro-solar-led-fence-post/13.jpg",
+   "alt": "Pavilion stone pillar light glowing on a pillar among garden plants at night",
+   "w": 900,
+   "h": 900,
+   "night": true,
+   "src": [
+    [
+     0.4932,
+     0.4574,
+     0.0551
+    ]
+   ],
+   "focus": [
+    0.4932,
+    0.4574
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/pavilion-stone-pillar-light-retro-solar-led-fence-post/01.webp",
+   "alt": "Pavilion stone pillar lights glowing on stone pillars along a farmhouse lawn at dusk",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.4475,
+     0.5942,
+     0.0275
+    ],
+    [
+     0.1766,
+     0.5573,
+     0.02
+    ],
+    [
+     0.8359,
+     0.5586,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.4777,
+    0.5756
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/pavilion-stone-pillar-light-retro-solar-led-fence-post/15.jpg",
+   "alt": "Pavilion stone pillar light in black lit on a stone ledge by a modern building at night",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.4355,
+     0.584,
+     0.0366
+    ],
+    [
+     0.7541,
+     0.1231,
+     0.0299
+    ],
+    [
+     0.9797,
+     0.1947,
+     0.0279
+    ]
+   ],
+   "focus": [
+    0.6707,
+    0.3466
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/pavilion-stone-pillar-light-retro-solar-led-fence-post/21.jpg",
+   "alt": "Pavilion stone pillar light in black, lit, angled view of the solar roof, on a white background",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/pavilion-stone-pillar-light-retro-solar-led-fence-post/17.jpg",
+   "alt": "Close-up of the Pavilion stone pillar light showing rippled glass panes in a black frame",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.03,
+     0.4583,
+     0.1422
+    ],
+    [
+     0.9297,
+     0.8351,
+     0.1237
+    ],
+    [
+     0.7286,
+     0.4806,
+     0.0715
+    ]
+   ],
+   "focus": [
+    0.4567,
+    0.603
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/pavilion-stone-pillar-light-retro-solar-led-fence-post/18.jpg",
+   "alt": "Close-up of the Pavilion stone pillar light showing the solar panel built into its roof",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.2077,
+     0.0605,
+     0.1358
+    ],
+    [
+     0.7272,
+     0.7799,
+     0.1255
+    ],
+    [
+     0.1431,
+     0.4725,
+     0.1106
+    ]
+   ],
+   "focus": [
+    0.3669,
+    0.4131
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "Overall",
+   "W 9.06\"  \u00d7  D 16.93\"  \u00d7  H 9.06\""
+  ]
+ ],
+ "counts": {
+  "rooms": 12,
+  "night": 4,
+  "studio": 4,
+  "closeups": 3
+ }
+}

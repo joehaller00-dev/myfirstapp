@@ -1,0 +1,182 @@
+{
+ "handle": "seeded-crystal-outdoor-sconce-black-aluminum-wall-light",
+ "title": "Seedling",
+ "subtitle": "Seeded Crystal Outdoor Sconce",
+ "type": "Outdoor Wall Lights",
+ "highlights": [
+  "Clear bubble crystal shade",
+  "Black die cast aluminum cap and backplate",
+  "Warm 3000K built in COB LED",
+  "Hardwired, runs from a wall switch",
+  "Waterproof for porches and garden walls",
+  "Three heights: 14.6\", 18.3\" or 22.2\""
+ ],
+ "rooms": [
+  {
+   "file": "img/seeded-crystal-outdoor-sconce-black-aluminum-wall-light/01.jpg",
+   "alt": "Seeded Crystal Outdoor Sconce, 5.7 in x 3.3 in x 18.3 in",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.5246,
+     0.5162,
+     0.0645
+    ],
+    [
+     0.7313,
+     0.608,
+     0.0543
+    ],
+    [
+     0.5232,
+     0.3926,
+     0.051
+    ]
+   ],
+   "focus": [
+    0.587,
+    0.511
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/seeded-crystal-outdoor-sconce-black-aluminum-wall-light/07.jpg",
+   "alt": "Seeded Crystal Outdoor Sconce, 6.7 in x 3.7 in x 22.2 in",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/seeded-crystal-outdoor-sconce-black-aluminum-wall-light/02.webp",
+   "alt": "Seedling seeded crystal outdoor sconce, lit beside a patio armchair and potted plants at dusk",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.9402,
+     0.1144,
+     0.0938
+    ],
+    [
+     0.2504,
+     0.6701,
+     0.0808
+    ],
+    [
+     0.6701,
+     0.1951,
+     0.0727
+    ]
+   ],
+   "focus": [
+    0.6525,
+    0.3111
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/seeded-crystal-outdoor-sconce-black-aluminum-wall-light/08.webp",
+   "alt": "Seedling seeded crystal outdoor sconce, lit on a patio wall above an outdoor dining table",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/seeded-crystal-outdoor-sconce-black-aluminum-wall-light/15.jpg",
+   "alt": "Seedling seeded crystal outdoor sconce, glowing on a dark wall beside cypress trees at night",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/seeded-crystal-outdoor-sconce-black-aluminum-wall-light/14.jpg",
+   "alt": "Seedling seeded crystal outdoor sconce, lit beside an arched black front door at night",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/seeded-crystal-outdoor-sconce-black-aluminum-wall-light/20.jpg",
+   "alt": "Seedling seeded crystal outdoor sconce, unlit black frame and seeded crystal shade, on a white background",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/seeded-crystal-outdoor-sconce-black-aluminum-wall-light/17.jpg",
+   "alt": "Close-up of the Seedling seeded crystal outdoor sconce showing the black mount and seeded crystal edge",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.4029,
+     0.8132,
+     0.0382
+    ]
+   ],
+   "focus": [
+    0.4029,
+    0.8132
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/seeded-crystal-outdoor-sconce-black-aluminum-wall-light/18.jpg",
+   "alt": "Close-up of the Seedling seeded crystal outdoor sconce showing the bubbles inside the lit seeded crystal",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [],
+ "counts": {
+  "rooms": 11,
+  "night": 2,
+  "studio": 1,
+  "closeups": 2
+ }
+}

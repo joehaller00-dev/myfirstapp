@@ -1,0 +1,223 @@
+{
+ "handle": "lunar-dimmable-led-modern-wall-sconce",
+ "title": "Chandra",
+ "subtitle": "Full Moon LED Wall Lamp",
+ "type": "LED Wall Art",
+ "highlights": [
+  "Round glowing moon for the wall",
+  "Six diameters from 9.4\" to 39.4\"",
+  "Warm white or 3 step dimming",
+  "Wall art first, light second",
+  "For halls, living rooms or bedrooms"
+ ],
+ "rooms": [
+  {
+   "file": "img/lunar-dimmable-led-modern-wall-sconce/06.jpg",
+   "alt": "Full Moon Wall Lamp, 19.7 in, 3 Step Dimming",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4271,
+     0.2911,
+     0.0578
+    ],
+    [
+     0.5468,
+     0.4505,
+     0.0389
+    ],
+    [
+     0.5456,
+     0.1979,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.4706,
+    0.3299
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lunar-dimmable-led-modern-wall-sconce/00.jpg",
+   "alt": "Full Moon Wall Lamp, 11.8 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4573,
+     0.1997,
+     0.0606
+    ],
+    [
+     0.3292,
+     0.4102,
+     0.054
+    ]
+   ],
+   "focus": [
+    0.4006,
+    0.2929
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lunar-dimmable-led-modern-wall-sconce/20.jpg",
+   "alt": "Full Moon Wall Lamp, 23.6 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4125,
+     0.2707,
+     0.0609
+    ],
+    [
+     0.6167,
+     0.5187,
+     0.0416
+    ],
+    [
+     0.5749,
+     0.1406,
+     0.0229
+    ]
+   ],
+   "focus": [
+    0.486,
+    0.3312
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lunar-dimmable-led-modern-wall-sconce/01.jpg",
+   "alt": "Full Moon Wall Lamp glowing above a bed",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4092,
+     0.2411,
+     0.0601
+    ],
+    [
+     0.0444,
+     0.6094,
+     0.0552
+    ],
+    [
+     0.9609,
+     0.7797,
+     0.0292
+    ]
+   ],
+   "focus": [
+    0.3238,
+    0.4516
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lunar-dimmable-led-modern-wall-sconce/08.jpg",
+   "alt": "Full Moon Wall Lamp, 9.4 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.1594,
+     0.304,
+     0.0501
+    ],
+    [
+     0.3657,
+     0.4791,
+     0.0353
+    ],
+    [
+     0.3125,
+     0.2336,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.236,
+    0.3497
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/lunar-dimmable-led-modern-wall-sconce/19.jpg",
+   "alt": "Full Moon Wall Lamp, 11.8 in, 3 Step Dimming",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/lunar-dimmable-led-modern-wall-sconce/11.jpg",
+   "alt": "Chandra full moon wall lamp, unlit, front view of the gray cratered lunar face, on white",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/lunar-dimmable-led-modern-wall-sconce/10.jpg",
+   "alt": "Close-up of the Chandra full moon wall lamp showing the warm glow lighting the cratered lunar surface at the edge",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/lunar-dimmable-led-modern-wall-sconce/16.jpg",
+   "alt": "Close-up of the Chandra full moon wall lamp showing the slim black edge and lunar print from a side angle",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "Overall",
+   "Thick 1.57\""
+  ]
+ ],
+ "counts": {
+  "rooms": 12,
+  "night": 6,
+  "studio": 2,
+  "closeups": 2
+ }
+}

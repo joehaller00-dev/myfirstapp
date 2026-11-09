@@ -1,0 +1,191 @@
+{
+ "handle": "luxury-creative-feathers-usb-dc5v-remote-control-led-modern-wall-lights",
+ "title": "Cygne",
+ "subtitle": "Feather LED Wall Lamp",
+ "type": "LED Wall Art",
+ "highlights": [
+  "Engraved, painted MDF feather",
+  "Hidden LED strips give an indirect glow",
+  "Plug-in 5V USB, no hardwiring",
+  "Remote for on, off and brightness",
+  "Four sizes, 11.8\" x 31.5\" to 23.6\" x 70.9\"",
+  "Blue, white or orange; horizontal or vertical"
+ ],
+ "rooms": [
+  {
+   "file": "img/luxury-creative-feathers-usb-dc5v-remote-control-led-modern-wall-lights/24.jpg",
+   "alt": "Feather Wall Lamp, 16.9 in x 47.2 in, Orange, Horizontal",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.8829,
+     0.719,
+     0.093
+    ],
+    [
+     0.519,
+     0.6185,
+     0.0718
+    ]
+   ],
+   "focus": [
+    0.747,
+    0.6815
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/luxury-creative-feathers-usb-dc5v-remote-control-led-modern-wall-lights/27.jpg",
+   "alt": "Feather Wall Lamp, 23.6 in x 70.9 in, White, Vertical",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.5193,
+     0.4949,
+     0.0851
+    ],
+    [
+     0.4884,
+     0.6381,
+     0.0382
+    ],
+    [
+     0.2681,
+     0.8191,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.5033,
+    0.5321
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/luxury-creative-feathers-usb-dc5v-remote-control-led-modern-wall-lights/01.jpg",
+   "alt": "Vertical blue Feather Wall Lamp above a marble console",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.5627,
+     0.4749,
+     0.0564
+    ],
+    [
+     0.3818,
+     0.6877,
+     0.0275
+    ],
+    [
+     0.4576,
+     0.1767,
+     0.0202
+    ]
+   ],
+   "focus": [
+    0.5213,
+    0.4839
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/luxury-creative-feathers-usb-dc5v-remote-control-led-modern-wall-lights/25.jpg",
+   "alt": "Feather Wall Lamp, 19.7 in x 59.1 in, White, Vertical",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/luxury-creative-feathers-usb-dc5v-remote-control-led-modern-wall-lights/20.jpg",
+   "alt": "Feather Wall Lamp, 16.9 in x 47.2 in, White, Horizontal",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/luxury-creative-feathers-usb-dc5v-remote-control-led-modern-wall-lights/22.jpg",
+   "alt": "Feather Wall Lamp, 16.9 in x 47.2 in, Orange, Vertical",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/luxury-creative-feathers-usb-dc5v-remote-control-led-modern-wall-lights/11.jpg",
+   "alt": "Cygne feather wall lamp in blue, horizontal style, angled view on a white background",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/luxury-creative-feathers-usb-dc5v-remote-control-led-modern-wall-lights/10.jpg",
+   "alt": "Close-up of the Cygne feather wall lamp showing the warm LED strip glowing along the back edge of the panel",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "11.8\"x31.5\"",
+   "W 11.81\"  \u00d7  H 31.5\"  \u00d7  D 1.97\""
+  ],
+  [
+   "16.9\"x47.2\"",
+   "W 16.93\"  \u00d7  H 47.24\"  \u00d7  D 1.97\""
+  ],
+  [
+   "19.7\"x59.1\"",
+   "W 19.69\"  \u00d7  H 59.06\"  \u00d7  D 1.97\""
+  ],
+  [
+   "23.6\"x70.9\"",
+   "W 23.62\"  \u00d7  H 70.87\"  \u00d7  D 1.97\""
+  ]
+ ],
+ "counts": {
+  "rooms": 17,
+  "night": 4,
+  "studio": 7,
+  "closeups": 1
+ }
+}

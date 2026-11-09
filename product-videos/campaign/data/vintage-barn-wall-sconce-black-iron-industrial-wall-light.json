@@ -1,0 +1,132 @@
+{
+ "handle": "vintage-barn-wall-sconce-black-iron-industrial-wall-light",
+ "title": "Barnes",
+ "subtitle": "Black Iron Barn Sconce",
+ "type": "Wall Sconces",
+ "highlights": [
+  "Black iron with baked paint finish",
+  "Takes a standard screw in bulb",
+  "Swap clear or frosted bulbs anytime",
+  "Industrial barn style wall light",
+  "Packs up to 30 for matching runs"
+ ],
+ "rooms": [
+  {
+   "file": "img/vintage-barn-wall-sconce-black-iron-industrial-wall-light/00.jpg",
+   "alt": "Vintage Barn Wall Sconce with a glowing Edison bulb on a stone wall",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.6288,
+     0.4672,
+     0.054
+    ],
+    [
+     0.4168,
+     0.8867,
+     0.0257
+    ],
+    [
+     0.843,
+     0.457,
+     0.0207
+    ]
+   ],
+   "focus": [
+    0.6168,
+    0.5353
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/vintage-barn-wall-sconce-black-iron-industrial-wall-light/06.jpg",
+   "alt": "Barnes vintage barn wall sconce, lit on a dark stone wall beside a tree",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/vintage-barn-wall-sconce-black-iron-industrial-wall-light/10.webp",
+   "alt": "Vintage Barn Wall Sconce, Black Iron Industrial Wall Light",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/vintage-barn-wall-sconce-black-iron-industrial-wall-light/14.jpg",
+   "alt": "Barnes vintage barn wall sconce, glowing on a brick wall beside framed art at night",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/vintage-barn-wall-sconce-black-iron-industrial-wall-light/02.jpg",
+   "alt": "Barnes vintage barn wall sconce, pair lit on a concrete wall at a modern home entry",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/vintage-barn-wall-sconce-black-iron-industrial-wall-light/01.webp",
+   "alt": "Barnes vintage barn wall sconce in black, lit on both sides of an arched entry",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/vintage-barn-wall-sconce-black-iron-industrial-wall-light/15.jpg",
+   "alt": "Barnes vintage barn wall sconce, black iron cage and backplate, angled view on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [],
+ "counts": {
+  "rooms": 10,
+  "night": 1,
+  "studio": 2,
+  "closeups": 0
+ }
+}

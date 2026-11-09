@@ -1,0 +1,102 @@
+{
+ "handle": "set-of-2-glow-message-board-lamps-acrylic-writable-led-table-lamp",
+ "title": "Scrivo",
+ "subtitle": "Set of 2 Writable Lamps",
+ "type": "Table Lamps",
+ "highlights": [
+  "Clear acrylic board you write on and wipe",
+  "Warm white LED strip lights your writing",
+  "Set of two lamps on slim tripod stands",
+  "Boards: 5.9\", 7.9\" or 11.8\" square",
+  "Comes with 1 white pen or 7 color pens",
+  "USB powered from a charger or power bank"
+ ],
+ "rooms": [
+  {
+   "file": "img/set-of-2-glow-message-board-lamps-acrylic-writable-led-table-lamp/00.jpg",
+   "alt": "Scrivo set of 2 glow message board lamps as two glowing acrylic message boards with Hello and doodles",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4855,
+     0.7008,
+     0.0556
+    ],
+    [
+     0.6972,
+     0.5996,
+     0.0533
+    ]
+   ],
+   "focus": [
+    0.5869,
+    0.6523
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/set-of-2-glow-message-board-lamps-acrylic-writable-led-table-lamp/01.jpg",
+   "alt": "Set of 2 Glow Message Board Lamps, 11.8 in x 11.8 in, 1 White Pen",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/set-of-2-glow-message-board-lamps-acrylic-writable-led-table-lamp/05.jpg",
+   "alt": "Scrivo set of 2 glow message board lamps, lit with a colorful Merry Christmas message and markers",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/set-of-2-glow-message-board-lamps-acrylic-writable-led-table-lamp/09.jpg",
+   "alt": "Set of 2 Glow Message Board Lamps, Acrylic Writable LED Table Lamp",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/set-of-2-glow-message-board-lamps-acrylic-writable-led-table-lamp/07.jpg",
+   "alt": "Scrivo set of 2 glow message board lamps, clear board on a white stand with a marker and USB cable",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [],
+ "counts": {
+  "rooms": 4,
+  "night": 1,
+  "studio": 2,
+  "closeups": 0
+ }
+}

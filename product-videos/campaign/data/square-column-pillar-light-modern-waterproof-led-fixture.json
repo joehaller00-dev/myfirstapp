@@ -1,0 +1,272 @@
+{
+ "handle": "square-column-pillar-light-modern-waterproof-led-fixture",
+ "title": "Pier",
+ "subtitle": "Square Column Pillar Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Clean square column for gate piers",
+  "Solar or hardwired power",
+  "Four sizes from 11.8\" to 23.6\" square",
+  "7.1\" to 13.8\" tall depending on size",
+  "Waterproof for gates and fence lines"
+ ],
+ "rooms": [
+  {
+   "file": "img/square-column-pillar-light-modern-waterproof-led-fixture/10.jpg",
+   "alt": "Square Column Pillar Light on a pillar in a reflecting pool",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.5044,
+     0.9496,
+     0.0489
+    ],
+    [
+     0.4331,
+     0.3624,
+     0.0318
+    ],
+    [
+     0.6879,
+     0.3536,
+     0.0261
+    ]
+   ],
+   "focus": [
+    0.5174,
+    0.7048
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-column-pillar-light-modern-waterproof-led-fixture/01.jpg",
+   "alt": "Square Column Pillar Light, Solar, 19.7 in Square x 9.8 in H",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.3019,
+     0.6003,
+     0.0534
+    ],
+    [
+     0.1056,
+     0.606,
+     0.0432
+    ],
+    [
+     0.1562,
+     0.3049,
+     0.0279
+    ]
+   ],
+   "focus": [
+    0.2146,
+    0.5604
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-column-pillar-light-modern-waterproof-led-fixture/02.jpg",
+   "alt": "Square Column Pillar Lights on stone gate pillars at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4511,
+     0.5302,
+     0.078
+    ],
+    [
+     0.9217,
+     0.268,
+     0.0763
+    ],
+    [
+     0.2247,
+     0.522,
+     0.043
+    ]
+   ],
+   "focus": [
+    0.6198,
+    0.4181
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-column-pillar-light-modern-waterproof-led-fixture/00.jpg",
+   "alt": "Square Column Pillar Light, Modern Waterproof LED Fixture",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.5778,
+     0.4104,
+     0.0724
+    ],
+    [
+     0.2851,
+     0.519,
+     0.0466
+    ],
+    [
+     0.3432,
+     0.4079,
+     0.0436
+    ]
+   ],
+   "focus": [
+    0.4617,
+    0.4352
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-column-pillar-light-modern-waterproof-led-fixture/08.jpg",
+   "alt": "Pier square column pillar lights glowing beside a reflecting pool at a modern home at night",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.7254,
+     0.5512,
+     0.0792
+    ],
+    [
+     0.488,
+     0.5303,
+     0.0289
+    ],
+    [
+     0.2043,
+     0.4047,
+     0.0225
+    ]
+   ],
+   "focus": [
+    0.6647,
+    0.5392
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-column-pillar-light-modern-waterproof-led-fixture/21.jpg",
+   "alt": "Pier square column pillar lights lit on stone pillars among trees in a garden at night",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.6911,
+     0.59,
+     0.0991
+    ],
+    [
+     0.2951,
+     0.4512,
+     0.0475
+    ],
+    [
+     0.3455,
+     0.6821,
+     0.0296
+    ]
+   ],
+   "focus": [
+    0.5987,
+    0.5721
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/square-column-pillar-light-modern-waterproof-led-fixture/17.jpg",
+   "alt": "Pier square column pillar light with amber textured glass in a black frame, on a white background",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/square-column-pillar-light-modern-waterproof-led-fixture/11.jpg",
+   "alt": "Close-up of the Pier square column pillar light showing its textured amber glass and black corner",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/square-column-pillar-light-modern-waterproof-led-fixture/13.jpg",
+   "alt": "Close-up of the Pier square column pillar light showing the solar panel set into its top",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.2941,
+     0.0584,
+     0.163
+    ],
+    [
+     0.3381,
+     0.9264,
+     0.0734
+    ],
+    [
+     0.8687,
+     0.9504,
+     0.0527
+    ]
+   ],
+   "focus": [
+    0.3469,
+    0.2644
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "23.6\"x23.6\"x13.8\"",
+   "W 23.62\"  \u00d7  D 23.62\"  \u00d7  H 12.60\""
+  ],
+  [
+   "11.8\"x11.8\"x7.1\"",
+   "W 11.81\"  \u00d7  D 11.81\"  \u00d7  H 6.30\""
+  ],
+  [
+   "15.7\"x15.7\"x7.1\"",
+   "W 15.75\"  \u00d7  D 15.75\"  \u00d7  H 6.30\""
+  ],
+  [
+   "19.7\"x19.7\"x9.8\"",
+   "W 19.69\"  \u00d7  D 19.69\"  \u00d7  H 9.84\""
+  ]
+ ],
+ "counts": {
+  "rooms": 10,
+  "night": 9,
+  "studio": 2,
+  "closeups": 4
+ }
+}

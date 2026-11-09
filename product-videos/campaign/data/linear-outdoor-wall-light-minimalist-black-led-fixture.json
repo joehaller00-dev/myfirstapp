@@ -1,0 +1,180 @@
+{
+ "handle": "linear-outdoor-wall-light-minimalist-black-led-fixture",
+ "title": "Horizon",
+ "subtitle": "Linear Outdoor Wall Light",
+ "type": "Outdoor Wall Lights",
+ "highlights": [
+  "Minimalist black bar mounts flat",
+  "Five lengths from 40\" to 78\"",
+  "Warm white, white or dimmable",
+  "3 step dimming version available",
+  "Hardwired for entries, porches, facades"
+ ],
+ "rooms": [
+  {
+   "file": "img/linear-outdoor-wall-light-minimalist-black-led-fixture/11.jpg",
+   "alt": "Linear Outdoor Wall Light, 48 in, White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.8417,
+     0.3519,
+     0.0813
+    ],
+    [
+     0.9742,
+     0.3329,
+     0.0575
+    ],
+    [
+     0.981,
+     0.5949,
+     0.0202
+    ]
+   ],
+   "focus": [
+    0.8896,
+    0.3554
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/linear-outdoor-wall-light-minimalist-black-led-fixture/01.jpg",
+   "alt": "Linear Outdoor Wall Light, 60 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.9469,
+     0.2709,
+     0.0899
+    ],
+    [
+     0.5979,
+     0.4297,
+     0.0279
+    ],
+    [
+     0.3937,
+     0.4058,
+     0.0264
+    ]
+   ],
+   "focus": [
+    0.8781,
+    0.2937
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/linear-outdoor-wall-light-minimalist-black-led-fixture/10.jpg",
+   "alt": "Linear Outdoor Wall Light, 67 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.8703,
+     0.2545,
+     0.1116
+    ],
+    [
+     0.2504,
+     0.352,
+     0.0475
+    ]
+   ],
+   "focus": [
+    0.7752,
+    0.2695
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/linear-outdoor-wall-light-minimalist-black-led-fixture/12.jpg",
+   "alt": "Pair of Linear Outdoor Wall Lights beside a redwood front door",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/linear-outdoor-wall-light-minimalist-black-led-fixture/00.jpg",
+   "alt": "Two Linear Outdoor Wall Lights beside a pale oak door on a charred timber home",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/linear-outdoor-wall-light-minimalist-black-led-fixture/06.jpg",
+   "alt": "Linear Outdoor Wall Light, 40 in, 3 Step Dimming",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/linear-outdoor-wall-light-minimalist-black-led-fixture/16.jpg",
+   "alt": "Horizon linear outdoor wall light, shortest length, black bar with gold glow, on white",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "40\"",
+   "L 39.37\""
+  ],
+  [
+   "48\"",
+   "L 47.24\""
+  ],
+  [
+   "60\"",
+   "L 59.06\""
+  ],
+  [
+   "67\"",
+   "L 66.93\""
+  ],
+  [
+   "78\"",
+   "L 78.74\""
+  ]
+ ],
+ "counts": {
+  "rooms": 14,
+  "night": 3,
+  "studio": 5,
+  "closeups": 0
+ }
+}

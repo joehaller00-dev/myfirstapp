@@ -1,0 +1,169 @@
+{
+ "handle": "long-lines-led-dimmable-chandelier-dining-room-light-fixtures",
+ "title": "Ripple",
+ "subtitle": "Wave LED Linear Pendant",
+ "type": "Linear Suspension",
+ "highlights": [
+  "Wave shaped aluminum linear pendant",
+  "39.4\" or 47.2\" wide",
+  "3 step dimming or dimmable",
+  "Lights the length of a table or island",
+  "Single or sets of up to 10"
+ ],
+ "rooms": [
+  {
+   "file": "img/long-lines-led-dimmable-chandelier-dining-room-light-fixtures/00.jpg",
+   "alt": "Wave Hanging Light, 39.4 in, Dimmable",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/long-lines-led-dimmable-chandelier-dining-room-light-fixtures/08.jpg",
+   "alt": "Wave Hanging Light over a marble dining table",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/long-lines-led-dimmable-chandelier-dining-room-light-fixtures/09.jpg",
+   "alt": "Wave Hanging Light, 47.2 in, Dimmable",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/long-lines-led-dimmable-chandelier-dining-room-light-fixtures/02.jpg",
+   "alt": "Wave Hanging Light, Modern Aluminum LED Linear Suspension",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.3794,
+     0.0915,
+     0.2049
+    ]
+   ],
+   "focus": [
+    0.3794,
+    0.0915
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/long-lines-led-dimmable-chandelier-dining-room-light-fixtures/07.jpg",
+   "alt": "Ripple wave hanging light, lit above a white dining table beside a window",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/long-lines-led-dimmable-chandelier-dining-room-light-fixtures/01.jpg",
+   "alt": "Ripple wave hanging light with wave-shaped light bands above a dining table",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/long-lines-led-dimmable-chandelier-dining-room-light-fixtures/12.jpg",
+   "alt": "Ripple wave hanging light, black crossing waves on suspension cables, on white",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/long-lines-led-dimmable-chandelier-dining-room-light-fixtures/10.jpg",
+   "alt": "Close-up of the Ripple wave hanging light showing the black waves crossing below the canopy",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/long-lines-led-dimmable-chandelier-dining-room-light-fixtures/11.jpg",
+   "alt": "Close-up of the Ripple wave hanging light showing the glowing underside of the crossing waves",
+   "w": 1000,
+   "h": 1000,
+   "night": true,
+   "src": [
+    [
+     0.6408,
+     0.552,
+     0.2183
+    ],
+    [
+     0.2435,
+     0.9454,
+     0.0606
+    ]
+   ],
+   "focus": [
+    0.6124,
+    0.5801
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "39.4\"",
+   "L 39.37\"  \u00d7  H 5.91\""
+  ],
+  [
+   "47.2\"",
+   "L 47.24\"  \u00d7  H 5.91\""
+  ]
+ ],
+ "counts": {
+  "rooms": 7,
+  "night": 1,
+  "studio": 1,
+  "closeups": 2
+ }
+}

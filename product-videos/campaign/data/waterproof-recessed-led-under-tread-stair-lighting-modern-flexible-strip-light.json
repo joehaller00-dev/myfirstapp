@@ -1,0 +1,188 @@
+{
+ "handle": "waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light",
+ "title": "Inlay",
+ "subtitle": "Embedded Stair LED Strip",
+ "type": "LED Strip Lights",
+ "highlights": [
+  "Flexible strip embeds into stair treads",
+  "Flat or 3 sides lighting model",
+  "Warm, neutral or cold white light",
+  "Lengths of 10, 16 or 33 ft",
+  "Sealed for outdoor steps and decks"
+ ],
+ "rooms": [
+  {
+   "file": "img/waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light/02.jpg",
+   "alt": "Embedded LED Strip Light glowing under outdoor stair treads",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light/06.jpg",
+   "alt": "Embedded LED Strip Light, 3 Sides, Neutral White, 10 Ft",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light/05.jpg",
+   "alt": "Embedded LED Strip Light, 3 Sides, Warm White, 10 Ft",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light/11.jpg",
+   "alt": "Embedded LED Strip Light, Flat, Cold White, 10 Ft",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light/00.jpg",
+   "alt": "Embedded LED Strip Light, Flexible Stair and Tread Lighting",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.505,
+     0.9086,
+     0.0866
+    ],
+    [
+     0.483,
+     0.758,
+     0.0382
+    ],
+    [
+     0.5775,
+     0.3214,
+     0.0358
+    ]
+   ],
+   "focus": [
+    0.5109,
+    0.8136
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light/09.webp",
+   "alt": "Inlay embedded LED strip light, lighting the edges of patio steps beside a lawn and grill area",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.4048,
+     0.6845,
+     0.0512
+    ],
+    [
+     0.486,
+     0.5804,
+     0.0324
+    ],
+    [
+     0.9692,
+     0.1319,
+     0.0257
+    ]
+   ],
+   "focus": [
+    0.5105,
+    0.575
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light/16.jpg",
+   "alt": "Inlay embedded LED strip light, coiled black strip with a bare end, unlit on a white background",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light/12.jpg",
+   "alt": "Close-up of the Inlay embedded LED strip light showing three flexible coils glowing in warm white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/waterproof-recessed-led-under-tread-stair-lighting-modern-flexible-strip-light/13.jpg",
+   "alt": "Close-up of the Inlay embedded LED strip light showing three flexible coils glowing in neutral white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "10 Ft",
+   "L 10 ft  \u00d7  Thick 0.39\""
+  ],
+  [
+   "16 Ft",
+   "L 16 ft  \u00d7  Thick 0.39\""
+  ],
+  [
+   "33 Ft",
+   "L 33 ft  \u00d7  Thick 0.39\""
+  ]
+ ],
+ "counts": {
+  "rooms": 12,
+  "night": 5,
+  "studio": 1,
+  "closeups": 4
+ }
+}

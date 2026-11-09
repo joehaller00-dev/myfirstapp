@@ -1,0 +1,165 @@
+{
+ "handle": "round-pendant-led-office-lighting-modern-suspended-luminaires-for-workspace",
+ "title": "Studio",
+ "subtitle": "Round Metal Pendant",
+ "type": "Pendant Lighting",
+ "highlights": [
+  "Minimalist round metal disc",
+  "Four diameters from 15.7\" to 31.5\"",
+  "Black or white finish",
+  "Fixed 6000K or dimmable 3000K to 6000K",
+  "For offices, tables and islands"
+ ],
+ "rooms": [
+  {
+   "file": "img/round-pendant-led-office-lighting-modern-suspended-luminaires-for-workspace/05.jpg",
+   "alt": "Round Office Pendant Light, 19.7 in, White",
+   "w": 4096,
+   "h": 4096,
+   "night": true,
+   "src": [
+    [
+     0.1044,
+     0.2445,
+     0.0547
+    ],
+    [
+     0.5083,
+     0.3435,
+     0.0481
+    ],
+    [
+     0.0563,
+     0.325,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.2648,
+    0.2903
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/round-pendant-led-office-lighting-modern-suspended-luminaires-for-workspace/01.jpg",
+   "alt": "Round Office Pendant Light, Black, 6000K",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/round-pendant-led-office-lighting-modern-suspended-luminaires-for-workspace/00.jpg",
+   "alt": "Round Office Pendant Light, 15.7 in, Black (6000K)",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/round-pendant-led-office-lighting-modern-suspended-luminaires-for-workspace/09.webp",
+   "alt": "Round Office Pendant Light, Minimalist Metal Ceiling Fixture",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.0185,
+     0.478,
+     0.0612
+    ],
+    [
+     0.5206,
+     0.1504,
+     0.0593
+    ],
+    [
+     0.7946,
+     0.576,
+     0.0481
+    ]
+   ],
+   "focus": [
+    0.3904,
+    0.3814
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/round-pendant-led-office-lighting-modern-suspended-luminaires-for-workspace/08.webp",
+   "alt": "Studio round office pendant light, cluster of rings glowing above a blue lounge area in an open office",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/round-pendant-led-office-lighting-modern-suspended-luminaires-for-workspace/06.jpg",
+   "alt": "Studio round office pendant light, row of lit discs along a modern office corridor with a plant wall",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/round-pendant-led-office-lighting-modern-suspended-luminaires-for-workspace/14.jpg",
+   "alt": "Studio round office pendant light, black ring with a white diffuser on three suspension cables, on white",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "15.7\"",
+   "Dia 15.75\"  \u00d7  H 1.97\""
+  ],
+  [
+   "19.7\"",
+   "Dia 19.69\"  \u00d7  H 1.97\""
+  ],
+  [
+   "23.6\"",
+   "Dia 23.62\"  \u00d7  H 1.97\""
+  ],
+  [
+   "31.5\"",
+   "Dia 31.5\"  \u00d7  H 1.97\""
+  ]
+ ],
+ "counts": {
+  "rooms": 11,
+  "night": 2,
+  "studio": 2,
+  "closeups": 0
+ }
+}

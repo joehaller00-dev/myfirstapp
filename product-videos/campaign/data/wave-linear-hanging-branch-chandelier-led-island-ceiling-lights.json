@@ -1,0 +1,145 @@
+{
+ "handle": "wave-linear-hanging-branch-chandelier-led-island-ceiling-lights",
+ "title": "Swell",
+ "subtitle": "Curved Wave Linear Pendant",
+ "type": "Linear Suspension",
+ "highlights": [
+  "Curved wave of LED light in metal",
+  "39\" or 47\" wide",
+  "Black, gold or chrome finish",
+  "Warm white, white or dimmable",
+  "Runs light along a table or island"
+ ],
+ "rooms": [
+  {
+   "file": "img/wave-linear-hanging-branch-chandelier-led-island-ceiling-lights/00.jpg",
+   "alt": "Curved Wave Pendant Light glowing over a marble kitchen island",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.5134,
+     0.7551,
+     0.1084
+    ]
+   ],
+   "focus": [
+    0.5134,
+    0.7551
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/wave-linear-hanging-branch-chandelier-led-island-ceiling-lights/24.jpg",
+   "alt": "Curved Wave Pendant Light, 39 in, White, Gold",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/wave-linear-hanging-branch-chandelier-led-island-ceiling-lights/28.jpg",
+   "alt": "Curved Wave Pendant Light, 47 in, Warm White, Chrome",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/wave-linear-hanging-branch-chandelier-led-island-ceiling-lights/27.jpg",
+   "alt": "Curved Wave Pendant Light, 39 in, Warm White, Gold",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/wave-linear-hanging-branch-chandelier-led-island-ceiling-lights/23.jpg",
+   "alt": "Curved Wave Pendant Light, 39 in, White, Black",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/wave-linear-hanging-branch-chandelier-led-island-ceiling-lights/13.jpg",
+   "alt": "Curved Wave Pendant Light, 47 in, Warm White, Black",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/wave-linear-hanging-branch-chandelier-led-island-ceiling-lights/17.jpg",
+   "alt": "Swell curved wave pendant light in chrome, four-wave version with a long canopy, on white",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/wave-linear-hanging-branch-chandelier-led-island-ceiling-lights/16.jpg",
+   "alt": "Close-up of the Swell curved wave pendant light showing the curved chrome waves crossing as they glow",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "39\"",
+   "L 39.37\"  \u00d7  H 7.09\""
+  ],
+  [
+   "47\"",
+   "L 47.24\"  \u00d7  H 11.02\""
+  ]
+ ],
+ "counts": {
+  "rooms": 22,
+  "night": 1,
+  "studio": 4,
+  "closeups": 1
+ }
+}

@@ -1,0 +1,187 @@
+{
+ "handle": "square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black",
+ "title": "Bosun",
+ "subtitle": "Square Deck Post Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Black stainless steel post cap",
+  "Solar or hardwired power",
+  "Five sizes, 7.9\" to 23.6\" square",
+  "For decks, piers and gate posts",
+  "Solar version needs no buried cable"
+ ],
+ "rooms": [
+  {
+   "file": "img/square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black/00.jpg",
+   "alt": "Industrial Solar Deck Light, Hardwired, 7.9 in Square x 3.9 in H",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.8227,
+     0.0479,
+     0.1108
+    ]
+   ],
+   "focus": [
+    0.8227,
+    0.0479
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black/01.jpg",
+   "alt": "Industrial Solar Deck Light on a stone post beside a lake dock at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.7947,
+     0.0036,
+     0.0327
+    ],
+    [
+     0.0469,
+     0.0049,
+     0.0249
+    ]
+   ],
+   "focus": [
+    0.5202,
+    0.0041
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black/06.jpg",
+   "alt": "Industrial Solar Deck Light, Solar, 11.8 in Square x 5.9 in H",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black/02.jpg",
+   "alt": "Industrial Solar Deck Light, Hardwired, 11.8 in Square x 5.9 in H",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black/08.jpg",
+   "alt": "Industrial Solar Deck Light, Hardwired, 15.7 in Square x 7.9 in H",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black/07.jpg",
+   "alt": "Bosun industrial solar deck light, row glowing on garden wall pillars at dusk",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.5505,
+     0.5042,
+     0.0392
+    ]
+   ],
+   "focus": [
+    0.5505,
+    0.5042
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black/14.jpg",
+   "alt": "Bosun industrial solar deck light, lit, angled view of the black square housing, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black/10.jpg",
+   "alt": "Close-up of the Bosun industrial solar deck light showing the warm light strip under the black top",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/square-led-hardwired-solar-outdoor-pier-mount-lantern-post-light-black/13.jpg",
+   "alt": "Close-up of the Bosun industrial solar deck light showing the warm glow inside the open-sided housing",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "19.7\"x19.7\"x13.8\"",
+   "W 19.69\"  \u00d7  D 19.69\"  \u00d7  H 13.78\""
+  ],
+  [
+   "23.6\"x23.6\"x11.8\"",
+   "W 23.62\"  \u00d7  D 23.62\"  \u00d7  H 11.81\""
+  ],
+  [
+   "11.8\"x11.8\"x5.9\"",
+   "W 11.81\"  \u00d7  D 11.81\"  \u00d7  H 5.91\""
+  ],
+  [
+   "15.7\"x15.7\"x7.9\"",
+   "W 15.75\"  \u00d7  D 15.75\"  \u00d7  H 7.87\""
+  ],
+  [
+   "7.9\"x7.9\"x3.9\"",
+   "W 7.87\"  \u00d7  D 7.87\"  \u00d7  H 3.94\""
+  ]
+ ],
+ "counts": {
+  "rooms": 8,
+  "night": 3,
+  "studio": 2,
+  "closeups": 2
+ }
+}

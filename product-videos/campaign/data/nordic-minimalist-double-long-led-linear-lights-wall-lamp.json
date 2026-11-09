@@ -1,0 +1,200 @@
+{
+ "handle": "nordic-minimalist-double-long-led-linear-lights-wall-lamp",
+ "title": "Parallel",
+ "subtitle": "Double Strip Linear Sconce",
+ "type": "Wall Sconces",
+ "highlights": [
+  "Two bars light up and down the wall",
+  "Five lengths from 16\" to 47\"",
+  "Under 2\" deep for tight hallways",
+  "Black iron, paired with white or gold",
+  "Warm white, white or 3 step dimming"
+ ],
+ "rooms": [
+  {
+   "file": "img/nordic-minimalist-double-long-led-linear-lights-wall-lamp/07.jpg",
+   "alt": "Double Strip Vertical Wall Light, Black+Gold, 24 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.9694,
+     0.4918,
+     0.0573
+    ],
+    [
+     0.9698,
+     0.2642,
+     0.0558
+    ]
+   ],
+   "focus": [
+    0.9696,
+    0.381
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/nordic-minimalist-double-long-led-linear-lights-wall-lamp/01.jpg",
+   "alt": "Two Double Strip Vertical Wall Lights beside a floating oak staircase",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.1583,
+     0.323,
+     0.0681
+    ]
+   ],
+   "focus": [
+    0.1583,
+    0.323
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/nordic-minimalist-double-long-led-linear-lights-wall-lamp/00.jpg",
+   "alt": "Double Strip Vertical Wall Light, Black+White, 39 in, White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.237,
+     0.3157,
+     0.0833
+    ],
+    [
+     0.1695,
+     0.7689,
+     0.046
+    ],
+    [
+     0.8335,
+     0.3353,
+     0.0225
+    ]
+   ],
+   "focus": [
+    0.2536,
+    0.417
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/nordic-minimalist-double-long-led-linear-lights-wall-lamp/06.jpg",
+   "alt": "Double Strip Vertical Wall Light, Black+Gold, 39 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/nordic-minimalist-double-long-led-linear-lights-wall-lamp/09.jpg",
+   "alt": "Parallel double strip vertical wall light in black and white, glowing beside an open closet in a bedroom",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.4298,
+     0.3537,
+     0.0691
+    ],
+    [
+     0.3518,
+     0.423,
+     0.0491
+    ],
+    [
+     0.8819,
+     0.9754,
+     0.0253
+    ]
+   ],
+   "focus": [
+    0.4427,
+    0.4259
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/nordic-minimalist-double-long-led-linear-lights-wall-lamp/10.jpg",
+   "alt": "Parallel double strip vertical wall light in black and white, lit above a cream bench with a throw",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/nordic-minimalist-double-long-led-linear-lights-wall-lamp/16.jpg",
+   "alt": "Parallel double strip vertical wall light in black and gold, offset black and gold bars, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/nordic-minimalist-double-long-led-linear-lights-wall-lamp/15.jpg",
+   "alt": "Close-up of the Parallel double strip vertical wall light showing the black bar beside the glowing white strip",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "16\"",
+   "L 15.75\""
+  ],
+  [
+   "24\"",
+   "L 23.62\""
+  ],
+  [
+   "31\"",
+   "L 31.5\""
+  ],
+  [
+   "39\"",
+   "L 39.37\""
+  ],
+  [
+   "47\"",
+   "L 47.24\""
+  ]
+ ],
+ "counts": {
+  "rooms": 13,
+  "night": 4,
+  "studio": 2,
+  "closeups": 1
+ }
+}

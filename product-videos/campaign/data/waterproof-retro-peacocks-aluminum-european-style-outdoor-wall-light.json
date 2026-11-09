@@ -1,0 +1,196 @@
+{
+ "handle": "waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light",
+ "title": "Peacock",
+ "subtitle": "Ornate Outdoor Wall Sconce",
+ "type": "Outdoor Wall Sconces",
+ "highlights": [
+  "Peacock motif in aluminum and glass",
+  "Black, bronze or colorful finish",
+  "Retro decorative outdoor sconce",
+  "Hardwired for porch, patio or entry"
+ ],
+ "rooms": [
+  {
+   "file": "img/waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light/08.jpg",
+   "alt": "Peacock Wall Sconce, Black",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light/02.jpg",
+   "alt": "Peacock wall sconce in gold with a glass shade, mounted on a stone wall beside a house at dusk",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.7583,
+     0.1249,
+     0.2003
+    ],
+    [
+     0.4263,
+     0.4093,
+     0.0211
+    ],
+    [
+     0.4357,
+     0.3534,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.7515,
+    0.1302
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light/13.jpg",
+   "alt": "Peacock wall sconce in the colorful finish, pair lit on a stone facade beside a doorway at dusk",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.3371,
+     0.3027,
+     0.0425
+    ],
+    [
+     0.892,
+     0.4727,
+     0.0207
+    ]
+   ],
+   "focus": [
+    0.4435,
+    0.3353
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light/06.jpg",
+   "alt": "Peacock Wall Sconce, Retro European Aluminum Outdoor Light",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light/10.jpg",
+   "alt": "Peacock wall sconce in bronze, lit on a stone wall beside autumn ivy",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light/09.webp",
+   "alt": "Pair of Peacock wall sconces lit on stone pillars flanking a wooden garden gate",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light/15.jpg",
+   "alt": "Peacock wall sconce in the colorful finish, front view with the lit globe, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light/11.jpg",
+   "alt": "Close-up of the Peacock wall sconce in the colorful finish showing the peacock body with blue and green painted feathers",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.865,
+     0.6372,
+     0.2549
+    ],
+    [
+     0.5416,
+     0.3095,
+     0.135
+    ]
+   ],
+   "focus": [
+    0.7942,
+    0.5654
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/waterproof-retro-peacocks-aluminum-european-style-outdoor-wall-light/12.jpg",
+   "alt": "Close-up of the Peacock wall sconce in the colorful finish showing the green glass jewels set in the tail fan",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.1334,
+     0.181,
+     0.1903
+    ],
+    [
+     0.9624,
+     0.0151,
+     0.0289
+    ]
+   ],
+   "focus": [
+    0.1521,
+    0.1773
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "Overall",
+   "W 12.60\"  \u00d7  H 20.87\"  \u00d7  D 8.27\""
+  ]
+ ],
+ "counts": {
+  "rooms": 8,
+  "night": 2,
+  "studio": 3,
+  "closeups": 3
+ }
+}

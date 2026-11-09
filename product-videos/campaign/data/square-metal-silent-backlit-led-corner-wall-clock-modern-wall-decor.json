@@ -1,0 +1,129 @@
+{
+ "handle": "square-metal-silent-backlit-led-corner-wall-clock-modern-wall-decor",
+ "title": "Cadran",
+ "subtitle": "Backlit Square Metal Wall Clock",
+ "type": "LED Wall Art",
+ "highlights": [
+  "Backlit square metal wall clock",
+  "Single sided, corner or foldable type",
+  "White, pink, blue or green",
+  "Works as clock, wall art and light",
+  "For hallways, living rooms or bedrooms"
+ ],
+ "rooms": [
+  {
+   "file": "img/square-metal-silent-backlit-led-corner-wall-clock-modern-wall-decor/07.jpg",
+   "alt": "Backlit Wall Clock Light, Green, Foldable",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-metal-silent-backlit-led-corner-wall-clock-modern-wall-decor/12.jpg",
+   "alt": "Backlit Wall Clock Light, White, Corner",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-metal-silent-backlit-led-corner-wall-clock-modern-wall-decor/08.jpg",
+   "alt": "Backlit Wall Clock Light, Blue, Foldable",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-metal-silent-backlit-led-corner-wall-clock-modern-wall-decor/00.jpg",
+   "alt": "White square Backlit Wall Clock Light with a warm glow",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-metal-silent-backlit-led-corner-wall-clock-modern-wall-decor/09.jpg",
+   "alt": "Backlit Wall Clock Light, Pink, Single Sided",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-metal-silent-backlit-led-corner-wall-clock-modern-wall-decor/13.jpg",
+   "alt": "Backlit Wall Clock Light, White, Foldable",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/square-metal-silent-backlit-led-corner-wall-clock-modern-wall-decor/10.jpg",
+   "alt": "Cadran backlit wall clock light in white, flat single-face version, angled view on white",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "Single Sided",
+   "W 10.63\"  \u00d7  D 10.63\"  \u00d7  H 1.38\""
+  ],
+  [
+   "Corner",
+   "W 10.83\"  \u00d7  D 10.83\"  \u00d7  H 10.24\""
+  ],
+  [
+   "Foldable",
+   "W 11.81\"  \u00d7  D 11.81\"  \u00d7  H 10.24\""
+  ]
+ ],
+ "counts": {
+  "rooms": 12,
+  "night": 0,
+  "studio": 13,
+  "closeups": 0
+ }
+}

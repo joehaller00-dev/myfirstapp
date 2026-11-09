@@ -1,0 +1,199 @@
+{
+ "handle": "modern-linear-wall-sconce-creative-black-aluminum-strip",
+ "title": "Streak",
+ "subtitle": "Linear Aluminum Wall Sconce",
+ "type": "Wall Sconces",
+ "highlights": [
+  "Black aluminum strip of light",
+  "Five lengths from 23.6\" to 59\"",
+  "Warm white, 3 step or dimmable",
+  "Draws a clean line along the wall",
+  "For hallways, bedsides or feature walls"
+ ],
+ "rooms": [
+  {
+   "file": "img/modern-linear-wall-sconce-creative-black-aluminum-strip/06.jpg",
+   "alt": "Modern Linear Wall Sconce, 23.6 in x 3.1 in, 3 Step Dimming",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.1482,
+     0.5882,
+     0.069
+    ],
+    [
+     0.1502,
+     0.2043,
+     0.0628
+    ],
+    [
+     0.8473,
+     0.5841,
+     0.0536
+    ]
+   ],
+   "focus": [
+    0.3224,
+    0.4564
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/modern-linear-wall-sconce-creative-black-aluminum-strip/00.jpg",
+   "alt": "Two Modern Linear Wall Sconces flanking a painting above a sofa",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.7829,
+     0.5637,
+     0.0406
+    ],
+    [
+     0.7868,
+     0.3196,
+     0.0366
+    ],
+    [
+     0.2147,
+     0.5967,
+     0.0344
+    ]
+   ],
+   "focus": [
+    0.623,
+    0.4947
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/modern-linear-wall-sconce-creative-black-aluminum-strip/02.jpg",
+   "alt": "Modern Linear Wall Sconce, 47.2 in x 5.9 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.8017,
+     0.4066,
+     0.0897
+    ],
+    [
+     0.2102,
+     0.3741,
+     0.0679
+    ],
+    [
+     0.783,
+     0.623,
+     0.0596
+    ]
+   ],
+   "focus": [
+    0.6294,
+    0.4448
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/modern-linear-wall-sconce-creative-black-aluminum-strip/01.jpg",
+   "alt": "Modern Linear Wall Sconce, 31.5 in x 3.9 in, 3 Step Dimming",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/modern-linear-wall-sconce-creative-black-aluminum-strip/10.jpg",
+   "alt": "Modern Linear Wall Sconce, 31.5 in x 3.9 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/modern-linear-wall-sconce-creative-black-aluminum-strip/11.jpg",
+   "alt": "Modern Linear Wall Sconce, 39.4 in x 5.1 in, Warm White",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/modern-linear-wall-sconce-creative-black-aluminum-strip/16.jpg",
+   "alt": "Streak modern linear wall sconce, unlit black bar with a center twist, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/modern-linear-wall-sconce-creative-black-aluminum-strip/15.jpg",
+   "alt": "Close-up of the Streak modern linear wall sconce showing the curved twist in the glowing black bar",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "23.6\"x3.1\"",
+   "W 23.6\"  \u00d7  H 3.1\""
+  ],
+  [
+   "31.5\"x3.9\"",
+   "W 31.5\"  \u00d7  H 3.9\""
+  ],
+  [
+   "39.4\"x5.1\"",
+   "W 39.4\"  \u00d7  H 5.1\""
+  ],
+  [
+   "47.2\"x5.9\"",
+   "W 47.2\"  \u00d7  H 5.9\""
+  ],
+  [
+   "59\"x7\"",
+   "W 59\"  \u00d7  H 7\""
+  ]
+ ],
+ "counts": {
+  "rooms": 12,
+  "night": 4,
+  "studio": 1,
+  "closeups": 1
+ }
+}

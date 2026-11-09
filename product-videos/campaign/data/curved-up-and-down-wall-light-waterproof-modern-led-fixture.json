@@ -1,0 +1,231 @@
+{
+ "handle": "curved-up-and-down-wall-light-waterproof-modern-led-fixture",
+ "title": "Crest",
+ "subtitle": "Up and Down Outdoor Wall Light",
+ "type": "Outdoor Wall Lights",
+ "highlights": [
+  "Curved body casts light up and down",
+  "Four sizes from 5.9\" to 15.7\" tall",
+  "Motion sensing version, 3.2\" x 7.9\"",
+  "Black or white, plain or gold accents",
+  "Sold as a set of 2",
+  "Waterproof, hardwired for entries"
+ ],
+ "rooms": [
+  {
+   "file": "img/curved-up-and-down-wall-light-waterproof-modern-led-fixture/10.jpg",
+   "alt": "Crest curved up and down wall light in white and gold, lit on a dark charred wood wall at sunset",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.9161,
+     0.545,
+     0.1007
+    ],
+    [
+     0.9684,
+     0.3226,
+     0.0216
+    ]
+   ],
+   "focus": [
+    0.9184,
+    0.5352
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/curved-up-and-down-wall-light-waterproof-modern-led-fixture/23.jpg",
+   "alt": "Crest curved up and down wall light in white, pair flanking framed art above a console table in a hallway",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.206,
+     0.5284,
+     0.0608
+    ],
+    [
+     0.747,
+     0.5419,
+     0.0292
+    ],
+    [
+     0.1976,
+     0.2465,
+     0.0272
+    ]
+   ],
+   "focus": [
+    0.292,
+    0.4911
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/curved-up-and-down-wall-light-waterproof-modern-led-fixture/02.jpg",
+   "alt": "Crest curved up and down wall light in black and gold, pair glowing beside a glass entry door with a potted olive tree",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.7607,
+     0.3983,
+     0.0413
+    ],
+    [
+     0.7611,
+     0.192,
+     0.0318
+    ],
+    [
+     0.2085,
+     0.4624,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.69,
+    0.3396
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/curved-up-and-down-wall-light-waterproof-modern-led-fixture/06.jpg",
+   "alt": "Crest curved up and down wall light in black and gold, pair casting light up and down above an outdoor bench",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/curved-up-and-down-wall-light-waterproof-modern-led-fixture/01.jpg",
+   "alt": "Pair of Curved Up and Down Wall Lights beside a gilt framed landscape painting",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/curved-up-and-down-wall-light-waterproof-modern-led-fixture/07.jpg",
+   "alt": "Crest curved up and down wall light in black and gold, lit on a cream stone wall above a wood wine shelf",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/curved-up-and-down-wall-light-waterproof-modern-led-fixture/16.jpg",
+   "alt": "Crest curved up and down wall light in black and gold, angled side view of the curved shell, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/curved-up-and-down-wall-light-waterproof-modern-led-fixture/12.jpg",
+   "alt": "Close-up of the Crest curved up and down wall light showing the black textured curve and lower opening",
+   "w": 800,
+   "h": 800,
+   "night": true,
+   "src": [
+    [
+     0.7431,
+     0.0795,
+     0.1738
+    ],
+    [
+     0.8948,
+     0.8379,
+     0.1515
+    ]
+   ],
+   "focus": [
+    0.8086,
+    0.407
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/curved-up-and-down-wall-light-waterproof-modern-led-fixture/15.jpg",
+   "alt": "Close-up of the Crest curved up and down wall light showing the black curved shell edge and mounting screw",
+   "w": 800,
+   "h": 800,
+   "night": true,
+   "src": [
+    [
+     0.2423,
+     0.2215,
+     0.2809
+    ],
+    [
+     0.8719,
+     0.8439,
+     0.1635
+    ],
+    [
+     0.7872,
+     0.0276,
+     0.054
+    ]
+   ],
+   "focus": [
+    0.412,
+    0.3696
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "4.7\"x4.7\"x11.8\"",
+   "W 4.7\"  \u00d7  D 4.7\"  \u00d7  H 11.8\""
+  ],
+  [
+   "5.9\"x5.9\"x15.7\"",
+   "W 5.9\"  \u00d7  D 5.9\"  \u00d7  H 15.7\""
+  ],
+  [
+   "2.8\"x2.8\"x5.9\"",
+   "W 2.8\"  \u00d7  D 2.8\"  \u00d7  H 5.9\""
+  ],
+  [
+   "3.2\"x3.2\"x7.9\"",
+   "W 3.2\"  \u00d7  D 3.2\"  \u00d7  H 7.9\""
+  ]
+ ],
+ "counts": {
+  "rooms": 9,
+  "night": 4,
+  "studio": 5,
+  "closeups": 2
+ }
+}

@@ -1,0 +1,176 @@
+{
+ "handle": "minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light",
+ "title": "Address",
+ "subtitle": "Door Number Porch Light",
+ "type": "Outdoor Wall Lights",
+ "highlights": [
+  "Door number light for porches",
+  "Mounts flat against the exterior wall",
+  "Four lengths from 7.9\" to 31.5\"",
+  "Warm white or white light",
+  "Waterproof and hardwired"
+ ],
+ "rooms": [
+  {
+   "file": "img/minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light/10.jpg",
+   "alt": "Porch Door Number Light washing white light down a limestone wall beside an oak door",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light/08.jpg",
+   "alt": "Porch Door Number Light, 31.5 in",
+   "w": 2600,
+   "h": 2600,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light/07.jpg",
+   "alt": "Address porch door number light, lit above a modern garage with a car inside at dusk",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.7072,
+     0.0651,
+     0.1591
+    ],
+    [
+     0.3416,
+     0.4678,
+     0.0636
+    ],
+    [
+     0.9832,
+     0.4185,
+     0.0341
+    ]
+   ],
+   "focus": [
+    0.6693,
+    0.1319
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light/06.jpg",
+   "alt": "Address porch door number light, glowing on a dark gray garden wall above ornamental grasses",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light/02.jpg",
+   "alt": "Address porch door number light, lit above a front door beside potted plants",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light/01.webp",
+   "alt": "Address porch door number light, lit above patio chairs on a modern house wall",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light/18.jpg",
+   "alt": "Address porch door number light, black rectangular housing lit from below, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light/17.jpg",
+   "alt": "Close-up of the Address porch door number light showing the black housing corner and side mounting screw",
+   "w": 1106,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/minimalist-strip-waterproof-led-black-modern-outdoor-wall-washer-light/16.jpg",
+   "alt": "Close-up of the Address porch door number light showing the frosted glass diffuser inside the black frame",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "11.8\"",
+   "L 11.81\"  \u00d7  H 1.97\""
+  ],
+  [
+   "19.7\"",
+   "L 19.69\"  \u00d7  H 1.97\""
+  ],
+  [
+   "7.9\"",
+   "L 7.87\"  \u00d7  H 1.97\""
+  ],
+  [
+   "31.5\"",
+   "L 31.5\"  \u00d7  H 1.97\""
+  ]
+ ],
+ "counts": {
+  "rooms": 11,
+  "night": 1,
+  "studio": 1,
+  "closeups": 2
+ }
+}

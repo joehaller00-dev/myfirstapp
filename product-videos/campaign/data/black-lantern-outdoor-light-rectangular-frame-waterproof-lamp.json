@@ -1,0 +1,230 @@
+{
+ "handle": "black-lantern-outdoor-light-rectangular-frame-waterproof-lamp",
+ "title": "Harbor",
+ "subtitle": "Rectangular Frame Lantern",
+ "type": "Portable Lanterns",
+ "highlights": [
+  "Black stainless steel frame",
+  "Three heights: 11\", 17\" or 29\"",
+  "Solar or hardwired power",
+  "Waterproof for patio or tabletop use"
+ ],
+ "rooms": [
+  {
+   "file": "img/black-lantern-outdoor-light-rectangular-frame-waterproof-lamp/00.jpg",
+   "alt": "Rectangular Frame Lantern, 11 in, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.5449,
+     0.7721,
+     0.0585
+    ],
+    [
+     0.5486,
+     0.6584,
+     0.0493
+    ]
+   ],
+   "focus": [
+    0.5464,
+    0.7249
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-lantern-outdoor-light-rectangular-frame-waterproof-lamp/02.jpg",
+   "alt": "Rectangular Frame Lantern, 17 in, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.2387,
+     0.7047,
+     0.0693
+    ],
+    [
+     0.4097,
+     0.7545,
+     0.0327
+    ],
+    [
+     0.237,
+     0.5477,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.2677,
+    0.7032
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-lantern-outdoor-light-rectangular-frame-waterproof-lamp/08.jpg",
+   "alt": "Rectangular Frame Lantern by an infinity pool",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4976,
+     0.5599,
+     0.0781
+    ],
+    [
+     0.4949,
+     0.4107,
+     0.0324
+    ],
+    [
+     0.2422,
+     0.3828,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.4837,
+    0.5298
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-lantern-outdoor-light-rectangular-frame-waterproof-lamp/01.jpg",
+   "alt": "Rectangular Frame Lantern, 11 in, Solar",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-lantern-outdoor-light-rectangular-frame-waterproof-lamp/06.jpg",
+   "alt": "Harbor rectangular frame lantern, lit lanterns lining a pool deck at night",
+   "w": 800,
+   "h": 800,
+   "night": true,
+   "src": [
+    [
+     0.1379,
+     0.8,
+     0.0427
+    ],
+    [
+     0.0321,
+     0.454,
+     0.0321
+    ],
+    [
+     0.6849,
+     0.5755,
+     0.0216
+    ]
+   ],
+   "focus": [
+    0.1819,
+    0.6611
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/black-lantern-outdoor-light-rectangular-frame-waterproof-lamp/07.jpg",
+   "alt": "Harbor rectangular frame lantern, glowing beside woven poufs on a patio",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.3197,
+     0.8021,
+     0.0481
+    ],
+    [
+     0.4756,
+     0.6467,
+     0.046
+    ],
+    [
+     0.2297,
+     0.29,
+     0.0447
+    ]
+   ],
+   "focus": [
+    0.343,
+    0.5918
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/black-lantern-outdoor-light-rectangular-frame-waterproof-lamp/14.jpg",
+   "alt": "Harbor rectangular frame lantern, black frame around a white cylinder, front view on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/black-lantern-outdoor-light-rectangular-frame-waterproof-lamp/10.jpg",
+   "alt": "Close-up of the Harbor rectangular frame lantern showing its curved gray metal frame corner",
+   "w": 1500,
+   "h": 1500,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/black-lantern-outdoor-light-rectangular-frame-waterproof-lamp/11.jpg",
+   "alt": "Close-up of the Harbor rectangular frame lantern showing the white cylinder set inside the dark frame",
+   "w": 1441,
+   "h": 1441,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "17\"",
+   "W 7.87\"  \u00d7  D 7.87\"  \u00d7  H 16.93\""
+  ],
+  [
+   "11\"",
+   "W 7.87\"  \u00d7  D 7.87\"  \u00d7  H 11.02\""
+  ],
+  [
+   "29\"",
+   "W 7.87\"  \u00d7  D 7.87\"  \u00d7  H 28.74\""
+  ]
+ ],
+ "counts": {
+  "rooms": 7,
+  "night": 5,
+  "studio": 4,
+  "closeups": 5
+ }
+}

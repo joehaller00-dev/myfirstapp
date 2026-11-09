@@ -1,0 +1,157 @@
+{
+ "handle": "simple-adjustable-round-led-luxury-aluminum-nordic-wall-light-fixture",
+ "title": "Eclipse",
+ "subtitle": "Pivoting Disc Wall Light",
+ "type": "Wall Sconces",
+ "highlights": [
+  "Pivoting disc head aims light anywhere",
+  "Thick base plate holds its position",
+  "Black and gold aluminum body",
+  "Read while a partner keeps the bed dark",
+  "Frees up space on the nightstand"
+ ],
+ "rooms": [
+  {
+   "file": "img/simple-adjustable-round-led-luxury-aluminum-nordic-wall-light-fixture/00.jpg",
+   "alt": "Pivoting Disc Wall Light in black and brass above a nightstand",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.5621,
+     0.6712,
+     0.0651
+    ],
+    [
+     0.4789,
+     0.1559,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.5549,
+    0.6268
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/simple-adjustable-round-led-luxury-aluminum-nordic-wall-light-fixture/02.jpg",
+   "alt": "Eclipse pivoting disc wall light, pair lit on either side of a TV wall in a modern living room",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/simple-adjustable-round-led-luxury-aluminum-nordic-wall-light-fixture/07.jpg",
+   "alt": "Eclipse pivoting disc wall light, black disc and gold arm lit beside a bed in a beige bedroom",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/simple-adjustable-round-led-luxury-aluminum-nordic-wall-light-fixture/01.jpg",
+   "alt": "Eclipse pivoting disc wall light with a round disc head lit above a nightstand beside a bed",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/simple-adjustable-round-led-luxury-aluminum-nordic-wall-light-fixture/06.jpg",
+   "alt": "Eclipse pivoting disc wall light, pair lit above the nightstands of a gray upholstered bed",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/simple-adjustable-round-led-luxury-aluminum-nordic-wall-light-fixture/10.jpg",
+   "alt": "Eclipse pivoting disc wall light, black disc with a gold arm and round shade, on a white background",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/simple-adjustable-round-led-luxury-aluminum-nordic-wall-light-fixture/08.jpg",
+   "alt": "Close-up of the Eclipse pivoting disc wall light showing the black disc backplate and angled gold arm",
+   "w": 1000,
+   "h": 1000,
+   "night": true,
+   "src": [
+    [
+     0.1166,
+     0.5493,
+     0.2131
+    ],
+    [
+     0.8801,
+     0.3212,
+     0.1964
+    ],
+    [
+     0.5524,
+     0.3798,
+     0.0581
+    ]
+   ],
+   "focus": [
+    0.4706,
+    0.442
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/simple-adjustable-round-led-luxury-aluminum-nordic-wall-light-fixture/09.jpg",
+   "alt": "Close-up of the Eclipse pivoting disc wall light showing the gold disc shade and white diffuser underneath",
+   "w": 1000,
+   "h": 1000,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [],
+ "counts": {
+  "rooms": 5,
+  "night": 1,
+  "studio": 1,
+  "closeups": 2
+ }
+}

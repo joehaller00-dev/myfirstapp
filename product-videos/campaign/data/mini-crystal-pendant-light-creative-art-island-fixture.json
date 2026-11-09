@@ -1,0 +1,156 @@
+{
+ "handle": "mini-crystal-pendant-light-creative-art-island-fixture",
+ "title": "Gem",
+ "subtitle": "Mini Crystal Pendant",
+ "type": "Pendant Lighting",
+ "highlights": [
+  "Mini crystal pendant for islands",
+  "Single pendant or 3 light cluster",
+  "Black, gold or chrome finish",
+  "Hangs at eye level over a table"
+ ],
+ "rooms": [
+  {
+   "file": "img/mini-crystal-pendant-light-creative-art-island-fixture/10.jpg",
+   "alt": "Mini Crystal Pendant Light, Black, 3 Light",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4267,
+     0.8562,
+     0.0542
+    ],
+    [
+     0.3325,
+     0.4148,
+     0.0466
+    ],
+    [
+     0.5228,
+     0.4419,
+     0.0392
+    ]
+   ],
+   "focus": [
+    0.4181,
+    0.6162
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/mini-crystal-pendant-light-creative-art-island-fixture/11.jpg",
+   "alt": "Mini Crystal Pendant Light, Chrome, 1 Light",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.7581,
+     0.4574,
+     0.0371
+    ],
+    [
+     0.4952,
+     0.4626,
+     0.0327
+    ],
+    [
+     0.2804,
+     0.4688,
+     0.0275
+    ]
+   ],
+   "focus": [
+    0.5575,
+    0.4618
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/mini-crystal-pendant-light-creative-art-island-fixture/16.jpg",
+   "alt": "Mini Crystal Pendant Light, Gold, 1 Light",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/mini-crystal-pendant-light-creative-art-island-fixture/00.jpg",
+   "alt": "Three Mini Crystal Pendant Lights over a marble table in a sage green kitchen",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/mini-crystal-pendant-light-creative-art-island-fixture/12.jpg",
+   "alt": "Mini Crystal Pendant Light, Chrome, 3 Light",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/mini-crystal-pendant-light-creative-art-island-fixture/15.jpg",
+   "alt": "Gem mini crystal pendant light in black, single pendant lit above a marble bar beside a wine wall",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/mini-crystal-pendant-light-creative-art-island-fixture/17.jpg",
+   "alt": "Gem mini crystal pendant light in black, single pendant with crystal column shade, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "1-Light",
+   "Dia 3.94\"  \u00d7  H 11.81\""
+  ],
+  [
+   "3-Light",
+   "W 11.81\"  \u00d7  H 66.93\""
+  ]
+ ],
+ "counts": {
+  "rooms": 14,
+  "night": 2,
+  "studio": 6,
+  "closeups": 0
+ }
+}

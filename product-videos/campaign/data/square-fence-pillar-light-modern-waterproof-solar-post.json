@@ -1,0 +1,159 @@
+{
+ "handle": "square-fence-pillar-light-modern-waterproof-solar-post",
+ "title": "Picket",
+ "subtitle": "Square Fence Pillar Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Acrylic and stainless steel cap light",
+  "Five sizes from 6\" W to 24\" W",
+  "Solar or hardwired power",
+  "Made for fence posts and pillars",
+  "Waterproof for year round outdoor use"
+ ],
+ "rooms": [
+  {
+   "file": "img/square-fence-pillar-light-modern-waterproof-solar-post/03.jpg",
+   "alt": "Square Fence Pillar Light on a limestone pillar",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.6435,
+     0.6818,
+     0.0485
+    ],
+    [
+     0.3625,
+     0.7063,
+     0.0402
+    ],
+    [
+     0.8957,
+     0.3484,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.5626,
+    0.6603
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-fence-pillar-light-modern-waterproof-solar-post/02.jpg",
+   "alt": "Square Fence Pillar Light, 16 in W x 8 in H, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.8233,
+     0.2116,
+     0.1445
+    ],
+    [
+     0.6533,
+     0.5874,
+     0.0305
+    ],
+    [
+     0.2438,
+     0.3916,
+     0.0216
+    ]
+   ],
+   "focus": [
+    0.8041,
+    0.2311
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-fence-pillar-light-modern-waterproof-solar-post/00.jpg",
+   "alt": "Square Fence Pillar Light, 10 in W x 5 in H, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-fence-pillar-light-modern-waterproof-solar-post/01.jpg",
+   "alt": "Picket square fence pillar light, glowing along a lawn edge at night",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.4334,
+     0.0194,
+     0.0514
+    ],
+    [
+     0.4691,
+     0.7988,
+     0.0397
+    ],
+    [
+     0.0835,
+     0.0202,
+     0.0282
+    ]
+   ],
+   "focus": [
+    0.3891,
+    0.2646
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/square-fence-pillar-light-modern-waterproof-solar-post/07.jpg",
+   "alt": "Picket square fence pillar light, glowing warm, with two small inset views below, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "24\" W x 12\" H",
+   "W 24\"  \u00d7  H 12\""
+  ],
+  [
+   "10\" W x 5\" H",
+   "W 10\"  \u00d7  H 5\""
+  ],
+  [
+   "12\" W x 6\" H",
+   "W 12\"  \u00d7  H 6\""
+  ],
+  [
+   "16\" W x 8\" H",
+   "W 16\"  \u00d7  H 8\""
+  ],
+  [
+   "6\" W x 3\" H",
+   "W 6\"  \u00d7  H 3\""
+  ]
+ ],
+ "counts": {
+  "rooms": 4,
+  "night": 3,
+  "studio": 3,
+  "closeups": 0
+ }
+}

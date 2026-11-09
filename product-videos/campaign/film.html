@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Product film</title>
+<link rel="stylesheet" href="../chandra-3d/node_modules/@fontsource/eb-garamond/400.css">
+<link rel="stylesheet" href="../chandra-3d/node_modules/@fontsource/eb-garamond/400-italic.css">
+<link rel="stylesheet" href="../chandra-3d/node_modules/@fontsource/inter/400.css">
+<link rel="stylesheet" href="../chandra-3d/node_modules/@fontsource/inter/600.css">
+<style>
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  #stage { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #0f0d0b; font-family: Inter, sans-serif; color: #fff; }
+  .scene { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  .dark { background: radial-gradient(ellipse at 70% 50%, #211d18 0%, #14120f 60%, #0c0b09 100%); }
+
+  /* photo panes: the whole photo is shown, never cropped to find the product */
+  .pane { position: absolute; top: 0; height: 100%; overflow: hidden; background: #000; }
+  .pane .ph { position: absolute; top: 0; left: 50%; height: 100%; aspect-ratio: 1; will-change: transform; }
+  .pane img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
+  .pane .night { filter: brightness(.17) saturate(.45) contrast(1.05); }
+  .pane .tint { position: absolute; inset: 0; background: rgba(18, 28, 60, .28); mix-blend-mode: multiply; }
+
+  .eb { font: 600 calc(var(--u) * 17) / 1 Inter, sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #c9a36a; }
+  .ttl { font: 400 calc(var(--u) * 76) / 1.03 "EB Garamond", serif; margin: calc(var(--u) * 20) 0 0; }
+  .ttl em { font-style: italic; color: #efe3cc; }
+  .sub { font: 400 calc(var(--u) * 28) / 1.5 Inter, sans-serif; color: rgba(255,255,255,.72); margin-top: calc(var(--u) * 24); }
+  .text { position: absolute; }
+  .wide .text { left: 61%; right: 5%; top: 50%; transform: translateY(-50%); }
+  .square .text { left: 11%; right: 11%; top: 5%; text-align: center; }
+  .square .eb { font-size: calc(var(--u) * 21); }
+  .square #room-text, .square #dims-text { text-shadow: 0 1px 14px rgba(0,0,0,.75), 0 0 3px rgba(0,0,0,.6); }
+  .square .ttl { font-size: calc(var(--u) * 68); margin-top: calc(var(--u) * 14); }
+  .square .sub { font-size: calc(var(--u) * 34); line-height: 1.3; margin-top: calc(var(--u) * 12); }
+  .square .scrim { position: absolute; inset: 0; opacity: 0; background: linear-gradient(180deg, rgba(8,7,6,.9) 0%, rgba(8,7,6,.72) 24%, rgba(8,7,6,0) 46%); }
+  .wide .scrim { display: none; }
+
+  /* studio */
+  #s-studio { background: radial-gradient(ellipse at 32% 46%, #f4efe6 0%, #e7e0d3 55%, #cfc6b6 100%); color: #1d1915; }
+  .square #s-studio { background: radial-gradient(ellipse at 50% 64%, #f4efe6 0%, #e7e0d3 55%, #cfc6b6 100%); }
+  #studio-img { position: absolute; mix-blend-mode: multiply; will-change: transform; object-fit: contain; }
+  .wide #studio-img { left: 2%; top: 3%; width: 56%; height: 94%; }
+  .square #studio-img { left: 16%; top: 43%; width: 68%; height: 55%; }
+  #sheen { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 60%); mix-blend-mode: soft-light; will-change: transform; }
+  #s-studio .eb { color: #9a7436; }
+  #s-studio .ttl em { color: #6a5433; }
+  ul { margin: calc(var(--u) * 30) 0 0; padding: 0; }
+  li { list-style: none; font: 400 calc(var(--u) * 31) / 1.32 Inter, sans-serif; padding: calc(var(--u) * 17) 0; border-top: 1px solid rgba(29,25,21,.18); opacity: 0; }
+  .square ul { margin-top: calc(var(--u) * 12); }
+  .square li { font-size: calc(var(--u) * 34); padding: calc(var(--u) * 7) 0; border-top: 0; }
+
+  /* dimensions */
+  #dims-rows { margin-top: calc(var(--u) * 30); }
+  .row { padding: calc(var(--u) * 15) 0; border-top: 1px solid rgba(255,255,255,.16); opacity: 0; }
+  .row b { display: block; font: 400 calc(var(--u) * 38) / 1.1 "EB Garamond", serif; }
+  .row span { display: block; font: 400 calc(var(--u) * 25) / 1.3 Inter, sans-serif; color: rgba(255,255,255,.72); margin-top: calc(var(--u) * 5); }
+  .more { font: 400 calc(var(--u) * 21) / 1.3 Inter, sans-serif; color: rgba(255,255,255,.55); padding-top: calc(var(--u) * 14); border-top: 1px solid rgba(255,255,255,.16); opacity: 0; }
+  .square #dims-rows { margin-top: calc(var(--u) * 10); }
+  .square .row { padding: calc(var(--u) * 5) 0; border-top: 0; }
+  .square .row b { font-size: calc(var(--u) * 40); } .square .row span { font-size: calc(var(--u) * 29); margin-top: 0; }
+  .square .more { font-size: calc(var(--u) * 27); }
+  .square .more { border-top: 0; padding-top: calc(var(--u) * 4); }
+
+  #vig { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 60%, rgba(0,0,0,.26) 100%); }
+  #fade { position: absolute; inset: 0; background: #070605; opacity: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="scene dark" id="s-room">
+    <div class="pane" id="pA"><div class="ph"><img class="night"><div class="tint"></div><img class="lit"></div></div>
+    <div class="pane" id="pB"><div class="ph"><img class="night"><div class="tint"></div><img class="lit"></div></div>
+    <div class="scrim" id="room-scrim"></div>
+    <div class="text" id="room-text"><div class="eb">Nora Furnish</div><div class="ttl" id="room-ttl"></div><div class="sub" id="room-sub"></div></div>
+    <div class="text" id="dims-text"><div class="eb">Dimensions</div><div class="ttl">The <em>measurements</em></div><div id="dims-rows"></div></div>
+  </div>
+  <div class="scene" id="s-studio"><img id="studio-img"><div id="sheen"></div>
+    <div class="text" id="studio-text"><div class="eb">The details</div><div class="ttl" id="studio-ttl"></div><ul id="studio-list"></ul></div></div>
+  <div id="vig"></div><div id="fade"></div>
+</div>
+<script type="module">
+const W = innerWidth, H = innerHeight, SQUARE = W === H;
+const stage = document.getElementById('stage');
+stage.classList.add(SQUARE ? 'square' : 'wide');
+stage.style.setProperty('--u', (H / 1080) + 'px');
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => { x = clamp(x); return x * x * (3 - 2 * x); };
+const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
+const lerp = (a, b, k) => a + (b - a) * k;
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const pulse = (t, a, b, f = 0.5) => Math.min(ease(seg(t, a, a + f)), 1 - ease(seg(t, b - f, b)));
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+// "Ribbed Glass Pillar Light" -> last two words italic
+const twoTone = s => { const w = s.trim().split(/\s+/); const k = Math.max(1, w.length - 2); return esc(w.slice(0, k).join(' ')) + (w.length > 1 ? ' <em>' + esc(w.slice(k).join(' ')) + '</em>' : ''); };
+
+const handle = new URLSearchParams(location.search).get('p');
+const D = await (await fetch(`data/${handle}.json`)).json();
+const loadImg = src => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+
+// ---------- content
+const hero = D.rooms[0];
+const pool = [...D.rooms.slice(1), ...D.closeups];          // photos for the dimension pane and the closing rooms
+const studio = D.studio[0];
+const hasDims = D.dims.length > 0 && pool.length > 0;
+const dimPhoto = hasDims ? (D.closeups[0] || pool[pool.length - 1]) : null;
+let rest = D.rooms.slice(1).filter(r => r !== dimPhoto);
+if (!SQUARE) {                                              // wide closes on pairs of photos
+  if (rest.length % 2) { const extra = D.closeups.find(c => c !== dimPhoto); if (extra && rest.length < 4) rest.push(extra); else rest.pop(); }
+  rest = rest.slice(0, 4);
+} else rest = rest.slice(0, 3);
+await Promise.all([hero, dimPhoto, studio, ...rest].filter(Boolean).map(r => loadImg(r.file)));
+if (studio) $('studio-img').src = studio.file;
+$('room-ttl').innerHTML = twoTone(D.subtitle || D.title);
+$('room-sub').textContent = D.highlights[0] || '';
+$('studio-ttl').innerHTML = `${esc(D.title)}<em>, up close</em>`;
+$('studio-list').innerHTML = D.highlights.slice(1, SQUARE ? 4 : 5).map(h => `<li>${esc(h)}</li>`).join('');
+const lis = [...document.querySelectorAll('#studio-list li')];
+const maxRows = SQUARE ? 2 : 4;
+$('dims-rows').innerHTML = D.dims.slice(0, maxRows).map(([k, v]) => `<div class="row"><b>${esc(k)}</b><span>${esc(v)}</span></div>`).join('') +
+  (D.dims.length > maxRows ? `<div class="more">and ${D.dims.length - maxRows} more</div>` : '');
+const rows = [...document.querySelectorAll('#dims-rows .row, #dims-rows .more')];
+await document.fonts.ready;
+
+// ---------- timeline
+const HERO = 5.4, STUDIO = studio ? 6.2 : 0, DIMS = hasDims ? 5.2 : 0, STEP = SQUARE ? 3.1 : 4.2;
+const tStudio = HERO, tDims = tStudio + STUDIO, tRest = tDims + DIMS;
+const steps = SQUARE ? rest.map(r => [r]) : rest.reduce((a, r, i) => (i % 2 ? a[a.length - 1].push(r) : a.push([r]), a), []);
+window.TOTAL = tRest + STEP * steps.length;
+const pA = $('pA'), pB = $('pB');
+
+// One photo pane. In a lit photo the light spreads out from the fixture; a daytime photo rises from dusk.
+function pane(el, r, lt, dur, x, w, delay = 0) {
+  el.style.display = r ? 'block' : 'none'; if (!r) return;
+  el.style.left = x + 'px'; el.style.width = w + 'px';
+  const night = el.querySelector('.night'), lit = el.querySelector('.lit'), ph = el.querySelector('.ph');
+  if (el._file !== r.file) { el._file = r.file; night.src = r.file; lit.src = r.file; }
+  const k = lt / dur, z = lerp(1.0, 1.07, ease(k) * 0.5 + k * 0.5);
+  ph.style.transformOrigin = `${(r.focus[0] * 100).toFixed(1)}% ${(r.focus[1] * 100).toFixed(1)}%`;
+  ph.style.transform = `translateX(-50%) scale(${z.toFixed(4)})`;
+  const t = lt - delay, S = H;
+  if (r.night && r.src.length) {
+    const spread = easeOut(seg(t, 0.3, 1.9)), full = ease(seg(t, 1.2, 2.2));
+    const masks = r.src.map(([sx, sy, rad]) => {
+      const reach = (rad * 1.1 + spread * 1.7) * S, soft = (0.05 + 0.3 * spread) * S;
+      return `radial-gradient(circle at ${(sx * 100).toFixed(2)}% ${(sy * 100).toFixed(2)}%, #000 ${Math.max(0, reach - soft).toFixed(1)}px, transparent ${reach.toFixed(1)}px)`;
+    }).join(', ');
+    lit.style.maskImage = masks; lit.style.webkitMaskImage = masks;
+    lit.style.opacity = Math.max(spread, full).toFixed(3);
+  } else {
+    lit.style.maskImage = lit.style.webkitMaskImage = 'none';
+    lit.style.opacity = ease(seg(t, 0.3, 1.8)).toFixed(3);
+  }
+}
+const inOut = (lt, dur) => Math.max(1 - ease(seg(lt, 0, 0.42)), ease(seg(lt, dur - 0.4, dur)));
+const photoW = SQUARE ? W : H;                               // wide: a full square photo on the left, text on the right
+
+window.renderAt = function (t) {
+  let fade = 0;
+  const roomScene = t < tStudio || t >= tDims;
+  $('s-room').style.visibility = roomScene ? 'visible' : 'hidden';
+  $('s-studio').style.visibility = roomScene ? 'hidden' : 'visible';
+  $('room-text').style.opacity = 0; $('dims-text').style.opacity = 0; $('room-scrim').style.opacity = 0;
+  if (t < tStudio) {                                          // ---- the product at home
+    pane(pA, hero, t, HERO, 0, photoW); pane(pB, null);
+    const o = SQUARE ? pulse(t, 1.6, HERO - 0.5, 0.6) : ease(seg(t, 0.5, 1.3));
+    $('room-text').style.opacity = o.toFixed(3); $('room-scrim').style.opacity = o.toFixed(3);
+    fade = inOut(t, HERO);
+  } else if (t < tDims) {                                     // ---- studio and details
+    const lt = t - tStudio, k = lt / STUDIO;
+    $('studio-img').style.transform = `translate(${lerp(-1.2, 1.2, k).toFixed(3)}%, 0) scale(${lerp(1.0, 1.07, ease(k) * 0.5 + k * 0.5).toFixed(4)})`;
+    $('sheen').style.transform = `translateX(${lerp(-70, 70, ease(seg(lt, 0.6, 3.4))).toFixed(2)}%)`;
+    lis.forEach((li, i) => { const o = ease(seg(lt, 0.9 + i * 0.7, 1.5 + i * 0.7)); li.style.opacity = o.toFixed(3); li.style.transform = `translateY(${((1 - o) * 10).toFixed(2)}px)`; });
+    $('studio-text').style.opacity = ease(seg(lt, 0.3, 0.9)).toFixed(3);
+    fade = inOut(lt, STUDIO);
+  } else if (t < tRest) {                                     // ---- measurements
+    const lt = t - tDims;
+    pane(pA, dimPhoto, lt, DIMS, 0, photoW); pane(pB, null);
+    rows.forEach((r, i) => { r.style.opacity = ease(seg(lt, 0.9 + i * 0.45, 1.4 + i * 0.45)).toFixed(3); });
+    const o = ease(seg(lt, 0.3, 0.9));
+    $('dims-text').style.opacity = o.toFixed(3); $('room-scrim').style.opacity = o.toFixed(3);
+    fade = inOut(lt, DIMS);
+  } else {                                                    // ---- more rooms
+    const i = Math.min(steps.length - 1, Math.floor((t - tRest) / STEP)), lt = t - tRest - i * STEP, s = steps[i];
+    if (SQUARE) { pane(pA, s[0], lt, STEP, 0, W); pane(pB, null); }
+    else { const gap = 6, w = (W - gap) / 2; pane(pA, s[0], lt, STEP, 0, w); pane(pB, s[1] || null, lt, STEP, w + gap, w, 0.7); }
+    fade = inOut(lt, STEP);
+  }
+  $('fade').style.opacity = fade.toFixed(3);
+};
+window.renderAt(0);
+window.READY = true;
+</script>
+</body>
+</html>

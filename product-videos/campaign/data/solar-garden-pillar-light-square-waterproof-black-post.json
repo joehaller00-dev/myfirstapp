@@ -1,0 +1,249 @@
+{
+ "handle": "solar-garden-pillar-light-square-waterproof-black-post",
+ "title": "Hedgerow",
+ "subtitle": "Square Pillar Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Acrylic and aluminum square cap",
+  "9\" x 4\" H or 11\" x 5\" H",
+  "Solar or hardwired power",
+  "Black, waterproof garden post light",
+  "Sits on piers, gate posts or fences"
+ ],
+ "rooms": [
+  {
+   "file": "img/solar-garden-pillar-light-square-waterproof-black-post/09.jpg",
+   "alt": "Two Solar Garden Pillar Lights on charcoal stone pillars at blue hour",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.2718,
+     0.4696,
+     0.0604
+    ],
+    [
+     0.7881,
+     0.4122,
+     0.052
+    ],
+    [
+     0.4633,
+     0.46,
+     0.0369
+    ]
+   ],
+   "focus": [
+    0.4866,
+    0.4478
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-garden-pillar-light-square-waterproof-black-post/01.jpg",
+   "alt": "Solar Garden Pillar Light, 9 in Square x 4 in H, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.2381,
+     0.5827,
+     0.0671
+    ],
+    [
+     0.4209,
+     0.58,
+     0.0533
+    ],
+    [
+     0.8477,
+     0.4766,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.3367,
+    0.5762
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-garden-pillar-light-square-waterproof-black-post/02.jpg",
+   "alt": "Solar Garden Pillar Light, 11 in Square x 5 in H, Solar",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.3606,
+     0.6055,
+     0.0533
+    ],
+    [
+     0.2061,
+     0.6022,
+     0.0377
+    ]
+   ],
+   "focus": [
+    0.3091,
+    0.6044
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-garden-pillar-light-square-waterproof-black-post/06.jpg",
+   "alt": "Solar Garden Pillar Light, 11 in Square x 5 in H, Hardwired",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.3421,
+     0.4798,
+     0.0466
+    ],
+    [
+     0.5664,
+     0.2695,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.377,
+    0.4471
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-garden-pillar-light-square-waterproof-black-post/07.jpg",
+   "alt": "Hedgerow solar garden pillar lights lit along a low garden wall at dusk",
+   "w": 800,
+   "h": 800,
+   "night": true,
+   "src": [
+    [
+     0.2696,
+     0.6309,
+     0.0462
+    ],
+    [
+     0.4518,
+     0.6488,
+     0.0216
+    ],
+    [
+     0.7544,
+     0.5356,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.3625,
+    0.621
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/solar-garden-pillar-light-square-waterproof-black-post/08.jpg",
+   "alt": "Hedgerow solar garden pillar light glowing on a gray pillar beside green shrubs",
+   "w": 800,
+   "h": 800,
+   "night": true,
+   "src": [
+    [
+     0.27,
+     0.4503,
+     0.0571
+    ],
+    [
+     0.4571,
+     0.4414,
+     0.0369
+    ],
+    [
+     0.9331,
+     0.3286,
+     0.0305
+    ]
+   ],
+   "focus": [
+    0.427,
+    0.4277
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/solar-garden-pillar-light-square-waterproof-black-post/10.jpg",
+   "alt": "Hedgerow solar garden pillar light in black with white panels and a solar top, on a white background",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/solar-garden-pillar-light-square-waterproof-black-post/17.jpg",
+   "alt": "Close-up of the Hedgerow solar garden pillar light showing the top edge above its white panel",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.6251,
+     0.3863,
+     0.2499
+    ],
+    [
+     0.1242,
+     0.4904,
+     0.1366
+    ]
+   ],
+   "focus": [
+    0.5099,
+    0.4102
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/solar-garden-pillar-light-square-waterproof-black-post/15.jpg",
+   "alt": "Close-up of the Hedgerow solar garden pillar light showing a frame corner and the power switch",
+   "w": 800,
+   "h": 800,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "11\"x11\"x5\"",
+   "W 11\"  \u00d7  D 11\"  \u00d7  H 5\""
+  ],
+  [
+   "9\"x9\"x4\"",
+   "W 9\"  \u00d7  D 9\"  \u00d7  H 4\""
+  ]
+ ],
+ "counts": {
+  "rooms": 9,
+  "night": 7,
+  "studio": 2,
+  "closeups": 3
+ }
+}

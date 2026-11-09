@@ -1,0 +1,220 @@
+{
+ "handle": "moon-shaped-outdoor-pier-mount-pillar-accent-post-light",
+ "title": "Lunette",
+ "subtitle": "Moon Pillar Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Stone moon globe for gate piers",
+  "Solar or hardwired power",
+  "Five diameters from 8\" to 24\"",
+  "Sits on piers, posts or fence caps"
+ ],
+ "rooms": [
+  {
+   "file": "img/moon-shaped-outdoor-pier-mount-pillar-accent-post-light/08.jpg",
+   "alt": "Moon Shaped Pillar Lights glowing beside a pool at dusk",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.3408,
+     0.6665,
+     0.0999
+    ],
+    [
+     0.6085,
+     0.5848,
+     0.0458
+    ],
+    [
+     0.3819,
+     0.4945,
+     0.0406
+    ]
+   ],
+   "focus": [
+    0.3866,
+    0.6334
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/moon-shaped-outdoor-pier-mount-pillar-accent-post-light/09.jpg",
+   "alt": "Moon Shaped Pillar Light, Hardwired, 12 in",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/moon-shaped-outdoor-pier-mount-pillar-accent-post-light/12.webp",
+   "alt": "Lunette moon shaped pillar light, glowing stone orbs beside a cream outdoor sofa",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.4526,
+     0.5964,
+     0.1101
+    ],
+    [
+     0.527,
+     0.6436,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.455,
+    0.5979
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/moon-shaped-outdoor-pier-mount-pillar-accent-post-light/10.jpg",
+   "alt": "Lunette moon shaped pillar lights glowing on pillars flanking a front walkway at dusk",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.1767,
+     0.4048,
+     0.0715
+    ],
+    [
+     0.8156,
+     0.4051,
+     0.0673
+    ],
+    [
+     0.6585,
+     0.7891,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.4841,
+    0.4202
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/moon-shaped-outdoor-pier-mount-pillar-accent-post-light/01.jpg",
+   "alt": "Two Lunette moon shaped pillar lights glowing on brick pillars beside a garden swing at night",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.836,
+     0.5328,
+     0.1118
+    ],
+    [
+     0.1616,
+     0.413,
+     0.0797
+    ]
+   ],
+   "focus": [
+    0.6088,
+    0.4924
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/moon-shaped-outdoor-pier-mount-pillar-accent-post-light/24.webp",
+   "alt": "Lunette moon shaped pillar light, row of glowing orbs along a pool deck with lounge chairs",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.7337,
+     0.7072,
+     0.0696
+    ],
+    [
+     0.7188,
+     0.9568,
+     0.0413
+    ],
+    [
+     0.3135,
+     0.6246,
+     0.0411
+    ]
+   ],
+   "focus": [
+    0.6445,
+    0.7419
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/moon-shaped-outdoor-pier-mount-pillar-accent-post-light/13.jpg",
+   "alt": "Lunette moon shaped pillar light in the smallest of five sizes, yellow moon globe on a white base",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/moon-shaped-outdoor-pier-mount-pillar-accent-post-light/11.jpg",
+   "alt": "Close-up of the Lunette moon shaped pillar light showing its yellow mottled moon-like surface",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "12\"",
+   "Dia 11.81\""
+  ],
+  [
+   "16\"",
+   "Dia 15.75\""
+  ],
+  [
+   "20\"",
+   "Dia 19.69\""
+  ],
+  [
+   "24\"",
+   "Dia 23.62\""
+  ],
+  [
+   "8\"",
+   "Dia 7.87\""
+  ]
+ ],
+ "counts": {
+  "rooms": 9,
+  "night": 6,
+  "studio": 10,
+  "closeups": 1
+ }
+}

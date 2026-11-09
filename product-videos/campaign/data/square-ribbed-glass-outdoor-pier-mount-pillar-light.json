@@ -1,0 +1,202 @@
+{
+ "handle": "square-ribbed-glass-outdoor-pier-mount-pillar-light",
+ "title": "Rib",
+ "subtitle": "Ribbed Glass Pillar Light",
+ "type": "Pillar Lights",
+ "highlights": [
+  "Ribbed glass square shade",
+  "Solar or hardwired power",
+  "Five widths from 9.8\" to 23.6\"",
+  "Mounts on piers, gate posts or fence caps"
+ ],
+ "rooms": [
+  {
+   "file": "img/square-ribbed-glass-outdoor-pier-mount-pillar-light/23.jpg",
+   "alt": "Square Pillar Light with ribbed glass by a reflecting pool",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4986,
+     0.5795,
+     0.054
+    ]
+   ],
+   "focus": [
+    0.4986,
+    0.5795
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-ribbed-glass-outdoor-pier-mount-pillar-light/00.jpg",
+   "alt": "Square Pillar Light, Hardwired, 9.8 in",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.713,
+     0.0988,
+     0.1959
+    ],
+    [
+     0.5651,
+     0.5345,
+     0.0363
+    ]
+   ],
+   "focus": [
+    0.7081,
+    0.1133
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-ribbed-glass-outdoor-pier-mount-pillar-light/21.jpg",
+   "alt": "Square Pillar Light, Solar, 9.8 in",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-ribbed-glass-outdoor-pier-mount-pillar-light/22.jpg",
+   "alt": "Square Pillar Light, Solar, 15.7 in",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-ribbed-glass-outdoor-pier-mount-pillar-light/08.webp",
+   "alt": "Rib square pillar light glowing on a brick pillar by a porch railing and flower pots",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.495,
+     0.492,
+     0.0512
+    ]
+   ],
+   "focus": [
+    0.495,
+    0.492
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/square-ribbed-glass-outdoor-pier-mount-pillar-light/07.jpg",
+   "alt": "Rib square pillar light lit on a stone pillar beside purple flowers in a garden",
+   "w": 1080,
+   "h": 1080,
+   "night": true,
+   "src": [
+    [
+     0.3243,
+     0.448,
+     0.0623
+    ],
+    [
+     0.1157,
+     0.5353,
+     0.0439
+    ],
+    [
+     0.5478,
+     0.4313,
+     0.0384
+    ]
+   ],
+   "focus": [
+    0.3144,
+    0.4677
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/square-ribbed-glass-outdoor-pier-mount-pillar-light/18.jpg",
+   "alt": "Rib square pillar light lit with ribbed glass, low front view, on a white background",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/square-ribbed-glass-outdoor-pier-mount-pillar-light/13.jpg",
+   "alt": "Close-up of the Rib square pillar light showing the ribbed glass and warm bulb glow",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/square-ribbed-glass-outdoor-pier-mount-pillar-light/16.jpg",
+   "alt": "Close-up of the Rib square pillar light showing a black frame corner and base edge",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "11.8\"",
+   "W 11.81\"  \u00d7  D 11.81\"  \u00d7  H 7.09\""
+  ],
+  [
+   "15.7\"",
+   "W 15.75\"  \u00d7  D 15.75\"  \u00d7  H 7.09\""
+  ],
+  [
+   "19.7\"",
+   "W 19.69\"  \u00d7  D 19.69\"  \u00d7  H 9.84\""
+  ],
+  [
+   "23.6\"",
+   "W 23.62\"  \u00d7  D 23.62\"  \u00d7  H 13.78\""
+  ],
+  [
+   "9.8\"",
+   "W 9.84\"  \u00d7  D 9.84\"  \u00d7  H 7.09\""
+  ]
+ ],
+ "counts": {
+  "rooms": 15,
+  "night": 7,
+  "studio": 2,
+  "closeups": 3
+ }
+}

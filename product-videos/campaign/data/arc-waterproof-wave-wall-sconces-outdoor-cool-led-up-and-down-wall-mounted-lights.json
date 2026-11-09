@@ -1,0 +1,167 @@
+{
+ "handle": "arc-waterproof-wave-wall-sconces-outdoor-cool-led-up-and-down-wall-mounted-lights",
+ "title": "Wave",
+ "subtitle": "Up and Down Beam Wall Light",
+ "type": "Outdoor Wall Lights",
+ "highlights": [
+  "Aluminum body with wavy up and down beams",
+  "2, 4 or 6 lights per fixture",
+  "White or warm white light",
+  "Lights the wall and ground at once",
+  "Hardwired for entries and facades"
+ ],
+ "rooms": [
+  {
+   "file": "img/arc-waterproof-wave-wall-sconces-outdoor-cool-led-up-and-down-wall-mounted-lights/07.jpg",
+   "alt": "Wavy Beam Wall Light casting warm beams on a facade",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.7,
+     0.7705,
+     0.0866
+    ],
+    [
+     0.7049,
+     0.1874,
+     0.0469
+    ]
+   ],
+   "focus": [
+    0.7011,
+    0.6383
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/arc-waterproof-wave-wall-sconces-outdoor-cool-led-up-and-down-wall-mounted-lights/00.jpg",
+   "alt": "Wavy Beam Wall Light casting beams up and down a limestone entrance wall",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.2255,
+     0.6843,
+     0.0946
+    ],
+    [
+     0.2282,
+     0.2231,
+     0.0708
+    ]
+   ],
+   "focus": [
+    0.2265,
+    0.5187
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/arc-waterproof-wave-wall-sconces-outdoor-cool-led-up-and-down-wall-mounted-lights/08.jpg",
+   "alt": "Wavy Beam Wall Light, 6-Light",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/arc-waterproof-wave-wall-sconces-outdoor-cool-led-up-and-down-wall-mounted-lights/01.jpg",
+   "alt": "Wavy Beam Wall Light, Aluminum Outdoor Up and Down LED",
+   "w": 1080,
+   "h": 1080,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/arc-waterproof-wave-wall-sconces-outdoor-cool-led-up-and-down-wall-mounted-lights/06.jpg",
+   "alt": "Wave wavy beam wall light, lit on gray siding beside a window, casting light up and down",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/arc-waterproof-wave-wall-sconces-outdoor-cool-led-up-and-down-wall-mounted-lights/11.jpg",
+   "alt": "Wave wavy beam wall light, single-wave size in black, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/arc-waterproof-wave-wall-sconces-outdoor-cool-led-up-and-down-wall-mounted-lights/09.jpg",
+   "alt": "Close-up of the Wave wavy beam wall light showing the curved black edge and the two lower LED openings",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/arc-waterproof-wave-wall-sconces-outdoor-cool-led-up-and-down-wall-mounted-lights/10.jpg",
+   "alt": "Close-up of the Wave wavy beam wall light showing the flat black base and mounting screw",
+   "w": 1020,
+   "h": 1020,
+   "night": true,
+   "src": [
+    [
+     0.3822,
+     0.8629,
+     0.27
+    ]
+   ],
+   "focus": [
+    0.3822,
+    0.8629
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [
+  [
+   "White",
+   "W 6.3\"  \u00d7  D 7.87\"  \u00d7  H 2.36\""
+  ],
+  [
+   "Warm White",
+   "W 6.5\"  \u00d7  D 8.27\"  \u00d7  H 2.56\""
+  ]
+ ],
+ "counts": {
+  "rooms": 5,
+  "night": 2,
+  "studio": 3,
+  "closeups": 2
+ }
+}

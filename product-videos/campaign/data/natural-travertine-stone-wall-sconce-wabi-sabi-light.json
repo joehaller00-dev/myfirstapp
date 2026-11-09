@@ -1,0 +1,140 @@
+{
+ "handle": "natural-travertine-stone-wall-sconce-wabi-sabi-light",
+ "title": "Travertino",
+ "subtitle": "Travertine Wall Sconce",
+ "type": "Wall Sconces",
+ "highlights": [
+  "Real travertine, hand finished",
+  "Mounts to wash light up or down",
+  "Bedside light or soft hallway glow",
+  "Warm light shows every pore and vein"
+ ],
+ "rooms": [
+  {
+   "file": "img/natural-travertine-stone-wall-sconce-wabi-sabi-light/02.png",
+   "alt": "Travertino natural travertine stone wall sconce, glowing above a bedside table with dried branches",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.4128,
+     0.268,
+     0.0623
+    ],
+    [
+     0.0074,
+     0.0184,
+     0.02
+    ]
+   ],
+   "focus": [
+    0.3749,
+    0.2447
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/natural-travertine-stone-wall-sconce-wabi-sabi-light/00.jpg",
+   "alt": "Natural Travertine Stone Wall Sconce washing warm light up a plaster wall",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/natural-travertine-stone-wall-sconce-wabi-sabi-light/10.png",
+   "alt": "Travertino natural travertine stone wall sconce, glowing above a cream sofa and a ceramic vase",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/natural-travertine-stone-wall-sconce-wabi-sabi-light/08.png",
+   "alt": "Travertino natural travertine stone wall sconce, glowing on a beige wall, front view of the half-bowl shade",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/natural-travertine-stone-wall-sconce-wabi-sabi-light/07.png",
+   "alt": "Travertino natural travertine stone wall sconce, pair casting light upward on a pale wall, viewed from the side",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/natural-travertine-stone-wall-sconce-wabi-sabi-light/09.png",
+   "alt": "Travertino natural travertine stone wall sconce, lit half-bowl shade casting light up a soft gray wall",
+   "w": 2048,
+   "h": 2084,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/natural-travertine-stone-wall-sconce-wabi-sabi-light/12.png",
+   "alt": "Travertino natural travertine stone wall sconce, unlit half-bowl stone shade, front view on a white background",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/natural-travertine-stone-wall-sconce-wabi-sabi-light/11.png",
+   "alt": "Close-up of the Travertino natural travertine stone wall sconce showing the porous texture of the natural stone",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [],
+ "counts": {
+  "rooms": 7,
+  "night": 1,
+  "studio": 1,
+  "closeups": 1
+ }
+}

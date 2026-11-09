@@ -1,0 +1,159 @@
+{
+ "handle": "gate-wall-light-minimalist-waterproof-led-exterior-fixture",
+ "title": "Portal",
+ "subtitle": "Linear Gate Wall Light",
+ "type": "Outdoor Wall Lights",
+ "highlights": [
+  "Slim stainless steel line of light",
+  "Five lengths from 23.4\" to 94.5\"",
+  "White, warm white, dimmable or RGB",
+  "Mounts flat on gates and facades",
+  "Waterproof, hardwired exterior fixture"
+ ],
+ "rooms": [
+  {
+   "file": "img/gate-wall-light-minimalist-waterproof-led-exterior-fixture/08.jpg",
+   "alt": "Gate Wall Light, 94.5 in, RGB",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.9481,
+     0.3806,
+     0.0609
+    ]
+   ],
+   "focus": [
+    0.9481,
+    0.3806
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/gate-wall-light-minimalist-waterproof-led-exterior-fixture/09.jpg",
+   "alt": "Gate Wall Light, 78.7 in, White",
+   "w": 2048,
+   "h": 2048,
+   "night": true,
+   "src": [
+    [
+     0.0849,
+     0.322,
+     0.051
+    ],
+    [
+     0.1558,
+     0.3202,
+     0.0379
+    ],
+    [
+     0.9585,
+     0.2858,
+     0.0336
+    ]
+   ],
+   "focus": [
+    0.2955,
+    0.3136
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/gate-wall-light-minimalist-waterproof-led-exterior-fixture/02.jpg",
+   "alt": "Gate Wall Light, 94.5 in, White",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/gate-wall-light-minimalist-waterproof-led-exterior-fixture/07.jpg",
+   "alt": "Gate Wall Light, 59.1 in, RGB",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/gate-wall-light-minimalist-waterproof-led-exterior-fixture/10.jpg",
+   "alt": "Gate Wall Light, 78.7 in, RGB",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/gate-wall-light-minimalist-waterproof-led-exterior-fixture/13.jpg",
+   "alt": "Gate Wall Light, 39.4 in, RGB",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/gate-wall-light-minimalist-waterproof-led-exterior-fixture/14.gif",
+   "alt": "Portal gate wall light, tall slim bar glowing in RGB rainbow colors, on white",
+   "w": 1020,
+   "h": 1020,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [],
+ "dims": [
+  [
+   "23.4\"",
+   "L 23.4\""
+  ],
+  [
+   "39.4\"",
+   "L 39.4\""
+  ],
+  [
+   "59.1\"",
+   "L 59.1\""
+  ],
+  [
+   "78.7\"",
+   "L 78.7\""
+  ],
+  [
+   "94.5\"",
+   "L 94.5\""
+  ]
+ ],
+ "counts": {
+  "rooms": 9,
+  "night": 4,
+  "studio": 2,
+  "closeups": 0
+ }
+}

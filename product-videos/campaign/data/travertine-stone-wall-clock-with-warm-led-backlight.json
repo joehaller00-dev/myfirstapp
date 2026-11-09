@@ -1,0 +1,116 @@
+{
+ "handle": "travertine-stone-wall-clock-with-warm-led-backlight",
+ "title": "Caliza Wall Clock",
+ "subtitle": "Backlit Travertine Wall Clock",
+ "type": "Wall Clocks",
+ "highlights": [
+  "Real travertine with natural veins and pores",
+  "Hidden LED casts a warm halo",
+  "Doubles as a soft evening wall light",
+  "Square or round shape"
+ ],
+ "rooms": [
+  {
+   "file": "img/travertine-stone-wall-clock-with-warm-led-backlight/03.jpg",
+   "alt": "Travertine Stone Wall Clock with Warm LED Backlight, Round",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/travertine-stone-wall-clock-with-warm-led-backlight/02.png",
+   "alt": "Caliza travertine stone wall clock with warm LED backlight, glowing on a wall in a warm kitchen nook",
+   "w": 1254,
+   "h": 1254,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/travertine-stone-wall-clock-with-warm-led-backlight/00.png",
+   "alt": "Caliza travertine stone wall clock with warm LED backlight, glowing above a console",
+   "w": 1254,
+   "h": 1254,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  },
+  {
+   "file": "img/travertine-stone-wall-clock-with-warm-led-backlight/01.png",
+   "alt": "Caliza travertine stone wall clock with warm LED backlight, round stone face glowing on a beige wall",
+   "w": 1254,
+   "h": 1254,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "room"
+  }
+ ],
+ "studio": [
+  {
+   "file": "img/travertine-stone-wall-clock-with-warm-led-backlight/07.jpg",
+   "alt": "Caliza travertine stone wall clock with warm LED backlight, round travertine face with gold hands, on a white background",
+   "w": 2048,
+   "h": 2048,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "studio"
+  }
+ ],
+ "closeups": [
+  {
+   "file": "img/travertine-stone-wall-clock-with-warm-led-backlight/08.png",
+   "alt": "Close-up of the Caliza travertine stone wall clock with warm LED backlight showing the pitted travertine surface and gold hands",
+   "w": 1254,
+   "h": 1254,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  },
+  {
+   "file": "img/travertine-stone-wall-clock-with-warm-led-backlight/09.png",
+   "alt": "Close-up of the Caliza travertine stone wall clock with warm LED backlight showing the slim gold hands at the center",
+   "w": 1254,
+   "h": 1254,
+   "night": false,
+   "src": [],
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "kind": "closeup"
+  }
+ ],
+ "dims": [],
+ "counts": {
+  "rooms": 4,
+  "night": 0,
+  "studio": 1,
+  "closeups": 2
+ }
+}
