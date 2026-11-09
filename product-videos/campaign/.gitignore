@@ -1,2 +1,6 @@
 img/
 node_modules/
+render.log
+# rendering in progress; removed once the batch finishes
+out/
+review/
