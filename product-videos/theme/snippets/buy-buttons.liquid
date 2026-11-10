@@ -1,0 +1,255 @@
+{%- comment -%}
+NF-MEMBERS-V1 gating (2026-09-27). members-only: non members see the product but get "Members only" instead of Add to cart.
+early-access + product metafield custom.early_access_until: before that time non members get "Early access for members",
+members get the normal button and an Early access badge. Pages are cached, so assets/nf-membership.js re-checks the time and
+flips the button when the public release passes.
+SECURITY NOTE (for Joe): this is cosmetic on non Plus plans. Someone could still post a variant id to /cart/add. The backstop is
+the Flow rule "Order created: line item tagged members-only or early-access and customer lacks tag member -> tag the order
+review-member-gate and email Joe". Discounts themselves are enforced by Shopify (segment Active members) and cannot be spoofed.
+NF-TRADE (2026-10-16/17): Nora Members became Nora Trade. Trade accounts (customer tag `trade`) pass the gates too, and
+the wording and links point to the Trade Program (snippets/nf-trade-url.liquid).
+No product is tagged members-only or early-access today, so nothing shows unless those tags are used again.
+{%- endcomment -%}
+{%- liquid
+  assign nf_mtag = settings.nf_mem_tag | default: 'member'
+  assign nf_is_member = false
+  if customer and customer.tags contains nf_mtag
+    assign nf_is_member = true
+  endif
+  if customer and customer.tags contains 'trade'
+    assign nf_is_member = true
+  endif
+  assign nf_gate_hard = false
+  assign nf_gate_soft = false
+  assign nf_ea_ts = 0
+  if settings.nf_mem_enabled
+    if product.tags contains 'members-only' and nf_is_member == false
+      assign nf_gate_hard = true
+    endif
+    if product.tags contains 'early-access' and product.metafields.custom.early_access_until != blank
+      assign nf_ea_ts = product.metafields.custom.early_access_until | date: '%s' | plus: 0
+      assign nf_now = 'now' | date: '%s' | plus: 0
+      if nf_ea_ts > nf_now and nf_is_member == false
+        assign nf_gate_soft = true
+      endif
+    endif
+  endif
+-%}
+{%- if nf_gate_hard -%}
+<div class="nf-gate">
+  <p class="nf-gate__t"><span class="nf-gate__lock" aria-hidden="true"></span>Trade only</p>
+  <p class="nf-gate__s">This piece is available to Nora Trade accounts.</p>
+  <a class="nf-gate__btn" href="{%- render 'nf-trade-url' -%}" data-nf-mem-cta="gate">Join Trade Program</a>
+</div>
+{%- else -%}
+{%- if nf_gate_soft -%}
+<div class="nf-gate" data-nf-ea-gate data-until="{{ nf_ea_ts }}">
+  <p class="nf-gate__t">Early access for Nora Trade</p>
+  <p class="nf-gate__s">Public release {{ product.metafields.custom.early_access_until | date: '%B %-d at %-I:%M %p' }}.</p>
+  <a class="nf-gate__btn" href="{%- render 'nf-trade-url' -%}" data-nf-mem-cta="early">Join Trade Program</a>
+</div>
+{%- elsif nf_is_member and nf_ea_ts > 0 -%}
+<p class="nf-ea-badge">Early access · Nora Trade until {{ product.metafields.custom.early_access_until | date: '%B %-d' }}</p>
+{%- endif -%}
+<div class="nf-atc-wrap" {% if nf_gate_soft %}hidden data-nf-ea-atc{% endif %}>
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  BUY BUTTONS
+  ----------------------------------------------------------------------------------------------------------------------
+
+  This component is used to show the buy buttons
+
+  ********************************************
+  Supported variables
+  ********************************************
+
+  * product: the product from which to show the buttons (if empty, a placeholder is displayed)
+  * show_payment_button: if we show or not the dynamic checkout button
+  * show_gift_card_recipient: for gift card products, an optional message/email to be sent to the recipient
+  * atc_button_background: the background of the ATC button
+  * atc_button_text_color: the color of the ATC button
+  * payment_button_background: the background of the dynamic payment button
+  * payment_button_background: the color of the dynamic payment button
+  * form_id: if specified, define the form ID linked to this input
+  * show_quantity: NF-BUYBOX-V2 (2026-09-14): when true, renders the quantity selector inline, to the left of the
+    Add to Cart button, instead of as its own separate row above. Only passed as true from the main product page.
+{%- endcomment -%}
+
+{%- if product != blank -%}
+  {%- liquid
+    assign variant_picker_block = section.blocks | where: 'type', 'variant_picker' | first
+    # NF-CHEAPEST-V2: render the variant main-product chose (cheapest available on a bare product URL)
+    assign nf_iv = nf_initial_variant | default: product.selected_or_first_available_variant
+    assign recipient_feature_active = false
+
+    if product.gift_card? and show_gift_card_recipient
+      assign recipient_feature_active = true
+    endif
+  -%}
+
+  <product-form>
+    {%- form 'product', product, id: form_id -%}
+      {%- comment -%}NF-ORDERINFO-V1 hidden line item properties, enabled by the panel in custom-nav.js{%- endcomment -%}
+      {%- liquid
+        assign nf_oi = product.metafields.custom.order_info.value
+      -%}
+      {%- if nf_oi != blank -%}
+        <div class="nf-oi-data" hidden data-nf-oi="{{ nf_oi | json | escape }}"></div>
+        {%- for f in nf_oi.fields -%}
+          <input type="hidden" disabled data-nf-oi-field="{{ f.k }}" name="properties[{{ f.l }}]" value="">
+        {%- endfor -%}
+      {%- endif -%}
+      <input
+        type="hidden"
+        {% if variant_picker_block != blank %}
+          disabled
+        {% endif %}
+        name="id"
+        value="{{ nf_iv.id }}"
+      >
+
+      {% liquid
+        assign button_disabled = false
+
+        if nf_iv == null
+          assign button_disabled = true
+          assign button_content = 'product.general.unavailable_button' | t
+        elsif nf_iv.available == false
+          assign button_disabled = true
+          assign button_content = 'product.general.sold_out_button' | t
+        else
+          if product.template_suffix contains 'pre-order'
+            assign button_content = 'product.general.pre_order_button' | t
+          elsif show_quantity
+            # NF-ATC-STEADY (2026-10-19, owner: every option click "retypes" Add to Cart): on the product page the label is
+            # rendered with its price, exactly as snippets/nf-pdp-quality-badges.liquid writes it ("Add to Cart - $392.99"),
+            # so the button the theme swaps in on an option change already reads right; that script only corrects the
+            # price for quantity and Bundle & Save, and only when the text really differs.
+            # v10 (owner 2026-10-25): inside the Fall Hosting window the label shows the price after the $ off the cart
+            # will apply ($50 off $400+, $150 off $1,000+), same rule as snippets/nf-pdp-quality-badges.liquid, so the
+            # first paint already matches and nothing retypes. Only on pieces that show the bundle tiers (not Room Sets
+            # or the membership).
+            assign nf_atc_p = nf_iv.price
+            unless product.type == 'Room Set' or product.tags contains 'membership-product' or product.gift_card?
+              capture nf_pd
+                render 'nf-promo-dates'
+              endcapture
+              assign nf_pd_f = nf_pd | strip | split: '|' | first | split: ','
+              assign nf_pd_s = nf_pd_f[0] | plus: 0
+              assign nf_pd_e = nf_pd_f[1] | plus: 0
+              assign nf_pd_now = 'now' | date: '%s' | plus: 0
+              if nf_pd_now >= nf_pd_s and nf_pd_now <= nf_pd_e
+                if nf_atc_p >= 100000
+                  assign nf_atc_p = nf_atc_p | minus: 15000
+                elsif nf_atc_p >= 40000
+                  assign nf_atc_p = nf_atc_p | minus: 5000
+                endif
+              endif
+            endunless
+            assign nf_atc_money = nf_atc_p | money
+            assign button_content = 'Add to Cart - ' | append: nf_atc_money
+          else
+            assign button_content = 'product.general.add_to_cart_button' | t
+          endif
+        endif
+      %}
+
+      <div class="v-stack gap-4 nf-bb-stack">
+        {%- if recipient_feature_active -%}
+          <gift-card-recipient class="gift-card-recipient v-stack gap-3">
+            {%- assign checkbox_label = 'gift_card.recipient.checkbox' | t -%}
+            {%- render 'checkbox', label: checkbox_label, name: 'properties[__shopify_send_gift_card_to_recipient]' -%}
+
+            <div class="gift-card-recipient__fields" hidden>
+              <div class="fieldset">
+                {%- liquid
+                  assign recipient_email_label = 'gift_card.recipient.email_label' | t
+                  render 'input', type: 'email', label: recipient_email_label, name: 'properties[Recipient email]', value: form.email, required: true, maxlength: 138
+
+                  assign recipient_name_label = 'gift_card.recipient.name_label' | t
+                  render 'input', label: recipient_name_label, name: 'properties[Recipient name]', value: form.name
+
+                  assign send_on_label = 'gift_card.recipient.send_on_label' | t
+                  render 'input', type: 'date', label: send_on_label, name: 'properties[Send on]', value: form.send_on, pattern: '\d{4}-\d{2}-\d{2}'
+                  render 'input', type: 'hidden', name: 'properties[__shopify_offset]'
+
+                  assign message_label = 'gift_card.recipient.message_label' | t
+                  render 'input', label: message_label, name: 'properties[Message]', value: form.message, multiline: 3, maxlength: 200, show_max_characters_count: true
+                -%}
+              </div>
+            </div>
+          </gift-card-recipient>
+        {%- endif -%}
+
+        <div class="{% if show_quantity %}nf-qty-atc-row{% endif %}">
+          {%- if show_quantity and product.available -%}
+            <div class="nf-qty-inline">
+              {%- render 'quantity-selector', variant: nf_iv, form: form_id -%}
+            </div>
+          {%- endif -%}
+
+          <buy-buttons class="buy-buttons nf-buybuttons" form="{{ form_id }}">
+            {%- if nf_iv.available == false or show_payment_button and atc_button_background == blank and atc_button_text_color == blank -%}
+              {%- assign atc_button_style = 'outline' -%}
+            {%- else -%}
+              {%- assign atc_button_style = 'solid' -%}
+            {%- endif -%}
+
+            {%- render 'button',
+              content: button_content,
+              type: 'submit',
+              disabled: button_disabled,
+              style: atc_button_style,
+              background: atc_button_background,
+              text_color: atc_button_text_color,
+              stretch: true
+            -%}
+          </buy-buttons>
+        </div>
+
+        {%- comment -%} NF-BUYNOW-V1 (2026-09-14): Shopify's native dynamic checkout button. Renders the store's
+          enabled express wallets (Shop Pay / PayPal / Apple Pay / Google Pay, whichever are turned on in Payments
+          settings) plus Shopify's own "More payment options" link beneath it, which goes to the regular checkout
+          where every payment method can be chosen. Only rendered when the block setting turns it on and the
+          variant can actually be purchased. Sits as its own full width row below quantity + Add to Cart. {%- endcomment -%}
+        {%- if show_payment_button and button_disabled == false -%}
+          <div class="nf-buynow">
+            {{- form | payment_button -}}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} NF-PDP-1108 (2026-11-08, owner: "the X people viewed in the last 24 hours needs to be right underneath Buy with Shop"): the viewers line renders here, main form only; the nf_urgency template block is now empty. Backup: assets/_bak_buy-buttons.liquid_bf5d_20261108.txt {%- endcomment -%}
+        {%- if form_id contains 'product-form-main-' and button_disabled == false -%}
+          {%- render 'nf-pdp-head', product: product, part: 'urgency' -%}
+        {%- endif -%}
+        {%- comment -%} NF-TRUSTED-V1 (2026-10-25): social-proof pill under Buy with Shop + Add to Cart,
+          above the low-stock / viewed-count line. Main product form only (not sticky bar, not quick buy),
+          and only when the product can actually be purchased. See snippets/nf-trusted.liquid. {%- endcomment -%}
+        {%- comment -%} NF-PDP-VIDEO (2026-11-10, owner: "remove the trusted by 50K customers section ... put that video there"):
+          the Trusted by 50K+ pill is gone; the product video shows here instead, main form only. Products with no video show
+          nothing. To bring the pill back, render 'nf-trusted' here again. {%- endcomment -%}
+        {%- if form_id contains 'product-form-main-' -%}
+          {%- render 'nf-pdp-video', product: product -%}
+        {%- endif -%}
+      </div>
+    {%- endform -%}
+  </product-form>
+{%- else -%}
+  <buy-buttons class="buy-buttons" template="{{ product.template_suffix | escape }}" form="{{ form_id }}">
+    {%- assign button_content = 'product.general.add_to_cart_button' | t -%}
+    {%- render 'button',
+      content: button_content,
+      type: 'submit',
+      background: variant_picker_block.settings.atc_button_background,
+      text_color: variant_picker.settings.atc_button_text_color,
+      stretch: true
+    -%}
+  </buy-buttons>
+{%- endif -%}
+
+</div>
+{%- endif -%}
+{%- comment -%} 2026-10-25 (owner: "put the quantity on the left side of the add to cart ... the big space above it doesn't look good"):
+  quantity and Add to Cart share one row, no "Quantity" caption, same height. {%- endcomment -%}
+{%- comment -%} NF-PAGEWEIGHT-1108: the inline <style> that was here (NF-MOB-BUY NF-MOB-PDP-CONV NF-PDP-R4 (was rendered twice: main form + sticky form)) now ships in assets/nf-pdp-bundle.css, loaded once from layout/theme.liquid on product pages. Backup of this file: assets/_bak_buy-buttons.liquid_pageweight_20261108.txt {%- endcomment -%}
+{%- comment -%} NF-PAGEWEIGHT-1108: the inline <script> that was here (NF-PDP-R4 anchor (was rendered twice)) now ships in assets/nf-pdp-bundle.js, loaded once from layout/theme.liquid on product pages. Backup of this file: assets/_bak_buy-buttons.liquid_pageweight_20261108.txt {%- endcomment -%}

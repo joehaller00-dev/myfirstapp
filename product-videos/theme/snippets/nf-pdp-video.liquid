@@ -1,0 +1,98 @@
+{%- comment -%}
+  NF-PDP-VIDEO v1 (2026-11-10, owner: "remove the trusted by 50K customers section ... and then just put that video there",
+  like Dazuma's "Product Video" block). A titled product video in the buy box, right under Add to Cart / Buy with Shop,
+  in the spot snippets/nf-trusted.liquid used (that snippet is kept, just no longer rendered).
+  Source: custom.product_video (a Shopify video or an mp4 in Files), else the product's first Shopify-hosted video.
+  Poster: custom.product_video_poster, else the video's own preview. No video = no markup at all.
+  Plays muted and looped only while on screen; the button pauses it. prefers-reduced-motion: stays on the poster until tapped.
+  The full-width band (sections/nf-pdp-film.liquid) is disabled in the product templates so the film never shows twice.
+{%- endcomment -%}
+{%- liquid
+  assign nfv_src = ''
+  assign nfv_poster = nil
+  assign nfv_ratio = 1.778
+  assign nfv_vid = nil
+  assign nfv_mf = product.metafields.custom.product_video.value
+  if nfv_mf != blank
+    if nfv_mf.media_type == 'video'
+      assign nfv_vid = nfv_mf
+    else
+      assign nfv_u = nfv_mf.url | default: '' | downcase | split: '?' | first
+      if nfv_u contains '.mp4' or nfv_u contains '.webm' or nfv_u contains '.mov' or nfv_u contains '.m4v'
+        assign nfv_src = nfv_mf.url
+      endif
+    endif
+  endif
+  if nfv_vid == nil and nfv_src == ''
+    for m in product.media
+      if m.media_type == 'video'
+        assign nfv_vid = m
+        break
+      endif
+    endfor
+  endif
+  if nfv_vid != nil
+    assign nfv_best = 0
+    for s in nfv_vid.sources
+      if s.format == 'mp4' and s.height <= 720 and s.height > nfv_best
+        assign nfv_best = s.height
+        assign nfv_src = s.url
+      endif
+    endfor
+    if nfv_src == ''
+      assign nfv_src = nfv_vid.sources.first.url
+    endif
+    assign nfv_poster = nfv_vid.preview_image
+    assign nfv_ratio = nfv_vid.aspect_ratio | default: 1.778
+  endif
+  assign nfv_pmf = product.metafields.custom.product_video_poster.value
+  if nfv_pmf != blank and nfv_pmf.preview_image != blank
+    assign nfv_poster = nfv_pmf.preview_image
+  endif
+  if nfv_poster == blank
+    assign nfv_poster = product.featured_image
+  endif
+  assign nfv_short = product.title | split: ',' | first | split: ' - ' | first | strip
+-%}
+{%- if nfv_src != '' -%}
+<div class="nfpv" data-nfpv>
+  <p class="nfpv__title">Product Video</p>
+  <div class="nfpv__frame" style="aspect-ratio: {{ nfv_ratio }}">
+    <video class="nfpv__v" data-src="{{ nfv_src }}" poster="{{ nfv_poster | image_url: width: 1000 }}" muted loop playsinline webkit-playsinline disablepictureinpicture preload="none" aria-label="{{ nfv_short | escape }} product video, no sound"></video>
+    <button type="button" class="nfpv__pp" data-nfpv-pp aria-label="Play video" aria-pressed="false">
+      <svg class="nfpv__i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+      <svg class="nfpv__i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 5h3v14h-3zM13.5 5h3v14h-3z"/></svg>
+    </button>
+  </div>
+</div>
+<style>
+.nfpv{margin:22px 0 4px;text-align:left}
+.nfpv__title{margin:0 0 12px;font-family:"EB Garamond",Georgia,serif;font-weight:400;font-size:26px;line-height:1.1;color:#1d1915}
+.nfpv__frame{position:relative;width:100%;border-radius:12px;overflow:hidden;background:#14120f}
+.nfpv__v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border:0;background:#14120f}
+.nfpv__pp{position:absolute;right:10px;bottom:10px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;padding:0;border:1px solid rgba(255,255,255,.45);border-radius:999px;background:rgba(20,18,15,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;cursor:pointer}
+.nfpv__pp:focus-visible{outline:2px solid #c9a36a;outline-offset:3px}
+.nfpv__pp svg{width:16px;height:16px;fill:currentColor}
+.nfpv__i-pause{display:none}
+.nfpv.is-playing .nfpv__i-play{display:none}
+.nfpv.is-playing .nfpv__i-pause{display:block}
+@media (max-width:749px){.nfpv{margin-top:18px}.nfpv__title{font-size:23px;margin-bottom:10px}.nfpv__frame{border-radius:10px}}
+</style>
+<script>
+(function () {
+  var root = document.querySelector('[data-nfpv]:not([data-nfpv-on])'); if (!root) return; root.setAttribute('data-nfpv-on', '1');
+  var v = root.querySelector('.nfpv__v'), btn = root.querySelector('[data-nfpv-pp]');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var userPaused = false, playing = false, inView = false;
+  function ui(on) { playing = on; root.classList.toggle('is-playing', on); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); btn.setAttribute('aria-label', on ? 'Pause video' : 'Play video'); }
+  function play() { if (!v.dataset.loaded) { v.dataset.loaded = '1'; v.preload = 'auto'; v.src = v.dataset.src; } var p = v.play(); ui(true); if (p && p.catch) p.catch(function () { ui(false); }); }
+  function pause() { v.pause(); ui(false); }
+  v.addEventListener('play', function () { ui(true); }); v.addEventListener('pause', function () { ui(false); });
+  btn.addEventListener('click', function (e) { e.preventDefault(); if (playing) { userPaused = true; pause(); } else { userPaused = false; play(); } });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { es.forEach(function (en) { inView = en.isIntersecting; if (inView && !reduce && !userPaused) play(); else if (!inView && playing) pause(); }); }, { threshold: 0.4 }).observe(root);
+  } else if (!reduce) { play(); }
+  document.addEventListener('visibilitychange', function () { if (document.hidden && playing) pause(); else if (!document.hidden && inView && !reduce && !userPaused) play(); });
+})();
+</script>
+{%- endif -%}

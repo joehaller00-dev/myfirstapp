@@ -1,0 +1,404 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "nf_mod_css": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "{%- comment -%} NF-PDP (2026-10-13 v3): same layout as product.default-product-v2.json so every product matches. {%- endcomment -%}\n{%- render 'nf-pdp-taxo', product: product, mode: 'breadcrumb' -%}\n{%- render 'nf-pdp-quality-badges' -%}\n{%- comment -%} NF-PDP-BULBS CSS (2026-11-03): nfl_bulbs section removed; Bulb compatibility renders only inside the Product Details tab (snippets\/nf-pdp-bulbs), so load its styles here. {%- endcomment -%}{{ 'nf-pdp-lux.css' | asset_url | stylesheet_tag }}",
+        "text_alignment": "center"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "nf_head": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'nf-pdp-head', product: product %}{%- comment -%} NF-X-PDP-HEAD eyebrow (x_pdp2 2026-10-24) {%- endcomment -%}{% render 'nf-x-pdp-head', product: product, part: 'eyebrow' %}"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h1"
+          }
+        },
+        "nf_pmeta": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- comment -%} NF-X-PDP-HEAD (x_pdp2 2026-10-24): custom.tagline + chips, else the old subtitle lines (nf-pdp-taxo meta) {%- endcomment -%}{% render 'nf-x-pdp-head', product: product, part: 'sub' %}{% render 'nf-bf5-price', part: 'line' %}"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "nf_x_benefits": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- comment -%} NF-X-PDP-HEAD benefits (x_pdp2 2026-10-24) {%- endcomment -%}{% render 'nf-x-pdp-head', product: product, part: 'benefits' %}"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "variant_image_show_underline": false,
+            "size_chart_page": ""
+          }
+        },
+        "nf_urgency": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- comment -%} NF-PDP-1108 (2026-11-08): the viewers line now renders inside snippets\/buy-buttons.liquid, right under Buy with Shop {%- endcomment -%}"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "nf_bundle": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'nf-pdp-bundle', product: product %}"
+          }
+        },
+        "nf_pillars": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'nf-pdp-pillars' %}"
+          }
+        },
+        "nf_share": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'nf-pdp-share', product: product, layout: 'row' %}{%- comment -%} NF-M6: on a refresh or back\/forward, theme.liquid NF-RELOAD-SMOOTH-V2 held the first frame until #nf-main-end (the end of <main>, after reviews and Q&A). The first match ends that wait, so the page now paints once the gallery and buy box are in. {%- endcomment -%}<div id=\"nf-main-end\" hidden><\/div>"
+          }
+        },
+        "nf_cred": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- comment -%} NF-PDP-CRED (x_pdp_v11 2026-11-01): richer credibility layer; previous: render 'nf-pdp-trust' {%- endcomment -%}{% render 'nf-pdp-cred', product: product %}"
+          }
+        }
+      },
+      "block_order": [
+        "nf_head",
+        "title",
+        "nf_pmeta",
+        "price",
+        "separator",
+        "nf_x_benefits",
+        "variant_picker",
+        "buy_buttons",
+        "nf_urgency",
+        "nf_bundle",
+        "nf_pillars",
+        "nf_cred",
+        "nf_share"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "allow_transparent_header": false,
+        "transparent_header_use_primary_colors": false,
+        "container_size": "lg",
+        "product_info_size": 44,
+        "show_sticky_add_to_cart": false,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "desktop_media_grid_gap": 8,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "nf_x_why": {
+      "type": "custom-liquid",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": false,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "{%- comment -%} NF-X-PDP (2026-10-24): Why Nora feels different {%- endcomment -%}{%- render 'nf-x-pdp-why', product: product -%}",
+        "text_alignment": "center"
+      }
+    },
+    "nf_pdp_tabs": {
+      "type": "nf-pdp-tabs",
+      "settings": {}
+    },
+    "nf_pdp_ctr": {
+      "type": "nf-pdp-ctr",
+      "settings": {}
+    },
+    "nf_pdp_promise": {
+      "type": "nf-pdp-promise",
+      "disabled": true,
+      "settings": {
+        "title": "Our Promise"
+      }
+    },
+    "nf_pdp_loox": {
+      "type": "nf-pdp-loox",
+      "settings": {
+        "title": "Customer Reviews"
+      }
+    },
+    "nf_recent": {
+      "type": "nf-recent",
+      "settings": {
+        "title": "Recently viewed",
+        "limit": 8
+      }
+    },
+    "nf_pdp_care": {
+      "type": "nf-pdp-care",
+      "settings": {}
+    },
+    "nf_noon_midnight": {
+      "type": "nf-noon-midnight",
+      "settings": {}
+    },
+    "nf_anatomy": {
+      "type": "nf-anatomy",
+      "settings": {}
+    },
+    "nf_pdp_film": {
+      "type": "nf-pdp-film",
+      "disabled": true,
+      "settings": {
+        "eyebrow": "The film",
+        "title_suffix": "in motion",
+        "text": "See how the light falls, moves and settles before it comes home."
+      }
+    },
+    "nf_shop_look": {
+      "type": "nf-shop-look",
+      "settings": {
+        "eyebrow": "Shop the look",
+        "title": "Shown in this room",
+        "unit": "light",
+        "units": "lights"
+      }
+    },
+    "nfl_install": {
+      "type": "nf-pdp-lux",
+      "settings": {
+        "part": "install",
+        "diag_nowire": "",
+        "diag_notes": "",
+        "story_skip": "|side-vanity-light-for-bathroom-minimalist-white.jpg|"
+      }
+    },
+    "nfl_forms": {
+      "type": "nf-pdp-lux",
+      "settings": {
+        "part": "forms"
+      }
+    },
+    "nfl_idea": {
+      "type": "nf-pdp-lux",
+      "settings": {
+        "part": "idea",
+        "story_skip": "|side-vanity-light-for-bathroom-minimalist-white.jpg|"
+      }
+    },
+    "nfl_diag": {
+      "type": "nf-pdp-lux",
+      "settings": {
+        "part": "diagnosis",
+        "diag_nowire": "",
+        "diag_notes": "",
+        "story_skip": "|side-vanity-light-for-bathroom-minimalist-white.jpg|"
+      }
+    },
+    "nfl_homes": {
+      "type": "nf-pdp-lux",
+      "settings": {
+        "part": "homes"
+      }
+    },
+    "nfl_mat": {
+      "type": "nf-pdp-lux",
+      "settings": {
+        "part": "material"
+      }
+    },
+    "nfl_plan": {
+      "type": "nf-pdp-lux",
+      "settings": {
+        "part": "planning"
+      }
+    },
+    "nfl_news": {
+      "type": "nf-pdp-lux",
+      "settings": {
+        "part": "newsletter"
+      }
+    },
+    "nfl_brand": {
+      "type": "nf-pdp-lux",
+      "settings": {
+        "part": "brand",
+        "brand_img1": "shopify:\/\/shop_images\/nf-standard-gallery.jpg",
+        "brand_img2": "shopify:\/\/shop_images\/nf-standard-studio.jpg",
+        "brand_img3": "shopify:\/\/shop_images\/nf-standard-storefront.jpg",
+        "brand_link": "\/collections\/shop-all",
+        "brand_url2": "\/pages\/our-story",
+        "brand_url3": "\/pages\/shop-by-style"
+      }
+    },
+    "nf_trust_block": {
+      "type": "nf-trust-block",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "We spent three months going back and forth on the right chandelier for our dining room renovation. The moment we hung it, my husband and I just looked at each other and knew. Every dinner party since, someone asks where we found it. The light it throws is warm without being yellow, and it makes the whole room feel like a magazine, but still ours.",
+            "name": "Sarah Mitchell",
+            "location": "Austin, TX",
+            "product_note": "Purchased the Crystal Rod Dining Chandelier",
+            "image": "shopify:\/\/shop_images\/trust-sarah-mitchell.png",
+            "product_url": "\/products\/crystal-rod-dining-chandelier-dimmable"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Our builder gave us a lighting allowance and we went over budget on the kitchen pendants. Zero regrets. They are the single best decision we made in the entire build. Every morning the light through the crystal layers makes the island glow. Two years in, they still look brand new and we have never had to replace a single piece.",
+            "name": "Marcus & Elena Reyes",
+            "location": "Denver, CO",
+            "product_note": "Purchased the Layered Crystal Dining Chandelier",
+            "image": "shopify:\/\/shop_images\/trust-marcus-elena.png",
+            "product_url": "\/products\/layered-crystal-dining-chandelier"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I walked into our foyer the first night after it was installed and stopped in my tracks. The way the light falls through every tier of crystal, it just fills the whole entryway with this warm glow that photographs cannot do justice. My daughter took one look and said it belongs in a five-star hotel. Best purchase I have made for this house, and I have been here twelve years.",
+            "name": "Diana Calloway",
+            "location": "Nashville, TN",
+            "product_note": "Purchased the Gold Tiered Crystal Foyer Chandelier",
+            "image": "shopify:\/\/shop_images\/trust-diana-calloway.png",
+            "product_url": "\/products\/gold-tiered-crystal-foyer-chandelier"
+          }
+        },
+        "testimonial_4": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I was skeptical about ordering lighting online. You cannot exactly feel the weight or see the finish through a screen. When the box arrived and I pulled it out, the crystal rods were heavier and richer than anything I had seen at the showroom down the street. My electrician, who has been in the trade for twenty years, said it was one of the nicest fixtures he has ever installed. That told me everything I needed to know.",
+            "name": "James Okafor",
+            "location": "Charlotte, NC",
+            "product_note": "Purchased the Crystal Rod Dining Chandelier",
+            "image": "shopify:\/\/shop_images\/trust-james-okafor.png",
+            "product_url": "\/products\/crystal-rod-dining-chandelier-dimmable"
+          }
+        },
+        "testimonial_5": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "We replaced the old builder-grade light next to our front door with this lantern and the difference was night and day. The dark bronze finish looks like it has been there for decades, and the warm glow through those arched glass panels makes our whole porch feel like a different house. Our neighbors across the street actually walked over to ask where we found it. Worth every penny.",
+            "name": "Catherine Brewer",
+            "location": "Savannah, GA",
+            "product_note": "Purchased the Antirust Retro Outdoor Wall Lantern",
+            "image": "shopify:\/\/shop_images\/trust-catherine-brewer.png",
+            "product_url": "\/products\/antirust-retro-outdoor-wall-lantern"
+          }
+        },
+        "testimonial_6": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "My wife found these solar wall lights and I honestly thought they were a gimmick for the price. The first night they turned on, the mandala pattern they threw across our back wall was unreal. It looks like a piece of art six feet wide and it runs on nothing but sunlight. We have four of them now and every single person who comes over for a barbecue asks about them. Best fifty dollars I have ever spent on this house.",
+            "name": "Derek Lawson",
+            "location": "Scottsdale, AZ",
+            "product_note": "Purchased the Solar Mandala Projection Wall Light",
+            "image": "shopify:\/\/shop_images\/trust-derek-lawson.png",
+            "product_url": "\/products\/solar-mandala-projection-wall-light"
+          }
+        },
+        "testimonial_7": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I wanted something that would make our garden path feel intentional, not just a walkway you rush through to get inside. These bollard lights changed the entire mood of our backyard. The frosted amber glass gives off this warm, golden glow that makes you want to slow down and actually enjoy the walk. My kids call it the runway. I call it the best landscaping decision we have made in twenty years of owning this home.",
+            "name": "Patricia Nguyen",
+            "location": "Portland, OR",
+            "product_note": "Purchased the LED Landscape Lawn Bollard Light",
+            "image": "shopify:\/\/shop_images\/trust-patricia-nguyen.png",
+            "product_url": "\/products\/led-landscape-lawn-bollard-light"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3",
+        "testimonial_4",
+        "testimonial_5",
+        "testimonial_6",
+        "testimonial_7"
+      ],
+      "settings": {
+        "eyebrow": "TRUSTED IN REAL HOMES",
+        "headline": "Homeowners. Designers. First-Time Buyers.",
+        "subline": "They all light their homes with Nora Furnish.",
+        "bottom_line": "Every fixture. Every home. Every light, built to earn your trust."
+      }
+    }
+  },
+  "order": [
+    "nf_mod_css",
+    "main",
+    "nf_pdp_tabs",
+    "nf_trust_block",
+    "nfl_install",
+    "nfl_forms",
+    "nfl_idea",
+    "nf_pdp_film",
+    "nfl_diag",
+    "nf_noon_midnight",
+    "nf_anatomy",
+    "nfl_homes",
+    "nf_shop_look",
+    "nfl_brand",
+    "nf_pdp_loox",
+    "nf_pdp_ctr",
+    "nf_recent",
+    "nfl_mat",
+    "nfl_plan",
+    "nf_x_why",
+    "nf_pdp_care",
+    "nfl_news",
+    "nf_pdp_promise"
+  ]
+}
