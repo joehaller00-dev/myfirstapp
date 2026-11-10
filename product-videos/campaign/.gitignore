@@ -1,3 +1,5 @@
 img/
 node_modules/
 render.log
+# films with music are rebuilt from out/ + music/ by the mix step; the live copies are in Shopify Files
+out-sound/
